@@ -2909,8 +2909,8 @@ Done:
 }
 
 
-
-BOOL 获取动画尺寸(ACTION* a0,S2 *wx,S2* wy)
+//获取动画尺寸
+BOOL getAnimationSize(ACTION* a0,S2 *wx,S2* wy)
 {
 	int chrNo = ATR_CHR_NO(a0) - SPRSTART;
 	if(chrNo < 0){

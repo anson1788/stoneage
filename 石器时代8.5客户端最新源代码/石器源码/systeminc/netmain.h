@@ -9,7 +9,7 @@ struct gameserver
 	char ipaddr[127];
 	char port[64];
 	char name[64];
-#ifdef _SHOW_COUNT						// WON ADD Ðã·þÎñÆ÷Á÷Á¿
+#ifdef _SHOW_COUNT						// WON ADD ç§€æœåŠ¡å™¨æµé‡
 	char count[64];
 #endif
 #ifdef _SHOWIPSLEEP_
@@ -24,7 +24,7 @@ struct gamegroup{
 	char	name[61];
 };
 
-#define SUCCESSFULSTR	"successful"        // ??????úé?§ó?¤e??
+#define SUCCESSFULSTR	"successful"        // ??????îŒ¸?îž°?î˜‹??
 #define FAILEDSTR		"failed" 
 #define OKSTR           "ok"
 #define CANCLE          "cancle"
@@ -76,22 +76,22 @@ int getServerInfoByServerName( char *servername , char *hostname , short *port )
 
 
 // ????????
-#define NET_ERRMSG_SOCKLIBERROR		"ÍøÂ·ÉÐÎ´×¼±¸ºÃ¡£"
-#define NET_ERRMSG_BADNAME          "·þÎñÆ÷Ãû³Æ²»ÕýÈ·¡£"
-#define NET_ERRMSG_SOCKETERROR      "ÎÞ·¨Ö´ÐÐsocketµÄTCP¡£"
-#define NET_ERRMSG_NOTGETADDR		"ÍøÂç¹ÊÕÏ,ÇëÁªÏµ¿Í·þ¡£"
-#define NET_ERRMSG_NOTCONNECT_S		"ÎÞ·¨¿ªÊ¼½øÐÐ·þÎñÆ÷µÄÁ¬½Ó¡£"
-#define NET_ERRMSG_NOTCONNECT		"·þÎñÆ÷ÉÐÎ´¿ªÆô¡£Çë³¢ÊÔÆäËûÁ¬Ïß"
-#define NET_ERRMSG_CONNECTTIMEOUT	"·þÎñÆ÷Á¬½ÓÊ±¼äÒÑµ½¡£"
-#define NET_ERRMSG_LOGINTIMEOUT		"µÇÈë´¦ÀíÊ±¼äÒÑµ½¡£"
-#define NET_ERRMSG_CHARLISTTIMEOUT	"¶ÁÈ¡ÈËÎï±íÊ±¼äÒÑµ½¡£"
-#define NET_ERRMSG_LOGOUTTIMEOUT	"µÇ³ö´¦ÀíÊ±¼äÒÑµ½¡£"
-#define NET_ERRMSG_LOGINFAIL		"ÎÞ·¨µÇÈë·þÎñÆ÷¡£"
-#define NET_ERRMSG_CREATECHARTIMEOUT	"ÈËÎïÖÆ×÷Ê±¼äÒÑµ½¡£"
-#define NET_ERRMSG_DELETECHARTIMEOUT	"ÈËÎïÏ÷³ýÊ±¼äÒÑµ½¡£"
-#define NET_ERRMSG_VERSIONERROR		"Äúµ±Ç°µÄ°æ±¾Ì«¾É£¬ÇëÊ¹ÓÃ¸üÐÂÆ÷¸üÐÂÓÎÏ·ºóµÇÂ½£¡"
+#define NET_ERRMSG_SOCKLIBERROR		"ç½‘è·¯å°šæœªå‡†å¤‡å¥½ã€‚"
+#define NET_ERRMSG_BADNAME          "æœåŠ¡å™¨åç§°ä¸æ­£ç¡®ã€‚"
+#define NET_ERRMSG_SOCKETERROR      "æ— æ³•æ‰§è¡Œsocketçš„TCPã€‚"
+#define NET_ERRMSG_NOTGETADDR		"ç½‘ç»œæ•…éšœ,è¯·è”ç³»å®¢æœã€‚"
+#define NET_ERRMSG_NOTCONNECT_S		"æ— æ³•å¼€å§‹è¿›è¡ŒæœåŠ¡å™¨çš„è¿žæŽ¥ã€‚"
+#define NET_ERRMSG_NOTCONNECT		"æœåŠ¡å™¨å°šæœªå¼€å¯ã€‚è¯·å°è¯•å…¶ä»–è¿žçº¿"
+#define NET_ERRMSG_CONNECTTIMEOUT	"æœåŠ¡å™¨è¿žæŽ¥æ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_LOGINTIMEOUT		"ç™»å…¥å¤„ç†æ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_CHARLISTTIMEOUT	"è¯»å–äººç‰©è¡¨æ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_LOGOUTTIMEOUT	"ç™»å‡ºå¤„ç†æ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_LOGINFAIL		"æ— æ³•ç™»å…¥æœåŠ¡å™¨ã€‚"
+#define NET_ERRMSG_CREATECHARTIMEOUT	"äººç‰©åˆ¶ä½œæ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_DELETECHARTIMEOUT	"äººç‰©å‰Šé™¤æ—¶é—´å·²åˆ°ã€‚"
+#define NET_ERRMSG_VERSIONERROR		"æ‚¨å½“å‰çš„ç‰ˆæœ¬å¤ªæ—§ï¼Œè¯·ä½¿ç”¨æ›´æ–°å™¨æ›´æ–°æ¸¸æˆåŽç™»é™†ï¼"
 
-#define GAMESTATE_ERRMSG_LOGOUTDENY	"·þÎñÆ÷¾Ü¾ø´¦ÀíµÇ³ö¡£"
+#define GAMESTATE_ERRMSG_LOGOUTDENY	"æœåŠ¡å™¨æ‹’ç»å¤„ç†ç™»å‡ºã€‚"
 
 
 #endif

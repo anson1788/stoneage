@@ -12,18 +12,18 @@
 #include"../systeminc/login.h"
 
 #define AI_FILE_NAME "data\\AISetting.dat"
-#define TARGET_MYSELF		1  //×Ô¼º
-#define TARGET_MYPET		2   //³èÎï
-#define TARGET_MYSIDE		3   //ÎÒ·½
-#define TARGET_OTHERONE		4   //ÁíÒ»±ß
-#define TARGET_OTHERSIDE	5  //¶Ô·½
-#define TARGET_ALL			6   //È«Ìå
+#define TARGET_MYSELF		1  //è‡ªå·±
+#define TARGET_MYPET		2   //å® ç‰©
+#define TARGET_MYSIDE		3   //æˆ‘æ–¹
+#define TARGET_OTHERONE		4   //å¦ä¸€è¾¹
+#define TARGET_OTHERSIDE	5  //å¯¹æ–¹
+#define TARGET_ALL			6   //å…¨ä½“
 
-#define TARGET_1			7       //Ä¿±êÒ»
+#define TARGET_1			7       //ç›®æ ‡ä¸€
 #define TARGET_2			8    
 #define TARGET_3			9
 #define TARGET_4			10
-#define TARGET_5			11      //Ä¿±êÎå
+#define TARGET_5			11      //ç›®æ ‡äº”
 
 #define TARGET_ONE_ROW	12
 
@@ -199,7 +199,7 @@ BOOL AI_Load( char *user)
 	}
 	fclose( fp );
 #ifdef _AI_NEW_FIRST
-	// Ã»ÓĞÖ°Òµ
+	// æ²¡æœ‰èŒä¸š
 	if(pc.profession_class == 0) bFirstFlag = false;
 #endif
 	return ret;
@@ -288,39 +288,39 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 
 
 	switch(profession_skill[method].skillId){
-		case 1://»ğÉ½Èª			µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 2://ÕëÕëÏà¶Ô		µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 3://ÊÀ½çÄ©ÈÕ  	µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 4://±ù±¬Êõ			µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 5://¸½ÉíÊõ			µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 6://ÕÙÀ×Êõ			µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 7://±©·çÓê			µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 8://µçÁ÷Êõ			µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 9://»ğĞÇÇò			µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 10://ÊÈÑª¹Æ		µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 12://±ù¼ıÊõ		µĞµ¥ÈË¹¥»÷ĞÍÌ¬		
-		case 13://»ğÁúÇ¹		µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 14://±ù¾µÊõ		µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 22://±¬»÷			µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 23://Á¬»·¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 24://Ë«ÖØ¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 38://¶Ü»÷			µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 39://¹á´©¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 40://±ôËÀ¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 41://»ØĞı¹¥»÷	µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 42://»ìÂÒ¹¥»÷	µĞ¶àÈË¹¥»÷ĞÍÌ¬
-		case 46://Ê÷¸ù²øÈÆ	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 48://ÌìÂŞµØÍø	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 49://Ê¬ÌåÂÓ¶á	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 50://¶¾ËØÎäÆ÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 51://Èõµã¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 54://×ùÆï¹¥»÷	µĞµ¥ÈË¹¥»÷ĞÍÌ¬
-		case 72://ÆÆ³ı½á½ç  µĞÎÒµ¥Ìå
+		case 1://ç«å±±æ³‰			æ•Œå•äººæ”»å‡»å‹æ€
+		case 2://é’ˆé’ˆç›¸å¯¹		æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 3://ä¸–ç•Œæœ«æ—¥  	æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 4://å†°çˆ†æœ¯			æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 5://é™„èº«æœ¯			æ•Œå•äººæ”»å‡»å‹æ€
+		case 6://å¬é›·æœ¯			æ•Œå•äººæ”»å‡»å‹æ€
+		case 7://æš´é£é›¨			æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 8://ç”µæµæœ¯			æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 9://ç«æ˜Ÿçƒ			æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 10://å—œè¡€è›Š		æ•Œå•äººæ”»å‡»å‹æ€
+		case 12://å†°ç®­æœ¯		æ•Œå•äººæ”»å‡»å‹æ€		
+		case 13://ç«é¾™æª		æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 14://å†°é•œæœ¯		æ•Œå•äººæ”»å‡»å‹æ€
+		case 22://çˆ†å‡»			æ•Œå•äººæ”»å‡»å‹æ€
+		case 23://è¿ç¯æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 24://åŒé‡æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 38://ç›¾å‡»			æ•Œå•äººæ”»å‡»å‹æ€
+		case 39://è´¯ç©¿æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 40://æ¿’æ­»æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 41://å›æ—‹æ”»å‡»	æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 42://æ··ä¹±æ”»å‡»	æ•Œå¤šäººæ”»å‡»å‹æ€
+		case 46://æ ‘æ ¹ç¼ ç»•	æ•Œå•äººæ”»å‡»å‹æ€
+		case 48://å¤©ç½—åœ°ç½‘	æ•Œå•äººæ”»å‡»å‹æ€
+		case 49://å°¸ä½“æ å¤º	æ•Œå•äººæ”»å‡»å‹æ€
+		case 50://æ¯’ç´ æ­¦å™¨	æ•Œå•äººæ”»å‡»å‹æ€
+		case 51://å¼±ç‚¹æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 54://åº§éª‘æ”»å‡»	æ•Œå•äººæ”»å‡»å‹æ€
+		case 72://ç ´é™¤ç»“ç•Œ  æ•Œæˆ‘å•ä½“
 			if(AI_target[methodkind] != TARGET_OTHERONE) AI_target[methodkind] = TARGET_OTHERONE;
 			break;
-		case 15://»ğ¸½Ìå		ÎÒÒ»·½Ê¹ÓÃ
-		case 16://À×¸½Ìå		ÎÒÒ»·½Ê¹ÓÃ
-		case 17://±ù¸½Ìå		ÎÒÒ»·½Ê¹ÓÃ
+		case 15://ç«é™„ä½“		æˆ‘ä¸€æ–¹ä½¿ç”¨
+		case 16://é›·é™„ä½“		æˆ‘ä¸€æ–¹ä½¿ç”¨
+		case 17://å†°é™„ä½“		æˆ‘ä¸€æ–¹ä½¿ç”¨
 			// down
 			if(UpDown){
 				if(AI_target[methodkind] == TARGET_MYPET || AI_target[methodkind] == TARGET_MYSIDE) AI_target[methodkind] = TARGET_OTHERONE;
@@ -334,41 +334,41 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 				if(AI_target[methodkind] == TARGET_ONE_ROW) AI_target[methodkind] = TARGET_5;
 			}
 			break;
-		case 21://ÒÆĞÎ»»Î»	±¾ÌåÊ¹ÓÃ
-		case 35://¼¤»¯¹¥»÷	±¾ÌåÊ¹ÓÃ
-		case 36://ÄÜÁ¿¾Û¼¯	±¾ÌåÊ¹ÓÃ
-		case 37://×¨×¢Õ½¶·	±¾ÌåÊ¹ÓÃ
-		case 47://ÏİÚå			±¾ÌåÊ¹ÓÃ
-		case 53://¸ñµµ			±¾ÌåÊ¹ÓÃ
-		case 59://µç¿¹			±¾ÌåÊ¹ÓÃ
-		case 60://»ğ¿¹			±¾ÌåÊ¹ÓÃ
-		case 61://±ù¿¹			±¾ÌåÊ¹ÓÃ
-		case 66://×ÔÈ»ÍşÄÜ	±¾ÌåÊ¹ÓÃ
+		case 21://ç§»å½¢æ¢ä½	æœ¬ä½“ä½¿ç”¨
+		case 35://æ¿€åŒ–æ”»å‡»	æœ¬ä½“ä½¿ç”¨
+		case 36://èƒ½é‡èšé›†	æœ¬ä½“ä½¿ç”¨
+		case 37://ä¸“æ³¨æˆ˜æ–—	æœ¬ä½“ä½¿ç”¨
+		case 47://é™·é˜±			æœ¬ä½“ä½¿ç”¨
+		case 53://æ ¼æ¡£			æœ¬ä½“ä½¿ç”¨
+		case 59://ç”µæŠ—			æœ¬ä½“ä½¿ç”¨
+		case 60://ç«æŠ—			æœ¬ä½“ä½¿ç”¨
+		case 61://å†°æŠ—			æœ¬ä½“ä½¿ç”¨
+		case 66://è‡ªç„¶å¨èƒ½	æœ¬ä½“ä½¿ç”¨
 			if(AI_target[methodkind] != TARGET_MYSELF) AI_target[methodkind] = TARGET_MYSELF;
 			break;
-		case 34://ÉáÒÑÎªÓÑ	ÎÒÒ»·½Ê¹ÓÃ
+		case 34://èˆå·²ä¸ºå‹	æˆ‘ä¸€æ–¹ä½¿ç”¨
 
 #ifdef _AI_SKILL_UPDATE
-		case 76://ÁÑ¹Ç¶Ï½î
-			AI_target[methodkind] = TARGET_OTHERONE;	//Ë³Ğò µĞ·½
+		case 76://è£‚éª¨æ–­ç­‹
+			AI_target[methodkind] = TARGET_OTHERONE;	//é¡ºåº æ•Œæ–¹
 			break;
-		case 77://Õ½ÀÇÅ­ºğ		
-			AI_target[methodkind] = TARGET_OTHERONE;	//Ë³Ğò µĞ·½
+		case 77://æˆ˜ç‹¼æ€’å¼		
+			AI_target[methodkind] = TARGET_OTHERONE;	//é¡ºåº æ•Œæ–¹
 			break;
-		case 79://Ä§Á¦ÖäÓ¡		
-			AI_target[methodkind] = TARGET_OTHERONE;	//Ë³Ğò µĞ·½
+		case 79://é­”åŠ›å’’å°		
+			AI_target[methodkind] = TARGET_OTHERONE;	//é¡ºåº æ•Œæ–¹
 			break;
-		case 80://¶ñÄ§×çÖä		
-			AI_target[methodkind] = TARGET_OTHERONE;	//Ë³Ğò µĞ·½
+		case 80://æ¶é­”è¯…å’’		
+			AI_target[methodkind] = TARGET_OTHERONE;	//é¡ºåº æ•Œæ–¹
 			break;
-		case 82://¶àÖØ±ù¼ı		
-			AI_target[methodkind] = TARGET_ONE_ROW;	    //Ë³Ğò µĞÒ»ÅÅ
+		case 82://å¤šé‡å†°ç®­		
+			AI_target[methodkind] = TARGET_ONE_ROW;	    //é¡ºåº æ•Œä¸€æ’
 			break;
-		case 83://¶¾ËØÖ®Íø		
-			AI_target[methodkind] = TARGET_OTHERONE;	//Ë³Ğò µĞ·½
+		case 83://æ¯’ç´ ä¹‹ç½‘		
+			AI_target[methodkind] = TARGET_OTHERONE;	//é¡ºåº æ•Œæ–¹
 			break;
 
-		case 85://Õ½³¡¼±¾È
+		case 85://æˆ˜åœºæ€¥æ•‘
 			//if (methodkind != 4) return 0;
 			// down
 			if(UpDown){
@@ -383,47 +383,47 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 				if(AI_target[methodkind] == TARGET_ONE_ROW) AI_target[methodkind] = TARGET_5;
 			}
 			break;
-		case 75://ËÄ·½·ÀÓù	
+		case 75://å››æ–¹é˜²å¾¡	
 			if (methodkind != 2) return 0;
-			AI_target[methodkind] = TARGET_MYSELF;	    //Ë³Ğò ×Ô¼º
+			AI_target[methodkind] = TARGET_MYSELF;	    //é¡ºåº è‡ªå·±
 			break;
-		case 67://ºÅÕÙ×ÔÈ»	ÎÒ·½È«Ìå
+		case 67://å·å¬è‡ªç„¶	æˆ‘æ–¹å…¨ä½“
 			//if (methodkind != 4) return 0;
-			AI_target[methodkind] = TARGET_MYSIDE;	    //Ë³Ğò ÎÒ·½
+			AI_target[methodkind] = TARGET_MYSIDE;	    //é¡ºåº æˆ‘æ–¹
 			break;
 #endif
-		case 68://µØ½á½ç		ÎÒ·½È«Ìå
-		case 69://Ë®½á½ç		ÎÒ·½È«Ìå
-		case 70://»ğ½á½ç		ÎÒ·½È«Ìå
-		case 71://·ç½á½ç		ÎÒ·½È«Ìå
+		case 68://åœ°ç»“ç•Œ		æˆ‘æ–¹å…¨ä½“
+		case 69://æ°´ç»“ç•Œ		æˆ‘æ–¹å…¨ä½“
+		case 70://ç«ç»“ç•Œ		æˆ‘æ–¹å…¨ä½“
+		case 71://é£ç»“ç•Œ		æˆ‘æ–¹å…¨ä½“
 			if(AI_target[methodkind] != TARGET_MYSIDE) AI_target[methodkind] = TARGET_MYSIDE;
 			break;
-		case 52://Ìô²¦			µĞµ¥ÈË¹¥»÷ĞÍÌ¬(ÏŞ³èÎï)
-		case 56://Ñ±·ş³èÎï	ÎÒÒ»·½Ê¹ÓÃ
-		case 62://ÒÅÍü			µĞµ¥ÈË¹¥»÷ĞÍÌ¬(ÏŞ³èÎï)
+		case 52://æŒ‘æ‹¨			æ•Œå•äººæ”»å‡»å‹æ€(é™å® ç‰©)
+		case 56://é©¯æœå® ç‰©	æˆ‘ä¸€æ–¹ä½¿ç”¨
+		case 62://é—å¿˜			æ•Œå•äººæ”»å‡»å‹æ€(é™å® ç‰©)
 			if(AI_target[methodkind] != TARGET_OTHERONE) AI_target[methodkind] = TARGET_OTHERONE;
 			break;
-		case 57://¼¤Å­³èÎï	ÎÒÒ»·½Ê¹ÓÃ
+		case 57://æ¿€æ€’å® ç‰©	æˆ‘ä¸€æ–¹ä½¿ç”¨
 			if(AI_target[methodkind] != TARGET_MYPET) AI_target[methodkind] = TARGET_MYPET;
 			break;
-		case 11://ÊÈÑª³ÉĞÔ	±¾ÌåÎüÊÕ
-		case 18://»ğÊìÁ·¶È	ÎŞ·¨Ê¹ÓÃ
-		case 19://À×ÊìÁ·¶È	ÎŞ·¨Ê¹ÓÃ
-		case 20://±ùÊìÁ·¶È	ÎŞ·¨Ê¹ÓÃ
-		case 25://»Ø±Ü			ÎŞ·¨Ê¹ÓÃ
-		case 26://¾«Í¨Ç¹		ÎŞ·¨Ê¹ÓÃ
-		case 27://¾«Í¨¸«		ÎŞ·¨Ê¹ÓÃ
-		case 28://¾«Í¨¹÷		ÎŞ·¨Ê¹ÓÃ
-		case 33://×´Ì¬»Ø¸´	ÎŞ·¨Ê¹ÓÃ
-		case 43://¶şµ¶Á÷		ÎŞ·¨Ê¹ÓÃ
-		case 44://×·Ñ°µĞ×Ù	·ÇÕ½¶·Ê¹ÓÃ
-		case 45://»Ø±ÜÕ½¶·	·ÇÕ½¶·Ê¹ÓÃ
-		case 55://¼Ó¹¤			?
-		case 58://×Ô¸ø×Ô×ã	?
-		case 29://¾«Í¨¹­		ÎŞ·¨Ê¹ÓÃ
-		case 30://¾«Í¨»ØÁ¦ïÚ		ÎŞ·¨Ê¹ÓÃ
-		case 31://¾«Í¨Í¶ÖÀÊ¯		ÎŞ·¨Ê¹ÓÃ
-		case 32://¾«Í¨Í¶ÖÀ¸«		ÎŞ·¨Ê¹ÓÃ
+		case 11://å—œè¡€æˆæ€§	æœ¬ä½“å¸æ”¶
+		case 18://ç«ç†Ÿç»ƒåº¦	æ— æ³•ä½¿ç”¨
+		case 19://é›·ç†Ÿç»ƒåº¦	æ— æ³•ä½¿ç”¨
+		case 20://å†°ç†Ÿç»ƒåº¦	æ— æ³•ä½¿ç”¨
+		case 25://å›é¿			æ— æ³•ä½¿ç”¨
+		case 26://ç²¾é€šæª		æ— æ³•ä½¿ç”¨
+		case 27://ç²¾é€šæ–§		æ— æ³•ä½¿ç”¨
+		case 28://ç²¾é€šæ£		æ— æ³•ä½¿ç”¨
+		case 33://çŠ¶æ€å›å¤	æ— æ³•ä½¿ç”¨
+		case 43://äºŒåˆ€æµ		æ— æ³•ä½¿ç”¨
+		case 44://è¿½å¯»æ•Œè¸ª	éæˆ˜æ–—ä½¿ç”¨
+		case 45://å›é¿æˆ˜æ–—	éæˆ˜æ–—ä½¿ç”¨
+		case 55://åŠ å·¥			?
+		case 58://è‡ªç»™è‡ªè¶³	?
+		case 29://ç²¾é€šå¼“		æ— æ³•ä½¿ç”¨
+		case 30://ç²¾é€šå›åŠ›é•–		æ— æ³•ä½¿ç”¨
+		case 31://ç²¾é€šæŠ•æ·çŸ³		æ— æ³•ä½¿ç”¨
+		case 32://ç²¾é€šæŠ•æ·æ–§		æ— æ³•ä½¿ç”¨
 		default:
 			ret = 0;
 			break;
@@ -450,7 +450,7 @@ void AI_CheckSetting()
 			AI_limit[i] = 30;
 	}
 #ifdef _ATTACK_AI
-	// È·ÈÏÍæ¼ÒÉíÉÏµÄ ÊÈÑª³ÉĞÔ ÔÚÄÇ¸öÎ»ÖÃ
+	// ç¡®è®¤ç©å®¶èº«ä¸Šçš„ å—œè¡€æˆæ€§ åœ¨é‚£ä¸ªä½ç½®
 	i = 0;
 	g_iPSindex = -1;
 	g_bUsePS = false;
@@ -466,38 +466,38 @@ void AI_CheckSetting()
 	if(AI_OtherSetting[0] < 0) AI_OtherSetting[0] = 0;
 #endif
 	method = AI_method[0];
-	if( method<MAX_MAGIC && method>=0){//Ê¹ÓÃ¾«Áé
-		if( magic[method].useFlag && (str=strstr( magic[method].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){//Ê¹ÓÃÄÍ¾ÃÁ¦»Ø¸´¾«Áé
+	if( method<MAX_MAGIC && method>=0){//ä½¿ç”¨ç²¾çµ
+		if( magic[method].useFlag && (str=strstr( magic[method].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){//ä½¿ç”¨è€ä¹…åŠ›å›å¤ç²¾çµ
 			switch( magic[method].target){
 			case MAGIC_TARGET_MYSELF:
-				AI_target[0] = TARGET_MYSELF;			//×Ô¼º
+				AI_target[0] = TARGET_MYSELF;			//è‡ªå·±
 				break;
 			case MAGIC_TARGET_ALLMYSIDE:
 			case MAGIC_TARGET_WHOLEOTHERSIDE:
-				AI_target[0] = TARGET_MYSIDE;			//ÎÒ·½È«Ìå
+				AI_target[0] = TARGET_MYSIDE;			//æˆ‘æ–¹å…¨ä½“
 				break;
 			case MAGIC_TARGET_OTHER:
 				/*
 				if( AI_target[0]!=TARGET_MYSELF && AI_target[0]!=TARGET_MYPET &&
-					(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5))//¼ì²é¶ÔÏóÊÇ·ñ´íÎó
-					AI_target[0] = TARGET_MYSELF;	//×Ô¼º
+					(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5))//æ£€æŸ¥å¯¹è±¡æ˜¯å¦é”™è¯¯
+					AI_target[0] = TARGET_MYSELF;	//è‡ªå·±
 					*/
 				break;
 			default:
-//			case MAGIC_TARGET_ALLOTHERSIDE:				//²»¸ÃÊ¹ÓÃÕâÖÖ¾«Áé»Ø¸´
+//			case MAGIC_TARGET_ALLOTHERSIDE:				//ä¸è¯¥ä½¿ç”¨è¿™ç§ç²¾çµå›å¤
 //			case MAGIC_TARGET_ALL:
-				AI_method[0] = MAX_MAGIC;			//ÉèÎªÊ¹ÓÃµÀ¾ß
+				AI_method[0] = MAX_MAGIC;			//è®¾ä¸ºä½¿ç”¨é“å…·
 				AI_target[0] = TARGET_MYSELF;
 				break;
 			}
-		}else{//Ã»ÓĞÄÍ¾ÃÁ¦»Ø¸´¾«Áé
+		}else{//æ²¡æœ‰è€ä¹…åŠ›å›å¤ç²¾çµ
 			AI_method[0] = MAX_MAGIC;
 			AI_target[0] = TARGET_MYSELF;
 		}
-	}else{//Ê¹ÓÃµÀ¾ß²¹ÄÍ¾ÃÁ¦
+	}else{//ä½¿ç”¨é“å…·è¡¥è€ä¹…åŠ›
 		AI_method[0] = MAX_MAGIC;
 		if( AI_target[0]!=TARGET_MYSELF && AI_target[0]!=TARGET_MYPET &&
-			(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5)){//Ê¹ÓÃµÀ¾ßµ«¶ÔÏó²»¶Ô
+			(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5)){//ä½¿ç”¨é“å…·ä½†å¯¹è±¡ä¸å¯¹
 			AI_target[0] = TARGET_MYSELF;
 		}
 	}
@@ -510,10 +510,10 @@ void AI_CheckSetting()
 
 	method = AI_method[2];
 #ifdef _AI_NEW_FIRST
-	// Ê×´Î¾«Áé:Ê¹ÓÃ¾«Áé
+	// é¦–æ¬¡ç²¾çµ:ä½¿ç”¨ç²¾çµ
 	if(bFirstFlag == false){
 #endif
-		if( method<MAX_MAGIC && method>=0 && magic[method].useFlag){//Ê¹ÓÃÊ×´Î¾«Áé
+		if( method<MAX_MAGIC && method>=0 && magic[method].useFlag){//ä½¿ç”¨é¦–æ¬¡ç²¾çµ
 			switch( magic[method].target){
 			case MAGIC_TARGET_MYSELF:
 				if( AI_target[2] != TARGET_MYSELF)
@@ -541,17 +541,17 @@ void AI_CheckSetting()
 					AI_method[2] = -1;
 				break;
 #ifdef __ATTACK_MAGIC
-				// µĞ¾üÄ³Ò»ÈË
+				// æ•Œå†›æŸä¸€äºº
 			case MAGIC_TARGET_SINGLE:
 				if( AI_target[2] != TARGET_OTHERONE)
 					AI_method[2] = -1;
 				break;
-				// µĞ¾üÒ»ÕûÅÅ
+				// æ•Œå†›ä¸€æ•´æ’
 			case MAGIC_TARGET_ONE_ROW:
 				if( AI_target[2]!=TARGET_ONE_ROW)
 					AI_method[2] = -1;
 				break;
-				// µĞ¾üÈ«Ìå
+				// æ•Œå†›å…¨ä½“
 			case MAGIC_TARGET_ALL_ROWS:
 				if( AI_target[2] != TARGET_OTHERSIDE)
 					AI_method[2] = -1;
@@ -561,24 +561,24 @@ void AI_CheckSetting()
 				AI_method[2] = -1;
 				break;
 			}
-		}else{//Ã»ÓĞÕâ¸ö¾«Áé
+		}else{//æ²¡æœ‰è¿™ä¸ªç²¾çµ
 			AI_method[2] = -1;
 		}
 #ifdef _AI_NEW_FIRST
 	}
-	// Ê×´Î¾«Áé:Ê¹ÓÃ¼¼ÄÜ
+	// é¦–æ¬¡ç²¾çµ:ä½¿ç”¨æŠ€èƒ½
 	else{
-		if(pc.profession_class != 0 && // ÓĞÖ°Òµ
+		if(pc.profession_class != 0 && // æœ‰èŒä¸š
 			(method < MAX_PROFESSION_SKILL && method >= 0) &&
 			AI_CheckSkillSetting(2,method,0) == 0) AI_method[2] = -1;
 	}
 #endif
 	method = AI_method[3];
-	if( method<MAX_MAGIC && method>=0){//Ê¹ÓÃ¾«Áé
-		if( !magic[method].useFlag || !(str=strstr( magic[method].memo, "Æø¾ø×´Ì¬")) || !strstr( str, "»Ø¸´")){//Ã»ÓĞÆø¾ø×´Ì¬»Ø¸´¾«Áé
+	if( method<MAX_MAGIC && method>=0){//ä½¿ç”¨ç²¾çµ
+		if( !magic[method].useFlag || !(str=strstr( magic[method].memo, "æ°”ç»çŠ¶æ€")) || !strstr( str, "å›å¤")){//æ²¡æœ‰æ°”ç»çŠ¶æ€å›å¤ç²¾çµ
 			AI_method[3] = MAX_MAGIC;
 		}
-	}else{//Ê¹ÓÃµÀ¾ß»Ø¸´Æø¾ø×´Ì¬
+	}else{//ä½¿ç”¨é“å…·å›å¤æ°”ç»çŠ¶æ€
 		AI_method[3] = MAX_MAGIC;
 	}
 	if( AI_target[3]!=TARGET_MYSIDE && AI_target[3]!=TARGET_MYPET && (TARGET_1>AI_target[3] || AI_target[3]>TARGET_5))
@@ -586,14 +586,14 @@ void AI_CheckSetting()
 
 #ifdef _ATTACK_AI
 	method = AI_method[4];
-	if(pc.profession_class != 0 && // ÓĞÖ°Òµ
-		(method < MAX_PROFESSION_SKILL && method >= 0)){// Ê¹ÓÃÖ°Òµ¼¼ÄÜ
+	if(pc.profession_class != 0 && // æœ‰èŒä¸š
+		(method < MAX_PROFESSION_SKILL && method >= 0)){// ä½¿ç”¨èŒä¸šæŠ€èƒ½
 		if(AI_CheckSkillSetting(4,method,0) == 0){
 			AI_method[4] = MAX_PROFESSION_SKILL;
 			AI_target[4] = TARGET_OTHERONE;
 		}
 	}
-	else{// ÆÕÍ¨¹¥»÷
+	else{// æ™®é€šæ”»å‡»
 		AI_method[4] = MAX_PROFESSION_SKILL;
 		AI_target[4] = TARGET_OTHERONE;
 	}
@@ -642,18 +642,18 @@ void AI_SetUpTarget( int which)
 		switch( magic[method].target)
 		{
 		case MAGIC_TARGET_MYSELF:
-			AI_target[which] = TARGET_MYSELF;			//×Ô¼º
+			AI_target[which] = TARGET_MYSELF;			//è‡ªå·±
 			break;
 		case MAGIC_TARGET_ALLMYSIDE:
-			AI_target[which] = TARGET_MYSIDE;			//ÎÒ·½È«Ìå
+			AI_target[which] = TARGET_MYSIDE;			//æˆ‘æ–¹å…¨ä½“
 			break;
 		case MAGIC_TARGET_WHOLEOTHERSIDE:
 			if( which !=0)
 			{
 				if( AI_target[which] == TARGET_MYSIDE)
-					AI_target[which] = TARGET_OTHERSIDE;	//µĞ·½È«Ìå
+					AI_target[which] = TARGET_OTHERSIDE;	//æ•Œæ–¹å…¨ä½“
 				else
-					AI_target[which] = TARGET_MYSIDE;		//ÎÒ·½È«Ìå
+					AI_target[which] = TARGET_MYSIDE;		//æˆ‘æ–¹å…¨ä½“
 			}
 			break;
 		case MAGIC_TARGET_OTHER:
@@ -682,21 +682,21 @@ void AI_SetUpTarget( int which)
 			}
 			break;
 		case MAGIC_TARGET_ALLOTHERSIDE:
-			AI_target[which] = TARGET_OTHERSIDE;		//µĞ·½È«Ìå
+			AI_target[which] = TARGET_OTHERSIDE;		//æ•Œæ–¹å…¨ä½“
 			break;
 		case MAGIC_TARGET_ALL:
-			AI_target[which] = TARGET_ALL;				//È«Ìå
+			AI_target[which] = TARGET_ALL;				//å…¨ä½“
 			break;
 #ifdef __ATTACK_MAGIC
-		// µĞ¾üÄ³Ò»ÈË
+		// æ•Œå†›æŸä¸€äºº
 		case MAGIC_TARGET_SINGLE:
 			AI_target[which] = TARGET_OTHERONE;
 			break;
-		// µĞ¾üÒ»ÕûÅÅ
+		// æ•Œå†›ä¸€æ•´æ’
 		case MAGIC_TARGET_ONE_ROW:
 			AI_target[which] = TARGET_ONE_ROW;
 			break;
-		// µĞ¾üÈ«Ìå
+		// æ•Œå†›å…¨ä½“
 		case MAGIC_TARGET_ALL_ROWS:
 			AI_target[which] = TARGET_OTHERSIDE;
 			break;
@@ -732,27 +732,27 @@ void AI_SetDownTarget( int which)
 		}
 /*		if( AI_target[which] == TARGET_MYSELF){
 			if( which == 2)
-				AI_target[which] = TARGET_OTHERONE;		//µĞ·½
+				AI_target[which] = TARGET_OTHERONE;		//æ•Œæ–¹
 			else
-				AI_target[which] = TARGET_MYPET;		//³èÎï
+				AI_target[which] = TARGET_MYPET;		//å® ç‰©
 		}else if( AI_target[which] == TARGET_OTHERONE)
-			AI_target[which] = TARGET_MYPET;			//³èÎï
+			AI_target[which] = TARGET_MYPET;			//å® ç‰©
 		else// if( AI_target[which] == TARGET_MYPET)
-			AI_target[which] = TARGET_MYSELF;			//×Ô¼º*/
+			AI_target[which] = TARGET_MYSELF;			//è‡ªå·±*/
 	}else if( method >= 0){
 		switch( magic[method].target){
 		case MAGIC_TARGET_MYSELF:
-			AI_target[which] = TARGET_MYSELF;			//×Ô¼º
+			AI_target[which] = TARGET_MYSELF;			//è‡ªå·±
 			break;
 		case MAGIC_TARGET_ALLMYSIDE:
-			AI_target[which] = TARGET_MYSIDE;			//ÎÒ·½È«Ìå
+			AI_target[which] = TARGET_MYSIDE;			//æˆ‘æ–¹å…¨ä½“
 			break;
 		case MAGIC_TARGET_WHOLEOTHERSIDE:
 			if( which != 0){
 				if( AI_target[which] == TARGET_MYSIDE)
-					AI_target[which] = TARGET_OTHERSIDE;	//µĞ·½È«Ìå
+					AI_target[which] = TARGET_OTHERSIDE;	//æ•Œæ–¹å…¨ä½“
 				else
-					AI_target[which] = TARGET_MYSIDE;		//ÎÒ·½È«Ìå
+					AI_target[which] = TARGET_MYSIDE;		//æˆ‘æ–¹å…¨ä½“
 			}
 			break;
 		case MAGIC_TARGET_OTHER:
@@ -775,30 +775,30 @@ void AI_SetDownTarget( int which)
 			}
 /*			if( AI_target[which] == TARGET_MYSELF){
 				if( which == 2)
-					AI_target[which] = TARGET_OTHERONE;	//µĞ·½
+					AI_target[which] = TARGET_OTHERONE;	//æ•Œæ–¹
 				else
-					AI_target[which] = TARGET_MYPET;	//³èÎï
+					AI_target[which] = TARGET_MYPET;	//å® ç‰©
 			}else if( AI_target[which] == TARGET_OTHERONE)
-				AI_target[which] = TARGET_MYPET;		//³èÎï
+				AI_target[which] = TARGET_MYPET;		//å® ç‰©
 			else// if( AI_target[which] == TARGET_MYPET)
-				AI_target[which] = TARGET_MYSELF;		//×Ô¼º*/
+				AI_target[which] = TARGET_MYSELF;		//è‡ªå·±*/
 			break;
 		case MAGIC_TARGET_ALLOTHERSIDE:
-			AI_target[which] = TARGET_OTHERSIDE;		//µĞ·½È«Ìå
+			AI_target[which] = TARGET_OTHERSIDE;		//æ•Œæ–¹å…¨ä½“
 			break;
 		case MAGIC_TARGET_ALL:
-			AI_target[which] = TARGET_ALL;				//È«Ìå
+			AI_target[which] = TARGET_ALL;				//å…¨ä½“
 			break;
 #ifdef __ATTACK_MAGIC
-		// µĞ¾üÄ³Ò»ÈË
+		// æ•Œå†›æŸä¸€äºº
 		case MAGIC_TARGET_SINGLE:
 			AI_target[which] = TARGET_OTHERONE;
 			break;
-		// µĞ¾üÒ»ÕûÅÅ
+		// æ•Œå†›ä¸€æ•´æ’
 		case MAGIC_TARGET_ONE_ROW:
 			AI_target[which] = TARGET_ONE_ROW;
 			break;
-		// µĞ¾üÈ«Ìå
+		// æ•Œå†›å…¨ä½“
 		case MAGIC_TARGET_ALL_ROWS:
 			AI_target[which] = TARGET_OTHERSIDE;
 			break;
@@ -812,34 +812,34 @@ void AI_SetDownTarget( int which)
 void AI_SetMethod( int target, int which)
 {
 	switch( target){
-	case MAGIC_TARGET_MYSELF:					//×Ô¼º
+	case MAGIC_TARGET_MYSELF:					//è‡ªå·±
 		AI_target[which] = TARGET_MYSELF;
 		break;
-	case MAGIC_TARGET_ALLMYSIDE:				//ÎÒ·½È«Ìå
+	case MAGIC_TARGET_ALLMYSIDE:				//æˆ‘æ–¹å…¨ä½“
 		AI_target[which] = TARGET_MYSIDE;
 		break;
-	case MAGIC_TARGET_WHOLEOTHERSIDE:			//ÈÎºÎÒ»·½È«Ìå
+	case MAGIC_TARGET_WHOLEOTHERSIDE:			//ä»»ä½•ä¸€æ–¹å…¨ä½“
 		AI_target[which] = TARGET_MYSIDE;
 		break;
-	case MAGIC_TARGET_OTHER:					//ÈÎºÎÒ»Ìå
+	case MAGIC_TARGET_OTHER:					//ä»»ä½•ä¸€ä½“
 		AI_target[which] = TARGET_MYSELF;
 		break;
-	case MAGIC_TARGET_ALLOTHERSIDE:				//µĞ·½Ò»Ìå
+	case MAGIC_TARGET_ALLOTHERSIDE:				//æ•Œæ–¹ä¸€ä½“
 		AI_target[which] = TARGET_OTHERSIDE;
 		break;
-	case MAGIC_TARGET_ALL:						//È«Ìå
+	case MAGIC_TARGET_ALL:						//å…¨ä½“
 		AI_target[which] = TARGET_ALL;
 		break;
 #ifdef __ATTACK_MAGIC
-	// µĞ¾üÄ³Ò»ÈË
+	// æ•Œå†›æŸä¸€äºº
 	case MAGIC_TARGET_SINGLE:
 		AI_target[which] = TARGET_OTHERONE;
 		break;
-	// µĞ¾üÒ»ÕûÅÅ
+	// æ•Œå†›ä¸€æ•´æ’
 	case MAGIC_TARGET_ONE_ROW:
 		AI_target[which] = TARGET_ONE_ROW;
 		break;
-	// µĞ¾üÈ«Ìå
+	// æ•Œå†›å…¨ä½“
 	case MAGIC_TARGET_ALL_ROWS:
 		AI_target[which] = TARGET_OTHERSIDE;
 		break;
@@ -856,7 +856,7 @@ void AI_SetUpCureMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYSELF;
 	for( int i = method; i < MAX_MAGIC; i++){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 			AI_method[which] = i;
 			AI_SetMethod( magic[i].target, which);
 			break;
@@ -864,7 +864,7 @@ void AI_SetUpCureMethod( int which)
 	}
 /*	if( i >= MAX_MAGIC){
 		for( i = 0; i < MAX_ITEM; i++){
-			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 				AI_method[which] = MAX_MAGIC;
 				AI_target[which] &= 1;
 				break;
@@ -882,7 +882,7 @@ void AI_SetDownCureMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYSELF;
 	for( int i = (method-1); i >= 0; i--){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 			AI_method[which] = i;
 			AI_SetMethod( magic[i].target, which);
 			break;
@@ -890,7 +890,7 @@ void AI_SetDownCureMethod( int which)
 	}
 /*	if( i < 0){
 		for( i = 0; i < MAX_ITEM; i++){
-			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 				AI_method[which] = MAX_MAGIC;
 				AI_target[which] &= 1;
 				break;
@@ -913,24 +913,24 @@ void AI_SetUpFirstMethod( int which)
 		}
 	}
 #else
-	// Ê×´ÎÓÃ¾«Áé
+	// é¦–æ¬¡ç”¨ç²¾çµ
 	if(bFirstFlag == false){
 		if(method > MAX_MAGIC){
-			if(pc.profession_class != 0){ // ÓĞÖ°Òµ
+			if(pc.profession_class != 0){ // æœ‰èŒä¸š
 				AI_method[which] = -1;
 				AI_SetDownAttackMethod(which);
-				// Éè¶¨ÎªÓÃ¼¼ÄÜ
+				// è®¾å®šä¸ºç”¨æŠ€èƒ½
 				bFirstFlag = true;
 				return;
 			}
 			else method = 0;
 		}
 	}
-	// Ê×´ÎÓÃ¼¼ÄÜ
+	// é¦–æ¬¡ç”¨æŠ€èƒ½
 	else{
 		if(method > MAX_PROFESSION_SKILL){
 			method = -1;
-			// Éè¶¨ÎªÓÃ¾«Áé
+			// è®¾å®šä¸ºç”¨ç²¾çµ
 			bFirstFlag = false;
 		}
 		AI_SetDownAttackMethod(which);
@@ -946,7 +946,7 @@ void AI_SetUpFirstMethod( int which)
 		}
 		if(AI_method[which] == -1 && pc.profession_class != 0){
 			AI_SetDownAttackMethod(which);
-			// Éè¶¨ÎªÓÃ¼¼ÄÜ
+			// è®¾å®šä¸ºç”¨æŠ€èƒ½
 			bFirstFlag = true;
 		}
 	}
@@ -968,20 +968,20 @@ void AI_SetDownFirstMethod( int which)
 		}
 	}
 #else
-	// Ê×´ÎÓÃ¾«Áé
+	// é¦–æ¬¡ç”¨ç²¾çµ
 	if(bFirstFlag == false){
 		if(method < 0){
-			if(pc.profession_class != 0){ // ÓĞÖ°Òµ
+			if(pc.profession_class != 0){ // æœ‰èŒä¸š
 				AI_method[which] = MAX_PROFESSION_SKILL;
 				AI_SetUpAttackMethod(which);
-				// Éè¶¨ÎªÓÃ¼¼ÄÜ
+				// è®¾å®šä¸ºç”¨æŠ€èƒ½
 				bFirstFlag = true;
 				return;
 			}
 			else method = MAX_MAGIC;
 		}
 	}
-	// Ê×´ÎÓÃ¼¼ÄÜ
+	// é¦–æ¬¡ç”¨æŠ€èƒ½
 	else{
 		AI_SetUpAttackMethod(which);
 		if(AI_method[which] == -1){
@@ -1011,7 +1011,7 @@ void AI_SetUpResurrectMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYPET;
 	for( int i = method; i < MAX_MAGIC; i++){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "Æø¾ø×´Ì¬")) && strstr( str, "»Ø¸´")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "æ°”ç»çŠ¶æ€")) && strstr( str, "å›å¤")){
 			AI_method[which] = i;
 			break;
 		}
@@ -1027,7 +1027,7 @@ void AI_SetDownResurrectMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYPET;
 	for( int i = (method-1); i >= 0; i--){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "Æø¾ø×´Ì¬")) && strstr( str, "»Ø¸´")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "æ°”ç»çŠ¶æ€")) && strstr( str, "å›å¤")){
 			AI_method[which] = i;
 			break;
 		}
@@ -1089,16 +1089,16 @@ void AI_SetDownAttackMethod(int which)
 #endif
 
 #define AIBtnNum 24
-//×Ô¶¯Õ½¶·Éè¶¨
+//è‡ªåŠ¨æˆ˜æ–—è®¾å®š
 BOOL AI_SettingProc()
 {
-	static char Notice[][32] = { "´¢´æÉè¶¨", "È¡ÏûÉè¶¨",
-		"Ñ¡Ôñ»Ø¸´¾«Áé", "Ñ¡Ôñ»Ø¸´¾«Áé", "Ñ¡ÔñÓÅÏÈË³Ğò", "Ñ¡ÔñÓÅÏÈË³Ğò", "Ôö¼ÓÄÍ¾ÃÁ¦ÈÌÊÜ¶È", "¼õÉÙÄÍ¾ÃÁ¦ÈÌÊÜ¶È",
-		"½¨ÒéÉè¶¨¸ßÓÚÊ¹ÓÃ¾«ÁéËùĞèMP", "½¨ÒéÉè¶¨¸ßÓÚÊ¹ÓÃ¾«ÁéËùĞèMP",
-		"Ñ¡ÔñÊ×´Î¾«Áé", "Ñ¡ÔñÊ×´Î¾«Áé", "Ñ¡ÔñÊ¹ÓÃÄ¿±ê", "Ñ¡ÔñÊ¹ÓÃÄ¿±ê",
-		"Ñ¡ÔñÆø¾ø»Ø¸´·½Ê½", "Ñ¡ÔñÆø¾ø»Ø¸´·½Ê½", "Ñ¡ÔñÊ¹ÓÃÄ¿±ê", "Ñ¡ÔñÊ¹ÓÃÄ¿±ê"
+	static char Notice[][32] = { "å‚¨å­˜è®¾å®š", "å–æ¶ˆè®¾å®š",
+		"é€‰æ‹©å›å¤ç²¾çµ", "é€‰æ‹©å›å¤ç²¾çµ", "é€‰æ‹©ä¼˜å…ˆé¡ºåº", "é€‰æ‹©ä¼˜å…ˆé¡ºåº", "å¢åŠ è€ä¹…åŠ›å¿å—åº¦", "å‡å°‘è€ä¹…åŠ›å¿å—åº¦",
+		"å»ºè®®è®¾å®šé«˜äºä½¿ç”¨ç²¾çµæ‰€éœ€MP", "å»ºè®®è®¾å®šé«˜äºä½¿ç”¨ç²¾çµæ‰€éœ€MP",
+		"é€‰æ‹©é¦–æ¬¡ç²¾çµ", "é€‰æ‹©é¦–æ¬¡ç²¾çµ", "é€‰æ‹©ä½¿ç”¨ç›®æ ‡", "é€‰æ‹©ä½¿ç”¨ç›®æ ‡",
+		"é€‰æ‹©æ°”ç»å›å¤æ–¹å¼", "é€‰æ‹©æ°”ç»å›å¤æ–¹å¼", "é€‰æ‹©ä½¿ç”¨ç›®æ ‡", "é€‰æ‹©ä½¿ç”¨ç›®æ ‡"
 #ifdef _ATTACK_AI
-		,"Ñ¡Ôñ¹¥»÷·½Ê½","Ñ¡Ôñ¹¥»÷·½Ê½","Ñ¡ÔñÊ¹ÓÃÄ¿±ê","Ñ¡ÔñÊ¹ÓÃÄ¿±ê","Ñ¡Ôñ»Ø¸´·½Ê½","Ñ¡Ôñ»Ø¸´·½Ê½"
+		,"é€‰æ‹©æ”»å‡»æ–¹å¼","é€‰æ‹©æ”»å‡»æ–¹å¼","é€‰æ‹©ä½¿ç”¨ç›®æ ‡","é€‰æ‹©ä½¿ç”¨ç›®æ ‡","é€‰æ‹©å›å¤æ–¹å¼","é€‰æ‹©å›å¤æ–¹å¼"
 #endif
 	};
 	static int x = 0, y = 0;
@@ -1106,7 +1106,7 @@ BOOL AI_SettingProc()
 	static int btnId[AIBtnNum], btnState[AIBtnNum];
 	static int u_offx[] = { 209-93, 296-93, 379-93};
 	static int d_offx[] = { 209-112, 296-112, 379-112};
-	static char MethodName[] = "²»ÄÜÊ¹ÓÃ";
+	static char MethodName[] = "ä¸èƒ½ä½¿ç”¨";
 	char *str;
 	//AI_menu_state
 	if( pAISettingWnd == NULL){
@@ -1144,7 +1144,7 @@ BOOL AI_SettingProc()
 			if( dwPressTime){
 				if( TimeGetTime()>(dwPressTime+100)){
 					dwPressTime = 0;
-					if( btnState[0] == 1){//°´ÏÂ"È·¶¨"
+					if( btnState[0] == 1){//æŒ‰ä¸‹"ç¡®å®š"
 						btnState[0] = 0;
 						DeathAction( pAISettingWnd );
 						pAISettingWnd = NULL;
@@ -1158,7 +1158,7 @@ BOOL AI_SettingProc()
 						play_se( 217, 320, 240 );
 						AI_Save();
 						return TRUE;
-					}else if( btnState[1] == 1){//°´ÏÂ"È¡Ïû"
+					}else if( btnState[1] == 1){//æŒ‰ä¸‹"å–æ¶ˆ"
 						btnState[1] = 0;
 						DeathAction( pAISettingWnd );
 						pAISettingWnd = NULL;
@@ -1171,63 +1171,63 @@ BOOL AI_SettingProc()
 #endif
 						play_se( 203, 320, 240 );
 						return TRUE;
-					}else if( btnState[2] == 1){//°´ÏÂ²¹ÑªµÄ¾«ÁéÉÏÒ»¸ö
+					}else if( btnState[2] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„ç²¾çµä¸Šä¸€ä¸ª
 						btnState[2] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpCureMethod( 0);
-					}else  if( btnState[3] == 1){//°´ÏÂ²¹ÑªµÄ¾«ÁéÏÂÒ»¸ö
+					}else  if( btnState[3] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„ç²¾çµä¸‹ä¸€ä¸ª
 						btnState[3] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownCureMethod( 0);
-					}else if( btnState[4] == 1){//°´ÏÂ²¹ÑªµÄË³ĞòÉÏÒ»¸ö
+					}else if( btnState[4] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„é¡ºåºä¸Šä¸€ä¸ª
 						btnState[4] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget( 0);
-					}else if( btnState[5] == 1){//°´ÏÂ²¹ÑªµÄË³ĞòÏÂÒ»¸ö
+					}else if( btnState[5] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„é¡ºåºä¸‹ä¸€ä¸ª
 						btnState[5] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget( 0);
-					}else if( btnState[6] == 1){//°´ÏÂ²¹ÑªµÄÊıÖµÉÏÒ»¸ö
+					}else if( btnState[6] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„æ•°å€¼ä¸Šä¸€ä¸ª
 						btnState[6] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpLimit( 0);
-					}else  if( btnState[7] == 1){//°´ÏÂ²¹ÑªµÄÊıÖµÏÂÒ»¸ö
+					}else  if( btnState[7] == 1){//æŒ‰ä¸‹è¡¥è¡€çš„æ•°å€¼ä¸‹ä¸€ä¸ª
 						btnState[7] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownLimit( 0);
-					}else if( btnState[8] == 1){//°´ÏÂ²¹ÆøµÄÊıÖµÉÏÒ»¸ö
+					}else if( btnState[8] == 1){//æŒ‰ä¸‹è¡¥æ°”çš„æ•°å€¼ä¸Šä¸€ä¸ª
 						btnState[8] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpLimit( 1);
-					}else  if( btnState[9] == 1){//°´ÏÂ²¹ÆøµÄÊıÖµÏÂÒ»¸ö
+					}else  if( btnState[9] == 1){//æŒ‰ä¸‹è¡¥æ°”çš„æ•°å€¼ä¸‹ä¸€ä¸ª
 						btnState[9] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownLimit( 1);
-					}else if( btnState[10] == 1){//°´ÏÂÊ×´ÎµÄ¾«ÁéÉÏÒ»¸ö
+					}else if( btnState[10] == 1){//æŒ‰ä¸‹é¦–æ¬¡çš„ç²¾çµä¸Šä¸€ä¸ª
 						btnState[10] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpFirstMethod( 2);
-					}else  if( btnState[11] == 1){//°´ÏÂÊ×´ÎµÄ¾«ÁéÏÂÒ»¸ö
+					}else  if( btnState[11] == 1){//æŒ‰ä¸‹é¦–æ¬¡çš„ç²¾çµä¸‹ä¸€ä¸ª
 						btnState[11] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownFirstMethod( 2);
-					}else if( btnState[12] == 1){//°´ÏÂÊ×´ÎµÄË³ĞòÉÏÒ»¸ö
+					}else if( btnState[12] == 1){//æŒ‰ä¸‹é¦–æ¬¡çš„é¡ºåºä¸Šä¸€ä¸ª
 						btnState[12] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget( 2);
-					}else  if( btnState[13] == 1){//°´ÏÂÊ×´ÎµÄË³ĞòÏÂÒ»¸ö
+					}else  if( btnState[13] == 1){//æŒ‰ä¸‹é¦–æ¬¡çš„é¡ºåºä¸‹ä¸€ä¸ª
 						btnState[13] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget( 2);
-					}else if( btnState[14] == 1){//°´ÏÂ¸´»îµÄ¾«ÁéÉÏÒ»¸ö
+					}else if( btnState[14] == 1){//æŒ‰ä¸‹å¤æ´»çš„ç²¾çµä¸Šä¸€ä¸ª
 						btnState[14] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpResurrectMethod( 3);
-					}else  if( btnState[15] == 1){//°´ÏÂ¸´»îµÄ¾«ÁéÏÂÒ»¸ö
+					}else  if( btnState[15] == 1){//æŒ‰ä¸‹å¤æ´»çš„ç²¾çµä¸‹ä¸€ä¸ª
 						btnState[15] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownResurrectMethod( 3);
-					}else if( btnState[16] == 1){//°´ÏÂ¸´»îµÄË³ĞòÉÏÒ»¸ö
+					}else if( btnState[16] == 1){//æŒ‰ä¸‹å¤æ´»çš„é¡ºåºä¸Šä¸€ä¸ª
 						btnState[16] = 0;
 						play_se( 217, 320, 240 );
 						if( TARGET_1<=AI_target[3] && AI_target[3]<=TARGET_5){
@@ -1239,7 +1239,7 @@ BOOL AI_SettingProc()
 						}else{
 							AI_target[3] = TARGET_MYPET;
 						}
-					}else  if( btnState[17] == 1){//°´ÏÂ¸´»îµÄË³ĞòÏÂÒ»¸ö
+					}else  if( btnState[17] == 1){//æŒ‰ä¸‹å¤æ´»çš„é¡ºåºä¸‹ä¸€ä¸ª
 						btnState[17] = 0;
 						play_se( 217, 320, 240 );
 						if( TARGET_1<=AI_target[3] && AI_target[3]<=TARGET_5){
@@ -1253,36 +1253,36 @@ BOOL AI_SettingProc()
 						}
 					}
 #ifdef _ATTACK_AI
-					else if(btnState[18] == 1){// °´ÏÂ¹¥»÷¹¦ÄÜÁĞµÄ¾«ÁéÀ¸µÄÉÏÒ»¸ö
+					else if(btnState[18] == 1){// æŒ‰ä¸‹æ”»å‡»åŠŸèƒ½åˆ—çš„ç²¾çµæ çš„ä¸Šä¸€ä¸ª
 						btnState[18] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpAttackMethod(4);
 					}
-					else if(btnState[19] == 1){// °´ÏÂ¹¥»÷¹¦ÄÜÁĞµÄ¾«ÁéÀ¸µÄÏÂÒ»¸ö
+					else if(btnState[19] == 1){// æŒ‰ä¸‹æ”»å‡»åŠŸèƒ½åˆ—çš„ç²¾çµæ çš„ä¸‹ä¸€ä¸ª
 						btnState[19] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownAttackMethod(4);
 					}
-					else if(btnState[20] == 1){// °´ÏÂ¹¥»÷¹¦ÄÜÁĞµÄË³ĞòÀ¸µÄÉÏÒ»¸ö
+					else if(btnState[20] == 1){// æŒ‰ä¸‹æ”»å‡»åŠŸèƒ½åˆ—çš„é¡ºåºæ çš„ä¸Šä¸€ä¸ª
 						btnState[20] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget(4);
-					}else if(btnState[21] == 1){// °´ÏÂ¹¥»÷¹¦ÄÜÁĞµÄË³ĞòÀ¸µÄÏÂÒ»¸ö
+					}else if(btnState[21] == 1){// æŒ‰ä¸‹æ”»å‡»åŠŸèƒ½åˆ—çš„é¡ºåºæ çš„ä¸‹ä¸€ä¸ª
 						btnState[21] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget(4);
-					}else if( btnState[22] == 1){//°´ÏÂ²¹ÆøµÄ¾«ÁéÉÏÒ»¸ö
+					}else if( btnState[22] == 1){//æŒ‰ä¸‹è¡¥æ°”çš„ç²¾çµä¸Šä¸€ä¸ª
 						btnState[22] = 0;
 						play_se( 217, 320, 240 );
-						// ÈôÓĞ²¹Æø¼¼ÄÜ
+						// è‹¥æœ‰è¡¥æ°”æŠ€èƒ½
 						if(g_bUsePS){
 							if(AI_method[1] == -1) AI_method[1] = g_iPSindex;
 							else AI_method[1] = -1;
 						}
-					}else if( btnState[23] == 1){//°´ÏÂ²¹ÆøµÄ¾«ÁéÏÂÒ»¸ö
+					}else if( btnState[23] == 1){//æŒ‰ä¸‹è¡¥æ°”çš„ç²¾çµä¸‹ä¸€ä¸ª
 						btnState[23] = 0;
 						play_se( 217, 320, 240 );
-						// ÈôÓĞ²¹Æø¼¼ÄÜ
+						// è‹¥æœ‰è¡¥æ°”æŠ€èƒ½
 						if(g_bUsePS){
 							if(AI_method[1] == -1) AI_method[1] = g_iPSindex;
 							else AI_method[1] = -1;
@@ -1291,7 +1291,7 @@ BOOL AI_SettingProc()
 #endif
 				}
 			}else{
-				//ÊÇ·ñ°´ÏÂ°´Å¥
+				//æ˜¯å¦æŒ‰ä¸‹æŒ‰é’®
 				for( int i = 0; i < AIBtnNum; i++){
 					if( HitDispNo == btnId[i]){
 						if( mouse.onceState & MOUSE_LEFT_CRICK){
@@ -1302,12 +1302,12 @@ BOOL AI_SettingProc()
 					}
 				}
 #ifdef _AI_OTHER
-				//°´ÏÂÆäËü
+				//æŒ‰ä¸‹å…¶å®ƒ
 				if(MakeHitBox(x+317,y+168,x+386,y+193,DISP_PRIO_BOX2))
 					if(mouse.onceState & MOUSE_LEFT_CRICK) AI_Other_State = 1;
 #endif
 			}
-			//ËµÃ÷ÎÄ×Ö
+			//è¯´æ˜æ–‡å­—
 			for( int i = 0; i < AIBtnNum; i++){
 				if( HitDispNo == btnId[i]){
 					strcpy( OneLineInfoStr, Notice[i]);
@@ -1345,7 +1345,7 @@ BOOL AI_SettingProc()
 			btnId[23] = StockDispBuffer( x+d_offx[0], y+143+106, DISP_PRIO_IME3, 26066+btnState[23], 2);
 #endif
 #ifdef _AI_OTHER
-			StockFontBuffer(x + 322,y + 173,FONT_PRIO_FRONT,FONT_PAL_WHITE,"ÆäËü¹¦ÄÜ",0);
+			StockFontBuffer(x + 322,y + 173,FONT_PRIO_FRONT,FONT_PAL_WHITE,"å…¶å®ƒåŠŸèƒ½",0);
 #endif
 			char limit[8];
 			int dy = 102;
@@ -1359,11 +1359,11 @@ BOOL AI_SettingProc()
 				if(i == 4){
 					if(MAX_PROFESSION_SKILL > AI_method[i] && AI_method[i] >= 0) str = profession_skill[AI_method[i]].name;
 					else if(AI_method[i] == MAX_PROFESSION_SKILL)
-						str = "ÆÕÍ¨¹¥»÷";
+						str = "æ™®é€šæ”»å‡»";
 				}
 				else if(i == 1){
 					if(g_bUsePS && AI_method[1] != -1) str = profession_skill[g_iPSindex].name;
-					else str = "Ê¹ÓÃµÀ¾ß";
+					else str = "ä½¿ç”¨é“å…·";
 				}else
 #endif
 #ifdef _AI_NEW_FIRST
@@ -1378,56 +1378,56 @@ BOOL AI_SettingProc()
 					if( MAX_MAGIC>AI_method[i] && AI_method[i]>=0)
 						str = magic[AI_method[i]].name;
 					else if( AI_method[i] == MAX_MAGIC)
-						str = "Ê¹ÓÃµÀ¾ß";
+						str = "ä½¿ç”¨é“å…·";
 				}
 				StockFontBuffer( x+85, y+dy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, str, 0 );
 				limit[0] = 0;
 				if( str != MethodName){
 					switch( AI_target[i]){
 					case TARGET_MYSELF:
-						str = "×Ô¼º";
+						str = "è‡ªå·±";
 						break;
 					case TARGET_MYPET:
-						str = "³èÎï";
+						str = "å® ç‰©";
 						break;
 					case TARGET_MYSIDE:
-						str = "ÎÒ·½È«Ìå";
+						str = "æˆ‘æ–¹å…¨ä½“";
 						break;
 					case TARGET_OTHERONE:
-						str = "µĞÈË";
+						str = "æ•Œäºº";
 						break;
 					case TARGET_OTHERSIDE:
-						str = "µĞÈËÈ«Ìå";
+						str = "æ•Œäººå…¨ä½“";
 						break;
 					case TARGET_ALL:
-						str = "È«Ìå";
+						str = "å…¨ä½“";
 						break;
 					case TARGET_1:
-						str = "Íæ¼ÒÒ»";
+						str = "ç©å®¶ä¸€";
 						break;
 					case TARGET_2:
-						str = "Íæ¼Ò¶ş";
+						str = "ç©å®¶äºŒ";
 						break;
 					case TARGET_3:
-						str = "Íæ¼ÒÈı";
+						str = "ç©å®¶ä¸‰";
 						break;
 					case TARGET_4:
-						str = "Íæ¼ÒËÄ";
+						str = "ç©å®¶å››";
 						break;
 					case TARGET_5:
-						str = "Íæ¼ÒÎå";
+						str = "ç©å®¶äº”";
 						break;
 #ifdef __ATTACK_MAGIC
 					case TARGET_ONE_ROW:
-						str = "µĞÒ»ÅÅ";
+						str = "æ•Œä¸€æ’";
 						break;
 #endif
 					default:
-						str = "´íÎóÇëÖØÉè";
+						str = "é”™è¯¯è¯·é‡è®¾";
 						break;
 					}
 					_itoa_s( AI_limit[i], limit, 10);
-					strcat_s( limit, "£¥");
+					strcat_s( limit, "ï¼…");
 				}
 				StockFontBuffer( x+236, y+dy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, str, 0 );
 				if( i < 2)
@@ -1588,7 +1588,7 @@ void AI_ChooseAction()
 	int targetNo = -1;
 	char moji[64];
 	battlePlayerEscFlag = FALSE;
-	//¹ÛÕ½ÖĞ
+	//è§‚æˆ˜ä¸­
 	if( BattleMyNo >= 20 ){
 		if( bNewServer)
 			lssproto_B_send( sockfd, "N" );
@@ -1608,7 +1608,7 @@ void AI_ChooseAction()
 				old_lssproto_B_send( sockfd, "N" );
 		}
 	}else{
-		if( AI_First){//µÚÒ»´Î
+		if( AI_First){//ç¬¬ä¸€æ¬¡
 			AI_First = 0;
 			int method = AI_method[2];
 #ifdef _AI_NEW_FIRST
@@ -1670,7 +1670,7 @@ void AI_ChooseAction()
 									targetNo = GetFirstTarget( AI_target[2]);
 									break;
 #ifdef __ATTACK_MAGIC
-									// 23: ×óÉÏµÚÒ»ÁĞ , 24: ×óÉÏµÚ¶şÁĞ , 25: ÓÒÏÂµÚÒ»ÁĞ , 26: ÓÒÏÂµÚ¶şÁĞ
+									// 23: å·¦ä¸Šç¬¬ä¸€åˆ— , 24: å·¦ä¸Šç¬¬äºŒåˆ— , 25: å³ä¸‹ç¬¬ä¸€åˆ— , 26: å³ä¸‹ç¬¬äºŒåˆ—
 								case TARGET_ONE_ROW:
 									targetNo = GetBattelTarget();
 									if( targetNo < 5)
@@ -1688,12 +1688,12 @@ void AI_ChooseAction()
 									break;
 						}
 						if( targetNo > -1){
-							AI_Choosen = "Ê¹ÓÃÊ×´Î¾«Áé";
+							AI_Choosen = "ä½¿ç”¨é¦–æ¬¡ç²¾çµ";
 							sprintf_s( moji, "J|%X|%X", method, targetNo);
 							done = 1;
 						}
 					}else
-						StockChatBufferLine( "MP²»×ãÎŞ·¨Ê¹ÓÃÊ×´ÎµÄ¾«Áé", FONT_PAL_WHITE);
+						StockChatBufferLine( "MPä¸è¶³æ— æ³•ä½¿ç”¨é¦–æ¬¡çš„ç²¾çµ", FONT_PAL_WHITE);
 				}
 #ifdef _AI_NEW_FIRST
 			}
@@ -1701,26 +1701,26 @@ void AI_ChooseAction()
 				int ret;
 				ret = AttackAIProc(2,moji);
 				if(ret) done = 1;
-				else if(ret == 0) StockChatBufferLine("MP²»×ãÎŞ·¨Ê¹ÓÃÊ×´ÎµÄ¼¼ÄÜ", FONT_PAL_WHITE);
-				else if(ret == -1) StockChatBufferLine("¼¼ÄÜ´úºÅ´íÎó", FONT_PAL_WHITE);
+				else if(ret == 0) StockChatBufferLine("MPä¸è¶³æ— æ³•ä½¿ç”¨é¦–æ¬¡çš„æŠ€èƒ½", FONT_PAL_WHITE);
+				else if(ret == -1) StockChatBufferLine("æŠ€èƒ½ä»£å·é”™è¯¯", FONT_PAL_WHITE);
 			}
 #endif
 		}
 		if( 0 == done){
 			int magic_id = -1, item_id = -1, target = -1, meat = -1;
-			//ÏÈÕÒ³öÊÇ·ñÓĞÄÍ¾ÃÁ¦»Ø¸´µÄµÀ¾ß
+			//å…ˆæ‰¾å‡ºæ˜¯å¦æœ‰è€ä¹…åŠ›å›å¤çš„é“å…·
 			for( int i = 0; i < MAX_ITEM; i++){
-				if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+				if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 					item_id = i;
-					if( strstr( pc.item[i].name, "Èâ")){
+					if( strstr( pc.item[i].name, "è‚‰")){
 						meat = i;
 						break;
 					}
 				}
 			}
-			//ÏÈÕÒ³öÊÇ·ñÓĞÄÍ¾ÃÁ¦»Ø¸´µÄ¾«ÁéºÍmpÊÇ·ñ×ã¹»
+			//å…ˆæ‰¾å‡ºæ˜¯å¦æœ‰è€ä¹…åŠ›å›å¤çš„ç²¾çµå’Œmpæ˜¯å¦è¶³å¤Ÿ
 			int method = AI_method[0];
-			if( (method>-1 && method<MAX_MAGIC) && magic[method].useFlag && (str=strstr( magic[method].memo, "ÄÍ¾ÃÁ¦")) && strstr( str, "»Ø¸´")){
+			if( (method>-1 && method<MAX_MAGIC) && magic[method].useFlag && (str=strstr( magic[method].memo, "è€ä¹…åŠ›")) && strstr( str, "å›å¤")){
 				if( pc.familySprite == 0){
 					if( (magic[method].mp*80/100) <= p_party[BattleMyNo]->mp )
 						magic_id = method;
@@ -1729,18 +1729,18 @@ void AI_ChooseAction()
 						magic_id = method;
 				}
 			}
-			//ÕÒ²¹ÄÍ¾ÃÁ¦µÄÄ¿±ê
+			//æ‰¾è¡¥è€ä¹…åŠ›çš„ç›®æ ‡
 			if( TARGET_1<=AI_target[0] && AI_target[0]<=TARGET_5){
 				target = GetCureTarget( AI_target[0]);
 			}
 			if( target == -1){
-				if( AI_target[0] == TARGET_MYSELF){//ÏÈ²¹×Ô¼ºÑª
+				if( AI_target[0] == TARGET_MYSELF){//å…ˆè¡¥è‡ªå·±è¡€
 					if( p_party[BattleMyNo]->maxHp*AI_limit[0]/100 > p_party[BattleMyNo]->hp){
 						target = BattleMyNo;
 					}else if( p_party[BattleMyNo+5]->func && pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100>pet[pc.battlePetNo].hp){
 						target = BattleMyNo + 5;
 					}
-				}else{// if( AI_target[0] == TARGET_MYPET){//ÏÈ²¹³èÎïÑª
+				}else{// if( AI_target[0] == TARGET_MYPET){//å…ˆè¡¥å® ç‰©è¡€
 					if( p_party[BattleMyNo+5]->func && pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100 > pet[pc.battlePetNo].hp){
 						target = BattleMyNo + 5;
 					}else if( p_party[BattleMyNo]->maxHp*AI_limit[0]/100>p_party[BattleMyNo]->hp){
@@ -1750,12 +1750,12 @@ void AI_ChooseAction()
 			}
 			if( target > -1){
 				if( item_id>-1 || magic_id>-1){
-					if( meat > -1){//Ê¹ÓÃÈâ²¹ÄÍ¾ÃÁ¦
+					if( meat > -1){//ä½¿ç”¨è‚‰è¡¥è€ä¹…åŠ›
 						done = 1;
 						sprintf_s( moji,"I|%X|%X", meat, target);
-						AI_Choosen = "Ê¹ÓÃÈâ»Ø¸´ÄÍ¾ÃÁ¦";
+						AI_Choosen = "ä½¿ç”¨è‚‰å›å¤è€ä¹…åŠ›";
 					}else{
-						if( MAX_MAGIC>AI_method[0] && AI_method[0]>=0){//Ê¹ÓÃ¾«Áé²¹ÄÍ¾ÃÁ¦
+						if( MAX_MAGIC>AI_method[0] && AI_method[0]>=0){//ä½¿ç”¨ç²¾çµè¡¥è€ä¹…åŠ›
 							if( magic[AI_method[0]].target != MAGIC_TARGET_MYSELF || target==BattleMyNo){
 								if( magic_id > -1){
 									int method = AI_method[0];
@@ -1764,25 +1764,25 @@ void AI_ChooseAction()
 										else target = BATTLKPKPLYAERNUM + 1;
 									}
 									done = 1;
-									AI_Choosen = "Ê¹ÓÃÄÍ¾ÃÁ¦»Ø¸´¾«Áé";
+									AI_Choosen = "ä½¿ç”¨è€ä¹…åŠ›å›å¤ç²¾çµ";
 									sprintf_s( moji,"J|%X|%X", magic_id, target);
 								}else{
-									StockChatBufferLine( "ÎŞ·¨Ê¹ÓÃÄÍ¾ÃÁ¦»Ø¸´µÄ¾«Áé", FONT_PAL_WHITE);
+									StockChatBufferLine( "æ— æ³•ä½¿ç”¨è€ä¹…åŠ›å›å¤çš„ç²¾çµ", FONT_PAL_WHITE);
 								}
 							}
 						}
-						if( !done){//Ê¹ÓÃµÀ¾ß²¹ÄÍ¾ÃÁ¦
+						if( !done){//ä½¿ç”¨é“å…·è¡¥è€ä¹…åŠ›
 							if( item_id > -1){
 								done = 1;
 								sprintf_s( moji,"I|%X|%X", item_id, target);
-								AI_Choosen = "Ê¹ÓÃÄÍ¾ÃÁ¦»Ø¸´µÀ¾ß";
+								AI_Choosen = "ä½¿ç”¨è€ä¹…åŠ›å›å¤é“å…·";
 							}else{
-								StockChatBufferLine( "Ã»ÓĞÄÍ¾ÃÁ¦»Ø¸´µÄµÀ¾ß", FONT_PAL_WHITE);
+								StockChatBufferLine( "æ²¡æœ‰è€ä¹…åŠ›å›å¤çš„é“å…·", FONT_PAL_WHITE);
 							}
 						}
 					}
 				}else
-					StockChatBufferLine( "ÎŞ·¨»Ø¸´ÄÍ¾ÃÁ¦ÁË", FONT_PAL_WHITE);
+					StockChatBufferLine( "æ— æ³•å›å¤è€ä¹…åŠ›äº†", FONT_PAL_WHITE);
 			}
 		}
 		if( 0==done){
@@ -1820,22 +1820,22 @@ void AI_ChooseAction()
 				target = GetResurrectTarget( AI_target[3]);
 				break;
 			}
-			if( target > -1){//³èÎïËÀÁË
+			if( target > -1){//å® ç‰©æ­»äº†
 				if( MAX_MAGIC == AI_method[3]){
 					int i;
 					for( i = 0; i < MAX_ITEM; i++){
-						if( pc.item[i].useFlag && strstr( pc.item[i].memo, "Æø¾ø»Ø¸´")){
-							AI_Choosen = "Ê¹ÓÃÆø¾ø»Ø¸´µÀ¾ß";
+						if( pc.item[i].useFlag && strstr( pc.item[i].memo, "æ°”ç»å›å¤")){
+							AI_Choosen = "ä½¿ç”¨æ°”ç»å›å¤é“å…·";
 							done = 1;
 							sprintf_s( moji,"I|%X|%X", i, target);
 							break;
 						}
 					}
 					if( i >= MAX_ITEM)
-						StockChatBufferLine( "Ã»ÓĞÆø¾ø»Ø¸´µÄµÀ¾ß", FONT_PAL_WHITE);
+						StockChatBufferLine( "æ²¡æœ‰æ°”ç»å›å¤çš„é“å…·", FONT_PAL_WHITE);
 				}else{
 					int method = AI_method[3];
-					if( method>-1 && magic[method].useFlag && (str=strstr( magic[method].memo, "Æø¾ø×´Ì¬")) && strstr( str, "»Ø¸´")){
+					if( method>-1 && magic[method].useFlag && (str=strstr( magic[method].memo, "æ°”ç»çŠ¶æ€")) && strstr( str, "å›å¤")){
 						if( pc.familySprite == 0){
 							if( (magic[method].mp*80/100) <= p_party[BattleMyNo]->mp )
 								done = 1;
@@ -1844,21 +1844,21 @@ void AI_ChooseAction()
 								done = 1;
 						}
 						if( done == 1){
-							AI_Choosen = "Ê¹ÓÃÆø¾ø»Ø¸´¾«Áé";
+							AI_Choosen = "ä½¿ç”¨æ°”ç»å›å¤ç²¾çµ";
 							sprintf_s( moji,"J|%X|%X", method, target);
 						}
 						else
-							StockChatBufferLine( "MP²»×ãÎŞ·¨Ê¹ÓÃÆø¾ø»Ø¸´µÄ¾«Áé", FONT_PAL_WHITE);
+							StockChatBufferLine( "MPä¸è¶³æ— æ³•ä½¿ç”¨æ°”ç»å›å¤çš„ç²¾çµ", FONT_PAL_WHITE);
 					}
 					else
-						StockChatBufferLine( "Ã»ÓĞÉè¶¨Æø¾ø»Ø¸´µÄ¾«Áé", FONT_PAL_WHITE);
+						StockChatBufferLine( "æ²¡æœ‰è®¾å®šæ°”ç»å›å¤çš„ç²¾çµ", FONT_PAL_WHITE);
 				}
 			}
 		}
 #ifndef _ATTACK_AI
-		if( 0==done && (/*p_party[BattleMyNo]->maxMp*/100*AI_limit[1]/100 > p_party[BattleMyNo]->mp) ){//²¹Æø
+		if( 0==done && (/*p_party[BattleMyNo]->maxMp*/100*AI_limit[1]/100 > p_party[BattleMyNo]->mp) ){//è¡¥æ°”
 #else
-		if(0 == done && ((p_party[BattleMyNo]->maxMp * AI_limit[1] / 100) > p_party[BattleMyNo]->mp) ){//²¹Æø
+		if(0 == done && ((p_party[BattleMyNo]->maxMp * AI_limit[1] / 100) > p_party[BattleMyNo]->mp) ){//è¡¥æ°”
 			if(g_bUsePS && AI_method[1] != -1){
 				sprintf_s( moji,"P|%X|%X",g_iPSindex,BattleMyNo);
 				done = 1;
@@ -1869,8 +1869,8 @@ void AI_ChooseAction()
 			{
 				int i;
 				for( i = 0; i < MAX_ITEM; i++){
-					if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "Æø")) && strstr( str, "»Ø¸´")){
-						AI_Choosen = "Ê¹ÓÃ»Ø¸´ÆøÁ¦µÀ¾ß";
+					if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "æ°”")) && strstr( str, "å›å¤")){
+						AI_Choosen = "ä½¿ç”¨å›å¤æ°”åŠ›é“å…·";
 						done = 1;
 						sprintf_s( moji,"I|%X|%X", i, BattleMyNo);
 						break;
@@ -1884,7 +1884,7 @@ void AI_ChooseAction()
 					MyChatBuffer.cnt = strlen(MyChatBuffer.buffer);
 					KeyboardReturn();
 #endif
-					StockChatBufferLine( "Ã»ÓĞ»Ø¸´ÆøÁ¦µÄµÀ¾ß", FONT_PAL_WHITE);
+					StockChatBufferLine( "æ²¡æœ‰å›å¤æ°”åŠ›çš„é“å…·", FONT_PAL_WHITE);
 				}
 				*/
 			}
@@ -1892,14 +1892,14 @@ void AI_ChooseAction()
 		if( 0 == done){
 //			if( BattleBpFlag & BATTLE_BP_BOOMERANG ){
 //			}
-			//Èç×Ô¼º»ò³èÎïÃ»ÓĞÑª ÇÒ Ã»ÓĞÆø ¾ÍÌÓÅÜ
+			//å¦‚è‡ªå·±æˆ–å® ç‰©æ²¡æœ‰è¡€ ä¸” æ²¡æœ‰æ°” å°±é€ƒè·‘
 			if( ( (p_party[BattleMyNo]->maxHp*AI_limit[0]/100 > p_party[BattleMyNo]->hp) ||
 				(p_party[BattleMyNo+5]->func &&		 
 				( (pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100>pet[pc.battlePetNo].hp) ||
 				pet[pc.battlePetNo].hp<=0) ) ) ){
 				int mp_enough = FALSE;
-				if( 0<=AI_method[0] && AI_method[0]<MAX_MAGIC){//ÓĞÉè¶¨Ê¹ÓÃ²¹Ñª¾«Áé
-					mp_enough = TRUE;//¼ÇÂ¼MPÊÇ·ñ×ã¹»
+				if( 0<=AI_method[0] && AI_method[0]<MAX_MAGIC){//æœ‰è®¾å®šä½¿ç”¨è¡¥è¡€ç²¾çµ
+					mp_enough = TRUE;//è®°å½•MPæ˜¯å¦è¶³å¤Ÿ
 					if( pc.familySprite == 0){
 						if( (magic[AI_method[0]].mp*80/100) > p_party[BattleMyNo]->mp )
 							mp_enough = FALSE;
@@ -1908,7 +1908,7 @@ void AI_ChooseAction()
 							mp_enough = FALSE;
 					}
 				}
-				if( mp_enough == FALSE){//Ã»ÓĞÉè¶¨Ê¹ÓÃ²¹Ñª¾«Áé »ò MP²»×ã
+				if( mp_enough == FALSE){//æ²¡æœ‰è®¾å®šä½¿ç”¨è¡¥è¡€ç²¾çµ æˆ– MPä¸è¶³
 					battlePlayerEscFlag = TRUE;
 					strcpy( moji, "E");
 					done = 1;
@@ -1927,9 +1927,9 @@ void AI_ChooseAction()
 					targetNo = GetBattelTarget();
 					if (p_party[targetNo]->level==1){
 						sprintf_s( moji, "T|%X", targetNo );
-						AI_Choosen = "×Ô¶¯×¥³è";
+						AI_Choosen = "è‡ªåŠ¨æŠ“å® ";
 					}else{
-					AI_Choosen = "×¥³èÌÓÅÜ";
+					AI_Choosen = "æŠ“å® é€ƒè·‘";
 					battlePlayerEscFlag = TRUE;
 					strcpy( moji, "E");
 					done = 1;
@@ -1938,7 +1938,7 @@ void AI_ChooseAction()
 #endif
 					targetNo = GetBattelTarget();
 					sprintf_s( moji, "H|%X", targetNo );
-					AI_Choosen = "×Ô¶¯¹¥»÷";
+					AI_Choosen = "è‡ªåŠ¨æ”»å‡»";
 #ifdef _AI_CAPTURE
 				}
 #endif
@@ -2011,22 +2011,22 @@ void AI_ChooseAction()
 void AI_CloseWnd()
 {
 #ifdef _AIDENGLU_
-	extern BOOL ×Ô¶¯µÇÂ½´°¿Ú;
-	extern ACTION *p×Ô¶¯µÇÂ½´°¿Ú;
-	extern ACTION *·½Ïò¶¯×÷;
-	extern ACTION *ÈËÎï¶¯×÷;
-	×Ô¶¯µÇÂ½´°¿Ú=0;
-	if(p×Ô¶¯µÇÂ½´°¿Ú){
-		DeathAction(p×Ô¶¯µÇÂ½´°¿Ú);
-		p×Ô¶¯µÇÂ½´°¿Ú=NULL;
+	extern BOOL è‡ªåŠ¨ç™»é™†çª—å£;
+	extern ACTION *pè‡ªåŠ¨ç™»é™†çª—å£;
+	extern ACTION *æ–¹å‘åŠ¨ä½œ;
+	extern ACTION *äººç‰©åŠ¨ä½œ;
+	è‡ªåŠ¨ç™»é™†çª—å£=0;
+	if(pè‡ªåŠ¨ç™»é™†çª—å£){
+		DeathAction(pè‡ªåŠ¨ç™»é™†çª—å£);
+		pè‡ªåŠ¨ç™»é™†çª—å£=NULL;
 	}
-	if((int)·½Ïò¶¯×÷){
-		if((int)·½Ïò¶¯×÷>1000)
-			DeathAction(·½Ïò¶¯×÷);
-		·½Ïò¶¯×÷=NULL;
-		if((int)ÈËÎï¶¯×÷>1000)
-			DeathAction(ÈËÎï¶¯×÷);
-		ÈËÎï¶¯×÷=NULL;	
+	if((int)æ–¹å‘åŠ¨ä½œ){
+		if((int)æ–¹å‘åŠ¨ä½œ>1000)
+			DeathAction(æ–¹å‘åŠ¨ä½œ);
+		æ–¹å‘åŠ¨ä½œ=NULL;
+		if((int)äººç‰©åŠ¨ä½œ>1000)
+			DeathAction(äººç‰©åŠ¨ä½œ);
+		äººç‰©åŠ¨ä½œ=NULL;	
 	}
 #endif
 	AI_State = 0;
@@ -2053,14 +2053,14 @@ void AI_OtherProc(){
 	static int btnId[AI_OTHER_BTN];
 	int x,y,i;
 #ifdef _AI_CAPTURE
-	static char szFunctionName[AI_OTHER_BTN][30] = {"","×Ô¶¯¶ªÈâ","×Ô¶¯×¥³è"};
+	static char szFunctionName[AI_OTHER_BTN][30] = {"","è‡ªåŠ¨ä¸¢è‚‰","è‡ªåŠ¨æŠ“å® "};
 
 #else 
-	static char szFunctionName[AI_OTHER_BTN][30] = {"","×Ô¶¯¶ªÈâ"};
+	static char szFunctionName[AI_OTHER_BTN][30] = {"","è‡ªåŠ¨ä¸¢è‚‰"};
 #endif
-	static char szFunctionSwitch[2][12] = {" £Î  £Ï "," £Ù£Å£Ó "};
+	static char szFunctionSwitch[2][12] = {" ï¼®  ï¼¯ "," ï¼¹ï¼¥ï¼³ "};
 	if(pAIOtherFunctionWnd == NULL){
-		// ÈôÔÚÕ½¶·ÖĞ
+		// è‹¥åœ¨æˆ˜æ–—ä¸­
 		pAIOtherFunctionWnd = MakeWindowDisp(413,lpDraw->ySize / 2 + 150,3,2,NULL,1, FALSE);
 		//if(ProcNo == PROC_BATTLE) pAIOtherFunctionWnd = MakeWindowDisp(413,150,3,2,NULL,1, FALSE);
 		//else pAIOtherFunctionWnd = MakeWindowDisp(413,0,3,2,NULL,1, FALSE);
@@ -2086,7 +2086,7 @@ void AI_OtherProc(){
 				int id;
 				id = selFontId(btnId,sizeof(btnId)/sizeof(int));
 				switch(id){
-				// ×Ô¶¯¶ªÈâ
+				// è‡ªåŠ¨ä¸¢è‚‰
 				case 1:
 					AI_OtherSetting[0] = !AI_OtherSetting[0];
 					break;
@@ -2094,7 +2094,7 @@ void AI_OtherProc(){
 					AI_OtherSetting[1] = !AI_OtherSetting[1];
 					break;
 				}
-				// ¹Ø±Õ
+				// å…³é—­
 				if(HitDispNo == btnId[0]){
 					DeathAction(pAIOtherFunctionWnd);
 					pAIOtherFunctionWnd = NULL;

@@ -4,27 +4,27 @@
 #ifdef _THEATER
 enum
 {
-    E_DATA_TYPE_PLAYER,		// Íæ¼Ò
-    E_DATA_TYPE_TALK,		// Ì¨´Ê 
-    E_DATA_TYPE_ASIDE,		// ÅÔ°×
-    E_DATA_TYPE_ACTION,		// ¶¯×÷
-    E_DATA_TYPE_MOVE,		// ÒÆ¶¯
-    E_DATA_TYPE_SCENERY,	// ²¼¾°
-    E_DATA_TYPE_CHANGE,		// ±äÉí
-    E_DATA_TYPE_DIR,		// ·½Ïò
-    E_DATA_TYPE_EFFECT,		// ÌØÐ§
-    E_DATA_TYPE_FACE,		// ±íÇé
-    E_DATA_TYPE_NOTE,		// ×¢½â
-    E_DATA_TYPE_BGM,		// ±³¾°ÒôÀÖ
+    E_DATA_TYPE_PLAYER,		// çŽ©å®¶
+    E_DATA_TYPE_TALK,		// å°è¯ 
+    E_DATA_TYPE_ASIDE,		// æ—ç™½
+    E_DATA_TYPE_ACTION,		// åŠ¨ä½œ
+    E_DATA_TYPE_MOVE,		// ç§»åŠ¨
+    E_DATA_TYPE_SCENERY,	// å¸ƒæ™¯
+    E_DATA_TYPE_CHANGE,		// å˜èº«
+    E_DATA_TYPE_DIR,		// æ–¹å‘
+    E_DATA_TYPE_EFFECT,		// ç‰¹æ•ˆ
+    E_DATA_TYPE_FACE,		// è¡¨æƒ…
+    E_DATA_TYPE_NOTE,		// æ³¨è§£
+    E_DATA_TYPE_BGM,		// èƒŒæ™¯éŸ³ä¹
 	E_DATA_TYPE_NPC,		// NPC
     E_DATA_TYPE_END
 };
 
-// lssproto_TheaterData_recv Ê¹ÓÃ
+// lssproto_TheaterData_recv ä½¿ç”¨
 enum
 {
-	E_THEATER_SEND_DATA_THEATER_MODE = E_DATA_TYPE_END + 1,	// ¾çÔºÄ£Ê½ ²ÎÊý: 0:È¡Ïû¾ç³¡Ä£Ê½ 1:¹ÛÖÚ 2:±íÑÝÕß
-	E_THEATER_SEND_DATA_DISPLAY_SCORE,						// ÏÔÊ¾·ÖÊý ²ÎÊý: ·ÖÊý
+	E_THEATER_SEND_DATA_THEATER_MODE = E_DATA_TYPE_END + 1,	// å‰§é™¢æ¨¡å¼ å‚æ•°: 0:å–æ¶ˆå‰§åœºæ¨¡å¼ 1:è§‚ä¼— 2:è¡¨æ¼”è€…
+	E_THEATER_SEND_DATA_DISPLAY_SCORE,						// æ˜¾ç¤ºåˆ†æ•° å‚æ•°: åˆ†æ•°
 	E_THEATER_SEND_DATA_END
 };
 #endif
@@ -52,7 +52,7 @@ extern char netprocErrmsg[];
 
 extern int connectServer2Counter;
 /*
-#ifdef _TELLCHANNEL				// (²»¿É¿ª) ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				// (ä¸å¯å¼€) ROG ADD å¯†è¯­é¢‘é“
 extern char ReTellName[];
 #endif
 */

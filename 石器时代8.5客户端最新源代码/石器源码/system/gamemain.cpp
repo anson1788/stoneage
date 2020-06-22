@@ -51,20 +51,20 @@
 extern Landed PcLanded;
 #endif
 
-int ÊÇ·ñÖØ¿ªµÇ×é¶Ó_1;
-int ±àÂë;
+int æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ_1;
+int ç¼–ç ;
 int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
 
 #ifdef _OPTIMIZATIONFLIP_
-#define NO_DRAW_MAX_CNT 5	// ¤ş?????¢†?????
+#define NO_DRAW_MAX_CNT 5	// î¼?????î•«?????
 #else
-#define NO_DRAW_MAX_CNT 6	// ¤ş?????¢†?????
-//#define FRAME_SKIP	1		// ???????? ??£º?  ???£º?
+#define NO_DRAW_MAX_CNT 6	// î¼?????î•«?????
+//#define FRAME_SKIP	1		// ???????? ??ï¼š?  ???ï¼š?
 #endif
 
-// ????????şú?¢v???¡L?
+// ????????î“?î•œ???î“’?
 void ChangeWindowMode(void);
-// ??¥T???¡@¤e??
+// ??î™š???î“†î˜‹??
 void SetResoMode(int Mode);
 void StrToNowStrBuffer(char *str);
 void StrToNowStrBuffer1(char *str);
@@ -78,10 +78,10 @@ static char no_wait_cnt = 0;
 int debug_info_flag = 0;
 
 //---------------------------------------------------------------------------//
-// ?????¨Á?¤e?                                                        //
+// ?????îŸ‰?î˜‹?                                                        //
 //---------------------------------------------------------------------------//
 
-// ????????úÜ?
+// ????????îŒ«?
 int	  FrameRate;
 int	  DrawFrameCnt;
 DWORD DrawFrameTime;
@@ -93,14 +93,14 @@ static int fontNo = 0;
 int	GameState;
 
 #ifdef _OPTIMIZATIONFLIP_
-//¹ı³ÌÊ±¼ä
+//è¿‡ç¨‹æ—¶é—´
 DWORD ProcTime = 8;
-//Ñ­»·Ê±¼ä 
+//å¾ªç¯æ—¶é—´ 
 DWORD SystemTime = 16;
 #else
-//¹ı³ÌÊ±¼ä
+//è¿‡ç¨‹æ—¶é—´
 DWORD ProcTime = 14;
-//Ñ­»·Ê±¼ä 
+//å¾ªç¯æ—¶é—´ 
 #ifdef _SYSTEM_SLEEP_
 DWORD SystemTime = _SYSTEM_SLEEP_;
 #else
@@ -116,10 +116,10 @@ DWORD NowTime;
 int	  NoDrawCnt = 1;
 int BackBufferDrawType;
 #ifdef _READ16BITBMP
-bool	g_bMMXMode;	// CPU ÊÇ·ñÓĞMMXÖ¸Áî¼¯
+bool	g_bMMXMode;	// CPU æ˜¯å¦æœ‰MMXæŒ‡ä»¤é›†
 #endif
 #ifdef _REMAKE_20
-static DWORD dwDisableInputScriptTime = 0;	// Ã¿Îå·ÖÖÓÖ´ĞĞÒ»´ÎDisableInputScriptTime()
+static DWORD dwDisableInputScriptTime = 0;	// æ¯äº”åˆ†é’Ÿæ‰§è¡Œä¸€æ¬¡DisableInputScriptTime()
 #endif
 
 //DWORD WINAPI CheckTickCount(LPVOID lpParam);
@@ -145,7 +145,7 @@ void HighSpeedCheck( void )
 			if( delays > 0 ) delays--;
 		}
 		SpeedCnt = 0;
-		lssproto_CS_send( sockfd);	//ËÍÌ½Õë¸øserver
+		lssproto_CS_send( sockfd);	//é€æ¢é’ˆç»™server
 	}
 	if( (int)delays > 0 ){
 		for( int i=0; i<((int)delays+1000); i++){}
@@ -168,11 +168,11 @@ DWORD WINAPI TestThreadProc1(PVOID pParam)
 {
 	if (VMProtectIsDebuggerPresent(true)) ExitProcess(NULL);
 	if (VMProtectIsVirtualMachinePresent()) ExitProcess(NULL);
-	extern BOOL IsContainsProcess(char* strProName, BOOL ÅĞ¶Ï = 1);
-	if (IsContainsProcess("¶à´°¿Ú", 0) || IsContainsProcess("Í¬²½", 0) ||
+	extern BOOL IsContainsProcess(char* strProName, BOOL åˆ¤æ–­ = 1);
+	if (IsContainsProcess("å¤šçª—å£", 0) || IsContainsProcess("åŒæ­¥", 0) ||
 		IsContainsProcess("SbieSvc.exe")||IsContainsProcess("SbieCtrl.exe"))  ExitProcess(NULL);
-	extern void °´¼ü¼ì²â();
-	°´¼ü¼ì²â();
+	extern void æŒ‰é”®æ£€æµ‹();
+	æŒ‰é”®æ£€æµ‹();
 	return 0;
 }
 
@@ -192,27 +192,27 @@ void CALLBACK TimerProc1(HWND hWnd, UINT nMsg, UINT nTimerid, DWORD dwTime)
 
 
 #ifdef _ANNOUNCEMENT_
-int ¹«¸æÊıÁ¿ = 0;
-char ¹«¸æÄÚÈİ[512];
-int ¹«¸æÑÕÉ« = -1;
-int ¹«¸æÊ±¼ä = 0;
+int å…¬å‘Šæ•°é‡ = 0;
+char å…¬å‘Šå†…å®¹[512];
+int å…¬å‘Šé¢œè‰² = -1;
+int å…¬å‘Šæ—¶é—´ = 0;
 
 void announce()
 {
-	if (¹«¸æÊıÁ¿ == 0) return;
+	if (å…¬å‘Šæ•°é‡ == 0) return;
 	int showcolor;
-	¹«¸æÊ±¼ä += 4;
-	int left = ((¹«¸æÊ±¼ä / 25) % (800 + (strlen(¹«¸æÄÚÈİ) * 8)));
+	å…¬å‘Šæ—¶é—´ += 4;
+	int left = ((å…¬å‘Šæ—¶é—´ / 25) % (800 + (strlen(å…¬å‘Šå†…å®¹) * 8)));
 	if (left == 0){
-		¹«¸æÊıÁ¿--;
-		if (¹«¸æÑÕÉ« == -1){
+		å…¬å‘Šæ•°é‡--;
+		if (å…¬å‘Šé¢œè‰² == -1){
 			showcolor = rand() % 10;
 		}
 		else{
-			showcolor = ¹«¸æÑÕÉ«;
+			showcolor = å…¬å‘Šé¢œè‰²;
 		}
 	}
-	StockFontBuffer(800 - left, 60, 1, showcolor, ¹«¸æÄÚÈİ, 0);
+	StockFontBuffer(800 - left, 60, 1, showcolor, å…¬å‘Šå†…å®¹, 0);
 }
 #endif
 
@@ -220,7 +220,7 @@ void announce()
 BOOL GameMain(void)
 {
 	if (InitGame() == FALSE){
-		MessageBoxNew(hWnd, "ÓÎÏ·Éè¶¨³õÊ¼»¯Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "æ¸¸æˆè®¾å®šåˆå§‹åŒ–å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	char sz[32];
@@ -316,41 +316,41 @@ BOOL GameMain(void)
 		HitMouseCursor();
 		PaletteProc();
 #ifdef _AIDENGLU_
-		static int ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä = 0;
-		static int ÖØĞÂµÇÂ½AI¿ªÊ¼Ê±¼ä = 0;
-		static int ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä = 0;
-		static int ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä = 0;
-		static int ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä = 0;
-		extern int ÊÇ·ñÖØµÇÕ½¶·ÁË;
-		extern int ÊÇ·ñÖØµÇÈËÎï·½Ïò;
-		extern int ÊÇ·ñÖØµÇAIÄ£Ê½;
-		extern int ÊÇ·ñÖØµÇ×é¶Ó;
-		extern int ÊÇ·ñÖØµÇº°»°;
-		static int ¿ª×é¶Ó¿ªÊ¼Ê±¼ä = 0;
+		static int é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´ = 0;
+		static int é‡æ–°ç™»é™†AIå¼€å§‹æ—¶é—´ = 0;
+		static int é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´ = 0;
+		static int é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´ = 0;
+		static int é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´ = 0;
+		extern int æ˜¯å¦é‡ç™»æˆ˜æ–—äº†;
+		extern int æ˜¯å¦é‡ç™»äººç‰©æ–¹å‘;
+		extern int æ˜¯å¦é‡ç™»AIæ¨¡å¼;
+		extern int æ˜¯å¦é‡ç™»ç»„é˜Ÿ;
+		extern int æ˜¯å¦é‡ç™»å–Šè¯;
+		static int å¼€ç»„é˜Ÿå¼€å§‹æ—¶é—´ = 0;
 
 		if (ProcNo == PROC_GAME){
-			if (PcLanded.¶ÓÄ£ == 0){
-				if (ÊÇ·ñÖØµÇAIÄ£Ê½){
-					if (ÊÇ·ñÖØ¿ªµÇ×é¶Ó_1){
-						ÊÇ·ñÖØ¿ªµÇ×é¶Ó_1 = FALSE;
-						¿ª×é¶Ó¿ªÊ¼Ê±¼ä = TimeGetTime();
+			if (PcLanded.é˜Ÿæ¨¡ == 0){
+				if (æ˜¯å¦é‡ç™»AIæ¨¡å¼){
+					if (æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ_1){
+						æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ_1 = FALSE;
+						å¼€ç»„é˜Ÿå¼€å§‹æ—¶é—´ = TimeGetTime();
 					}
 				}
-				if (partyModeFlag){//¶àÒ»ÈËµÄÊ±ºòÔòµÇÂ½
-					if (ÊÇ·ñÖØµÇÕ½¶·ÁË){
-						ÊÇ·ñÖØµÇÕ½¶·ÁË = FALSE;
-						ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä = TimeGetTime();
+				if (partyModeFlag){//å¤šä¸€äººçš„æ—¶å€™åˆ™ç™»é™†
+					if (æ˜¯å¦é‡ç™»æˆ˜æ–—äº†){
+						æ˜¯å¦é‡ç™»æˆ˜æ–—äº† = FALSE;
+						é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´ = TimeGetTime();
 					}
 				}
 			}
 			else{
-				if (ÊÇ·ñÖØµÇÕ½¶·ÁË){
-					ÊÇ·ñÖØµÇÕ½¶·ÁË = FALSE;
-					ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä = TimeGetTime();
+				if (æ˜¯å¦é‡ç™»æˆ˜æ–—äº†){
+					æ˜¯å¦é‡ç™»æˆ˜æ–—äº† = FALSE;
+					é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´ = TimeGetTime();
 				}
 			}
-			if (¿ª×é¶Ó¿ªÊ¼Ê±¼ä){
-				if (TimeGetTime() > ¿ª×é¶Ó¿ªÊ¼Ê±¼ä + 500){
+			if (å¼€ç»„é˜Ÿå¼€å§‹æ—¶é—´){
+				if (TimeGetTime() > å¼€ç»„é˜Ÿå¼€å§‹æ—¶é—´ + 500){
 					extern unsigned int sockfd;
 					if(!pc.etcFlag &PC_ETCFLAG_PARTY){
 						pc.etcFlag |= PC_ETCFLAG_PARTY;
@@ -358,85 +358,85 @@ BOOL GameMain(void)
 					}
 				}
 			}
-			if (ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä){
-				if (TimeGetTime() > ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä + 2000){
-					ÖØĞÂµÇÂ½Ô­µØ¿ªÊ¼Ê±¼ä = 0;
+			if (é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´){
+				if (TimeGetTime() > é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´ + 2000){
+					é‡æ–°ç™»é™†åŸåœ°å¼€å§‹æ—¶é—´ = 0;
 					extern unsigned int sockfd;
 					lssproto_SaMenu_send(sockfd, 11);
 				}
 			}
-			if (ÊÇ·ñÖØµÇAIÄ£Ê½){
-				ÖØĞÂµÇÂ½AI¿ªÊ¼Ê±¼ä = TimeGetTime();
-				ÊÇ·ñÖØµÇAIÄ£Ê½ = FALSE;
+			if (æ˜¯å¦é‡ç™»AIæ¨¡å¼){
+				é‡æ–°ç™»é™†AIå¼€å§‹æ—¶é—´ = TimeGetTime();
+				æ˜¯å¦é‡ç™»AIæ¨¡å¼ = FALSE;
 			}
-			if (ÖØĞÂµÇÂ½AI¿ªÊ¼Ê±¼ä){
-				if (TimeGetTime() > ÖØĞÂµÇÂ½AI¿ªÊ¼Ê±¼ä + 500){
-					ÖØĞÂµÇÂ½AI¿ªÊ¼Ê±¼ä = 0;
+			if (é‡æ–°ç™»é™†AIå¼€å§‹æ—¶é—´){
+				if (TimeGetTime() > é‡æ–°ç™»é™†AIå¼€å§‹æ—¶é—´ + 500){
+					é‡æ–°ç™»é™†AIå¼€å§‹æ—¶é—´ = 0;
 					AI = AI_SELECT;
-					StockChatBufferLine("¿ªÆô£Á£ÉÄ£Ê½£¡", FONT_PAL_RED);
+					StockChatBufferLine("å¼€å¯ï¼¡ï¼©æ¨¡å¼ï¼", FONT_PAL_RED);
 					pc.etcFlag |= PC_AI_MOD;
 					lssproto_FS_send(sockfd, pc.etcFlag);
 				}
 			}
-			if (ÊÇ·ñÖØµÇÈËÎï·½Ïò){
-				ÊÇ·ñÖØµÇÈËÎï·½Ïò = FALSE;
-				ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä = TimeGetTime();
+			if (æ˜¯å¦é‡ç™»äººç‰©æ–¹å‘){
+				æ˜¯å¦é‡ç™»äººç‰©æ–¹å‘ = FALSE;
+				é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´ = TimeGetTime();
 			}
-			if (ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä){
-				if (TimeGetTime() > ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä + 500){
-					ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä = 0;
+			if (é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´){
+				if (TimeGetTime() > é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´ + 500){
+					é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´ = 0;
 					char dir2[2];
-					setPcDir(PcLanded.ÈËÎï·½Ïò);
-					dir2[0] = cnvServDir(PcLanded.ÈËÎï·½Ïò, 1);
+					setPcDir(PcLanded.äººç‰©æ–¹å‘);
+					dir2[0] = cnvServDir(PcLanded.äººç‰©æ–¹å‘, 1);
 					dir2[1] = '\0';
 					walkSendForServer(nowGx, nowGy, dir2);
 				}
 			}
-			extern int ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
-			if (ÊÇ·ñÖØµÇ×é¶Ó&&!ÊÇ·ñÖØµÇÈËÎï·½Ïò&&!ÖØĞÂµÇÂ½·½Ïò¿ªÊ¼Ê±¼ä&&!partyModeFlag){
-				if (!ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä){
-					ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä = TimeGetTime();
+			extern int è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
+			if (æ˜¯å¦é‡ç™»ç»„é˜Ÿ&&!æ˜¯å¦é‡ç™»äººç‰©æ–¹å‘&&!é‡æ–°ç™»é™†æ–¹å‘å¼€å§‹æ—¶é—´&&!partyModeFlag){
+				if (!é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´){
+					é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´ = TimeGetTime();
 				}
 				else{
-					if (TimeGetTime() > ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä + FIELD_BTN_PUSH_WAIT){
-						ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä = 0;
+					if (TimeGetTime() > é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´ + FIELD_BTN_PUSH_WAIT){
+						é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´ = 0;
 						lssproto_PR_send(sockfd, nowGx, nowGy, 1);
 					}
 				}
-				if (ÊÇ·ñÖØµÇº°»°){
-					if (!ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä){
-						ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä = TimeGetTime();
+				if (æ˜¯å¦é‡ç™»å–Šè¯){
+					if (!é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´){
+						é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´ = TimeGetTime();
 					}
 					else{
-						if (TimeGetTime() > ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä + 1000 * 60){
-							ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä = 0;
+						if (TimeGetTime() > é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´ + 1000 * 60){
+							é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´ = 0;
 							char m[1024];
-							sprintf_s(m, "P|ÄÄÎ»ºÃĞÄÈËÄÜ´øÎÒÁ·¼¶Ó´¡£¸ÕµôÏßÖØĞÂµÇÂ½£¬ÇóºÃĞÄÈËÕ¾ÎÒÃæÇ°´øÎÒÁ·¼¶£¡Î»ÖÃ(%d,%d)", nowGx, nowGy);
+							sprintf_s(m, "P|å“ªä½å¥½å¿ƒäººèƒ½å¸¦æˆ‘ç»ƒçº§å“Ÿã€‚åˆšæ‰çº¿é‡æ–°ç™»é™†ï¼Œæ±‚å¥½å¿ƒäººç«™æˆ‘é¢å‰å¸¦æˆ‘ç»ƒçº§ï¼ä½ç½®(%d,%d)", nowGx, nowGy);
 							lssproto_TK_send(sockfd, nowGx, nowGy, m, 0, NowMaxVoice);
 						}
 					}
 				}
 			}
 			else{
-				ÖØĞÂµÇÂ½×é¶Ó¿ªÊ¼Ê±¼ä = 0;
-				ÖØĞÂµÇÂ½º°»°¿ªÊ¼Ê±¼ä = 0;
+				é‡æ–°ç™»é™†ç»„é˜Ÿå¼€å§‹æ—¶é—´ = 0;
+				é‡æ–°ç™»é™†å–Šè¯å¼€å§‹æ—¶é—´ = 0;
 			}
 		}
-		extern int ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
+		extern int è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
 		if (ProcNo >= 1 && ProcNo <= 3){
-			if (PcLanded.´óÇø != -1 && PcLanded.Ğ¡Çø != -1 && PcLanded.ÈËÎï != -1){
-				if (×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô)
-					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "ÕıÔÚ×Ô¶¯µÇÂ½ÖĞ,°´F9¿ÉÍ£Ö¹×Ô¶¯µÇÂ½£¡", 0);
+			if (PcLanded.å¤§åŒº != -1 && PcLanded.å°åŒº != -1 && PcLanded.äººç‰© != -1){
+				if (è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯)
+					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "æ­£åœ¨è‡ªåŠ¨ç™»é™†ä¸­,æŒ‰F9å¯åœæ­¢è‡ªåŠ¨ç™»é™†ï¼", 0);
 				else
-					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "°´F9¿É×Ô¶¯µÇÂ½ÓÎÏ·£¡", 0);
+					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "æŒ‰F9å¯è‡ªåŠ¨ç™»é™†æ¸¸æˆï¼", 0);
 			}
 		}
 		if (joy_trg[1] & JOY_F9&&ProcNo >= 1 && ProcNo <= 3)
 		{
-			if (×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô) ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô = !×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
+			if (è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯) è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯ = !è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
 			else{
-				if (PcLanded.´óÇø != -1 && PcLanded.Ğ¡Çø != -1 && PcLanded.ÈËÎï != -1)
-					×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô = TRUE;
+				if (PcLanded.å¤§åŒº != -1 && PcLanded.å°åŒº != -1 && PcLanded.äººç‰© != -1)
+					è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯ = TRUE;
 			}
 		}
 #endif
@@ -448,7 +448,7 @@ BOOL GameMain(void)
 
 			if (BackBufferDrawType != DRAW_BACK_PRODUCE){
 				if (lpDraw != NULL){
-					// DirectDraw ?©—
+					// DirectDraw ?îŸ´
 					ReleaseDirectDraw();
 					DeleteObject(hFont);
 					SetResoMode(((ResoMode + 1) % 5));
@@ -568,7 +568,7 @@ BOOL GameMain(void)
 #ifdef _OPTIMIZATIONFLIP_
 		if (endProcTime > TimeGetTime())
 		{
-			//ĞŞÕı×î´óÌøÖ¡Êı
+			//ä¿®æ­£æœ€å¤§è·³å¸§æ•°
 			if (NoDrawCnt < NO_DRAW_MAX_CNT + skipAmend)
 			{
 				NoDrawCnt++;
@@ -588,7 +588,7 @@ BOOL GameMain(void)
 #endif
 
 #else
-		NowTime = TimeGetTime();//»ñÈ¡µ±Ç°µÄÊ±¼ä ºÁÃë
+		NowTime = TimeGetTime();//è·å–å½“å‰çš„æ—¶é—´ æ¯«ç§’
 		nowtime = nowttime1;
 		//nowtime ^= 0xffffbcde;
 		static DWORD OldTime = nowttime1;
@@ -616,7 +616,7 @@ BOOL GameMain(void)
 #endif
 #endif
 		nowtime = 0;
-		//cary AIµÄÇĞ»»
+		//cary AIçš„åˆ‡æ¢
 		if (di_key[DIK_NEXT] & 0x80){
 			di_key[DIK_NEXT] &= ~0x80;
 			static DWORD switchmodetime = TimeGetTime();
@@ -627,7 +627,7 @@ BOOL GameMain(void)
 					AI = AI_NONE;
 					pc.etcFlag &= (~PC_AI_MOD);
 					lssproto_FS_send(sockfd, pc.etcFlag);
-					// ĞŞ¸´Õ½¶·AI×ª»»µÄBUG  AI->Íæ¼Ò
+					// ä¿®å¤æˆ˜æ–—AIè½¬æ¢çš„BUG  AI->ç©å®¶
 #ifdef _FIX_BATTLE_AI
 					battleMenuFix();
 #endif
@@ -664,7 +664,7 @@ BOOL GameMain(void)
 #ifdef __AI
 				if (AI == AI_SELECT){
 					AI = AI_NONE;
-					// ĞŞ¸´Õ½¶·AI×ª»»µÄBUG  Íæ¼Ò->AI
+					// ä¿®å¤æˆ˜æ–—AIè½¬æ¢çš„BUG  ç©å®¶->AI
 #ifdef _FIX_BATTLE_AI
 					battleMenuFix();
 #endif
@@ -712,7 +712,7 @@ BOOL GameMain(void)
 		case DRAW_BACK_PRODUCE:
 			break;
 
-		case DRAW_BACK_BATTLE:	// ??????¤ş?
+		case DRAW_BACK_BATTLE:	// ??????î¼?
 
 			DrawBattleMap();
 			break;
@@ -730,7 +730,7 @@ BOOL GameMain(void)
 			if( GetAsyncKeyState( 0x10 ) & 0x8000 ){		//???????????
 				if(!no_wait_cnt){
 					PutBmp();	// ????????????????
-					// dwaf ????¤ş??¢L???
+					// dwaf ????î¼??î”²???
 					baseXFastDraw = nowXFastDraw;
 					baseYFastDraw = nowYFastDraw;
 					baseXFastDraw2 = nowXFastDraw2;
@@ -788,14 +788,14 @@ BOOL GameMain(void)
 #ifdef _STONDEBUG_	
 		if (GetAsyncKeyState(0x10) & 0x8000){		//???????????
 			if (!no_wait_cnt){
-				Flip();	// ?£š¥i?¡_??şú?¢v???
+				Flip();	// ?î—Ÿî™¯?î“¥??î“?î•œ???
 			}
 		}
 		else {
-			Flip();	// ?£š¥i?¡_??şú?¢v???
+			Flip();	// ?î—Ÿî™¯?î“¥??î“?î•œ???
 		}
 #else
-		Flip();	// ?£š¥i?¡_??şú?¢v???
+		Flip();	// ?î—Ÿî™¯?î“¥??î“?î•œ???
 #endif		
 
 #ifdef _STONDEBUG_		
@@ -946,7 +946,7 @@ BOOL GameMain(void)
 #endif
 
 #ifdef _STONDEBUG_		
-		// ?¥ø??¤ş??????????
+		// ?î¾??î¼??????????
 		DrawFrameCnt++;
 #endif
 		SurfaceDate++;
@@ -962,7 +962,7 @@ unsigned int iTotalRunCount;
 unsigned int iShowCount;
 LARGE_INTEGER tf;
 extern bool g_bMMXMode;
-// ıÑ©¤úû¨ *******************************************************************/
+// îºîŸ«î¸î• *******************************************************************/
 void InfoDisp( void )
 {
 	char szMoji[ 256 ];
@@ -971,7 +971,7 @@ void InfoDisp( void )
 	char c = 0;
 
 	sprintf_s( szMoji,"ActionCnt        = %d", ActCnt );
-	// ????ıÑ©?????????
+	// ????îºîŸ«?????????
 	StockFontBuffer( x, y, FONT_PRIO_FRONT, c++, szMoji, 0 );y += 16;
 
 	sprintf_s( szMoji,"DispCnt          = %d", DispBuffer.DispCnt );
@@ -1042,7 +1042,7 @@ void InfoDisp( void )
 	sprintf_s( szMoji,"EventEnemyFlag   = %d",eventEnemyFlag );
 	StockFontBuffer( x, y, FONT_PRIO_FRONT, c++, szMoji, 0 );y += 16;
 
-	// ?¡P??
+	// ?î“–??
 	if( BattleMyNo >= 20 ){
 		sprintf_s( szMoji,"BattleTurnNo     = %d",BattleCliTurnNo );
 	}else{
@@ -1094,21 +1094,21 @@ void InfoDisp( void )
 }
 #endif		
 
-// ?????????úÜ??ş°??şÎ?
+// ?????????îŒ«??î‘·??î’•?
 void DisplayFrameRate(void)
 {
-	// ?¥ø?????ıø
+	// ?î¾?????î‘¡
 	if (TimeGetTime() - DrawFrameTime >= 1000){
 
 		// ??????????
 		FrameRate = DrawFrameCnt;
 		// ???????
 		DrawFrameTime = TimeGetTime();
-		// ?¥ø??¤ş?????????
+		// ?î¾??î¼?????????
 		DrawFrameCnt = 0;
 	}
 }
-// ???¤úû¨ *****************************************************************/
+// ???î¸î• *****************************************************************/
 void PutLogo(void)
 {
 	DispBuffer.DispCnt = 0;
@@ -1147,7 +1147,7 @@ BOOL InitGame(void)
 #endif
 #ifdef _READ16BITBMP
 	unsigned int testMMX = 0;
-	// ²âÊÔcpuÊÇ·ñÓĞMMXÖ¸Áî¼¯
+	// æµ‹è¯•cpuæ˜¯å¦æœ‰MMXæŒ‡ä»¤é›†
 	__asm{
 		push eax
 			mov eax,1
@@ -1155,7 +1155,7 @@ BOOL InitGame(void)
 			mov testMMX, edx
 			pop eax
 	}
-	// µÚ23¸öÎ»ÔªÈôÎª1±íÊ¾ÓĞMMX
+	// ç¬¬23ä¸ªä½å…ƒè‹¥ä¸º1è¡¨ç¤ºæœ‰MMX
 	if (testMMX & 0x00800000) g_bMMXMode = true;
 	else g_bMMXMode = false;
 #endif
@@ -1168,30 +1168,30 @@ BOOL InitGame(void)
 #endif
 	util_Init();
 	if (InitDirectDraw() == FALSE){
-		MessageBoxNew(hWnd, "³õÊ¼»¯DirectDrawÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "åˆå§‹åŒ–DirectDrawå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	if (InitOffScreenSurface() == FALSE){
-		MessageBoxNew(hWnd, "³õÊ¼»¯Off Screan SurfaceÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "åˆå§‹åŒ–Off Screan Surfaceå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	if (InitPalette() == FALSE)
 		return FALSE;
 	if (initRealbinFileOpen(realBinName, adrnBinName) == FALSE) {
-		MessageBoxNew(hWnd, "¿ªÆôReal.binÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "å¼€å¯Real.binå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	//PutLogo();
 	initAutoMapColor(adrnBinName);
 	if (InitSprBinFileOpen(sprBinName, sprAdrnBinName) == FALSE){
-		MessageBoxNew(hWnd, "¿ªÆôSpr.binÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "å¼€å¯Spr.binå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #ifdef _READ16BITBMP
 	int ref;
 	if ((ref = InitRealTruebinFileOpen(realtrueBinName, adrntrueBinName)) < 0){
-		if (ref == -1) MessageBoxNew(hWnd, "¿ªÆô adrntrue.bin Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
-		else if (ref == -2) MessageBoxNew(hWnd, "¿ªÆô realtrue.bin Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		if (ref == -1) MessageBoxNew(hWnd, "å¼€å¯ adrntrue.bin å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
+		else if (ref == -2) MessageBoxNew(hWnd, "å¼€å¯ realtrue.bin å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #endif
@@ -1215,14 +1215,14 @@ BOOL InitGame(void)
 	t_music_init();
 
 	if (!InitIme(hWnd, StrToNowStrBuffer)){
-		MessageBoxNew(hWnd, "³õÊ¼»¯ÊäÈë·¨Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "åˆå§‹åŒ–è¾“å…¥æ³•å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	MouseInit();
 	if (loadUserSetting() == FALSE){
 		char msg[1024];
 		sprintf_s(msg, SAVE_ERRMSG_loadNowState, savedataErrorCode);
-		MessageBoxNew(hWnd, msg, "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, msg, "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	LoadChatRegistyStr();
@@ -1241,34 +1241,34 @@ BOOL InitGame(void)
 #ifndef __NEW_CLIENT_ONLY_WRITE
 	if (!net_readbuf){
 		if (!(net_readbuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_readbuf Init Ê§°Ü!", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_readbuf Init å¤±è´¥!", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #else
 	if( !net_readbuf){
 		if( !(net_readbuf=(char*)VirtualAlloc( NULL, NETBUFSIZ, MEM_COMMIT, PAGE_NOACCESS))){
-			MessageBoxNew( hWnd, "net_readbuf Init Ê§°Ü!", "È·¶¨", MB_OK | MB_ICONSTOP );
+			MessageBoxNew( hWnd, "net_readbuf Init å¤±è´¥!", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 			return FALSE;
 		}
 	}
 #endif
 	if (!net_writebuf){
 		if (!(net_writebuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_NOACCESS))){
-			MessageBoxNew(hWnd, "net_writebuf Init Ê§°Ü!", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_writebuf Init å¤±è´¥!", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #else
 	if (!net_readbuf){
 		if (!(net_readbuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_readbuf Init Ê§°Ü!", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_readbuf Init å¤±è´¥!", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 	if (!net_writebuf){
 		if (!(net_writebuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_writebuf Init Ê§°Ü!", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_writebuf Init å¤±è´¥!", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -1304,32 +1304,32 @@ void EndGame(void)
 		VirtualFree(net_writebuf, NULL, MEM_RELEASE);
 		net_writebuf = NULL;
 	}
-	//DirectDraw ?©—
+	//DirectDraw ?îŸ´
 	ReleaseDirectDraw();
-	// ???????????©—
+	// ???????????îŸ´
 	EndDInput();
-	// DirectSound ?©—
+	// DirectSound ?îŸ´
 	t_music_end();
-	// ????¤_û¢
+	// ????î˜…î
 	cdda_stop();
-	// Rialbin ¨–??
+	// Rialbin î¼??
 	cleanupRealbin();
-	// ????????????úÇ
+	// ????????????îŒ–
 	DeleteObject(hFont);
-	// ????ü¬?
+	// ????î·?
 	EndIme();
-	// ?????ü¬???
+	// ?????î·???
 	EndAction();
-	// ??????ü¬???
+	// ??????î·???
 	cleanupNetwork();
-	// ¥i??¥h???????????©—
+	// î™¯??î™®???????????îŸ´
 	ReleaseMutex(hMutex);
 	// ????????
 	saveUserSetting();
-	// ?????¥K?§ó??¨ò¢V
+	// ?????î™‘?î°??îŸ•î”¼
 	SaveChatRegistyStr();
 
-	// ????ü¬?
+	// ????î·?
 	//	timeKillEvent(timerId);
 
 	//{
@@ -1363,7 +1363,7 @@ void ConsoleThread(void)
 
 	while(m_bRun)
 	{
-		printf("\nÊ¯Æ÷Ê±´ú>");
+		printf("\nçŸ³å™¨æ—¶ä»£>");
 		i = 0;
 		while( (c = getchar()) != '\n')
 		{
@@ -1446,7 +1446,7 @@ void InitConsoleWindow(void)
 
 
 	AllocConsole();
-	SetConsoleTitle("Ê¯Æ÷Ê±´ú");
+	SetConsoleTitle("çŸ³å™¨æ—¶ä»£");
 
 	hCrt = _open_osfhandle(
 		(long)GetStdHandle(STD_OUTPUT_HANDLE),O_TEXT );

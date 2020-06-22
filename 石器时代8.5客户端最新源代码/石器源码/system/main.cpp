@@ -27,7 +27,7 @@
 #include <crtdbg.h>
 #endif
 #include "../systeminc/VMProtectSDK.h"
-#ifdef _SAHOOK //Syu ADD Hook³ÌÊ½
+#ifdef _SAHOOK //Syu ADD Hookç¨‹å¼
 #include "..\Sa_Hk.h"
 #include "../sahook.h"
 #define UM_KEYEVENT (WM_APP + 0)
@@ -52,14 +52,14 @@
 
 #ifdef _AIDENGLU_
 Landed PcLanded;
-int ÊÇ·ñÖØµÇ = FALSE;
-int ÊÇ·ñÖØµÇÕ½¶·ÁË = FALSE;
-int ÊÇ·ñÖØµÇAIÄ£Ê½ = FALSE;
-int ÊÇ·ñÖØµÇ×é¶Ó = FALSE;
-int ÊÇ·ñÖØµÇº°»° = FALSE;
-int ÊÇ·ñÖØµÇÈËÎï·½Ïò = FALSE;
-int ÊÇ·ñÖØ¿ªµÇ×é¶Ó = FALSE;
-int ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô = 0;
+int æ˜¯å¦é‡ç™» = FALSE;
+int æ˜¯å¦é‡ç™»æˆ˜æ–—äº† = FALSE;
+int æ˜¯å¦é‡ç™»AIæ¨¡å¼ = FALSE;
+int æ˜¯å¦é‡ç™»ç»„é˜Ÿ = FALSE;
+int æ˜¯å¦é‡ç™»å–Šè¯ = FALSE;
+int æ˜¯å¦é‡ç™»äººç‰©æ–¹å‘ = FALSE;
+int æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ = FALSE;
+int è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯ = 0;
 #endif
 int DISPLACEMENT_X = 160;
 int DISPLACEMENT_Y = 120;
@@ -69,10 +69,10 @@ int DEF_APPSIZEY = 600;
 int SCREEN_WIDTH_CENTER = DEF_APPSIZEX / 2;
 int SCREEN_HEIGHT_CENTER = DEF_APPSIZEY / 2;
 
-#define REALBIN_DIR		"data\\real_136.bin" 		// REAL.BIN?ıÍ? 
-#define ADRNBIN_DIR		"data\\adrn_136.bin" 		// ADRN.BIN?ıÍ?
-#define SPRBIN_DIR		"data\\spr_115.bin" 		// SPR.BIN?ıÍ?
-#define SPRADRNBIN_DIR	"data\\spradrn_115.bin" 	// SPRADRN.BIN?ıÍ?
+#define REALBIN_DIR		"data\\real_136.bin" 		// REAL.BIN?î¶? 
+#define ADRNBIN_DIR		"data\\adrn_136.bin" 		// ADRN.BIN?î¶?
+#define SPRBIN_DIR		"data\\spr_115.bin" 		// SPR.BIN?î¶?
+#define SPRADRNBIN_DIR	"data\\spradrn_115.bin" 	// SPRADRN.BIN?î¶?
 
 
 #ifdef _READ16BITBMP
@@ -80,16 +80,16 @@ int SCREEN_HEIGHT_CENTER = DEF_APPSIZEY / 2;
 #define ADRNTRUEBIN_DIR "data/adrntrue_5.bin"
 #endif
 //-------------------------------------------END------------------------
-extern int ±àÂë;
+extern int ç¼–ç ;
 extern char* GB2312ToBIG5(const char* szGBString);
 int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
 {
-	if (±àÂë == 950){
-		char ·±Ìå[1024] = { 0 };
-		char ·±Ìå1[1024] = { 0 };
-		LCMapString(0x804, 0x4000000, lpText, strlen(lpText), ·±Ìå, 1024);
-		LCMapString(0x804, 0x4000000, lpCaption, strlen(lpCaption), ·±Ìå1, 1024);
-		return MessageBox(hWnd, GB2312ToBIG5((const char *)·±Ìå), GB2312ToBIG5((const char *)·±Ìå1), uType);
+	if (ç¼–ç  == 950){
+		char ç¹ä½“[1024] = { 0 };
+		char ç¹ä½“1[1024] = { 0 };
+		LCMapString(0x804, 0x4000000, lpText, strlen(lpText), ç¹ä½“, 1024);
+		LCMapString(0x804, 0x4000000, lpCaption, strlen(lpCaption), ç¹ä½“1, 1024);
+		return MessageBox(hWnd, GB2312ToBIG5((const char *)ç¹ä½“), GB2312ToBIG5((const char *)ç¹ä½“1), uType);
 	}
 	else{
 		return MessageBox(hWnd, lpText, lpCaption, uType);
@@ -97,27 +97,27 @@ int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º?????¨Á?¤e?                                                 //
+// ?? ï¼š?????îŸ‰?î˜‹?                                                 //
 //---------------------------------------------------------------------------//
-HINSTANCE	hInst;			// ??????????¤e?
+HINSTANCE	hInst;			// ??????????î˜‹?
 HWND hWnd;					// ?????????
 int	CmdShow;				// WinMain??????????????
 LPSTR CmdLine;				// WinMain?????????????????????
-HANDLE hMutex;				// ¥i??¥h???????????????
-HANDLE hCheckMutex = NULL;	// ¸ø¸üĞÂ³ÌÊ½¼ì²éÓÃµÄ
+HANDLE hMutex;				// î™¯??î™®???????????????
+HANDLE hCheckMutex = NULL;	// ç»™æ›´æ–°ç¨‹å¼æ£€æŸ¥ç”¨çš„
 
 //BOOL WindowMode = TRUE;		// ????????
 BOOL WindowMode = TRUE;	// ??????????
 //	TRUE  : WindowMode
 //	FALSE : FullScreen
-BOOL NoDelay = FALSE;		// TCP_NODELAY ?úé??????add by ringo
+BOOL NoDelay = FALSE;		// TCP_NODELAY ?îŒ¸??????add by ringo
 #ifdef _NEW_RESOMODE
-//½âÎö¶ÈÄ£Ê½( 0 : 640 * 480 , 1 : 320 * 240 ,2 : 640 * 480,  3 : 800 * 600 , 4 : 1024 * 768 ) 
+//è§£æåº¦æ¨¡å¼( 0 : 640 * 480 , 1 : 320 * 240 ,2 : 640 * 480,  3 : 800 * 600 , 4 : 1024 * 768 ) 
 int ResoMode = 3;
 #else
 int ResoMode = 0;			
 #endif
-int LowResoCmdFlag = 0;		// ??¥T¨Á????????
+int LowResoCmdFlag = 0;		// ??î™šîŸ‰????????
 
 RECT 	g_clientRect;
 POINT g_clientPoint;
@@ -145,14 +145,14 @@ extern int MouseCursorFlag;
 #endif
 
 void GetSettings();
-/* ????????şï */
+/* ????????î’¶ */
 void AnalyzeCmdLine(void);
-// ????????şú?¢v???¡L?
+// ????????î“?î•œ???î“’?
 void ChangeWindowMode(void);
-// ??¥T???¡@¤e??
+// ??î™š???î“†î˜‹??
 void SetResoMode(int Mode);
 
-// ?????????¢B¢l
+// ?????????î”¨î•’
 WNDCLASS wndclass;
 
 HANDLE	hProcessSnap = NULL, hParentProcess = NULL;
@@ -169,7 +169,7 @@ CTalkWindow TalkWindow;
 #endif
 
 
-char ±êÌâÃû[256];
+char æ ‡é¢˜å[256];
 int getMAC(char * mac)
 {
 	NCB ncb;
@@ -233,11 +233,11 @@ int getMAC(char * mac)
 	return 0;
 }
 
-char »úÆ÷Êı¾İ[512];
+char æœºå™¨æ•°æ®[512];
 
-void »ñÈ¡»úÆ÷Âë()
+void è·å–æœºå™¨ç ()
 {
-	HANDLE m_hMapFile = OpenFileMapping( //»ñµÃ¹²ÏíÄÚ´æ¾ä±ú
+	HANDLE m_hMapFile = OpenFileMapping( //è·å¾—å…±äº«å†…å­˜å¥æŸ„
 		FILE_MAP_READ | FILE_MAP_WRITE,
 		FALSE,
 #ifdef _SA_VERSION_25
@@ -245,66 +245,66 @@ void »ñÈ¡»úÆ÷Âë()
 #endif
 
 	if (m_hMapFile == NULL){
-		HANDLE m_hMapFile = CreateFileMapping(  //´´½¨Ò»¸öÓĞÃûµÄ¹²ÏíÄÚ´æ
-			(HANDLE)0xFFFFFFFF, //0xFFFFFFFF±íÊ¾´´½¨Ò»¸ö½ø³Ì¼ä¹²ÏíµÄ¶ÔÏó
+		HANDLE m_hMapFile = CreateFileMapping(  //åˆ›å»ºä¸€ä¸ªæœ‰åçš„å…±äº«å†…å­˜
+			(HANDLE)0xFFFFFFFF, //0xFFFFFFFFè¡¨ç¤ºåˆ›å»ºä¸€ä¸ªè¿›ç¨‹é—´å…±äº«çš„å¯¹è±¡
 			NULL,
-			PAGE_READWRITE,  //¶ÁĞ´¹²Ïí
+			PAGE_READWRITE,  //è¯»å†™å…±äº«
 			0,
-			1032,       //¹²ÏíÇø¼ä´óĞ¡4096
+			1032,       //å…±äº«åŒºé—´å¤§å°4096
 #ifdef _SA_VERSION_25
 		"shiqies");
 #endif
 
-		char *str = (char *)MapViewOfFile( //Ó³Éäµ½±¾½ø³ÌµÄµØÖ·¿Õ¼ä
+		char *str = (char *)MapViewOfFile( //æ˜ å°„åˆ°æœ¬è¿›ç¨‹çš„åœ°å€ç©ºé—´
 			m_hMapFile,
 			FILE_MAP_ALL_ACCESS,
 			0,
 			0,
 			0);
 		memset(str, 0, 1032);
-		memset(»úÆ÷Êı¾İ, 0, 512);
+		memset(æœºå™¨æ•°æ®, 0, 512);
 		char userName[MAX_PATH];
 		DWORD size = MAX_PATH;
 		char mac[64];
 		GetComputerName(userName, &size);
 		getMAC(mac);
-		sprintf_s(»úÆ÷Êı¾İ, "%s%s", mac, userName);
-		memcpy(str, »úÆ÷Êı¾İ, 512);
+		sprintf_s(æœºå™¨æ•°æ®, "%s%s", mac, userName);
+		memcpy(str, æœºå™¨æ•°æ®, 512);
 	}
 	else{
-		char *str = (char *)MapViewOfFile( //Ó³Éäµ½±¾½ø³ÌµÄµØÖ·¿Õ¼ä
+		char *str = (char *)MapViewOfFile( //æ˜ å°„åˆ°æœ¬è¿›ç¨‹çš„åœ°å€ç©ºé—´
 			m_hMapFile,
 			FILE_MAP_ALL_ACCESS,
 			0,
 			0,
 			0);
-		memcpy(»úÆ÷Êı¾İ, str, 512);
+		memcpy(æœºå™¨æ•°æ®, str, 512);
 	}
 }
 
-BOOL ÎÄ¼şÅĞ¶Ï(char * path,char * name)
+BOOL æ–‡ä»¶åˆ¤æ–­(char * path,char * name)
 {
-	char ÎÄ¼şÂ·¾¶[256];
-	sprintf(ÎÄ¼şÂ·¾¶,"%s%s",path,name);
-	BOOL ret = (access(ÎÄ¼şÂ·¾¶,0)==0?TRUE:FALSE);
+	char æ–‡ä»¶è·¯å¾„[256];
+	sprintf(æ–‡ä»¶è·¯å¾„,"%s%s",path,name);
+	BOOL ret = (access(æ–‡ä»¶è·¯å¾„,0)==0?TRUE:FALSE);
 	if(ret){
-		;//MessageBox(NULL,ÎÄ¼şÂ·¾¶,"Ê¯Æ÷Ê±´ú",0);
+		;//MessageBox(NULL,æ–‡ä»¶è·¯å¾„,"çŸ³å™¨æ—¶ä»£",0);
 	}
 	return ret;
 }
 
 
-BOOL ¼ì²â°´¼ü(char *path)
+BOOL æ£€æµ‹æŒ‰é”®(char *path)
 {
-	if(ÎÄ¼şÅĞ¶Ï(path,"QMScript") ||
-		ÎÄ¼şÅĞ¶Ï(path,"Recorder.exe") ||
-		ÎÄ¼şÅĞ¶Ï(path,"QMColorActionCtl.ocx") ||
-		ÎÄ¼şÅĞ¶Ï(path,"ShieldModule.dat") ||
-		ÎÄ¼şÅĞ¶Ï(path,"qmacro.ini") ||
-		ÎÄ¼şÅĞ¶Ï(path,"wqm.exe") || 
-		ÎÄ¼şÅĞ¶Ï(path,"Fairy_Ape")||
-		ÎÄ¼şÅĞ¶Ï(path,"LAScriptX.dll")||
-		ÎÄ¼şÅĞ¶Ï(path,"mly.dll")||ÎÄ¼şÅĞ¶Ï(path,"v5_hook.dll")||ÎÄ¼şÅĞ¶Ï(path,"v5_Log.dll")||ÎÄ¼şÅĞ¶Ï(path,"v5_Process_Manager.dll")
+	if(æ–‡ä»¶åˆ¤æ–­(path,"QMScript") ||
+		æ–‡ä»¶åˆ¤æ–­(path,"Recorder.exe") ||
+		æ–‡ä»¶åˆ¤æ–­(path,"QMColorActionCtl.ocx") ||
+		æ–‡ä»¶åˆ¤æ–­(path,"ShieldModule.dat") ||
+		æ–‡ä»¶åˆ¤æ–­(path,"qmacro.ini") ||
+		æ–‡ä»¶åˆ¤æ–­(path,"wqm.exe") || 
+		æ–‡ä»¶åˆ¤æ–­(path,"Fairy_Ape")||
+		æ–‡ä»¶åˆ¤æ–­(path,"LAScriptX.dll")||
+		æ–‡ä»¶åˆ¤æ–­(path,"mly.dll")||æ–‡ä»¶åˆ¤æ–­(path,"v5_hook.dll")||æ–‡ä»¶åˆ¤æ–­(path,"v5_Log.dll")||æ–‡ä»¶åˆ¤æ–­(path,"v5_Process_Manager.dll")
 		){
 		return TRUE;
 	}else{
@@ -314,13 +314,13 @@ BOOL ¼ì²â°´¼ü(char *path)
 
 
 
-void °´¼ü¼ì²â()
+void æŒ‰é”®æ£€æµ‹()
 {
 	char szProcessName[MAX_PATH];
 	HMODULE hMods[4096];
 	HANDLE hProcess;
 	DWORD aProcesses[4096], cbNeeded, cbMNeeded;
-	char Â·¾¶[256];
+	char è·¯å¾„[256];
 	int j;
 	if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) ) return;
 
@@ -340,9 +340,9 @@ void °´¼ü¼ì²â()
 						break;
 					}
 				}
-				memcpy(Â·¾¶,szProcessName,i+1);
-				Â·¾¶[i+1]=0;
-				if(¼ì²â°´¼ü(Â·¾¶)){
+				memcpy(è·¯å¾„,szProcessName,i+1);
+				è·¯å¾„[i+1]=0;
+				if(æ£€æµ‹æŒ‰é”®(è·¯å¾„)){
 					ExitProcess(NULL);
 				}
 			}
@@ -351,28 +351,28 @@ void °´¼ü¼ì²â()
 	return;
 }
 
-BOOL IsContainsProcess(char* strProName, BOOL ÅĞ¶Ï = 1)
+BOOL IsContainsProcess(char* strProName, BOOL åˆ¤æ–­ = 1)
 {
-	PROCESSENTRY32  pe32;   //¶¨Òå½á¹¹Ìå±äÁ¿À´±£´æ½ø³ÌµÄĞÅÏ¢
-	pe32.dwSize = sizeof(pe32);   //Ìî³ä´óĞ¡
+	PROCESSENTRY32  pe32;   //å®šä¹‰ç»“æ„ä½“å˜é‡æ¥ä¿å­˜è¿›ç¨‹çš„ä¿¡æ¯
+	pe32.dwSize = sizeof(pe32);   //å¡«å……å¤§å°
 
-	HANDLE hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//´´½¨¿ìÕÕ
+	HANDLE hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//åˆ›å»ºå¿«ç…§
 
 	if (hProcessSnap == INVALID_HANDLE_VALUE)
 	{
-		//MessageBox("½ø³Ì¿ìÕÕÊ§°Ü","ÌáÊ¾",MB_OK);
+		//MessageBox("è¿›ç¨‹å¿«ç…§å¤±è´¥","æç¤º",MB_OK);
 		exit(1);
 	}
 
-	//±éÀúËùÓĞ¿ìÕÕ
+	//éå†æ‰€æœ‰å¿«ç…§
 	BOOL bMore = ::Process32First(hProcessSnap, &pe32);
 	while (bMore)
 	{
-		if (ÅĞ¶Ï == 1){
+		if (åˆ¤æ–­ == 1){
 			if (strcmp(strProName, pe32.szExeFile) == 0)
 			{
-				return TRUE;  //Èç¹û´æÔÚ¸Ã½ø³Ì£¬Ôò·µ»ØTRUE
-				bMore = FALSE;//Í£Ö¹Ñ­»·
+				return TRUE;  //å¦‚æœå­˜åœ¨è¯¥è¿›ç¨‹ï¼Œåˆ™è¿”å›TRUE
+				bMore = FALSE;//åœæ­¢å¾ªç¯
 			}
 			else
 			{
@@ -382,8 +382,8 @@ BOOL IsContainsProcess(char* strProName, BOOL ÅĞ¶Ï = 1)
 		else{
 			if (strstr(pe32.szExeFile, strProName))
 			{
-				return TRUE;  //Èç¹û´æÔÚ¸Ã½ø³Ì£¬Ôò·µ»ØTRUE
-				bMore = FALSE;//Í£Ö¹Ñ­»·
+				return TRUE;  //å¦‚æœå­˜åœ¨è¯¥è¿›ç¨‹ï¼Œåˆ™è¿”å›TRUE
+				bMore = FALSE;//åœæ­¢å¾ªç¯
 			}
 			else
 			{
@@ -391,7 +391,7 @@ BOOL IsContainsProcess(char* strProName, BOOL ÅĞ¶Ï = 1)
 			}
 		}
 	}
-	//É¨Î²
+	//æ‰«å°¾
 	CloseHandle(hProcessSnap);
 	return FALSE;
 }
@@ -431,7 +431,7 @@ bool IsInsideVPC()
 	return rc;
 }
 
-BOOL ¼ì²âWARE()
+BOOL æ£€æµ‹WARE()
 {
 	HKEY key;
 	unsigned char buffer[512];
@@ -584,8 +584,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 #ifdef _NODEBUG_
 	VMProtectBegin("jiance111");
-	extern void °´¼ü¼ì²â();
-	°´¼ü¼ì²â();
+	extern void æŒ‰é”®æ£€æµ‹();
+	æŒ‰é”®æ£€æµ‹();
 	if (
 		(IsContainsProcess("VBoxTray.exe")) ||
 		(IsContainsProcess("SbieSvc.exe")) ||
@@ -597,39 +597,39 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		(IsContainsProcess("vmtoolsd.exe")) ||
 		(IsContainsProcess("vmacthlp.exe")) || 
 		IsInsideVPC()|| 
-		IsContainsProcess("¶à´°¿Ú", 0) ||
-		IsContainsProcess("±äËÙ", 0)||
-		IsContainsProcess("ÓîÖæ", 0)
+		IsContainsProcess("å¤šçª—å£", 0) ||
+		IsContainsProcess("å˜é€Ÿ", 0)||
+		IsContainsProcess("å®‡å®™", 0)
 		){
 		return FALSE;
 	}
-	if (¼ì²âWARE()){
+	if (æ£€æµ‹WARE()){
 		return FALSE;
 	}
 	VMProtectEnd();
 #endif
-	±àÂë = GetACP();
-	if (±àÂë == 950)
+	ç¼–ç  = GetACP();
+	if (ç¼–ç  == 950)
 	{
-		strcpy(±êÌâÃû, GB2312ToBIG5(DEF_APPNAME));
+		strcpy(æ ‡é¢˜å, GB2312ToBIG5(DEF_APPNAME));
 	}
-	»ñÈ¡»úÆ÷Âë();
+	è·å–æœºå™¨ç ();
 	hInst = hInstance;
 	CmdShow = nCmdShow;
 	CmdLine = lpCmdLine;
 #ifdef _REMAKE_20
 #ifndef _STONDEBUG_
-	if(±àÂë==950)
-		hMutex = CreateMutex( NULL, TRUE, ±êÌâÃû );
+	if(ç¼–ç ==950)
+		hMutex = CreateMutex( NULL, TRUE, æ ‡é¢˜å );
 	else
 		hMutex = CreateMutex( NULL, TRUE, DEF_APPNAME );
 	if(GetLastError() == ERROR_ALREADY_EXISTS){
-		MessageBoxNew(hWnd,"StoneAgeÒÑ¾­Æğ¶¯ÁË£¡","È·¶¨",MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd,"StoneAgeå·²ç»èµ·åŠ¨äº†ï¼","ç¡®å®š",MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #endif
 #endif
-	// ½¨Á¢Ò»¸öºËĞÄÎï¼ş,ÈÃ¸üĞÂ³ÌÊ½¿ÉÒÔÅĞ¶ÏÊÇ·ñÓĞÊ¯Æ÷ÕıÔÚÖ´ĞĞ
+	// å»ºç«‹ä¸€ä¸ªæ ¸å¿ƒç‰©ä»¶,è®©æ›´æ–°ç¨‹å¼å¯ä»¥åˆ¤æ–­æ˜¯å¦æœ‰çŸ³å™¨æ­£åœ¨æ‰§è¡Œ
 	hCheckMutex = CreateMutex(NULL, FALSE, "CheckForUpdate");
 
 #ifdef _STONDEBUG_
@@ -694,8 +694,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 //		else break;
 //	}
 	if(!checkclientflg) {
-	//	sprintf_s(strname, "ÓÎÏ·ÏŞÖÆ%d¿ª£¡", _DEFENSETOOENNUM_);
-		sprintf_s(strname, "ÓÎÏ·ÏŞÖÆ2¿ª£¡");
+	//	sprintf_s(strname, "æ¸¸æˆé™åˆ¶%då¼€ï¼", _DEFENSETOOENNUM_);
+		sprintf_s(strname, "æ¸¸æˆé™åˆ¶2å¼€ï¼");
 #ifdef _VMP_
 		MessageBoxNew(NULL,VMProtectDecryptStringA(strname), DEF_APPNAME, MB_OK | MB_ICONSTOP);
 #else
@@ -718,13 +718,13 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		wndclass.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(SA_MOUSE1));
 		wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 		wndclass.lpszMenuName = NULL;
-		if (±àÂë == 950)
-			wndclass.lpszClassName = ±êÌâÃû;
+		if (ç¼–ç  == 950)
+			wndclass.lpszClassName = æ ‡é¢˜å;
 		else
 			wndclass.lpszClassName = DEF_APPNAME;
 		if (!RegisterClass(&wndclass)){
-			MessageBoxNew(NULL, "³õÊ¼»¯ÊÓ´°Ê§°Ü£¡\n£¬ÇëÖ´ĞĞÖØĞÂ°²×°»òÇ¢Ñ¯¿Í·şÈËÔ±£¡",
-				"È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(NULL, "åˆå§‹åŒ–è§†çª—å¤±è´¥ï¼\nï¼Œè¯·æ‰§è¡Œé‡æ–°å®‰è£…æˆ–æ´½è¯¢å®¢æœäººå‘˜ï¼",
+				"ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -750,13 +750,13 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 
 #ifdef _NEWSHOP_
-	extern void ÉÌ³Ç³õÊ¼»¯();
-	ÉÌ³Ç³õÊ¼»¯();
+	extern void å•†åŸåˆå§‹åŒ–();
+	å•†åŸåˆå§‹åŒ–();
 #endif
 #ifdef _AIDENGLU_
-	PcLanded.´óÇø = PcLanded.ÈËÎï = PcLanded.Ğ¡Çø = PcLanded.¶ÓÄ£ = -1;
-	PcLanded.ÊÇ·ñ×Ô¶¯º°»° = PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ = PcLanded.ÈËÎï·½Ïò = PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = FALSE;
-	memset(PcLanded.µÇÂ½ÈËÎïÃû³Æ, 0, 4 * 32);
+	PcLanded.å¤§åŒº = PcLanded.äººç‰© = PcLanded.å°åŒº = PcLanded.é˜Ÿæ¨¡ = -1;
+	PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯ = PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ = PcLanded.äººç‰©æ–¹å‘ = PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = FALSE;
+	memset(PcLanded.ç™»é™†äººç‰©åç§°, 0, 4 * 32);
 #endif
 
 
@@ -788,7 +788,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if(g_iMallocCount != 0){
 		char MSG[256];
 		sprintf_s(MSG,"g_iMallocCount = %d",g_iMallocCount);
-		MessageBoxNew( NULL,MSG,"È·¶¨", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( NULL,MSG,"ç¡®å®š", MB_OK | MB_ICONSTOP );
 	}
 #endif
 
@@ -798,7 +798,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 
-// ???????şï ***********************************************************/
+// ???????î’¶ ***********************************************************/
 void DebugKey(char *str)
 {
 	char *work;
@@ -807,7 +807,7 @@ void DebugKey(char *str)
 	// ????????????? key0: ?????
 	if ((work = strstr(str, "KEY0:")))
 	{
-		work += 5;	// §ó??????????????ş­??
+		work += 5;	// î°??????????????î‘´??
 		// : ????????
 		while (*work != ':'){
 			DebugKey0[i] = *work++;
@@ -818,12 +818,12 @@ void DebugKey(char *str)
 			}
 		}
 	}
-	DebugKey0[i] = NULL;	// ü¬£Z??
+	DebugKey0[i] = NULL;	// î·î– ??
 	i = 0;
 	// ????????????? key1: ?????
 	if ((work = strstr(str, "KEY1:")))
 	{
-		work += 5;	// §ó??????????????ş­??
+		work += 5;	// î°??????????????î‘´??
 		// : ????????
 		while (*work != ':'){
 			DebugKey1[i] = *work++;
@@ -834,12 +834,12 @@ void DebugKey(char *str)
 			}
 		}
 	}
-	DebugKey1[i] = NULL;	// ü¬£Z??
+	DebugKey1[i] = NULL;	// î·î– ??
 	i = 0;
 	// ????????????? key1: ?????
 	if ((work = strstr(str, "KEY2:")))
 	{
-		work += 5;	// §ó??????????????ş­??
+		work += 5;	// î°??????????????î‘´??
 		// : ????????
 		while (*work != ':'){
 			DebugKey2[i] = *work++;
@@ -850,7 +850,7 @@ void DebugKey(char *str)
 			}
 		}
 	}
-	DebugKey2[i] = NULL;	// ü¬£Z??
+	DebugKey2[i] = NULL;	// î·î– ??
 }
 
 
@@ -862,7 +862,7 @@ void AnalyzeCmdLine(void)
 	VMProtectBegin("AnalyzeCmdLine");
 #endif
 	if (!(addr = strstr(CmdLine, "OpenClient"))){
-		MessageBoxNew(NULL, "ÇëÊ¹ÓÃÆô¶¯Æ÷µÇÂ½ÓÎÏ·", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(NULL, "è¯·ä½¿ç”¨å¯åŠ¨å™¨ç™»é™†æ¸¸æˆ", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		exit(0);
 	}
 #ifdef _VMP_
@@ -975,10 +975,10 @@ void ChangeWindowMode(void)
 	SetRect(&clientRect, 0, 0, lpDraw->xSize, lpDraw->ySize);
 	AdjustWindowRectEx(&clientRect, windowStyle, FALSE, NULL);
 	if (hWnd == NULL){
-		if (±àÂë == 950)
+		if (ç¼–ç  == 950)
 			hWnd = CreateWindowEx(NULL,
-			±êÌâÃû,
-			±êÌâÃû,
+			æ ‡é¢˜å,
+			æ ‡é¢˜å,
 			windowStyle,
 			//CW_USEDEFAULT, 
 			//CW_USEDEFAULT, 
@@ -1008,11 +1008,11 @@ void ChangeWindowMode(void)
 			NULL);
 	}
 	else{
-		// ??????????¨Á?
+		// ??????????îŸ‰?
 		SetWindowLong(hWnd, GWL_STYLE, windowStyle);
-		// ?şÎ????????¤úû¨
+		// ?î’•????????î¸î•
 		ShowWindow(hWnd, CmdShow);
-		// ???????£t?????¨Á?
+		// ???????î–º?????îŸ‰?
 		SetWindowPos(hWnd,
 			HWND_NOTOPMOST,
 			0,
@@ -1022,35 +1022,35 @@ void ChangeWindowMode(void)
 			//SWP_SHOWWINDOW );
 			SWP_FRAMECHANGED);
 	}
-	// ?şÎ????????¤úû¨
+	// ?î’•????????î¸î•
 	ShowWindow(hWnd, CmdShow);
-	// ??????¤úû¨?ıø
+	// ??????î¸î•?î‘¡
 	UpdateWindow(hWnd);
 }
 
 // ?????????????? **********************************************************/
 void RecoverDirectDraw(void)
 {
-	// DirectDraw ?©—
+	// DirectDraw ?îŸ´
 	ReleaseDirectDraw();
-	// ??¥T???¡@¤e
+	// ??î™š???î“†î˜‹
 	SetResoMode(ResoMode);
 	// DirectDraw ???
 	if (InitDirectDraw() == FALSE){
-		MessageBoxNew(hWnd, "Direct ³õÊ¼»¯Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Direct åˆå§‹åŒ–å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		// ???????? WM_CLOSE ??????????
 		PostMessage(hWnd, WM_CLOSE, 0, 0L);
 	}
-	// ????????şú?¢v?
+	// ????????î“?î•œ?
 	//ChangeWindowMode();
-	// ??????????????şÎ 
+	// ??????????????î’• 
 	InitOffScreenSurface();
 	// ???????
 	if (InitPalette() == FALSE){
-		MessageBoxNew(hWnd, "É«ÅÌ ³õÊ¼»¯Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "è‰²ç›˜ åˆå§‹åŒ–å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		PostMessage(hWnd, WM_CLOSE, 0, 0L);
 	}
-	// ??????¥‚????????????????şÎ
+	// ??????îš‡????????????????î’•
 	if (ProcNo == PROC_BATTLE){
 		// ???????
 		DispBuffer.DispCnt = 0;
@@ -1082,25 +1082,25 @@ void RecoverDirectDraw(void)
 	else
 	if (fastDrawTile && ProcNo == PROC_GAME)
 	{
-		repairMap();	// ????ş?ü¦?
+		repairMap();	// ????î¡¡?î±?
 	}
 	// ??????????????
 	if (lpDraw->lpPALETTE != NULL){
 		// ??????????
 		if (WindowMode){
-			// ?şÎ??????????¨Á??
+			// ?î’•??????????îŸ‰??
 			lpDraw->lpPALETTE->SetEntries(0, 0, 256, Palette);
 		}
 	}
-	// ???????¦V?????
+	// ???????îš¼?????
 	mouse.state = MOUSE_NO_CRICK;
 	mouse.onceState = MOUSE_NO_CRICK;
-	// ???£w?×ü????
+	// ???î–½?î ’????
 	NowTime = TimeGetTime();
 }
 //---------------------------------------------------------------------------//
-// ?? £º????????????                                                     //
-// ?? £º??                                                               //
+// ?? ï¼š????????????                                                     //
+// ?? ï¼š??                                                               //
 //---------------------------------------------------------------------------//
 BOOL SystemTask(void)
 {
@@ -1115,11 +1115,11 @@ BOOL SystemTask(void)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º??????????????                                       //
-// ?? £ºHWND hWnd:     ??????û±¨????                            //
-//        UINT Message:  ????şÉ??????                              //
-//        WPARAM wParam: ????şÉ??????¨ù¢KıÑ©?                    //
-//        LPARAM lParam: ????şÉ??????¨ù¢KıÑ©?                    //
+// ?? ï¼š??????????????                                       //
+// ?? ï¼šHWND hWnd:     ??????îîŸ„????                            //
+//        UINT Message:  ????î’??????                              //
+//        WPARAM wParam: ????î’??????îŸœî”±îºîŸ«?                    //
+//        LPARAM lParam: ????î’??????îŸœî”±îºîŸ«?                    //
 //---------------------------------------------------------------------------//
 #ifdef _REMAKE_20
 extern short mouseCursorMode;
@@ -1129,12 +1129,12 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 	switch (Message){
 #ifdef _REMAKE_20
 	case WM_TIMER:
-		// ÖØÉè8253¾§Æ¬µÄclock 
+		// é‡è®¾8253æ™¶ç‰‡çš„clock 
 		RestoreCounter(1196);
 		break;
 #endif
 		/** ??????????? *****************************************************/
-	case WM_ACTIVATE:	// ??????????????????§‰??????????
+	case WM_ACTIVATE:	// ??????????????????î??????????
 #ifdef SA_25
 		static BOOL bInactive = FALSE;
 		if( bInactive && (LOWORD(wParam) == WA_ACTIVE || LOWORD(wParam) == WA_CLICKACTIVE)){
@@ -1164,19 +1164,19 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			if (lpDraw->lpPALETTE != NULL){
 				// ??????????
 				if (WindowMode){
-					// ?şÎ??????????¨Á??
+					// ?î’•??????????îŸ‰??
 					lpDraw->lpPALETTE->SetEntries(0, 0, 256, Palette);
 				}
 			}
 		}
-		//???????????ü¦şÕ
-		//?????£Ï£Ë??
-		if (keyboad_flg == TRUE){		//?????£Ï£Ë??
+		//???????????î±î’œ
+		//?????ï¼¯ï¼«??
+		if (keyboad_flg == TRUE){		//?????ï¼¯ï¼«??
 			// ????????????????
 			if (pDInputDevice != NULL){
-				// ??????§‰???????????
+				// ??????î???????????
 				if (wParam == WA_INACTIVE){
-					// DInput ¤_û¢
+					// DInput î˜…î
 					DInputActiveFlag = FALSE;
 					// ??????????
 					for (int i = 0; i < 256; i++) di_key[i] = 0;
@@ -1190,15 +1190,15 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			}
 		}
 
-		//????????£Ï£Ë??
+		//????????ï¼¯ï¼«??
 		if (joy_flg == TRUE){
 			// ???????????????????
 			if (pDInputDevice2 == NULL)
 				break;
 
-			// ??????§‰???????????
+			// ??????î???????????
 			if (wParam == WA_INACTIVE){
-				// DInput ¤_û¢
+				// DInput î˜…î
 				DInputActiveFlag = FALSE;
 				pDInputDevice2->Unacquire();
 			}
@@ -1209,18 +1209,18 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			}
 		}
 		break;
-	case WM_CLOSE:				// ?????¨–????
-		DestroyWindow(hWnd);	// ??????¦„????¥i??
+	case WM_CLOSE:				// ?????î¼????
+		DestroyWindow(hWnd);	// ??????î›©????î™¯??
 		// WM_DESTROY ??????????
 		break;
-	case WM_DESTROY:			// ??????¦„??????
+	case WM_DESTROY:			// ??????î›©??????
 
-		PostQuitMessage(0);	// WM_QUIT ???????? ( ???ü¬? )
+		PostQuitMessage(0);	// WM_QUIT ???????? ( ???î·? )
 		break;
 #ifdef _REMAKE_20		
 #ifndef _STONDEBUG_			
 	case WM_ACTIVATEAPP:
-		// Èç¹û±»ÇĞµ½±ğµÄÊÓ´°,Àë¿ªÓÎÏ·
+		// å¦‚æœè¢«åˆ‡åˆ°åˆ«çš„è§†çª—,ç¦»å¼€æ¸¸æˆ
 		if(!wParam){
 			SendMessage(hWnd,WM_CLOSE,0,0);
 		}
@@ -1229,32 +1229,32 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 #endif
 
 #if 0			
-	case WM_PALETTECHANGED:		// ?????¨Á??????
+	case WM_PALETTECHANGED:		// ?????îŸ‰??????
 		// DirectDraw??????????
 		if( lpDraw == NULL ) break;
 		// ??????????????
 		if( lpDraw->lpPALETTE == NULL ) break;
 		// ??????????
 		//if( WindowMode ){
-		// ?şÎ??????????¨Á??
+		// ?î’•??????????îŸ‰??
 		lpDraw->lpPALETTE->SetEntries( 0, 0, 256, Palette );
 		//}
 		break;
 		//if( (HWND)wParam == hWnd )  break;
 
-	case WM_PALETTEISCHANGING:		// ?????¨Á??????
+	case WM_PALETTEISCHANGING:		// ?????îŸ‰??????
 		// DirectDraw??????????
 		if( lpDraw == NULL ) break;
 		// ??????????????
 		if( lpDraw->lpPALETTE == NULL ) break;
 		// ??????????
 		//if( WindowMode ){
-		// ?şÎ??????????¨Á??
+		// ?î’•??????????îŸ‰??
 		lpDraw->lpPALETTE->SetEntries( 0, 0, 256, Palette );
 		//}
 		break;
 
-	case WM_QUERYNEWPALETTE:	// ????¨Á????????????????????
+	case WM_QUERYNEWPALETTE:	// ????îŸ‰????????????????????
 
 		// DirectDraw??????????
 		if( lpDraw == NULL ) break;
@@ -1263,16 +1263,16 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 
 		// ??????????
 		//if( WindowMode ){
-		// ?şÎ??????????¨Á??
+		// ?î’•??????????îŸ‰??
 		lpDraw->lpPALETTE->SetEntries( 0, 0, 256, Palette );
 		//}
 
 		break;
 #endif			
 
-		/** ??¦V?????? *****************************************************/
+		/** ??îš¼?????? *****************************************************/
 
-	case WM_KEYDOWN:	// ??¦V???
+	case WM_KEYDOWN:	// ??îš¼???
 
 		if (SurfaceBusyFlag == TRUE){
 			SurfaceBusyFlag = FALSE;
@@ -1322,7 +1322,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		break;
 #ifdef _REMAKE_20
 	case WM_HOTKEY:
-		// Èç¹û±»ÇĞµ½±ğµÄÊÓ´°,Àë¿ªÓÎÏ·
+		// å¦‚æœè¢«åˆ‡åˆ°åˆ«çš„è§†çª—,ç¦»å¼€æ¸¸æˆ
 		SendMessage(hWnd,WM_CLOSE,0,0);	
 		break;
 #endif			
@@ -1330,25 +1330,25 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		// ???????????
 		if (SurfaceBusyFlag == TRUE){
 			SurfaceBusyFlag = FALSE;
-			MessageBoxNew(hWnd, "SurfaceBusyFlag error!", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SurfaceBusyFlag error!", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			RecoverDirectDraw();
 		}
 		switch (wParam){
 		case VK_RETURN:
 #ifdef _REMAKE_20
 #ifndef _STONDEBUG_
-			// Ëõ³ÉÊÓ´°Ä£Ê½Àë¿ªÓÎÏ·
+			// ç¼©æˆè§†çª—æ¨¡å¼ç¦»å¼€æ¸¸æˆ
 			SendMessage(hWnd,WM_CLOSE,0,0);
 			break;
 #endif
 #else
-			// ?üÒ??§I??
+			// ?î??îœ??
 			if (BackBufferDrawType == DRAW_BACK_PRODUCE) break;
 
 			// DirectDraw??????????
 			if (lpDraw == NULL) break;
 
-			// ???????????¨Á?
+			// ???????????îŸ‰?
 			if (WindowMode == TRUE) WindowMode = FALSE;
 			else WindowMode = TRUE;
 #ifdef _TALK_WINDOW
@@ -1359,19 +1359,19 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 #endif
 			ChangeMode(WindowMode);
 
-			// DirectDraw ?©—
+			// DirectDraw ?îŸ´
 			ReleaseDirectDraw();
 
-			// ??¥T???¡@¤e
+			// ??î™š???î“†î˜‹
 			SetResoMode(ResoMode);
 
 			// DirectDraw ???
 			InitDirectDraw();
-			// ??????????????şÎ 
+			// ??????????????î’• 
 			InitOffScreenSurface();
-			// ????????şú?¢v?
+			// ????????î“?î•œ?
 			ChangeWindowMode();
-			// ¡u???????¤ş???
+			// î“»???????î¼???
 			//SendMessage( HWND_BROADCAST, WM_PAINT, NULL, NULL );
 
 			// ???????
@@ -1379,7 +1379,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 				//PostMessage( hWnd, WM_CLOSE, 0, 0L );
 				PostMessage(hWnd, WM_SYSKEYDOWN, VK_RETURN, 0L);
 			}
-			// ??????¥‚????????????????şÎ
+			// ??????îš‡????????????????î’•
 			if (ProcNo == PROC_BATTLE){
 				// ???????
 				DispBuffer.DispCnt = 0;
@@ -1411,20 +1411,20 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			else
 			if (fastDrawTile && ProcNo == PROC_GAME)
 			{
-				repairMap();	// ????ş?ü¦?
+				repairMap();	// ????î¡¡?î±?
 			}
 			// ??????????????
 			if (lpDraw->lpPALETTE != NULL){
 				// ??????????
 				if (WindowMode){
-					// ?şÎ??????????¨Á??
+					// ?î’•??????????îŸ‰??
 					lpDraw->lpPALETTE->SetEntries(0, 0, 256, Palette);
 				}
 			}
-			// ???????¦V?????
+			// ???????îš¼?????
 			mouse.state = MOUSE_NO_CRICK;
 			mouse.onceState = MOUSE_NO_CRICK;
-			// ???£w?×ü????
+			// ???î–½?î ’????
 			NowTime = TimeGetTime();
 			break;
 #endif
@@ -1436,17 +1436,17 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			break;
 		}
 		break;
-	case WM_CHAR:	// §ó?¦V???
-		// §ó?????????
+	case WM_CHAR:	// î°?îš¼???
+		// î°?????????
 		StockStrBufferChar((char)wParam);
 		break;
-	case WM_MOUSEMOVE:		// ????¥h????
+	case WM_MOUSEMOVE:		// ????î™®????
 		//SetCursor( wndclass.hCursor );
-		// ????????£t?????
+		// ????????î–º?????
 		MouseNowPoint(LOWORD(lParam), HIWORD(lParam));
 #ifndef _TALK_WINDOW
 		if (mouse.flag == TRUE){
-			ShowCursor(FALSE); // ????????ı¤?
+			ShowCursor(FALSE); // ????????î?
 			mouse.flag = FALSE;
 		}
 #else
@@ -1465,15 +1465,15 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 			RecoverDirectDraw();
 		}
 		break;
-	case WM_NCMOUSEMOVE:	// ?????????????üÒ??
-		// ???????¦V?????
+	case WM_NCMOUSEMOVE:	// ?????????????î??
+		// ???????îš¼?????
 		mouse.state = MOUSE_NO_CRICK;
 		mouse.onceState = MOUSE_NO_CRICK;
 		if (mouse.flag == FALSE){
 #ifdef _TALK_WINDOW
 			g_iCursorCount = ShowCursor( TRUE );
 #else
-			ShowCursor(TRUE); // ????????¤úû¨
+			ShowCursor(TRUE); // ????????î¸î•
 #endif
 			mouse.flag = TRUE;
 		}
@@ -1485,16 +1485,16 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 #endif
 
 #ifdef _REMAKE_20
-		// ¼ì²éÊ¹ÓÃÕßÊÇ·ñÕæµÄ°´ÏÂ»¬Êó
+		// æ£€æŸ¥ä½¿ç”¨è€…æ˜¯å¦çœŸçš„æŒ‰ä¸‹æ»‘é¼ 
 		if(!IsLMouseButtonDown()) mouseCursorMode = 0;
 		else
 #endif
-			// ???????????????£t?????
+			// ???????????????î–º?????
 			MouseCrickLeftDownPoint(LOWORD(lParam), HIWORD(lParam));
 
 		break;
 	case WM_LBUTTONUP:		// ?????(????)
-		// ???????????????£t?????
+		// ???????????????î–º?????
 		MouseCrickLeftUpPoint(LOWORD(lParam), HIWORD(lParam));
 		break;
 
@@ -1503,24 +1503,24 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		if (ProcNo == PROC_80_LOGIN)
 			break;
 #endif
-		// ??????????????????£t?????
+		// ??????????????????î–º?????
 		MouseDblCrickLeftUpPoint(LOWORD(lParam), HIWORD(lParam));
 		break;
 	case WM_RBUTTONDOWN:	// ?????(????)
 #ifdef _REMAKE_20
-		// ¼ì²éÊ¹ÓÃÕßÊÇ·ñÕæµÄ°´ÏÂ»¬Êó
+		// æ£€æŸ¥ä½¿ç”¨è€…æ˜¯å¦çœŸçš„æŒ‰ä¸‹æ»‘é¼ 
 		if(!IsRMouseButtonDown()) mouseCursorMode = 0;
 		else 
 #endif				
-			// ???????????????£t?????
+			// ???????????????î–º?????
 			MouseCrickRightDownPoint(LOWORD(lParam), HIWORD(lParam));
 		break;
 	case WM_RBUTTONUP:		// ?????(????)
-		// ???????????????£t?????
+		// ???????????????î–º?????
 		MouseCrickRightUpPoint(LOWORD(lParam), HIWORD(lParam));
 		break;
 	case WM_RBUTTONDBLCLK:		// ????????
-		// ??????????????????£t?????
+		// ??????????????????î–º?????
 		MouseDblCrickRightUpPoint(LOWORD(lParam), HIWORD(lParam));
 		break;
 	case WM_MBUTTONDOWN:	// ?????(????)
@@ -1538,8 +1538,8 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 	}
 		break;
 
-		//×Ô¶©Hook Msg´«ËÍType
-#ifdef _SAHOOK //Syu ADD Hook³ÌÊ½
+		//è‡ªè®¢Hook Msgä¼ é€Type
+#ifdef _SAHOOK //Syu ADD Hookç¨‹å¼
 	case UM_KEYEVENT: 
 		TCHAR ac[2];
 		BYTE bKeyState[256];		
@@ -1568,7 +1568,7 @@ void SetResoMode(int Mode){
 	ResoMode = Mode;
 	lpDraw = (DIRECT_DRAW *)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, (DWORD)sizeof(DIRECT_DRAW));
 	if (lpDraw == NULL){
-		MessageBoxNew(hWnd, "HeapAlloc Error ( DIRECT_DRAW )", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "HeapAlloc Error ( DIRECT_DRAW )", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return;
 	}
 	switch (Mode){
@@ -1591,7 +1591,7 @@ void SetResoMode(int Mode){
 		DISPLACEMENT_Y = 0;
 		break;
 	case 2:
-		//¿É±ä
+		//å¯å˜
 		lpDraw->xSize = 640;
 		lpDraw->ySize = 480;
 		SurfaceSizeX = 64;
