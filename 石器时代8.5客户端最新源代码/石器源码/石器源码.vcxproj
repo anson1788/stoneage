@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="VER25_DEBUG|Win32">
+      <Configuration>VER25_DEBUG</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="VER25_RELEASE|Win32">
+      <Configuration>VER25_RELEASE</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="VER_TW_Debug|Win32">
+      <Configuration>VER_TW_Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="VER_TW_Release|Win32">
+      <Configuration>VER_TW_Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="VER|Win32">
+      <Configuration>VER</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="_TW_SERVER_DEBUG|Win32">
+      <Configuration>_TW_SERVER_DEBUG</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="_TW_SERVER_RELEASE|Win32">
+      <Configuration>_TW_SERVER_RELEASE</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CharTitle.h" />
+    <ClInclude Include="detours\detours.h" />
+    <ClInclude Include="detours\detver.h" />
+    <ClInclude Include="detours\ShareInfo.h" />
+    <ClInclude Include="mylua\lssproto.h" />
+    <ClInclude Include="mylua\winlua.h" />
+    <ClInclude Include="newproto\autil.h" />
+    <ClInclude Include="newproto\protocol.h" />
+    <ClInclude Include="oft\pl01.h" />
+    <ClInclude Include="oft\sys2.h" />
+    <ClInclude Include="oft\vg410.h" />
+    <ClInclude Include="oft\work.h" />
+    <ClInclude Include="ohta\ohta.h" />
+    <ClInclude Include="other\anim_tbl_set.h" />
+    <ClInclude Include="other\caryime.h" />
+    <ClInclude Include="other\GetMacAddress.h" />
+    <ClInclude Include="other\ItemsMall.h" />
+    <ClInclude Include="other\md5_encrypt.h" />
+    <ClInclude Include="other\memdll.h" />
+    <ClInclude Include="other\mmogprotect.h" />
+    <ClInclude Include="other\PtternSeparationBin.h" />
+    <ClInclude Include="other\readip.h" />
+    <ClInclude Include="other\trade.h" />
+    <ClInclude Include="redMemoy.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="systeminc\action.h" />
+    <ClInclude Include="systeminc\anim_tbl.h" />
+    <ClInclude Include="systeminc\battlebcdeb.h" />
+    <ClInclude Include="systeminc\battlemap.h" />
+    <ClInclude Include="systeminc\battlemapname.h" />
+    <ClInclude Include="systeminc\battlemenu.h" />
+    <ClInclude Include="systeminc\battlemvdeb.h" />
+    <ClInclude Include="systeminc\battleproc.h" />
+    <ClInclude Include="systeminc\BinLoad.h" />
+    <ClInclude Include="systeminc\character.h" />
+    <ClInclude Include="systeminc\CharSignDay.h" />
+    <ClInclude Include="systeminc\chat.h" />
+    <ClInclude Include="systeminc\directdraw.h" />
+    <ClInclude Include="systeminc\EncryptClient.h" />
+    <ClInclude Include="systeminc\field.h" />
+    <ClInclude Include="systeminc\font.h" />
+    <ClInclude Include="systeminc\gamemain.h" />
+    <ClInclude Include="systeminc\gemini.h" />
+    <ClInclude Include="systeminc\handletime.h" />
+    <ClInclude Include="systeminc\ime_sa.h" />
+    <ClInclude Include="systeminc\init.h" />
+    <ClInclude Include="systeminc\loadrealbin.h" />
+    <ClInclude Include="systeminc\loadsprbin.h" />
+    <ClInclude Include="systeminc\login.h" />
+    <ClInclude Include="systeminc\lssproto_cli.h" />
+    <ClInclude Include="systeminc\lssproto_util.h" />
+    <ClInclude Include="systeminc\magicitem.h" />
+    <ClInclude Include="systeminc\main.h" />
+    <ClInclude Include="systeminc\map.h" />
+    <ClInclude Include="systeminc\math2.h" />
+    <ClInclude Include="systeminc\menu.h" />
+    <ClInclude Include="systeminc\mouse.h" />
+    <ClInclude Include="systeminc\netmain.h" />
+    <ClInclude Include="systeminc\netproc.h" />
+    <ClInclude Include="systeminc\onlinegm.h" />
+    <ClInclude Include="systeminc\palname.h" />
+    <ClInclude Include="systeminc\pattern.h" />
+    <ClInclude Include="systeminc\pc.h" />
+    <ClInclude Include="systeminc\petname.h" />
+    <ClInclude Include="systeminc\pet_skillinfo.h" />
+    <ClInclude Include="systeminc\process.h" />
+    <ClInclude Include="systeminc\produce.h" />
+    <ClInclude Include="systeminc\radar.h" />
+    <ClInclude Include="systeminc\savedata.h" />
+    <ClInclude Include="systeminc\SDLDraw.h" />
+    <ClInclude Include="systeminc\shop.h" />
+    <ClInclude Include="systeminc\sndcnf.h" />
+    <ClInclude Include="systeminc\sprdisp.h" />
+    <ClInclude Include="systeminc\sprmgr.h" />
+    <ClInclude Include="systeminc\system.h" />
+    <ClInclude Include="systeminc\talkwindow.h" />
+    <ClInclude Include="systeminc\testview.h" />
+    <ClInclude Include="systeminc\tool.h" />
+    <ClInclude Include="systeminc\Turntable.h" />
+    <ClInclude Include="systeminc\t_music.h" />
+    <ClInclude Include="systeminc\unpack.h" />
+    <ClInclude Include="systeminc\version.h" />
+    <ClInclude Include="systeminc\VMProtectSDK.h" />
+    <ClInclude Include="wgs\descrypt.h" />
+    <ClInclude Include="wgs\message.h" />
+    <ClInclude Include="wgs\Ping.h" />
+    <ClInclude Include="wgs\tea.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CharTitle.cpp" />
+    <ClCompile Include="detours\creatwth.cpp" />
+    <ClCompile Include="detours\detours.cpp" />
+    <ClCompile Include="detours\disasm.cpp" />
+    <ClCompile Include="detours\image.cpp" />
+    <ClCompile Include="detours\modules.cpp" />
+    <ClCompile Include="mylua\data.cpp" />
+    <ClCompile Include="mylua\lssproto.cpp" />
+    <ClCompile Include="mylua\sa.cpp" />
+    <ClCompile Include="mylua\ServerList.cpp" />
+    <ClCompile Include="mylua\win.cpp" />
+    <ClCompile Include="mylua\winlua.cpp" />
+    <ClCompile Include="newproto\autil.cpp" />
+    <ClCompile Include="newproto\protocol.cpp" />
+    <ClCompile Include="oft\oft.cpp" />
+    <ClCompile Include="oft\pat_dat.cpp" />
+    <ClCompile Include="oft\sys2.cpp" />
+    <ClCompile Include="oft\tekecess.cpp" />
+    <ClCompile Include="oft\work.cpp" />
+    <ClCompile Include="ohta\ohta.cpp" />
+    <ClCompile Include="ohta\ohta_proc.cpp" />
+    <ClCompile Include="other\getip.cpp" />
+    <ClCompile Include="other\ItemsMall.cpp" />
+    <ClCompile Include="other\md5_encrypt.cpp" />
+    <ClCompile Include="other\PtternSeparationBin.cpp" />
+    <ClCompile Include="other\readip.cpp" />
+    <ClCompile Include="other\trade.cpp" />
+    <ClCompile Include="redMemoy.cpp" />
+    <ClCompile Include="system\action.cpp" />
+    <ClCompile Include="system\ai_setting.cpp" />
+    <ClCompile Include="system\battlemap.cpp" />
+    <ClCompile Include="system\battlemenu.cpp" />
+    <ClCompile Include="system\battleproc.cpp" />
+    <ClCompile Include="system\character.cpp" />
+    <ClCompile Include="system\CharSignDay.cpp" />
+    <ClCompile Include="system\chat.cpp" />
+    <ClCompile Include="system\directdraw.cpp" />
+    <ClCompile Include="system\field.cpp" />
+    <ClCompile Include="system\font.cpp" />
+    <ClCompile Include="system\gamemain.cpp" />
+    <ClCompile Include="system\gemini.cpp" />
+    <ClCompile Include="system\handletime.cpp" />
+    <ClCompile Include="system\help.cpp" />
+    <ClCompile Include="system\ime.cpp" />
+    <ClCompile Include="system\init.cpp" />
+    <ClCompile Include="system\loadrealbin.cpp" />
+    <ClCompile Include="system\loadsprbin.cpp" />
+    <ClCompile Include="system\login.cpp" />
+    <ClCompile Include="system\lssproto_cli.cpp" />
+    <ClCompile Include="system\lssproto_util.cpp" />
+    <ClCompile Include="system\magicitem.cpp" />
+    <ClCompile Include="system\main.cpp" />
+    <ClCompile Include="system\map.cpp" />
+    <ClCompile Include="system\math2.cpp" />
+    <ClCompile Include="system\menu.cpp" />
+    <ClCompile Include="system\menu2.cpp" />
+    <ClCompile Include="system\mouse.cpp" />
+    <ClCompile Include="system\netmain.cpp" />
+    <ClCompile Include="system\netproc.cpp" />
+    <ClCompile Include="system\onlinegm.cpp" />
+    <ClCompile Include="system\pattern.cpp" />
+    <ClCompile Include="system\pc.cpp" />
+    <ClCompile Include="system\phonemsg.cpp" />
+    <ClCompile Include="system\process.cpp" />
+    <ClCompile Include="system\produce.cpp" />
+    <ClCompile Include="system\radar.cpp" />
+    <ClCompile Include="system\savedata.cpp" />
+    <ClCompile Include="system\SDLDraw.cpp" />
+    <ClCompile Include="system\shop.cpp" />
+    <ClCompile Include="system\skyisland.cpp" />
+    <ClCompile Include="system\sprdisp.cpp" />
+    <ClCompile Include="system\sprmgr.cpp" />
+    <ClCompile Include="system\talkwindow.cpp" />
+    <ClCompile Include="system\test.cpp" />
+    <ClCompile Include="system\testview.cpp" />
+    <ClCompile Include="system\tool.cpp" />
+    <ClCompile Include="system\Turntable.cpp" />
+    <ClCompile Include="system\t_music.cpp" />
+    <ClCompile Include="system\unpack.cpp" />
+    <ClCompile Include="wgs\common.cpp" />
+    <ClCompile Include="wgs\descrypt.cpp" />
+    <ClCompile Include="wgs\message.cpp" />
+    <ClCompile Include="wgs\Ping.cpp" />
+    <ClCompile Include="wgs\reproc.cpp" />
+    <ClCompile Include="wgs\tea.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Script1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="123.cur" />
+    <None Include="icon2.ico" />
+    <None Include="pointer.cur" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>石器源码</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_DEBUG|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_RELEASE|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_RELEASE|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='VER|Win32'">
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_DEBUG|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='VER25_RELEASE|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_RELEASE|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa25</TargetName>
+    <OutDir>F:\石器时代\7-sa\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_DEBUG|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>saex</TargetName>
+    <OutDir>..\..\石器时代-复刻版</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa</TargetName>
+    <OutDir>..\..\saex</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa</TargetName>
+    <OutDir>..\..\石器时代-重制版</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_RELEASE|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa25</TargetName>
+    <OutDir>F:\7-sa\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_RELEASE|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>saex</TargetName>
+    <OutDir>..\..\石器时代-复刻版</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
+    <TargetName>sa</TargetName>
+    <OutDir>..\..\saex</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DI_2;_DEBUG__;_SA_VERSION_SPECIAL;_SA_VERSION_182;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>G:\台式数据\石器HK\sa.exe</OutputFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_SA_VERSION_25;_DEBUG__;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>F:\7-sa\sa25.exe</OutputFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_DEBUG|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_TW_SERVER_;_DEBUG__;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_TW_SERVER_;_DEBUG__;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>LeakDetector;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DI_2;_SA_VERSION_SPECIAL;_SA_VERSION_182;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <CustomBuildStep />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='VER25_RELEASE|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_SA_VERSION_25;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OutputFile>F:\7-sa\sa25.exe</OutputFile>
+    </Link>
+    <CustomBuildStep />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_RELEASE|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_TW_SERVER_;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <CustomBuildStep />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DI_2;_TW_SERVER_;_SA_VERSION_SPECIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalLibraryDirectories>LeakDetector;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CustomBuildStep />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

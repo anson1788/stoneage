@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\mylua">
+      <UniqueIdentifier>{72911117-d973-49aa-9117-473efef02155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\mylua">
+      <UniqueIdentifier>{d7100c24-4a4b-4b5d-8822-11afff0f4fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol">
+      <UniqueIdentifier>{5bf32498-8a50-4b06-a511-77709be73520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\protocol">
+      <UniqueIdentifier>{d3fa6e03-20c0-432c-9719-faa29ff67a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\wgs">
+      <UniqueIdentifier>{eeb42c62-9ab6-40d0-8083-e07daf666292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\wgs">
+      <UniqueIdentifier>{7492c248-40d4-4cbe-b2fe-6d5628a56aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\oft">
+      <UniqueIdentifier>{4a02ec63-4e41-49df-bf00-ba2b3f7e1e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\oft">
+      <UniqueIdentifier>{ec85f1e6-33b8-44b2-8a6f-f4fe8c63d432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ohta">
+      <UniqueIdentifier>{57a83dd7-7eec-44de-910d-9e9000bf3bc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ohta">
+      <UniqueIdentifier>{d7dc1f68-9a37-42c9-8b01-8748304d71ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\other">
+      <UniqueIdentifier>{b61f6141-e94b-456d-8477-8ef77edef122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\other">
+      <UniqueIdentifier>{f590bc36-ff3d-43f9-abcf-66404ce861f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\detours">
+      <UniqueIdentifier>{25d72ef7-761e-4684-9c25-6a368c533e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\detours">
+      <UniqueIdentifier>{fd5cde2a-2c32-407e-a59c-3071cf350dc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="systeminc\action.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\anim_tbl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battlebcdeb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battlemap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battlemapname.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battlemenu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battlemvdeb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\battleproc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\BinLoad.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\character.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\chat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\directdraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\EncryptClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\field.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\font.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\gamemain.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\gemini.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\handletime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\ime_sa.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\init.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\loadrealbin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\loadsprbin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\login.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\lssproto_cli.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\lssproto_util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\math2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\menu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\mouse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\netmain.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\netproc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\onlinegm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\palname.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\pattern.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\pc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\pet_skillinfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\petname.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\process.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\produce.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\radar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\savedata.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\shop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\sndcnf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\sprdisp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\sprmgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\system.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\t_music.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\talkwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\testview.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\tool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\unpack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\VMProtectSDK.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mylua\lssproto.h">
+      <Filter>头文件\mylua</Filter>
+    </ClInclude>
+    <ClInclude Include="mylua\winlua.h">
+      <Filter>头文件\mylua</Filter>
+    </ClInclude>
+    <ClInclude Include="newproto\autil.h">
+      <Filter>头文件\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="newproto\protocol.h">
+      <Filter>头文件\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="wgs\descrypt.h">
+      <Filter>头文件\wgs</Filter>
+    </ClInclude>
+    <ClInclude Include="wgs\message.h">
+      <Filter>头文件\wgs</Filter>
+    </ClInclude>
+    <ClInclude Include="wgs\tea.h">
+      <Filter>头文件\wgs</Filter>
+    </ClInclude>
+    <ClInclude Include="oft\pl01.h">
+      <Filter>头文件\oft</Filter>
+    </ClInclude>
+    <ClInclude Include="oft\sys2.h">
+      <Filter>头文件\oft</Filter>
+    </ClInclude>
+    <ClInclude Include="oft\vg410.h">
+      <Filter>头文件\oft</Filter>
+    </ClInclude>
+    <ClInclude Include="oft\work.h">
+      <Filter>头文件\oft</Filter>
+    </ClInclude>
+    <ClInclude Include="ohta\ohta.h">
+      <Filter>头文件\ohta</Filter>
+    </ClInclude>
+    <ClInclude Include="other\anim_tbl_set.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\caryime.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\GetMacAddress.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\md5_encrypt.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\memdll.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\mmogprotect.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\PtternSeparationBin.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\readip.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="other\trade.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="wgs\Ping.h">
+      <Filter>头文件\wgs</Filter>
+    </ClInclude>
+    <ClInclude Include="CharTitle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="detours\detours.h">
+      <Filter>头文件\detours</Filter>
+    </ClInclude>
+    <ClInclude Include="detours\detver.h">
+      <Filter>头文件\detours</Filter>
+    </ClInclude>
+    <ClInclude Include="detours\ShareInfo.h">
+      <Filter>头文件\detours</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="other\ItemsMall.h">
+      <Filter>头文件\other</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\Turntable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\CharSignDay.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\SDLDraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systeminc\magicitem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="redMemoy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mylua\data.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="mylua\lssproto.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="mylua\sa.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="mylua\ServerList.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="mylua\win.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="mylua\winlua.cpp">
+      <Filter>源文件\mylua</Filter>
+    </ClCompile>
+    <ClCompile Include="newproto\autil.cpp">
+      <Filter>源文件\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="newproto\protocol.cpp">
+      <Filter>源文件\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="system\action.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\ai_setting.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\battlemap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\battlemenu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\battleproc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\character.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\chat.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\directdraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\field.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\font.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\gamemain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\gemini.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\handletime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\help.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\ime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\init.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\loadrealbin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\loadsprbin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\login.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\lssproto_cli.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\lssproto_util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\map.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\math2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\menu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\menu2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\mouse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\netmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\netproc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\onlinegm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\pattern.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\pc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\phonemsg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\process.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\produce.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\radar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\savedata.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\shop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\skyisland.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\sprdisp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\sprmgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\t_music.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\talkwindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\testview.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\tool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\unpack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\common.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\descrypt.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\message.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\reproc.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\tea.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="oft\oft.cpp">
+      <Filter>源文件\oft</Filter>
+    </ClCompile>
+    <ClCompile Include="oft\pat_dat.cpp">
+      <Filter>源文件\oft</Filter>
+    </ClCompile>
+    <ClCompile Include="oft\sys2.cpp">
+      <Filter>源文件\oft</Filter>
+    </ClCompile>
+    <ClCompile Include="oft\tekecess.cpp">
+      <Filter>源文件\oft</Filter>
+    </ClCompile>
+    <ClCompile Include="oft\work.cpp">
+      <Filter>源文件\oft</Filter>
+    </ClCompile>
+    <ClCompile Include="ohta\ohta.cpp">
+      <Filter>源文件\ohta</Filter>
+    </ClCompile>
+    <ClCompile Include="ohta\ohta_proc.cpp">
+      <Filter>源文件\ohta</Filter>
+    </ClCompile>
+    <ClCompile Include="other\getip.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="other\ItemsMall.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="other\md5_encrypt.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="other\PtternSeparationBin.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="other\readip.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="other\trade.cpp">
+      <Filter>源文件\other</Filter>
+    </ClCompile>
+    <ClCompile Include="wgs\Ping.cpp">
+      <Filter>源文件\wgs</Filter>
+    </ClCompile>
+    <ClCompile Include="CharTitle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="detours\creatwth.cpp">
+      <Filter>源文件\detours</Filter>
+    </ClCompile>
+    <ClCompile Include="detours\detours.cpp">
+      <Filter>源文件\detours</Filter>
+    </ClCompile>
+    <ClCompile Include="detours\disasm.cpp">
+      <Filter>源文件\detours</Filter>
+    </ClCompile>
+    <ClCompile Include="detours\image.cpp">
+      <Filter>源文件\detours</Filter>
+    </ClCompile>
+    <ClCompile Include="detours\modules.cpp">
+      <Filter>源文件\detours</Filter>
+    </ClCompile>
+    <ClCompile Include="system\Turntable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\CharSignDay.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\SDLDraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="system\magicitem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="redMemoy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pointer.cur">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="123.cur">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="icon2.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Script1.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
