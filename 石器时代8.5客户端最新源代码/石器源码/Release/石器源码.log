@@ -1,0 +1,354 @@
+﻿生成启动时间为 2016/9/3 星期六 下午 9:47:06。
+     1>项目“J:\Dev\石器时代1\轻石器\CLIENT\石器源码\石器源码.vcxproj”在节点 2 上(build 个目标)。
+       项目文件包含 ToolsVersion="12.0"。此工具集可能未知或缺失(您可以通过安装相应版本的 MSBuild 来解决该问题)，或者该生成因策略原因已被强制更改为特殊 ToolsVersion。将此项目视作具有 ToolsVersion="4.0"。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkId=291333。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(299,5): warning MSB8004: Output 目录未以斜杠结尾。此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+     1>InitializeBuildStatus:
+         正在对“Release\石器源码.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Ilua /Zi /nologo /W0 /WX- /Od /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D DI_2 /D _SA_VERSION_SPECIAL /D _SA_VERSION_182 /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt AutoDump.cpp CharTitle.cpp mylua\ServerList.cpp mylua\data.cpp mylua\lssproto.cpp mylua\sa.cpp mylua\win.cpp mylua\winlua.cpp newproto\protocol.cpp oft\oft.cpp oft\pat_dat.cpp oft\sys2.cpp oft\tekecess.cpp oft\work.cpp ohta\ohta.cpp ohta\ohta_proc.cpp other\PtternSeparationBin.cpp other\StoneageNg.cpp other\getip.cpp redMemoy.cpp system\CharSignDay.cpp system\Turntable.cpp system\action.cpp system\ai_setting.cpp system\battlemap.cpp system\battlemenu.cpp system\battleproc.cpp system\character.cpp system\chat.cpp system\directdraw.cpp system\field.cpp system\font.cpp system\gamemain.cpp system\gemini.cpp system\handletime.cpp system\help.cpp system\ime.cpp system\init.cpp system\loadrealbin.cpp system\loadsprbin.cpp system\login.cpp system\lssproto_cli.cpp system\lssproto_util.cpp system\magicitem.cpp system\main.cpp system\map.cpp system\math2.cpp system\menu.cpp system\menu2.cpp system\mouse.cpp system\netmain.cpp system\netproc.cpp system\onlinegm.cpp system\pattern.cpp system\pc.cpp system\phonemsg.cpp system\process.cpp system\produce.cpp system\radar.cpp system\savedata.cpp system\shop.cpp system\skyisland.cpp system\sprdisp.cpp system\sprmgr.cpp system\t_music.cpp system\talkwindow.cpp system\test.cpp system\testview.cpp system\tool.cpp system\unpack.cpp wgs\common.cpp wgs\descrypt.cpp wgs\message.cpp wgs\reproc.cpp
+         AutoDump.cpp
+         CharTitle.cpp
+     1>CharTitle.cpp(213): error C2371: “称号数据结构”: 重定义；不同的基类型
+                 CharTitle.cpp(22) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(215): error C2086: “称号数据结构 称号”: 重定义
+                 CharTitle.cpp(24) : 参见“称号”的声明
+     1>CharTitle.cpp(221): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(222): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(222): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(223): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(229): error C2084: 函数“void 打开称号窗口初始化(void)”已有主体
+                 CharTitle.cpp(26) : 参见“打开称号窗口初始化”的前一个定义
+     1>CharTitle.cpp(243): error C2084: 函数“void 称号展示(void)”已有主体
+                 CharTitle.cpp(56) : 参见“称号展示”的前一个定义
+     1>CharTitle.cpp(245): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(246): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(247): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(248): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(249): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(251): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(251): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(253): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(253): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(254): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(255): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(256): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(257): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(259): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(259): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(265): error C2084: 函数“BOOL 人物称号处理(ACTION *)”已有主体
+                 CharTitle.cpp(72) : 参见“人物称号处理”的前一个定义
+     1>CharTitle.cpp(285): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(304): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(305): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(306): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(307): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(308): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(310): error C2039: “称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(310): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(312): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(312): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(360): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(360): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(361): error C2039: “当前称号结构”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(366): error C2084: 函数“void 人物称号数据更新(char *)”已有主体
+                 CharTitle.cpp(155) : 参见“人物称号数据更新”的前一个定义
+     1>CharTitle.cpp(375): error C2039: “当前称号图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(379): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(388): error C2039: “图档”: 不是“称号数据结构”的成员
+                 CharTitle.cpp(12) : 参见“称号数据结构”的声明
+     1>CharTitle.cpp(398): error C2084: 函数“void 初始化称号结构(void)”已有主体
+                 CharTitle.cpp(191) : 参见“初始化称号结构”的前一个定义
+         ServerList.cpp
+         data.cpp
+         lssproto.cpp
+         sa.cpp
+         win.cpp
+         winlua.cpp
+         protocol.cpp
+         oft.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\oft\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         pat_dat.cpp
+         sys2.cpp
+         tekecess.cpp
+         work.cpp
+         ohta.cpp
+         ohta_proc.cpp
+         PtternSeparationBin.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\other\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         StoneageNg.cpp
+         getip.cpp
+         redMemoy.cpp
+         正在编译...
+         CharSignDay.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“system\CharSignDay.cpp”: No such file or directory
+         Turntable.cpp
+         action.cpp
+         ai_setting.cpp
+         battlemap.cpp
+         battlemenu.cpp
+         battleproc.cpp
+         character.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         chat.cpp
+         directdraw.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         field.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+     1>system\field.cpp(4059): error C2181: 没有匹配 if 的非法 else
+         font.cpp
+         gamemain.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         gemini.cpp
+         handletime.cpp
+         help.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         ime.cpp
+         init.cpp
+         loadrealbin.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         loadsprbin.cpp
+         正在编译...
+         login.cpp
+         lssproto_cli.cpp
+         lssproto_util.cpp
+         magicitem.cpp
+         main.cpp
+     1>system\main.cpp(252): error C2059: 语法错误:“)”
+     1>system\main.cpp(268): error C2059: 语法错误:“)”
+         map.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         math2.cpp
+         menu.cpp
+     1>system\menu.cpp(8930): error C2011: “InitItem::_tagInitXY”:“struct”类型重定义
+                 system\menu.cpp(8917) : 参见“InitItem::_tagInitXY”的声明
+     1>system\menu.cpp(8973): error C2027: 使用了未定义类型“InitItem::_tagInitXY”
+                 system\menu.cpp(8917) : 参见“InitItem::_tagInitXY”的声明
+     1>system\menu.cpp(8973): error C2228: “.x”的左边必须有类/结构/联合
+     1>system\menu.cpp(8974): error C2027: 使用了未定义类型“InitItem::_tagInitXY”
+                 system\menu.cpp(8917) : 参见“InitItem::_tagInitXY”的声明
+     1>system\menu.cpp(8974): error C2228: “.y”的左边必须有类/结构/联合
+         menu2.cpp
+         mouse.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         netmain.cpp
+         netproc.cpp
+         onlinegm.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         pattern.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         pc.cpp
+         phonemsg.cpp
+         process.cpp
+         produce.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         radar.cpp
+         savedata.cpp
+         正在编译...
+         shop.cpp
+     1>system\shop.cpp(538): error C2084: 函数“void StockFontBufferSplit(int,int,char,int,char *,int,int)”已有主体
+                 system\shop.cpp(33) : 参见“StockFontBufferSplit”的前一个定义
+     1>system\shop.cpp(564): error C2371: “商品数据结构”: 重定义；不同的基类型
+                 system\shop.cpp(59) : 参见“商品数据结构”的声明
+     1>system\shop.cpp(567): error C2086: “商城文件_ 商城文件[5]”: 重定义
+                 system\shop.cpp(62) : 参见“商城文件”的声明
+     1>system\shop.cpp(572): error C2371: “滚动条结构”: 重定义；不同的基类型
+                 system\shop.cpp(67) : 参见“滚动条结构”的声明
+     1>system\shop.cpp(606): error C2371: “商城结构”: 重定义；不同的基类型
+                 system\shop.cpp(87) : 参见“商城结构”的声明
+     1>system\shop.cpp(610): error C2086: “商品数据结构 商品数据[200]”: 重定义
+                 system\shop.cpp(91) : 参见“商品数据”的声明
+     1>system\shop.cpp(611): error C2086: “商城结构 商城数据”: 重定义
+                 system\shop.cpp(92) : 参见“商城数据”的声明
+     1>system\shop.cpp(613): error C2374: “商城道具坐标”: 重定义；多次初始化
+                 system\shop.cpp(100) : 参见“商城道具坐标”的声明
+     1>system\shop.cpp(624): error C2374: “道具内容坐标”: 重定义；多次初始化
+                 system\shop.cpp(111) : 参见“道具内容坐标”的声明
+     1>system\shop.cpp(633): error C2374: “窗口显示”: 重定义；多次初始化
+                 system\shop.cpp(120) : 参见“窗口显示”的声明
+     1>system\shop.cpp(642): error C2084: 函数“void 在线商城数据初始化(void)”已有主体
+                 system\shop.cpp(128) : 参见“在线商城数据初始化”的前一个定义
+     1>system\shop.cpp(648): error C2084: 函数“int 字符串切割(char *[],char *,const char *)”已有主体
+                 system\shop.cpp(134) : 参见“字符串切割”的前一个定义
+     1>system\shop.cpp(664): error C2084: 函数“void 在线商城窗口初始化(char *)”已有主体
+                 system\shop.cpp(150) : 参见“在线商城窗口初始化”的前一个定义
+     1>system\shop.cpp(670): error C3861: “在线商城数据初始化”: 找不到标识符
+     1>system\shop.cpp(682): error C2440: “=”: 无法从“int (__cdecl *)(char *[],char *,const char *)”转换为“short”
+     1>system\shop.cpp(682): error C2440: “=”: 无法从“int (__cdecl *)(char *[],char *,const char *)”转换为“short”
+                 没有使该转换得以执行的上下文
+     1>system\shop.cpp(682): error C3861: “字符串切割”: 找不到标识符
+     1>system\shop.cpp(685): error C3861: “字符串切割”: 找不到标识符
+     1>system\shop.cpp(711): error C2084: 函数“ACTION *创建商城窗口(void)”已有主体
+                 system\shop.cpp(197) : 参见“创建商城窗口”的前一个定义
+     1>system\shop.cpp(722): error C2084: 函数“ACTION *商城数据显示(void)”已有主体
+                 system\shop.cpp(206) : 参见“商城数据显示”的前一个定义
+     1>system\shop.cpp(768): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(768): error C2228: “.商品总数”的左边必须有类/结构/联合
+     1>system\shop.cpp(784): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(784): error C2228: “.当前页数”的左边必须有类/结构/联合
+     1>system\shop.cpp(785): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(785): error C2228: “.总页数”的左边必须有类/结构/联合
+     1>system\shop.cpp(786): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(786): error C2228: “.商品类型个数”的左边必须有类/结构/联合
+     1>system\shop.cpp(787): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(787): error C2228: “.商品总数”的左边必须有类/结构/联合
+     1>system\shop.cpp(788): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(788): error C2228: “.总价格”的左边必须有类/结构/联合
+     1>system\shop.cpp(789): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(789): error C2228: “.总页数”的左边必须有类/结构/联合
+     1>system\shop.cpp(790): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(790): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(861): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(861): error C2228: “.总价格”的左边必须有类/结构/联合
+     1>system\shop.cpp(865): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(865): error C2228: “.商品总数”的左边必须有类/结构/联合
+     1>system\shop.cpp(869): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(869): error C2228: “.商品类型个数”的左边必须有类/结构/联合
+     1>system\shop.cpp(870): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(870): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(871): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(871): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(871): error C2228: “.使用”的左边必须有类/结构/联合
+     1>system\shop.cpp(872): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(872): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(872): error C2228: “.数量”的左边必须有类/结构/联合
+     1>system\shop.cpp(873): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(873): error C2228: “.当前页数”的左边必须有类/结构/联合
+     1>system\shop.cpp(874): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(874): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(874): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(875): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(875): error C2228: “.商品类型个数”的左边必须有类/结构/联合
+     1>system\shop.cpp(876): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(876): error C2228: “.商品总数”的左边必须有类/结构/联合
+     1>system\shop.cpp(877): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(877): error C2228: “.总价格”的左边必须有类/结构/联合
+     1>system\shop.cpp(877): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(877): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(877): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(877): error C2227: “->商品价格”的左边必须指向类/结构/联合/泛型类型
+     1>system\shop.cpp(882): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(882): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(882): error C2228: “.使用”的左边必须有类/结构/联合
+     1>system\shop.cpp(884): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(884): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(884): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(886): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(886): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(886): error C2228: “.数量”的左边必须有类/结构/联合
+     1>system\shop.cpp(887): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(887): error C2228: “.商品总数”的左边必须有类/结构/联合
+     1>system\shop.cpp(888): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(888): error C2228: “.总价格”的左边必须有类/结构/联合
+     1>system\shop.cpp(888): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(888): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(888): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(888): error C2227: “->商品价格”的左边必须指向类/结构/联合/泛型类型
+     1>system\shop.cpp(894): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(894): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(894): error C2228: “.使用”的左边必须有类/结构/联合
+     1>system\shop.cpp(897): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(897): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(897): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(898): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(898): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(898): error C2228: “.数量”的左边必须有类/结构/联合
+     1>system\shop.cpp(901): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(901): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(901): error C2228: “.使用”的左边必须有类/结构/联合
+     1>system\shop.cpp(902): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(902): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(902): error C2228: “.商品”的左边必须有类/结构/联合
+     1>system\shop.cpp(903): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(903): error C2228: “.购物栏”的左边必须有类/结构/联合
+     1>system\shop.cpp(903): error C2228: “.数量”的左边必须有类/结构/联合
+     1>system\shop.cpp(904): error C2039: “购物车”: 不是“商城结构”的成员
+                 system\shop.cpp(69) : 参见“商城结构”的声明
+     1>system\shop.cpp(904): fatal error C1003: 错误计数超过 100；正在停止编译
+         skyisland.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         sprdisp.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         sprmgr.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         t_music.cpp
+         talkwindow.cpp
+     1>j:\dev\石器时代1\轻石器\client\石器源码\system\../systeminc/loadrealbin.h(152): error C2078: 初始值设定项太多
+         test.cpp
+         testview.cpp
+         tool.cpp
+         unpack.cpp
+         common.cpp
+         descrypt.cpp
+         message.cpp
+         reproc.cpp
+     1>已完成生成项目“J:\Dev\石器时代1\轻石器\CLIENT\石器源码\石器源码.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:29.74

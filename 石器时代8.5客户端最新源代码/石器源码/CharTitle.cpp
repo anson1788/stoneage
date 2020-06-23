@@ -10,304 +10,187 @@
 #ifdef _CHARTITLE_STR_
 extern unsigned int sockfd;
 typedef struct{
-	BOOL windowDisplay;//çª—å£æ˜¾ç¤º;
-	BOOL confirmWindowDisplay;//ç¡®å®šçª—å£æ˜¾ç¤º;
-	int crtPage;//å½“å‰é¡µæ•°;
-	int confirmImageIdx;//ç¡®å®šå›¾æ¡£ç´¢å¼•;
-	char intro[100][32]; //ä»‹ç»
-	int aliasIdx[100];//ç§°å·ç´¢å¼•
-	TITLE_STR title;//å½“å‰ç§°å·
-	TITLE_STR titledata[100];//ç§°å·æ•°æ®
-	BOOL closeWindow;//å…³é—­çª—å£;
-}AliasStruct//ç§°å·æ•°æ®ç»“æ„;
+	BOOL ´°¿ÚÏÔÊ¾;
+	BOOL È·¶¨´°¿ÚÏÔÊ¾;
+	int µ±Ç°Ò³Êı;
+	int È·¶¨Í¼µµË÷Òı;
+	char ½éÉÜ[100][32];
+	int ³ÆºÅË÷Òı[100];
+	TITLE_STR title;//µ±Ç°³ÆºÅ
+	TITLE_STR titledata[100];//³ÆºÅÊı¾İ
+	BOOL ¹Ø±Õ´°¿Ú;
+}³ÆºÅÊı¾İ½á¹¹;
 extern int play_se(int tone, int x, int y);
-AliasStruct alias; //ç§°å·;
+³ÆºÅÊı¾İ½á¹¹ ³ÆºÅ;
 
-//æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–
-void openAliasWindowInit()
+void ´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯()
 {
-	/*
-	if(ç§°å·.çª—å£æ˜¾ç¤º){
-		ç§°å·.çª—å£æ˜¾ç¤º=FALSE;
-		ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
+	if(³ÆºÅ.´°¿ÚÏÔÊ¾){
+		³ÆºÅ.´°¿ÚÏÔÊ¾=FALSE;
+		³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 	}else{
-		ç§°å·.å½“å‰é¡µæ•°=0;
-		ç§°å·.çª—å£æ˜¾ç¤º=TRUE;
-		ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
-	}*/
-	if (alias.windowDisplay) {
-		alias.windowDisplay = FALSE;
-		alias.confirmWindowDisplay = FALSE;
-	}
-	else {
-		alias.crtPage = 0;
-		alias.windowDisplay = TRUE;
-		alias.confirmWindowDisplay = FALSE;
+		³ÆºÅ.µ±Ç°Ò³Êı=0;
+		³ÆºÅ.´°¿ÚÏÔÊ¾=TRUE;
+		³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 	}
 }
 
 extern void PutTitleText(int x,int y,char fontPrio,TITLE_STR str,BOOL hitFlag);
 
-
-//BOOL è·å–ç§°å·å–æ¶ˆçª—å£()
-BOOL cancelAlais()
+BOOL »ñÈ¡³ÆºÅÈ¡Ïû´°¿Ú()
 {
-	//return ç§°å·.å…³é—­çª—å£;
-	return alias.closeWindow;
-}
-//void è®¾ç½®ç§°å·å–æ¶ˆçª—å£()
-void configAlaisCancelWindow()
-{	
-	/*
-	if(ç§°å·.å…³é—­çª—å£) ç§°å·.å…³é—­çª—å£=FALSE;
-	else ç§°å·.å…³é—­çª—å£=TRUE;
-	*/
-	if (alias.closeWindow) alias.closeWindow = FALSE;
-	else alias.closeWindow = TRUE;
+	return ³ÆºÅ.¹Ø±Õ´°¿Ú;
 }
 
-//BOOL è·å–å½“å‰ç§°å·æ˜¯å¦å­˜åœ¨()
-BOOL checkCrtAlaisExist()
+void ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú()
 {
-	//return ç§°å·.title.flg;
-	return alias.title.flg;
+	if(³ÆºÅ.¹Ø±Õ´°¿Ú) ³ÆºÅ.¹Ø±Õ´°¿Ú=FALSE;
+	else ³ÆºÅ.¹Ø±Õ´°¿Ú=TRUE;
 }
 
-//void ç§°å·å±•ç¤º()
-void alaisDisplay()
-{	
-	/*
-	if(ç§°å·.title.flg){
-		PutTitleText(78-ç§°å·.title.len/2,49,FONT_PRIO_FRONT,ç§°å·.title,0);
+BOOL »ñÈ¡µ±Ç°³ÆºÅÊÇ·ñ´æÔÚ()
+{
+	return ³ÆºÅ.title.flg;
+}
+
+void ³ÆºÅÕ¹Ê¾()
+{
+	if(³ÆºÅ.title.flg){
+		PutTitleText(78-³ÆºÅ.title.len/2,49,FONT_PRIO_FRONT,³ÆºÅ.title,0);
 	}
 	int bnt;
 	bnt = StockFontBuffer(18,49,1,FONT_PAL_GREEN,"                             ",2);
 	if(mouse.onceState & MOUSE_LEFT_CRICK>0){
 		if(HitFontNo == bnt){
-			if(ç§°å·.å…³é—­çª—å£) ç§°å·.å…³é—­çª—å£=FALSE;
-			else ç§°å·.å…³é—­çª—å£=TRUE;
-			play_se(203, 320, 240);
-		}
-	}*/
-	if (alias.title.flg) {
-		PutTitleText(78 - alias.title.len / 2, 49, FONT_PRIO_FRONT, alias.title, 0);
-	}
-	int bnt;
-	bnt = StockFontBuffer(18, 49, 1, FONT_PAL_GREEN, "                             ", 2);
-	if (mouse.onceState & MOUSE_LEFT_CRICK > 0) {
-		if (HitFontNo == bnt) {
-			if (alias.closeWindow) alias.closeWindow = FALSE;
-			else alias.closeWindow = TRUE;
+			if(³ÆºÅ.¹Ø±Õ´°¿Ú) ³ÆºÅ.¹Ø±Õ´°¿Ú=FALSE;
+			else ³ÆºÅ.¹Ø±Õ´°¿Ú=TRUE;
 			play_se(203, 320, 240);
 		}
 	}
 }
-//BOOL äººç‰©ç§°å·å¤„ç†(ACTION * pct)
-BOOL characterAlaisHandle(ACTION * pct)
+
+BOOL ÈËÎï³ÆºÅ´¦Àí(ACTION * pct)
 {
-	/*
 	int x,y;
 	x = pct->x;
 	y = pct->y + 133;
-	int æŒ‰é’®å·¦=-1;
-	int æŒ‰é’®å³=-1;
-	int æŒ‰é’®å…³é—­=-1;
-	int æŒ‰é’®ID;
-	æŒ‰é’®å·¦ = StockDispBuffer( x -55, y + 7, DISP_PRIO_IME3, 55250, 2 );
-	æŒ‰é’®å³ = StockDispBuffer( x -20, y + 7, DISP_PRIO_IME3, 55251, 2 );
-	æŒ‰é’®å…³é—­ = StockDispBuffer( x+40, y + 7, DISP_PRIO_IME3, 55252, 2 );
+	int °´Å¥×ó=-1;
+	int °´Å¥ÓÒ=-1;
+	int °´Å¥¹Ø±Õ=-1;
+	int °´Å¥ID;
+	°´Å¥×ó = StockDispBuffer( x -55, y + 7, DISP_PRIO_IME3, 55250, 2 );
+	°´Å¥ÓÒ = StockDispBuffer( x -20, y + 7, DISP_PRIO_IME3, 55251, 2 );
+	°´Å¥¹Ø±Õ = StockDispBuffer( x+40, y + 7, DISP_PRIO_IME3, 55252, 2 );
 	if( mouse.onceState & MOUSE_LEFT_CRICK ){
-		if(!ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
-			if(æŒ‰é’®å·¦ == HitDispNo){
-				if(ç§°å·.å½“å‰é¡µæ•°){
-					ç§°å·.å½“å‰é¡µæ•°--;
+		if(!³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
+			if(°´Å¥×ó == HitDispNo){
+				if(³ÆºÅ.µ±Ç°Ò³Êı){
+					³ÆºÅ.µ±Ç°Ò³Êı--;
 				}
 			}
-			if(æŒ‰é’®å³ == HitDispNo){
-				if(ç§°å·.å½“å‰é¡µæ•°!=19 && ç§°å·.titledata[(ç§°å·.å½“å‰é¡µæ•°+1)*5].flg)
+			if(°´Å¥ÓÒ == HitDispNo){
+				if(³ÆºÅ.µ±Ç°Ò³Êı!=19 && ³ÆºÅ.titledata[(³ÆºÅ.µ±Ç°Ò³Êı+1)*5].flg)
 				{
-					ç§°å·.å½“å‰é¡µæ•°++;
+					³ÆºÅ.µ±Ç°Ò³Êı++;
 				}
 			}
-			if(æŒ‰é’®å…³é—­ == HitDispNo){
+			if(°´Å¥¹Ø±Õ == HitDispNo){
 				DeathAction(pct);
-				ç§°å·.çª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
+				³ÆºÅ.´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 				return TRUE;
 			}
 		}
 	}
 
 	int i=0;
-	int ç§°å·å›¾æ¡£ç´¢å¼•;
+	int ³ÆºÅÍ¼µµË÷Òı;
 	for(;i<5;i++){
-		ç§°å·å›¾æ¡£ç´¢å¼• = ç§°å·.å½“å‰é¡µæ•°*5+i;
-		if(ç§°å·.titledata[ç§°å·å›¾æ¡£ç´¢å¼•].flg)
+		³ÆºÅÍ¼µµË÷Òı = ³ÆºÅ.µ±Ç°Ò³Êı*5+i;
+		if(³ÆºÅ.titledata[³ÆºÅÍ¼µµË÷Òı].flg)
 		{
-			PutTitleText(380-ç§°å·.titledata[ç§°å·å›¾æ¡£ç´¢å¼•].len/2,43+i*0x20,FONT_PRIO_FRONT,ç§°å·.titledata[ç§°å·å›¾æ¡£ç´¢å¼•],0);
-			char ç§°å·åºå·[128];
-			sprintf_s(ç§°å·åºå·,"%03d",ç§°å·å›¾æ¡£ç´¢å¼•+1);
-			StockFontBufferExt(0x130,0x2D+i*0x20,1,FONT_PAL_GREEN,ç§°å·åºå·,0,19);
-			if(!ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
+			PutTitleText(380-³ÆºÅ.titledata[³ÆºÅÍ¼µµË÷Òı].len/2,43+i*0x20,FONT_PRIO_FRONT,³ÆºÅ.titledata[³ÆºÅÍ¼µµË÷Òı],0);
+			char ³ÆºÅĞòºÅ[128];
+			sprintf_s(³ÆºÅĞòºÅ,"%03d",³ÆºÅÍ¼µµË÷Òı+1);
+			StockFontBufferExt(0x130,0x2D+i*0x20,1,FONT_PAL_GREEN,³ÆºÅĞòºÅ,0,19);
+			if(!³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
 				if(MakeHitBox(0x124,0x26+i*0x20,0x1B8,0x44+i*0x20,0x6D)==1){
-					StockFontBuffer(0x123,0xD1,2,0,ç§°å·.ä»‹ç»[ç§°å·å›¾æ¡£ç´¢å¼•],0);
+					StockFontBuffer(0x123,0xD1,2,0,³ÆºÅ.½éÉÜ[³ÆºÅÍ¼µµË÷Òı],0);
 					if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-						ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=ç§°å·.ç§°å·ç´¢å¼•[ ç§°å·å›¾æ¡£ç´¢å¼•];
-						ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=TRUE;
+						³ÆºÅ.È·¶¨Í¼µµË÷Òı=³ÆºÅ.³ÆºÅË÷Òı[ ³ÆºÅÍ¼µµË÷Òı];
+						³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=TRUE;
 					}
 				}
 			}
 		}else break;
 	}
-	if(ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
-		StockFontBuffer(0x123,0xD1,2,0,ç§°å·.ä»‹ç»[ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•],0);
-		StockFontBuffer(0x130,0x118,2,0,"ç¡®å®šä½¿ç”¨è¯¥ç§°å·å—ï¼Ÿ",0);
-		StockDispBuffer(0x16D,0x130,0x6C,55253,1);//ç¡®å®šçª—å£åº•å›¾
-		æŒ‰é’®ID = StockDispBuffer(0x194,0x148,109,55252,2);//å…³é—­
+	if(³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
+		StockFontBuffer(0x123,0xD1,2,0,³ÆºÅ.½éÉÜ[³ÆºÅ.È·¶¨Í¼µµË÷Òı],0);
+		StockFontBuffer(0x130,0x118,2,0,"È·¶¨Ê¹ÓÃ¸Ã³ÆºÅÂğ£¿",0);
+		StockDispBuffer(0x16D,0x130,0x6C,55253,1);//È·¶¨´°¿Úµ×Í¼
+		°´Å¥ID = StockDispBuffer(0x194,0x148,109,55252,2);//¹Ø±Õ
 		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(æŒ‰é’®ID == HitDispNo){
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=0;
+			if(°´Å¥ID == HitDispNo){
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨Í¼µµË÷Òı=0;
 			}
 		}
-		æŒ‰é’®ID = StockDispBuffer(0x148,0x148,109,55254,2);//ç¡®å®š
+		°´Å¥ID = StockDispBuffer(0x148,0x148,109,55254,2);//È·¶¨
 		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(æŒ‰é’®ID == HitDispNo){
+			if(°´Å¥ID == HitDispNo){
 				int checksum=0;
 				char buf[1024*4];
 				memset(buf,0,1024*4);
-				checksum += util_mkint(buf, ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•);
+				checksum += util_mkint(buf, ³ÆºÅ.È·¶¨Í¼µµË÷Òı);
 				util_mkint(buf, checksum);
 				util_SendMesg(sockfd, LSSPROTO_CHARTITLE_SEND, buf);
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=0;
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨Í¼µµË÷Òı=0;
 			}
 		}
 	}
 	return FALSE;
-	*/
-
-		int x,y;
-	x = pct->x;
-	y = pct->y + 133;
-	int buttonLeft=-1;
-	int buttonRight=-1;
-	int buttonClose=-1;
-	int buttonID;
-	buttonLeft = StockDispBuffer( x -55, y + 7, DISP_PRIO_IME3, 55250, 2 );
-	buttonRight = StockDispBuffer( x -20, y + 7, DISP_PRIO_IME3, 55251, 2 );
-	buttonClose = StockDispBuffer( x+40, y + 7, DISP_PRIO_IME3, 55252, 2 );
-	if( mouse.onceState & MOUSE_LEFT_CRICK ){
-		if(!alias.confirmWindowDisplay){
-			if(buttonLeft == HitDispNo){
-				if(alias.crtPage){
-					alias.crtPage--;
-				}
-			}
-			if(buttonRight == HitDispNo){
-				if(alias.crtPage!=19 && alias.titledata[(alias.crtPage+1)*5].flg)
-				{
-					alias.crtPage++;
-				}
-			}
-			if(buttonClose == HitDispNo){
-				DeathAction(pct);
-				alias.windowDisplay=FALSE;
-				alias.confirmWindowDisplay=FALSE;
-				return TRUE;
-			}
-		}
-	}
-
-	int i=0;
-	int aliasImageIdx;
-	for(;i<5;i++){
-		aliasImageIdx = alias.crtPage*5+i;
-		if(alias.titledata[aliasImageIdx].flg)
-		{
-			PutTitleText(380- alias.titledata[aliasImageIdx].len/2,43+i*0x20,FONT_PRIO_FRONT, alias.titledata[aliasImageIdx],0);
-			char aliasSerial[128];
-			sprintf_s(aliasSerial,"%03d", aliasImageIdx +1);
-			StockFontBufferExt(0x130,0x2D+i*0x20,1,FONT_PAL_GREEN, aliasSerial,0,19);
-			if(!alias.confirmWindowDisplay){
-				if(MakeHitBox(0x124,0x26+i*0x20,0x1B8,0x44+i*0x20,0x6D)==1){
-					StockFontBuffer(0x123,0xD1,2,0, alias.intro[aliasImageIdx],0);
-					if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-						alias.confirmImageIdx=alias.aliasIdx[aliasImageIdx];
-						alias.confirmWindowDisplay=TRUE;
-					}
-				}
-			}
-		}else break;
-	}
-	if(alias.confirmWindowDisplay){
-		StockFontBuffer(0x123,0xD1,2,0, alias.intro[alias.confirmImageIdx],0);
-		StockFontBuffer(0x130,0x118,2,0,"ç¡®å®šä½¿ç”¨è¯¥ç§°å·å—ï¼Ÿ",0);
-		StockDispBuffer(0x16D,0x130,0x6C,55253,1);//ç¡®å®šçª—å£åº•å›¾
-		buttonID = StockDispBuffer(0x194,0x148,109,55252,2);//å…³é—­
-		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(buttonID == HitDispNo){
-				alias.confirmWindowDisplay=FALSE;
-				alias.confirmImageIdx=0;
-			}
-		}
-		buttonID = StockDispBuffer(0x148,0x148,109,55254,2);//ç¡®å®š
-		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(buttonID == HitDispNo){
-				int checksum=0;
-				char buf[1024*4];
-				memset(buf,0,1024*4);
-				checksum += util_mkint(buf, alias.confirmImageIdx);
-				util_mkint(buf, checksum);
-				util_SendMesg(sockfd, LSSPROTO_CHARTITLE_SEND, buf);
-				alias.confirmWindowDisplay=FALSE;
-				alias.confirmImageIdx=0;
-			}
-		}
-	}
-	return FALSE;
-	
 }
 extern void getCharTitleSplit( char *str,TITLE_STR* title);
-void äººç‰©ç§°å·æ•°æ®æ›´æ–°(char *æ•°æ®)
+void ÈËÎï³ÆºÅÊı¾İ¸üĞÂ(char *Êı¾İ)
 {
-	char åŸºç¡€å†…å®¹[126],å›¾æ¡£å†…å®¹[1024],å›¾æ¡£ç´¢å¼•[1024],å†…å®¹ä»‹ç»[4000],ä¸´æ—¶[126];
-	memset(åŸºç¡€å†…å®¹,0,126);
-	memset(å›¾æ¡£å†…å®¹,0,1024);
-	memset(å›¾æ¡£ç´¢å¼•,0,1024);
-	memset(å†…å®¹ä»‹ç»,0,4000);
-	getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",1,åŸºç¡€å†…å®¹,126);
-	getStringFromIndexWithDelim_body((char *) åŸºç¡€å†…å®¹,(char *)"|",1,ä¸´æ—¶,126);
-	int titleindex = atoi(ä¸´æ—¶);
+	char »ù´¡ÄÚÈİ[126],Í¼µµÄÚÈİ[1024],Í¼µµË÷Òı[1024],ÄÚÈİ½éÉÜ[4000],ÁÙÊ±[126];
+	memset(»ù´¡ÄÚÈİ,0,126);
+	memset(Í¼µµÄÚÈİ,0,1024);
+	memset(Í¼µµË÷Òı,0,1024);
+	memset(ÄÚÈİ½éÉÜ,0,4000);
+	getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",1,»ù´¡ÄÚÈİ,126);
+	getStringFromIndexWithDelim_body((char *) »ù´¡ÄÚÈİ,(char *)"|",1,ÁÙÊ±,126);
+	int titleindex = atoi(ÁÙÊ±);
 	extern char* FreeGetTitleStr(int id);
-	if(titleindex>0) getCharTitleSplit(FreeGetTitleStr(titleindex),&ç§°å·.title);
-	else memset(&ç§°å·.title,0,sizeof(TITLE_STR));
-	getStringFromIndexWithDelim_body((char *) åŸºç¡€å†…å®¹,(char *)"|",2,ä¸´æ—¶,126);
-	int æ•°é‡ = atoi(ä¸´æ—¶);
-	if(æ•°é‡!=0){
-		memset(&ç§°å·.titledata,0,sizeof(ç§°å·.titledata[0])*100);
-		memset(&ç§°å·.ç§°å·ç´¢å¼•,0,sizeof(int)*100);
-		memset(&ç§°å·.ä»‹ç»,0,32*100);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",2,å›¾æ¡£å†…å®¹,1024);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",3,å†…å®¹ä»‹ç»,4000);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",4,å›¾æ¡£ç´¢å¼•,1024);
+	if(titleindex>0) getCharTitleSplit(FreeGetTitleStr(titleindex),&³ÆºÅ.title);
+	else memset(&³ÆºÅ.title,0,sizeof(TITLE_STR));
+	getStringFromIndexWithDelim_body((char *) »ù´¡ÄÚÈİ,(char *)"|",2,ÁÙÊ±,126);
+	int ÊıÁ¿ = atoi(ÁÙÊ±);
+	if(ÊıÁ¿!=0){
+		memset(&³ÆºÅ.titledata,0,sizeof(³ÆºÅ.titledata[0])*100);
+		memset(&³ÆºÅ.³ÆºÅË÷Òı,0,sizeof(int)*100);
+		memset(&³ÆºÅ.½éÉÜ,0,32*100);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",2,Í¼µµÄÚÈİ,1024);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",3,ÄÚÈİ½éÉÜ,4000);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",4,Í¼µµË÷Òı,1024);
 		int i=0;
 		extern char* FreeGetTitleStr(int id);
-		for(i;i<æ•°é‡;i++){
-			getStringFromIndexWithDelim_body((char *)å›¾æ¡£å†…å®¹,(char *)"|",i+1,ä¸´æ—¶,126);
-			titleindex = atoi(ä¸´æ—¶);
-			getCharTitleSplit(FreeGetTitleStr(titleindex),&ç§°å·.titledata[i]);
-			getStringFromIndexWithDelim_body((char *)å›¾æ¡£ç´¢å¼•,(char *)"|",i+1,ä¸´æ—¶,126);
-			ç§°å·.ç§°å·ç´¢å¼•[i]=atoi(ä¸´æ—¶);
-			getStringFromIndexWithDelim_body((char *)å†…å®¹ä»‹ç»,(char *)"|",i+1,ä¸´æ—¶,126);
-			sprintf_s(ç§°å·.ä»‹ç»[i],32,"%s",ä¸´æ—¶);
+		for(i;i<ÊıÁ¿;i++){
+			getStringFromIndexWithDelim_body((char *)Í¼µµÄÚÈİ,(char *)"|",i+1,ÁÙÊ±,126);
+			titleindex = atoi(ÁÙÊ±);
+			getCharTitleSplit(FreeGetTitleStr(titleindex),&³ÆºÅ.titledata[i]);
+			getStringFromIndexWithDelim_body((char *)Í¼µµË÷Òı,(char *)"|",i+1,ÁÙÊ±,126);
+			³ÆºÅ.³ÆºÅË÷Òı[i]=atoi(ÁÙÊ±);
+			getStringFromIndexWithDelim_body((char *)ÄÚÈİ½éÉÜ,(char *)"|",i+1,ÁÙÊ±,126);
+			sprintf_s(³ÆºÅ.½éÉÜ[i],32,"%s",ÁÙÊ±);
 		}
 	}
 }
 
-void åˆå§‹åŒ–ç§°å·ç»“æ„()
+void ³õÊ¼»¯³ÆºÅ½á¹¹()
 {
-	memset(&ç§°å·,0,sizeof(ç§°å·æ•°æ®ç»“æ„));
+	memset(&³ÆºÅ,0,sizeof(³ÆºÅÊı¾İ½á¹¹));
 }
 #endif
 
@@ -316,204 +199,204 @@ void åˆå§‹åŒ–ç§°å·ç»“æ„()
 #ifdef _CHARTITLE_
 extern unsigned int sockfd;
 typedef struct{
-	int ç§°å·çª—å£ç»“æ„;
-	ACTION *ç§°å·ç»“æ„[5];
-	ACTION * å½“å‰ç§°å·ç»“æ„;
-	int å½“å‰ç§°å·å›¾æ¡£;
-	BOOL çª—å£æ˜¾ç¤º;
-	int å›¾æ¡£[100];
-	int ç§°å·ç´¢å¼•[100];
-	char ä»‹ç»[100][32];
-	int å½“å‰é¡µæ•°;
-	BOOL ç¡®å®šçª—å£æ˜¾ç¤º;
-	int ç¡®å®šå›¾æ¡£ç´¢å¼•;
-}ç§°å·æ•°æ®ç»“æ„;
+	int ³ÆºÅ´°¿Ú½á¹¹;
+	ACTION *³ÆºÅ½á¹¹[5];
+	ACTION * µ±Ç°³ÆºÅ½á¹¹;
+	int µ±Ç°³ÆºÅÍ¼µµ;
+	BOOL ´°¿ÚÏÔÊ¾;
+	int Í¼µµ[100];
+	int ³ÆºÅË÷Òı[100];
+	char ½éÉÜ[100][32];
+	int µ±Ç°Ò³Êı;
+	BOOL È·¶¨´°¿ÚÏÔÊ¾;
+	int È·¶¨Í¼µµË÷Òı;
+}³ÆºÅÊı¾İ½á¹¹;
 
-ç§°å·æ•°æ®ç»“æ„ ç§°å·;
+³ÆºÅÊı¾İ½á¹¹ ³ÆºÅ;
 
-void ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»()
+void ½áÊø³ÆºÅÕ¹Ê¾¶¯»­()
 {
 	int i=0;
 	for(i;i<5;i++){
-		if(ç§°å·.ç§°å·ç»“æ„[i]){
-			if(ç§°å·.ç§°å·ç»“æ„[i]) DeathAction(ç§°å·.ç§°å·ç»“æ„[i]);
-			ç§°å·.ç§°å·ç»“æ„[i]=0;
+		if(³ÆºÅ.³ÆºÅ½á¹¹[i]){
+			if(³ÆºÅ.³ÆºÅ½á¹¹[i]) DeathAction(³ÆºÅ.³ÆºÅ½á¹¹[i]);
+			³ÆºÅ.³ÆºÅ½á¹¹[i]=0;
 		}					
 	}
 }
 
-void æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–()
+void ´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯()
 {
-	if(ç§°å·.çª—å£æ˜¾ç¤º){
-		ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»();
-		ç§°å·.çª—å£æ˜¾ç¤º=FALSE;
-		ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
+	if(³ÆºÅ.´°¿ÚÏÔÊ¾){
+		½áÊø³ÆºÅÕ¹Ê¾¶¯»­();
+		³ÆºÅ.´°¿ÚÏÔÊ¾=FALSE;
+		³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 	}else{
-		ç§°å·.å½“å‰é¡µæ•°=0;
-		ç§°å·.çª—å£æ˜¾ç¤º=TRUE;
-		ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
+		³ÆºÅ.µ±Ç°Ò³Êı=0;
+		³ÆºÅ.´°¿ÚÏÔÊ¾=TRUE;
+		³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 	}
 }
 
 
-void ç§°å·å±•ç¤º()
+void ³ÆºÅÕ¹Ê¾()
 {
 
-	if(ç§°å·.å½“å‰ç§°å·å›¾æ¡£)
-		if(!ç§°å·.å½“å‰ç§°å·ç»“æ„){
-			if(ç§°å·.å½“å‰ç§°å·å›¾æ¡£ < 100000){
-				ç§°å·.å½“å‰ç§°å·ç»“æ„ = 0;
-				StockDispBuffer(0x7F,0x40,109,ç§°å·.å½“å‰ç§°å·å›¾æ¡£,0);
+	if(³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ)
+		if(!³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹){
+			if(³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ < 100000){
+				³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹ = 0;
+				StockDispBuffer(0x7F,0x40,109,³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ,0);
 			}else{
-				ç§°å·.å½“å‰ç§°å·ç»“æ„ = MakeAnimDisp(0x7F,0x59,ç§°å·.å½“å‰ç§°å·å›¾æ¡£,0);
+				³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹ = MakeAnimDisp(0x7F,0x59,³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ,0);
 			}
-		}else if(*(int *)(ç§°å·.å½“å‰ç§°å·ç»“æ„+0x140)!= ç§°å·.å½“å‰ç§°å·å›¾æ¡£){
-			DeathAction(ç§°å·.å½“å‰ç§°å·ç»“æ„);
-			if(ç§°å·.å½“å‰ç§°å·å›¾æ¡£ < 100000){
-				ç§°å·.å½“å‰ç§°å·ç»“æ„ = 0;
-				StockDispBuffer(0x7F,0x40,109,ç§°å·.å½“å‰ç§°å·å›¾æ¡£,0);
+		}else if(*(int *)(³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹+0x140)!= ³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ){
+			DeathAction(³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹);
+			if(³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ < 100000){
+				³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹ = 0;
+				StockDispBuffer(0x7F,0x40,109,³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ,0);
 			}else{
-				ç§°å·.å½“å‰ç§°å·ç»“æ„ = MakeAnimDisp(0x7F,0x59,ç§°å·.å½“å‰ç§°å·å›¾æ¡£,0);
+				³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹ = MakeAnimDisp(0x7F,0x59,³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ,0);
 			}
 		}
 }
 
-BOOL äººç‰©ç§°å·å¤„ç†(ACTION * pct)
+BOOL ÈËÎï³ÆºÅ´¦Àí(ACTION * pct)
 {
 	int x,y;
 	x = pct->x;
 	y = pct->y + 133;
-	int æŒ‰é’®å·¦=-1;
-	int æŒ‰é’®å³=-1;
-	int æŒ‰é’®å…³é—­=-1;
-	int æŒ‰é’®ID;
-	æŒ‰é’®å·¦ = StockDispBuffer( x -55, y + 7, DISP_PRIO_IME3, 55250, 2 );
-	æŒ‰é’®å³ = StockDispBuffer( x -20, y + 7, DISP_PRIO_IME3, 55251, 2 );
-	æŒ‰é’®å…³é—­ = StockDispBuffer( x+40, y + 7, DISP_PRIO_IME3, 55252, 2 );
+	int °´Å¥×ó=-1;
+	int °´Å¥ÓÒ=-1;
+	int °´Å¥¹Ø±Õ=-1;
+	int °´Å¥ID;
+	°´Å¥×ó = StockDispBuffer( x -55, y + 7, DISP_PRIO_IME3, 55250, 2 );
+	°´Å¥ÓÒ = StockDispBuffer( x -20, y + 7, DISP_PRIO_IME3, 55251, 2 );
+	°´Å¥¹Ø±Õ = StockDispBuffer( x+40, y + 7, DISP_PRIO_IME3, 55252, 2 );
 	if( mouse.onceState & MOUSE_LEFT_CRICK ){
-		if(!ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
-			if(æŒ‰é’®å·¦ == HitDispNo){
-				if(ç§°å·.å½“å‰é¡µæ•°){
-					ç§°å·.å½“å‰é¡µæ•°--;
-					ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»();
+		if(!³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
+			if(°´Å¥×ó == HitDispNo){
+				if(³ÆºÅ.µ±Ç°Ò³Êı){
+					³ÆºÅ.µ±Ç°Ò³Êı--;
+					½áÊø³ÆºÅÕ¹Ê¾¶¯»­();
 				}
 			}
-			if(æŒ‰é’®å³ == HitDispNo){
-				if(ç§°å·.å½“å‰é¡µæ•°!=19 && ç§°å·.å›¾æ¡£[(ç§°å·.å½“å‰é¡µæ•°+1)*5]){
-					ç§°å·.å½“å‰é¡µæ•°++;
-					ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»();
+			if(°´Å¥ÓÒ == HitDispNo){
+				if(³ÆºÅ.µ±Ç°Ò³Êı!=19 && ³ÆºÅ.Í¼µµ[(³ÆºÅ.µ±Ç°Ò³Êı+1)*5]){
+					³ÆºÅ.µ±Ç°Ò³Êı++;
+					½áÊø³ÆºÅÕ¹Ê¾¶¯»­();
 				}
 			}
-			if(æŒ‰é’®å…³é—­ == HitDispNo){
+			if(°´Å¥¹Ø±Õ == HitDispNo){
 				DeathAction(pct);
-				ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»();
-				ç§°å·.çª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
+				½áÊø³ÆºÅÕ¹Ê¾¶¯»­();
+				³ÆºÅ.´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
 				return TRUE;
 			}
 		}
 	}
 
 	int i=0;
-	int ç§°å·å›¾æ¡£ç´¢å¼•;
+	int ³ÆºÅÍ¼µµË÷Òı;
 	for(;i<5;i++){
-		ç§°å·å›¾æ¡£ç´¢å¼• = ç§°å·.å½“å‰é¡µæ•°*5+i;
-		if(ç§°å·.å›¾æ¡£[ç§°å·å›¾æ¡£ç´¢å¼•]){
-			if(!ç§°å·.ç§°å·ç»“æ„[i]){
-				if(ç§°å·.å›¾æ¡£[ç§°å·å›¾æ¡£ç´¢å¼•] < 100000){
-					ç§°å·.ç§°å·ç»“æ„[i] = 0;
-					StockDispBuffer(0x16D+20,0x35+i*0x20,109,ç§°å·.å›¾æ¡£[ç§°å·å›¾æ¡£ç´¢å¼•],0);
+		³ÆºÅÍ¼µµË÷Òı = ³ÆºÅ.µ±Ç°Ò³Êı*5+i;
+		if(³ÆºÅ.Í¼µµ[³ÆºÅÍ¼µµË÷Òı]){
+			if(!³ÆºÅ.³ÆºÅ½á¹¹[i]){
+				if(³ÆºÅ.Í¼µµ[³ÆºÅÍ¼µµË÷Òı] < 100000){
+					³ÆºÅ.³ÆºÅ½á¹¹[i] = 0;
+					StockDispBuffer(0x16D+20,0x35+i*0x20,109,³ÆºÅ.Í¼µµ[³ÆºÅÍ¼µµË÷Òı],0);
 				}else{
-					ç§°å·.ç§°å·ç»“æ„[i] = MakeAnimDisp(0x16D+20,0x35+i*0x20,ç§°å·.å›¾æ¡£[ç§°å·å›¾æ¡£ç´¢å¼•],0);
+					³ÆºÅ.³ÆºÅ½á¹¹[i] = MakeAnimDisp(0x16D+20,0x35+i*0x20,³ÆºÅ.Í¼µµ[³ÆºÅÍ¼µµË÷Òı],0);
 				}
-			}else if(ç§°å·.å½“å‰ç§°å·ç»“æ„==0) StockDispBuffer(0x16D,0x35+i*0x20,109,ç§°å·.å›¾æ¡£[ç§°å·å›¾æ¡£ç´¢å¼•],0);
-			char ç§°å·åºå·[128];
-			sprintf_s(ç§°å·åºå·,"%03d",ç§°å·å›¾æ¡£ç´¢å¼•+1);
+			}else if(³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹==0) StockDispBuffer(0x16D,0x35+i*0x20,109,³ÆºÅ.Í¼µµ[³ÆºÅÍ¼µµË÷Òı],0);
+			char ³ÆºÅĞòºÅ[128];
+			sprintf_s(³ÆºÅĞòºÅ,"%03d",³ÆºÅÍ¼µµË÷Òı+1);
 
-			StockFontBufferExt(0x130,0x2D+i*0x20,1,FONT_PAL_GREEN,ç§°å·åºå·,0,16);
-			if(!ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
+			StockFontBufferExt(0x130,0x2D+i*0x20,1,FONT_PAL_GREEN,³ÆºÅĞòºÅ,0,16);
+			if(!³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
 				if(MakeHitBox(0x124,0x26+i*0x20,0x1B8,0x44+i*0x20,0x6D)==1){
-					StockFontBuffer(0x123,0xD1,2,0,ç§°å·.ä»‹ç»[ç§°å·å›¾æ¡£ç´¢å¼•],0);
+					StockFontBuffer(0x123,0xD1,2,0,³ÆºÅ.½éÉÜ[³ÆºÅÍ¼µµË÷Òı],0);
 					if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-						ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=ç§°å·.ç§°å·ç´¢å¼•[ ç§°å·å›¾æ¡£ç´¢å¼•];
-						ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=TRUE;
+						³ÆºÅ.È·¶¨Í¼µµË÷Òı=³ÆºÅ.³ÆºÅË÷Òı[ ³ÆºÅÍ¼µµË÷Òı];
+						³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=TRUE;
 					}
 				}
 			}
 		}else break;
 	}
-	if(ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º){
-		StockFontBuffer(0x123,0xD1,2,0,ç§°å·.ä»‹ç»[ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•],0);
-		StockFontBuffer(0x130,0x118,2,0,"ç¡®å®šä½¿ç”¨è¯¥ç§°å·å—ï¼Ÿ",0);
-		StockDispBuffer(0x16D,0x130,0x6C,55253,1);//ç¡®å®šçª—å£åº•å›¾
-		æŒ‰é’®ID = StockDispBuffer(0x194,0x148,109,55252,2);//å…³é—­
+	if(³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾){
+		StockFontBuffer(0x123,0xD1,2,0,³ÆºÅ.½éÉÜ[³ÆºÅ.È·¶¨Í¼µµË÷Òı],0);
+		StockFontBuffer(0x130,0x118,2,0,"È·¶¨Ê¹ÓÃ¸Ã³ÆºÅÂğ£¿",0);
+		StockDispBuffer(0x16D,0x130,0x6C,55253,1);//È·¶¨´°¿Úµ×Í¼
+		°´Å¥ID = StockDispBuffer(0x194,0x148,109,55252,2);//¹Ø±Õ
 		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(æŒ‰é’®ID == HitDispNo){
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=0;
+			if(°´Å¥ID == HitDispNo){
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨Í¼µµË÷Òı=0;
 			}
 		}
-		æŒ‰é’®ID = StockDispBuffer(0x148,0x148,109,55254,2);//ç¡®å®š
+		°´Å¥ID = StockDispBuffer(0x148,0x148,109,55254,2);//È·¶¨
 		if(mouse.onceState & MOUSE_LEFT_CRICK>0){
-			if(æŒ‰é’®ID == HitDispNo){
+			if(°´Å¥ID == HitDispNo){
 				int checksum=0;
 				char buf[1024*4];
 				memset(buf,0,1024*4);
-				checksum += util_mkint(buf, ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•);
+				checksum += util_mkint(buf, ³ÆºÅ.È·¶¨Í¼µµË÷Òı);
 				util_mkint(buf, checksum);
 				util_SendMesg(sockfd, LSSPROTO_CHARTITLE_SEND, buf);
-				ç§°å·.ç¡®å®šçª—å£æ˜¾ç¤º=FALSE;
-				ç§°å·.ç¡®å®šå›¾æ¡£ç´¢å¼•=0;
+				³ÆºÅ.È·¶¨´°¿ÚÏÔÊ¾=FALSE;
+				³ÆºÅ.È·¶¨Í¼µµË÷Òı=0;
 			}
 		}
 	}
 	return FALSE;
 }
 
-void çª—å£ç»“æŸå¤„ç†(ACTION* ID)//ç»“æŸæ˜¾ç¤ºåŠ¨ç”» 
+void ´°¿Ú½áÊø´¦Àí(ACTION* ID)//½áÊøÏÔÊ¾¶¯»­ 
 {
-	ç§°å·.çª—å£æ˜¾ç¤º=FALSE;
-	ç»“æŸç§°å·å±•ç¤ºåŠ¨ç”»();
-	if(ç§°å·.å½“å‰ç§°å·ç»“æ„) DeathAction(ç§°å·.å½“å‰ç§°å·ç»“æ„);
-	ç§°å·.å½“å‰ç§°å·ç»“æ„=0;
+	³ÆºÅ.´°¿ÚÏÔÊ¾=FALSE;
+	½áÊø³ÆºÅÕ¹Ê¾¶¯»­();
+	if(³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹) DeathAction(³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹);
+	³ÆºÅ.µ±Ç°³ÆºÅ½á¹¹=0;
 	DeathAction(ID);
 }
 
-void äººç‰©ç§°å·æ•°æ®æ›´æ–°(char *æ•°æ®)
+void ÈËÎï³ÆºÅÊı¾İ¸üĞÂ(char *Êı¾İ)
 {
-	char åŸºç¡€å†…å®¹[126],å›¾æ¡£å†…å®¹[1024],å›¾æ¡£ç´¢å¼•[1024],å†…å®¹ä»‹ç»[4000],ä¸´æ—¶[126];
-	memset(åŸºç¡€å†…å®¹,0,126);
-	memset(å›¾æ¡£å†…å®¹,0,1024);
-	memset(å›¾æ¡£ç´¢å¼•,0,1024);
-	memset(å†…å®¹ä»‹ç»,0,4000);
-	getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",1,åŸºç¡€å†…å®¹,126);
-	getStringFromIndexWithDelim_body((char *) åŸºç¡€å†…å®¹,(char *)"|",1,ä¸´æ—¶,126);
-	int å€¼ = atoi(ä¸´æ—¶);
-	if(å€¼) ç§°å·.å½“å‰ç§°å·å›¾æ¡£=å€¼;
-	getStringFromIndexWithDelim_body((char *) åŸºç¡€å†…å®¹,(char *)"|",2,ä¸´æ—¶,126);
-	int æ•°é‡ = atoi(ä¸´æ—¶);
-	if(æ•°é‡!=0){
-		memset(&ç§°å·.å›¾æ¡£,0,sizeof(int)*100);
-		memset(&ç§°å·.ç§°å·ç´¢å¼•,0,sizeof(int)*100);
-		memset(&ç§°å·.ä»‹ç»,0,32*100);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",2,å›¾æ¡£å†…å®¹,1024);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",3,å†…å®¹ä»‹ç»,4000);
-		getStringFromIndexWithDelim_body((char *) æ•°æ®,(char *)"#@",4,å›¾æ¡£ç´¢å¼•,1024);
+	char »ù´¡ÄÚÈİ[126],Í¼µµÄÚÈİ[1024],Í¼µµË÷Òı[1024],ÄÚÈİ½éÉÜ[4000],ÁÙÊ±[126];
+	memset(»ù´¡ÄÚÈİ,0,126);
+	memset(Í¼µµÄÚÈİ,0,1024);
+	memset(Í¼µµË÷Òı,0,1024);
+	memset(ÄÚÈİ½éÉÜ,0,4000);
+	getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",1,»ù´¡ÄÚÈİ,126);
+	getStringFromIndexWithDelim_body((char *) »ù´¡ÄÚÈİ,(char *)"|",1,ÁÙÊ±,126);
+	int Öµ = atoi(ÁÙÊ±);
+	if(Öµ) ³ÆºÅ.µ±Ç°³ÆºÅÍ¼µµ=Öµ;
+	getStringFromIndexWithDelim_body((char *) »ù´¡ÄÚÈİ,(char *)"|",2,ÁÙÊ±,126);
+	int ÊıÁ¿ = atoi(ÁÙÊ±);
+	if(ÊıÁ¿!=0){
+		memset(&³ÆºÅ.Í¼µµ,0,sizeof(int)*100);
+		memset(&³ÆºÅ.³ÆºÅË÷Òı,0,sizeof(int)*100);
+		memset(&³ÆºÅ.½éÉÜ,0,32*100);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",2,Í¼µµÄÚÈİ,1024);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",3,ÄÚÈİ½éÉÜ,4000);
+		getStringFromIndexWithDelim_body((char *) Êı¾İ,(char *)"#@",4,Í¼µµË÷Òı,1024);
 		int i=0;
-		for(i;i<æ•°é‡;i++){
-			getStringFromIndexWithDelim_body((char *)å›¾æ¡£å†…å®¹,(char *)"|",i+1,ä¸´æ—¶,126);
-			ç§°å·.å›¾æ¡£[i]=atoi(ä¸´æ—¶);
-			getStringFromIndexWithDelim_body((char *)å›¾æ¡£ç´¢å¼•,(char *)"|",i+1,ä¸´æ—¶,126);
-			ç§°å·.ç§°å·ç´¢å¼•[i]=atoi(ä¸´æ—¶);
-			getStringFromIndexWithDelim_body((char *)å†…å®¹ä»‹ç»,(char *)"|",i+1,ä¸´æ—¶,126);
-			sprintf_s(ç§°å·.ä»‹ç»[i],32,"%s",ä¸´æ—¶);
+		for(i;i<ÊıÁ¿;i++){
+			getStringFromIndexWithDelim_body((char *)Í¼µµÄÚÈİ,(char *)"|",i+1,ÁÙÊ±,126);
+			³ÆºÅ.Í¼µµ[i]=atoi(ÁÙÊ±);
+			getStringFromIndexWithDelim_body((char *)Í¼µµË÷Òı,(char *)"|",i+1,ÁÙÊ±,126);
+			³ÆºÅ.³ÆºÅË÷Òı[i]=atoi(ÁÙÊ±);
+			getStringFromIndexWithDelim_body((char *)ÄÚÈİ½éÉÜ,(char *)"|",i+1,ÁÙÊ±,126);
+			sprintf_s(³ÆºÅ.½éÉÜ[i],32,"%s",ÁÙÊ±);
 		}
 	}
 }
 
-void åˆå§‹åŒ–ç§°å·ç»“æ„()
+void ³õÊ¼»¯³ÆºÅ½á¹¹()
 {
-	memset(&ç§°å·,0,sizeof(ç§°å·æ•°æ®ç»“æ„));
+	memset(&³ÆºÅ,0,sizeof(³ÆºÅÊı¾İ½á¹¹));
 }
 #endif
 

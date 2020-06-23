@@ -1,4 +1,4 @@
-#include<string.h>
+﻿#include<string.h>
 #include <math.h>
 #include"../systeminc/version.h"
 #include"../systeminc/system.h"

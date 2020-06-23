@@ -16,13 +16,13 @@
 #define ITEM_MEMO_LEN			84
 #define PET_NAME_LEN			16
 #define PET_FREENAME_LEN		32
-#define CHAR_FMNAME_LEN			33      // å®¶æ—åç§°
+#define CHAR_FMNAME_LEN			33      // ¼Ò×åÃû³Æ
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 #define PROFESSION_MEMO_LEN		84
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 #define GM_NAME_LEN		        32
 #endif
 
@@ -62,13 +62,13 @@ typedef enum
 #endif
     CHAR_EQUIPPLACENUM,
 #ifdef _PET_ITEM
-	PET_HEAD = 0,	// å¤´
-	PET_WING,		// ç¿¼
-	PET_TOOTH,		// ç‰™
-	PET_PLATE,		// èº«ä½“
-	PET_BACK,		// èƒŒ
-	PET_CLAW,		// çˆª
-	PET_FOOT,		// è„š(é³)
+	PET_HEAD = 0,	// Í·
+	PET_WING,		// Òí
+	PET_TOOTH,		// ÑÀ
+	PET_PLATE,		// ÉíÌå
+	PET_BACK,		// ±³
+	PET_CLAW,		// ×¦
+	PET_FOOT,		// ½Å(÷¢)
 	PET_EQUIPNUM
 #endif
 }CHAR_EquipPlace;
@@ -76,16 +76,16 @@ typedef enum
 #ifdef _PET_ITEM
 typedef enum
 {
-// å® ç‰©é“å…·,å…±ä¹ç§
-	ITEM_PET_HEAD = 29,		// å¤´
-	ITEM_PET_WING,			// ç¿¼
-	ITEM_PET_TOOTH,			// ç‰™
-	ITEM_PET_PLATE,			// èº«ä½“æŠ¤ç”²
-	ITEM_PET_BACK,			// èƒŒéƒ¨æŠ¤ç”²
-	ITEM_PET_CLAW,			// çˆª
-	ITEM_PET_1_FOOT,		// è„šéƒ¨,åŒè¶³
-	ITEM_PET_2_FOOT,		// è„šéƒ¨,å››è¶³
-	ITEM_PET_FIN,			// è„šéƒ¨,é³
+// ³èÎïµÀ¾ß,¹²¾ÅÖÖ
+	ITEM_PET_HEAD = 29,		// Í·
+	ITEM_PET_WING,			// Òí
+	ITEM_PET_TOOTH,			// ÑÀ
+	ITEM_PET_PLATE,			// ÉíÌå»¤¼×
+	ITEM_PET_BACK,			// ±³²¿»¤¼×
+	ITEM_PET_CLAW,			// ×¦
+	ITEM_PET_1_FOOT,		// ½Å²¿,Ë«×ã
+	ITEM_PET_2_FOOT,		// ½Å²¿,ËÄ×ã
+	ITEM_PET_FIN,			// ½Å²¿,÷¢
 	ITEM_CATEGORYNUM  
 }ITEM_CATEGORY;
 #define MAX_PET_ITEM	7
@@ -95,7 +95,7 @@ typedef enum
 #define MAX_MAXHAVEITEM	15
 #ifdef _NEW_ITEM_
 #define MAX_ITEM (MAX_ITEMSTART+MAX_MAXHAVEITEM*3)
-int getItemNum();//åˆ¤æ–­ç©å®¶é“å…·æ•°é‡();
+int ÅĞ¶ÏÍæ¼ÒµÀ¾ßÊıÁ¿();
 #else
 #define MAX_ITEM (MAX_ITEMSTART+MAX_MAXHAVEITEM)
 #endif
@@ -123,34 +123,34 @@ int getItemNum();//åˆ¤æ–­ç©å®¶é“å…·æ•°é‡();
 #define MAX_PERSONAL_BANKGOLD 50000000
 
 #ifdef _FMVER21
-#define FAMILY_MAXMEMBER                100     // å®¶æ—äººæ•°
+#define FAMILY_MAXMEMBER                100     // ¼Ò×åÈËÊı
 #else
-#define FAMILY_MAXMEMBER                50     // å®¶æ—äººæ•°
+#define FAMILY_MAXMEMBER                50     // ¼Ò×åÈËÊı
 #endif
 
 enum
 {
 	PC_ETCFLAG_PARTY		= (1 << 0),
 	PC_ETCFLAG_DUEL			= (1 << 1),
-	PC_ETCFLAG_CHAT_MODE	= (1 << 2),		//é˜Ÿä¼é¢‘é“å¼€å…³
-	PC_ETCFLAG_MAIL			= (1 << 3),       //åç‰‡é¢‘é“
+	PC_ETCFLAG_CHAT_MODE	= (1 << 2),		//¶ÓÎéÆµµÀ¿ª¹Ø
+	PC_ETCFLAG_MAIL			= (1 << 3),       //ÃûÆ¬ÆµµÀ
 	PC_ETCFLAG_TRADE		= (1 << 4)
 #ifdef _CHANNEL_MODIFY
-	,PC_ETCFLAG_CHAT_TELL = (1 << 5)			//å¯†è¯­é¢‘é“å¼€å…³
-	,PC_ETCFLAG_CHAT_FM		= (1 << 6)			//å®¶æ—é¢‘é“å¼€å…³
+	,PC_ETCFLAG_CHAT_TELL = (1 << 5)			//ÃÜÓïÆµµÀ¿ª¹Ø
+	,PC_ETCFLAG_CHAT_FM		= (1 << 6)			//¼Ò×åÆµµÀ¿ª¹Ø
 #ifdef _CHAR_PROFESSION
-	,PC_ETCFLAG_CHAT_OCC	= (1 << 7)			//èŒä¸šé¢‘é“å¼€å…³
+	,PC_ETCFLAG_CHAT_OCC	= (1 << 7)			//Ö°ÒµÆµµÀ¿ª¹Ø
 #endif
-	,PC_ETCFLAG_CHAT_SAVE	=	(1 << 8)			//å¯¹è¯å‚¨å­˜å¼€å…³
+	,PC_ETCFLAG_CHAT_SAVE	=	(1 << 8)			//¶Ô»°´¢´æ¿ª¹Ø
 #ifdef _CHATROOMPROTOCOL
-	,PC_ETCFLAG_CHAT_CHAT	=	(1 << 9)			//èŠå¤©å®¤å¼€å…³
+	,PC_ETCFLAG_CHAT_CHAT	=	(1 << 9)			//ÁÄÌìÊÒ¿ª¹Ø
 #endif
 #endif
 #ifdef _CHANNEL_WORLD
-	,PC_ETCFLAG_CHAT_WORLD	=	(1 << 10)			//ä¸–ç•Œé¢‘é“å¼€å…³
+	,PC_ETCFLAG_CHAT_WORLD	=	(1 << 10)			//ÊÀ½çÆµµÀ¿ª¹Ø
 #endif
 #ifdef _CHANNEL_ALL_SERV
-	,PC_ETCFLAG_ALL_SERV	=	(1 << 11)			//æ˜Ÿçƒé¢‘é“å¼€å…³
+	,PC_ETCFLAG_ALL_SERV	=	(1 << 11)			//ĞÇÇòÆµµÀ¿ª¹Ø
 #endif
 	,PC_AI_MOD = (1 << 12)
 };
@@ -160,23 +160,23 @@ enum
 	PC_ETCFLAG_CHAT_MODE_ID = 0
 	
 #ifdef _CHANNEL_MODIFY
-	,PC_ETCFLAG_CHAT_TELL_ID		//å¯†è¯­é¢‘é“
-	,PC_ETCFLAG_CHAT_PARTY_ID		//é˜Ÿä¼é¢‘é“
-	,PC_ETCFLAG_CHAT_FM_ID			//å®¶æ—é¢‘é“
+	,PC_ETCFLAG_CHAT_TELL_ID		//ÃÜÓïÆµµÀ
+	,PC_ETCFLAG_CHAT_PARTY_ID		//¶ÓÎéÆµµÀ
+	,PC_ETCFLAG_CHAT_FM_ID			//¼Ò×åÆµµÀ
 #ifdef _CHAR_PROFESSION
-	,PC_ETCFLAG_CHAT_OCC_ID			//èŒä¸šé¢‘é“
+	,PC_ETCFLAG_CHAT_OCC_ID			//Ö°ÒµÆµµÀ
 #endif
 #ifdef _CHATROOMPROTOCOL
-	,PC_ETCFLAG_CHAT_CHAT_ID		//èŠå¤©å®¤
+	,PC_ETCFLAG_CHAT_CHAT_ID		//ÁÄÌìÊÒ
 #endif
 #else
-	,PC_ETCFLAG_CHAT_PARTY_ID		//é˜Ÿä¼é¢‘é“
+	,PC_ETCFLAG_CHAT_PARTY_ID		//¶ÓÎéÆµµÀ
 #endif
 #ifdef _CHANNEL_WORLD
-	,PC_ETCFLAG_CHAT_WORLD_ID			//ä¸–ç•Œé¢‘é“
+	,PC_ETCFLAG_CHAT_WORLD_ID			//ÊÀ½çÆµµÀ
 #endif
 #ifdef _CHANNEL_ALL_SERV
-	,PC_ETCFLAG_ALL_SERV_ID			//æ˜Ÿçƒé¢‘é“å¼€å…³
+	,PC_ETCFLAG_ALL_SERV_ID			//ĞÇÇòÆµµÀ¿ª¹Ø
 #endif
 	,PC_ETCFLAG_CHAT_WORLD_NUM
 };
@@ -184,20 +184,20 @@ enum
 #define ITEM_FLAG_PET_MAIL		( 1 << 0 )
 #define ITEM_FLAG_MIX			( 1 << 1 )
 #define ITEM_FLAG_COOKING_MIX	( 1 << 2 )
-#define ITEM_FLAG_METAL_MIX		( 1 << 3 )	//é‡‘å±
-#define ITEM_FLAG_JEWEL_MIX		( 1 << 4 )	//å®çŸ³
-#define ITEM_FLAG_FIX_MIX		( 1 << 5 )	//ä¿®å¤
+#define ITEM_FLAG_METAL_MIX		( 1 << 3 )	//½ğÊô
+#define ITEM_FLAG_JEWEL_MIX		( 1 << 4 )	//±¦Ê¯
+#define ITEM_FLAG_FIX_MIX		( 1 << 5 )	//ĞŞ¸´
 #ifdef _ITEM_INTENSIFY
-#define ITEM_FLAG_INTENSIFY_MIX ( 1 << 6 )	//å¼ºåŒ–
+#define ITEM_FLAG_INTENSIFY_MIX ( 1 << 6 )	//Ç¿»¯
 #endif
 #ifdef _ITEM_UPINSLAY
-#define ITEM_FLAG_UPINSLAY_MIX ( 1 << 7 )	//å‡¿å­”
+#define ITEM_FLAG_UPINSLAY_MIX ( 1 << 7 )	//Ôä¿×
 #endif
 
 typedef struct
 {
-	int color;						// î¡“î“·?î‘‘
-	int graNo;						// ??îœ±?
+	int color;						// ş¡q?ıè
+	int graNo;						// ??§k?
 	int level;						// ???????
 #ifdef _ITEM_PILENUMS
 	int pile;
@@ -205,13 +205,13 @@ typedef struct
 #ifdef _ALCHEMIST //#ifdef _ITEMSET7_TXT
 	char alch[4+200];
 #endif
-	short useFlag;					// îŒ¸????
-	short field;					// îŒ¸????î¶?
-	short target;					// î•”î§
-	short deadTargetFlag;			// ???????î•”î§???
-	short sendFlag;					// ????????î‘˜?î››?
-	char name[ITEM_NAME_LEN*2+1];		// ????î¡“
-	char name2[ITEM_NAME2_LEN*2+1];	// ????î¡“?
+	short useFlag;					// úé????
+	short field;					// úé????ıÍ?
+	short target;					// ¢nı¾
+	short deadTargetFlag;			// ???????¢nı¾???
+	short sendFlag;					// ????????ıï?¦u?
+	char name[ITEM_NAME_LEN*2+1];		// ????ş
+	char name2[ITEM_NAME2_LEN*2+1];	// ????ş?
 	char memo[ITEM_MEMO_LEN*2+1];		// ??
 	char damage[20];
 #ifdef _PET_ITEM
@@ -227,7 +227,7 @@ typedef struct
 	int counttime;
 #endif
 #ifdef _MAGIC_ITEM_
-	int itemType;//é“å…·ç±»å‹;
+	int µÀ¾ßÀàĞÍ;
 #endif
 } ITEM;
 
@@ -280,7 +280,7 @@ typedef struct
 	int channel;
 	int quickChannel;
 	int personal_bankgold;
-	int ridePetNo;//å® ç‰©å½¢åƒ
+	int ridePetNo;//³èÎïĞÎÏñ
 	int learnride;
 	unsigned int lowsride;
 	char ridePetName[CHAR_FREENAME_LEN+1];
@@ -289,79 +289,79 @@ typedef struct
 	int baseGraNo;
 	ITEM itempool[MAX_ITEM];
 	int big4fm;
-	int trade_confirm;         // 1 -> åˆå§‹å€¼
-	                           // 2 -> æ…¬æˆ‘æ–¹æŒ‰ä¸‹ç¡®å®šé”®
-	                           // 3 -> ä»…å¯¹æ–¹æŒ‰ä¸‹ç¡®å®šé”®
-	                           // 4 -> åŒæ–¹çš†æŒ‰ä¸‹ç¡®å®šé”®
+	int trade_confirm;         // 1 -> ³õÊ¼Öµ
+	                           // 2 -> ‘[ÎÒ·½°´ÏÂÈ·¶¨¼ü
+	                           // 3 -> ½ö¶Ô·½°´ÏÂÈ·¶¨¼ü
+	                           // 4 -> Ë«·½½Ô°´ÏÂÈ·¶¨¼ü
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 	int profession_class;
 	int profession_level;
 //	int profession_exp;
 	int profession_skill_point;	
 	char profession_class_name[32];
 #endif	
-#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
 	int herofloor;
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 	char gm_name[GM_NAME_LEN+1];
 #endif
 
-#ifdef _FRIENDCHANNEL  // ROG ADD å¥½å‹é¢‘é“
+#ifdef _FRIENDCHANNEL  // ROG ADD ºÃÓÑÆµµÀ
 	char  chatRoomNum[4];
 #endif
 #ifdef _STREET_VENDOR
-	int iOnStreetVendor;		// æ‘†æ‘Šæ¨¡å¼
+	int iOnStreetVendor;		// °ÚÌ¯Ä£Ê½
 #endif
-	int skywalker; // GMå¤©è¡Œè€…??
+	int skywalker; // GMÌìĞĞÕß??
 #ifdef _MOVE_SCREEN
-	BOOL	bMoveScreenMode;	// ç§»åŠ¨è§å¹•æ¨¡å¼
-	BOOL	bCanUseMouse;		// æ˜¯å¦å¯ä»¥ä½¿ç”¨æ»‘é¼ ç§»åŠ¨
-	int		iDestX;				// ç›®æ ‡ç‚¹ X åº§æ ‡
-	int		iDestY;				// ç›®æ ‡ç‚¹ Y åº§æ ‡
+	BOOL	bMoveScreenMode;	// ÒÆ¶¯Ó«Ä»Ä£Ê½
+	BOOL	bCanUseMouse;		// ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ»¬ÊóÒÆ¶¯
+	int		iDestX;				// Ä¿±êµã X ×ù±ê
+	int		iDestY;				// Ä¿±êµã Y ×ù±ê
 #endif
 #ifdef _THEATER
-	int		iTheaterMode;		// å‰§åœºæ¨¡å¼
-	int		iSceneryNumber;		// è®°å½•å‰§é™¢èƒŒæ™¯å›¾å·
-	ACTION	*pActNPC[5];		// è®°å½•å‰§åœºä¸­ä¸´æ—¶äº§ç”Ÿå‡ºæ¥çš„NPC
+	int		iTheaterMode;		// ¾ç³¡Ä£Ê½
+	int		iSceneryNumber;		// ¼ÇÂ¼¾çÔº±³¾°Í¼ºÅ
+	ACTION	*pActNPC[5];		// ¼ÇÂ¼¾ç³¡ÖĞÁÙÊ±²úÉú³öÀ´µÄNPC
 #endif
 #ifdef _NPC_DANCE
-	int     iDanceMode;			// åŠ¨ä¸€åŠ¨æ¨¡å¼
+	int     iDanceMode;			// ¶¯Ò»¶¯Ä£Ê½
 #endif
 #ifdef _EVIL_KILL
-	int     newfame; // è®¨ä¼é­”å†›ç§¯åˆ†
+	int     newfame; // ÌÖ·¥Ä§¾ü»ı·Ö
 	short   ftype;
 #endif
 
 	int debugmode;
 #ifdef _SFUMATO
-	int sfumato;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
+	int sfumato;		// ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê
 #endif
 #ifdef _NEW_ITEM_
-	int itemKitStatus//é“å…·æ çŠ¶æ€;
+	int µÀ¾ßÀ¸×´Ì¬;
 #endif
 #ifdef _CHARSIGNADY_NO_
-	int ç­¾åˆ°æ ‡è®°;
+	int Ç©µ½±ê¼Ç;
 #endif
 #ifdef _MAGIC_ITEM_
-	int magicItemStatus//æ³•å®é“å…·çŠ¶æ€;
-	int itemRightEffect //é“å…·å…‰ç¯æ•ˆæœ;
+	int ·¨±¦µÀ¾ß×´Ì¬;
+	int µÀ¾ß¹â»·Ğ§¹û;
 #endif
 } PC;
 
 #ifdef _FMVER21
 enum
 {
-	FMMEMBER_NONE   = -1,  // æœªåŠ å…¥ä»»ä½•å®¶æ—
-    FMMEMBER_MEMBER = 1,   // ä¸€èˆ¬æˆå‘˜
-	FMMEMBER_APPLY,        // ç”³è¯·åŠ å…¥å®¶æ—
-    FMMEMBER_LEADER,       // å®¶æ—æ—é•¿        
-	FMMEMBER_ELDER,        // é•¿è€
-    //FMMEMBER_INVITE,     // ç¥­å¸
-    //FMMEMBER_BAILEE,     // è´¢åŠ¡é•¿
-    //FMMEMBER_VICELEADER, // å‰¯æ—é•¿
+	FMMEMBER_NONE   = -1,  // Î´¼ÓÈëÈÎºÎ¼Ò×å
+    FMMEMBER_MEMBER = 1,   // Ò»°ã³ÉÔ±
+	FMMEMBER_APPLY,        // ÉêÇë¼ÓÈë¼Ò×å
+    FMMEMBER_LEADER,       // ¼Ò×å×å³¤        
+	FMMEMBER_ELDER,        // ³¤ÀÏ
+    //FMMEMBER_INVITE,     // ¼ÀË¾
+    //FMMEMBER_BAILEE,     // ²ÆÎñ³¤
+    //FMMEMBER_VICELEADER, // ¸±×å³¤
 	FMMEMBER_NUMBER,
 };
 #endif
@@ -385,9 +385,9 @@ enum
 	MAGIC_TARGET_WITHOUTMYSELFANDPET,
 	MAGIC_TARGET_WHOLEOTHERSIDE,
 	#ifdef __ATTACK_MAGIC
-	MAGIC_TARGET_SINGLE,				// é’ˆå¯¹æ•Œæ–¹æŸä¸€æ–¹
-	MAGIC_TARGET_ONE_ROW,				// é’ˆå¯¹æ•Œæ–¹æŸä¸€åˆ—
-	MAGIC_TARGET_ALL_ROWS,				// é’ˆå¯¹æ•Œæ–¹æ‰€æœ‰äºº
+	MAGIC_TARGET_SINGLE,				// Õë¶ÔµĞ·½Ä³Ò»·½
+	MAGIC_TARGET_ONE_ROW,				// Õë¶ÔµĞ·½Ä³Ò»ÁĞ
+	MAGIC_TARGET_ALL_ROWS,				// Õë¶ÔµĞ·½ËùÓĞÈË
 	#endif
 };
 
@@ -408,13 +408,13 @@ enum
 	PETSKILL_TARGET_NONE,
 	PETSKILL_TARGET_OTHERWITHOUTMYSELF,
 	PETSKILL_TARGET_WITHOUTMYSELFANDPET
-#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
+#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
 	,PETSKILL_TARGET_ONE_ROW
 	,PETSKILL_TARGET_ONE_LINE
 	,PETSKILL_TARGER_DEATH
 #endif
 #ifdef _SKILL_ADDBARRIER
-	,PETSKILL_TARGET_ONE_ROW_ALL //é€‰æˆ‘æ–¹çš„å•æ’
+	,PETSKILL_TARGET_ONE_ROW_ALL //Ñ¡ÎÒ·½µÄµ¥ÅÅ
 #endif
 };
 
@@ -442,32 +442,32 @@ enum
 
 typedef struct
 {
-	int index;						//ä½ç½®
-	int graNo;						// ??îœ±?
-	int hp, maxHp;					// ????î•«??
-	int mp, maxMp;					// ????î•«??
-	int exp, maxExp;				// ??î–±???????î§????î–±
+	int index;						//Î»ÖÃ
+	int graNo;						// ??§k?
+	int hp, maxHp;					// ????¢†??
+	int mp, maxMp;					// ????¢†??
+	int exp, maxExp;				// ??£k???????¢¬????£k
 	int level;						// ???
-	int atk, def;					// ????????î ¡??
-	int quick;						// î î?
-	int ai;							// ?î’¦î™š
-	int earth, water, fire, wind;	// ä½‹???
-	int maxSkill;					// ?î•«????
-	int trn;						// å® ç‰©è½¬ç”Ÿæ•°
+	int atk, def;					// ????????ş\??
+	int quick;						// üÕ¦Ù?
+	int ai;							// ?şß¥T
+	int earth, water, fire, wind;	// Ô???
+	int maxSkill;					// ?¢†????
+	int trn;						// ³èÎï×ªÉúÊı
 #ifdef _SHOW_FUSION
-	int fusion;						// low word: å® è›‹æ——æ ‡, hi word: ç‰©ç§ç¼–ç 
+	int fusion;						// low word: ³èµ°Æì±ê, hi word: ÎïÖÖ±àÂë
 #endif
 #ifdef _ANGEL_SUMMON
 	unsigned status;
 #else
 	unsigned short status;			// ?????(??????)
 #endif
-	char name[CHAR_NAME_LEN+1];		// îœ?î¡“
-	char freeName[PET_NAME_LEN+1];	// ???????î¡“î“·
+	char name[CHAR_NAME_LEN+1];		// ûï?ş
+	char freeName[PET_NAME_LEN+1];	// ???????ş¡q
 	short useFlag;					// ??????????????
-	short changeNameFlag;			// î¡“î“·?????????
+	short changeNameFlag;			// ş¡q?????????
 #ifdef _PET_ITEM
-	ITEM item[MAX_PET_ITEM];		// å® ç‰©é“å…·
+	ITEM item[MAX_PET_ITEM];		// ³èÎïµÀ¾ß
 #endif
 #ifdef _PETCOM_
 	int oldlevel,oldhp,oldatk,oldquick,olddef;
@@ -519,7 +519,7 @@ typedef struct
 	int dp;
 	int graNo;
 	char name[CHAR_NAME_LEN+1];
-#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
+#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
 	char planetname[64];
 #endif
 } ADDRESS_BOOK;
@@ -550,7 +550,7 @@ typedef struct
 	char memo[SKILL_MEMO_LEN+1];
 } PET_SKILL;
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 typedef struct
 {
 	short useFlag;
@@ -571,31 +571,31 @@ typedef struct
 
 typedef struct
 {
-	char name[CHAR_NAME_LEN+1];		// SJIS?î¡“î“·????
+	char name[CHAR_NAME_LEN+1];		// SJIS?ş¡q????
 	short level;					// ???
 	int login;						// ??????
 
-	int faceGraNo;					// ???îœ±?
+	int faceGraNo;					// ???§k?
 	int hp;							// ??
 	int str;						// ???
-	int def;						// î ¡??
-	int agi;						// îîƒ?
-	int app;						// î º?
-	int attr[4];					// î”´î’”?ä½‹???????
+	int def;						// ş\??
+	int agi;						// ¦Ùüø?
+	int app;						// şu?
+	int attr[4];					// ¢NşÍ?Ô???????
 	int dp;							// ????????
 } CHARLISTTABLE;
 #ifdef _AIDENGLU_
 typedef struct
 {
-	int bigArea; //å¤§åŒº;
-	int teamMode; //é˜Ÿæ¨¡;
-	int smallArea; //å°åŒº;
-	int character;//äººç‰©;
-	int isAutoChat; //æ˜¯å¦è‡ªåŠ¨å–Šè¯;
-	int isAutoMeet; //æ˜¯å¦è‡ªåŠ¨é‡æ•Œ;
-	int characterDirection;//äººç‰©æ–¹å‘;
-	char logonName[4][32];//ç™»é™†äººç‰©åç§°[4][32];
-	int logonDelay; //ç™»é™†å»¶æ—¶æ—¶é—´;
+	int ´óÇø;
+	int ¶ÓÄ£;
+	int Ğ¡Çø;
+	int ÈËÎï;
+	int ÊÇ·ñ×Ô¶¯º°»°;
+	int ÊÇ·ñ×Ô¶¯ÓöµĞ;
+	int ÈËÎï·½Ïò;
+	char µÇÂ½ÈËÎïÃû³Æ[4][32];
+	int µÇÂ½ÑÓÊ±Ê±¼ä;
 }Landed;
 #endif
 
@@ -661,19 +661,19 @@ void setPcAction( int );
 #endif
 int getPcAction( void );
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 #ifdef _PRO3_ADDSKILL
     #define MAX_PROFESSION_SKILL	30
 #else
     #define MAX_PROFESSION_SKILL	26
 #endif
     extern PROFESSION_SKILL profession_skill[];
-//    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+//    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 //      void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, int, char *);
 //        void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, char *);    
 //	#else
 //      void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, int );
-#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
 	void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int , int );
 #else
     void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int );

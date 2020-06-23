@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "石器源码", "石器源码\石器源码.vcxproj", "{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		VER25_DEBUG|Win32 = VER25_DEBUG|Win32
+		VER25_RELEASE|Win32 = VER25_RELEASE|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}.VER25_DEBUG|Win32.ActiveCfg = VER25_DEBUG|Win32
+		{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}.VER25_DEBUG|Win32.Build.0 = VER25_DEBUG|Win32
+		{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}.VER25_RELEASE|Win32.ActiveCfg = VER25_RELEASE|Win32
+		{7BCA4759-A8C8-4746-ABD8-C2B4C3C2DEFE}.VER25_RELEASE|Win32.Build.0 = VER25_RELEASE|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

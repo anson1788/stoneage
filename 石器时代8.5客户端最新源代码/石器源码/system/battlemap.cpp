@@ -10,7 +10,7 @@
 // ??????????
 #define BATTLE_MAP_SIZE 400
 
-#ifdef _NEWDRAWBATTLEMAP		   // (ä¸å¯å¼€æ”¾) Syu ADD è‡ªåŠ¨äº§ç”ŸBattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // (²»¿É¿ª·Å) Syu ADD ×Ô¶¯²úÉúBattleMap
 #define RAND(x,y)   ((x-1)+1+ (int)( (double)(y-(x-1))*rand()/(RAND_MAX+1.0)) )
 int RandBattleBg = 0;
 #endif
@@ -18,9 +18,9 @@ int RandBattleBg = 0;
 #ifdef __ATTACK_MAGIC
 
 // Global vars
-extern int			g_iRunEarthQuake;			// åœ°éœ‡çš„çŠ¶å†µ: 0 --> æ²¡åœ°éœ‡ , 1 --> åˆå§‹åŒ–åœ°éœ‡ , 2 --> åœ°éœ‡ä¸­
-extern int			g_iCurRunEarthQuake;		// ç›®å‰åœ°éœ‡çš„ä½ç½®çº¿
-extern int			g_iNumRunEarthQuake;		// åœ°éœ‡çš„æ€»æ¬¡æ•°
+extern int			g_iRunEarthQuake;			// µØÕğµÄ×´¿ö: 0 --> Ã»µØÕğ , 1 --> ³õÊ¼»¯µØÕğ , 2 --> µØÕğÖĞ
+extern int			g_iCurRunEarthQuake;		// Ä¿Ç°µØÕğµÄÎ»ÖÃÏß
+extern int			g_iNumRunEarthQuake;		// µØÕğµÄ×Ü´ÎÊı
 
 #endif
 
@@ -28,27 +28,27 @@ extern int			g_iNumRunEarthQuake;		// åœ°éœ‡çš„æ€»æ¬¡æ•°
 extern BOOL g_bUseAlpha;
 #endif
 int MessageBoxNew(HWND hWnd,LPCSTR lpText,LPCSTR lpCaption,UINT uType);
-// ?????????îœ±?
+// ?????????§k?
 int BattleMapNo = 0;
 
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (ä¸å¯å¼€)ROG ADD æˆ˜æ–—åœ°å›¾ä¿®æ”¹
-int BattleMapAdvance = 0;			   // æˆ˜æ–—åœ°å›¾æ•ˆèƒ½æ”¹è¿›
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (²»¿É¿ª)ROG ADD Õ½¶·µØÍ¼ĞŞ¸Ä
+int BattleMapAdvance = 0;			   // Õ½¶·µØÍ¼Ğ§ÄÜ¸Ä½ø
 #endif
-// ?????? ????î¡“
+// ?????? ????ş
 char *BattleMapFile[] = {	
 	#include "../systeminc/battleMapName.h"
 };
 						
-// ??????îš‡????????????????î’• ***************************/
-// æ°´æ™¶åœ°è¡¨æˆ˜æ–—åœ°å›¾ç¼–å·
+// ??????¥‚????????????????şÎ ***************************/
+// Ë®¾§µØ±íÕ½¶·µØÍ¼±àºÅ
 static int iCrystalBattleMap[4][3] =
-{	// ç»¿								// è“								// çº¢								// é»„
+{	// ÂÌ								// À¶								// ºì								// »Æ
 	{29060,29061,29062},{29058,29059,29066},{29063,29064,29065},{29057,29067,29068}
 };
 
 BOOL ReadBattleMap( int no )
 {
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (ä¸å¯å¼€)ROG ADD æˆ˜æ–—åœ°å›¾ä¿®æ”¹
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (²»¿É¿ª)ROG ADD Õ½¶·µØÍ¼ĞŞ¸Ä
 	extern void ddrawBattleMap();
 	ddrawBattleMap();
 #else
@@ -62,36 +62,36 @@ BOOL ReadBattleMap( int no )
 	// ????????
 	if( no >= BATTLE_MAP_FILES )
 		no = 0;
-	// ??????îœ±???
+	// ??????§k???
 	BattleMapNo = no;
 	// ??????????????
 	if( ( fp = fopen( BattleMapFile[ no ], "rb" ) ) == NULL ){
-		sprintf_s( msg, "%sè¯»å–å¤±è´¥ã€‚", BattleMapFile[ no ] );
-		MessageBoxNew( hWnd, msg, "æˆ˜åœºåœ°å›¾é”™è¯¯", MB_OK | MB_ICONSTOP );
+		sprintf_s( msg, "%s¶ÁÈ¡Ê§°Ü¡£", BattleMapFile[ no ] );
+		MessageBoxNew( hWnd, msg, "Õ½³¡µØÍ¼´íÎó", MB_OK | MB_ICONSTOP );
 		return FALSE;
 	}
-	// ?????îš‡???
+	// ?????¥‚???
 	fread( header, sizeof( char ), 4, fp );
 	header[ 4 ] = '\0';
 	// ????????
 	if( !( strstr( header, "SAB" )) )
-		MessageBoxNew( hWnd, "SAB æ¡£æ¡ˆä¸å­˜åœ¨", "æˆ˜åœºåœ°å›¾é”™è¯¯", MB_OK | MB_ICONSTOP );
-	// îš‡??????
+		MessageBoxNew( hWnd, "SAB µµ°¸²»´æÔÚ", "Õ½³¡µØÍ¼´íÎó", MB_OK | MB_ICONSTOP );
+	// ¥‚??????
 	for( i = 0 ; i < 1089 ; i++ ){
-		// ??????îš‡???? ????î”¨????? ?
+		// ??????¥‚???? ????¢B????? ?
 		c1 = fgetc( fp );
 		c2 = fgetc( fp );
 		// ???????
 		tile[ i ] = ( c1 << 8 ) | c2;
 	}
-	// ????î¼??
+	// ????¨–??
 	fclose( fp );
-	//ROG FIX æˆ˜æ–—åœ°å›¾ç»˜å›¾ä½å€è°ƒæ•´
+	//ROG FIX Õ½¶·µØÍ¼»æÍ¼Î»Ö·µ÷Õû
 	//posX = 32 * ( -9 ) + (400 >> 1);
 	//posY = 24 * 10 + (300 >> 1);
 	posX = -416;
 	posY=272;
-#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD è‡ªåŠ¨äº§ç”ŸBattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD ×Ô¶¯²úÉúBattleMap
 	extern int nowFloor ; 
 
 	if(((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
@@ -111,7 +111,7 @@ BOOL ReadBattleMap( int no )
 		else if ( RandBattleBg == 4 ) RandBattleBg = 29025 ;
 		
 		RandBattleBg = RAND ( 29047 , 29049 );
-		// æ°´æ™¶åœ°è¡¨æˆ˜æ–—åœ°å›¾
+		// Ë®¾§µØ±íÕ½¶·µØÍ¼
 		if(nowFloor == 30022) RandBattleBg = iCrystalBattleMap[0][RAND(0,2)];
 		else if(nowFloor == 30023) RandBattleBg = iCrystalBattleMap[1][RAND(0,2)];
 		else if(nowFloor == 30024) RandBattleBg = iCrystalBattleMap[2][RAND(0,2)];
@@ -166,13 +166,13 @@ BOOL ReadBattleMap( int no )
 //	ddrawBattleMap();
 
 #else
-	// ???î¤???
+	// ???§Æ???
 	
 	for( i = 0 ; i < 20 ; i++ ){
 		x = 0;
 		y = 0;
 		for( j = 0 ; j < 20 ; j++ ){
-			// ???î¸î•????????
+			// ???¤úû¨????????
 			StockDispBuffer( posX + x, posY + y, DISP_PRIO_TILE, tile[ cnt++ ], 0 );
 			x += 32;
 			y -= 24;
@@ -185,9 +185,9 @@ BOOL ReadBattleMap( int no )
 	return TRUE;
 }	
 
-// ??????î¼? ***********************************************************/
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (ä¸å¯å¼€)ROG ADD æˆ˜æ–—åœ°å›¾ä¿®æ”¹
-#define	RASTER_CLEARANCE	24		   //å¢åŠ æ•ˆèƒ½
+// ??????¤ş? ***********************************************************/
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (²»¿É¿ª)ROG ADD Õ½¶·µØÍ¼ĞŞ¸Ä
+#define	RASTER_CLEARANCE	24		   //Ôö¼ÓĞ§ÄÜ
 #else
 #define	RASTER_CLEARANCE	8
 #endif
@@ -212,9 +212,9 @@ void DrawBattleMap( void )
 	short bx , by;
 #ifdef __ATTACK_MAGIC
 
-	// ç‰¹æ®Šåœ°å›¾ç¼–å·æˆ–åœ°éœ‡ä¸­
+	// ÌØÊâµØÍ¼±àºÅ»òµØÕğÖĞ
 
-#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD è‡ªåŠ¨äº§ç”ŸBattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD ×Ô¶¯²úÉúBattleMap
 	extern int nowFloor;
 	if( ( BattleMapNo >= 148 && BattleMapNo <= 150 ) || 2 == g_iRunEarthQuake || 
 		nowFloor == 817 || nowFloor == 8007 || nowFloor == 8101 || nowFloor == 8100 || 
@@ -235,7 +235,7 @@ void DrawBattleMap( void )
 		by = 0;
 		short x0, y0;
 		long w, h;
-		// î˜¿???????
+		// ¤š???????
 		x0 = bx;
 		y0 = by;
 		w = rect.right - rect.left;
@@ -284,8 +284,8 @@ void DrawBattleMap( void )
 
 		#endif
 
-		rect.left = 0;		//?î– 
-		rect.right = 640 + DISPLACEMENT_X;		//?î– 
+		rect.left = 0;		//?£Z
+		rect.right = 640 + DISPLACEMENT_X;		//?£Z
 	/*	if(BattleMapAdvance < 10){
 			BattleMapAdvance ++;
 			return;
@@ -294,8 +294,8 @@ void DrawBattleMap( void )
 			BattleMapAdvance =0;*/
 
 		for(d7=0; d7 < 480 + DISPLACEMENT_Y; d7+=RASTER_CLEARANCE){
-			rect.top = d7 + piyo_tbl[(d6+value) & 63] + 12;		//î¯î– 
-			rect.bottom = rect.top + RASTER_CLEARANCE;		//?î– 
+			rect.top = d7 + piyo_tbl[(d6+value) & 63] + 12;		//ıÆ£Z
+			rect.bottom = rect.top + RASTER_CLEARANCE;		//?£Z
 
 
 #ifdef D3D_ENGINE
@@ -317,17 +317,17 @@ void DrawBattleMap( void )
 		d6 = 0;
 		for(d7=0; d7<480 + DISPLACEMENT_Y; d7+=RASTER_CLEARANCE/2){
 
-			rect.top = d7;		//î¯î– 
-			rect.bottom = rect.top + RASTER_CLEARANCE;		//?î– 
+			rect.top = d7;		//ıÆ£Z
+			rect.bottom = rect.top + RASTER_CLEARANCE;		//?£Z
 
-			d0 = piyo_tbl[(d6+piyo_point) & 63] / 2;		//?î– 
+			d0 = piyo_tbl[(d6+piyo_point) & 63] / 2;		//?£Z
 			if(d0 < 0){		//??????
 				rect.left = 0 - d0;
-				rect.right = 640 + DISPLACEMENT_X+ d0;		//?î– 
+				rect.right = 640 + DISPLACEMENT_X+ d0;		//?£Z
 				d0 = 0;
 			} else {
 				rect.left = 0;
-				rect.right = 640 + DISPLACEMENT_X- d0;		//?î– 
+				rect.right = 640 + DISPLACEMENT_X- d0;		//?£Z
 			}
 #ifdef D3D_ENGINE
 			destrect.left = d0;

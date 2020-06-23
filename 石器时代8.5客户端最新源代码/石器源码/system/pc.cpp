@@ -33,7 +33,7 @@ short tradeStatus = 0;
 
 PET pet[MAX_PET];
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 PROFESSION_SKILL profession_skill[MAX_PROFESSION_SKILL];
 #endif
 
@@ -104,14 +104,14 @@ void initPcAll(void)
 	memset(&party, 0, sizeof(party));
 	memset(&petSkill, 0, sizeof(petSkill));
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š	
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ	
 	memset(&profession_skill, 0, sizeof(profession_skill));
 #endif
 
 	pc.mailPetNo = -1;
 #ifdef _MORECHARACTERS_
-	extern int å¤šäººç‰©å½“å‰é¡µæ•°;
-	getUserSetting(selectPcNo+å¤šäººç‰©å½“å‰é¡µæ•°*2);
+	extern int ¶àÈËÎïµ±Ç°Ò³Êı;
+	getUserSetting(selectPcNo+¶àÈËÎïµ±Ç°Ò³Êı*2);
 #else
 	getUserSetting(selectPcNo);
 #endif
@@ -164,7 +164,7 @@ void initPcAll(void)
 	pc.iSceneryNumber = -1;
 #endif
 #ifdef _SFUMATO
-	pc.sfumato = 0;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
+	pc.sfumato = 0;		// ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê
 #endif
 }
 
@@ -194,13 +194,13 @@ void initPc(void)
 	{
 		height = 1;
 	}
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
-//    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+//    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_exp, pc.profession_skill_point, pc.ptAct->gm_name);
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point, pc.ptAct->gm_name);    
 //	#else	
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_exp, pc.profession_skill_point);
-#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
 	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point , pc.herofloor);
 #else
 	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point);
@@ -219,7 +219,7 @@ void initPc(void)
 		pc.ptAct->hp = pc.hp;
 		pc.ptAct->maxHp = pc.maxHp;
 
-		// ??îºîŸ«????????????????î‘¡
+		// ??ıÑ©????????????????ıø
 #ifdef MAX_AIRPLANENUM
 		for (i = 0; i < MAX_AIRPLANENUM; i++)
 #else
@@ -252,7 +252,7 @@ void initPc(void)
 }
 
 
-// PC????î’•
+// PC????şÎ
 void createPc(int graNo, int gx, int gy, int dir)
 {
 	pc.graNo = graNo;
@@ -315,12 +315,12 @@ void resetPc(void)
 		pc.ptAct = NULL;
 	}
 
-	// ????????î????
+	// ????????ı¤????
 	delPcLeader();
 }
 
 
-// PC?????????îœ±?î“†î˜‹
+// PC?????????§k?¡@¤e
 void setPcGraNo(int graNo, int dir)
 {
 	pc.graNo = graNo;
@@ -332,19 +332,19 @@ void setPcGraNo(int graNo, int dir)
 	pc.ptAct->anim_chr_no = graNo;
 	pc.ptAct->anim_ang = dir;
 #ifdef _SFUMATO
-	pc.ptAct->sfumato = pc.sfumato;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
+	pc.ptAct->sfumato = pc.sfumato;		// ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê
 #endif
 }
 
 
-// PC???ID?î“†î˜‹
+// PC???ID?¡@¤e
 void setPcId(int id)
 {
 	pc.id = id;
 }
 
 
-// PC??????î“î“†î˜‹
+// PC??????¡I¡@¤e
 void setPcWarpPoint(int gx, int gy)
 {
 //	if(pc.ptAct == NULL)
@@ -354,7 +354,7 @@ void setPcWarpPoint(int gx, int gy)
 }
 
 
-// PC???????î–º?î™¯???
+// PC???????£t?¥i???
 void setPcPoint(void)
 {
 	if(pc.ptAct == NULL)
@@ -372,7 +372,7 @@ void setPcPoint(void)
 }
 
 
-// PC???????î“†î˜‹
+// PC???????¡@¤e
 void setPcDir(int dir)
 {
 	pc.dir = dir;
@@ -384,7 +384,7 @@ void setPcDir(int dir)
 }
 
 
-// ???????î“†î˜‹
+// ???????¡@¤e
 void setPcAction(int act)
 {
 	if(pc.ptAct == NULL)
@@ -413,7 +413,7 @@ void setPcEmotion(int emotion)
 }
 #endif
 
-// ????????î¿î•šî•î™¾
+// ????????ıÖ¢tûè¥x
 int getPcAction(void)
 {
 	if(pc.ptAct == NULL)
@@ -426,13 +426,13 @@ int getPcAction(void)
 extern int TalkMode;
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
-//    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+//    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 //  void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_exp, int profession_skill_point , char *gm_name)
 //    void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point , char *gm_name)    
 //	#else
 //	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_exp, int profession_skill_point)
-#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
 	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point , int herofloor)
 #else
 	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point)
@@ -445,7 +445,7 @@ extern int TalkMode;
 	int nameLen;
 	int freeNameLen;
 	int petnameLen;
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 	int gmnameLen;
 #endif
 	nameLen = strlen(name);
@@ -471,7 +471,7 @@ extern int TalkMode;
 	pc.ridePetLevel = petlevel;
 
 	pc.nameColor = nameColor;
-	if(walk != 0)		// ??î¯?îŸš??
+	if(walk != 0)		// ??ıÆ?¨÷??
 	{
 		pc.status |= CHR_STATUS_W;
 	}
@@ -501,17 +501,17 @@ extern int TalkMode;
 
 	pc.ptAct->itemNameColor = nameColor;
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 	pc.profession_class	= profession_class;
 	pc.ptAct->profession_class = profession_class;
 	pc.profession_level = profession_level;
 //	pc.profession_exp = profession_exp;
 	pc.profession_skill_point = profession_skill_point;
 #endif
-#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
 	pc.herofloor = herofloor;
 #endif
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 	gmnameLen = strlen(gm_name);
 	if(gmnameLen <= 33){
 		strcpy(pc.ptAct->gm_name, gm_name);
@@ -529,7 +529,7 @@ extern int TalkMode;
 }
 
 
-// PC????îºîŸ«???????î“†î˜‹????
+// PC????ıÑ©???????¡@¤e????
 void updataPcAct(void)
 {
 	if(pc.ptAct == NULL)
@@ -547,7 +547,7 @@ void updataPcAct(void)
 	pc.ptAct->hp    = pc.hp;
 	pc.ptAct->maxHp = pc.maxHp;
 #ifdef _SFUMATO
-	pc.ptAct->sfumato = pc.sfumato;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
+	pc.ptAct->sfumato = pc.sfumato;		// ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê
 #endif
 }
 
@@ -580,22 +580,22 @@ void delPcParty(void)
 }
 
 
-// PC?????î“–??????
+// PC?????¡P??????
 void setPcWatch(void)
 {
 	pc.status |= CHR_STATUS_WATCH;
 }
 
 
-// PC?????î“–??????????
+// PC?????¡P??????????
 void delPcWatch(void)
 {
 	pc.status &= (~CHR_STATUS_WATCH);
 }
 
 
-// ??îŸš??????????
-//?îŸš?????????????î“?î•œ???îŒ¢î’?
+// ??¨÷??????????
+//?¨÷?????????????şú?¢v???úÓı©?
 void setPcWalkFlag(void)
 {
 	if(pc.ptAct == NULL)
@@ -604,8 +604,8 @@ void setPcWalkFlag(void)
 	pc.ptAct->walkFlag = 1;
 }
 
-// ??????îŸ‰??????????
-//?îŸš?????????????î“?î•œ???îŒ¢î’?
+// ??????¨Á??????????
+//?¨÷?????????????şú?¢v???úÓı©?
 void delPcWalkFlag(void)
 {
 	if(pc.ptAct == NULL)
@@ -615,7 +615,7 @@ void delPcWalkFlag(void)
 }
 
 
-// îŸš?????îŒ¢î’
+// ¨÷?????úÓı©
 int checkPcWalkFlag(void)
 {
 	if(pc.ptAct == NULL)
@@ -625,21 +625,21 @@ int checkPcWalkFlag(void)
 }
 
 
-// î£îîŒ¸????????
+// ûöüÓúé????????
 void setPcUseMagic(void)
 {
 	pc.status |= CHR_STATUS_USE_MAGIC;
 }
 
 
-// î£îîŒ¸????????
+// ûöüÓúé????????
 void delPcUseMagic(void)
 {
 	pc.status &= (~CHR_STATUS_USE_MAGIC);
 }
 
 
-// PC???î??î?
+// PC???üÒ??üÒ?
 void setPcFukidashi(unsigned int offTime)
 {
 	CHAREXTRA *ext;
@@ -653,7 +653,7 @@ void setPcFukidashi(unsigned int offTime)
 }
 
 
-// ???????????î¡“î“·?î‘‘?î“†î˜‹
+// ???????????ş¡q?ıè?¡@¤e
 void setPcNameColor(int color)
 {
 	pc.pcNameColor = color;
@@ -686,13 +686,13 @@ void delPcAngel(void)
 extern struct Posstruct Positiontable[];
 #endif
 
-// PC???î™®?îŸ‰? /////////////////////////////////////////////////////////
+// PC???¥h?¨Á? /////////////////////////////////////////////////////////
 void changePcAct(int x, int y, int dir, int action,
 					int effectno, int effectparam1, int effectparam2)
 {
 	switch(action)
 	{
-		// ??î¿î•š
+		// ??ıÖ¢t
 		case 0:
 #if 0
 #if 1
@@ -758,12 +758,12 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_STAND);
 			break;
 
-		// îŸµ?î˜¿?
+		// ©˜?¤š?
 		case 30:
 			setPcDir(dir);
 			break;
 
-		// îŸš?
+		// ¨÷?
 		case 1:
 			setPcAction(ANIM_WALK);
 			break;
@@ -788,18 +788,18 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_DAMAGE);
 			break;
 
-		// ?î Œ
+		// ?©û
 		case 5:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
 			setPcAction(ANIM_DEAD);
 			break;
 
-		// ?îŸ¹îŒ¸?
+		// ?©œúé?
 		case 6:
 			break;
 
-		// ????îŒ¸?
+		// ????úé?
 		case 7:
 			break;
 
@@ -807,7 +807,7 @@ void changePcAct(int x, int y, int dir, int action,
 		case 8:		/* UsedMagic */
 			break;
 
-		// î™??
+		// ¥X??
 		case 10:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
@@ -821,7 +821,7 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_SIT);
 			break;
 
-		// î—?î‘ ?
+		// ûê?ı÷?
 		case 12:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
@@ -835,14 +835,14 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_HAPPY);
 			break;
 
-		// î™?
+		// ¥W?
 		case 14:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
 			setPcAction(ANIM_ANGRY);
 			break;
 
-		// îœ¼??
+		// §v??
 		case 15:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
@@ -856,7 +856,7 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_GUARD);
 			break;
 
-		// îŸš??î™®????
+		// ¨÷??¥h????
 		case 17:
 			setPcDir(dir);
 			setPcAction(ANIM_WALK);
@@ -869,26 +869,26 @@ void changePcAct(int x, int y, int dir, int action,
 			setPcAction(ANIM_NOD);
 			break;
 
-		// ??î¿î•š???????
+		// ??ıÖ¢t???????
 		case 19:
 			//setPcWarpPoint(x, y);
 			setPcDir(dir);
 			setPcAction(ANIM_STAND);
 			break;
 
-		// î“–î™¬îºîŸ«
+		// ¡P¥fıÑ©
 		case 20:
 			setPcWarpPoint(x, y);
 			setPcDir(dir);
 			break;
 
-		// ????îºîŸ«
+		// ????ıÑ©
 		case 21:
 			setPcWarpPoint(x, y);
 			setPcDir(dir);
 			if(effectno == 1)
 			{
-				// ???????î¸î•
+				// ???????¤úû¨
 				setPcLeader();
 #if 0
 				if(pc.ptAct != NULL)
@@ -900,12 +900,12 @@ void changePcAct(int x, int y, int dir, int action,
 			}
 			else
 			{
-				// ???????î?
+				// ???????ı¤?
 				delPcLeader();
 			}
 			break;
 
-		// ?î“–îºîŸ«
+		// ?¡PıÑ©
 		case 22:
 			setPcWarpPoint(x, y);
 			setPcDir(dir);
@@ -919,7 +919,7 @@ void changePcAct(int x, int y, int dir, int action,
 			}
 			break;
 
-		// ???????????î¡“î“·?î‘‘
+		// ???????????ş¡q?ıè
 		case 23:
 			setPcNameColor(effectno);
 			break;
@@ -982,7 +982,7 @@ void changePcAct(int x, int y, int dir, int action,
 					ext->pActFirework[1] = NULL;
 				}
 				ext->pActFirework[0] = GetAction(PRIO_CHR, 0);
-				ext->pActFirework[0]->damage		= effectno;	// å€Ÿç”¨ damage æ¥å‚¨å­˜ type (effectno = type)
+				ext->pActFirework[0]->damage		= effectno;	// ½èÓÃ damage À´´¢´æ type (effectno = type)
 				ext->pActFirework[0]->anim_chr_no	= effectparam1;
 				ext->pActFirework[0]->anim_no		= ANIM_STAND;
 				ext->pActFirework[0]->anim_ang		= 1;
@@ -1022,8 +1022,8 @@ void changePcAct(int x, int y, int dir, int action,
 				//changePcAct(x, y, dir, 60 , giver , actionNum , petaction)
 				//changePcAct(int x, int y, int dir, int action,int effectno, int effectparam1, int effectparam2)
 
-				//effectno ä¼ æ¥çš„å€¼ä»£è¡¨æ–½æ”¾è€…çš„ä½ç½®ç¼–å·
-				if(effectparam2 == 3){ //é­”æ³•ç‰Œ
+				//effectno ´«À´µÄÖµ´ú±íÊ©·ÅÕßµÄÎ»ÖÃ±àºÅ
+				if(effectparam2 == 3){ //Ä§·¨ÅÆ
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= effectparam1;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -1034,7 +1034,7 @@ void changePcAct(int x, int y, int dir, int action,
 						ext->pActMagiccard[0]->gx		= Positiontable[effectno].petX+1 + x; 
 						ext->pActMagiccard[0]->gy		= Positiontable[effectno].petY-1 + y; 
 					}
-				}else if(effectparam2 == 0){ //è¢«å°å°æˆ–æ˜¯æ”¾å¼ƒå‡ºç‰Œ 
+				}else if(effectparam2 == 0){ //±»·âÓ¡»òÊÇ·ÅÆú³öÅÆ 
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= 101290;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -1053,14 +1053,14 @@ void changePcAct(int x, int y, int dir, int action,
 						ext->pActMagiccard[i]->gx		= Positiontable[effectno].petX + x; 
 						ext->pActMagiccard[i]->gy		= Positiontable[effectno].petY + y;
 						ext->pActMagiccard[i]->dispPrio	= DISP_PRIO_RESERVE;
-						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//æ–¹å‘
+						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//·½Ïò
 					}
 
 					ext->pActMagiccard[1]->anim_no		= ANIM_STAND;
 
-					if(effectparam2 == 1)	//å® ç‰Œæ”»å‡»			
+					if(effectparam2 == 1)	//³èÅÆ¹¥»÷			
 						ext->pActMagiccard[2]->anim_no		= ANIM_ATTACK;
-					else if(effectparam2 == 2)	//å® ç‰Œé˜²å¾¡	
+					else if(effectparam2 == 2)	//³èÅÆ·ÀÓù	
 					 	ext->pActMagiccard[2]->anim_no		= ANIM_GUARD;
 				}	
 #ifdef _MOVE_SCREEN
@@ -1082,7 +1082,7 @@ void changePcAct(int x, int y, int dir, int action,
 }
 
 
-// ??îºîŸ«???? /////////////////////////////////////////////////////////
+// ??ıÑ©???? /////////////////////////////////////////////////////////
 void clearPartyParam(void)
 {
 	int i;
@@ -1097,7 +1097,7 @@ void clearPartyParam(void)
 		{
 			if( party[i].id == pc.id)
 			{
-				// ????î™®??????????
+				// ????¥h??????????
 				if(party[i].ptAct != NULL)
 				{
 					party[i].ptAct->bufCount = 0;
@@ -1106,7 +1106,7 @@ void clearPartyParam(void)
 			}
 			else
 			{
-				// ??????????î•‚?????î™®????????
+				// ??????????¢\?????¥h????????
 				if((pc.status & CHR_STATUS_LEADER) != 0
 				 && party[i].ptAct != NULL)
 				{
@@ -1125,7 +1125,7 @@ void clearPartyParam(void)
 }
 
 
-// ??îºîŸ«?ptAct?NULL?îš¼????
+// ??ıÑ©?ptAct?NULL?¦V????
 void clearPtActPartyParam(void)
 {
 	int i;
@@ -1144,7 +1144,7 @@ void clearPtActPartyParam(void)
 
 
 
-// ???????????î“†î˜‹???????? /////////////////////////////
+// ???????????¡@¤e???????? /////////////////////////////
 int existCharacterListEntry(int index)
 {
 	if(index < 0 || index >= MAXCHARACTER)
@@ -1161,7 +1161,7 @@ int existCharacterListEntry(int index)
 }
 
 
-// ???????î™¯?î¡“????????
+// ???????¥i?ş????????
 int cmpNameCharacterList(char *name)
 {
 	int i;
@@ -1178,7 +1178,7 @@ int cmpNameCharacterList(char *name)
 #ifdef _AIDENGLU_
 extern Landed PcLanded;
 #endif
-// ??????????î“†î˜‹???????????î–º?????????????
+// ??????????¡@¤e???????????£t?????????????
 int setCharacterList(char *name, char *opt)
 {
 	int index;
@@ -1191,7 +1191,7 @@ int setCharacterList(char *name, char *opt)
 	if(index < 0 || index >= MAXCHARACTER)
 		return -1;
 #ifdef _AIDENGLU_
-	memset(PcLanded.ç™»é™†äººç‰©åç§°[index],0,32);
+	memset(PcLanded.µÇÂ½ÈËÎïÃû³Æ[index],0,32);
 #endif
 	memset(&chartable[index], 0, sizeof(CHARLISTTABLE));
 
@@ -1217,13 +1217,13 @@ int setCharacterList(char *name, char *opt)
 	chartable[index].attr[3]	= getIntegerToken(opt, '|', 13)/10;
 	chartable[index].login		= getIntegerToken(opt, '|', 14);
 #ifdef _AIDENGLU_
-	strcpy(PcLanded.ç™»é™†äººç‰©åç§°[index],name);
+	strcpy(PcLanded.µÇÂ½ÈËÎïÃû³Æ[index],name);
 #endif
 	return 0;
 }
 
 
-// ???????îš ?????
+// ???????¥›?????
 //   int index : ???????0  ~ 7
 int resetCharacterList(int index)
 {
@@ -1236,7 +1236,7 @@ int resetCharacterList(int index)
 }
 
 
-// ?????î³? /////////////////////////////////////////////////////////
+// ?????ü¨? /////////////////////////////////////////////////////////
 void getItem(void)
 {
 	float tmpDir;
@@ -1244,31 +1244,31 @@ void getItem(void)
 	int dir;
 	static unsigned int piSendTime = 0;
 
-	// ?î˜º???????????????î³????????
+	// ?¤•???????????????ü¨????????
 	if(windowTypeWN == WINDOW_MESSAGETYPE_ITEMSHOPMENU
 	 || windowTypeWN == WINDOW_MESSAGETYPE_ITEMSHOPMAIN
 	 || windowTypeWN == WINDOW_MESSAGETYPE_LIMITITEMSHOPMAIN)
 		return;
 
-	// î“±î•¶î“?î”±????î“ƒ??????????????
+	// ¡k¢‘¡I?¢K????şü??????????????
 	if(ABS(nowGx - mouseMapGx) > 1
 	 || ABS(nowGy - mouseMapGy) > 1)
 		return;
 
-	// î“±î•¶î“??????î—•???????????
+	// ¡k¢‘¡I??????£???????????
 	if(!checkCharObjPoint(mouseMapGx, mouseMapGy,
 		CHAROBJ_TYPE_NPC|CHAROBJ_TYPE_ITEM|CHAROBJ_TYPE_MONEY))
 //		CHAROBJ_TYPE_ITEM|CHAROBJ_TYPE_MONEY))
 		return;
 
-	// ???????îŸµ??î—•??
+	// ???????©˜??£??
 	tmpX = (float)(mouseMapGx - nowGx);
 	tmpY = (float)(mouseMapGy - nowGy);
 	tmpDir = Atan(tmpX, tmpY) + 22.5F - 45.0F*3;
 	AdjustDir(&tmpDir);
 	dir = (int)(tmpDir/45);
 
-	// ?îº?î’
+	// ?ûÍ?şÉ
 	if(piSendTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())
 	{
 		// ??????
@@ -1334,7 +1334,7 @@ BOOL TalkToNPC(void)
 
 #endif
 
-// ?????îš¼?î•œ? /////////////////////////////////////////////////////
+// ?????¦V?¢v? /////////////////////////////////////////////////////
 void swapItem(int from, int to)
 {
 	if(from < 0 || to < 0)
@@ -1381,7 +1381,7 @@ void swapItem(int from, int to)
 #endif
 }
 
-// î’—?î–±?îš¼??
+// şĞ?£k?¦V??
 /*void swapInteger(int *a, int *b)
 {
 	int tmp;
@@ -1402,7 +1402,7 @@ void swapItem(int from, int to)
 }*/
 
 
-// î°???îš¼?î•œ??????255î°????î°???
+// §ó???¦V?¢v??????255§ó????§ó???
 /*void swapString(char *a, char *b)
 {
 	char tmp[256];
@@ -1416,7 +1416,7 @@ void swapItem(int from, int to)
 }
 */
 
-// ?î“ƒ????????? /////////////////////////////////////////////////
+// ?şü????????? /////////////////////////////////////////////////
 BOOL lookAtAround(void)
 {
 	float tmpDir;
@@ -1424,32 +1424,32 @@ BOOL lookAtAround(void)
 	int dir;
 	static unsigned int lSendTime = 0;
 
-	// ?î˜º???????????????????????
+	// ?¤•???????????????????????
 	if(windowTypeWN == WINDOW_MESSAGETYPE_ITEMSHOPMENU
 	 || windowTypeWN == WINDOW_MESSAGETYPE_ITEMSHOPMAIN
 	 || windowTypeWN == WINDOW_MESSAGETYPE_LIMITITEMSHOPMAIN)
 		return FALSE;
 
-	// î“±î•¶î“?î”±????î“ƒ??????????????
+	// ¡k¢‘¡I?¢K????şü??????????????
 	if(ABS(nowGx - mouseMapGx) > 2
 	 || ABS(nowGy - mouseMapGy) > 2)
 		return FALSE;
 
-	// î“±î•¶î“??????î—•???????????
+	// ¡k¢‘¡I??????£???????????
 	if(!checkCharObjPoint(mouseMapGx, mouseMapGy, CHAROBJ_TYPE_LOOKAT))
 		return FALSE;
 
-	// ???????îŸµ??î—•??
+	// ???????©˜??£??
 	tmpX = (float)(mouseMapGx - nowGx);
 	tmpY = (float)(mouseMapGy - nowGy);
-	if(tmpX == 0 && tmpY == 0)	// ?î•îœŸ?î¯?î˜î¤?????????î??
+	if(tmpX == 0 && tmpY == 0)	// ?û¨§Y?ıÆ?û«§Æ?????????û¢??
 		return FALSE;
 
 	tmpDir = Atan(tmpX, tmpY) + 22.5F - 45.0F*3;
 	AdjustDir(&tmpDir);
 	dir = (int)(tmpDir/45);
 
-	// ?îº?î’
+	// ?ûÍ?şÉ
 	if(lSendTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())
 	{
 		// ??????
@@ -1475,11 +1475,11 @@ int addressBookY = 16;
 int addressBookPage = 0;
 ACTION *ptActAddressBookChar[MAX_ADR_BOOK_COUNT];
 
-// î“±î•¶???î°?????
+// ¡k¢‘???§ó?????
 int addressBookSelectStrItem[1+3*MAX_ADR_BOOK_COUNT];
-// 0 ... î¼??
-// n*3+1 ... ?î‘˜
-// n*3+2 ... î¢î‘˜
+// 0 ... ¨–??
+// n*3+1 ... ?ıï
+// n*3+2 ... ûõıï
 // n*3+3 ... ??
 
 
@@ -1521,7 +1521,7 @@ void addressBookProc(void)
 	{
 		// ??????????????
 		ptActAddressBookWin = MakeWindowDisp(addressBookX, addressBookY, 4, 8, NULL, 1);
-		// ?î—?????????
+		// ?ûê?????????
 		for(i = 0; i < MAX_ADR_BOOK_COUNT; i++)
 		{
 			no = addressBookPage*MAX_ADR_BOOK_COUNT+i;
@@ -1539,7 +1539,7 @@ void addressBookProc(void)
 			}
 		}
 	}
-	// ????????î¼??
+	// ????????¨–??
 	else
 	if(!addressBookFlag
 	 && ptActAddressBookWin != NULL)
@@ -1555,7 +1555,7 @@ void addressBookProc(void)
 			}
 		}
 	}
-	// ???????î¸î•
+	// ???????¤úû¨
 	else
 	if(addressBookFlag
 	 && ptActAddressBookWin != NULL)
@@ -1565,7 +1565,7 @@ void addressBookProc(void)
 }
 
 
-// ???????î¸î•
+// ???????¤úû¨
 void addressBookWindow1(void)
 {
 	int mode = 0;
@@ -1573,7 +1573,7 @@ void addressBookWindow1(void)
 	int no;
 	char msg[256];
 
-	// î°???î“±î•¶??????????
+	// §ó???¡k¢‘??????????
 	// ???????????????????
 	if(mouse.onceState & MOUSE_LEFT_CRICK)
 	{
@@ -1587,7 +1587,7 @@ void addressBookWindow1(void)
 		}
 	}
 
-	// î¼????????????î·??
+	// ¨–????????????ü¬??
 	if(mode == 1)
 	{
 		addressBookFlag = FALSE;
@@ -1604,7 +1604,7 @@ void addressBookWindow1(void)
 			old_lssproto_DAB_send(sockfd, addressBookPage*MAX_ADR_BOOK_COUNT+((mode-2)/3));
 	}
 
-	// ???????????î·?????î‘²?î¸î•
+	// ???????????ü¬?????ş«?¤úû¨
 	if(ptActAddressBookWin->hp >= 1)
 	{
 		for(i = 0; i < MAX_ADR_BOOK_COUNT; i++)
@@ -1613,45 +1613,45 @@ void addressBookWindow1(void)
 
 			if(ptActAddressBookChar[i] != NULL)
 			{
-				// î¡“î“·?????????îš¼???????
+				// ş¡q?????????¦V???????
 				if(strlen(addressBook[no].name) > 0)
 				{
-					// ??????îœ±?????îºîŸ«î¸î•
-					// ???î¸î•
+					// ??????§k?????ıÑ©¤úû¨
+					// ???¤úû¨
 					ptActAddressBookChar[i]->atr &= (~ACT_ATR_HIDE);
 					ptActAddressBookChar[i]->anim_chr_no = addressBook[no].graNo;
-					// î¡“î“·î¸î•
+					// ş¡q¤úû¨
 					sprintf_s(msg, "NAME. %s", addressBook[no].name);
 					StockFontBuffer(addressBookX + 68, addressBookY + i * 110 + 28,
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, msg, 0);
 				
-					// ???î¸î•
+					// ???¤úû¨
 					sprintf_s(msg, "LV. %d", addressBook[no].level);
 					StockFontBuffer(addressBookX + 68, addressBookY + i * 110 + 46,
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, msg, 0);
-					// ?????î¸î•
+					// ?????¤úû¨
 					if(addressBook[i].onlineFlag != 0)
 					{
 						StockFontBuffer(addressBookX + 130, addressBookY + i * 110 + 46,
-							FONT_PRIO_FRONT, FONT_PAL_WHITE, "çº¿ä¸Š", 0);
+							FONT_PRIO_FRONT, FONT_PAL_WHITE, "ÏßÉÏ", 0);
 					}
 					else
 					{
 						StockFontBuffer(addressBookX + 130, addressBookY + i * 110 + 46,
-							FONT_PRIO_FRONT, FONT_PAL_GRAY, "æ–­çº¿", 0);
+							FONT_PRIO_FRONT, FONT_PAL_GRAY, "¶ÏÏß", 0);
 					}
-					// ?î‘˜???î¸î•
+					// ?ıï???¤úû¨
 					addressBookSelectStrItem[i*3+1] =
 						StockFontBuffer(addressBookX + 68, addressBookY + i * 110 + 64,
-							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "é€ä¿¡", 2);
-					// î¢î‘˜???î¸î•
+							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ËÍĞÅ", 2);
+					// ûõıï???¤úû¨
 					addressBookSelectStrItem[i*3+2] =
 						StockFontBuffer(addressBookX + 112, addressBookY + i * 110 + 64,
-							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "æ”¶ä¿¡", 2);
-					// ?????î¸î•
+							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ÊÕĞÅ", 2);
+					// ?????¤úû¨
 					addressBookSelectStrItem[i*3+3] =
 						StockFontBuffer(addressBookX + 156, addressBookY + i * 110 + 64,
-							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "åˆ é™¤", 2);
+							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "É¾³ı", 2);
 				}
 				else
 				{
@@ -1664,14 +1664,14 @@ void addressBookWindow1(void)
 
 		addressBookSelectStrItem[0] =
 			StockFontBuffer(addressBookX + 56, addressBookY + 352,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³é—­", 2);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø±Õ", 2);
 	}
 }
 
 int CHAR_getMaxHaveGold()
 {
 	int MaxGold;
-#ifdef _FIX_MAXGOLD				// WON ADD å¢åŠ äººç‰©é‡‘é’±ä¸Šé™
+#ifdef _FIX_MAXGOLD				// WON ADD Ôö¼ÓÈËÎï½ğÇ®ÉÏÏŞ
 	int trans = pc.transmigration;
 	MaxGold = 1000000 + trans*(1800000);
 #else

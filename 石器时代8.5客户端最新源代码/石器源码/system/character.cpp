@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /* WIN32_LEAN_AND_MEAN?define???WINDOWS.H???
-????îŒ¸?????î¤??????????????
+????úé?????§Æ??????????????
 ????????????????? */
 #define WIN32_LEAN_AND_MEAN 
 #include <windows.h>
@@ -39,20 +39,20 @@ enum
 //#define MAX_CHAROBJ	1000
 #define MAX_CHAROBJ	1500
 CHAROBJ charObj[MAX_CHAROBJ];
-int maxCharObj;		// î™‘??
-int tailCharObj;	// ???????î“?î–º
-int freeCharObj;	// ???????î–º
-int searchCharObj;	// ???î–º
+int maxCharObj;		// ¥K??
+int tailCharObj;	// ???????§?£t
+int freeCharObj;	// ???????£t
+int searchCharObj;	// ???£t
 
-#ifdef _AniCharBubble	   // Syu ADD åŠ¨ç”»å±‚äººç‰©åå‡ºæ°”æ³¡
+#ifdef _AniCharBubble	   // Syu ADD ¶¯»­²ãÈËÎïÍÂ³öÆøÅİ
 #define RAND(x,y)   ((x-1)+1+ (int)( (double)(y-(x-1))*rand()/(RAND_MAX+1.0)) )
-bool popflag = false;		//äººç‰©äº§ç”Ÿæ°”æ³¡ä¸å¦æ——æ ‡
-bool waittimeflag = false;  //æ°”æ³¡ç»“æŸåç­‰å¾…æ—¶é—´æ——æ ‡
-int waittime = 0 ;			//æ°”æ³¡ç»“æŸåç­‰å¾…æ—¶é—´
-static ACTION *popAct;		//æ°”æ³¡åŠ¨ç”»
+bool popflag = false;		//ÈËÎï²úÉúÆøÅİÓë·ñÆì±ê
+bool waittimeflag = false;  //ÆøÅİ½áÊøºóµÈ´ıÊ±¼äÆì±ê
+int waittime = 0 ;			//ÆøÅİ½áÊøºóµÈ´ıÊ±¼ä
+static ACTION *popAct;		//ÆøÅİ¶¯»­
 #endif
 
-// ?????????????îŸ‰??
+// ?????????????¨Á??
 int charIconOffsetY[12] =
 {
 	-71, -88, -84, -88, -96, -102, -88, -88, -88, -85, -85, -88
@@ -77,21 +77,21 @@ int battleIconTbl[][2] =
 #ifdef _NPC_MAGICCARD
 struct Posstruct Positiontable[]=
 {	
-	{19,12,17,12,18,11},	//0 ç©å®¶
-	{18,17,16,15,17,14},	//1 ç©å®¶
-	{13,18,13,16,14,15},	//2 ç©å®¶
-	{ 9,14,11,14,12,13},	//3 ç©å®¶
-	{10, 9,12,11,13,10},	//4 ç©å®¶
-	{15, 8,15,10,16, 9},	//5 ç©å®¶
-	{15,12,14,13,15,12},	//6 åº„å®¶
+	{19,12,17,12,18,11},	//0 Íæ¼Ò
+	{18,17,16,15,17,14},	//1 Íæ¼Ò
+	{13,18,13,16,14,15},	//2 Íæ¼Ò
+	{ 9,14,11,14,12,13},	//3 Íæ¼Ò
+	{10, 9,12,11,13,10},	//4 Íæ¼Ò
+	{15, 8,15,10,16, 9},	//5 Íæ¼Ò
+	{15,12,14,13,15,12},	//6 ×¯¼Ò
 /*
-	{23, 9,21, 9,22, 8},	//0 ç©å®¶
-	{22,14,20,12,21,11},	//1 ç©å®¶
-	{17,15,17,13,18,12},	//2 ç©å®¶
-	{13,11,15,11,16,10},	//3 ç©å®¶
-	{14, 6,16, 8,17, 7},	//4 ç©å®¶
-	{19, 5,19, 7,20, 6},	//5 ç©å®¶
-	{18,10,18,10,19, 9},	//6 åº„å®¶	
+	{23, 9,21, 9,22, 8},	//0 Íæ¼Ò
+	{22,14,20,12,21,11},	//1 Íæ¼Ò
+	{17,15,17,13,18,12},	//2 Íæ¼Ò
+	{13,11,15,11,16,10},	//3 Íæ¼Ò
+	{14, 6,16, 8,17, 7},	//4 Íæ¼Ò
+	{19, 5,19, 7,20, 6},	//5 Íæ¼Ò
+	{18,10,18,10,19, 9},	//6 ×¯¼Ò	
 */
 };
 
@@ -114,13 +114,13 @@ int fonttbl[60]={
 };
 #endif
 /*
-	{23, 9,21, 9,22, 8, 5,-1},	//0 ç©å®¶
-	{22,14,20,12,21,11, 4, 4},//1 ç©å®¶
-	{17,15,17,13,18,12,-1, 5},	//2 ç©å®¶
-	{13,11,15,11,16,10,-5, 1},	//3 ç©å®¶
-	{18,10,16, 8,17, 7,-4,-4},	//4 ç©å®¶
-	{19, 5,19, 7,20, 6, 1,-5},	//5 ç©å®¶
-	{18,18,18,10,19, 9, 0, 0},	//6 åº„å®¶	
+	{23, 9,21, 9,22, 8, 5,-1},	//0 Íæ¼Ò
+	{22,14,20,12,21,11, 4, 4},//1 Íæ¼Ò
+	{17,15,17,13,18,12,-1, 5},	//2 Íæ¼Ò
+	{13,11,15,11,16,10,-5, 1},	//3 Íæ¼Ò
+	{18,10,16, 8,17, 7,-4,-4},	//4 Íæ¼Ò
+	{19, 5,19, 7,20, 6, 1,-5},	//5 Íæ¼Ò
+	{18,18,18,10,19, 9, 0, 0},	//6 ×¯¼Ò	
 */
 
 short nameOverTheHeadFlag = 1;
@@ -135,13 +135,13 @@ void charProc( ACTION *ptAct )
 	int no;
 	CHAREXTRA *ext;
 	int pFlag = 0;
-	// ?î™®??
-	// PC???????î˜î“·??î™®??
-	// PC?????î™®????îš¼???????î™®??
+	// ?¥h??
+	// PC???????û«¡q??¥h??
+	// PC?????¥h????¦V???????¥h??
 	if( pc.ptAct != ptAct ){
 		ext = (CHAREXTRA *)ptAct->pYobi;
 		no = ext->charObjTblId;
-		// ?????îš¼??????????????
+		// ?????¦V??????????????
 		if( (charObj[no].status & CHR_STATUS_PARTY) == 0 ){
 			charMove( ptAct );
 			pFlag = 0;
@@ -155,7 +155,7 @@ void charProc( ACTION *ptAct )
 			charObj[no].stockDirY = 0;
 		}
 	}
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 #ifdef _MOVE_SCREEN
 	if (pc.bMoveScreenMode)
 		camMapToGamen(ptAct->mx - iScreenMoveX * GRID_SIZE, ptAct->my - iScreenMoveY * GRID_SIZE, &mx, &my);
@@ -165,7 +165,7 @@ void charProc( ACTION *ptAct )
 	
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
-	// ??????????î¸î•
+	// ??????????¤úû¨
 #ifdef _NPC_PICTURE
 #endif
 	drawCharStatus( ptAct );
@@ -195,7 +195,7 @@ void charProc( ACTION *ptAct )
 	if( pc.ptAct != ptAct ){
 		if( charObj[no].newFoundFlag ){
 			S2 xx, yy, ww, hh;
-			// ?î¡¡îš ??????
+			// ?ş¥›??????
 			realGetPos( ptAct->bmpNo, &xx, &yy );
 			realGetWH( ptAct->bmpNo, &ww, &hh );
 			xx += ptAct->x;
@@ -210,14 +210,14 @@ void charProc( ACTION *ptAct )
 	if( 20000 <= ptAct->anim_chr_no && ptAct->anim_chr_no <= 24999 ){
 		// ????
 		if( pc.ptAct != ptAct ){
-			// îœª???î??????î?
+			// §d???üÒ??????ı¤?
 			if( ptAct->gx < nowGx-16 || nowGx+16 < ptAct->gx
 			 || ptAct->gy < nowGy-16 || nowGy+16 < ptAct->gy ){
 				delCharObj( charObj[no].id );
 				return;
 			}
 		}
-		// î™¯??î–º?????î¸î•???
+		// ¥i??£t?????¤úû¨???
 		if( !itemOverlapCheck( ptAct->bmpNo, ptAct->gx, ptAct->gy ) ){
 			// ??????????????
 			setCharPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my
@@ -238,8 +238,8 @@ void charProc( ACTION *ptAct )
  );
 	}
 }
-//æ°´ä¸–ç•ŒActionå¥—ç”¨Charçš„Actionä¿®æ”¹
-#ifdef _WATERANIMATION //Syu ADD æ³ªä¹‹æµ·åŠ¨ç”»å±‚
+//Ë®ÊÀ½çActionÌ×ÓÃCharµÄActionĞŞ¸Ä
+#ifdef _WATERANIMATION //Syu ADD ÀáÖ®º£¶¯»­²ã
 void waterAniProc( ACTION *ptAct )
 {
 	float mx, my;
@@ -247,13 +247,13 @@ void waterAniProc( ACTION *ptAct )
 	int no;
 	CHAREXTRA *ext;
 	int pFlag;
-	// ?î™®??
-	// PC???????î˜î“·??î™®??
-	// PC?????î™®????îš¼???????î™®??
+	// ?¥h??
+	// PC???????û«¡q??¥h??
+	// PC?????¥h????¦V???????¥h??
 	if( pc.ptAct != ptAct ){
 		ext = (CHAREXTRA *)ptAct->pYobi;
 		no = ext->charObjTblId;
-		// ?????îš¼??????????????
+		// ?????¦V??????????????
 		if( (charObj[no].status & CHR_STATUS_PARTY) == 0 ){
 			charMove( ptAct );
 			pFlag = 0;
@@ -267,12 +267,12 @@ void waterAniProc( ACTION *ptAct )
 			charObj[no].stockDirY = 0;
 		}
 	}
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
-	// ??????????î¸î•
-	//  ä¸å–æ¶ˆæ‰äººç‰©çŠ¶æ€ä¼šè¢«å¤åˆ¶åˆ°å…¶ä»–ACTION
+	// ??????????¤úû¨
+	//  ²»È¡ÏûµôÈËÎï×´Ì¬»á±»¸´ÖÆµ½ÆäËûACTION
 	//	drawCharStatus( ptAct );
 	// ?????????
 	if( ptAct->anim_no == ANIM_HAND
@@ -300,7 +300,7 @@ void waterAniProc( ACTION *ptAct )
 	if( pc.ptAct != ptAct ){
 		if( charObj[no].newFoundFlag ){
 			S2 xx, yy, ww, hh;
-			// ?î¡¡îš ??????
+			// ?ş¥›??????
 			realGetPos( ptAct->bmpNo, &xx, &yy );
 			realGetWH( ptAct->bmpNo, &ww, &hh );
 			xx += ptAct->x;
@@ -315,17 +315,17 @@ void waterAniProc( ACTION *ptAct )
 	if( 20000 <= ptAct->anim_chr_no && ptAct->anim_chr_no <= 24999 ){
 		// ????
 		if( pc.ptAct != ptAct ){
-			// îœª???î??????î?
+			// §d???üÒ??????ı¤?
 			if( ptAct->gx < nowGx-16 || nowGx+16 < ptAct->gx
 			 || ptAct->gy < nowGy-16 || nowGy+16 < ptAct->gy ){
 				delCharObj( charObj[no].id );
 				return;
 			}
 		}
-		// î™¯??î–º?????î¸î•???
+		// ¥i??£t?????¤úû¨???
 		if( !itemOverlapCheck( ptAct->bmpNo, ptAct->gx, ptAct->gy ) ){
 			// ??????????????
-#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD ä¿®æ”¹å›¾å±‚
+#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD ĞŞ¸ÄÍ¼²ã
 			setPartsPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my,ptAct->dispPrio);
 #else
 			setCharPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my
@@ -340,7 +340,7 @@ void waterAniProc( ACTION *ptAct )
 	}else{
 		// ????????
 		// ??????????????
-#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD ä¿®æ”¹å›¾å±‚
+#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD ĞŞ¸ÄÍ¼²ã
 		setPartsPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my,ptAct->dispPrio);
 #else
 		setCharPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my
@@ -351,10 +351,10 @@ void waterAniProc( ACTION *ptAct )
 #endif
 	}
 }
-/* graNo	 Språ›¾å·
-   gx		 äº§ç”Ÿçš„xåº§æ ‡
-   gy	  	 äº§ç”Ÿçš„yåº§æ ‡
-   dispprio  å›¾æ¡ˆçš„è¦†ç›–é¡ºåº
+/* graNo	 SprÍ¼ºÅ
+   gx		 ²úÉúµÄx×ù±ê
+   gy	  	 ²úÉúµÄy×ù±ê
+   dispprio  Í¼°¸µÄ¸²¸ÇË³Ğò
 */
 
 ACTION *createWaterAnimation( int graNo, int gx, int gy, int dispprio )
@@ -388,46 +388,46 @@ ACTION *createWaterAnimation( int graNo, int gx, int gy, int dispprio )
 }
 
 #endif
-// ????????????î’•
+// ????????????şÎ
 ACTION *createCharAction( int graNo, int gx, int gy, int dir )
 {
 	ACTION *ptAct;
 	float mx, my;
-	/* ?????????î™‘? */
+	/* ?????????¥K? */
 	ptAct = GetAction( PRIO_CHR, sizeof( CHAREXTRA ) );
 	if( ptAct == NULL )
 		return NULL;
-	// î¯???
+	// ûÂ???
 	ptAct->func = charProc;
-	// ???????îœ±?
+	// ???????§k?
 	ptAct->anim_chr_no = graNo;
-	// î™®?îœ±?
+	// ¥h?§k?
 	ptAct->anim_no = ANIM_STAND;
 	// ?????????( ??? )( ??????? )
 	ptAct->anim_ang = dir;
-	// î¸î•?î“î™š
+	// ¤úû¨?¡I¥T
 //	ptAct->dispPrio =	DISP_PRIO_BOX3;
 	ptAct->dispPrio = DISP_PRIO_CHAR;
-	// 1?????î¸î•???
+	// 1?????¤úû¨???
 	ptAct->atr = ACT_ATR_INFO |	ACT_ATR_HIT | ACT_ATR_HIDE2;
-	// ???î–º
-	ptAct->nextGx = gx;					// ????????î³??î™®î“?
+	// ???£t
+	ptAct->nextGx = gx;					// ????????¤õ??¥h¡I?
 	ptAct->nextGy = gy;
 	ptAct->bufCount = 0;
-	ptAct->gx = gx;						// ????????î³???ä½‹?
+	ptAct->gx = gx;						// ????????¤õ???Ô?
 	ptAct->gy = gy;
-	ptAct->mx = (float)gx * GRID_SIZE;	// ????î³
+	ptAct->mx = (float)gx * GRID_SIZE;	// ????¤õ
 	ptAct->my = (float)gy * GRID_SIZE;
-	ptAct->vx = 0;						// ?î™®?î¤
+	ptAct->vx = 0;						// ?¥h?§Æ
 	ptAct->vy = 0;
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
 	return ptAct;
 }
 
-// ?????î™®î“?????????
+// ?????¥h¡I?????????
 void stockCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 {
 	if( ptAct == NULL )
@@ -438,14 +438,14 @@ void stockCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 		ptAct->bufGy[ptAct->bufCount] = nextGy;
 		ptAct->bufCount++;
 	}else{
-	// ??????î›³?????????
+	// ??????¦?????????
 		ptAct->bufCount = 0;
 		setCharWarpPoint( ptAct, nextGx, nextGy );
 	}
 }
 
-// ?????î™®î“?????????îŸœî’œ?î§?????îŸœî’œ??
-//??????????????î???î–±?????îŸœî’œ???
+// ?????¥h¡I?????????¨ùşÕ?¢¬?????¨ùşÕ??
+//??????????????§Š???£k?????¨ùşÕ???
 void correctCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 {
 	int dx, dy;
@@ -455,8 +455,8 @@ void correctCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 	int nextGx2, nextGy2;
 	if( ptAct == NULL )
 		return;
-	// îŸœî’œ?î§??????
-	// ??????????????next?î???
+	// ¨ùşÕ?¢¬??????
+	// ??????????????next?§{???
 	if( ptAct->bufCount <= 0 ){
 		nextGx2 = ptAct->nextGx;
 		nextGy2 = ptAct->nextGy;
@@ -491,14 +491,14 @@ void correctCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 			ptAct->bufCount++;
 		}
 	}else{
-	// ??????î›³?????????
+	// ??????¦?????????
 		ptAct->bufCount = 0;
 		nCnt--;
 		setCharWarpPoint( ptAct, nGx[nCnt], nGy[nCnt] );
 	}
 }
 
-// ?????î™®î“î“†î˜‹
+// ?????¥h¡I¡@¤e
 void setCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 {
 	float dir1;
@@ -568,7 +568,7 @@ void _setCharMovePoint( ACTION *ptAct, int nextGx, int nextGy )
 	}
 }
 
-// ???î³??????????
+// ???¤õ??????????
 void shiftBufCount( ACTION *ptAct )
 {
 	int i;
@@ -582,7 +582,7 @@ void shiftBufCount( ACTION *ptAct )
 	}
 }
 
-// ????î™®??
+// ????¥h??
 void charMove( ACTION *ptAct )
 {
 	float mx, my;
@@ -590,9 +590,9 @@ void charMove( ACTION *ptAct )
 		return;
 	mx = (float)ptAct->nextGx*GRID_SIZE;
 	my = (float)ptAct->nextGy*GRID_SIZE;
-	// ??????î‘???????î™®î“?î“†î˜‹??
+	// ??????ıõ???????¥h¡I?¡@¤e??
 	if( mx == ptAct->mx && my == ptAct->my ){
-		// ????????î³?????î“†î˜‹
+		// ????????¤õ?????¡@¤e
 		if( ptAct->bufCount > 0 ){
 			setCharMovePoint( ptAct, ptAct->bufGx[0], ptAct->bufGy[0] );
 			shiftBufCount( ptAct );
@@ -600,9 +600,9 @@ void charMove( ACTION *ptAct )
 	}
 	mx = (float)ptAct->nextGx*GRID_SIZE;
 	my = (float)ptAct->nextGy*GRID_SIZE;
-	// ?î™®???
+	// ?¥h???
 	if( ptAct->vx != 0 || ptAct->vy != 0 ){
-		// ?î˜«ä½‹?????????????
+		// ?¤†Ô?????????????
 		if( pointLen2( ptAct->mx, ptAct->my, mx, my )
 			<= ptAct->vx*ptAct->vx+ptAct->vy*ptAct->vy ){
 			ptAct->mx = mx;
@@ -610,14 +610,14 @@ void charMove( ACTION *ptAct )
 			ptAct->vx = 0;
 			ptAct->vy = 0;
 		}else{
-		// ?î™®
+		// ?¥h
 			ptAct->mx += ptAct->vx;
 			ptAct->my += ptAct->vy;
 		}
-		// ?î™®???
+		// ?¥h???
 		ptAct->anim_no = ANIM_WALK;
 	}else{
-		// îŸš?î™®????î¿î•š?
+		// ¨÷?¥h????ıÖ¢t?
 		if( ptAct->walkFlag != 0 )
 			ptAct->anim_no = ANIM_STAND;
 		ptAct->walkFlag = 0;
@@ -626,7 +626,7 @@ void charMove( ACTION *ptAct )
 	ptAct->gy = (int)(ptAct->my/GRID_SIZE);
 }
 
-// ????î™®????î™®?????
+// ????¥h????¥h?????
 void charMove2( ACTION *ptAct )
 {
 	float mx, my;
@@ -634,9 +634,9 @@ void charMove2( ACTION *ptAct )
 		return;
 	mx = (float)ptAct->nextGx*GRID_SIZE;
 	my = (float)ptAct->nextGy*GRID_SIZE;
-	// ?î™®???
+	// ?¥h???
 	if( ptAct->vx != 0 || ptAct->vy != 0 ){
-		// ?î˜«ä½‹?????????????
+		// ?¤†Ô?????????????
 		if( pointLen2( ptAct->mx, ptAct->my, mx, my )
 			<= ptAct->vx*ptAct->vx+ptAct->vy*ptAct->vy ){
 			ptAct->mx = mx;
@@ -644,14 +644,14 @@ void charMove2( ACTION *ptAct )
 			ptAct->vx = 0;
 			ptAct->vy = 0;
 		}else{
-		// ?î™®
+		// ?¥h
 			ptAct->mx += ptAct->vx;
 			ptAct->my += ptAct->vy;
 		}
-		// ?î™®???
+		// ?¥h???
 		ptAct->anim_no = ANIM_WALK;
 	}else{
-		// îŸš?î™®????î¿î•š?
+		// ¨÷?¥h????ıÖ¢t?
 		if( ptAct->walkFlag != 0 )
 			ptAct->anim_no = ANIM_STAND;
 		ptAct->walkFlag = 0;
@@ -660,7 +660,7 @@ void charMove2( ACTION *ptAct )
 	ptAct->gy = (int)(ptAct->my/GRID_SIZE);
 }
 
-// ????î™®????î™®?????
+// ????¥h????¥h?????
 void _charMove( ACTION *ptAct )
 {
 	float mx, my;
@@ -669,11 +669,11 @@ void _charMove( ACTION *ptAct )
 		return;
 	mx = (float)ptAct->nextGx*GRID_SIZE;
 	my = (float)ptAct->nextGy*GRID_SIZE;
-	// ?î™®???
+	// ?¥h???
 	if( ptAct->vx != 0 || ptAct->vy != 0 ){
 		vx = ptAct->vx * nowSpdRate;
 		vy = ptAct->vy * nowSpdRate;
-		// ?î˜«ä½‹?????????????
+		// ?¤†Ô?????????????
 		if( pointLen2( ptAct->mx, ptAct->my, mx, my )
 			<= vx*vx+vy*vy ){
 			ptAct->mx = mx;
@@ -681,14 +681,14 @@ void _charMove( ACTION *ptAct )
 			ptAct->vx = 0;
 			ptAct->vy = 0;
 		}else{
-		// ?î™®
+		// ?¥h
 			ptAct->mx += vx;
 			ptAct->my += vy;
 		}
-		// ?î™®???
+		// ?¥h???
 		ptAct->anim_no = ANIM_WALK;
 	}else{
-		// îŸš?î™®????î¿î•š?
+		// ¨÷?¥h????ıÖ¢t?
 		if( ptAct->walkFlag != 0 )
 			ptAct->anim_no = ANIM_STAND;
 		ptAct->walkFlag = 0;
@@ -697,7 +697,7 @@ void _charMove( ACTION *ptAct )
 	ptAct->gy = (int)(ptAct->my/GRID_SIZE);
 }
 
-// ???????î“î“†î˜‹
+// ???????¡I¡@¤e
 void setCharWarpPoint( ACTION *ptAct, int gx, int gy )
 {
 	if( ptAct == NULL )
@@ -712,16 +712,16 @@ void setCharWarpPoint( ACTION *ptAct, int gx, int gy )
 	ptAct->vy = 0;
 }
 
-// ?????????î“†î˜‹
+// ?????????¡@¤e
 //
 //   status : ?????????????
-//   smsg   : ?????îºîŸ«î°??
+//   smsg   : ?????ıÑ©§ó??
 //
-//  smsg??î’¶?status?î“†î˜‹??
+//  smsg??şï?status?¡@¤e??
 //
 void setCharStatus( unsigned short *status, char *smsg )
 {
-	// îš…
+	// ¥€
 	if( strstr( smsg, "P" ) )
 		*status |= CHR_STATUS_P;
 	else
@@ -731,12 +731,12 @@ void setCharStatus( unsigned short *status, char *smsg )
 		*status |= CHR_STATUS_N;
 	else
 		*status &= (~CHR_STATUS_N);
-	// î—¡?
+	// £œ?
 	if( strstr( smsg, "Q" ) )
 		*status |= CHR_STATUS_Q;
 	else
 		*status &= (~CHR_STATUS_Q);
-	// î’·?
+	// şğ?
 	if( strstr( smsg, "S" ) )
 		*status |= CHR_STATUS_S;
 	else
@@ -768,9 +768,9 @@ void setCharLeader( ACTION *ptAct )
 
 int getCharType(ACTION *ptAct)
 {
-	extern int äººç‰©å±è”½å¼€å…³;
+	extern int ÈËÎïÆÁ±Î¿ª¹Ø;
 	if(ProcNo!=PROC_GAME) return 0;
-	if(!äººç‰©å±è”½å¼€å…³ ) return 0;
+	if(!ÈËÎïÆÁ±Î¿ª¹Ø ) return 0;
 	CHAREXTRA *ext;
 	int no;
 	if( ptAct == NULL )
@@ -825,7 +825,7 @@ void delCharParty( ACTION *ptAct )
 	charObj[no].status &= (~CHR_STATUS_PARTY);
 }
 
-// ?????î“–î¿î•š???
+// ?????¡PıÖ¢t???
 void setCharWatch( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -837,7 +837,7 @@ void setCharWatch( ACTION *ptAct )
 	charObj[no].status |= CHR_STATUS_WATCH;
 }
 
-// ?????î“–î¿î•š???????
+// ?????¡PıÖ¢t???????
 void delCharWatch( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -1012,7 +1012,7 @@ void delNpcNotice( ACTION *ptAct)
 }
 #endif
 
-// ????î“–î™¬?
+// ????¡P¥f?
 void setCharBattle( ACTION *ptAct, int battleNo, short sideNo, short helpMode )
 {
 	CHAREXTRA *ext;
@@ -1031,7 +1031,7 @@ void setCharBattle( ACTION *ptAct, int battleNo, short sideNo, short helpMode )
 		charObj[no].status &= ~CHR_STATUS_HELP;
 }
 
-// ????î“–î™¬î·?
+// ????¡P¥fü¬?
 void delCharBattle( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -1043,7 +1043,7 @@ void delCharBattle( ACTION *ptAct )
 	charObj[no].status &= (~(CHR_STATUS_BATTLE | CHR_STATUS_HELP));
 }
 
-// äº¤æ˜“ä¸­
+// ½»Ò×ÖĞ
 //void setCharBattle( ACTION *ptAct, int battleNo, short sideNo, short helpMode )
 void setCharTrade( ACTION *ptAct, int battleNo )
 {
@@ -1057,7 +1057,7 @@ void setCharTrade( ACTION *ptAct, int battleNo )
 	//charObj[no].battleNo = battleNo;
 }
 
-// ????î“–î™¬î·?
+// ????¡P¥fü¬?
 void delCharTrade( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -1093,7 +1093,7 @@ void delCharAngel( ACTION *ptAct )
 }
 #endif
 
-// ????î£î??????î?
+// ????ûöüÓ??????üÒ?
 void setCharUseMagic( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -1105,9 +1105,9 @@ void setCharUseMagic( ACTION *ptAct )
 	charObj[no].status |= CHR_STATUS_USE_MAGIC;
 }
 
-// ????î£î??????î?????????
+// ????ûöüÓ??????üÒ?????????
 // ???????
-extern int äººç‰©å±è”½å¼€å…³;
+extern int ÈËÎïÆÁ±Î¿ª¹Ø;
 
 void delCharUseMagic( ACTION *ptAct )
 {
@@ -1120,7 +1120,7 @@ void delCharUseMagic( ACTION *ptAct )
 	charObj[no].status &= (~CHR_STATUS_USE_MAGIC);
 }
 
-// ??????î??î?
+// ??????üÒ??üÒ?
 void setCharFukidashi( ACTION *ptAct, unsigned int offTime )
 {
 	CHAREXTRA *ext;
@@ -1133,7 +1133,7 @@ void setCharFukidashi( ACTION *ptAct, unsigned int offTime )
 	ext->drawFukidashiTime = offTime + TimeGetTime();
 }
 
-// ??????î¸î•
+// ??????¤úû¨
 void drawCharStatus( ACTION *ptAct )
 {
 	CHAREXTRA *ext;
@@ -1147,7 +1147,7 @@ void drawCharStatus( ACTION *ptAct )
 	int sideNo;
 	int helpMode;
 	char msg[256];
-#ifdef _AniCharBubble	   // Syu ADD åŠ¨ç”»å±‚äººç‰©åå‡ºæ°”æ³¡
+#ifdef _AniCharBubble	   // Syu ADD ¶¯»­²ãÈËÎïÍÂ³öÆøÅİ
 	int RandAnimate;
 #endif
 
@@ -1175,7 +1175,7 @@ void drawCharStatus( ACTION *ptAct )
 #ifdef _CHAR_MANOR_
 	if( ext->ptmManorIcon ){
 		{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptmManorIcon)){
 					ATR_PAT_BAK_NO(ext->ptmManorIcon) = ATR_PAT_NO(ext->ptmManorIcon);
 					ATR_PAT_NO(ext->ptmManorIcon) = 0;
@@ -1187,7 +1187,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					ext->ptmManorIcon->x  = ptAct->x;
 					ext->ptmManorIcon->y  = ptAct->y;
 					ext->ptmManorIcon->mx = ptAct->mx;
@@ -1204,13 +1204,13 @@ void drawCharStatus( ACTION *ptAct )
 
 
 	if( (status & CHR_STATUS_BATTLE) != 0 ){
-		if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				realGetNo( battleIconTbl[(battleNo%10)][(sideNo%1)], &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
@@ -1226,13 +1226,13 @@ void drawCharStatus( ACTION *ptAct )
 
 	// Trade Mark
 	if( (status & CHR_STATUS_TRADE) != 0 ){
-		if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 
 			U4 bmpNo;
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				realGetNo( CG_TRADE_MARK, &bmpNo );		
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
 	#ifdef _SFUMATO
@@ -1251,16 +1251,16 @@ void drawCharStatus( ACTION *ptAct )
 			ext->ptActAngelMark =createCommmonEffectAction( 101865, ptAct->gx, ptAct->gy, 0, 0, DISP_PRIO_CHAR );
 
 	}else if( (status & CHR_STATUS_ANGEL) == 0 && ext->ptActAngelMark != NULL ) {
-		// ???????î¸î•???????î
+		// ???????¤úû¨???????ı¤
 		DeathAction( ext->ptActAngelMark );
 		ext->ptActAngelMark = NULL;
 	}else if( (status & CHR_STATUS_ANGEL) != 0 && ext->ptActAngelMark != NULL ) {
 		//int no;
 		//no = (ptAct->anim_chr_no - SPR_001em) / 20;
-		//no %= 12;	// î •??????î›???
+		//no %= 12;	// şP??????¦h???
 		// ???????????????
 		short x1,y1;
-		if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+		if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 			ext->ptActAngelMark->x  = ptAct->x;
 			ext->ptActAngelMark->y  = ptAct->y + ptAct->anim_y + 140;
 			ext->ptActAngelMark->mx = ptAct->mx;
@@ -1280,15 +1280,15 @@ void drawCharStatus( ACTION *ptAct )
 	}
 #endif
 
-	// ?î“–???
+	// ?¡P???
 	if( (status & CHR_STATUS_WATCH) != 0 ){
-		if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				realGetNo( CG_ICON_WATCHING, &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
@@ -1302,13 +1302,13 @@ void drawCharStatus( ACTION *ptAct )
 	}
 	// ??????
 	if( (status & CHR_STATUS_HELP) != 0 ){
-		if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				realGetNo( CG_SPEECH_HELP, &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_-20):-(y1/2+_FANILYTEXIAOY_-20), ptAct->mx, ptAct->my
@@ -1320,21 +1320,21 @@ void drawCharStatus( ACTION *ptAct )
 		}
 	}
 	// ???????
-	//???????î???î??
-	//??î“–???î???î??
+	//???????üÒ???ı¤??
+	//??¡P???üÒ???ı¤??
 	if( (status & CHR_STATUS_LEADER) != 0
 	 && ext->ptActLeaderMark == NULL
 	 && ((status & CHR_STATUS_BATTLE) == 0 || (status & CHR_STATUS_WATCH) == 0) ){
-		// ???????î¸î•???????î’•
+		// ???????¤úû¨???????şÎ
 		ext->ptActLeaderMark =
 			createCommmonEffectAction( SPR_leader, ptAct->gx, ptAct->gy, 0, 0, DISP_PRIO_CHAR );
 	}else if( ((status & CHR_STATUS_LEADER) == 0 || (status & CHR_STATUS_BATTLE) != 0)
 	 && ext->ptActLeaderMark != NULL ){
-		// ???????î¸î•???????î
+		// ???????¤úû¨???????ı¤
 		DeathAction( ext->ptActLeaderMark );
 		ext->ptActLeaderMark = NULL;
 	}else if( (status & CHR_STATUS_LEADER) != 0 && ext->ptActLeaderMark != NULL ){
-		if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 			if(ATR_PAT_NO(ext->ptActLeaderMark)){
 				ATR_PAT_BAK_NO(ext->ptActLeaderMark) = ATR_PAT_NO(ext->ptActLeaderMark);
 				ATR_PAT_NO(ext->ptActLeaderMark) = 0;
@@ -1346,7 +1346,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 			}
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				ext->ptActLeaderMark->x  = ptAct->x;
 				ext->ptActLeaderMark->y  = ptAct->y;
 				ext->ptActLeaderMark->mx = ptAct->mx;
@@ -1366,9 +1366,9 @@ void drawCharStatus( ACTION *ptAct )
 			}
 		}
 	}
-	// î£î?????
+	// ûöüÓ?????
 	if( (status & CHR_STATUS_USE_MAGIC) != 0 && ext->ptActMagicEffect == NULL ){
-		// î£î?????î¸î•???????î’•
+		// ûöüÓ?????¤úû¨???????şÎ
 		ext->ptActMagicEffect =
 			createCommmonEffectAction( SPR_effect01, ptAct->gx, ptAct->gy+1, 0, 0, DISP_PRIO_CHAR );
 		if( pc.ptAct != NULL && pc.ptAct == ptAct )
@@ -1376,7 +1376,7 @@ void drawCharStatus( ACTION *ptAct )
 		else
 			delCharUseMagic( ptAct );
 	}else if( ext->ptActMagicEffect != NULL ){
-		// î£î?????????????
+		// ûöüÓ?????????????
 		ext->ptActMagicEffect->x  = ptAct->x;
 		ext->ptActMagicEffect->y  = ptAct->y;
 		ext->ptActMagicEffect->mx = ptAct->mx;
@@ -1392,23 +1392,23 @@ void drawCharStatus( ACTION *ptAct )
 #endif
  );
 		}else{
-			// ??????????î·??
+			// ??????????ü¬??
 			DeathAction( ext->ptActMagicEffect );
 			ext->ptActMagicEffect = NULL;
 		}
 	}
-	// ??î????
+	// ??üÒ????
 	if( (status & CHR_STATUS_FUKIDASHI) != 0 ){
 		if( ext->drawFukidashiTime > TimeGetTime() ){
 			int no;
 			U4 bmpNo;
 			realGetNo( CG_ICON_FUKIDASI, &bmpNo );
 			if( SPR_001em <= ptAct->anim_chr_no && ptAct->anim_chr_no <= SPR_114bw ){
-				if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+				if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 					;//ATR_PAT_NO(ptAct) = 0;
 				}else{
 					short x1,y1;
-					if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+					if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 						setCharPrio( bmpNo, ptAct->x, ptAct->y, 20,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
 	#ifdef _SFUMATO
 							, ptAct->sfumato
@@ -1435,7 +1435,7 @@ void drawCharStatus( ACTION *ptAct )
 		if(!ext1->ptStreetVendor){
 			if(ptAct->TitleText.flg==1){
 				short x1,y1;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					PutTitleText(ptAct->x-ptAct->TitleText.len/2,ptAct->y-(y1/2+45)-12,0,ptAct->TitleText,0);
 				}
 			}	
@@ -1456,11 +1456,11 @@ void drawCharStatus( ACTION *ptAct )
 		StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-10, FONT_PRIO_BACK, ptAct->charNameColor, msg, 0 );
 	}
 
-#ifdef _GM_MARK				   // WON ADD GM è¯†åˆ«
+#ifdef _GM_MARK				   // WON ADD GM Ê¶±ğ
 	{
 		int graNo = ptAct->anim_chr_no ;
 
-		//ä¸‰ç§ï¼§ï¼­é€ å½¢
+		//ÈıÖÖ£Ç£ÍÔìĞÎ
 		if( (graNo == 100420) || (graNo == 100425) || (graNo == 100445) ){
 			static count1=1, count2=0;
 			char msg[256];
@@ -1472,20 +1472,20 @@ void drawCharStatus( ACTION *ptAct )
 			}
 
 			count2++;
-			sprintf_s( msg , "ï¼§ï¼­");
+			sprintf_s( msg , "£Ç£Í");
 			StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-110, FONT_PRIO_BACK, count1, msg, 1);	
 		}
 	}
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 		int i;
 		sprintf_s( msg , ptAct->gm_name);
         for(i=2;i>0;i--)
 	        StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-110-i, FONT_PRIO_BACK, i , msg, 1);
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 
 //	if( ptAct->profession_class != 0 ){
 	{
@@ -1493,9 +1493,9 @@ void drawCharStatus( ACTION *ptAct )
 
 		switch(pc.profession_class){
 		case 0:		sprintf_s( msg , "");	break;
-		case 1:		sprintf_s( msg , "ç™½ç‹¼å‹‡å£«");	break;
-		case 2:		sprintf_s( msg , "é—‡çµå·«å¸ˆ");	break;
-		case 3:		sprintf_s( msg , "è¿½çŒè€…");	break;
+		case 1:		sprintf_s( msg , "°×ÀÇÓÂÊ¿");	break;
+		case 2:		sprintf_s( msg , "éœÁéÎ×Ê¦");	break;
+		case 3:		sprintf_s( msg , "×·ÁÔÕß");	break;
 		}
 		sprintf_s( pc.profession_class_name , "%s" , msg ) ; 
 		//StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-110, FONT_PRIO_BACK, FONT_PAL_YELLOW, msg, 1);
@@ -1506,15 +1506,15 @@ void drawCharStatus( ACTION *ptAct )
 
 #endif
 
-#ifdef _AniCharBubble	   // Syu ADD åŠ¨ç”»å±‚äººç‰©åå‡ºæ°”æ³¡
+#ifdef _AniCharBubble	   // Syu ADD ¶¯»­²ãÈËÎïÍÂ³öÆøÅİ
 	if ( ( (nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
 		(nowFloor == 8027) || (nowFloor == 8028) || (nowFloor == 8029) || nowFloor == 8113 || nowFloor == 8114 ||
 		(nowFloor == 8015) ) && (popflag == false) && (waittimeflag == false))
 	{
-		RandAnimate = RAND ( 101508 , 101509 );  //éšæœºé€‰å–å·¦æ°”æ³¡æˆ–å³æ°”æ³¡
+		RandAnimate = RAND ( 101508 , 101509 );  //Ëæ»úÑ¡È¡×óÆøÅİ»òÓÒÆøÅİ
 		if ( popAct == NULL )  
 		{
-			//åšå·¦ã€å³æ°”æ³¡äº§ç”Ÿæ—¶éœ€è¦çš„åç§»å€¼
+			//×ö×ó¡¢ÓÒÆøÅİ²úÉúÊ±ĞèÒªµÄÆ«ÒÆÖµ
 			if( RandAnimate == 101508 )  
 				popAct = createWaterAnimation( RandAnimate , nowGx + 2 , nowGy - 1 , 30 );
 			if( RandAnimate == 101509 )
@@ -1523,7 +1523,7 @@ void drawCharStatus( ACTION *ptAct )
 		}
 	}
 	if ( waittimeflag == false && popAct != NULL)
-	if ( popAct->anim_cnt == 6 ) //æ‹¨æ”¾åˆ°æœ€åä¸€å¼ 
+	if ( popAct->anim_cnt == 6 ) //²¦·Åµ½×îºóÒ»ÕÅ
 	{
 		if ( popAct != NULL)
 		{
@@ -1533,7 +1533,7 @@ void drawCharStatus( ACTION *ptAct )
 		popflag = false;
 		waittimeflag = true;
 	}
-	if ( waittimeflag == true ) //è®¡æ—¶ç­‰å¾…ä¸‹ä¸€æ¬¡äº§ç”Ÿæ—¶é—´
+	if ( waittimeflag == true ) //¼ÆÊ±µÈ´ıÏÂÒ»´Î²úÉúÊ±¼ä
 	{
 		waittime ++ ;
 		if (waittime > 350 ) 
@@ -1565,7 +1565,7 @@ void drawCharStatus( ACTION *ptAct )
 			ext->ptActEmotion = NULL;
 			//pattern( ext->ptActEmotion, ANM_NOMAL_SPD, ANM_LOOP );
 		}else{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 				if(ATR_PAT_NO(ext->ptActEmotion)){
 					ATR_PAT_BAK_NO(ext->ptActEmotion) = ATR_PAT_NO(ext->ptActEmotion);
 					ATR_PAT_NO(ext->ptActEmotion) = 0;
@@ -1577,7 +1577,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					pattern( ext->ptActEmotion, ANM_NOMAL_SPD, ANM_LOOP );
 					setCharPrio( ext->ptActEmotion->bmpNo,
 						ext->ptActEmotion->x, ext->ptActEmotion->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_),
@@ -1592,11 +1592,11 @@ void drawCharStatus( ACTION *ptAct )
 	}
 #endif
 #ifdef _STREET_VENDOR
-	extern int äººç‰©å±è”½å¼€å…³;
+	extern int ÈËÎïÆÁ±Î¿ª¹Ø;
 	if(ext->ptStreetVendor){
 		BOOL pand = FALSE;
 
-		if(äººç‰©å±è”½å¼€å…³){
+		if(ÈËÎïÆÁ±Î¿ª¹Ø){
 			if(pc.ptAct == ptAct) pand = TRUE;
 		}else pand = TRUE;
 		if(pand){
@@ -1622,7 +1622,7 @@ void drawCharStatus( ACTION *ptAct )
 #ifdef _MIND_ICON
 	if( ext->ptMindIcon){
 		
-	//è¿™é‡Œåˆ é™¤æ‰å°±å¯ä»¥èµ°åŠ¨æ˜¾ç¤º
+	//ÕâÀïÉ¾³ıµô¾Í¿ÉÒÔ×ß¶¯ÏÔÊ¾
 		if( ((ptAct->sMindIcon != SPR_asleep) &&
 		     (ptAct->sMindIcon != SPR_cafe) &&
 		     (ptAct->sMindIcon != SPR_accent) ) &&
@@ -1632,7 +1632,7 @@ void drawCharStatus( ACTION *ptAct )
 			ext->ptMindIcon = NULL;
 		}
 		else{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 				if(ATR_PAT_NO(ext->ptMindIcon)){
 					ATR_PAT_BAK_NO(ext->ptMindIcon) = ATR_PAT_NO(ext->ptMindIcon);
 					ATR_PAT_NO(ext->ptMindIcon) = 0;
@@ -1644,7 +1644,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(è·å–åŠ¨ç”»å°ºå¯¸( ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç( ptAct,&x1,&y1)){
 					ext->ptMindIcon->x  = ptAct->x;
 					ext->ptMindIcon->y  = ptAct->y;
 					ext->ptMindIcon->mx = ptAct->mx;
@@ -1664,7 +1664,7 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _NPC_EVENT_NOTICE
-	if( ext->ptNoticeIcon){//è¿™é‡Œåˆ é™¤æ‰å°±å¯ä»¥èµ°åŠ¨æ˜¾ç¤º
+	if( ext->ptNoticeIcon){//ÕâÀïÉ¾³ıµô¾Í¿ÉÒÔ×ß¶¯ÏÔÊ¾
 		{
 {
 				if(!ATR_PAT_NO(ext->ptNoticeIcon) ){
@@ -1674,7 +1674,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					ext->ptNoticeIcon->x  = ptAct->x;
 					ext->ptNoticeIcon->y  = ptAct->y;
 					ext->ptNoticeIcon->mx = ptAct->mx;
@@ -1696,9 +1696,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _SHOWFAMILYBADGE_
-	if( ext->ptFamilyIcon){//è¿™é‡Œåˆ é™¤æ‰å°±å¯ä»¥èµ°åŠ¨æ˜¾ç¤º
+	if( ext->ptFamilyIcon){//ÕâÀïÉ¾³ıµô¾Í¿ÉÒÔ×ß¶¯ÏÔÊ¾
 		{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptFamilyIcon)){
 					ATR_PAT_BAK_NO(ext->ptFamilyIcon) = ATR_PAT_NO(ext->ptFamilyIcon);
 					ATR_PAT_NO(ext->ptFamilyIcon) = 0;
@@ -1711,7 +1711,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					ext->ptFamilyIcon->x  = ptAct->x;
 					ext->ptFamilyIcon->y  = ptAct->y;
 					ext->ptFamilyIcon->mx = ptAct->mx;
@@ -1719,7 +1719,7 @@ void drawCharStatus( ACTION *ptAct )
 					pattern( ext->ptFamilyIcon, ANM_NOMAL_SPD, ANM_LOOP );
 #ifdef _CHARTITLE_
 					if(ext->ptTitleIcon){
-						è·å–åŠ¨ç”»å°ºå¯¸(ext->ptTitleIcon,&x2,&y2);
+						»ñÈ¡¶¯»­³ß´ç(ext->ptTitleIcon,&x2,&y2);
 						x2=x2/2;
 					}
 #endif
@@ -1753,9 +1753,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef FAMILY_MANOR_
-	if( ext->ptmFamilyIcon ){//è¿™é‡Œåˆ é™¤æ‰å°±å¯ä»¥èµ°åŠ¨æ˜¾ç¤º
+	if( ext->ptmFamilyIcon ){//ÕâÀïÉ¾³ıµô¾Í¿ÉÒÔ×ß¶¯ÏÔÊ¾
 		{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptmFamilyIcon)){
 					ATR_PAT_BAK_NO(ext->ptmFamilyIcon) = ATR_PAT_NO(ext->ptmFamilyIcon);
 					ATR_PAT_NO(ext->ptmFamilyIcon) = 0;
@@ -1767,7 +1767,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					ext->ptmFamilyIcon->x  = ptAct->x;
 					ext->ptmFamilyIcon->y  = ptAct->y;
 					ext->ptmFamilyIcon->mx = ptAct->mx;
@@ -1788,9 +1788,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _CHARTITLE_
-	if( ext->ptTitleIcon ){//è¿™é‡Œåˆ é™¤æ‰å°±å¯ä»¥èµ°åŠ¨æ˜¾ç¤º
+	if( ext->ptTitleIcon ){//ÕâÀïÉ¾³ıµô¾Í¿ÉÒÔ×ß¶¯ÏÔÊ¾
 		{
-			if(äººç‰©å±è”½å¼€å…³ && ProcNo==PROC_GAME && pc.ptAct != ptAct ){
+			if(ÈËÎïÆÁ±Î¿ª¹Ø && ProcNo==PROC_GAME && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptTitleIcon)){
 					ATR_PAT_BAK_NO(ext->ptTitleIcon) = ATR_PAT_NO(ext->ptTitleIcon);
 					ATR_PAT_NO(ext->ptTitleIcon) = 0;
@@ -1803,7 +1803,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+				if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 					ext->ptTitleIcon->x  = ptAct->x;
 					ext->ptTitleIcon->y  = ptAct->y;
 					ext->ptTitleIcon->mx = ptAct->mx;
@@ -1828,17 +1828,17 @@ void drawCharStatus( ACTION *ptAct )
 
 
 #ifdef _ITEM_FIREWORK
-	if (ext->pActFirework[0])	// æœ‰è¦æ”¾çƒŸç«
+	if (ext->pActFirework[0])	// ÓĞÒª·ÅÑÌ»ğ
 	{
 		float	fX, fY;
 
 		camMapToGamen((float)ext->pActFirework[0]->gx * GRID_SIZE, (float)ext->pActFirework[0]->gy * GRID_SIZE, &fX, &fY);
 		ext->pActFirework[0]->x	= (int)fX;
 		ext->pActFirework[0]->y	= (int)fY;
-		// å¦‚æœç¬¬ä¸€ä¸ªçƒŸç«æ”¾å®Œäº†,å†æ¥ä»¥typeæ¥å†³å®šæ¥ä¸‹æ¥è¦æ€ä¹ˆæ”¾
+		// Èç¹ûµÚÒ»¸öÑÌ»ğ·ÅÍêÁË,ÔÙÀ´ÒÔtypeÀ´¾ö¶¨½ÓÏÂÀ´ÒªÔõÃ´·Å
 		if (pattern(ext->pActFirework[0], ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
-			if (ext->pActFirework[0]->damage == 0)	// ä¸€ä¸ªæ”¾ä¸­é—´äºŒä¸ªå·¦å³
+			if (ext->pActFirework[0]->damage == 0)	// Ò»¸ö·ÅÖĞ¼ä¶ş¸ö×óÓÒ
 			{
 				int nGX, nGY;
 				
@@ -1859,7 +1859,7 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->gy				= nGY + 2;
 				ext->pActFirework[0]->damage			= -1;
 			}
-			else if (ext->pActFirework[0]->damage == 1)	// ä¸­é—´ä¸‰æ¬¡
+			else if (ext->pActFirework[0]->damage == 1)	// ÖĞ¼äÈı´Î
 			{
 				ext->pActFirework[1] = GetAction(PRIO_CHR, 0);
 				ext->pActFirework[1]->anim_chr_no	= ext->pActFirework[0]->anim_chr_no;
@@ -1867,14 +1867,14 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->anim_ang		= 1;
 				ext->pActFirework[1]->actNo			= 0;
 				ext->pActFirework[1]->dispPrio		= DISP_PRIO_RESERVE;
-				ext->pActFirework[1]->level			= 1;					// level æ‹¿æ¥å½“è®¡æ•°ç”¨
+				ext->pActFirework[1]->level			= 1;					// level ÄÃÀ´µ±¼ÆÊıÓÃ
 				ext->pActFirework[1]->gx			= ext->pActFirework[0]->gx;
 				ext->pActFirework[1]->gy			= ext->pActFirework[0]->gy;
 				ext->pActFirework[0]->damage		= -2;
 			}
 			else if (ext->pActFirework[0]->damage == 2 || ext->pActFirework[0]->damage == -1)
 				ext->pActFirework[0]->damage = -2;
-			else if (ext->pActFirework[0]->damage == 3)	// ç»•äººç‰©å››å‘¨ä¸€åœˆ, å…±ä¸‰æ¬¡
+			else if (ext->pActFirework[0]->damage == 3)	// ÈÆÈËÎïËÄÖÜÒ»È¦, ¹²Èı´Î
 			{
 				ext->pActFirework[1] = GetAction(PRIO_CHR, 0);
 				ext->pActFirework[1]->anim_chr_no	= ext->pActFirework[0]->anim_chr_no;
@@ -1882,7 +1882,7 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->anim_ang		= 1;
 				ext->pActFirework[1]->actNo			= 0;
 				ext->pActFirework[1]->dispPrio		= DISP_PRIO_RESERVE;
-				ext->pActFirework[1]->level			= 10;					// level æ‹¿æ¥å½“è®¡æ•°ç”¨
+				ext->pActFirework[1]->level			= 10;					// level ÄÃÀ´µ±¼ÆÊıÓÃ
 				ext->pActFirework[1]->damage		= ext->pActFirework[0]->damage;
 				ext->pActFirework[1]->gx			= ext->pActFirework[0]->bufGx[0] - 2;
 				ext->pActFirework[1]->gy			= ext->pActFirework[0]->bufGy[0] - 2;
@@ -1906,7 +1906,7 @@ void drawCharStatus( ACTION *ptAct )
 		ext->pActFirework[1]->y	= (int)fY;
 		if (pattern(ext->pActFirework[1], ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
-			if (--ext->pActFirework[1]->level >= 0)	// è®¡ç®—è¿˜è¦è·‘å‡ æ¬¡
+			if (--ext->pActFirework[1]->level >= 0)	// ¼ÆËã»¹ÒªÅÜ¼¸´Î
 			{
 				ext->pActFirework[1]->anim_frame_cnt	= 0;
 				ext->pActFirework[1]->anim_cnt			= 0;
@@ -1993,10 +1993,10 @@ void drawCharStatus( ACTION *ptAct )
 				//if( iShowdamage[i] == 0) continue;
 				if( iShowdamage[i] > 0 ){
 					if( iShowdamage[i] == 1111){
-						sprintf_s( buf,"æˆåŠŸ");
+						sprintf_s( buf,"³É¹¦");
 						color = FONT_PAL_BLUE;
 					}else if( iShowdamage[i] == 2222 ){
-						sprintf_s( buf,"å¤±è´¥");
+						sprintf_s( buf,"Ê§°Ü");
 						color = FONT_PAL_PURPLE;
 					}else{
 						sprintf_s( buf,"-%d",iShowdamage[i]);
@@ -2102,7 +2102,7 @@ void drawCharStatus( ACTION *ptAct )
 				createCommmonEffectAction( 101865, ptAct->gx, ptAct->gy, 0, 0, DISP_PRIO_CHAR );
 	}
 	else if( ((ptAct->picture>>24) & 0x000000ff) != 2 && ext->ptActPicture != NULL ) {
-		// ???????î¸î•???????î
+		// ???????¤úû¨???????ı¤
 		DeathAction( ext->ptActAngelMark );
 		ext->ptActAngelMark = NULL;
 	}
@@ -2111,12 +2111,12 @@ void drawCharStatus( ACTION *ptAct )
 		if( ptAct->anim_chr_no == pictable[((ptAct->picture&0x00ff0000)>>16)&0x000000ff] ){
 			//int no;
 			//no = (ptAct->anim_chr_no - SPR_001em) / 20;
-			//no %= 12;	// î •??????î›???
+			//no %= 12;	// şP??????¦h???
 			// ???????????????
 
 
 			short x1,y1;
-			if(è·å–åŠ¨ç”»å°ºå¯¸(ptAct,&x1,&y1)){
+			if(»ñÈ¡¶¯»­³ß´ç(ptAct,&x1,&y1)){
 				ext->ptActPicture->x  = ptAct->x;
 				ext->ptActPicture->y  = ptAct->y + ptAct->anim_y + 140;
 				ext->ptActPicture->mx = ptAct->mx;
@@ -2139,7 +2139,7 @@ void drawCharStatus( ACTION *ptAct )
 			int no;
 			U4 bmpNo;
 			no = (ptAct->anim_chr_no - SPR_001em) / 20;
-			no %= 12;	// î •??????î›???
+			no %= 12;	// şP??????¦h???
 			realGetNo( CG_TRADE_MARK, &bmpNo );
 			// ??????????????
 			setCharPrio( bmpNo, ptAct->x, ptAct->y, 0, charIconOffsetY[no], ptAct->mx, ptAct->my
@@ -2153,7 +2153,7 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 }
-#ifdef _AniCharBubble	   // Syu ADD åŠ¨ç”»å±‚äººç‰©åå‡ºæ°”æ³¡
+#ifdef _AniCharBubble	   // Syu ADD ¶¯»­²ãÈËÎïÍÂ³öÆøÅİ
 void CharbubbleRelease()
 {
 	if ( popAct != NULL )
@@ -2165,7 +2165,7 @@ void CharbubbleRelease()
 	waittimeflag = false;  
 }
 #endif
-// ??????î¸î•??????î¡“î“·?î‘‘
+// ??????¤úû¨??????ş¡q?ıè
 void setCharNameColor( ACTION *ptAct, int color )
 {
 	CHAREXTRA *ext;
@@ -2178,47 +2178,47 @@ void setCharNameColor( ACTION *ptAct, int color )
 	charObj[no].charNameColor = color;
 }
 
-// ?î ´?????î¸î•?? /////////////////////////////////////////////////
+// ?şo?????¤úû¨?? /////////////////////////////////////////////////
 ACTION *createCommmonEffectAction( int graNo, int gx, int gy, int anim, int dir, int prio )
 {
 	ACTION *ptAct;
 	float mx, my;
-	/* ?????????î™‘? */
+	/* ?????????¥K? */
 	ptAct = GetAction( PRIO_CHR, 0 );
 	if( ptAct == NULL )
 		return NULL;
-	// ???????îœ±?
+	// ???????§k?
 	ptAct->anim_chr_no = graNo;
-	// î™®?îœ±?
+	// ¥h?§k?
 	ptAct->anim_no = anim;
 	// ?????????( ??? )( ??????? )
 	ptAct->anim_ang = dir;
-	// î¸î•?î“î™š
+	// ¤úû¨?¡I¥T
 	ptAct->dispPrio = prio;
-	// 1?????î¸î•???
+	// 1?????¤úû¨???
 	ptAct->atr = ACT_ATR_HIDE2;
-	// ???î–º
-	ptAct->nextGx = gx;					// ????????î³??î™®î“?
+	// ???£t
+	ptAct->nextGx = gx;					// ????????¤õ??¥h¡I?
 	ptAct->nextGy = gy;
-	ptAct->gx = gx;						// ????????î³???ä½‹?
+	ptAct->gx = gx;						// ????????¤õ???Ô?
 	ptAct->gy = gy;
-	ptAct->mx = (float)gx * GRID_SIZE;	// ????î³
+	ptAct->mx = (float)gx * GRID_SIZE;	// ????¤õ
 	ptAct->my = (float)gy * GRID_SIZE;
-	ptAct->vx = 0;						// ?î™®?î¤
+	ptAct->vx = 0;						// ?¥h?§Æ
 	ptAct->vy = 0;
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
 	return ptAct;
 }
 
-// ?î ´?????î¸î•?????????? /////////////////////////////////
-// ?????????????????????î·???
+// ?şo?????¤úû¨?????????? /////////////////////////////////
+// ?????????????????????ü¬???
 void commmonEffectNoLoop( ACTION *ptAct )
 {
 	float mx, my;
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
@@ -2231,7 +2231,7 @@ void commmonEffectNoLoop( ACTION *ptAct )
 #endif
  );
 	else{
-		// ???????î·??????????î·??
+		// ???????ü¬??????????ü¬??
 		DeathAction( ptAct );
 		ptAct = NULL;
 	}
@@ -2241,39 +2241,39 @@ ACTION *createCommmonEffectNoLoop( int graNo, int gx, int gy, int anim, int dir,
 {
 	ACTION *ptAct;
 	float mx, my;
-	/* ?????????î™‘? */
+	/* ?????????¥K? */
 	ptAct = GetAction( PRIO_CHR, 0 );
 	if( ptAct == NULL )
 		return NULL;
-	// î¯???
+	// ûÂ???
 	ptAct->func = commmonEffectNoLoop;
-	// ???????îœ±?
+	// ???????§k?
 	ptAct->anim_chr_no = graNo;
-	// î™®?îœ±?
+	// ¥h?§k?
 	ptAct->anim_no = anim;
 	// ?????????( ??? )( ??????? )
 	ptAct->anim_ang = dir;
-	// î¸î•?î“î™š
+	// ¤úû¨?¡I¥T
 	ptAct->dispPrio = prio;
-	// 1?????î¸î•???
+	// 1?????¤úû¨???
 	ptAct->atr = ACT_ATR_HIDE2;
-	// ???î–º
-	ptAct->nextGx = gx;					// ????????î³??î™®î“?
+	// ???£t
+	ptAct->nextGx = gx;					// ????????¤õ??¥h¡I?
 	ptAct->nextGy = gy;
-	ptAct->gx = gx;						// ????????î³???ä½‹?
+	ptAct->gx = gx;						// ????????¤õ???Ô?
 	ptAct->gy = gy;
-	ptAct->mx = (float)gx * GRID_SIZE;	// ????î³
+	ptAct->mx = (float)gx * GRID_SIZE;	// ????¤õ
 	ptAct->my = (float)gy * GRID_SIZE;
-	ptAct->vx = 0;						// ?î™®?î¤
+	ptAct->vx = 0;						// ?¥h?§Æ
 	ptAct->vy = 0;
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
 	return ptAct;
 }
 
-// ???î™®?îŸ‰? /////////////////////////////////////////////////////////
+// ???¥h?¨Á? /////////////////////////////////////////////////////////
 void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 								int effectno, int effectparam1, int effectparam2 )
 {
@@ -2285,7 +2285,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 	ext = (CHAREXTRA *)ptAct->pYobi;
 	no = ext->charObjTblId;
 	switch( action ){
-		// ??î¿î•š
+		// ??ıÖ¢t
 		case 0:
 			ptAct->bufCount = 0;
 			ptAct->anim_no = ANIM_STAND;
@@ -2295,7 +2295,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 
 		// ???
 		case 31:
-			// ??î¿î•š?î‘·??î—­î¹?îšî™???îŸ„???????
+			// ??ıÖ¢t?ş°??¤GıĞ?¥{ûì???¨???????
 			// ?????????
 			setCharWarpPoint( ptAct, x, y );
 			ptAct->bufCount = 0;
@@ -2305,24 +2305,24 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			charObj[no].stockDir = -1;
 			break;
 
-		// îŸµ?î˜¿?
+		// ©˜?¤š?
 		case 30:
-			// ??ä½‹??î³?????îŸš???
+			// ??Ô??¤õ?????¨÷???
 			charObj[no].stockDir = dir;
 			charObj[no].stockDirX = x;
 			charObj[no].stockDirY = y;
 			if( (x == ptAct->nextGx && y == ptAct->nextGy) || ABS( ABS( x - ptAct->nextGx ) - ABS( y - ptAct->nextGy ) ) > 1 )
 				break;
 
-		// îŸš?
+		// ¨÷?
 		case 1:
-			// NPC????????î™®î¶???????îš¼??????
+			// NPC????????¥hıÍ???????¦V??????
 			if( (charObj[no].status & CHR_STATUS_PARTY) != 0 && (charObj[no].status & CHR_STATUS_LEADER) != 0 ){
 				// ??????????????
 				if( ptAct->bufCount < sizeof( ptAct->bufGx )/sizeof( int ) )
 					correctCharMovePoint( ptAct, x, y );
 				else{
-					// ??????î›³??????????????????
+					// ??????¦??????????????????
 					stockCharMovePoint( ptAct, x, y );
 					charObj[no].stockDir = -1;
 					// ?????????
@@ -2367,18 +2367,18 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// ?î Œ
+		// ?©û
 		case 5:
 			ptAct->anim_no = ANIM_DEAD;
 			ptAct->anim_no_bak = -1;
 			ptAct->anim_ang = dir;
 			break;
 
-		// ?îŸ¹îŒ¸?
+		// ?©œúé?
 		case 6:
 			break;
 
-		// ????îŒ¸?
+		// ????úé?
 		case 7:
 			break;
 
@@ -2386,7 +2386,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 		case 8:		/* UsedMagic */
 			break;
 
-		// î™??
+		// ¥X??
 		case 10:
 			ptAct->anim_no = ANIM_DEAD;
 			ptAct->anim_no_bak = -1;
@@ -2400,7 +2400,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// î—?î‘ ?
+		// ûê?ı÷?
 		case 12:
 			ptAct->anim_no = ANIM_HAND;
 			ptAct->anim_no_bak = -1;
@@ -2414,14 +2414,14 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// î™?
+		// ¥W?
 		case 14:
 			ptAct->anim_no = ANIM_ANGRY;
 			ptAct->anim_no_bak = -1;
 			ptAct->anim_ang = dir;
 			break;
 
-		// îœ¼??
+		// §v??
 		case 15:
 			ptAct->anim_no = ANIM_SAD;
 			ptAct->anim_no_bak = -1;
@@ -2435,7 +2435,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// îŸš??î™®????
+		// ¨÷??¥h????
 		case 17:
 			ptAct->anim_no = ANIM_WALK;
 			ptAct->anim_no_bak = -1;
@@ -2449,14 +2449,14 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// ??î¿î•š???????
+		// ??ıÖ¢t???????
 		case 19:
 			ptAct->anim_no = ANIM_STAND;
 			ptAct->anim_no_bak = -1;
 			ptAct->anim_ang = dir;
 			break;
 
-		// î“–î™¬îºîŸ«
+		// ¡P¥fıÑ©
 		case 20:
 			if( effectno >= 0 ){
 				setCharBattle( ptAct, effectno, effectparam1, effectparam2 );
@@ -2469,7 +2469,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// ????îºîŸ«
+		// ????ıÑ©
 		case 21:
 			if( effectno == 1 )
 				setCharLeader( ptAct );
@@ -2478,7 +2478,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// ?î“–îºîŸ«
+		// ?¡PıÑ©
 		case 22:
 			if( effectno == 1 )
 				setCharWatch( ptAct );
@@ -2488,12 +2488,12 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 			ptAct->anim_ang = dir;
 			break;
 
-		// ???????????î¡“î“·?î‘‘
+		// ???????????ş¡q?ıè
 		case 23:
 			setCharNameColor( ptAct, effectno );
 			break;
 
-		// äº¤æ˜“ä¸­
+		// ½»Ò×ÖĞ
 		case 32:
 			if( effectno >= 0 ){
 				setCharTrade( ptAct, effectno );
@@ -2598,7 +2598,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 				ext->pActFirework[1] = NULL;
 			}
 			ext->pActFirework[0] = GetAction(PRIO_CHR, 0);
-			ext->pActFirework[0]->damage		= effectno;	// å€Ÿç”¨ damage æ¥å‚¨å­˜ type (effectno = type)
+			ext->pActFirework[0]->damage		= effectno;	// ½èÓÃ damage À´´¢´æ type (effectno = type)
 			ext->pActFirework[0]->anim_chr_no	= effectparam1;
 			ext->pActFirework[0]->anim_no		= ANIM_STAND;
 			ext->pActFirework[0]->anim_ang		= 1;
@@ -2638,8 +2638,8 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 				}
 				//changePcAct(x, y, dir, 60 , giver , actionNum , petaction)
 				//changePcAct( card , damage , dir, 60 , player , actionNum , action);
-				//effectno ä¼ æ¥çš„å€¼ä»£è¡¨æ–½æ”¾è€…çš„ä½ç½®ç¼–å·
-				if( effectparam2 == 3 ){ //é­”æ³•ç‰Œ
+				//effectno ´«À´µÄÖµ´ú±íÊ©·ÅÕßµÄÎ»ÖÃ±àºÅ
+				if( effectparam2 == 3 ){ //Ä§·¨ÅÆ
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= effectparam1;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -2650,7 +2650,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 						ext->pActMagiccard[0]->gx		= Positiontable[effectno].petX+1 + x; 
 						ext->pActMagiccard[0]->gy		= Positiontable[effectno].petY-1 + y; 
 					}
-				}else if( effectparam2 == 0 ){ //è¢«å°å°æˆ–æ˜¯æ”¾å¼ƒå‡ºç‰Œ 
+				}else if( effectparam2 == 0 ){ //±»·âÓ¡»òÊÇ·ÅÆú³öÅÆ 
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= 101290;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -2669,14 +2669,14 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 						ext->pActMagiccard[i]->gx		= Positiontable[effectno].petX + x; 
 						ext->pActMagiccard[i]->gy		= Positiontable[effectno].petY + y; 
 						ext->pActMagiccard[i]->dispPrio	= DISP_PRIO_RESERVE;
-						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//æ–¹å‘
+						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//·½Ïò
 					}
 					
 					ext->pActMagiccard[1]->anim_no		= ANIM_STAND;
 
-					if( effectparam2 == 1 )	//å® ç‰Œæ”»å‡»			
+					if( effectparam2 == 1 )	//³èÅÆ¹¥»÷			
 						ext->pActMagiccard[2]->anim_no		= ANIM_ATTACK;
-					else if( effectparam2 == 2 )	//å® ç‰Œé˜²å¾¡	
+					else if( effectparam2 == 2 )	//³èÅÆ·ÀÓù	
 					 	ext->pActMagiccard[2]->anim_no		= ANIM_GUARD;
 				}
 #ifdef _MOVE_SCREEN				
@@ -2698,7 +2698,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 }
 
 // ID??
-// ??î–±ï¼š 0?î¯ ... ID????î–º / -1 ... î¡Š???
+// ??£k£º 0?ıÆ ... ID????£t / -1 ... ş†???
 int searchCharObjId( int id )
 {
 	int i;
@@ -2722,8 +2722,8 @@ int searchCharObjId( int id )
 	return no;
 }
 
-// ?î³??
-// ??î–±ï¼šTRUE ... ???????
+// ?¤õ??
+// ??£k£ºTRUE ... ???????
 BOOL checkCharObjPoint( int gx, int gy, short type )
 {
 	int i;
@@ -2737,8 +2737,8 @@ BOOL checkCharObjPoint( int gx, int gy, short type )
 	return FALSE;
 }
 
-// ?î³????????
-// ??î–±ï¼š1 ... ??????????????
+// ?¤õ????????
+// ??£k£º1 ... ??????????????
 //         0 ... ????
 #ifdef _ANGEL_SUMMON
 int checkCharObjPointStatus( int gx, int gy, short type, unsigned status )
@@ -2759,8 +2759,8 @@ int checkCharObjPointStatus( int gx, int gy, short type, unsigned short status )
 	return 0;
 }
 
-// ?î³????????
-// ??î–±ï¼š1 ... ????????????????
+// ?¤õ????????
+// ??£k£º1 ... ????????????????
 //         0 ... ????
 #ifdef _ANGEL_SUMMON
 int checkCharObjPointNotStatus( int gx, int gy, short type, unsigned status )
@@ -2781,8 +2781,8 @@ int checkCharObjPointNotStatus( int gx, int gy, short type, unsigned short statu
 	return 0;
 }
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
 void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 	                        char *name, char *freeName, int level, char *petname, int petlevel,
 	                        int nameColor, int walk, int height, int charType, int profession_class, char *gm_name )
@@ -2909,7 +2909,7 @@ void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 
 	charObj[no].ptAct->itemNameColor = nameColor;
 
-#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
 	charObj[no].ptAct->profession_class = profession_class;
 #endif
 #ifdef _NPC_PICTURE
@@ -2917,7 +2917,7 @@ void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 	charObj[no].ptAct->picturetemp = ((((picture)&0x00ff0000)>>16)&0x000000ff);//(picture&0x0000ffff);
 	//charObj[no].ptAct->anim_no = ((((picture)&0x0000ff00)>>8 )&0x000000ff);
 #endif
-#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
+#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
     if( strlen( gm_name ) <= GM_NAME_LEN )
 	    strcpy( charObj[no].ptAct->gm_name, gm_name );	
 #endif
@@ -2932,14 +2932,14 @@ BOOL setReturnPetObj( int id, int graNo, int gx, int gy, int dir,
 char *name, char *freeName, int level, int nameColor, int walk, int height, int charType )
 {
 	int no;
-	// î™‘???????????
+	// ¥K???????????
 	if( (no = searchCharObjId( id )) >= 0 )
-		// ???î·??
+		// ???ü¬??
 		return FALSE;
-	// ??î™‘?????????î™‘?
+	// ??¥K?????????¥K?
 	no = getCharObjBuf();
 	if( no < 0 )
-		return FALSE;	// ??????????î·??
+		return FALSE;	// ??????????ü¬??
 	charObj[no].ptAct = NULL;
 	charObj[no].use = CHAROBJ_USE_VIEW;
 	charObj[no].type      = getAtrCharObjType( charType );
@@ -2970,17 +2970,17 @@ void setItemCharObj( int id, int graNo, int gx, int gy, int dir, int classNo, ch
 	int no;
 	BOOL existFlag = FALSE;
 	CHAREXTRA *ext;
-	// î™‘???????????
+	// ¥K???????????
 	if( (no = searchCharObjId( id )) >= 0 )
 		existFlag = TRUE;
-	// ??î™‘?????????î™‘?
+	// ??¥K?????????¥K?
 	if( !existFlag ){
 		no = getCharObjBuf();
 		if( no < 0 )
-			return;	// ??????????î·??
+			return;	// ??????????ü¬??
 		charObj[no].ptAct = createCharAction( graNo, gx, gy, dir );
 		if( charObj[no].ptAct == NULL )
-			// î™‘???????î·???î ´???????????
+			// ¥K???????ü¬???şo???????????
 			return;
 		charObj[no].use = CHAROBJ_USE_VIEW;
 		ext = (CHAREXTRA *)charObj[no].ptAct->pYobi;
@@ -2997,12 +2997,12 @@ void setItemCharObj( int id, int graNo, int gx, int gy, int dir, int classNo, ch
 	if( strlen( info ) <= 60 )
 		strcpy( charObj[no].info, info );
 	charObj[no].charType = ACT_ATR_TYPE_ITEM;
-	charObj[no].newFoundFlag = 0;	// î‘¡îœŠ?????????
-	// ???????????î–±?îš¼??
+	charObj[no].newFoundFlag = 0;	// ıø§D?????????
+	// ???????????£k?¦V??
 	if( charObj[no].ptAct == NULL )
 		return;
 	charObj[no].ptAct->anim_chr_no = graNo;
-	// 1??????î????name?îš¼??
+	// 1??????üÒ????name?¦V??
 	if( strlen( info ) <= ITEM_NAME_LEN )
 		strcpy( charObj[no].ptAct->name, info );
 	else
@@ -3019,17 +3019,17 @@ void setMoneyCharObj( int id, int graNo, int gx, int gy, int dir, int money, cha
 	int no;
 	BOOL existFlag = FALSE;
 	CHAREXTRA *ext;
-	// î™‘???????????
+	// ¥K???????????
 	if( (no = searchCharObjId( id )) >= 0 )
 		existFlag = TRUE;
-	// ??î™‘?????????î™‘?
+	// ??¥K?????????¥K?
 	if( !existFlag ){
 		no = getCharObjBuf();
 		if( no < 0 )
-			return;	// ??????????î·??
+			return;	// ??????????ü¬??
 		charObj[no].ptAct = createCharAction( graNo, gx, gy, dir );
 		if( charObj[no].ptAct == NULL )
-			// î™‘???????î·???î ´???????????
+			// ¥K???????ü¬???şo???????????
 			return;
 		charObj[no].use = CHAROBJ_USE_VIEW;
 		ext = (CHAREXTRA *)charObj[no].ptAct->pYobi;
@@ -3046,12 +3046,12 @@ void setMoneyCharObj( int id, int graNo, int gx, int gy, int dir, int money, cha
 	if( strlen( info ) <= 60 )
 		strcpy( charObj[no].info, info );
 	charObj[no].charType = ACT_ATR_TYPE_GOLD;
-	charObj[no].newFoundFlag = 0;	// î‘¡îœŠ?????????
-	// ???????????î–±?îš¼??
+	charObj[no].newFoundFlag = 0;	// ıø§D?????????
+	// ???????????£k?¦V??
 	if( charObj[no].ptAct == NULL )
 		return;
 	charObj[no].ptAct->anim_chr_no = graNo;
-	// 1??????î????name?îš¼??
+	// 1??????üÒ????name?¦V??
 	if( strlen( info ) <= CHAR_NAME_LEN )
 		strcpy( charObj[no].ptAct->name, info );
 	else
@@ -3059,20 +3059,20 @@ void setMoneyCharObj( int id, int graNo, int gx, int gy, int dir, int money, cha
 	charObj[no].ptAct->atr |= ACT_ATR_TYPE_GOLD;
 }
 
-// ??????????î•î™¾
-//  ??î–±ï¼šcharObjî›¹??î˜»??
+// ??????????ûè¥x
+//  ??£k£ºcharObj¦”??¤–??
 //          -1 ... ???????
 int getCharObjBuf( void )
 {
 	int i;
 	int ret;
-	// ??????????î·??
+	// ??????????ü¬??
 	if( maxCharObj >= MAX_CHAROBJ )
 		return -1;
 	ret = freeCharObj;
-	// î—ª?????î•«î–±?î‘¡
+	// ¤D?????¢†£k?ıø
 	maxCharObj++;
-	// ??î“?î™‘??î–º
+	// ??§?¥K??£t
 	if( freeCharObj+1 > tailCharObj )
 		tailCharObj = freeCharObj+1;
 	// ???????????
@@ -3093,9 +3093,9 @@ int getCharObjBuf( void )
 	return ret;
 }
 
-// ????îœ???î”´î’”??????????
-//  ?  ?ï¼štype ... ???????????îœ?îœ±?
-//  ??î–±ï¼š??????atr?î“†î˜‹??î”´î’”î–±
+// ????ûï???¢NşÍ??????????
+//  ?  ?£ºtype ... ???????????ûï?§k?
+//  ??£k£º??????atr?¡@¤e??¢NşÍ£k
 int getAtrCharType( int type )
 {
 	switch( type ){
@@ -3106,16 +3106,16 @@ int getAtrCharType( int type )
 		// ???
 		case CHAR_TYPEPET:
 			return ACT_ATR_TYPE_PET;
-		// ??î•‚
+		// ??¢\
 		default:
 			return ACT_ATR_TYPE_OTHER;
 	}
 	return 0;
 }
 
-// ????îœ??????????îœ??î•?î?
-//  ?  ?ï¼štype ... ???????????îœ?îœ±?
-//  ??î–±ï¼šcharObj?type?î“†î˜‹??î”´î’”î–±
+// ????ûï??????????ûï??ûè?üÒ?
+//  ?  ?£ºtype ... ???????????ûï?§k?
+//  ??£k£ºcharObj?type?¡@¤e??¢NşÍ£k
 int getAtrCharObjType( int type )
 {
 	int ret;
@@ -3138,7 +3138,7 @@ int getAtrCharObjType( int type )
 	return ret;
 }
 
-// ID?????????????îŸ?
+// ID?????????????¨ë?
 // ?????NULL
 ACTION *getCharObjAct( int id )
 {
@@ -3151,7 +3151,7 @@ ACTION *getCharObjAct( int id )
 }
 
 
-// ????????????î
+// ????????????ı¤
 void delCharObj( int id )
 {
 	int i;
@@ -3163,7 +3163,7 @@ void delCharObj( int id )
 		return;
 	}
 	no = searchCharObjId( id );
-	// ID???????î
+	// ID???????ı¤
 	if( no >= 0 ){
 		if( charObj[no].ptAct != NULL ){
 			ext = (CHAREXTRA *)charObj[no].ptAct->pYobi;
@@ -3241,13 +3241,13 @@ void delCharObj( int id )
 		charObj[no].use = CHAROBJ_USE_FREE;
 		charObj[no].status = 0;
 		charObj[no].stockDir = -1;
-		// î™‘???î‘¡
+		// ¥K???ıø
 		if( maxCharObj > 0 )
 			maxCharObj--;
-		// ?????î–º??î“·??????????î–º???
+		// ?????£t??¡q??????????£t???
 		if( freeCharObj > no )
 			freeCharObj = no;
-		// î™‘?????????î–™?
+		// ¥K?????????£S?
 		for( i = tailCharObj; i > 0; i-- ){
 			if( charObj[i-1].use != CHAROBJ_USE_FREE ){
 				tailCharObj = i;
@@ -3393,7 +3393,7 @@ void resetCharObj( void )
 }
 
 
-// ?????????????????????î??
+// ?????????????????????ı¤??
 void clearPtActCharObj( void )
 {
 	int i;
@@ -3409,7 +3409,7 @@ void clearPtActCharObj( void )
 }
 
 
-// ????????????????????î“»??????
+// ????????????????????¡u??????
 void restorePtActCharObjAll( void )
 {
 	int i;
@@ -3433,8 +3433,8 @@ void restorePtActCharObjAll( void )
 			ext->charObjTblId = i;
 
 			// NPC????????
-			// î•‚?PC????????
-			// î™‚?îœŸ
+			// ¢\?PC????????
+			// ¤?§Y
 			if( charObj[i].type == CHAROBJ_TYPE_NPC
 			 || charObj[i].type == CHAROBJ_TYPE_USER_NPC )
 			{
@@ -3446,7 +3446,7 @@ void restorePtActCharObjAll( void )
 			// Item????????
 			if( charObj[i].type == CHAROBJ_TYPE_ITEM )
 			{
-				// 1??????î????name?îš¼??
+				// 1??????üÒ????name?¦V??
 				if( strlen( charObj[i].info ) <= ITEM_NAME_LEN )
 				{
 					strcpy( charObj[i].ptAct->name, charObj[i].info );
@@ -3461,7 +3461,7 @@ void restorePtActCharObjAll( void )
 			// ??????????
 			if( charObj[i].type == CHAROBJ_TYPE_MONEY )
 			{
-				// 1??????î????name?îš¼??
+				// 1??????üÒ????name?¦V??
 				if( strlen( charObj[i].info ) <= CHAR_NAME_LEN )
 				{
 					strcpy( charObj[i].ptAct->name, charObj[i].info );
@@ -3486,10 +3486,10 @@ void restorePtActCharObj( int id )
 	if( id < 0 )
 		return;
 
-	// î™‘???????????
+	// ¥K???????????
 	if( (no = searchCharObjId( id )) < 0 )
 	{
-		// î¡Š????î·??
+		// ş†????ü¬??
 		return;
 	}
 
@@ -3500,7 +3500,7 @@ void restorePtActCharObj( int id )
 			createCharAction( charObj[no].graNo, charObj[no].gx, charObj[no].gy, charObj[no].dir );
 		if( charObj[no].ptAct == NULL )
 		{
-			// ?????????????î·??
+			// ?????????????ü¬??
 			return;
 		}
 
@@ -3516,7 +3516,7 @@ void restorePtActCharObj( int id )
 }
 
 
-// ????î–º?î‘¡
+// ????£t?ıø
 void setMovePointCharObj( int id, int nextGx, int nextGy )
 {
 	int no;
@@ -3532,7 +3532,7 @@ void setMovePointCharObj( int id, int nextGx, int nextGy )
 
 
 ///////////////////////////////////////////////////////////////////////////
-// î™¯??????î™¯??î³?????î??????î¸î•????????
+// ¥i??????¥i??¤õ?????üÒ??????¤úû¨????????
 
 typedef struct
 {
@@ -3551,7 +3551,7 @@ void initItemOverlapCheck( void )
 }
 
 
-// ??î–±ï¼š TRUE  ... î™¯?î¢???
+// ??£k£º TRUE  ... ¥i?§Ä???
 //          FALSE ... ??
 BOOL itemOverlapCheck( unsigned int bmpNo, int gx, int gy )
 {
@@ -3582,20 +3582,20 @@ BOOL itemOverlapCheck( unsigned int bmpNo, int gx, int gy )
 
 
 ///////////////////////////////////////////////////////////////////////////
-// ????????î
+// ????????üÒ
 
 
-// ????????î½?îŸµ???î±î’œ??
+// ????????ûĞ?©˜???ü¦şÕ??
 void limitCantClientDir( short *dir )
 {
-	// dir?????î½?????????
+	// dir?????ûĞ?????????
 	if( ((*dir) % 2) == 0 )
 	{
 		(*dir)++;
 	}
 }
 
-// dirî–±? 0 ?? 7 ?????î±î’œ??
+// dir£k? 0 ?? 7 ?????ü¦şÕ??
 void ajustClientDir( short *dir )
 {
 	if( *dir < 0 )
@@ -3627,7 +3627,7 @@ void getPetRoute( ACTION *ptAct )
 	if( ptAct->bufCount > 0 )
 		return;
 
-	// ???îœ˜î˜‹?????????
+	// ???§R¤e?????????
 	if( nowGx != oldGx || nowGy != oldGy )
 		return;
 
@@ -3687,13 +3687,13 @@ void getPetRoute( ACTION *ptAct )
 }
 
 
-// ?î™®??
+// ?¥h??
 BOOL petMoveProc( ACTION *ptAct )
 {
 	PETEXTRA *pe = (PETEXTRA *)ptAct->pYobi;
 
-	// îœª???î??????î?
-	// ?î’•??8î¾?î¯????î?
+	// §d???üÒ??????ı¤?
+	// ?şÎ??8¥ø?ıÆ????ı¤?
 	if( ABS( ptAct->gx - nowGx ) >= 13
 	 || ABS( ptAct->gy - nowGy ) >= 13
 	 || (pe->createTime+8000 < TimeGetTime() && ptAct->vx == 0 && ptAct->vy == 0) )
@@ -3718,7 +3718,7 @@ BOOL petMoveProc( ACTION *ptAct )
 
 	if( ptAct->vx == 0 && ptAct->vy == 0 )
 	{
-		// ?î™®?î·???????î–º???
+		// ?¥h?ü¬???????£t???
 		getPetRoute( ptAct );
 	}
 	charMove( ptAct );
@@ -3754,7 +3754,7 @@ BOOL uprisePetProc( ACTION *ptAct )
 			0, 0, ptAct->dispPrio );
 	}
 
-	// ?î¾??????î????
+	// ?¥ø??????ı¤????
 	if( pe->createTime+1200 < TimeGetTime() )
 	{
 		restorePtActCharObj( pe->id );
@@ -3766,7 +3766,7 @@ BOOL uprisePetProc( ACTION *ptAct )
 }
 
 
-// ?î˜¿?????????
+// ?¤š?????????
 BOOL petCircleOutProc( ACTION *ptAct )
 {
 	PETEXTRA *pe = (PETEXTRA *)ptAct->pYobi;
@@ -3804,7 +3804,7 @@ BOOL petCircleOutProc( ACTION *ptAct )
 		dx = (float)pe->r * CosT( angle );
 		dy = (float)pe->r * SinT( angle );
 
-		// ?î¡¡î¸î•?î–º
+		// ?ş¤úû¨?£t
 		camMapToGamen( ptAct->mx+dx, ptAct->my+dy, &mx, &my );
 		ptAct->x = (int)(mx+.5);
 		ptAct->y = (int)(my+.5);
@@ -3826,7 +3826,7 @@ BOOL petCircleOutProc( ACTION *ptAct )
 }
 
 
-// ?î˜¿???îš ?????
+// ?¤š???¥›?????
 BOOL petCircleInProc( ACTION *ptAct )
 {
 	PETEXTRA *pe = (PETEXTRA *)ptAct->pYobi;
@@ -3870,7 +3870,7 @@ BOOL petCircleInProc( ACTION *ptAct )
 			dx = (float)pe->r * CosT( angle );
 			dy = (float)pe->r * SinT( angle );
 
-			// ?î¡¡î¸î•?î–º
+			// ?ş¤úû¨?£t
 			camMapToGamen( ptAct->mx+dx, ptAct->my+dy, &mx, &my );
 			ptAct->x = (int)(mx+.5);
 			ptAct->y = (int)(my+.5);
@@ -3902,7 +3902,7 @@ void petProc( ACTION *ptAct )
 
 	switch( pe->mode )
 	{
-		// ????î‘˜?ï¼šîŸš???î??
+		// ????ıï?£º¨÷???ı¤??
 		case 0:
 			if( !petMoveProc( ptAct ) )
 			{
@@ -3910,8 +3910,8 @@ void petProc( ACTION *ptAct )
 			}
 			break;
 
-		// ????î‘˜?ï¼š
-		// ???????????ï¼šî?
+		// ????ıï?£º
+		// ???????????£ºüÒ?
 		case 1:
 			if( !uprisePetProc( ptAct ) )
 			{
@@ -3919,7 +3919,7 @@ void petProc( ACTION *ptAct )
 			}
 			break;
 
-		// ????î‘˜?ï¼šî¤î‘²?î˜¿??î??
+		// ????ıï?£º§Æş«?¤š??ı¤??
 		case 2:
 			if( !petCircleOutProc( ptAct ) )
 			{
@@ -3927,7 +3927,7 @@ void petProc( ACTION *ptAct )
 			}
 			break;
 
-		// ???î¢î‘˜?ï¼šî¤î‘²?î˜¿?????
+		// ???ûõıï?£º§Æş«?¤š?????
 		case 3:
 			if( !petCircleInProc( ptAct ) )
 			{
@@ -3936,7 +3936,7 @@ void petProc( ACTION *ptAct )
 			break;
 	}
 
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
@@ -3968,42 +3968,42 @@ void petProc( ACTION *ptAct )
 
 
 
-// ??????????î’•
+// ??????????şÎ
 ACTION *createPetAction( int graNo, int gx, int gy, int dir, int mode, int moveDir, int id )
 {
 	ACTION *ptAct;
 	float mx, my;
 	PETEXTRA *pe;
 
-	/* ?????????î™‘? */
+	/* ?????????¥K? */
 	ptAct = GetAction( PRIO_CHR, sizeof( PETEXTRA ) );
 	if( ptAct == NULL )
 		return NULL;
 
-	// î¯???
+	// ûÂ???
 	ptAct->func = petProc;
-	// ???????îœ±?
+	// ???????§k?
 	ptAct->anim_chr_no = graNo;
-	// î™®?îœ±?
+	// ¥h?§k?
 	ptAct->anim_no = ANIM_STAND;
 	// ?????????( ??? )( ??????? )
 	ptAct->anim_ang = dir;
-	// î¸î•?î“î™š
+	// ¤úû¨?¡I¥T
 	ptAct->dispPrio = DISP_PRIO_CHAR;
-	// 1?????î¸î•???
+	// 1?????¤úû¨???
 	ptAct->atr = ACT_ATR_INFO |	ACT_ATR_HIT | ACT_ATR_HIDE2;
-	// ???î–º
-	ptAct->nextGx = gx;					// ????????î³??î™®î“?
+	// ???£t
+	ptAct->nextGx = gx;					// ????????¤õ??¥h¡I?
 	ptAct->nextGy = gy;
 	ptAct->bufCount = 0;
-	ptAct->gx = gx;						// ????????î³???ä½‹?
+	ptAct->gx = gx;						// ????????¤õ???Ô?
 	ptAct->gy = gy;
-	ptAct->mx = (float)gx * GRID_SIZE;	// ????î³
+	ptAct->mx = (float)gx * GRID_SIZE;	// ????¤õ
 	ptAct->my = (float)gy * GRID_SIZE;
-	ptAct->vx = 0;						// ?î™®?î¤
+	ptAct->vx = 0;						// ?¥h?§Æ
 	ptAct->vy = 0;
 
-	// ?î¡¡î¸î•?î–º
+	// ?ş¤úû¨?£t
 	camMapToGamen( ptAct->mx, ptAct->my, &mx, &my );
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
@@ -4030,7 +4030,7 @@ ACTION *createPetAction( int graNo, int gx, int gy, int dir, int mode, int moveD
 
 
 
-void è®¾ç½®é™æ­¢çš„åŠ¨ä½œä¸ºç«™ç«‹( void )
+void ÉèÖÃ¾²Ö¹µÄ¶¯×÷ÎªÕ¾Á¢( void )
 {
 	int i=0;
 	for(i;i<MAX_CHAROBJ;i++){

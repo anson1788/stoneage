@@ -20,7 +20,7 @@ ACTION* MagicItemActAddr;
 int MagicItemCombinData[3];
 int MagicItemPosState[4];
 
-void InitMagicItemWin(char * å†…å®¹)
+void InitMagicItemWin(char * ÄÚÈİ)
 {
 
 	if(!(MenuToggleFlag & JOY_CTRL_I))
@@ -60,7 +60,7 @@ void ClearMagicItemWin()
 
 ACTION* ShowMagicItemData()
 {
-	int ä½ç½®[3][2]={
+	int Î»ÖÃ[3][2]={
 		{105+35,44+35},
 		{30+35,150+35},
 		{180+35,150+35}
@@ -82,14 +82,14 @@ ACTION* ShowMagicItemData()
 	int i=0;
 	for(;i<3;i++){
 		if(MagicItemCombinData[i]>0) {
-			StockDispBuffer(ä½ç½®[i][0],ä½ç½®[i][1], DISP_PRIO_DRAG,pc.item[MagicItemCombinData[i]].graNo, 0);
+			StockDispBuffer(Î»ÖÃ[i][0],Î»ÖÃ[i][1], DISP_PRIO_DRAG,pc.item[MagicItemCombinData[i]].graNo, 0);
 			if(MagicItemPosState[i]){
 				char *splitPoint = pc.item[MagicItemCombinData[i]].memo;
 				int color = pc.item[MagicItemCombinData[i]].color;
 				if (pc.transmigration == 0 && pc.level < pc.item[MagicItemCombinData[i]].level) color = FONT_PAL_RED;
 				StockFontBuffer(20, 250, FONT_PRIO_FRONT, color, pc.item[MagicItemCombinData[i]].name, 0);
 				char damage_msg[256];
-				sprintf_s(damage_msg, "è€ä¹…åº¦(%s)", pc.item[MagicItemCombinData[i]].damage);
+				sprintf_s(damage_msg, "ÄÍ¾Ã¶È(%s)", pc.item[MagicItemCombinData[i]].damage);
 				StockFontBuffer(150, 250, FONT_PRIO_FRONT, color, damage_msg, 0);
 				char moji[256];
 				int x=20;
@@ -117,7 +117,7 @@ ACTION* ShowMagicItemData()
 		}
 	}
 	if(flg){
-		char *str="ä¸Šæ–¹æ”¾å…¥å¾…å¼ºåŒ–è£…å¤‡ï¼Œå·¦ä¸‹éœ€æ”¾å…¥å¼ºåŒ–çŸ³/ç²¾çµçŸ³ï¼Œå³ä¸‹å¯é€‰æ‹©æ€§æ”¾å…¥ç¥ç¦çŸ³";
+		char *str="ÉÏ·½·ÅÈë´ıÇ¿»¯×°±¸£¬×óÏÂĞè·ÅÈëÇ¿»¯Ê¯/¾«ÁéÊ¯£¬ÓÒÏÂ¿ÉÑ¡ÔñĞÔ·ÅÈë×£¸£Ê¯";
 		char *splitPoint = str;
 		char moji[256];
 		int x=20;
@@ -144,23 +144,23 @@ ACTION* ShowMagicItemData()
 
 
 	int id ;
-	id = StockFontBuffer( 70,338, FONT_PRIO_FRONT,FONT_PAL_YELLOW, " ç¡®  å®š ", 2 );
+	id = StockFontBuffer( 70,338, FONT_PRIO_FRONT,FONT_PAL_YELLOW, " È·  ¶¨ ", 2 );
 	if(id ==HitFontNo){
 		if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 		//	if(MagicItemCombinData[0]>0 && MagicItemCombinData[1]>0 && MagicItemCombinData[2]>0){
 			if(MagicItemCombinData[0]>0 && MagicItemCombinData[1]>0 ){
-				char ä¸´æ—¶å†…å®¹[10]={0};
-				sprintf_s(ä¸´æ—¶å†…å®¹,"%d|%d|%d",MagicItemCombinData[0],MagicItemCombinData[1],MagicItemCombinData[2]);
+				char ÁÙÊ±ÄÚÈİ[10]={0};
+				sprintf_s(ÁÙÊ±ÄÚÈİ,"%d|%d|%d",MagicItemCombinData[0],MagicItemCombinData[1],MagicItemCombinData[2]);
 				extern int indexWN,idWN;
-				lssproto_WN_send(sockfd,nowGx,nowGy,indexWN,idWN,0,ä¸´æ—¶å†…å®¹);
+				lssproto_WN_send(sockfd,nowGx,nowGy,indexWN,idWN,0,ÁÙÊ±ÄÚÈİ);
 				windowTypeWN = -1;
 				wnCloseFlag = 1;
 			}else{
-				StockChatBufferLine("ç³»ç»Ÿï¼šæ‚¨æœªæ”¾å…¥åˆæˆææ–™!",6);
+				StockChatBufferLine("ÏµÍ³£ºÄúÎ´·ÅÈëºÏ³É²ÄÁÏ!",6);
 			}
 		}
 	}
-	id = StockFontBuffer( 160,338, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " å…³  é—­ ", 2 );
+	id = StockFontBuffer( 160,338, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ¹Ø  ±Õ ", 2 );
 	if(id ==HitFontNo){
 		if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 			windowTypeWN = -1;

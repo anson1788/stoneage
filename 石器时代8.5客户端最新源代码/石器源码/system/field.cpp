@@ -39,17 +39,17 @@ extern int nPetItemEquipBmpNumber[PET_EQUIPNUM][2];
 
 #include "../systeminc/field.h"
 
-// ???????î“»î•’
+// ???????¡u¢l
 short drawFieldButtonFlag = 1;
-int fieldBtnHitId[FIELD_FUNC_END];	// ????????îœ˜î˜‹?
+int fieldBtnHitId[FIELD_FUNC_END];	// ????????§R¤e?
 short drawTimeAnimeFlag = 0;
 
 extern BOOL bNewServer;
 extern BOOL g_bUseAlpha;
-//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
-ACTION *ptActMenuWin1 = NULL;//è¡¨æƒ…åŠ¨ä½œçª—å£
+//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
+ACTION *ptActMenuWin1 = NULL;//±íÇé¶¯×÷´°¿Ú
 
-#ifdef _WATERANIMATION //Syu ADD æ³ªä¹‹æµ·åŠ¨ç”»å±‚
+#ifdef _WATERANIMATION //Syu ADD ÀáÖ®º£¶¯»­²ã
 #define RAND(x,y) ((x - 1) + 1 + (int)((double)(y - (x - 1)) * rand() / (RAND_MAX + 1.0)))
 bool in817flag = false;
 #endif
@@ -58,7 +58,7 @@ bool in817flag = false;
 void TeacherSystemWndfunc(int flag,char *data);
 #endif
 
-BOOL BattlingFlag = FALSE;  //forçº¿å›ç³»ç»Ÿä¸ä»»åŠ¡æ—¥å¿—ä½¿ç”¨
+BOOL BattlingFlag = FALSE;  //forÏß»ØÏµÍ³ÓëÈÎÎñÈÕÖ¾Ê¹ÓÃ
 
 #ifdef __ONLINEGM
 BOOL OnlineGmFlag = FALSE;
@@ -72,21 +72,21 @@ int	 JobdailyGetMax = FALSE;
 //int		 PageIndex = 0;
 #endif
 
-#ifdef _CLOUD_EFFECT				// (ä¸å¯å¼€) ROG ADDäº‘å±‚æ•ˆæœ
+#ifdef _CLOUD_EFFECT				// (²»¿É¿ª) ROG ADDÔÆ²ãĞ§¹û
 void CloudDraw();
 #endif
 
-#ifdef _SURFACE_ANIM        //ROG ADD åŠ¨æ€åœ°ä¸Šç‰©æ˜¾ç¤º
+#ifdef _SURFACE_ANIM        //ROG ADD ¶¯Ì¬µØÉÏÎïÏÔÊ¾
 	int ani_num = 0;
 	BOOL breadAniFlag = FALSE;
 	ACTION *SPACT[MAX_ANIM];
-	int ProduceXY[MAX_ANIM][7] = { -1 }; //0: sprç¼–å·, 1: xåº§æ ‡, 2: yåº§æ ‡, 3: å‡ºç°æ—¶é—´ 4:ä¼˜å…ˆæƒ 5:æ˜¯å¦å®Œæˆ 6:ACTION
+	int ProduceXY[MAX_ANIM][7] = { -1 }; //0: spr±àºÅ, 1: x×ù±ê, 2: y×ù±ê, 3: ³öÏÖÊ±¼ä 4:ÓÅÏÈÈ¨ 5:ÊÇ·ñÍê³É 6:ACTION
 #else
-	#ifdef _SPECIALSPACEANIM	// Syu ADD ç‰¹æ®Šåœºæ™¯åŠ¨ç”»é…ç½®
+	#ifdef _SPECIALSPACEANIM	// Syu ADD ÌØÊâ³¡¾°¶¯»­ÅäÖÃ
 		static ACTION *SPACT[MAX_ANIM];
 		#ifdef _SPECIALSPACEANIM_FIX
-			#ifdef _MOON_FAIRYLAND       // ROG ADD æœˆä¹‹ä»™å¢ƒ
-				// 0:åœ°å›¾ä¸Šxåº§æ ‡ 1:åœ°å›¾ä¸Šyåº§æ ‡ 2:åœ°å›¾ç¼–å· 3:grano 4:æ­¤ProduceXYæœ‰æ²¡æœ‰ä½¿ç”¨ 5:æ­¤ProduceXYåœ¨SPACTçš„ä½ç½® 6:æ˜¾ç¤ºä¼˜å…ˆé¡ºåº
+			#ifdef _MOON_FAIRYLAND       // ROG ADD ÔÂÖ®ÏÉ¾³
+				// 0:µØÍ¼ÉÏx×ù±ê 1:µØÍ¼ÉÏy×ù±ê 2:µØÍ¼±àºÅ 3:grano 4:´ËProduceXYÓĞÃ»ÓĞÊ¹ÓÃ 5:´ËProduceXYÔÚSPACTµÄÎ»ÖÃ 6:ÏÔÊ¾ÓÅÏÈË³Ğò
 				int ProduceXY[TOTAL_ANIM][7] = {
 					{  48 , 27 , 1200 , 101290 , 0 , -1 , 30},	
 					{  36 , 28 , 8255 , 101730 , 0 , -1 , 0 },
@@ -107,31 +107,31 @@ void CloudDraw();
 	#endif
 #endif
 
-#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
-static ACTION *WaterAct2;	   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»
-bool delFlag = false;		   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»åˆ é™¤ä¸å¦æ——æ ‡
-bool flag22 = true;			   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»çš„ä»€ä¹ˆå¿˜äº†
-bool Timeflag2 = false;		   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»è®¡æ—¶å™¨æ——æ ‡
-int TimeTick2 = 0;			   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»è®¡æ—¶å™¨
-int TimeTickMax2 = 0;		   //æ¸¸è¿‡ç”»é¢åŠ¨ç”»è®¡æ—¶å™¨ä¸Šé™
+#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
+static ACTION *WaterAct2;	   //ÓÎ¹ı»­Ãæ¶¯»­
+bool delFlag = false;		   //ÓÎ¹ı»­Ãæ¶¯»­É¾³ıÓë·ñÆì±ê
+bool flag22 = true;			   //ÓÎ¹ı»­Ãæ¶¯»­µÄÊ²Ã´ÍüÁË
+bool Timeflag2 = false;		   //ÓÎ¹ı»­Ãæ¶¯»­¼ÆÊ±Æ÷Æì±ê
+int TimeTick2 = 0;			   //ÓÎ¹ı»­Ãæ¶¯»­¼ÆÊ±Æ÷
+int TimeTickMax2 = 0;		   //ÓÎ¹ı»­Ãæ¶¯»­¼ÆÊ±Æ÷ÉÏÏŞ
 #endif
 
-#ifdef _AniRandom   // Syu ADD éšæœºäº§ç”Ÿç¯å¢ƒåŠ¨ç”»
-static ACTION *WaterAct[50];   //ç¯å¢ƒåŠ¨ç”»
-bool Timeflag[50] = {false};   //ç¯å¢ƒåŠ¨ç”»äº§ç”Ÿæ——æ ‡
-int TimeTick[50] = {0};		   //ç¯å¢ƒåŠ¨ç”»è®¡æ—¶å™¨
-int TimeTickMax[50] = {0};	   //ç¯å¢ƒåŠ¨ç”»è®¡æ—¶å™¨ä¸Šé™
-bool AniFlag = false;		   //ç¯å¢ƒåŠ¨ç”»æ¶ˆç­æ——æ ‡
+#ifdef _AniRandom   // Syu ADD Ëæ»ú²úÉú»·¾³¶¯»­
+static ACTION *WaterAct[50];   //»·¾³¶¯»­
+bool Timeflag[50] = {false};   //»·¾³¶¯»­²úÉúÆì±ê
+int TimeTick[50] = {0};		   //»·¾³¶¯»­¼ÆÊ±Æ÷
+int TimeTickMax[50] = {0};	   //»·¾³¶¯»­¼ÆÊ±Æ÷ÉÏÏŞ
+bool AniFlag = false;		   //»·¾³¶¯»­ÏûÃğÆì±ê
 #endif
 
 
 
-#ifdef _AniImmobile	 // Syu ADD å®šç‚¹äº§ç”Ÿç‰¹å®šåŠ¨ç”»
-static ACTION *WaterAct3[30];  //å®šç‚¹åŠ¨ç”»
-bool Updownflag = false;	   //å®šç‚¹åŠ¨ç”»ä¸Šä¸‹æ¼‚æµ®æ——æ ‡
-int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ— 
-							   //{ Xåº§æ ‡, Yåº§æ ‡, å›¾å·, å­˜åœ¨ä¸å¦æ——æ ‡, é…ç½®çš„Actionç¼–å·, 
-							   //  æ¼‚æµ®ä¸Šä¸‹æ——æ ‡(1ä¼šåŠ¨,2ä¸ä¼šåŠ¨), æ¼‚æµ®è®¡æ—¶å™¨}
+#ifdef _AniImmobile	 // Syu ADD ¶¨µã²úÉúÌØ¶¨¶¯»­
+static ACTION *WaterAct3[30];  //¶¨µã¶¯»­
+bool Updownflag = false;	   //¶¨µã¶¯»­ÉÏÏÂÆ¯¸¡Æì±ê
+int XYposition[560][7] =       //¶¨µã¶¯»­²úÉúµãÕóÁĞ 
+							   //{ X×ù±ê, Y×ù±ê, Í¼ºÅ, ´æÔÚÓë·ñÆì±ê, ÅäÖÃµÄAction±àºÅ, 
+							   //  Æ¯¸¡ÉÏÏÂÆì±ê(1»á¶¯,2²»»á¶¯), Æ¯¸¡¼ÆÊ±Æ÷}
 {
 	{ 252 , 255 , 101511 , 0 , -1 , 1 , 0},
 	{ 233 , 268 , 101510 , 0 , -1 , 1 , 0},
@@ -234,7 +234,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{ 162 , 211 , 101516 , 0 , -1 , 1 , 0},
 	{ 170 , 202 , 101510 , 0 , -1 , 1 , 0},
 
-	//å¤§çº¢æµ·è‰å³ 101595             å¤§çº¢æµ·è‰å·¦ 101597
+	//´óºìº£²İÓÒ 101595             ´óºìº£²İ×ó 101597
 	{130,181, 101595 , 0 , -1 , 2 , 0},{275,255, 101597 , 0 , -1 , 2 , 0},
 	{124,161, 101595 , 0 , -1 , 2 , 0},{261,265, 101597 , 0 , -1 , 2 , 0},
 	{243,90 , 101595 , 0 , -1 , 2 , 0},{226,250, 101597 , 0 , -1 , 2 , 0},
@@ -273,7 +273,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{360,157, 101595 , 0 , -1 , 2 , 0},{349,225, 101597 , 0 , -1 , 2 , 0},
 	{370,170, 101595 , 0 , -1 , 2 , 0},{341,234, 101597 , 0 , -1 , 2 , 0},
 	{300,254, 101595 , 0 , -1 , 2 , 0},{311,239, 101597 , 0 , -1 , 2 , 0},
-	//å¤§ç»¿æµ·è‰å³ 101594             å¤§ç»¿æµ·è‰å·¦ 101596
+	//´óÂÌº£²İÓÒ 101594             ´óÂÌº£²İ×ó 101596
 	{129,185, 101594 , 0 , -1 , 2 , 0},{367,204, 101596 , 0 , -1 , 2 , 0},
 	{133,160, 101594 , 0 , -1 , 2 , 0},{340,221, 101596 , 0 , -1 , 2 , 0},
 	{248,87 , 101594 , 0 , -1 , 2 , 0},{330,227, 101596 , 0 , -1 , 2 , 0},
@@ -312,7 +312,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{365,154, 101594 , 0 , -1 , 2 , 0},{146,428, 101596 , 0 , -1 , 2 , 0},
 	{360,169, 101594 , 0 , -1 , 2 , 0},{128,405, 101596 , 0 , -1 , 2 , 0},
 	{373,186, 101594 , 0 , -1 , 2 , 0},{92,381 , 101596 , 0 , -1 , 2 , 0},
-	// ä¸­ç»¿æµ·è‰å³ 101598              ä¸­ç»¿æµ·è‰å·¦ 101600
+	// ÖĞÂÌº£²İÓÒ 101598              ÖĞÂÌº£²İ×ó 101600
 	{148,199, 101598 , 0 , -1 , 2 , 0},{356,218, 101600 , 0 , -1 , 2 , 0},
 	{120,158, 101598 , 0 , -1 , 2 , 0},{337,222, 101600 , 0 , -1 , 2 , 0},
 	{235,78 , 101598 , 0 , -1 , 2 , 0},{319,233, 101600 , 0 , -1 , 2 , 0},
@@ -351,7 +351,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{349,131, 101598 , 0 , -1 , 2 , 0},{132,414, 101600 , 0 , -1 , 2 , 0},
 	{372,177, 101598 , 0 , -1 , 2 , 0},{137,392, 101600 , 0 , -1 , 2 , 0},
 	{381,203, 101598 , 0 , -1 , 2 , 0},{79,374 , 101600 , 0 , -1 , 2 , 0},
-	//ä¸­è“æµ·è‰å³ 101599               ä¸­è“æµ·è‰å·¦ 101601
+	//ÖĞÀ¶º£²İÓÒ 101599               ÖĞÀ¶º£²İ×ó 101601
 	{141,202, 101599 , 0 , -1 , 2 , 0},{358,210, 101601 , 0 , -1 , 2 , 0},
 	{125,162, 101599 , 0 , -1 , 2 , 0},{344,230, 101601 , 0 , -1 , 2 , 0},
 	{243,94 , 101599 , 0 , -1 , 2 , 0},{326,229, 101601 , 0 , -1 , 2 , 0},
@@ -390,7 +390,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{363,162, 101599 , 0 , -1 , 2 , 0},{134,424, 101601 , 0 , -1 , 2 , 0},
 	{373,171, 101599 , 0 , -1 , 2 , 0},{127,403, 101601 , 0 , -1 , 2 , 0},
 	{385,192, 101599 , 0 , -1 , 2 , 0},{85,377 , 101601 , 0 , -1 , 2 , 0},
-	// å°ç»¿æµ·è‰å³ 101603              å°ç»¿æµ·è‰å·¦ 101605
+	// Ğ¡ÂÌº£²İÓÒ 101603              Ğ¡ÂÌº£²İ×ó 101605
 	{136,173, 101603 , 0 , -1 , 2 , 0},{349,213, 101605 , 0 , -1 , 2 , 0},
 	{118,158, 101603 , 0 , -1 , 2 , 0},{339,225, 101605 , 0 , -1 , 2 , 0},
 	{227,75 , 101603 , 0 , -1 , 2 , 0},{322,244, 101605 , 0 , -1 , 2 , 0},
@@ -429,7 +429,7 @@ int XYposition[560][7] =       //å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹é˜µåˆ—
 	{365,165, 101603 , 0 , -1 , 2 , 0},{142,398, 101605 , 0 , -1 , 2 , 0},
 	{373,184, 101603 , 0 , -1 , 2 , 0},{105,385, 101605 , 0 , -1 , 2 , 0},
 	{372,185, 101603 , 0 , -1 , 2 , 0},{71,371 , 101605 , 0 , -1 , 2 , 0},
-	//å°çº¢æµ·è‰å³ 101602               å°çº¢æµ·è‰å³ 101604
+	//Ğ¡ºìº£²İÓÒ 101602               Ğ¡ºìº£²İÓÒ 101604
 
 	{154,200, 101602 , 0 , -1 , 2 , 0},{349,211, 101604 , 0 , -1 , 2 , 0},
 	{119,157, 101602 , 0 , -1 , 2 , 0},{345,231, 101604 , 0 , -1 , 2 , 0},
@@ -486,12 +486,12 @@ int sStreetVendorBtnGraNo[] =
 	CG_FIELD_SV_BTN_ON
 };
 
-// è¾“å…¥å”®ä»·è§†çª—
+// ÊäÈëÊÛ¼ÛÊÓ´°
 extern void CheckNumber(char *buf,int num);
 static ACTION *pActSellPriceWnd = NULL;
 int SellPriceWndfunc()
 {
-	static STR_BUFFER str_bufferMoney;		// å”®ä»·è¾“å…¥æ ,æœ€å¤šä¸€åƒä¸‡	
+	static STR_BUFFER str_bufferMoney;		// ÊÛ¼ÛÊäÈëÀ¸,×î¶àÒ»Ç§Íò	
 	int x,y,iConfirm;
 
 	if (pActSellPriceWnd == NULL)
@@ -503,7 +503,7 @@ int SellPriceWndfunc()
 
 		pActSellPriceWnd = MakeWindowDisp(winX, winY,
 										  winW, winH, CG_FIELD_SV_SELL_PRICE_PANEL, -1, FALSE);
-		// å”®ä»·æ–‡å­—åˆå§‹åŒ–
+		// ÊÛ¼ÛÎÄ×Ö³õÊ¼»¯
 		ZeroMemory(str_bufferMoney.buffer, sizeof(str_bufferMoney.buffer));
 		str_bufferMoney.cnt      = 0;
 		str_bufferMoney.cursor   = 0;
@@ -527,7 +527,7 @@ int SellPriceWndfunc()
 							DISP_PRIO_MENU, CG_FIELD_SV_SELL_PRICE_PANEL, 1);
 			iConfirm = StockDispBuffer(x + 55,y + 67, DISP_PRIO_IME3, 26289, 2);
 
-			// æŒ‰ä¸‹ç¡®å®š
+			// °´ÏÂÈ·¶¨
 			if ((mouse.onceState & MOUSE_LEFT_CRICK) && HitDispNo == iConfirm)
 			{
 				DeathAction(pActSellPriceWnd);
@@ -535,11 +535,11 @@ int SellPriceWndfunc()
 				GetKeyInputFocus(&MyChatBuffer);
 				return atoi(str_bufferMoney.buffer);
 			}
-			// æ»‘é¼ åœ¨å”®ä»·åŒºå†…
+			// »¬ÊóÔÚÊÛ¼ÛÇøÄÚ
 			if (MakeHitBox(str_bufferMoney.x, str_bufferMoney.y, str_bufferMoney.x + 88, str_bufferMoney.y + 22, DISP_PRIO_BOX2) == TRUE)
 				GetKeyInputFocus(&str_bufferMoney);
 			CheckNumber(str_bufferMoney.buffer, 10000000);
-			// æ˜¾ç¤ºä»·æ ¼
+			// ÏÔÊ¾¼Û¸ñ
 			StockFontBuffer2(&str_bufferMoney);
 		}
 	}
@@ -547,12 +547,12 @@ int SellPriceWndfunc()
 	return -1;
 }
 
-// æ‘†æ‘ŠåŠŸèƒ½è§†çª—
+// °ÚÌ¯¹¦ÄÜÊÓ´°
 
 extern void CheckSpace(char *buf);
 ACTION *pShowPet = NULL;
 Show_Sell_Item ShowSellItem[MAX_SELL_ITEM];
-STR_BUFFER str_bufferVendorName;		// åº—å
+STR_BUFFER str_bufferVendorName;		// µêÃû
 
 Show_Sell_Item *GetEmptyShowSellItem(Show_Sell_Item *ShowSellItem)
 {
@@ -573,7 +573,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 	static bool bChangePet = true,bRunSellPrice = false;
 	static Show_Sell_Item *pShowSellItem = NULL;
 #ifdef _NEW_ITEM_
-	extern int é“å…·æ é¡µæ•°;
+	extern int µÀ¾ßÀ¸Ò³Êı;
 	static int iItemOnSell[MAX_MAXHAVEITEM*3];
 #else
 	static int iItemOnSell[MAX_MAXHAVEITEM];
@@ -585,7 +585,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 		int winX = (lpDraw->xSize-winW)/2;
 		int winY = (lpDraw->ySize-winH)/2;
 #ifdef _NEW_ITEM_
-		é“å…·æ é¡µæ•°=0;
+		µÀ¾ßÀ¸Ò³Êı=0;
 #endif
 
 #ifdef _NEW_RESOMODE
@@ -609,7 +609,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 		}
 		if (bReset)
 		{
-			// åº—åæ–‡å­—åˆå§‹åŒ–
+			// µêÃûÎÄ×Ö³õÊ¼»¯
 			ZeroMemory(str_bufferVendorName.buffer, sizeof(str_bufferVendorName.buffer));
 			str_bufferVendorName.cnt		= 0;
 			str_bufferVendorName.cursor		= 0;
@@ -649,7 +649,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 				pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
 				if (pShowSellItem != NULL)
 				{
-					// é“å…·
+					// µÀ¾ß
 					if (kind == 0 && pItem[index].useFlag)
 					{
 						pShowSellItem->kind = kind;
@@ -660,7 +660,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						pShowSellItem->usage = true;
 						iItemOnSell[index - 9] = index;
 					}
-					// å® 
+					// ³è
 					else if(kind == 1 && pet[index].useFlag)
 					{
 						pShowSellItem->kind = kind;
@@ -700,23 +700,23 @@ void StreetVendorWndfunc(bool bReset,char *data)
 			y = pActStreetVendorWnd->y;
 			selId = focusFontId(iSellItemBtn, sizeof(iSellItemBtn) / sizeof(int));
 			
-			// æ˜¾ç¤ºåŠè®¾å®šbuttonå‡ºç°çš„ä½ç½®
-			// ç¡®å®š
+			// ÏÔÊ¾¼°Éè¶¨button³öÏÖµÄÎ»ÖÃ
+			// È·¶¨
 			iBtn[0] = StockDispBuffer(x + 80, y + 388, DISP_PRIO_IME3, 26289, 2);
-			// å–æ¶ˆ
+			// È¡Ïû
 			iBtn[1] = StockDispBuffer(x + 230, y + 388, DISP_PRIO_IME3, 26291, 2);
-			// ä¸Šå·ç®­å¤´
+			// ÉÏ¾í¼ıÍ·
 			iBtn[2] = StockDispBuffer(x + 305, y + 44, DISP_PRIO_IME3, 26331, 2);
-			// ä¸‹å·ç®­å¤´
+			// ÏÂ¾í¼ıÍ·
 			iBtn[3] = StockDispBuffer(x + 305, y + 304, DISP_PRIO_IME3, 26332, 2);
-			// æ”¾ç½®æŒ‰é’®
+			// ·ÅÖÃ°´Å¥
 			iBtn[4] = StockDispBuffer(x + 335, y + 300, DISP_PRIO_IME3, 26062, 2);
-			// å·¦ç®­å¤´
+			// ×ó¼ıÍ·
 			iBtn[5] = StockDispBuffer(x + 520, y + 60, DISP_PRIO_IME3, 26047, 2);
-			// å³ç®­å¤´
+			// ÓÒ¼ıÍ·
 			iBtn[6] = StockDispBuffer(x + 570, y + 60, DISP_PRIO_IME3, 26048, 2);
 
-			// æ˜¾ç¤ºå·¦æ–¹çš„ç‰©å“åˆ—è¡¨
+			// ÏÔÊ¾×ó·½µÄÎïÆ·ÁĞ±í
 			for (i = iListStart, j = 0; i < iListStart + 10; i++, j++)
 			{
 				if (ShowSellItem[i].usage)
@@ -729,7 +729,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowSellItem[i].pile);
 							StockFontBuffer(x + 180-getTextLength(tempstr)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, tempstr, 0);	
-							StockFontBuffer(x + 250-getTextLength("è®®ä»·")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "è®®ä»·", 0);	
+							StockFontBuffer(x + 250-getTextLength("Òé¼Û")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "Òé¼Û", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowSellItem[i].pile);
@@ -741,7 +741,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						if (ShowSellItem[i].price == 0){
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							StockFontBuffer(x + 175- getTextLength(ShowSellItem[i].freeName)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].freeName, 0);	
-							StockFontBuffer(x + 250-getTextLength("è®®ä»·")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "è®®ä»·", 0);	
+							StockFontBuffer(x + 250-getTextLength("Òé¼Û")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "Òé¼Û", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							StockFontBuffer(x + 175 - getTextLength(ShowSellItem[i].freeName)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].freeName, 0);	
@@ -755,14 +755,14 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					if (ShowSellItem[i].kind == 0)
 					{
 						if (ShowSellItem[i].price == 0)
-							sprintf_s(szMsg, "%-20sx%3d%13s", ShowSellItem[i].name, ShowSellItem[i].pile, "è®®ä»·");
+							sprintf_s(szMsg, "%-20sx%3d%13s", ShowSellItem[i].name, ShowSellItem[i].pile, "Òé¼Û");
 						else
 							sprintf_s(szMsg, "%-20sx%3d%13d", ShowSellItem[i].name, ShowSellItem[i].pile, ShowSellItem[i].price);
 					}
 					else
 					{
 						if (ShowSellItem[i].price == 0)
-							sprintf_s(szMsg, "%-17s%-12s%8s", ShowSellItem[i].name, ShowSellItem[i].freeName, "è®®ä»·");
+							sprintf_s(szMsg, "%-17s%-12s%8s", ShowSellItem[i].name, ShowSellItem[i].freeName, "Òé¼Û");
 						else
 							sprintf_s(szMsg, "%-17s%-12s%8d", ShowSellItem[i].name, ShowSellItem[i].freeName, ShowSellItem[i].price);
 					}
@@ -782,7 +782,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						play_se(217, 320, 240);
 						switch (i)
 						{
-						// ç¡®å®š
+						// È·¶¨
 						case 0:
 							if (!bRunSellPrice)
 							{
@@ -791,26 +791,26 @@ void StreetVendorWndfunc(bool bReset,char *data)
 
 								memset(szMsg, 0, sizeof(szMsg));
 								memset(szTemp, 0, sizeof(szTemp));
-								// æŠŠè¦å–çš„ä¸œè¥¿çš„ç´¢å¼•ä¼ ç»™server
+								// °ÑÒªÂôµÄ¶«Î÷µÄË÷Òı´«¸øserver
 								for (j = 0; j < MAX_SELL_ITEM; j++)
 								{
 									if (ShowSellItem[j].usage)
 									{
 										sprintf_s(szTemp1, "%d|%d|%d|", ShowSellItem[j].kind, ShowSellItem[j].index, ShowSellItem[j].price);
 										strcat_s(szTemp, szTemp1);
-										count++;	// æ€»æ•°ç»Ÿè®¡
+										count++;	// ×ÜÊıÍ³¼Æ
 									}
 								}
 								if (count != 0)
 								{
 									if (str_bufferVendorName.cnt == 0 || str_bufferVendorName.cnt>16)
 									{
-										sprintf_s(str_bufferVendorName.buffer, "æ¬¢è¿å…‰ä¸´!!");
+										sprintf_s(str_bufferVendorName.buffer, "»¶Ó­¹âÁÙ!!");
 										str_bufferVendorName.cnt = 10;
 									}
 									sprintf_s(szMsg, "S|%d|%s%s", count, szTemp, str_bufferVendorName.buffer);
 									lssproto_STREET_VENDOR_send(sockfd, szMsg);
-									// æ‘†æ‘Šæœ‰éª‘å® ,è¦ä¸‹é©¬
+									// °ÚÌ¯ÓĞÆï³è,ÒªÏÂÂí
 									if (pc.ridePetNo > -1)
 									{
 										char buf[64];
@@ -832,7 +832,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							}
 							else
 								break;
-						// å–æ¶ˆ
+						// È¡Ïû
 						case 1:
 							if (i == 1)
 							{
@@ -851,24 +851,24 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							pActSellPriceWnd = NULL;
 							GetKeyInputFocus(&MyChatBuffer);
 							break;
-						// ä¸Šå·
+						// ÉÏ¾í
 						case 2:
 							iListStart--;
 							if (iListStart < 0)
 								iListStart = 0;
 							break;
-						// ä¸‹å·
+						// ÏÂ¾í
 						case 3:
 							iListStart++;
 							if (iListStart > 10)
 								iListStart = 10;
 							break;
-						// æ”¾ç½®
+						// ·ÅÖÃ
 						case 4:
 							if (!bRunSellPrice)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// è¿˜æœ‰ç©ºé—´èƒ½å–
+								// »¹ÓĞ¿Õ¼äÄÜÂô
 								if (pShowSellItem != NULL && iPetOnSell[iShowPet] == -1 && pShowPet != NULL)
 								{
 									iPetOnSell[iShowPet] = iShowPet;
@@ -883,7 +883,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 								}
 							}
 							break;
-						// å·¦ç®­å¤´
+						// ×ó¼ıÍ·
 						case 5:
 							if (!bRunSellPrice)
 							{
@@ -891,7 +891,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 								bChangePet = true;
 							}
 							break;
-						// å³ç®­å¤´
+						// ÓÒ¼ıÍ·
 						case 6:
 							if (!bRunSellPrice)
 							{
@@ -908,7 +908,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 			{
 				for (i = 0; i < 10; i++)
 				{
-					// ä¿®æ”¹ä»·æ ¼
+					// ĞŞ¸Ä¼Û¸ñ
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
 						if (selId == iSellItemBtn[i])
@@ -918,7 +918,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							break;
 						}
 					}
-					// å–æ¶ˆä¸å–
+					// È¡Ïû²»Âô
 					else if (mouse.onceState & MOUSE_RIGHT_CRICK)
 					{
 						if (selId == iSellItemBtn[i])
@@ -945,12 +945,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 
 #ifdef _NEW_ITEM_
 			for(i=0;i<3;i++){
-				if(i==é“å…·æ é¡µæ•°){
+				if(i==µÀ¾ßÀ¸Ò³Êı){
 					StockDispBuffer(722,350+i*56, DISP_PRIO_IME3,55223+i, 1);
 				}else{
 					BOOL flg=FALSE;
 					if(i){
-						if(pc.é“å…·æ çŠ¶æ€&1<<i){
+						if(pc.µÀ¾ßÀ¸×´Ì¬&1<<i){
 							flg=TRUE;
 						}
 					}else flg=TRUE;
@@ -958,7 +958,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						StockDispBuffer(727-9,350+i*56, DISP_PRIO_IME3,55226+i, 1);
 						if(MakeHitBox(717-9 ,322+i*56,717+20-9,319+i*56+60, DISP_PRIO_IME4)){
 							if(mouse.onceState & MOUSE_LEFT_CRICK){
-								é“å…·æ é¡µæ•°=i;
+								µÀ¾ßÀ¸Ò³Êı=i;
 							}
 						}
 					}else StockDispBuffer(727-9,350+i*56, DISP_PRIO_IME3,55229+i, 1);
@@ -972,21 +972,21 @@ void StreetVendorWndfunc(bool bReset,char *data)
 				{
 					itemx = x + 323 + i * 51;
 					itemy = y + 247 + j * 48;
-					// æ˜¾ç¤ºç©å®¶èº«ä¸Šçš„é“å…·
+					// ÏÔÊ¾Íæ¼ÒÉíÉÏµÄµÀ¾ß
 
 #ifdef _NEW_ITEM_
-					int é“å…·ç´¢å¼• = j * 5 + i + 9+é“å…·æ é¡µæ•°*15;
-					if (pItem[é“å…·ç´¢å¼•].useFlag)
+					int µÀ¾ßË÷Òı = j * 5 + i + 9+µÀ¾ßÀ¸Ò³Êı*15;
+					if (pItem[µÀ¾ßË÷Òı].useFlag)
 					{
 						if (!bRunSellPrice)
-							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_ITEM, pItem[é“å…·ç´¢å¼•].graNo, 0);
-						// è‹¥è¾“å…¥ä»·æ ¼è§†çª—å¼€å¯,disp_prio è®¾å®šæˆmenuæ‰ä¸ä¼šç›–åœ¨ä»·æ ¼è§†çª—ä¸Š
+							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_ITEM, pItem[µÀ¾ßË÷Òı].graNo, 0);
+						// ÈôÊäÈë¼Û¸ñÊÓ´°¿ªÆô,disp_prio Éè¶¨³Émenu²Å²»»á¸ÇÔÚ¼Û¸ñÊÓ´°ÉÏ
 						else
-							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_MENU, pItem[é“å…·ç´¢å¼•].graNo, 0);
+							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_MENU, pItem[µÀ¾ßË÷Òı].graNo, 0);
 					}
-					if (iItemOnSell[é“å…·ç´¢å¼•-9] != -1)
+					if (iItemOnSell[µÀ¾ßË÷Òı-9] != -1)
 					{
-						// è‹¥è¾“å…¥ä»·æ ¼è§†çª—å¼€å¯,ä¸æ˜¾ç¤ºsell
+						// ÈôÊäÈë¼Û¸ñÊÓ´°¿ªÆô,²»ÏÔÊ¾sell
 						if (!bRunSellPrice)
 							StockFontBuffer(itemx + 25, itemy + 25, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
 					}
@@ -995,30 +995,30 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						if (MakeHitBox(itemx, itemy, itemx + 50, itemy + 47, DISP_PRIO_IME3) == TRUE)
 						{
 #ifdef _NPC_ITEMUP
-							if( pItem[é“å…·ç´¢å¼•].useFlag )
-								ShowItemup(pItem[é“å…·ç´¢å¼•].itemup,mouse.nowPoint.x,mouse.nowPoint.y);
+							if( pItem[µÀ¾ßË÷Òı].useFlag )
+								ShowItemup(pItem[µÀ¾ßË÷Òı].itemup,mouse.nowPoint.x,mouse.nowPoint.y);
 #endif
-							// æœ‰è¿™ä¸ªé“å…·
-							if (pItem[é“å…·ç´¢å¼•].useFlag &&
-								// åˆ¤æ–­é“å…·æ˜¯å¦è¢«é€‰æ‹©
+							// ÓĞÕâ¸öµÀ¾ß
+							if (pItem[µÀ¾ßË÷Òı].useFlag &&
+								// ÅĞ¶ÏµÀ¾ßÊÇ·ñ±»Ñ¡Ôñ
 								 (mouse.onceState & MOUSE_LEFT_DBL_CRICK) &&
-								// è¿˜æ²¡å–
-								 (iItemOnSell[é“å…·ç´¢å¼•-9] == -1)
+								// »¹Ã»Âô
+								 (iItemOnSell[µÀ¾ßË÷Òı-9] == -1)
 								)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// è¿˜æœ‰ç©ºé—´èƒ½å–
+								// »¹ÓĞ¿Õ¼äÄÜÂô
 								if (pShowSellItem != NULL)
 								{
-									iItemOnSell[é“å…·ç´¢å¼•-9] = é“å…·ç´¢å¼•; // è®°å½•èº«ä¸Šé‚£ä¸ªé“å…·è¦è¢«å–
+									iItemOnSell[µÀ¾ßË÷Òı-9] = µÀ¾ßË÷Òı; // ¼ÇÂ¼ÉíÉÏÄÇ¸öµÀ¾ßÒª±»Âô
 									play_se(217,320,240);
 									bRunSellPrice = true;
 									pShowSellItem->usage = true;
 									pShowSellItem->needGetPrice = true;
-									sprintf_s(pShowSellItem->name, "%s", pItem[é“å…·ç´¢å¼•].name);
-									pShowSellItem->pile = pItem[é“å…·ç´¢å¼•].pile;
+									sprintf_s(pShowSellItem->name, "%s", pItem[µÀ¾ßË÷Òı].name);
+									pShowSellItem->pile = pItem[µÀ¾ßË÷Òı].pile;
 									pShowSellItem->kind = 0;
-									pShowSellItem->index = é“å…·ç´¢å¼•;
+									pShowSellItem->index = µÀ¾ßË÷Òı;
 								}
 							}
 						}
@@ -1028,13 +1028,13 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					{
 						if (!bRunSellPrice)
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_ITEM, pItem[j * 5 + i + 9].graNo, 0);
-						// è‹¥è¾“å…¥ä»·æ ¼è§†çª—å¼€å¯,disp_prio è®¾å®šæˆmenuæ‰ä¸ä¼šç›–åœ¨ä»·æ ¼è§†çª—ä¸Š
+						// ÈôÊäÈë¼Û¸ñÊÓ´°¿ªÆô,disp_prio Éè¶¨³Émenu²Å²»»á¸ÇÔÚ¼Û¸ñÊÓ´°ÉÏ
 						else
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_MENU, pItem[j * 5 + i + 9].graNo, 0);
 					}
 					if (iItemOnSell[j * 5 + i] != -1)
 					{
-						// è‹¥è¾“å…¥ä»·æ ¼è§†çª—å¼€å¯,ä¸æ˜¾ç¤ºsell
+						// ÈôÊäÈë¼Û¸ñÊÓ´°¿ªÆô,²»ÏÔÊ¾sell
 						if (!bRunSellPrice)
 							StockFontBuffer(itemx + 25, itemy + 25, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
 					}
@@ -1046,19 +1046,19 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							if( pItem[j * 5 + i + 9].useFlag )
 								ShowItemup(pItem[j * 5 + i + 9].itemup,mouse.nowPoint.x,mouse.nowPoint.y);
 #endif
-							// æœ‰è¿™ä¸ªé“å…·
+							// ÓĞÕâ¸öµÀ¾ß
 							if (pItem[j * 5 + i + 9].useFlag &&
-								// åˆ¤æ–­é“å…·æ˜¯å¦è¢«é€‰æ‹©
+								// ÅĞ¶ÏµÀ¾ßÊÇ·ñ±»Ñ¡Ôñ
 								 (mouse.onceState & MOUSE_LEFT_DBL_CRICK) &&
-								// è¿˜æ²¡å–
+								// »¹Ã»Âô
 								 (iItemOnSell[j * 5 + i] == -1)
 								)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// è¿˜æœ‰ç©ºé—´èƒ½å–
+								// »¹ÓĞ¿Õ¼äÄÜÂô
 								if (pShowSellItem != NULL)
 								{
-									iItemOnSell[j * 5 + i] = j * 5 + i + 9; // è®°å½•èº«ä¸Šé‚£ä¸ªé“å…·è¦è¢«å–
+									iItemOnSell[j * 5 + i] = j * 5 + i + 9; // ¼ÇÂ¼ÉíÉÏÄÇ¸öµÀ¾ßÒª±»Âô
 									play_se(217,320,240);
 									bRunSellPrice = true;
 									pShowSellItem->usage = true;
@@ -1074,12 +1074,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 #endif
 				}
 			}
-			// ç§€å® ç‰©
+			// Ğã³èÎï
 			for (i = 0; i < MAX_PET; i++)
 			{
 				if (bChangePet && !bRunSellPrice)
 				{
-					// æœ‰è¿™åªå® ä¸”ä¸æ˜¯æ­£åœ¨éª‘ä¹˜åŠè®¾å®šæˆå® é‚®çš„å® 
+					// ÓĞÕâÖ»³èÇÒ²»ÊÇÕıÔÚÆï³Ë¼°Éè¶¨³É³èÓÊµÄ³è
 					if (pet[iShowPet].useFlag == 1 && (pc.ridePetNo != iShowPet) && (pc.mailPetNo != iShowPet))
 					{
 						if (pShowPet != NULL)
@@ -1103,15 +1103,15 @@ void StreetVendorWndfunc(bool bReset,char *data)
 				}
 				if (pShowPet != NULL)
 				{
-					// æ˜¾ç¤ºå® ç‰©èµ„æ–™
+					// ÏÔÊ¾³èÎï×ÊÁÏ
 					if (iPetOnSell[iShowPet] != -1) 
 						StockFontBuffer(x + 440, y + 195, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
-					// æ˜¾ç¤ºå® ç‰©åç§°
+					// ÏÔÊ¾³èÎïÃû³Æ
 					if (strlen(pet[iShowPet].freeName) > 0)
 						StockFontBuffer(x + 336, y + 28, FONT_PRIO_FRONT, 0, pet[iShowPet].freeName, 0);
 					else 
 						StockFontBuffer(x + 336, y + 28, FONT_PRIO_FRONT, 0, pet[iShowPet].name, 0);
-					// æ˜¾ç¤ºå® ç‰©çš„å±æ€§
+					// ÏÔÊ¾³èÎïµÄÊôĞÔ
 					_itoa_s(pet[iShowPet].level, temp, 10);
 					StockFontBuffer(x + 542, y + 92    , FONT_PRIO_FRONT, FONT_PAL_WHITE, temp, 0);
 					_itoa_s(pet[iShowPet].atk, temp, 10);
@@ -1124,7 +1124,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					StockFontBuffer(x + 542, y + 92 + 97, FONT_PRIO_FRONT, FONT_PAL_WHITE, temp, 0);
 				}
 			}
-			// èº«ä¸Šæ²¡å® 
+			// ÉíÉÏÃ»³è
 			if (i == MAX_PET && bChangePet)
 			{
 				bChangePet = false;
@@ -1134,12 +1134,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					pShowPet = NULL;
 				}
 			}
-			// æ»‘é¼ åœ¨åº—ååŒºå†…
+			// »¬ÊóÔÚµêÃûÇøÄÚ
 			if (MakeHitBox(str_bufferVendorName.x, str_bufferVendorName.y, str_bufferVendorName.x + 250,
 						   str_bufferVendorName.y + 24, DISP_PRIO_BOX2) == TRUE)
 				GetKeyInputFocus(&str_bufferVendorName);
 			CheckSpace(str_bufferVendorName.buffer);
-			// æ˜¾ç¤ºåº—å
+			// ÏÔÊ¾µêÃû
 			StockFontBuffer2(&str_bufferVendorName);
 			StockDispBuffer(((WINDOW_DISP *)pActStreetVendorWnd->pYobi)->mx,
 							((WINDOW_DISP *)pActStreetVendorWnd->pYobi)->my,
@@ -1148,15 +1148,15 @@ void StreetVendorWndfunc(bool bReset,char *data)
 	}
 }
 
-// æ‘†æ‘Šè´­ä¹°ä»‹é¢
+// °ÚÌ¯¹ºÂò½éÃæ
 Show_Vendor_Item ShowVendorItem[MAX_SELL_ITEM];
 
 void StreetVendorBuyWndfunc(char *data)
 {
 	int i,j,x,y,selId = 0;
 	const int	iMaxBtnNum = 5;
-	static int	iBtn[iMaxBtnNum],iBuyItemBtn[MAX_SELL_ITEM],iListStart,iTotalBuy[2]; //iTotalBuy[0]:ä¹°å…¥é“å…·æ•°é‡ iTotalBuy[1]:å® ç‰©ä¹°å…¥æ•°é‡
-	static int	iEmptyNum[2],iCurrentShow,iTotalBuyMoney; // iEmptyNum[0]:èº«ä¸Šé“å…·æ ç©ºä½æ•°é‡ iEmptyNum[1]:å® ç‰©æ ç©ºä½æ•°é‡
+	static int	iBtn[iMaxBtnNum],iBuyItemBtn[MAX_SELL_ITEM],iListStart,iTotalBuy[2]; //iTotalBuy[0]:ÂòÈëµÀ¾ßÊıÁ¿ iTotalBuy[1]:³èÎïÂòÈëÊıÁ¿
+	static int	iEmptyNum[2],iCurrentShow,iTotalBuyMoney; // iEmptyNum[0]:ÉíÉÏµÀ¾ßÀ¸¿ÕÎ»ÊıÁ¿ iEmptyNum[1]:³èÎïÀ¸¿ÕÎ»ÊıÁ¿
 	static int	iMakePetAni = -1;
 #ifdef _PET_ITEM
 	static BOOL	bViewPetItem = FALSE;
@@ -1206,14 +1206,14 @@ void StreetVendorBuyWndfunc(char *data)
 			x = pActStreetVendorBuyWnd->x;
 			y = pActStreetVendorBuyWnd->y;
 			selId = focusFontId(iBuyItemBtn, sizeof(iBuyItemBtn) / sizeof(int));
-			// æ˜¾ç¤ºåŠè®¾å®šbuttonå‡ºç°çš„ä½ç½®
-			// ç¡®å®š
+			// ÏÔÊ¾¼°Éè¶¨button³öÏÖµÄÎ»ÖÃ
+			// È·¶¨
 			iBtn[0] = StockDispBuffer(x + 410, y + 378, DISP_PRIO_IME3, 26289, 2);
-			// å–æ¶ˆ
+			// È¡Ïû
 			iBtn[1] = StockDispBuffer(x + 535, y + 378, DISP_PRIO_IME3, 26291, 2);
-			// ä¸Šå·ç®­å¤´
+			// ÉÏ¾í¼ıÍ·
 			iBtn[2] = StockDispBuffer(x + 300, y + 34, DISP_PRIO_IME3, 26331, 2);
-			// ä¸‹å·ç®­å¤´
+			// ÏÂ¾í¼ıÍ·
 			iBtn[3] = StockDispBuffer(x + 300, y + 374, DISP_PRIO_IME3, 26332, 2);
 #ifdef _PET_ITEM
 			if (bViewPetItem)
@@ -1230,7 +1230,7 @@ void StreetVendorBuyWndfunc(char *data)
 						play_se(217, 320, 240);
 						switch (i)
 						{
-						// ç¡®å®š
+						// È·¶¨
 						case 0:
 							{
 								int count = 0;
@@ -1238,14 +1238,14 @@ void StreetVendorBuyWndfunc(char *data)
 								
 								memset(szMsg, 0, sizeof(szMsg));
 								memset(szTemp, 0, sizeof(szTemp));
-								// æŠŠè¦ä¹°çš„ä¸œè¥¿çš„ç´¢å¼•ä¼ ç»™server
+								// °ÑÒªÂòµÄ¶«Î÷µÄË÷Òı´«¸øserver
 								for(j = 0; j < MAX_SELL_ITEM; j++)
 								{
 									if (ShowVendorItem[j].bBuy)
 									{
 										sprintf_s(szTemp1, "%d|", ShowVendorItem[j].index);
 										strcat_s(szTemp, szTemp1);
-										count++;	// æ€»æ•°ç»Ÿè®¡
+										count++;	// ×ÜÊıÍ³¼Æ
 									}
 								}
 								if (count != 0)
@@ -1256,7 +1256,7 @@ void StreetVendorBuyWndfunc(char *data)
 								else
 									lssproto_STREET_VENDOR_send(sockfd, "N|");
 							}
-						// å–æ¶ˆ
+						// È¡Ïû
 						case 1:
 							if (i == 1)
 								lssproto_STREET_VENDOR_send(sockfd, "N|");
@@ -1271,13 +1271,13 @@ void StreetVendorBuyWndfunc(char *data)
 								DeathAction(pActSellPriceWnd);
 							pActSellPriceWnd = NULL;
 							break;
-						// ä¸Šå·
+						// ÉÏ¾í
 						case 2:
 							iListStart--;
 							if (iListStart < 0)
 								iListStart = 0;
 							break;
-						// ä¸‹å·
+						// ÏÂ¾í
 						case 3:
 							iListStart++;
 							if (iListStart > 13)
@@ -1294,7 +1294,7 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// æ˜¾ç¤ºå·¦æ–¹çš„ç‰©å“åˆ—è¡¨
+			// ÏÔÊ¾×ó·½µÄÎïÆ·ÁĞ±í
 			for (i = iListStart, j = 0; i < iListStart + 13; i++, j++)
 			{
 				iBuyItemBtn[j]=-2;
@@ -1309,7 +1309,7 @@ void StreetVendorBuyWndfunc(char *data)
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowVendorItem[i].pile);
 							StockFontBuffer(x + 180-getTextLength(tempstr)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, tempstr, 0);	
-							StockFontBuffer(x + 250-getTextLength("è®®ä»·")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "è®®ä»·", 0);	
+							StockFontBuffer(x + 250-getTextLength("Òé¼Û")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "Òé¼Û", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowVendorItem[i].pile);
@@ -1319,7 +1319,7 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 #else
 						if (ShowVendorItem[i].price == 0)
-							sprintf_s(szMsg, "%-20sx%3d%13s", ShowVendorItem[i].name, ShowVendorItem[i].pile, "è®®ä»·");
+							sprintf_s(szMsg, "%-20sx%3d%13s", ShowVendorItem[i].name, ShowVendorItem[i].pile, "Òé¼Û");
 						else
 							sprintf_s(szMsg, "%-20sx%3d%13d", ShowVendorItem[i].name, ShowVendorItem[i].pile, ShowVendorItem[i].price);
 #endif
@@ -1332,7 +1332,7 @@ void StreetVendorBuyWndfunc(char *data)
 						if (ShowVendorItem[i].price == 0){
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							StockFontBuffer(x + 175- getTextLength(ShowVendorItem[i].freeName)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].freeName, 0);	
-							StockFontBuffer(x + 250-getTextLength("è®®ä»·")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "è®®ä»·", 0);	
+							StockFontBuffer(x + 250-getTextLength("Òé¼Û")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "Òé¼Û", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							StockFontBuffer(x + 175 - getTextLength(ShowVendorItem[i].freeName)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].freeName, 0);	
@@ -1341,7 +1341,7 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 #else
 						if (ShowVendorItem[i].price == 0)
-							sprintf_s(szMsg, "%-17s%-12s%8s", ShowVendorItem[i].name, ShowVendorItem[i].freeName, "è®®ä»·");
+							sprintf_s(szMsg, "%-17s%-12s%8s", ShowVendorItem[i].name, ShowVendorItem[i].freeName, "Òé¼Û");
 						else
 							sprintf_s(szMsg, "%-17s%-12s%8d", ShowVendorItem[i].name, ShowVendorItem[i].freeName, ShowVendorItem[i].price);
 #endif
@@ -1359,36 +1359,36 @@ void StreetVendorBuyWndfunc(char *data)
 					//iBuyItemBtn[j] = StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "", 0);
 			}
 
-			// æ˜¾ç¤ºé¡¹ç›®è¯¦ç»†èµ„æ–™
+			// ÏÔÊ¾ÏîÄ¿ÏêÏ¸×ÊÁÏ
 			if (ShowVendorItem[iCurrentShow].bGetData)
 			{
-				// æ˜¾ç¤ºé“å…·è¯¦ç»†èµ„æ–™
+				// ÏÔÊ¾µÀ¾ßÏêÏ¸×ÊÁÏ
 				if (ShowVendorItem[iCurrentShow].kind == 0)
 				{
 					int		iy = y + 198, color = ShowVendorItem[iCurrentShow].color;
 					char	*splitPoint = ShowVendorItem[iCurrentShow].memo;
 
-					// æ¸…é™¤å® ç‰©å›¾
+					// Çå³ı³èÎïÍ¼
 					if (pShowPet != NULL)
 					{
 						DeathAction(pShowPet);
 						pShowPet = NULL;
 					}
-					// æ˜¾ç¤ºé“å…·
+					// ÏÔÊ¾µÀ¾ß
 					StockDispBuffer(x + 415, y + 100, DISP_PRIO_ITEM, ShowVendorItem[iCurrentShow].bmpNo, 0);
-					// æ˜¾ç¤ºé“å…·åº•ä¸‹çš„çŸ³æ¿
+					// ÏÔÊ¾µÀ¾ßµ×ÏÂµÄÊ¯°å
 					StockDispBuffer(x + 415, y + 100, DISP_PRIO_IME3, 26269, 0);
-					// æ˜¾ç¤ºé“å…·åç§°
+					// ÏÔÊ¾µÀ¾ßÃû³Æ
 					StockFontBuffer(x + 325, y + 150, FONT_PRIO_FRONT, color, ShowVendorItem[iCurrentShow].name, 0);
 
-					// æ˜¾ç¤ºé“å…·è€ä¹…åº¦
-					sprintf_s(szMsg, "è€ä¹…åº¦(%s)", ShowVendorItem[iCurrentShow].damage);
+					// ÏÔÊ¾µÀ¾ßÄÍ¾Ã¶È
+					sprintf_s(szMsg, "ÄÍ¾Ã¶È(%s)", ShowVendorItem[iCurrentShow].damage);
 					StockFontBuffer(x + 325, y + 174, FONT_PRIO_FRONT, color, szMsg, 0);
 
 #ifdef _NPC_ITEMUP
 					ShowItemup(ShowVendorItem[iCurrentShow].itemup,x+325+250,y+194);
 #endif
-					// æ˜¾ç¤ºé“å…·å™è¿°
+					// ÏÔÊ¾µÀ¾ßĞğÊö
 					while (1)
 					{
 						if (strlen(splitPoint) > 28)
@@ -1416,19 +1416,19 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 					}
 				}
-				// æ˜¾ç¤ºå® ç‰©è¯¦ç»†èµ„æ–™
+				// ÏÔÊ¾³èÎïÏêÏ¸×ÊÁÏ
 				else
 				{
 					if (pShowPet != NULL)
 					{
 #ifdef _PET_ITEM
-						// æ˜¾ç¤ºå® ç‰©èº«ä¸Šé“å…·
+						// ÏÔÊ¾³èÎïÉíÉÏµÀ¾ß
 						if (bViewPetItem)
 						{
 							int		nY = 251, nColor;
 							char	*splitPoint;
 
-							// æ˜¾ç¤ºå® ç‰©è£…å¤‡æ çš„åº•å›¾åŠè£…å¤‡
+							// ÏÔÊ¾³èÎï×°±¸À¸µÄµ×Í¼¼°×°±¸
 							for (i = 0; i < PET_EQUIPNUM; i++)
 							{	
 								StockDispBuffer(ItemBuffer[i].defX, ItemBuffer[i].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[i][0], 0);
@@ -1437,7 +1437,7 @@ void StreetVendorBuyWndfunc(char *data)
 							}
 							for (i = 0; i < PET_EQUIPNUM; i++)
 							{
-								// æ˜¾ç¤ºè£…å¤‡å†…å®¹
+								// ÏÔÊ¾×°±¸ÄÚÈİ
 								if (MakeHitBox( ItemBuffer[i].defX - 26, ItemBuffer[i].defY - 26,
 												ItemBuffer[i].defX + 26, ItemBuffer[i].defY + 23, DISP_PRIO_IME3) == TRUE)
 								{
@@ -1445,17 +1445,17 @@ void StreetVendorBuyWndfunc(char *data)
 									{
 										nColor = ShowVendorItem[iCurrentShow].oPetItemInfo[i].color;
 										splitPoint = ShowVendorItem[iCurrentShow].oPetItemInfo[i].memo;
-										// è£…å¤‡åç§°
+										// ×°±¸Ãû³Æ
 										StockFontBuffer(x + 325, y + 195, FONT_PRIO_FRONT, nColor, ShowVendorItem[iCurrentShow].oPetItemInfo[i].name,0);
 
-										// è€ä¹…åº¦
-										sprintf_s(szMsg, "è€ä¹…åº¦(%s)", ShowVendorItem[iCurrentShow].oPetItemInfo[i].damage);
+										// ÄÍ¾Ã¶È
+										sprintf_s(szMsg, "ÄÍ¾Ã¶È(%s)", ShowVendorItem[iCurrentShow].oPetItemInfo[i].damage);
 										StockFontBuffer(x + 325, y + 215, FONT_PRIO_FRONT, nColor, szMsg, 0);
 
 #ifdef _NPC_ITEMUP
 										ShowItemup(ShowVendorItem[iCurrentShow].itemup,x+325+250,y+235);
 #endif
-										// æ˜¾ç¤ºé“å…·å™è¿°
+										// ÏÔÊ¾µÀ¾ßĞğÊö
 										while (1)
 										{
 											if (strlen(splitPoint) > 28)
@@ -1489,68 +1489,68 @@ void StreetVendorBuyWndfunc(char *data)
 						else
 #endif
 						{
-							// æ˜¾ç¤ºå® ç‰©åå­—
+							// ÏÔÊ¾³èÎïÃû×Ö
 							StockFontBuffer(x + 325, y + 35, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[iCurrentShow].name, 0);
-							// æ˜¾ç¤ºå® ç‰©è½¬ç”Ÿæ•°
-							sprintf_s(szMsg, "%d è½¬", ShowVendorItem[iCurrentShow].trans);
+							// ÏÔÊ¾³èÎï×ªÉúÊı
+							sprintf_s(szMsg, "%d ×ª", ShowVendorItem[iCurrentShow].trans);
 							StockFontBuffer(x + 570, y + 35, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							// æ˜¾ç¤ºå® ç‰©è¢«æ”¹åçš„åå­—
+							// ÏÔÊ¾³èÎï±»¸ÄºóµÄÃû×Ö
 							//StockFontBuffer(x + 325, y + 55, FONT_PRIO_FRONT, FONT_PAL_RED, ShowVendorItem[iCurrentShow].freeName, 0);
-							// æ˜¾ç¤ºå® ç‰©ç­‰çº§,,è¡€,æ”»,é˜²,æ•,å››å±æ€§
+							// ÏÔÊ¾³èÎïµÈ¼¶,,Ñª,¹¥,·À,Ãô,ËÄÊôĞÔ
 #ifdef _NEWFONT_
-							sprintf_s(szMsg, "  å½“å‰     åŸå§‹        é¢„æµ‹        æˆé•¿       å…¶å®ƒ");
+							sprintf_s(szMsg, "  µ±Ç°     Ô­Ê¼        Ô¤²â        ³É³¤       ÆäËü");
 #else
-							sprintf_s(szMsg, "  å½“å‰   åŸå§‹    é¢„æµ‹     æˆé•¿    å…¶å®ƒ");
+							sprintf_s(szMsg, "  µ±Ç°   Ô­Ê¼    Ô¤²â     ³É³¤    ÆäËü");
 #endif
 							StockFontBuffer(x + 325, y + 60, FONT_PRIO_FRONT, FONT_PAL_GREEN, szMsg, 0);
-							sprintf_s(szMsg, "Lvï¼š%d", ShowVendorItem[iCurrentShow].level);
+							sprintf_s(szMsg, "Lv£º%d", ShowVendorItem[iCurrentShow].level);
 							StockFontBuffer(x + 325, y + 80, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 #ifdef _PETBLESS_
 							if(ShowVendorItem[iCurrentShow].maxhp < 0 ){
-								sprintf_s(szMsg, "è¡€ï¼š%d", abs(ShowVendorItem[iCurrentShow].maxhp));
+								sprintf_s(szMsg, "Ñª£º%d", abs(ShowVendorItem[iCurrentShow].maxhp));
 								StockFontBuffer(x + 325, y + 100, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
 							}
 							else{
-								sprintf_s(szMsg, "è¡€ï¼š%d", ShowVendorItem[iCurrentShow].maxhp);
+								sprintf_s(szMsg, "Ñª£º%d", ShowVendorItem[iCurrentShow].maxhp);
 								StockFontBuffer(x + 325, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 							}
 							
 							if(ShowVendorItem[iCurrentShow].attack < 0 ){
-								sprintf_s(szMsg, "æ”»ï¼š%d", abs(ShowVendorItem[iCurrentShow].attack));
+								sprintf_s(szMsg, "¹¥£º%d", abs(ShowVendorItem[iCurrentShow].attack));
 								StockFontBuffer(x + 325, y + 120, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
 							}
 							else
 							{
-								sprintf_s(szMsg, "æ”»ï¼š%d", ShowVendorItem[iCurrentShow].attack);
+								sprintf_s(szMsg, "¹¥£º%d", ShowVendorItem[iCurrentShow].attack);
 								StockFontBuffer(x + 325, y + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 							
 							}
 							if(ShowVendorItem[iCurrentShow].defence < 0 ){
-								sprintf_s(szMsg, "é˜²ï¼š%d", abs(ShowVendorItem[iCurrentShow].defence));
+								sprintf_s(szMsg, "·À£º%d", abs(ShowVendorItem[iCurrentShow].defence));
 								StockFontBuffer(x + 325, y + 140, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
 							}
 							else{
-								sprintf_s(szMsg, "é˜²ï¼š%d", ShowVendorItem[iCurrentShow].defence);
+								sprintf_s(szMsg, "·À£º%d", ShowVendorItem[iCurrentShow].defence);
 								StockFontBuffer(x + 325, y + 140, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 							}
 							if(ShowVendorItem[iCurrentShow].dex < 0 ){
-								sprintf_s(szMsg, "æ•ï¼š%d", abs(ShowVendorItem[iCurrentShow].dex));
+								sprintf_s(szMsg, "Ãô£º%d", abs(ShowVendorItem[iCurrentShow].dex));
 								StockFontBuffer(x + 325, y + 160, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
 							}
 							else{
-								sprintf_s(szMsg, "æ•ï¼š%d", ShowVendorItem[iCurrentShow].dex);
+								sprintf_s(szMsg, "Ãô£º%d", ShowVendorItem[iCurrentShow].dex);
 								StockFontBuffer(x + 325, y + 160, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 							}
 #else
-							sprintf_s(szMsg, "Lvï¼š%d", ShowVendorItem[iCurrentShow].level);
+							sprintf_s(szMsg, "Lv£º%d", ShowVendorItem[iCurrentShow].level);
 							StockFontBuffer(x + 325, y + 80, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							sprintf_s(szMsg, "è¡€ï¼š%d", ShowVendorItem[iCurrentShow].maxhp);
+							sprintf_s(szMsg, "Ñª£º%d", ShowVendorItem[iCurrentShow].maxhp);
 							StockFontBuffer(x + 325, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							sprintf_s(szMsg, "æ”»ï¼š%d", ShowVendorItem[iCurrentShow].attack);
+							sprintf_s(szMsg, "¹¥£º%d", ShowVendorItem[iCurrentShow].attack);
 							StockFontBuffer(x + 325, y + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							sprintf_s(szMsg, "é˜²ï¼š%d", ShowVendorItem[iCurrentShow].defence);
+							sprintf_s(szMsg, "·À£º%d", ShowVendorItem[iCurrentShow].defence);
 							StockFontBuffer(x + 325, y + 140, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							sprintf_s(szMsg, "æ•ï¼š%d", ShowVendorItem[iCurrentShow].dex);
+							sprintf_s(szMsg, "Ãô£º%d", ShowVendorItem[iCurrentShow].dex);
 							StockFontBuffer(x + 325, y + 160, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 #endif
 							sprintf_s(szMsg, "%d", ShowVendorItem[iCurrentShow].ylv);
@@ -1614,24 +1614,24 @@ void StreetVendorBuyWndfunc(char *data)
 
 
 
-							sprintf_s(szMsg, "åœ°ï¼š%d", ShowVendorItem[iCurrentShow].earth/10);
+							sprintf_s(szMsg, "µØ£º%d", ShowVendorItem[iCurrentShow].earth/10);
 							StockFontBuffer(x + 560, y + 80, FONT_PRIO_FRONT, FONT_PAL_GREEN, szMsg, 0);
-							sprintf_s(szMsg, "æ°´ï¼š%d", ShowVendorItem[iCurrentShow].water/10);
+							sprintf_s(szMsg, "Ë®£º%d", ShowVendorItem[iCurrentShow].water/10);
 							StockFontBuffer(x + 560, y + 100, FONT_PRIO_FRONT, FONT_PAL_BLUE, szMsg, 0);
-							sprintf_s(szMsg, "ç«ï¼š%d", ShowVendorItem[iCurrentShow].fire/10);
+							sprintf_s(szMsg, "»ğ£º%d", ShowVendorItem[iCurrentShow].fire/10);
 							StockFontBuffer(x + 560, y + 120, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
-							sprintf_s(szMsg, "é£ï¼š%d", ShowVendorItem[iCurrentShow].wind/10);
+							sprintf_s(szMsg, "·ç£º%d", ShowVendorItem[iCurrentShow].wind/10);
 							StockFontBuffer(x + 560, y + 140, FONT_PRIO_FRONT, FONT_PAL_YELLOW, szMsg, 0);
-							sprintf_s(szMsg, "å¿ ï¼š%d", ShowVendorItem[iCurrentShow].fidelity);
+							sprintf_s(szMsg, "ÖÒ£º%d", ShowVendorItem[iCurrentShow].fidelity);
 							StockFontBuffer(x + 560, y + 160, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 
 
 
 
-							// æ˜¾ç¤ºå® æŠ€
+							// ÏÔÊ¾³è¼¼
 							for (i = 0; i < ShowVendorItem[iCurrentShow].maxSkill; i++)
 							{
-								sprintf_s(szMsg, "æŠ€ %dï¼š%s", i + 1, ShowVendorItem[iCurrentShow].skillname[i]);
+								sprintf_s(szMsg, "¼¼ %d£º%s", i + 1, ShowVendorItem[iCurrentShow].skillname[i]);
 								StockFontBuffer(x + 325, y + 190 + i * 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 							}
 						}
@@ -1639,12 +1639,12 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// å¤„ç†å·¦æ–¹é¡¹ç›®
+			// ´¦Àí×ó·½ÏîÄ¿
 			int kind;
 
 			for (i = 0; i < 13; i++)
 			{
-				// é€‰å®šè¦ä¹°
+				// Ñ¡¶¨ÒªÂò
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					//selId = focusFontId(iBuyItemBtn, sizeof(iBuyItemBtn) / sizeof(int));
@@ -1652,20 +1652,20 @@ void StreetVendorBuyWndfunc(char *data)
 					{
 						kind = ShowVendorItem[i + iListStart].kind;
 						
-						// è‹¥å·²ç‚¹é€‰åˆ™å–æ¶ˆ
+						// ÈôÒÑµãÑ¡ÔòÈ¡Ïû
 						if (ShowVendorItem[i + iListStart].bBuy)
 						{
 							ShowVendorItem[i + iListStart].bBuy = false;
 							iTotalBuy[kind]--;
 							iTotalBuyMoney -= ShowVendorItem[i + iListStart].price;
 						}
-						// æ˜¯å¦æ˜¯è®®ä»·ç‰©å“
+						// ÊÇ·ñÊÇÒé¼ÛÎïÆ·
 						else if (ShowVendorItem[i + iListStart].price > 0)
 						{
-							// èº«ä¸Šè¿˜æœ‰ç©ºä½
+							// ÉíÉÏ»¹ÓĞ¿ÕÎ»
 							if (iEmptyNum[kind] > iTotalBuy[kind])
 							{
-								// èº«ä¸Šçš„é’±è¶³å¤Ÿ
+								// ÉíÉÏµÄÇ®×ã¹»
 								if ((iTotalBuyMoney + ShowVendorItem[i + iListStart].price) <= pc.gold)
 								{
 									ShowVendorItem[i + iListStart].bBuy = true;
@@ -1673,22 +1673,22 @@ void StreetVendorBuyWndfunc(char *data)
 									iTotalBuyMoney += ShowVendorItem[i + iListStart].price;
 								}
 								else
-									StockChatBufferLine("çŸ³å¸ä¸è¶³ï¼", FONT_PAL_RED);
+									StockChatBufferLine("Ê¯±Ò²»×ã£¡", FONT_PAL_RED);
 							}
 							else
 							{
 								if (kind == 0)
-									StockChatBufferLine("èº«ä¸Šé“å…·æ ä½ä¸è¶³ï¼", FONT_PAL_RED);
+									StockChatBufferLine("ÉíÉÏµÀ¾ßÀ¸Î»²»×ã£¡", FONT_PAL_RED);
 								else if (kind == 1)
-									StockChatBufferLine("èº«ä¸Šå® ç‰©æ æ ä½ä¸è¶³ï¼", FONT_PAL_RED);
+									StockChatBufferLine("ÉíÉÏ³èÎïÀ¸À¸Î»²»×ã£¡", FONT_PAL_RED);
 							}
 						}
 						else 
-							StockChatBufferLine("è®®ä»·ç‰©å“ä¸å¯ç‚¹é€‰ï¼", FONT_PAL_RED);
+							StockChatBufferLine("Òé¼ÛÎïÆ·²»¿ÉµãÑ¡£¡", FONT_PAL_RED);
 						break;
 					}
 				}
-				// çœ‹é¡¹ç›®å†…å®¹
+				// ¿´ÏîÄ¿ÄÚÈİ
 				else if (mouse.onceState & MOUSE_RIGHT_CRICK)
 				{
 					if (HitFontNo == iBuyItemBtn[i])
@@ -1719,10 +1719,10 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// æ˜¾ç¤ºèº«ä¸Šçš„é’±
+			// ÏÔÊ¾ÉíÉÏµÄÇ®
 			sprintf_s(szMsg, "%d", pc.gold);
 			StockFontBuffer(x + 380, y + 336, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-			// æ˜¾ç¤ºç‚¹é€‰çš„ç‰©å“çš„æ€»ä»·
+			// ÏÔÊ¾µãÑ¡µÄÎïÆ·µÄ×Ü¼Û
 			sprintf_s(szMsg, "%d", iTotalBuyMoney);
 			StockFontBuffer(x + 525, y + 336, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 			if (iMakePetAni > -1)
@@ -1742,7 +1742,7 @@ void StreetVendorBuyWndfunc(char *data)
 		int nPetItemPlace;
 #endif
 		getStringToken(data, '|', 1, sizeof(szMsg) - 1, szMsg);
-		// è´©å–ç‰©åŸºæœ¬èµ„æ–™
+		// ··ÂôÎï»ù±¾×ÊÁÏ
 		if (szMsg[0] == 'B')
 		{
 			getStringToken(data, '|', 2, sizeof(szMsg) - 1, szMsg);
@@ -1765,7 +1765,7 @@ void StreetVendorBuyWndfunc(char *data)
 				ShowVendorItem[i].usage = true;
 			}
 		}
-		// è´©å–ç‰©è¯¦ç»†èµ„æ–™
+		// ··ÂôÎïÏêÏ¸×ÊÁÏ
 		else if (szMsg[0] == 'D')
 		{
 			getStringToken(data, '|', 2, sizeof(szMsg) - 1, szMsg);
@@ -1857,26 +1857,26 @@ void StreetVendorBuyWndfunc(char *data)
 #ifdef _PET_ITEM
 					for (int j = 0; j < MAX_PET_ITEM; j++)
 					{
-						// è£…å¤‡ä½ç½®
+						// ×°±¸Î»ÖÃ
 						if (getStringToken(data, '|', 16 + i + j * 6, sizeof(szMsg) - 1, szMsg))
 							continue;
 						nPetItemPlace = atoi(szMsg);
-						// åå­—
+						// Ãû×Ö
 						getStringToken(data, '|', 17 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].name) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].name);
-						// è¯´æ˜
+						// ËµÃ÷
 						getStringToken(data, '|', 18 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].memo) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].memo);
-						// è€ä¹…åº¦
+						// ÄÍ¾Ã¶È
 						getStringToken(data, '|', 19 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].damage) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].damage);
-						// æ–‡å­—é¢œè‰²
+						// ÎÄ×ÖÑÕÉ«
 						getStringToken(data, '|', 20 + i + j * 6, sizeof(szMsg) - 1, szMsg);
 						ShowVendorItem[index].oPetItemInfo[nPetItemPlace].color	= atoi(szMsg);
-						// å›¾å·
+						// Í¼ºÅ
 						getStringToken(data, '|', 21 + i + j * 6, sizeof(szMsg) - 1, szMsg);
 						ShowVendorItem[index].oPetItemInfo[nPetItemPlace].bmpNo	= atoi(szMsg);
 					}
@@ -1889,7 +1889,7 @@ void StreetVendorBuyWndfunc(char *data)
 }
 
 #else
-#ifdef _TABLEOFSKILL				// (ä¸å¯å¼€) Syu ADD 7.0 æ–°å¢äººç‰©æŠ€èƒ½è¡¨å•
+#ifdef _TABLEOFSKILL				// (²»¿É¿ª) Syu ADD 7.0 ĞÂÔöÈËÎï¼¼ÄÜ±íµ¥
 int SkillWnd = 0 ; 
 ACTION *pActSkillWnd;
 short skillBtn = 0;
@@ -1899,7 +1899,7 @@ int skillBtnGraNo[] =
 	CG_FIELD_SKILL_BTN_OFF,
 	CG_FIELD_SKILL_BTN_ON
 };
-// èŒä¸šæŠ€èƒ½è§†çª—
+// Ö°Òµ¼¼ÄÜÊÓ´°
 void SkillWndfunc()
 {
 	int x , y , j ; 
@@ -1909,7 +1909,7 @@ void SkillWndfunc()
 	if (pActSkillWnd == NULL)
 	{
 		pActSkillWnd = MakeWindowDisp(354, 0, 300, 456, 0, -1);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = pActSkillWnd->x;
 		y = pActSkillWnd->y;
 #endif
@@ -1997,12 +1997,12 @@ void SkillWndfunc()
 						use_color = FONT_PAL_GRAY;
 					sprintf_s(msg, "%s", profession_skill[AssitSkill[j + i * 4]].name);
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "%dï¼…", profession_skill[AssitSkill[j + i * 4]].skill_level);
+					sprintf_s(msg, "%d£¥", profession_skill[AssitSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(è€—è´¹MP:%d)", profession_skill[AssitSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(ºÄ·ÑMP:%d)", profession_skill[AssitSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[AssitSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
+#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AssitSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[AssitSkill[j + i * 4]].costmp && profession_skill[AssitSkill[j + i * 4]].costmp != 0)
@@ -2042,12 +2042,12 @@ void SkillWndfunc()
 					
 					sprintf_s(msg, "%s", profession_skill[BattleSkill[j + i * 4]].name);
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "%dï¼…", profession_skill[BattleSkill[j + i * 4]].skill_level);
+					sprintf_s(msg, "%d£¥", profession_skill[BattleSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(è€—è´¹MP:%d)", profession_skill[BattleSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(ºÄ·ÑMP:%d)", profession_skill[BattleSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[BattleSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
+#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[BattleSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[BattleSkill[j + i * 4]].costmp && profession_skill[BattleSkill[j + i * 4]].costmp != 0)
@@ -2087,12 +2087,12 @@ void SkillWndfunc()
 					
 					sprintf_s(msg, "%s", profession_skill[AdvanceSkill[j + i * 4]].name);
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "%dï¼…", profession_skill[AdvanceSkill[j + i * 4]].skill_level);
+					sprintf_s(msg, "%d£¥", profession_skill[AdvanceSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(è€—è´¹MP:%d)" , profession_skill[AdvanceSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(ºÄ·ÑMP:%d)" , profession_skill[AdvanceSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[AdvanceSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
+#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AdvanceSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[AdvanceSkill[j + i * 4]].costmp && profession_skill[AdvanceSkill[j + i * 4]].costmp != 0)
@@ -2144,7 +2144,7 @@ void SkillWndfunc()
 	#endif
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
+#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
 ACTION *pChatRoomWnd;
 short  chatRoomBtn = 0;
 short  SelRoomBtn = 0;
@@ -2165,7 +2165,7 @@ int menuBtnGraNo[] =
 	CG_FIELD_MENU_BTN_ON
 };
 
-// î¡“îŒ¹???
+// şúê???
 short cardBtn = 0;
 short cardBtnFocus = 0;
 int cardBtnGraNo[] =
@@ -2295,7 +2295,7 @@ int redmemoyGraNo[] =
 };
 #endif
 unsigned int mailLampFlashTime = 0;
-// îŒ¢î“–???
+// úÓ¡P???
 short joinBattleBtn = 0;
 short joinBattleBtnFocus = 0;
 short joinBattleBtnEnableFlag = 1;
@@ -2305,7 +2305,7 @@ int joinBattleBtnGraNo[] =
 	CG_FIELD_JOIN_BTL_BTN_OFF,
 	CG_FIELD_JOIN_BTL_BTN_ON
 };
-// î•”î“–???
+// ¢n¡P???
 short duelBtn = 0;
 short duelBtnFocus = 0;
 int duelBtnGraNo[] =
@@ -2326,10 +2326,10 @@ int actBtnGraNo[] =
 };
 short charActionAnimeChangeProcNo;
 short charActionAnimeChangeWindowFlag;
-// ???îŒ¢î“–?î•”î“–ï¼¯ï¼«???????
+// ???úÓ¡P?¢n¡P£Ï£Ë???????
 short etcSwitchProcNo;
 short etcSwitchChangeFlag = 0;
-// î—Œ?????
+// £‡?????
 int amPmAnimeTime;
 int amPmAnimeX;
 int amPmAnimeGraNoIndex0, amPmAnimeGraNoIndex1;
@@ -2356,7 +2356,7 @@ short etcSendFlag = 0;
 short nowFieldMenuOpenFlag = 0;		// ??????????????????
 // ???????????????????????
 unsigned int fieldBtnPushTime = 0;
-// ?????????î–º?î¸î•
+// ?????????£t?¤úû¨
 unsigned int fieldInfoTime = 0;
 // ??????
 void initCharActionAnimeChange( void );
@@ -2376,7 +2376,7 @@ static short joinChannel2Proc = 0;
 struct tm serverAliveTime;
 time_t serverAliveLongTime;
 
-// ?????î¯????????
+// ?????ıÆ????????
 void initFieldProc( void )
 {
 	int i;
@@ -2386,7 +2386,7 @@ void initFieldProc( void )
 	cardBtn = 0;
 	partyBtn = 0;
 	tradeBtn = 0;
-// initPcAll()?î ¸îš‡?î—•??î“†î˜‹??????????????
+// initPcAll()?şs¥‚?£??¡@¤e??????????????
 //	mailLamp = 0;
 #ifdef __PHONEMESSAGE
 	msgBtn = 0;  //LeiBoy 2002 Jan.26
@@ -2395,11 +2395,11 @@ void initFieldProc( void )
 	sStreetVendorBtn = 0;
 	sStreetVendorBuyBtn = 0;
 #else
-	#ifdef _TABLEOFSKILL				// (ä¸å¯å¼€) Syu ADD 7.0 æ–°å¢äººç‰©æŠ€èƒ½è¡¨å•
+	#ifdef _TABLEOFSKILL				// (²»¿É¿ª) Syu ADD 7.0 ĞÂÔöÈËÎï¼¼ÄÜ±íµ¥
 	skillBtn = 0 ; 
 	#endif
 #endif
-#ifdef _FRIENDCHANNEL      //ROG ADD å¥½å‹é¢‘é“
+#ifdef _FRIENDCHANNEL      //ROG ADD ºÃÓÑÆµµÀ
 	chatRoomBtn = 0;
 	SelRoomBtn = 0;
 	TalkMode = 0;
@@ -2446,7 +2446,7 @@ void resetFieldProc(void)
 	helpBtn = 0;
 }
 
-// ?????î¯????
+// ?????ıÆ????
 void fieldProc( void )
 {
 	int selId;
@@ -2457,14 +2457,14 @@ void fieldProc( void )
 	// ??????
 	rand2();
 	
-	// ?????îŸ‰??????????????
+	// ?????¨Á??????????????
 	actionShortCutKeyProc();
 	
-	// ?????????îŸ‰???????îº?î’?????????
-	// î•˜???????????
+	// ?????????¨Á???????ûÍ?şÉ?????????
+	// ¢r???????????
 	if (etcSwitchChangeFlag && eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 	{
-		if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+		if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 		{
 			if (bNewServer)
 				lssproto_FS_send(sockfd, pc.etcFlag);
@@ -2475,35 +2475,35 @@ void fieldProc( void )
 		}
 	}
 	
-	// î•‚??????î?????î¸î•???
+	// ¢\??????üÒ?????¤úû¨???
 	if (CheckMenuFlag() || windowTypeWN > -1 || actBtn == 1 || menuBtn == 1 || channelWNFlag == 1)
 		drawFieldButtonFlag = 0;
 	else
 		drawFieldButtonFlag = 1;
 
-	// ??????????????????î????????
+	// ??????????????????üÒ????????
 	nowFieldMenuOpenFlag = 0;
-	// ????????îœ¡???????????
+	// ????????§[???????????
 	if (windowTypeWN != -1)
 		nowFieldMenuOpenFlag = 1;
-	// ?????îŸ‰???????????
+	// ?????¨Á???????????
 	if (actBtn == 1)
 		nowFieldMenuOpenFlag = 1;
-	// ???îŒ¢î“–?î•”î“–ï¼¯ï¼«??????????????
+	// ???úÓ¡P?¢n¡P£Ï£Ë??????????????
 	if (menuBtn == 1)
 		nowFieldMenuOpenFlag = 1;
 
-	// ???????î—Œ??????????????????1îšº?1024?
+	// ???????£‡??????????????????1¦T?1024?
 	amPmAnimeTime = (SaTime.hour + 832) % 1024;
 	amPmAnimeGraNoIndex0 = amPmAnimeTime / 256;
 	amPmAnimeGraNoIndex1 = (amPmAnimeGraNoIndex0 + 1) % 4;
 	amPmAnimeX = (amPmAnimeTime % 256) / 4;
 	
-	// ????î™®?????????
+	// ????¥h?????????
 	if (nowVx != 0 || nowVy != 0)
 		walkFlag = TRUE;
 	
-	// ?????????????îŸ??îŸ?????????????
+	// ?????????????¨ë??¨ë?????????????
 	if (etcSendFlag)
 	{
 		if (prSendFlag == 0 && jbSendFlag == 0 && duelSendFlag == 0)
@@ -2513,10 +2513,10 @@ void fieldProc( void )
 	}
 	
 	// ?????????????????????
-	// î•‚??î››?î¯???????
-	// îŸš??????
+	// ¢\??¦u?ûÂ???????
+	// ¨÷??????
 #if 1
-	// ?îœ?????????????
+	// ?ûï?????????????
 	selId = selGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
 	pushId = pushGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
 	focusId = focusGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
@@ -2525,7 +2525,7 @@ void fieldProc( void )
 #else
 	if (etcSendFlag == 0 && walkFlag == FALSE)
 	{
-		// ?îœ?????????????
+		// ?ûï?????????????
 		selId = selGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
 		pushId = pushGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
 		focusId = focusGraId(fieldBtnHitId, sizeof(fieldBtnHitId) / sizeof(int));
@@ -2534,17 +2534,17 @@ void fieldProc( void )
 		selId = -1;
 #endif
 	
-	// îšî˜‹????????????îŒ¸???????
+	// ¥{¤e????????????úé???????
 	if (/* nowFloor == 32021
 		||	*/nowFloor == 31706 || nowFloor == 10204 || (10601 <= nowFloor && nowFloor <= 10605)
 		|| nowFloor == 10919 || nowFloor == 10920 || nowFloor == 20711 || nowFloor == 20712
 		|| nowFloor == 1008 || nowFloor == 1021 || nowFloor == 3008 || nowFloor == 3021 
-#ifdef _LOCKPARTYFLOOR				// (å¯å¼€æ”¾) Syu ADD å¢åŠ ä¸å¯ç»„é˜Ÿçš„åœ°å›¾ç¼–å·
+#ifdef _LOCKPARTYFLOOR				// (¿É¿ª·Å) Syu ADD Ôö¼Ó²»¿É×é¶ÓµÄµØÍ¼±àºÅ
 		|| ( nowFloor <= 8213 && nowFloor >= 8200 )
 #endif
-		|| ( nowFloor >= 30017 && nowFloor <= 30021 ) || ( nowFloor == 7025  )	// æ£®æ—æ‰å® æ´»åŠ¨
+		|| ( nowFloor >= 30017 && nowFloor <= 30021 ) || ( nowFloor == 7025  )	// É­ÁÖ×½³è»î¶¯
 #ifdef _THEATER
-		|| nowFloor == 17001		// å‰§åœº
+		|| nowFloor == 17001		// ¾ç³¡
 #endif
 #ifdef _NPC_MAGICCARD
 		|| nowFloor == 17003 || nowFloor == 17005 
@@ -2557,10 +2557,10 @@ void fieldProc( void )
 	else
 		partyBtnEnableFlag = 1;
 	
-	// îšî˜‹??????îŒ¢î“–?????î“–????????????î“‰î¡•?îŸ‰???
+	// ¥{¤e??????úÓ¡P?????¡P????????????¡Cş‘?¨Á???
 	if (nowFloor < 10000 && (nowFloor / 1000 > 0) && (nowFloor % 1000 == 7) || nowFloor == 130)
 	{
-		joinBattleHelpMsgFlag = 0;	// ?î“–î“‰î¡•
+		joinBattleHelpMsgFlag = 0;	// ?¡P¡Cş‘
 		joinBattleBtnEnableFlag = 1;
 	}
 	else
@@ -2568,12 +2568,12 @@ void fieldProc( void )
 			|| nowFloor == 10919 || nowFloor == 10920 || nowFloor == 20711 || nowFloor == 20712
 			|| nowFloor == 10204)
 	{
-		joinBattleHelpMsgFlag = 2;	// îŒ¢î“–????î“‰î¡•?
+		joinBattleHelpMsgFlag = 2;	// úÓ¡P????¡Cş‘?
 		joinBattleBtnEnableFlag = 0;
 	}
 	else
 	{
-		joinBattleHelpMsgFlag = 1;	// îŒ¢î“–î“‰î¡•
+		joinBattleHelpMsgFlag = 1;	// úÓ¡P¡Cş‘
 		joinBattleBtnEnableFlag = 1;
 	}
 		
@@ -2597,12 +2597,12 @@ void fieldProc( void )
 	{
 		if (menuBtn == 0)
 		{
-			// ?????îŸ‰????????????????????î¼??
-			// ???????îš‡????î•®î¡Š??
+			// ?????¨Á????????????????????¨–??
+			// ???????¥‚????¢‰ş†??
 			closeCharActionAnimeChange();
 			closeJoinChannelWN();
 			
-			// î•‚???????î???î?
+			// ¢\???????üÒ???ı¤?
 			if (CheckMenuFlag())
 				InitMenu2();
 			
@@ -2626,13 +2626,13 @@ void fieldProc( void )
 		{
 #ifdef _THEATER
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
+				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
 			else
 #endif //_THEATER
 			{
 #ifdef _MOVE_SCREEN
 				if(pc.bMoveScreenMode)
-					StockChatBufferLine("ç‰¹æ®ŠçŠ¶æ€æ— æ³•æ‘†æ‘Š",FONT_PAL_RED);
+					StockChatBufferLine("ÌØÊâ×´Ì¬ÎŞ·¨°ÚÌ¯",FONT_PAL_RED);
 				else
 #endif
 				{
@@ -2653,7 +2653,7 @@ void fieldProc( void )
 		sStreetVendorBtn = 2;
 		iOldGX = nowGx;
 		iOldGY = nowGy;
-		// äº¤æ˜“åŠç»„é˜ŸåŠPKé€‰é¡¹å…³é—­
+		// ½»Ò×¼°×é¶Ó¼°PKÑ¡Ïî¹Ø±Õ
 		pc.etcFlag &= ~PC_ETCFLAG_TRADE;
 		pc.etcFlag &= ~PC_ETCFLAG_PARTY;
 		pc.etcFlag &= ~PC_ETCFLAG_DUEL;
@@ -2729,7 +2729,7 @@ void fieldProc( void )
 			lssproto_STREET_VENDOR_send(sockfd, "N|");
 		}
 	}
-	// åœ¨æ‘†æ‘Šæˆ–æ˜¯å‘æ‘†æ‘Šçš„äººè´­ä¹°æ—¶èµ°åŠ¨åˆ™å–æ¶ˆ
+	// ÔÚ°ÚÌ¯»òÊÇÏò°ÚÌ¯µÄÈË¹ºÂòÊ±×ß¶¯ÔòÈ¡Ïû
 	if ((pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) && (iOldGX != nowGx || iOldGY != nowGy))
 	{
 		if (pc.iOnStreetVendor == 1)
@@ -2765,7 +2765,7 @@ void fieldProc( void )
 	}
 	if (skillBtn == 1)
 	{
-		//ä¸»è¦æŠ€èƒ½è§†çª—å‡½å¼
+		//Ö÷Òª¼¼ÄÜÊÓ´°º¯Ê½
 		SkillWndfunc();
 		if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL) || CheckMenuFlag())
 		{
@@ -2789,7 +2789,7 @@ void fieldProc( void )
 #endif //_TABLEOFSKILL
 #endif //_BACK_VERSION
 #endif //_STREET_VENDOR
-	// î¡“îŒ¹?????
+	// şúê?????
 	if (pushId == FIELD_FUNC_CARD)
 	{
 		cardBtn = 1;
@@ -2799,19 +2799,19 @@ void fieldProc( void )
 			int dx, dy;
 			int flag;
 			
-			// î˜î¤?î’œî¡¡????????î—•??
+			// û«§Æ?şÕş????????£??
 			getRouteData(pc.dir, &dx, &dy);
 			flag = checkCharObjPoint(nowGx+dx, nowGy+dy, CHAROBJ_TYPE_USER_NPC);
-			// ?????îš¼??????î’œî¡¡???????
+			// ?????¦V??????şÕş???????
 			if (partyModeFlag == 0 && flag == TRUE && eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0
 #ifdef _THEATER
 				&& pc.iTheaterMode == 0
 #endif
 			)
 			{
-				if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{
-					// î¡“îŒ¹??
+					// şúê??
 					if (bNewServer)
 						lssproto_AAB_send(sockfd, nowGx, nowGy);
 					else
@@ -2821,7 +2821,7 @@ void fieldProc( void )
 			}
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
+				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
 #endif
 			play_se(217, 320, 240);	// ?????
 		}
@@ -2842,13 +2842,13 @@ void fieldProc( void )
 		if (selId == FIELD_FUNC_SIGNIN)
 		{
 #ifdef _RIDEQUERY_
-			lssproto_RideQuery_send(sockfd);//éª‘å® å°åŒ…
+			lssproto_RideQuery_send(sockfd);//Æï³è·â°ü
 			fieldBtnPushTime = TimeGetTime();
 			play_se(217, 320, 240);
 #endif
 #ifdef _CHARSIGNDAY_
 
-			lssproto_SignDay_send(sockfd);//éª‘å® å°åŒ…
+			lssproto_SignDay_send(sockfd);//Æï³è·â°ü
 			fieldBtnPushTime = TimeGetTime();
 			play_se(217, 320, 240);
 #endif
@@ -2886,25 +2886,25 @@ void fieldProc( void )
 				extern void AI_CloseWnd();
 				AI_CloseWnd();
 #endif
-				extern ACTION* å•†åŸåŠ¨ä½œåœ°å€;
-				if(å•†åŸåŠ¨ä½œåœ°å€){
-					DeathAction(å•†åŸåŠ¨ä½œåœ°å€);
+				extern ACTION* ÉÌ³Ç¶¯×÷µØÖ·;
+				if(ÉÌ³Ç¶¯×÷µØÖ·){
+					DeathAction(ÉÌ³Ç¶¯×÷µØÖ·);
 					windowTypeWN = -1;
 					wnCloseFlag = 1;
-					å•†åŸåŠ¨ä½œåœ°å€ = 0;
+					ÉÌ³Ç¶¯×÷µØÖ· = 0;
 				}else{
-					extern å•†åŸæ–‡ä»¶_ å•†åŸæ–‡ä»¶[5];
+					extern ÉÌ³ÇÎÄ¼ş_ ÉÌ³ÇÎÄ¼ş[5];
 					extern int util_mkint(char *buffer, int value);
 					extern void util_SendMesg(int fd, int func, char *buffer);
 					extern int util_mkstring(char *buffer, char *value);
 					int checksum=0;
 					char buf[1024*4*4];
 					memset(buf,0,1024*4*4);
-					checksum += util_mkstring(buf,å•†åŸæ–‡ä»¶[0].MD5ç );
-					checksum += util_mkstring(buf,å•†åŸæ–‡ä»¶[1].MD5ç );
-					checksum += util_mkstring(buf,å•†åŸæ–‡ä»¶[2].MD5ç );
-					checksum += util_mkstring(buf,å•†åŸæ–‡ä»¶[3].MD5ç );
-					checksum += util_mkstring(buf,å•†åŸæ–‡ä»¶[4].MD5ç );
+					checksum += util_mkstring(buf,ÉÌ³ÇÎÄ¼ş[0].MD5Âë);
+					checksum += util_mkstring(buf,ÉÌ³ÇÎÄ¼ş[1].MD5Âë);
+					checksum += util_mkstring(buf,ÉÌ³ÇÎÄ¼ş[2].MD5Âë);
+					checksum += util_mkstring(buf,ÉÌ³ÇÎÄ¼ş[3].MD5Âë);
+					checksum += util_mkstring(buf,ÉÌ³ÇÎÄ¼ş[4].MD5Âë);
 					util_mkint(buf, checksum);
 					util_SendMesg(sockfd, 203, buf);
 				}
@@ -2918,7 +2918,7 @@ void fieldProc( void )
 			marketBtnFocus = 0;
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
+#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
 	if (pushId == FIELD_FUNC_CHATROOM)
 	{
 		if( selId == FIELD_FUNC_CHATROOM)
@@ -2935,7 +2935,7 @@ void fieldProc( void )
 				else
 				{
 				/*
-				// WON ADD	é˜²æ­¢ä¼ é€å¤ªé¢‘ç¹
+				// WON ADD	·ÀÖ¹´«ËÍÌ«Æµ·±
 				{
 				unsigned int now_time = (unsigned int)time(NULL);
 				static unsigned int old_time = 0;
@@ -3020,10 +3020,10 @@ void fieldProc( void )
 			int dx, dy;
 			int flag;
 			
-			// î˜î¤?î’œî¡¡????????î—•??
+			// û«§Æ?şÕş????????£??
 			getRouteData(pc.dir, &dx, &dy);
 			flag = checkCharObjPoint(nowGx+dx, nowGy+dy, CHAROBJ_TYPE_USER_NPC);
-			// ?????îš¼??????î’œî¡¡???????
+			// ?????¦V??????şÕş???????
 			if (partyModeFlag == 0 && flag == TRUE && eventWarpSendFlag == 0 && eventEnemySendFlag == 0
 				&& sendEnFlag == 0 && tradeFlag == 0
 #ifdef _STREET_VENDOR
@@ -3034,7 +3034,7 @@ void fieldProc( void )
 #endif
 			)
 			{
-				if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{		
 					//if (bNewServer)
 					//	lssproto_TD_send(sockfd, "D|D");
@@ -3047,11 +3047,11 @@ void fieldProc( void )
 			}
 #ifdef _STREET_VENDOR
 			if (pc.iOnStreetVendor == 1)
-				StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—è¿›è¡Œäº¤æ˜“", FONT_PAL_RED);
+				StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃ½øĞĞ½»Ò×", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
+				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
 #endif
 			//play_se(217, 320, 240);	// ?????
 		}
@@ -3069,7 +3069,7 @@ void fieldProc( void )
 		
 		if (selId == FIELD_FUNC_ANGEL)
 		{
-			if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+			if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 			{
 				//lssproto_WN_send( sockfd, nowGx, nowGy, WINDOW_MESSAGETYPE_ANGELMESSAGE, , WINDOW_BUTTONTYPE_YES, msg ) ;
 				if (angelFlag)
@@ -3078,11 +3078,11 @@ void fieldProc( void )
 				{
 					if (helpBtn == 0)
 					{
-						// ???îŒ¢î“–?î•”î“–ï¼¯ï¼«?????????????????????î¼??
-						// ???????îš‡????î•®î¡Š??
+						// ???úÓ¡P?¢n¡P£Ï£Ë?????????????????????¨–??
+						// ???????¥‚????¢‰ş†??
 						closeEtcSwitch();
 						closeJoinChannelWN();
-						// î•‚???????î???î?
+						// ¢\???????üÒ???ı¤?
 						if (CheckMenuFlag())
 							InitMenu2();
 						HelpProcNo = 0;
@@ -3188,7 +3188,7 @@ void fieldProc( void )
 		{
 			char buf[64];
 
-			lssproto_TK_recv(sockfd, 0, "P|è¯·å…ˆåŠ å…¥å®¶æ—ã€‚", 0);
+			lssproto_TK_recv(sockfd, 0, "P|ÇëÏÈ¼ÓÈë¼Ò×å¡£", 0);
 			sprintf_s(buf, "S|P", selId);
 			if (bNewServer)
 				lssproto_FM_send(sockfd, buf);
@@ -3247,22 +3247,22 @@ void fieldProc( void )
 		partyBtn = 1;
 		if (partyBtnEnableFlag == 0)
 		{
-			// îšî˜‹?????????????
+			// ¥{¤e?????????????
 			partyBtn = 0;
 			play_se(220, 320, 240);	// ???
 		}
 		else if (selId == FIELD_FUNC_PARTY)
 		{
-			// ?????îš¼??????î™®?
+			// ?????¦V??????¥h?
 			if (partyModeFlag == 0)
 			{
 				int dx, dy;
 				int flag;
 				
-				// î’œî¡¡?î“–î™¬?????????????????
+				// şÕş?¡P¥f?????????????????
 				getRouteData(pc.dir, &dx, &dy);
 				flag = checkCharObjPointNotStatus(nowGx+dx, nowGy+dy, (CHAROBJ_TYPE_USER_NPC | CHAROBJ_TYPE_PARTY_OK), CHR_STATUS_BATTLE);
-				// î’œî¡¡?????????????
+				// şÕş?????????????
 				if (flag == 1 && eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0
 #ifdef _STREET_VENDOR
 					&& (pc.iOnStreetVendor == 0 || sStreetVendorBuyBtn == 2)
@@ -3272,9 +3272,9 @@ void fieldProc( void )
 #endif
 				)
 				{
-					if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+					if (fieldBtnPushTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 					{
-						// î–“????????????î˜î¤?????????????
+						// £M????????????û«§Æ?????????????
 						if (bNewServer)
 							lssproto_PR_send(sockfd, nowGx, nowGy, 1);
 						else
@@ -3287,21 +3287,21 @@ void fieldProc( void )
 				}
 #ifdef _STREET_VENDOR
 				if (pc.iOnStreetVendor == 1)
-					StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—ç»„é˜Ÿ", FONT_PAL_RED);
+					StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃ×é¶Ó", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 				if (pc.iTheaterMode > 0)
-					StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
+					StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
 #endif
 			}
 			else
-				// ???????î™®?
+				// ???????¥h?
 			{
 				if (eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 				{
-					if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+					if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 					{
-						// î–“????????î•¦
+						// £M????????¢
 						if (bNewServer)
 							lssproto_PR_send(sockfd, nowGx, nowGy, 0);
 						else
@@ -3373,14 +3373,14 @@ void fieldProc( void )
 	// LeiBoy 2002 Feb. 2 --- Cell Phone's Messages Button -- END
 #endif
 #ifdef _RENWU_
-	extern BOOL ä»»åŠ¡æŸ¥è¯¢å¼€å…³;
+	extern BOOL ÈÎÎñ²éÑ¯¿ª¹Ø;
 	extern int HelpProc();
 	
-	if(ä»»åŠ¡æŸ¥è¯¢å¼€å…³)
+	if(ÈÎÎñ²éÑ¯¿ª¹Ø)
 		if (HelpProc()==1)
 		{
 			actBtn = 0;
-			ä»»åŠ¡æŸ¥è¯¢å¼€å…³=FALSE;
+			ÈÎÎñ²éÑ¯¿ª¹Ø=FALSE;
 
 		}
 #endif
@@ -3439,7 +3439,7 @@ void fieldProc( void )
 				time_t longTime;
 				time(&longTime);
 				localtime_s(&nowTime, &longTime);
-				fprintf(logf, "[%02d-%02d-%02d %02d:%02d:%02d] çŠ¶æ€=%d; æ ‡è®°=%d; å€¼=%d\r\n",
+				fprintf(logf, "[%02d-%02d-%02d %02d:%02d:%02d] ×´Ì¬=%d; ±ê¼Ç=%d; Öµ=%d\r\n",
 					(nowTime.tm_year % 100), nowTime.tm_mon + 1, nowTime.tm_mday,
 					nowTime.tm_hour, nowTime.tm_min, nowTime.tm_sec,
 					tradeStatus, MenuToggleFlag, MenuToggleFlag & JOY_CTRL_T);
@@ -3496,7 +3496,7 @@ void fieldProc( void )
 			if ((partyModeFlag == 0 || (partyModeFlag == 1 && (pc.status & CHR_STATUS_LEADER) != 0))
 				&& flag == 1 && eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 			{
-				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{
 					if (bNewServer)
 					{
@@ -3537,7 +3537,7 @@ void fieldProc( void )
 			if ((partyModeFlag == 0 || (partyModeFlag == 1 && (pc.status & CHR_STATUS_LEADER) != 0))
 				&& flag == TRUE && eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 			{
-				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{
 					if (bNewServer)
 						lssproto_DU_send(sockfd, nowGx, nowGy);
@@ -3572,7 +3572,7 @@ void fieldProc( void )
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
 		{
-			StockChatBufferLine("è¯·ä¸“å¿ƒçœ‹è¡¨æ¼”", FONT_PAL_RED);
+			StockChatBufferLine("Çë×¨ĞÄ¿´±íÑİ", FONT_PAL_RED);
 			actBtn = 0;
 		}
 		else
@@ -3640,7 +3640,7 @@ void fieldProc2(void)
 		menuBtn = 0;
 }
 
-#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
+#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
 void crossAniRelease()
 {
 	if (WaterAct2 != NULL)
@@ -3652,7 +3652,7 @@ void crossAniRelease()
 }
 #endif
 
-#ifdef _AniImmobile	 // Syu ADD å®šç‚¹äº§ç”Ÿç‰¹å®šåŠ¨ç”»
+#ifdef _AniImmobile	 // Syu ADD ¶¨µã²úÉúÌØ¶¨¶¯»­
 void ImmobileAniRelease()
 {
 	Updownflag = false;
@@ -3666,7 +3666,7 @@ void ImmobileAniRelease()
 				WaterAct3[XYposition[i][4]] = NULL;
 				XYposition[i][3] = 0  ;
 				XYposition[i][4] = -1 ;
-//				XYposition[i][5] = 1  ; //æ–°å¢ä¸æ¼‚æµ®çš„æ——æ ‡2ï¼Œæ•…ä¸åš
+//				XYposition[i][5] = 1  ; //ĞÂÔö²»Æ¯¸¡µÄÆì±ê2£¬¹Ê²»×ö
 				XYposition[i][6] = 0  ;
 			}
 		}
@@ -3674,7 +3674,7 @@ void ImmobileAniRelease()
 }
 #endif
 
-#ifdef _AniRandom   // Syu ADD éšæœºäº§ç”Ÿç¯å¢ƒåŠ¨ç”»
+#ifdef _AniRandom   // Syu ADD Ëæ»ú²úÉú»·¾³¶¯»­
 void AniRandomRelease()
 {
 	for (int i = 0; i < 50; i ++)
@@ -3689,22 +3689,22 @@ void AniRandomRelease()
 #endif
 
 
-// ?????î¯?????îœš???î¼?
+// ?????ıÆ?????§T???¤ş?
 void drawField(void)
 {
-	int leftUpPanelX = 0;		// ?î¯????î•ª???î³
+	int leftUpPanelX = 0;		// ?ıÆ????¢…???¤õ
 	int leftUpPanelY = 0;
-	int rightUpPanelX = 504 + DISPLACEMENT_X ;	// ?î¯????î•ª???î³
+	int rightUpPanelX = 504 + DISPLACEMENT_X ;	// ?ıÆ????¢…???¤õ
 	int rightUpPanelY = 0;
 	int i;
-#ifdef _WATERANIMATION //Syu ADD æ³ªä¹‹æµ·åŠ¨ç”»å±‚
+#ifdef _WATERANIMATION //Syu ADD ÀáÖ®º£¶¯»­²ã
 	int Createflag = 0;
 	int RandAnimate = 0 ;
 #endif
-#ifdef _AniRandom   // Syu ADD éšæœºäº§ç”Ÿç¯å¢ƒåŠ¨ç”»
+#ifdef _AniRandom   // Syu ADD Ëæ»ú²úÉú»·¾³¶¯»­
 	int x1 , y1;
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
+#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
 	int x2 , y2;
 #endif
 
@@ -3712,8 +3712,8 @@ void drawField(void)
 #ifdef _STONDEBUG__MSG
 
 	char msg[256];
-	// ?????Echo?î¢î‘˜?????????î¸î•
-	//  î—­î¹???????????î‘˜????????î‘¡????
+	// ?????Echo?ûõıï?????????¤úû¨
+	//  ¤GıĞ???????????ıï????????ıø????
 	sprintf_s(msg, "%s Server Alive -> %02d/%02d/%02d %02d:%02d:%02d",
 			selectServerName2[selectServerIndex],
 			(serverAliveTime.tm_year % 100), serverAliveTime.tm_mon+1, serverAliveTime.tm_mday,
@@ -3723,14 +3723,14 @@ void drawField(void)
 #endif
 #endif
 
-#ifdef _SPECIALSPACEANIM	// Syu ADD ç‰¹æ®Šåœºæ™¯åŠ¨ç”»é…ç½®
+#ifdef _SPECIALSPACEANIM	// Syu ADD ÌØÊâ³¡¾°¶¯»­ÅäÖÃ
 	SpecAnim(nowFloor);
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
+#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
 	if ((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
 		(nowFloor == 8027) || (nowFloor == 8028) || (nowFloor == 8029) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )
 	{
-		//æ¸¸è¿‡ç”»é¢åŠ¨ç”» Start
+		//ÓÎ¹ı»­Ãæ¶¯»­ Start
 		if (flag22 == false)
 		{
 			if (WaterAct2 != NULL && Timeflag2 == false)
@@ -3738,7 +3738,7 @@ void drawField(void)
 				DeathAction(WaterAct2);
 				WaterAct2 = NULL;
 				Timeflag2 = true;
-				//ç»“æŸåä¸‹ä¸€æ¬¡å‡ºç°çš„ç­‰å¾…æ—¶é—´
+				//½áÊøºóÏÂÒ»´Î³öÏÖµÄµÈ´ıÊ±¼ä
 				TimeTickMax2 = RAND(500, 1500);
 			}
 		}
@@ -3759,7 +3759,7 @@ void drawField(void)
 			RandAnimate = RAND(0, 2);
 			if (RandAnimate > 1)
 				RandAnimate = RAND(101512, 101515);
-			//æœ‰å³ä¸‹ã€å·¦ä¸‹ã€å³ä¸Šã€å·¦ä¸Šå››ä¸ªæ–¹å‘
+			//ÓĞÓÒÏÂ¡¢×óÏÂ¡¢ÓÒÉÏ¡¢×óÉÏËÄ¸ö·½Ïò
 			else
 			{
 				RandAnimate = RAND(0, 4);
@@ -3771,13 +3771,13 @@ void drawField(void)
 					x2 = RAND(2, 3);
 				else if (RandAnimate == 101521 || RandAnimate == 101523 ||
 						(RandAnimate <= 101587 && RandAnimate >= 101582))
-					x2 = RAND(4, 5); //å·¦ä¸Š
+					x2 = RAND(4, 5); //×óÉÏ
 				else if (RandAnimate == 101522 || RandAnimate == 101520 ||
 						(RandAnimate <= 101593 && RandAnimate >= 101588))
-					x2 = RAND(6, 7); //å³ä¸Š
+					x2 = RAND(6, 7); //ÓÒÉÏ
 			}
-			//å†³å®šè¿›å…¥ç”»é¢çš„ä½ç½®
-			if (x2 == 0)  // å·¦ä¸‹
+			//¾ö¶¨½øÈë»­ÃæµÄÎ»ÖÃ
+			if (x2 == 0)  // ×óÏÂ
 			{
 				x2 = RAND(50, lpDraw->xSize);
 				y2 = 0 ;
@@ -3789,7 +3789,7 @@ void drawField(void)
 				y2 = RAND(50, lpDraw->ySize);
 				WaterAct2 = MakeAnimDisp(x2, y2, RandAnimate, 18);
 			}
-			else if (x2 == 2) // å³ä¸‹ 
+			else if (x2 == 2) // ÓÒÏÂ 
 			{
 				x2 = RAND(0, lpDraw->xSize);
 				y2 = 0 ;
@@ -3801,7 +3801,7 @@ void drawField(void)
 				y2 = RAND(50, lpDraw->ySize);
 				WaterAct2 = MakeAnimDisp(x2, y2, RandAnimate, 18);
 			}
-			else if (x2 == 4) // å·¦ä¸Š
+			else if (x2 == 4) // ×óÉÏ
 			{
 				x2 = RAND(50, lpDraw->xSize);
 				y2 = lpDraw->ySize ;
@@ -3813,7 +3813,7 @@ void drawField(void)
 				y2 = RAND(50, lpDraw->ySize);
 				WaterAct2 = MakeAnimDisp(x2, y2, RandAnimate, 18);
 			}
-			else if (x2 == 6) // å³ä¸Š
+			else if (x2 == 6) // ÓÒÉÏ
 			{
 				x2 = 0 ;
 				y2 = RAND(50, lpDraw->ySize);
@@ -3836,20 +3836,20 @@ void drawField(void)
 	}
 #endif
 
-#ifdef _AniImmobile	 // Syu ADD å®šç‚¹äº§ç”Ÿç‰¹å®šåŠ¨ç”»
+#ifdef _AniImmobile	 // Syu ADD ¶¨µã²úÉúÌØ¶¨¶¯»­
 	if (nowFloor == 817)
 	{
 		in817flag = true ;
 		for (i = 0; i < 560; i++)  
 		{
-			//åˆ¤æ–­å®šç‚¹åŠ¨ç”»äº§ç”Ÿç‚¹æ˜¯å¦åœ¨äººç‰© 32 * 32èŒƒå›´å†…
+			//ÅĞ¶Ï¶¨µã¶¯»­²úÉúµãÊÇ·ñÔÚÈËÎï 32 * 32·¶Î§ÄÚ
 			if ((nowGx > XYposition[i][0] - 16) && (nowGx < XYposition[i][0] + 16) && 
 				(nowGy > XYposition[i][1] - 16) && (nowGy < XYposition[i][1] + 16))
 			{
-				//åˆ¤æ–­æ˜¯å¦å·²äº§ç”Ÿ
+				//ÅĞ¶ÏÊÇ·ñÒÑ²úÉú
 				if (XYposition[i][3] == 0)
 				{
-					//é…ç½®ACTION
+					//ÅäÖÃACTION
 					for (int j = 0; j < 30; j++)
 					{
 						if (WaterAct3[j] == NULL)
@@ -3866,9 +3866,9 @@ void drawField(void)
 				}
 				else 
 				{
-					//åšå®šç‚¹åŠ¨ç”»çš„æ¼‚æµ®
+					//×ö¶¨µã¶¯»­µÄÆ¯¸¡
 					XYposition[i][6]++;
-					//æ—¶é—´å›ºå®š
+					//Ê±¼ä¹Ì¶¨
 					if (XYposition[i][6] > 65)
 					{
 						XYposition[i][6] = 0;	
@@ -3890,7 +3890,7 @@ void drawField(void)
 					}
 				}
 			}
-// åˆå¹¶
+// ºÏ²¢
 			if (XYposition[i][3] == 1)
 			{
 				if ((nowGx < XYposition[i][0] - 16) || (nowGx > XYposition[i][0] + 16 ) ||
@@ -3927,22 +3927,22 @@ void drawField(void)
 	}
 #endif
 
-#ifdef _AniRandom   // Syu ADD éšæœºäº§ç”Ÿç¯å¢ƒåŠ¨ç”»
+#ifdef _AniRandom   // Syu ADD Ëæ»ú²úÉú»·¾³¶¯»­
 	if ((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8100) || (nowFloor == 8101) ||
-		(nowFloor == 8029) || (nowFloor == 8028) || (nowFloor == 8027) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )  //åˆ¤æ–­åœ°å›¾
+		(nowFloor == 8029) || (nowFloor == 8028) || (nowFloor == 8027) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )  //ÅĞ¶ÏµØÍ¼
 	{
 		AniFlag = true;
 		for (i = 0; i < 50; i++) 
 		{
 			if (Timeflag[i] == false)
 			{
-				//éšæœºå†³å®šäº§ç”Ÿä¸å¦ï¼Œä¸è®ºä¸å¦éƒ½äº§ç”Ÿç­‰å¾…æ—¶é—´
+				//Ëæ»ú¾ö¶¨²úÉúÓë·ñ£¬²»ÂÛÓë·ñ¶¼²úÉúµÈ´ıÊ±¼ä
  				Createflag = RAND(0, 3);
 				if (Createflag > 0) 
 				{
 					if (WaterAct[i] == NULL)
 					{
-						//äº§ç”ŸèŒƒå›´åœ¨äººç‰© 30 * 30 èŒƒå›´ä¸­
+						//²úÉú·¶Î§ÔÚÈËÎï 30 * 30 ·¶Î§ÖĞ
 						x1 = RAND(nowGx - 15, nowGx + 15);
 						y1 = RAND(nowGy - 15, nowGy + 15);
 						RandAnimate = RAND(0, 6);
@@ -3962,7 +3962,7 @@ void drawField(void)
 				}
 			}
 		}
-		//æ´»ç€çš„ç¯å¢ƒåŠ¨ç”»è®¡æ—¶
+		//»î×ÅµÄ»·¾³¶¯»­¼ÆÊ±
 		for (i = 0; i < 50; i++)
 		{
 			if (Timeflag[i] == true)
@@ -3976,7 +3976,7 @@ void drawField(void)
 			}
 		}
 	}
-	//æ¶ˆç­åŠ¨ç”»
+	//ÏûÃğ¶¯»­
 	else if (((nowFloor != 817) && (nowFloor != 8007) && (nowFloor != 8100) && (nowFloor != 8101) && (nowFloor != 8113) && (nowFloor != 8114) &&
 			(nowFloor != 8027) && (nowFloor != 8028) && (nowFloor != 8029) && (nowFloor != 8015)) && (AniFlag == true))
 	{
@@ -4020,7 +4020,7 @@ void drawField(void)
 
 //#ifdef __FAMILY_UI_
 		if (bNewServer)
-			// ?î¯????î•ª?
+			// ?ıÆ????¢…?
 #ifdef _SPECIAL_LOGO
 #ifdef _SA_VERSION_25
 			StockDispBuffer(leftUpPanelX + 148, leftUpPanelY + 27, DISP_PRIO_MENU, CG_FIELD_MENU_LEFT_NEW, 0);
@@ -4036,24 +4036,24 @@ void drawField(void)
 
 
 #ifdef _MO_SIGN_IN
-		static int ä¸´æ—¶;
+		static int ÁÙÊ±;
 #ifdef _CHARSIGNADY_NO_
 		extern PC pc;
-		static DWORD æ—¶é—´è®°å½• = TimeGetTime() + 300;
-		if(!pc.ç­¾åˆ°æ ‡è®°){
-			if(æ—¶é—´è®°å½• < TimeGetTime()){
-				æ—¶é—´è®°å½• = TimeGetTime() + 300;
-				if(ä¸´æ—¶) ä¸´æ—¶ =0;
-				else ä¸´æ—¶=1;
+		static DWORD Ê±¼ä¼ÇÂ¼ = TimeGetTime() + 300;
+		if(!pc.Ç©µ½±ê¼Ç){
+			if(Ê±¼ä¼ÇÂ¼ < TimeGetTime()){
+				Ê±¼ä¼ÇÂ¼ = TimeGetTime() + 300;
+				if(ÁÙÊ±) ÁÙÊ± =0;
+				else ÁÙÊ±=1;
 			}
-		}else ä¸´æ—¶ = signInBtn;
+		}else ÁÙÊ± = signInBtn;
 #else
-		ä¸´æ—¶ = signInBtn;
+		ÁÙÊ± = signInBtn;
 #endif
-		fieldBtnHitId[FIELD_FUNC_SIGNIN] = StockDispBuffer(leftUpPanelX + 207, leftUpPanelY + 19, DISP_PRIO_IME3, signInBtnGraNo[ä¸´æ—¶], 2);
+		fieldBtnHitId[FIELD_FUNC_SIGNIN] = StockDispBuffer(leftUpPanelX + 207, leftUpPanelY + 19, DISP_PRIO_IME3, signInBtnGraNo[ÁÙÊ±], 2);
 		if (signInBtnFocus)
 #ifdef _SA_VERSION_25
-			ShowBottomLineString(FONT_PAL_WHITE, "éª‘å® æŸ¥è¯¢ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "Æï³è²éÑ¯¡£");
 #endif
 #endif 
 
@@ -4062,7 +4062,7 @@ void drawField(void)
 		fieldBtnHitId[FIELD_FUNC_CHANGETEAM] = StockDispBuffer(leftUpPanelX + 241, leftUpPanelY + 19, DISP_PRIO_IME3, schangeteamBtnGraNo[changeteamBtn], 2);
 #endif
 		if (changeteamBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "é˜Ÿé•¿åˆ‡æ¢ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¶Ó³¤ÇĞ»»¡£");
 
 #endif 
 
@@ -4070,33 +4070,33 @@ void drawField(void)
 #ifdef _SA_VERSION_25
 	fieldBtnHitId[FIELD_FUNC_MARKET] = StockDispBuffer(leftUpPanelX + 271, leftUpPanelY + 19, DISP_PRIO_IME3, marketBtnGraNo[marketBtn], 2);
 		if (marketBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "å•†åŸåŠŸèƒ½ã€‚");	
+			ShowBottomLineString(FONT_PAL_WHITE, "ÉÌ³Ç¹¦ÄÜ¡£");	
 #endif
 #endif
 
 #ifdef _STREET_VENDOR
 		fieldBtnHitId[FIELD_FUNC_STREET_VENDOR] = StockDispBuffer(leftUpPanelX + 176, leftUpPanelY + 19, DISP_PRIO_IME3, sStreetVendorBtnGraNo[pc.iOnStreetVendor], 2);
 		if (sStreetVendorBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "æ‘†æ‘ŠåŠŸèƒ½ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "°ÚÌ¯¹¦ÄÜ¡£");
 #else
 	#ifdef _TABLEOFSKILL
 		fieldBtnHitId[FIELD_FUNC_SKILL] = StockDispBuffer(leftUpPanelX + 108, leftUpPanelY + 28, DISP_PRIO_IME3, skillBtnGraNo[skillBtn], 2);
 		if (skillBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "èŒä¸šæŠ€èƒ½ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "Ö°Òµ¼¼ÄÜ¡£");
 	#endif
 #endif
-		// ?î¯???????
+		// ?ıÆ???????
 		fieldBtnHitId[FIELD_FUNC_MENU] = StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, menuBtnGraNo[menuBtn], 2);
 		if (menuBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "æ¸¸æˆè®¾å®šã€‚");
-		// ?î¯î¡“îŒ¹???
+			ShowBottomLineString(FONT_PAL_WHITE, "ÓÎÏ·Éè¶¨¡£");
+		// ?ıÆşúê???
 		fieldBtnHitId[FIELD_FUNC_CARD] = StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, cardBtnGraNo[cardBtn], 2);
 		if (cardBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "äº¤æ¢åç‰‡ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "½»»»ÃûÆ¬¡£");
 		// Robin 04/12 Trade
 		fieldBtnHitId[FIELD_FUNC_TRADE] = StockDispBuffer(leftUpPanelX + 104 + 10, leftUpPanelY + 28 - 10, DISP_PRIO_IME3, tradeBtnGraNo[tradeBtn], 2);
 		if (tradeBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "è¿›è¡Œäº¤æ˜“ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "½øĞĞ½»Ò×¡£");
 
 #ifdef __PHONEMESSAGE
 // LeiBoy 2002 Jan.26 --- Cell Phone's Messages Button -- BEGIN
@@ -4108,12 +4108,12 @@ void drawField(void)
 
 		if (msgBtnFocus)
 
-			ShowBottomLineString(FONT_PAL_WHITE, "ï¼ˆå…è´¹ï¼‰ç§¯åˆ†å•†åŸã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "£¨Ãâ·Ñ£©»ı·ÖÉÌ³Ç¡£");
 
 // LeiBoy 2002 Jan.26 --- Cell Phone's Messages Button -- END
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD å¥½å‹é¢‘é“
+#ifdef _FRIENDCHANNEL				//ROG ADD ºÃÓÑÆµµÀ
 		if (SelRoomBtn == 1 || chatRoomBtn == 1)
 			fieldBtnHitId[FIELD_FUNC_CHATROOM] = StockDispBuffer(leftUpPanelX + 141, leftUpPanelY + 29, DISP_PRIO_IME3, chatRoomBtnGraNo[1], 2);
 		else
@@ -4121,9 +4121,9 @@ void drawField(void)
 		if (chatRoomBtnFocus)
 		{
 			if(strcmp(pc.chatRoomNum, "") == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "é€‰æ‹©é¢‘é“");
+				ShowBottomLineString(FONT_PAL_WHITE, "Ñ¡ÔñÆµµÀ");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE, "å¼€å¯é¢‘é“");
+				ShowBottomLineString(FONT_PAL_WHITE, "¿ªÆôÆµµÀ");
 		}
 #endif
 //#ifdef __FAMILY_UI_
@@ -4143,29 +4143,29 @@ void drawField(void)
 #endif
 			fieldBtnHitId[FIELD_FUNC_CHANNEL] = StockDispBuffer(leftUpPanelX + 115, leftUpPanelY + 28, DISP_PRIO_IME3, channelBtnGraNo[channelBtn], 2);
 			if (channelBtnFocus)
-				ShowBottomLineString(FONT_PAL_WHITE, "å®¶æ—åŠŸèƒ½ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¼Ò×å¹¦ÄÜ¡£");
 		}
 //#endif
-		// ?î¯?????
+		// ?ıÆ?????
 		fieldBtnHitId[FIELD_FUNC_PARTY] = StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, partyBtnGraNo[partyBtn], 2);
 		if (partyBtnFocus)
 		{
-			// ?????î“‰î¡•
-			// îšî˜‹????????????îŒ¸???????
+			// ?????¡Cş‘
+			// ¥{¤e????????????úé???????
 			if (partyBtnEnableFlag == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "ä¸èƒ½åŠ å…¥é˜Ÿä¼ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "²»ÄÜ¼ÓÈë¶ÓÎé¡£");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE, "åŠ å…¥é˜Ÿä¼ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¼ÓÈë¶ÓÎé¡£");
 		}
 
-		// ?î¯??????
+		// ?ıÆ??????
 		if (mailLampDrawFlag)
 			StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, CG_FIELD_MAIL_LAMP, 0);
 
 #ifdef _RED_MEMOY_
 		StockDispBuffer(rightUpPanelX + 40, rightUpPanelY + 31, DISP_PRIO_MENU, CG_FIELD_MENU_RIGHT, 0);
 		fieldBtnHitId[FIELD_FUNC_RED_MEMOY] = StockDispBuffer(rightUpPanelX - 34, rightUpPanelY + 19, DISP_PRIO_IME3, redmemoyGraNo[redmemoyBtn], 2);
-		if (redmemoyBtnFocus) ShowBottomLineString(FONT_PAL_WHITE, "å‘çº¢åŒ…ã€‚");
+		if (redmemoyBtnFocus) ShowBottomLineString(FONT_PAL_WHITE, "·¢ºì°ü¡£");
 #else
 		StockDispBuffer(rightUpPanelX + 54, rightUpPanelY + 33, DISP_PRIO_MENU, CG_FIELD_MENU_RIGHT, 0);
 #endif
@@ -4173,31 +4173,31 @@ void drawField(void)
 		if (joinBattleBtnFocus)
 		{
 #ifdef _NEW_MATCH
-			ShowBottomLineString(FONT_PAL_WHITE, "åŠ å…¥æˆ˜æ–—ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¼ÓÈëÕ½¶·¡£");
 #else
 			if (joinBattleHelpMsgFlag == 1)
-				ShowBottomLineString(FONT_PAL_WHITE, "åŠ å…¥æˆ˜æ–—ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¼ÓÈëÕ½¶·¡£");
 			else if (joinBattleHelpMsgFlag == 2)
-				ShowBottomLineString(FONT_PAL_WHITE, "ä¸èƒ½åŠ å…¥æˆ˜æ–—ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "²»ÄÜ¼ÓÈëÕ½¶·¡£");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE,"è§‚æˆ˜ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE,"¹ÛÕ½¡£");
 #endif
 		}
 
-		// ?î¯î•”î“–???
+		// ?ıÆ¢n¡P???
 		fieldBtnHitId[FIELD_FUNC_DUEL] = StockDispBuffer(rightUpPanelX + 38, rightUpPanelY + 32, DISP_PRIO_IME3, duelBtnGraNo[duelBtn], 2);
 		if (duelBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "è·Ÿå…¶ä»–ç©å®¶å†³æ–—ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¸úÆäËûÍæ¼Ò¾ö¶·¡£");
 		if (helpBtnFocus)
 #ifdef _NEW_MATCH
-			ShowBottomLineString(FONT_PAL_WHITE, "è§‚æˆ˜ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¹ÛÕ½¡£");
 #else
-			ShowBottomLineString(FONT_PAL_WHITE, "ä»»åŠ¡æŸ¥è¯¢ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "ÈÎÎñ²éÑ¯¡£");
 #endif
 		fieldBtnHitId[FIELD_FUNC_HELP] = StockDispBuffer(rightUpPanelX + 115, rightUpPanelY + 33, DISP_PRIO_IME3, helpBtnGraNo[helpBtn], 2);
 		fieldBtnHitId[FIELD_FUNC_ACT] = StockDispBuffer(rightUpPanelX + 68, rightUpPanelY + 32, DISP_PRIO_IME3, actBtnGraNo[actBtn], 2);
 		if (actBtnForcus)
-			ShowBottomLineString(FONT_PAL_WHITE, "äººç‰©çš„å„ç§åŠ¨ä½œã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "ÈËÎïµÄ¸÷ÖÖ¶¯×÷¡£");
 
 		// ?????
 		if (drawTimeAnimeFlag)
@@ -4206,18 +4206,18 @@ void drawField(void)
 			StockDispBuffer(rightUpPanelX + 104 + 64 - amPmAnimeX, rightUpPanelY + 21, DISP_PRIO_MENU, amPmAnimeGraNo[amPmAnimeGraNoIndex1], 0);
 		}
 		else
-			// ??????î¸î•????????????????????î?
+			// ??????¤úû¨????????????????????üÒ?
 			StockDispBuffer(rightUpPanelX + 68, rightUpPanelY + 32, DISP_PRIO_MENU, CG_FIELD_MENU_RIGHT_BACK, 0);
 
 #ifdef _ANGEL_SUMMON
 		fieldBtnHitId[FIELD_FUNC_ANGEL] = StockDispBuffer(leftUpPanelX + 104 + 10 + 158, leftUpPanelY + 20, DISP_PRIO_IME3, angelBtnGraNo[angelBtn], 2);
 		if (angelBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "ç²¾çµçš„å¬å”¤ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¾«ÁéµÄÕÙ»½¡£");
 #endif
 #ifdef _TEACHER_SYSTEM
 		fieldBtnHitId[FIELD_FUNC_TEACHER] = StockDispBuffer(leftUpPanelX + 305, leftUpPanelY + 20, DISP_PRIO_IME3, iTeacherSystemBtnGraNo[sTeacherSystemBtn > 0 ? 1:0], 2);
 		if (sTeacherSystemBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "å¯¼å¸ˆç³»ç»Ÿã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "µ¼Ê¦ÏµÍ³¡£");
 #endif
 	}
 	else
@@ -4233,14 +4233,14 @@ BOOL checkFieldMenuFlag(void)
 	return nowFieldMenuOpenFlag;
 }
 
-// ????????îŸ‰??????
+// ????????¨Á??????
 // ???
 void initCharActionAnimeChange(void)
 {
 	charActionAnimeChangeProcNo = 0;
 }
 
-// ???î·????
+// ???ü¬????
 void closeCharActionAnimeChange(void)
 {
 	charActionAnimeChangeProcNo = 1000;
@@ -4254,42 +4254,42 @@ int charActionAnimeChange(void)
 	int focusId = 0;
 	char *msg[] =
 	{
-		" å  ä¸‹ ",
-		" ç«™  ç«‹ ",
-		" æŒ¥  æ‰‹ ",
-		" èµ°  åŠ¨ ",
-		" ç‚¹  å¤´ ",
-		" æ™•  å€’ ",
-		" é«˜  å…´ ",
-		" æ”»  å‡» ",
-		" ç”Ÿ  æ°” ",
-		" é˜²  å¾¡ ",
-		" æ‚²  ä¼¤ ",
-		" å—  ä¼¤ ",
-		" æŠ•  æ· " 
+		" ×ø  ÏÂ ",
+		" Õ¾  Á¢ ",
+		" »Ó  ÊÖ ",
+		" ×ß  ¶¯ ",
+		" µã  Í· ",
+		" ÔÎ  µ¹ ",
+		" ¸ß  ĞË ",
+		" ¹¥  »÷ ",
+		" Éú  Æø ",
+		" ·À  Óù ",
+		" ±¯  ÉË ",
+		" ÊÜ  ÉË ",
+		" Í¶  ÖÀ " 
 #ifdef __EMOTION
-		," æ‰“  å‘¼ "
-		," å†·  åœº "
+		," ´ò  ºô "
+		," Àä  ³¡ "
 #endif
 	};
 	char *msg2[] =
 	{
-		"åä¸‹çš„åŠ¨ä½œã€‚ (Ctrl+1)",
-		"ç«™ç«‹çš„åŠ¨ä½œã€‚ (Ctrl+7)",
-		"æŒ¥æ‰‹çš„åŠ¨ä½œã€‚ (Ctrl+2)",
-		"èµ°åŠ¨çš„åŠ¨ä½œã€‚ (Ctrl+8)",
-		"ç‚¹å¤´çš„åŠ¨ä½œã€‚ (Ctrl+3)",
-		"æ™•å€’çš„åŠ¨ä½œã€‚ (Ctrl+9)",
-		"é«˜å…´çš„åŠ¨ä½œã€‚ (Ctrl+4)",
-		"æ”»å‡»çš„åŠ¨ä½œã€‚ (Ctrl+0)",
-		"ç”Ÿæ°”çš„åŠ¨ä½œã€‚ (Ctrl+5)",
-		"é˜²å¾¡çš„åŠ¨ä½œã€‚ (Ctrl+-)",
-		"æ‚²ä¼¤çš„åŠ¨ä½œã€‚ (Ctrl+6)",
-		"å—ä¼¤çš„åŠ¨ä½œã€‚ (Ctrl+=)",
-		"æŠ•æ·çš„åŠ¨ä½œã€‚ (Ctrl+\\)"
+		"×øÏÂµÄ¶¯×÷¡£ (Ctrl+1)",
+		"Õ¾Á¢µÄ¶¯×÷¡£ (Ctrl+7)",
+		"»ÓÊÖµÄ¶¯×÷¡£ (Ctrl+2)",
+		"×ß¶¯µÄ¶¯×÷¡£ (Ctrl+8)",
+		"µãÍ·µÄ¶¯×÷¡£ (Ctrl+3)",
+		"ÔÎµ¹µÄ¶¯×÷¡£ (Ctrl+9)",
+		"¸ßĞËµÄ¶¯×÷¡£ (Ctrl+4)",
+		"¹¥»÷µÄ¶¯×÷¡£ (Ctrl+0)",
+		"ÉúÆøµÄ¶¯×÷¡£ (Ctrl+5)",
+		"·ÀÓùµÄ¶¯×÷¡£ (Ctrl+-)",
+		"±¯ÉËµÄ¶¯×÷¡£ (Ctrl+6)",
+		"ÊÜÉËµÄ¶¯×÷¡£ (Ctrl+=)",
+		"Í¶ÖÀµÄ¶¯×÷¡£ (Ctrl+\\)"
 #ifdef __EMOTION
-		,"ç¡è§‰çš„åŠ¨ä½œã€‚"
-		,"å†·åœºçš„åŠ¨ä½œã€‚"
+		,"Ë¯¾õµÄ¶¯×÷¡£"
+		,"Àä³¡µÄ¶¯×÷¡£"
 #endif
 	};
 	int i, j;
@@ -4298,15 +4298,15 @@ int charActionAnimeChange(void)
 	{
 	   5,	//  ?  ? 
 	   3,	//  ?  ? 
-	   6,	// î—?î‘ ?
-	   4,	//  îŸš  ? 
+	   6,	// ûê?ı÷?
+	   4,	//  ¨÷  ? 
 	  11,	// ????
-	   2,	//  î™?? 
+	   2,	//  ¥X?? 
 	   7,	//  ?  ? 
 	   0,	//  ?  ? 
-	   8,	//  î™  ? 
+	   8,	//  ¥W  ? 
 	  10,	//  ??? 
-	   9,	//  îœ¼?? 
+	   9,	//  §v?? 
 	   1,	// ????
 	  12	// ???
 	};
@@ -4319,28 +4319,28 @@ int charActionAnimeChange(void)
 		for (i = 0; i < sizeof(btnId) / sizeof(int); i++)
 			btnId[i] = -2;
 
-		// ??????î’•
+		// ??????şÎ
 		w = 3;
 		h = 6;
 		x = 440;
 		y = 16;
-		//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
+		//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
 		ptActMenuWin1 = MakeWindowDisp(x, y, w, h, NULL, 1);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActMenuWin1->x;
 		y = ptActMenuWin1->y;
 #endif
 		charActionAnimeChangeProcNo++;
 	}
-	//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
+	//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
 	if (ptActMenuWin1 != NULL)
 	{
 		id = -1;
 		focusId = -1;
-		//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
+		//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
 		if (ptActMenuWin1->hp >= 1)
 		{
-			// ????î“±î•¶îœ˜î˜‹
+			// ????¡k¢‘§R¤e
 			id = selGraId(btnId, sizeof(btnId) / sizeof(int));
 			focusId = focusGraId(btnId, sizeof(btnId) / sizeof(int));
 
@@ -4383,26 +4383,26 @@ int charActionAnimeChange(void)
 			}
 		}
 
-		// î•‚??????î?????????????î¼??
+		// ¢\??????üÒ?????????????¨–??
 		if (CheckMenuFlag())
 			id = 100;
-		else if ((joy_trg[0] & JOY_ESC) && GetImeString() == NULL)	// ESC???????î·?
+		else if ((joy_trg[0] & JOY_ESC) && GetImeString() == NULL)	// ESC???????ü¬?
 		{
 			id = 100;
-			play_se(203, 320, 240);	// ?????î¼???
+			play_se(203, 320, 240);	// ?????¨–???
 		}
-		else if (charActionAnimeChangeProcNo == 1000)	// î·??????????î·?
+		else if (charActionAnimeChangeProcNo == 1000)	// ü¬??????????ü¬?
 			id = 100;
 
 		// ?????
 		if (id == 0)
-			play_se(203, 320, 240);	// ?????î¼???
+			play_se(203, 320, 240);	// ?????¨–???
 		else if (1 <= id && id <= 13)
 		{
 			id--;
 			if (eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 			{
-				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{
 					if (bNewServer)
 						lssproto_AC_send(sockfd, nowGx, nowGy, chgTbl[id]);
@@ -4412,7 +4412,7 @@ int charActionAnimeChange(void)
 					fieldBtnPushTime = TimeGetTime();
 				}
 			}
-			// ????????î“±?????????î¼????????
+			// ????????¡k?????????¨–????????
 			id = -1;
 			play_se(217, 320, 240);	// ?????
 		}
@@ -4427,17 +4427,17 @@ int charActionAnimeChange(void)
 #endif
 		if (id >= 0)
 		{
-			//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
+			//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
 			DeathAction(ptActMenuWin1);
 			ptActMenuWin1 = NULL;
 			return 1;
 		}
-		//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
+		//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
 		if (ptActMenuWin1->hp >= 1)
 		{
 			btnId[0] = StockDispBuffer(x + 96, y + 258, DISP_PRIO_MENU, CG_CLOSE_BTN, 2);
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "å…³é—­åŠ¨ä½œè§†çª—");
+				ShowBottomLineString(FONT_PAL_WHITE, "¹Ø±Õ¶¯×÷ÊÓ´°");
 #ifdef __EMOTION
 			for (i = 0; i < 7; i++)
 #else
@@ -4466,21 +4466,21 @@ int charActionAnimeChange(void)
 	return 0;
 }
 
-// ???îŒ¢î“–?î•”î“–ï¼¯ï¼«?????????
+// ???úÓ¡P?¢n¡P£Ï£Ë?????????
 // ???
 void initEtcSwitch(void)
 {
 	etcSwitchProcNo = 0;
 }
 
-// ???î·????
+// ???ü¬????
 void closeEtcSwitch(void)
 {
 	etcSwitchProcNo = 1000;
 }
 
-// ???îŒ¢î“–?î•”î“–ï¼¯ï¼«??????
-//  ??î–±: 0 ... ???
+// ???úÓ¡P?¢n¡P£Ï£Ë??????
+//  ??£k: 0 ... ???
 //          !0 ... ????
 #ifdef _CHANNEL_MODIFY
 void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile);
@@ -4504,57 +4504,57 @@ int etcSwitch(void)
 	int focusId = 0;
 	char *msg[] =
 	{
-		"ç»„    é˜Ÿï¼š",
-		"å†³    æ–—ï¼š",
-		"äº¤æ¢åç‰‡ï¼š",
+		"×é    ¶Ó£º",
+		"¾ö    ¶·£º",
+		"½»»»ÃûÆ¬£º",
 #ifndef _CHANNEL_MODIFY
-		"èŠ    å¤©ï¼š",
+		"ÁÄ    Ìì£º",
 #else
 #ifdef _NEWFONT_
-		"é¢‘      é“      å¼€    å…³",
+		"Æµ      µÀ      ¿ª    ¹Ø",
 #else
-		"é¢‘    é“    å¼€    å…³",
+		"Æµ    µÀ    ¿ª    ¹Ø",
 #endif
 #endif
-		"äº¤    æ˜“ï¼š",
+		"½»    Ò×£º",
 #ifdef __ONLINEGM
-		"çº¿    ä¸Š    å›    æŠ¥",
+		"Ïß    ÉÏ    »Ø    ±¨",
 #endif
 //#ifdef _JOBDAILY
-//		"ä»»    åŠ¡    æ—¥    å¿—",
+//		"ÈÎ    Îñ    ÈÕ    Ö¾",
 //#endif
 	};
 
 	char *msg2[] =
 	{
-		" ï¼®  ï¼¯",
-		" ï¼¹ï¼¥ï¼³",
+		" £Î  £Ï",
+		" £Ù£Å£Ó",
 		//" Other"
 	};
 #ifndef _CHANNEL_MODIFY
 	char *msg3[] =
 	{
-		" å…¨  å‘˜",
-		" é˜Ÿ  ä¼"
+		" È«  Ô±",
+		" ¶Ó  Îé"
 	};
 #endif
 	char *msg4[] =
 	{
-		"è®¾å®šæ˜¯å¦æ¥å—å…¶ä»–äººåŠ å…¥ä½ çš„é˜Ÿä¼ã€‚",
-		"è®¾å®šæ˜¯å¦æ¥å—å…¶ä»–äººçš„æŒ‘æˆ˜ã€‚",
-		"è®¾å®šæ˜¯å¦æ¥å—åç‰‡äº¤æ¢ã€‚",
+		"Éè¶¨ÊÇ·ñ½ÓÊÜÆäËûÈË¼ÓÈëÄãµÄ¶ÓÎé¡£",
+		"Éè¶¨ÊÇ·ñ½ÓÊÜÆäËûÈËµÄÌôÕ½¡£",
+		"Éè¶¨ÊÇ·ñ½ÓÊÜÃûÆ¬½»»»¡£",
 #ifndef _CHANNEL_MODIFY
-		"è®¾å®šèŠå¤©å†…å®¹å¯ä»¥è¢«å¬åˆ°çš„èŒƒå›´ã€‚",
+		"Éè¶¨ÁÄÌìÄÚÈİ¿ÉÒÔ±»Ìıµ½µÄ·¶Î§¡£",
 #else
-		"è®¾å®šå„ä¸ªé¢‘é“çš„å¼€å¯æˆ–å…³é—­ã€‚",
+		"Éè¶¨¸÷¸öÆµµÀµÄ¿ªÆô»ò¹Ø±Õ¡£",
 #endif
-		"è®¾å®šæ˜¯å¦æ¥å—äº¤æ˜“ã€‚"
+		"Éè¶¨ÊÇ·ñ½ÓÊÜ½»Ò×¡£"
 #ifdef __ONLINEGM
 		,
-		"å¼€å¯çº¿ä¸Šå›æŠ¥ç³»ç»Ÿ",
+		"¿ªÆôÏßÉÏ»Ø±¨ÏµÍ³",
 #endif
 //#ifdef _JOBDAILY
-//		"æŸ¥çœ‹ä»»åŠ¡æ—¥å¿—",
+//		"²é¿´ÈÎÎñÈÕÖ¾",
 //#endif
 	};
 
@@ -4575,17 +4575,17 @@ int etcSwitch(void)
 	};
 #ifdef _CHANNEL_MODIFY
 	char *pszChannel[] = {
-		"å¯†è¯­é¢‘é“",
-		"å®¶æ—é¢‘é“",
+		"ÃÜÓïÆµµÀ",
+		"¼Ò×åÆµµÀ",
 #ifdef _CHAR_PROFESSION
-		"èŒä¸šé¢‘é“",
+		"Ö°ÒµÆµµÀ",
 #endif
-		"å¯¹è¯å‚¨å­˜"
+		"¶Ô»°´¢´æ"
 #ifdef _CHANNEL_WORLD
-		,"ä¸–ç•Œé¢‘é“"
+		,"ÊÀ½çÆµµÀ"
 #endif
 #ifdef _CHANNEL_ALL_SERV
-		,"æ˜Ÿçƒé¢‘é“"
+		,"ĞÇÇòÆµµÀ"
 #endif
 	};
 	int iChannelSwitch[] = {
@@ -4606,9 +4606,9 @@ int etcSwitch(void)
 
 /*#ifdef _JOBDAILY
 	char *msg5[] = {
-		"å…³  é—­",
-		"ä¸Šä¸€é¡µ",
-		"ä¸‹ä¸€é¡µ"
+		"¹Ø  ±Õ",
+		"ÉÏÒ»Ò³",
+		"ÏÂÒ»Ò³"
 	};
 #endif*/
 
@@ -4620,7 +4620,7 @@ int etcSwitch(void)
 		for (i = 0; i < sizeof(btnId) / sizeof(int); i++)
 			btnId[i] = -2;
 
-		// ??????î’•
+		// ??????şÎ
 		w = 3;
 		h = 5;
 		x = 16;
@@ -4628,14 +4628,14 @@ int etcSwitch(void)
 		//y = 72;
 		y = 16;
 		ptActMenuWin = MakeWindowDisp(x, y, w, h, NULL, 1); //ptActMenuWin = MakeWindowDisp(x, y, w, h+1, NULL, 1);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActMenuWin->x;
 		y = ptActMenuWin->y;
 #endif
 		etcSwitchProcNo++;
 	}
 #ifdef _CHANNEL_MODIFY
-	// é¢‘é“å¼€å…³è§†çª—
+	// ÆµµÀ¿ª¹ØÊÓ´°
 	if (etcSwitchProcNo == 100)
 	{
 		w = 3;
@@ -4697,7 +4697,7 @@ int etcSwitch(void)
 					case 1:
 						if (pc.familyleader <= 0)
 						{
-							StockChatBufferLine("ä½ å°šæœªåŠ å…¥å®¶æ—", FONT_PAL_RED);
+							StockChatBufferLine("ÄãÉĞÎ´¼ÓÈë¼Ò×å", FONT_PAL_RED);
 							pc.etcFlag &= ~iChannelSwitch[id];	
 						}
 						break;
@@ -4705,7 +4705,7 @@ int etcSwitch(void)
 					case 2:
 						if (pc.profession_class == 0)
 						{
-							StockChatBufferLine("ä½ å°šæœªå°±èŒ", FONT_PAL_RED);
+							StockChatBufferLine("ÄãÉĞÎ´¾ÍÖ°", FONT_PAL_RED);
 							pc.etcFlag &= ~iChannelSwitch[id];
 						}
 						break;
@@ -4754,7 +4754,7 @@ int etcSwitch(void)
 				DeathAction(pActChannelWin);
 				pActChannelWin = NULL;
 				if ((pf = fopen("data\\channel.dat","w+")) == NULL)
-					StockChatBufferLine("é¢‘é“è®¾å®šæ¡£è¯»å–å¤±è´¥", FONT_PAL_RED);
+					StockChatBufferLine("ÆµµÀÉè¶¨µµ¶ÁÈ¡Ê§°Ü", FONT_PAL_RED);
 				else
 				{
 					char buf[5];
@@ -4780,7 +4780,7 @@ int etcSwitch(void)
 			iChannelbtnId[0] = StockDispBuffer(x + 96, h * 48 - 24, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "å…³é—­é€‰å•è§†çª—ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¹Ø±ÕÑ¡µ¥ÊÓ´°¡£");
 				
 			for (i = 0; i < sizeof(pszChannel) / sizeof(char*); i++)
 			{
@@ -4796,7 +4796,7 @@ int etcSwitch(void)
 		int ret = iOnlineGmProc();
 
 		if (ret)
-		{  // å…³é—­
+		{  // ¹Ø±Õ
 			GetKeyInputFocus(&MyChatBuffer);
 			OnlineGmFlag = FALSE;
 			return 1;
@@ -4835,11 +4835,11 @@ int etcSwitch(void)
 			return 1;
 		}
 		if(pActJobdailyWin->hp >= 1){
-			StockFontBuffer(274,94,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"ä»» åŠ¡ æ—¥ å¿—",0);
-			StockFontBuffer(x+30,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"ç¼–å·		--------------------ä»»åŠ¡è¯´æ˜--------------------",0);
-			StockFontBuffer(x+440,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"çŠ¶æ€",0);
+			StockFontBuffer(274,94,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"ÈÎ Îñ ÈÕ Ö¾",0);
+			StockFontBuffer(x+30,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"±àºÅ		--------------------ÈÎÎñËµÃ÷--------------------",0);
+			StockFontBuffer(x+440,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"×´Ì¬",0);
 
-			if(JobdailyGetFlag){  //æŠŠæ¥æ”¶åˆ°çš„èµ„æ–™ç§€å‡º
+			if(JobdailyGetFlag){  //°Ñ½ÓÊÕµ½µÄ×ÊÁÏĞã³ö
 				char buf[20];
 				for(i=0;i<10;i++){
 					sprintf_s(buf,"%d",jobdaily[i+PageIndex*10].JobId);
@@ -4860,8 +4860,8 @@ int etcSwitch(void)
 				y1 = y+30+23+196+45;
 				x2 = x1 + 48;
 				y2 = y1 + 22;	
-				if(i==1)	if(PageIndex==0) continue; //ä¸Šä¸€é¡µ
-				if(i==2)	if(PageIndex==MaxPage-1) continue;  //ä¸‹ä¸€é¡µ
+				if(i==1)	if(PageIndex==0) continue; //ÉÏÒ»Ò³
+				if(i==2)	if(PageIndex==MaxPage-1) continue;  //ÏÂÒ»Ò³
 				if(MakeHitBox(x1,y1,x2,y2,DISP_PRIO_BOX2)){
 					if(mouse.onceState & MOUSE_LEFT_CRICK) id = i+1;
 					focusId = i+1;
@@ -4888,7 +4888,7 @@ int etcSwitch(void)
 				if(PageIndex==MaxPage) PageIndex--;
 			}			
 
-			if(focusId == 1) ShowBottomLineString(FONT_PAL_WHITE,"å…³é—­ä»»åŠ¡æ—¥å¿—è§†çª—ã€‚");
+			if(focusId == 1) ShowBottomLineString(FONT_PAL_WHITE,"¹Ø±ÕÈÎÎñÈÕÖ¾ÊÓ´°¡£");
 			
 			for(i = 0;i < sizeof(msg5)/sizeof(char*);i++){
 				StockFontBuffer(x+80+i*150,y+30+26+196+45,FONT_PRIO_FRONT,FONT_PAL_YELLOW,msg5[i],0);
@@ -4911,7 +4911,7 @@ int etcSwitch(void)
 		focusId = -1;
 		if (ptActMenuWin->hp >= 1)
 		{
-			// ????î“±î•¶îœ˜î˜‹
+			// ????¡k¢‘§R¤e
 			id = selGraId(btnId, sizeof(btnId) / sizeof(int));
 			focusId = focusGraId(btnId, sizeof(btnId) / sizeof(int));
 
@@ -4930,19 +4930,19 @@ int etcSwitch(void)
 			}
 		}
 
-		// î•‚??????î?????????????î¼??
+		// ¢\??????üÒ?????????????¨–??
 		if (CheckMenuFlag())
 			id = 100;
-		else if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL))	// ESC???????î·?
+		else if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL))	// ESC???????ü¬?
 		{
 			id = 100;
-			play_se(203, 320, 240);	// ?????î¼???
+			play_se(203, 320, 240);	// ?????¨–???
 		}
-		else if (etcSwitchProcNo == 1000)								// î·??????????î·?
+		else if (etcSwitchProcNo == 1000)								// ü¬??????????ü¬?
 			id = 100;
 		// ?????
 		if (id == 0)
-			play_se( 203, 320, 240 );	// ?????î¼???
+			play_se( 203, 320, 240 );	// ?????¨–???
 		else
 #ifdef _CHANNEL_MODIFY
 		if (id == 4)
@@ -4967,7 +4967,7 @@ int etcSwitch(void)
 			}
 			else
 			{
-				StockChatBufferLine("æˆ˜æ–—ä¸­æ— æ³•å¼€å¯çº¿ä¸Šå›æŠ¥ç³»ç»Ÿ...", FONT_PAL_RED);
+				StockChatBufferLine("Õ½¶·ÖĞÎŞ·¨¿ªÆôÏßÉÏ»Ø±¨ÏµÍ³...", FONT_PAL_RED);
 				return 0;
 			}
 		}
@@ -4982,7 +4982,7 @@ int etcSwitch(void)
 				etcSwitchProcNo = 201;
 				return 0;
 			}else{
-				StockChatBufferLine("æˆ˜æ–—ä¸­æ— æ³•å¼€å¯ä»»åŠ¡æ—¥å¿—...",FONT_PAL_RED);
+				StockChatBufferLine("Õ½¶·ÖĞÎŞ·¨¿ªÆôÈÎÎñÈÕÖ¾...",FONT_PAL_RED);
 				return 0;
 			}
 		}
@@ -4991,17 +4991,17 @@ int etcSwitch(void)
 		if (1 <= id && id <= sizeof(msg) / sizeof(char*))
 		{
 			id--;
-			// ????î¯????????
+			// ????ıÆ????????
 			if (pc.etcFlag & mask[id])
 				pc.etcFlag &= ~mask[id];
 			else
-			// ??????î¯??
+			// ??????ıÆ??
 			{
 #ifdef _STREET_VENDOR
 				if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2)
 				{
 					if (mask[id] == PC_ETCFLAG_TRADE || mask[id] == PC_ETCFLAG_PARTY || mask[id] == PC_ETCFLAG_DUEL)
-						StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¯å¼€äº¤æ˜“ã€ç»„é˜ŸåŠå¯¹æˆ˜åŠŸèƒ½", FONT_PAL_RED);
+						StockChatBufferLine("°ÚÌ¯ÖĞ²»¿É¿ª½»Ò×¡¢×é¶Ó¼°¶ÔÕ½¹¦ÄÜ", FONT_PAL_RED);
 					else
 						pc.etcFlag |= mask[id];
 				}
@@ -5013,7 +5013,7 @@ int etcSwitch(void)
 			}
 			if (eventWarpSendFlag == 0 && eventEnemySendFlag == 0 && sendEnFlag == 0)
 			{
-				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+				if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 				{
 					if (bNewServer)
 						lssproto_FS_send(sockfd, pc.etcFlag);
@@ -5021,10 +5021,10 @@ int etcSwitch(void)
 						old_lssproto_FS_send(sockfd, pc.etcFlag);
 					fieldBtnPushTime = TimeGetTime();
 				}
-				else	// ????îŸ‰????????îº?î’????????? ????
+				else	// ????¨Á????????ûÍ?şÉ????????? ????
 					etcSwitchChangeFlag = 1;
 			}
-			// ????????î“±?????????î¼????????
+			// ????????¡k?????????¨–????????
 			id = -1;
 			play_se(217, 320, 240);	//?????
 		}
@@ -5040,12 +5040,12 @@ int etcSwitch(void)
 		{
 			btnId[0] = StockDispBuffer(x + 96, h * 48 - 24 , DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "å…³é—­é€‰å•è§†çª—ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¹Ø±ÕÑ¡µ¥ÊÓ´°¡£");
 			for (i = 0; i < sizeof(msg) / sizeof(char*); i++)
 			{
 				StockFontBuffer(x + 20, y + i * 30 + 26, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg[i], 0);
 
-				if (i != 3 && i != 5)    //ä¿®æ”¹ä¸»é€‰å•å¿…é¡»æ³¨æ„
+				if (i != 3 && i != 5)    //ĞŞ¸ÄÖ÷Ñ¡µ¥±ØĞë×¢Òâ
 					StockFontBuffer(x + 105, y + i * 30 + 26, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg2[((pc.etcFlag & mask[i]) ? 1:0)], 0);
 #ifndef _CHANNEL_MODIFY
 				else
@@ -5060,8 +5060,8 @@ int etcSwitch(void)
 	return 0;
 }
 
-// ?????î“ƒî”·?î™”î“??
-//   ??î–±ï¼š 0 ... ???
+// ?????şü¢Q?¥Nşú??
+//   ??£k£º 0 ... ???
 //            1 ... "??"????????
 int disconnectServer( void )
 {
@@ -5071,8 +5071,8 @@ int disconnectServer( void )
 	int id = 0;
 	char *msg[] =
 	{
-		"ä¸æœåŠ¡å™¨åˆ‡æ–­è¿çº¿",
-		"å›åˆ°å¼€å¤´ç”»é¢"
+		"Óë·şÎñÆ÷ÇĞ¶ÏÁ¬Ïß",
+		"»Øµ½¿ªÍ·»­Ãæ"
 	};
 	int i;
 	int ret = 0;
@@ -5081,7 +5081,7 @@ int disconnectServer( void )
 
 	if (ptActMenuWin == NULL)
 	{
-		// î•‚???????î???î?
+		// ¢\???????üÒ???ı¤?
 		if (CheckMenuFlag())
 			InitMenu2();
 		closeEtcSwitch();
@@ -5091,19 +5091,19 @@ int disconnectServer( void )
 		for (i = 0; i < sizeof(btnId) / sizeof(int); i++)
 			btnId[i] = -2;
 
-		// ??????î’•
+		// ??????şÎ
 		w = 5;
 		h = 3;
 		x = (lpDraw->xSize - w * 64) / 2;
 		y = (lpDraw->ySize - h * 48) / 2;
 		ptActMenuWin = MakeWindowDisp(x, y, w, h, NULL, 1, FALSE);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActMenuWin->x;
 		y = ptActMenuWin->y;
 #endif
 	}
 #ifdef _AIDENGLU_
-	extern int è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
+	extern int ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
 #endif
 	if (ptActMenuWin != NULL)
 	{
@@ -5114,7 +5114,7 @@ int disconnectServer( void )
 			if (
 				id >= 0
 #ifdef _AIDENGLU_
-				|| è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯
+				|| ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô
 #endif
 				)
 			{
@@ -5130,15 +5130,15 @@ int disconnectServer( void )
 				StockFontBuffer(x+ xx, y + (i + 1) * yy, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg[i], 0);
 			}
 
-			xx = (w * 64 - strlen("ç¡®å®š") / 2 * 17) / 2;
-			btnId[0] = StockFontBuffer(x + xx, y + 3 * yy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ç¡®å®š", 2);
+			xx = (w * 64 - strlen("È·¶¨") / 2 * 17) / 2;
+			btnId[0] = StockFontBuffer(x + xx, y + 3 * yy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È·¶¨", 2);
 		}
 	}
 
 	return ret;
 }
 
-// ??????î¶??î¡“î“·?î¸î•
+// ??????ıÍ??ş¡q?¤úû¨
 void drawFieldInfoWin(void)
 {
 	static ACTION *ptActMenuWin = NULL;
@@ -5160,7 +5160,7 @@ void drawFieldInfoWin(void)
 
 	if (ptActMenuWin == NULL)
 	{
-		// î•‚???????î???î?
+		// ¢\???????üÒ???ı¤?
 		if (CheckMenuFlag())
 		{
 			// ?????????????????
@@ -5172,13 +5172,13 @@ void drawFieldInfoWin(void)
 		closeCharActionAnimeChange();
 		closeJoinChannelWN();
 
-		// ??????î’•
+		// ??????şÎ
 		w = 4;
 		h = 2;
 		x = (lpDraw->xSize - w * 64) / 2;
 		y = (lpDraw->ySize - 24 - h * 48) / 2;
 		ptActMenuWin = MakeWindowDisp(x, y, w, h, NULL, 3, FALSE);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActMenuWin->x;
 		y = ptActMenuWin->y;
 #endif
@@ -5203,7 +5203,7 @@ void drawFieldInfoWin(void)
 	}
 }
 
-// ?????îŸ‰??????????????
+// ?????¨Á??????????????
 void actionShortCutKeyProc(void)
 {
 	unsigned int key[] =
@@ -5225,7 +5225,7 @@ void actionShortCutKeyProc(void)
 	int i;
 	BOOL pushFlag = FALSE;
 
-	// ????î™®??????????
+	// ????¥h??????????
 	if (moveRouteCnt != 0 || nowVx != 0 || nowVy != 0)
 		return;
 
@@ -5245,10 +5245,10 @@ void actionShortCutKeyProc(void)
 	{
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
-			StockChatBufferLine("è¯·ä¸“å¿ƒçœ‹è¡¨æ¼”", FONT_PAL_RED);
+			StockChatBufferLine("Çë×¨ĞÄ¿´±íÑİ", FONT_PAL_RED);
 		else
 #endif
-		if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?îº?î’
+		if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ?ûÍ?şÉ
 		{
 			if (bNewServer)
 				lssproto_AC_send(sockfd, nowGx, nowGy, i);
@@ -5267,24 +5267,24 @@ static ACTION *ptActLeaderFuncWin = NULL;
 #ifndef _FM_MODIFY
 char channelName[9][20] =
 {
-	" å®¶æ—èµ„æ–™  ",
-	"å®¶æ—é¢‘é“ ï¼‘",
-	"å®¶æ—é¢‘é“ ï¼’",
-	"å®¶æ—é¢‘é“ ï¼“",
-	"å®¶æ—é¢‘é“ ï¼”",
-	" æ—é•¿å¹¿æ’­  ",
-	" ç¦»å¼€é¢‘é“  ",
-	" æ—é•¿åŠŸèƒ½  ",
-	"  ç¦»   å¼€  "
+	" ¼Ò×å×ÊÁÏ  ",
+	"¼Ò×åÆµµÀ £±",
+	"¼Ò×åÆµµÀ £²",
+	"¼Ò×åÆµµÀ £³",
+	"¼Ò×åÆµµÀ £´",
+	" ×å³¤¹ã²¥  ",
+	" Àë¿ªÆµµÀ  ",
+	" ×å³¤¹¦ÄÜ  ",
+	"  Àë   ¿ª  "
 };
 #else
 char channelName[5][20] =
 {
-	" å®¶æ—èµ„æ–™ ",
-	" æ—é•¿åŠŸèƒ½ ",
-	"å®¶æ—å¸ƒå‘Šæ ",
-	" å…³é—­å¹¿æ’­ ",
-	" å®¶æ—å¾½ç«  "
+	" ¼Ò×å×ÊÁÏ ",
+	" ×å³¤¹¦ÄÜ ",
+	"¼Ò×å²¼¸æÀ¸",
+	" ¹Ø±Õ¹ã²¥ ",
+	" ¼Ò×å»ÕÕÂ "
 };
 #endif
 
@@ -5350,7 +5350,7 @@ void joinChannelWN(void)
 	if (ptActChannelWin == NULL)
 	{
 		ptActChannelWin = MakeWindowDisp(x, y, w, h, NULL, 1, FALSE);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActChannelWin->x;
 		y = ptActChannelWin->y;
 #endif
@@ -5361,11 +5361,11 @@ void joinChannelWN(void)
 	{
 		if (ptActChannelWin->hp >= 1)
 		{
-			// ESC???????î·?
+			// ESC???????ü¬?
 			if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL))
 			{
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 			}
 			if (CheckMenuFlag())
 				closeJoinChannelWN();
@@ -5511,49 +5511,49 @@ void joinChannelWN(void)
 			switch (selId)
 			{
 			case 0:
-				ShowBottomLineString(FONT_PAL_WHITE, "æŸ¥çœ‹å®¶æ—è¯¦ç»†èµ„æ–™ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "²é¿´¼Ò×åÏêÏ¸×ÊÁÏ¡£");
 				break;
 			case 1:
 			case 2:
 			case 3:
 				if (pc.channel == selId)
-					sprintf_s(buf, "ä½ ç›®å‰åœ¨è¿™ä¸ªé¢‘é“ã€‚");
+					sprintf_s(buf, "ÄãÄ¿Ç°ÔÚÕâ¸öÆµµÀ¡£");
 				else
-					sprintf_s(buf, "æŸ¥çœ‹è¿™ä¸ªèŠå¤©é¢‘é“ã€‚");
+					sprintf_s(buf, "²é¿´Õâ¸öÁÄÌìÆµµÀ¡£");
 				ShowBottomLineString(FONT_PAL_WHITE, buf);
 				break;
 			case 5:
-				ShowBottomLineString(FONT_PAL_WHITE, "æ—é•¿å¯¹å…¨æ˜Ÿç³»çš„æ—å‘˜å¹¿æ’­ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "×å³¤¶ÔÈ«ĞÇÏµµÄ×åÔ±¹ã²¥¡£");
 				break;
 			case 6:
-				ShowBottomLineString(FONT_PAL_WHITE, "é€€å‡ºç›®å‰çš„é¢‘é“ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "ÍË³öÄ¿Ç°µÄÆµµÀ¡£");
 				break;
 			case 7:
-				ShowBottomLineString(FONT_PAL_WHITE, "æ—é•¿ä¸“ç”¨åŠŸèƒ½ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "×å³¤×¨ÓÃ¹¦ÄÜ¡£");
 				break;
 			default:
 				if (selgraId == 0)
-					ShowBottomLineString(FONT_PAL_WHITE, "ç¦»å¼€èŠå¤©é¢‘é“é€‰å•ã€‚");
+					ShowBottomLineString(FONT_PAL_WHITE, "Àë¿ªÁÄÌìÆµµÀÑ¡µ¥¡£");
 				break;
 			}
 #else
 			switch (selId)
 			{
 			case 0:
-				ShowBottomLineString(FONT_PAL_WHITE, "æŸ¥çœ‹å®¶æ—è¯¦ç»†èµ„æ–™ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "²é¿´¼Ò×åÏêÏ¸×ÊÁÏ¡£");
 				break;
 			case 1:
-				ShowBottomLineString(FONT_PAL_WHITE, "æ—é•¿ä¸“ç”¨åŠŸèƒ½ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "×å³¤×¨ÓÃ¹¦ÄÜ¡£");
 				break;
 			case 2:
-				ShowBottomLineString(FONT_PAL_WHITE, "ä½¿ç”¨å®¶æ—å¸ƒå‘Šæ åŠŸèƒ½ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "Ê¹ÓÃ¼Ò×å²¼¸æÀ¸¹¦ÄÜ¡£");
 				break;
 			case 3:
-				ShowBottomLineString(FONT_PAL_WHITE, "å…³é—­æ—é•¿å¹¿æ’­åŠŸèƒ½ã€‚");
+				ShowBottomLineString(FONT_PAL_WHITE, "¹Ø±Õ×å³¤¹ã²¥¹¦ÄÜ¡£");
 				break;
 			default:
 				if (selgraId == 0)
-					ShowBottomLineString(FONT_PAL_WHITE, "ç¦»å¼€èŠå¤©é¢‘é“é€‰å•ã€‚");
+					ShowBottomLineString(FONT_PAL_WHITE, "Àë¿ªÁÄÌìÆµµÀÑ¡µ¥¡£");
 				break;
 			}
 #endif
@@ -5576,8 +5576,8 @@ static TchannelData channelData;
 
 char pageStr[2][10] =
 {
-	"ä¸Šä¸€é¡µ",
-	"ä¸‹ä¸€é¡µ",
+	"ÉÏÒ»Ò³",
+	"ÏÂÒ»Ò³",
 };
 static int pageNum;
 
@@ -5636,7 +5636,7 @@ void joinChannel2WN(void)
 		DeathAction(ptActLeaderFuncWin);
 		ptActLeaderFuncWin = NULL;
 		ptActChannel2Win = MakeWindowDisp(x, y, w, h, NULL, 1);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActChannel2Win->x;
 		y = ptActChannel2Win->y;
 #endif
@@ -5648,10 +5648,10 @@ void joinChannel2WN(void)
 		switch (selId)
 		{
 		case 0:
-			ShowBottomLineString(FONT_PAL_WHITE, "åŠ å…¥æœ¬é¢‘é“ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¼ÓÈë±¾ÆµµÀ¡£");
 			break;
 		case 1:
-			ShowBottomLineString(FONT_PAL_WHITE, "å…³é—­è¿™ä¸ªè§†çª—ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¹Ø±ÕÕâ¸öÊÓ´°¡£");
 			break;
 		}
 
@@ -5666,7 +5666,7 @@ void joinChannel2WN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				break;				
 			case 1:
 				if (pc.channel == channelData.index)
@@ -5678,7 +5678,7 @@ void joinChannel2WN(void)
 						old_lssproto_FM_send(sockfd, buf);
 				}
 				closeJoinChannel2WN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				break;
 			case 2:
 				if (pageNum > 0)
@@ -5691,8 +5691,8 @@ void joinChannel2WN(void)
 			}
 		}
 
-		fontBtnId[0] = StockFontBuffer(x + 240, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " åŠ   å…¥ ", 2);
-		fontBtnId[1] = StockFontBuffer(x + 340, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ç¦»  å¼€ ", 2);
+		fontBtnId[0] = StockFontBuffer(x + 240, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ¼Ó  Èë ", 2);
+		fontBtnId[1] = StockFontBuffer(x + 340, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " Àë  ¿ª ", 2);
 
 		switch (pageNum)
 		{
@@ -5711,11 +5711,11 @@ void joinChannel2WN(void)
 		}
 		StockFontBuffer(x + 25, y + 25, FONT_PRIO_FRONT, FONT_PAL_WHITE, channelName[channelData.index], 0);
 
-		StockFontBuffer(x + 25, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, "[ é¢‘ é“ æˆ å‘˜ ]", 0);
+		StockFontBuffer(x + 25, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, "[ Æµ µÀ ³É Ô± ]", 0);
 		
-		sprintf_s(buf, "ç›®å‰æœ‰ %d ä½å®¶æ—æˆå‘˜åœ¨æœ¬æ˜Ÿçƒã€‚", channelData.num);
+		sprintf_s(buf, "Ä¿Ç°ÓĞ %d Î»¼Ò×å³ÉÔ±ÔÚ±¾ĞÇÇò¡£", channelData.num);
 		StockFontBuffer(x + 200, y + 25, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-		sprintf_s(buf, "æœ‰ %d äººåœ¨æœ¬é¢‘é“ã€‚", channelData.joinNum);
+		sprintf_s(buf, "ÓĞ %d ÈËÔÚ±¾ÆµµÀ¡£", channelData.joinNum);
 		StockFontBuffer(x + 280, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
 		for (i = 0 ; i < channelData.num; i++)
@@ -5776,18 +5776,18 @@ void leaderFuncWN(void)
 	if (ptActLeaderFuncWin == NULL)
 	{
 		ptActLeaderFuncWin = MakeWindowDisp(x, y, w, h, NULL, 1, FALSE);
-#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
+#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
 		x = ptActLeaderFuncWin->x;
 		y = ptActLeaderFuncWin->y;
 #endif
 	}
 	else if (ptActLeaderFuncWin->hp >= 1)
 	{
-		// ESC???????î·?
+		// ESC???????ü¬?
 		if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL))
 		{
 			closeJoinChannelWN();
-			play_se(203, 320, 240);	// ?????î¼???
+			play_se(203, 320, 240);	// ?????¨–???
 		}
 		if (CheckMenuFlag())
 			closeJoinChannelWN();
@@ -5811,7 +5811,7 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
 			if (selId == 2)
@@ -5822,7 +5822,7 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
 
@@ -5834,7 +5834,7 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
 			if (selId == 4)
@@ -5845,7 +5845,7 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
 
@@ -5857,10 +5857,10 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
-#ifdef	_ADD_FAMILY_TAX		// WON ADD å¢åŠ åº„å›­ç¨æ”¶
+#ifdef	_ADD_FAMILY_TAX		// WON ADD Ôö¼Ó×¯Ô°Ë°ÊÕ
 			if (selId == 6) 
 			{
 				sprintf_s(buf, "L|FMTAX|W");
@@ -5869,7 +5869,7 @@ void leaderFuncWN(void)
 				else
 					old_lssproto_FM_send(sockfd, buf);
 				closeJoinChannelWN();
-				play_se(203, 320, 240);	// ?????î¼???
+				play_se(203, 320, 240);	// ?????¨–???
 				return;
 			}
 #endif
@@ -5882,56 +5882,56 @@ void leaderFuncWN(void)
 #endif
 		{
 			if (pc.channel == 5)
-				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  æ—é•¿å¹¿æ’­  ", 2);
+				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  ×å³¤¹ã²¥  ", 2);
 			else
-				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  æ—é•¿å¹¿æ’­  ", 2);
+				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  ×å³¤¹ã²¥  ", 2);
 
-			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "å®¶æ—æˆå‘˜ç®¡ç†", 2);
+			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "¼Ò×å³ÉÔ±¹ÜÀí", 2);
 
-			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " å®¶æ—é‚€è¯·å‡½ ", 2);
-			//btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " å­¦ä¹ åŒæ„ä¹¦ ", 2);
-			//btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  æ—é•¿è®©ä½  ", 2);
-			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  æ—é•¿è®©ä½  ", 2);
+			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " ¼Ò×åÑûÇëº¯ ", 2);
+			//btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " Ñ§Ï°Í¬ÒâÊé ", 2);
+			//btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  ×å³¤ÈÃÎ»  ", 2);
+			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  ×å³¤ÈÃÎ»  ", 2);
 
 
-#ifdef	_ADD_FAMILY_TAX		// WON ADD å¢åŠ åº„å›­ç¨æ”¶
-			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_WHITE, "è°ƒæ•´åº„å›­ç¨ç‡", 2);
+#ifdef	_ADD_FAMILY_TAX		// WON ADD Ôö¼Ó×¯Ô°Ë°ÊÕ
+			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_WHITE, "µ÷Õû×¯Ô°Ë°ÂÊ", 2);
 #endif
 		}
 // shan begin
 #ifdef _FMVER21
 		if (pc.familyleader == FMMEMBER_ELDER)
 		{
-			btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  æ—é•¿å¹¿æ’­  ", 0);
-			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "å®¶æ—æˆå‘˜ç®¡ç†", 2);
+			btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  ×å³¤¹ã²¥  ", 0);
+			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "¼Ò×å³ÉÔ±¹ÜÀí", 2);
 
-			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " å®¶æ—é‚€è¯·å‡½ ", 2);
-			btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " å­¦ä¹ åŒæ„ä¹¦ ", 2);
-			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  æ—é•¿è®©ä½  ", 0);
+			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " ¼Ò×åÑûÇëº¯ ", 2);
+			btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " Ñ§Ï°Í¬ÒâÊé ", 2);
+			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  ×å³¤ÈÃÎ»  ", 0);
 
-#ifdef	_ADD_FAMILY_TAX		// WON ADD å¢åŠ åº„å›­ç¨æ”¶
-			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  è°ƒæ•´åº„å›­ç¨ç‡  ", 0);
+#ifdef	_ADD_FAMILY_TAX		// WON ADD Ôö¼Ó×¯Ô°Ë°ÊÕ
+			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  µ÷Õû×¯Ô°Ë°ÂÊ  ", 0);
 #endif
 		}
 #endif
 // shan end
 		if (selId == 1)
-			ShowBottomLineString(FONT_PAL_WHITE, "æ—é•¿å¯¹å…¨æ˜Ÿç³»çš„æ—å‘˜å¹¿æ’­ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "×å³¤¶ÔÈ«ĞÇÏµµÄ×åÔ±¹ã²¥¡£");
 		else if (selId == 2)
-			ShowBottomLineString(FONT_PAL_WHITE, "å®¶æ—æˆå‘˜åˆ—è¡¨ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "¼Ò×å³ÉÔ±ÁĞ±í¡£");
 		else if (selId == 3)
-			ShowBottomLineString(FONT_PAL_WHITE, "åˆ¶ä½œå®¶æ—å‚è§‚é‚€è¯·å‡½ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "ÖÆ×÷¼Ò×å²Î¹ÛÑûÇëº¯¡£");
 		else if (selId == 4)
-			ShowBottomLineString(FONT_PAL_WHITE, "åˆ¶ä½œå­¦ä¹ éª‘ä¹˜åŒæ„ä¹¦ã€‚");
-#ifdef	_ADD_FAMILY_TAX		// WON ADD å¢åŠ åº„å›­ç¨æ”¶
+			ShowBottomLineString(FONT_PAL_WHITE, "ÖÆ×÷Ñ§Ï°Æï³ËÍ¬ÒâÊé¡£");
+#ifdef	_ADD_FAMILY_TAX		// WON ADD Ôö¼Ó×¯Ô°Ë°ÊÕ
 		else if (selId == 6)
-			ShowBottomLineString(FONT_PAL_WHITE, "è°ƒæ•´åº„å›­å†…ç‰©å“ç¨æ”¶ã€‚");
+			ShowBottomLineString(FONT_PAL_WHITE, "µ÷Õû×¯Ô°ÄÚÎïÆ·Ë°ÊÕ¡£");
 #endif
 	}
 
 }
 
-#ifdef _SURFACE_ANIM        //ROG ADD åŠ¨æ€åœ°ä¸Šç‰©æ˜¾ç¤º
+#ifdef _SURFACE_ANIM        //ROG ADD ¶¯Ì¬µØÉÏÎïÏÔÊ¾
 int ReadAniFile(int floor)
 {
 	HANDLE hFile;
@@ -5939,7 +5939,7 @@ int ReadAniFile(int floor)
 	char fileName[32];
 	ani_num = 0;
 	int col = 0, row = 0; 
-	breadAniFlag = TRUE;  //è¯»å–æ¡£æ¡ˆæ——æ ‡
+	breadAniFlag = TRUE;  //¶ÁÈ¡µµ°¸Æì±ê
 	sprintf_s(fileName, "map\\%d.ani", floor);
 	for (int i = 0; i < MAX_ANIM; i++)
 	{
@@ -5954,7 +5954,7 @@ int ReadAniFile(int floor)
 		ProduceXY[row][5] = 0 ; 
 		row++;
 	}
-	ani_num = row; //è¯¥åœ°å›¾æ€»åŠ¨ç”»æ•°
+	ani_num = row; //¸ÃµØÍ¼×Ü¶¯»­Êı
 	CloseHandle(hFile);
 
 	return 1;
@@ -6061,7 +6061,7 @@ void ReleaseSpecAnim ()
 
 #else
 
-#ifdef _SPECIALSPACEANIM	// Syu ADD ç‰¹æ®Šåœºæ™¯åŠ¨ç”»é…ç½®
+#ifdef _SPECIALSPACEANIM	// Syu ADD ÌØÊâ³¡¾°¶¯»­ÅäÖÃ
 void SpecAnim (int floor)
 {
 	int j = 0;
@@ -6116,7 +6116,7 @@ void ReleaseSpecAnim()
 #endif
 #endif
 
-#ifdef _CLOUD_EFFECT				// (ä¸å¯å¼€) ROG ADDäº‘å±‚æ•ˆæœ
+#ifdef _CLOUD_EFFECT				// (²»¿É¿ª) ROG ADDÔÆ²ãĞ§¹û
 void CloudDraw()
 {
 	static DWORD SlowDraw;
@@ -6158,16 +6158,16 @@ void TeacherSystemWndfunc(int flag, char *data)
 		memset(szBuf, 0, sizeof(szBuf));
 		switch (flag)
 		{
-			// åªæœ‰ä¸€ä¸ªäºº
+			// Ö»ÓĞÒ»¸öÈË
 			case 0:
 				winW = 5;
 				winH = 2;
 				// get name
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]); // å­˜å¯¼å¸ˆçš„åå­—
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // å–å‡ºå¯¼å¸ˆ index
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]); // ´æµ¼Ê¦µÄÃû×Ö
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // È¡³öµ¼Ê¦ index
 				iIndex[0] = atoi(szBuf[6]);
 				break;
-			// ä¸€äººä»¥ä¸Šåœ¨åŒä¸€æ ¼
+			// Ò»ÈËÒÔÉÏÔÚÍ¬Ò»¸ñ
 			case 1:
 				winW = 5;
 				winH = 5;
@@ -6176,19 +6176,19 @@ void TeacherSystemWndfunc(int flag, char *data)
 				// get name
 				for (i = 0; i < iGetNum; i++)
 				{
-					getStringToken(data, '|', 3 + i * 2, sizeof(szBuf[i]) - 1, szBuf[i]); // å­˜å¯¼å¸ˆçš„åå­—
-					getStringToken(data, '|', 4 + i * 2, sizeof(szBuf[6]) - 1, szBuf[6]); // å–å‡ºå¯¼å¸ˆ index
+					getStringToken(data, '|', 3 + i * 2, sizeof(szBuf[i]) - 1, szBuf[i]); // ´æµ¼Ê¦µÄÃû×Ö
+					getStringToken(data, '|', 4 + i * 2, sizeof(szBuf[6]) - 1, szBuf[6]); // È¡³öµ¼Ê¦ index
 					iIndex[i] = atoi(szBuf[6]);
 				}
 				break;
-			// æ˜¾ç¤ºå¯¼å¸ˆèµ„æ–™
+			// ÏÔÊ¾µ¼Ê¦×ÊÁÏ
 			case 2:
 				winW = 5;
 				winH = 3;
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// å­˜å¯¼å¸ˆçš„åå­—
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // å–å‡ºåœ¨ä¸åœ¨çº¿çŠ¶æ€
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// ´æµ¼Ê¦µÄÃû×Ö
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // È¡³öÔÚ²»ÔÚÏß×´Ì¬
 				iOnline = atoi(szBuf[6]);
-				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // å­˜æ˜Ÿç³» ip
+				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // ´æĞÇÏµ ip
 				break;
 			case 3:
 				winW = 5;
@@ -6198,10 +6198,10 @@ void TeacherSystemWndfunc(int flag, char *data)
 			case 4:
 				winW = 5;
 				winH = 3;
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// å­˜å­¦ç”Ÿçš„åå­—
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // å–å‡ºåœ¨ä¸åœ¨çº¿çŠ¶æ€
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// ´æÑ§ÉúµÄÃû×Ö
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // È¡³öÔÚ²»ÔÚÏß×´Ì¬
 				iOnline = atoi(szBuf[6]);
-				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // å­˜æ˜Ÿç³» ip
+				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // ´æĞÇÏµ ip
 				break;
 			case 5:
 				winW = 5;
@@ -6231,14 +6231,14 @@ void TeacherSystemWndfunc(int flag, char *data)
 		{
 			if (!bOpen)
 				bOpen = TRUE;
-			// åªæœ‰ä¸€ä¸ªäººè¯¢é—®æ˜¯å¦è¦å¯¹æ–¹å½“ä½ çš„å¯¼å¸ˆ
+			// Ö»ÓĞÒ»¸öÈËÑ¯ÎÊÊÇ·ñÒª¶Ô·½µ±ÄãµÄµ¼Ê¦
 			if (flag == 0)
 			{
-				sprintf_s(szMsg, "ä½ æ˜¯å¦å°†è®¤å®š %s", szBuf[0]);
+				sprintf_s(szMsg, "ÄãÊÇ·ñ½«ÈÏ¶¨ %s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, "æˆä¸ºä½ çš„å¯¼å¸ˆï¼Ÿ", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ç¡®  å®š", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–  æ¶ˆ", 2);
+				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, "³ÉÎªÄãµÄµ¼Ê¦£¿", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È·  ¶¨", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡  Ïû", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6246,7 +6246,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217, 320, 240);
-							// ç¡®å®š
+							// È·¶¨
 							if (i == 0)
 							{
 								sprintf_s(szMsg, "O|%d", iIndex[0]);
@@ -6261,12 +6261,12 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// ä¸€äººä»¥ä¸Šåœ¨åŒä¸€æ ¼è¯¢é—®æ˜¯å¦è¦å¯¹æ–¹å½“ä½ çš„å¯¼å¸ˆ
+			// Ò»ÈËÒÔÉÏÔÚÍ¬Ò»¸ñÑ¯ÎÊÊÇ·ñÒª¶Ô·½µ±ÄãµÄµ¼Ê¦
 			else if (flag == 1)
 			{
-				sprintf_s(szMsg, "é€‰è°ä½œä¸ºä½ çš„å¯¼å¸ˆå‘¢ï¼Ÿ");
+				sprintf_s(szMsg, "Ñ¡Ë­×÷ÎªÄãµÄµ¼Ê¦ÄØ£¿");
 				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				iFontId[0] = StockFontBuffer(winX + winW / 2 * 64, winY + (winH - 1)* 48, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–  æ¶ˆ", 2);
+				iFontId[0] = StockFontBuffer(winX + winW / 2 * 64, winY + (winH - 1)* 48, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡  Ïû", 2);
 				for (i = 0; i < iGetNum; i++)
 					iFontId[i+1] = StockFontBuffer(winX + 20, winY + 46 + i * 24, FONT_PRIO_FRONT, FONT_PAL_WHITE, szBuf[i], 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
@@ -6276,7 +6276,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// é€‰å¥½äº†å¯¼å¸ˆ
+							// Ñ¡ºÃÁËµ¼Ê¦
 							if (i != 0)
 							{
 								sprintf_s(szMsg, "O|%d", iIndex[i-1]);
@@ -6291,17 +6291,17 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// æ˜¾ç¤ºå¯¼å¸ˆèµ„æ–™
+			// ÏÔÊ¾µ¼Ê¦×ÊÁÏ
 			else if (flag == 2)
 			{
-				sprintf_s(szMsg, "å¯¼å¸ˆçŠ¶æ€");
+				sprintf_s(szMsg, "µ¼Ê¦×´Ì¬");
 				StockFontBuffer(winX + 130, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				sprintf_s(szMsg, "å¯¼å¸ˆå§“åï¼š%s", szBuf[0]);
+				sprintf_s(szMsg, "µ¼Ê¦ĞÕÃû£º%s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "çŠ¶æ€ï¼š", 0);
+				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "×´Ì¬£º", 0);
 				StockFontBuffer(winX + 66, winY + 52, FONT_PRIO_FRONT,
 								iOnline == 1 ? FONT_PAL_YELLOW : FONT_PAL_RED, iOnline == 1 ? "Online" : "Offline", 0);
-				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "æ˜Ÿç³»ï¼š", 0);
+				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ĞÇÏµ£º", 0);
 				if (iOnline == 1)
 				{
 					for (i = 0; i < MAX_GMSV; i++)
@@ -6317,9 +6317,9 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 				else
-					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "æ— ", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³  é—­", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–æ¶ˆå¯¼å¸ˆèµ„æ ¼", 2);
+					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ÎŞ", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø  ±Õ", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡Ïûµ¼Ê¦×Ê¸ñ", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6328,7 +6328,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						{
 							play_se(217,320,240);
 							sTeacherSystemBtn = 0;
-							// å–æ¶ˆå¯¼å¸ˆèµ„æ ¼
+							// È¡Ïûµ¼Ê¦×Ê¸ñ
 							if (i != 0)
 								sTeacherSystemBtn = 5;
 							DeathAction(pActTeacherSystemWnd);
@@ -6339,13 +6339,13 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// ç¡®è®¤æ˜¯å¦çœŸçš„è¦å–æ¶ˆå¯¼å¸ˆ
+			// È·ÈÏÊÇ·ñÕæµÄÒªÈ¡Ïûµ¼Ê¦
 			else if (flag == 3)
 			{
-				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "å–æ¶ˆå¯¼å¸ˆå°†ä¼šå‡å°‘ä½ çš„é­…åŠ›å€¼ï¼Œ", 0);
-				StockFontBuffer(winX + 20, winY + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ä½ ç¡®å®šè¦å–æ¶ˆå¯¼å¸ˆï¼Ÿ", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ç¡®  å®š", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–  æ¶ˆ", 2);
+				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "È¡Ïûµ¼Ê¦½«»á¼õÉÙÄãµÄ÷ÈÁ¦Öµ£¬", 0);
+				StockFontBuffer(winX + 20, winY + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ÄãÈ·¶¨ÒªÈ¡Ïûµ¼Ê¦£¿", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È·  ¶¨", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡  Ïû", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6353,7 +6353,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// å–æ¶ˆå¯¼å¸ˆèµ„æ ¼
+							// È¡Ïûµ¼Ê¦×Ê¸ñ
 							if (i == 0)
 								lssproto_TEACHER_SYSTEM_send(sockfd, "C|");
 							DeathAction(pActTeacherSystemWnd);
@@ -6366,17 +6366,17 @@ void TeacherSystemWndfunc(int flag, char *data)
 				}
 			}
 #ifdef _TEACHER_SYSTEM_2
-			// æ˜¾ç¤ºå­¦ç”Ÿèµ„æ–™
+			// ÏÔÊ¾Ñ§Éú×ÊÁÏ
 			else if (flag == 4)
 			{
-				sprintf_s(szMsg, "å­¦ç”ŸçŠ¶æ€");
+				sprintf_s(szMsg, "Ñ§Éú×´Ì¬");
 				StockFontBuffer(winX + 130, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				sprintf_s(szMsg, "å­¦ç”Ÿå§“åï¼š%s", szBuf[0]);
+				sprintf_s(szMsg, "Ñ§ÉúĞÕÃû£º%s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "çŠ¶æ€ï¼š", 0);
+				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "×´Ì¬£º", 0);
 				StockFontBuffer(winX + 66, winY + 52, FONT_PRIO_FRONT,
 								iOnline == 1 ? FONT_PAL_YELLOW : FONT_PAL_RED, iOnline == 1 ? "Online" : "Offline", 0);
-				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "æ˜Ÿç³»ï¼š", 0);
+				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ĞÇÏµ£º", 0);
 				if (iOnline == 1)
 				{
 					for (i = 0; i < MAX_GMSV; i++)
@@ -6392,9 +6392,9 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 				else
-					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "æ— ", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³  é—­", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–æ¶ˆå­¦ç”Ÿèµ„æ ¼", 2);
+					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ÎŞ", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø  ±Õ", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡ÏûÑ§Éú×Ê¸ñ", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6403,7 +6403,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						{
 							play_se(217,320,240);
 							sTeacherSystemBtn = 0;
-							// å–æ¶ˆå­¦ç”Ÿèµ„æ ¼
+							// È¡ÏûÑ§Éú×Ê¸ñ
 							if (i != 0)
 								sTeacherSystemBtn = 7;
 							DeathAction(pActTeacherSystemWnd);
@@ -6414,12 +6414,12 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// ç¡®è®¤æ˜¯å¦çœŸçš„è¦å–æ¶ˆå­¦ç”Ÿ
+			// È·ÈÏÊÇ·ñÕæµÄÒªÈ¡ÏûÑ§Éú
 			else if (flag == 5)
 			{
-				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ä½ ç¡®å®šè¦å–æ¶ˆå­¦ç”Ÿï¼Ÿ", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ç¡®  å®š", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å–  æ¶ˆ", 2);
+				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "ÄãÈ·¶¨ÒªÈ¡ÏûÑ§Éú£¿", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È·  ¶¨", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "È¡  Ïû", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6427,7 +6427,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// å–æ¶ˆå­¦ç”Ÿèµ„æ ¼
+							// È¡ÏûÑ§Éú×Ê¸ñ
 							if (i == 0)
 								lssproto_TEACHER_SYSTEM_send(sockfd, "D|");
 							DeathAction(pActTeacherSystemWnd);

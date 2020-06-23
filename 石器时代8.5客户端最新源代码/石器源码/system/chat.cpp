@@ -32,10 +32,10 @@ extern BOOL OnlineGmFlag;
 // ?????????
 CHAT_BUFFER ChatBuffer[ MAX_CHAT_LINE ];
 
-// î˜î¤?îš¼????????
+// û«§Æ?¦V????????
 STR_BUFFER MyChatBuffer;
 
-// ???îš¼????????????????
+// ???¦V????????????????
 STR_BUFFER *pNowStrBuffer = NULL;
 
 // ??????????
@@ -45,15 +45,15 @@ int NowMaxChatLine = DEF_CHAT_LINE;
 #ifdef _SA_LIAOTIAN_
 int NowChatLine_Bak = 0;
 #endif
-// ??î’£?î•«??
+// ??şÜ?¢†??
 int NowMaxVoice = DEF_VOICE;
-// ????î™î¡œ????
+// ????¤œş˜????
 int CursorFlashCnt = 0;
-// ??????????î³
+// ??????????¤õ
 int ChatLineSmoothY = 0 ;
 
 #define CAHT_HISTORY_STR_FILE_NAME 	"data\\chathis.dat" 	// ??????????????
-// ???????????î”¨î•’
+// ???????????¢B¢l
 CHAT_HISTORY ChatHistory;
 
 #define MAX_SHIELD_SIZE 5000
@@ -70,7 +70,7 @@ char chatLogFileName[256];
 void openChatLogFile( void );
 
 /*
-#ifdef _TELLCHANNEL				// (ä¸å¯å¼€) ROG ADD å¯†è¯­é¢‘é“
+#ifdef _TELLCHANNEL				// (²»¿É¿ª) ROG ADD ÃÜÓïÆµµÀ
 char ReTellName[] = "";
 #endif 
 */
@@ -152,7 +152,7 @@ void InitChat( void )
 	if(!pc.etcFlag &PC_ETCFLAG_PARTY){
 		pc.etcFlag |= PC_ETCFLAG_PARTY;
 	}
-	//ä¿®å¤ç»„é˜Ÿ
+	//ĞŞ¸´×é¶Ó
 	pc.etcFlag |= PC_ETCFLAG_PARTY;
 	if (bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
 	else old_lssproto_FS_send(sockfd,pc.etcFlag);
@@ -187,18 +187,18 @@ BOOL SaveChatHistoryStr( int no )
 	
 	if( ( fp = fopen( CAHT_HISTORY_STR_FILE_NAME, "r+b" ) ) == NULL )
 		return FALSE;
-	// ??????î¶????????????î‘´???
+	// ??????ıÍ????????????ş­???
 	fseek( fp, sizeof( ChatHistory.str[ 0 ] ) * no, SEEK_SET );
-	// î°?????????
+	// §ó?????????
 	if( fwrite( &ChatHistory.str[ no ], sizeof( ChatHistory.str[ 0 ] ), 1, fp ) < 1 ){
 	
 		fclose( fp );// ????????
 		return FALSE;
 	}
 	
-	// ?î‘¡???îœ±??î¶???????????î‘´???
+	// ?ıø???§k??ıÍ???????????ş­???
 	fseek( fp, sizeof( ChatHistory.str[ 0 ] ) * MAX_CHAT_HISTORY, SEEK_SET );
-	// ?î‘¡???îœ±??îŸ•î”¼
+	// ?ıø???§k??¨ò¢V
 	if( fwrite( &no, sizeof( int ), 1, fp ) < 1 ){
 	
 		fclose( fp );// ????????
@@ -211,30 +211,30 @@ BOOL SaveChatHistoryStr( int no )
 	return TRUE;
 }
 
-// ???????î°??îš‡??? ****************************************************************/
+// ???????§ó??¥‚??? ****************************************************************/
 BOOL LoadChatHistoryStr( void )
 {
 	FILE *fp;
 
-	// ?????????îœ±?????
+	// ?????????§k?????
 	ChatHistory.nowNo = -1;
 
-	// îš‡???????????
+	// ¥‚???????????
 	if( ( fp = fopen( CAHT_HISTORY_STR_FILE_NAME, "rb" ) ) == NULL ){
-		// ?????î’î˜«??î’•
+		// ?????şÉ¤†??şÎ
 		if( ( fp = fopen( CAHT_HISTORY_STR_FILE_NAME, "wb" ) ) != NULL ){
 			// ???????
 			fwrite( &ChatHistory, sizeof( CHAT_HISTORY ) - sizeof( int ), 1, fp );
 			fclose( fp );	// ????????
 		}
 		
-		// ?î‘¡???????îœ±?????
+		// ?ıø???????§k?????
 		ChatHistory.nowNo = MAX_CHAT_HISTORY - 1;
 		
 		return FALSE;
 	}
 	
-	// ???îš‡???
+	// ???¥‚???
 	if( fread( &ChatHistory, sizeof( CHAT_HISTORY ) - sizeof( int ), 1, fp ) < 1 ){
 		
 		fclose( fp );	// ????????
@@ -246,8 +246,8 @@ BOOL LoadChatHistoryStr( void )
 	return TRUE;
 }
 
-/* î°??????îš¼?î°????? ****************************************************/
-//åŠ è½½å±è”½å­—
+/* §ó??????¦V?§ó????? ****************************************************/
+//¼ÓÔØÆÁ±Î×Ö
 void* EncryptFileName( LPCTSTR pszResFile,unsigned int &nSize )
 {
 	//ENCRYPTCONF	myConfFileCncryp;
@@ -289,15 +289,15 @@ void* EncryptFileName( LPCTSTR pszResFile,unsigned int &nSize )
 	return pBuffer;
 }
 
-BOOL MoveFilePointInt( const char * pBuffer ,unsigned int nSize , unsigned int &nRead, BOOL &bRead ,int nResult) // ç§»åŠ¨æ–‡ä»¶æŒ‡é’ˆ [11/27/2007]
+BOOL MoveFilePointInt( const char * pBuffer ,unsigned int nSize , unsigned int &nRead, BOOL &bRead ,int nResult) // ÒÆ¶¯ÎÄ¼şÖ¸Õë [11/27/2007]
 {
-	unsigned int nReadCount = nRead;	// è®°å½•ä¸Šæ¬¡æŒ‡é’ˆçš„ä½ç½® [11/28/2007]
+	unsigned int nReadCount = nRead;	// ¼ÇÂ¼ÉÏ´ÎÖ¸ÕëµÄÎ»ÖÃ [11/28/2007]
 	const char* pFind = strstr( pBuffer + nRead,"\n");//find \n
 	if( pFind )
 	{
-		nRead = ( pFind - pBuffer + 1 );	// å¾—åˆ°å½“å‰æŒ‡é’ˆçš„ä½ç½® [11/28/2007]  //å¾—åˆ°ç›¸å¯¹ä¸æ–‡ä»¶å¼€å§‹ä½ç½®çš„åç§»ä½ç½®// æœ€å…ˆçš„æ³¨é‡Šä¸å‡†ç¡® [æ¨æ–‡é¸½ 2007-12-14]
+		nRead = ( pFind - pBuffer + 1 );	// µÃµ½µ±Ç°Ö¸ÕëµÄÎ»ÖÃ [11/28/2007]  //µÃµ½Ïà¶ÔÓëÎÄ¼ş¿ªÊ¼Î»ÖÃµÄÆ«ÒÆÎ»ÖÃ// ×îÏÈµÄ×¢ÊÍ²»×¼È· [ÑîÎÄ¸ë 2007-12-14]
 	}
-	if ((2 == nRead - nReadCount && nResult !=0)|| nResult == 0)	// /	åˆ¤æ–­è¯»åˆ°çœŸå®æ•°æ®ï¼ˆ2ä¸ªå­—èŠ‚è¡¨ç¤ºâ€œ\r\nâ€ï¼‰  [11/28/2007]
+	if ((2 == nRead - nReadCount && nResult !=0)|| nResult == 0)	// /	ÅĞ¶Ï¶Áµ½ÕæÊµÊı¾İ£¨2¸ö×Ö½Ú±íÊ¾¡°\r\n¡±£©  [11/28/2007]
 	{
 		bRead = FALSE;
 	}
@@ -318,7 +318,7 @@ BOOL LoadReadSayShield( void )
 	if( !pBuffer )
 		return FALSE;
 
-	unsigned int nRead = 0;		//å·²ç»è¯»äº†çš„
+	unsigned int nRead = 0;		//ÒÑ¾­¶ÁÁËµÄ
 	BOOL bRead = FALSE;
 	int i = 0;
 	static char szWord[20] = "";
@@ -354,7 +354,7 @@ BOOL LoadReadNameShield( void )
 	if( !pBuffer )
 		return FALSE;
 
-	unsigned int nRead = 0;		//å·²ç»è¯»äº†çš„
+	unsigned int nRead = 0;		//ÒÑ¾­¶ÁÁËµÄ
 	BOOL bRead = FALSE;
 	int i = 0;
 	static char szName_[20] = "";
@@ -393,7 +393,7 @@ bool CheckSay( const char* strSay, const char szReplace )
 	{
 		if ( const char *szRe = strstr( strSay,SayShieldList[i] ) )
 		{
-			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // æµ‹è¯•æ—¶æ˜¾ç¤ºå‡ºæ¥ 
+			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // ²âÊÔÊ±ÏÔÊ¾³öÀ´ 
 			//memset( (void*)szRe,szReplace,strlen(SayShieldList[i]) );
 			return false;
 		}
@@ -410,7 +410,7 @@ bool CheckName( const char* strSay )
 	{
 		if ( const char *szRe = strstr( strSay,NameShieldList[i] ) )
 		{
-			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // æµ‹è¯•æ—¶æ˜¾ç¤ºå‡ºæ¥ 
+			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // ²âÊÔÊ±ÏÔÊ¾³öÀ´ 
 			//	memset( (void*)szRe,szReplace,NameShieldList[i].length() );
 			//word = NameShieldList[i];
 			return false;
@@ -418,11 +418,11 @@ bool CheckName( const char* strSay )
 	}
 	return true;
 }
-extern int ç¼–ç ;
-extern int ç¹ä½“å¼€å…³;
+extern int ±àÂë;
+extern int ·±Ìå¿ª¹Ø;
 void StrToNowStrBuffer( char *str )
 {
-	if(ç¼–ç  == 950 ){
+	if(±àÂë == 950 ){
 		extern char* BIG5ToGB2312(const char* szBIG5String);
 		char *newstr;
 		newstr=BIG5ToGB2312((const char *)str);
@@ -455,19 +455,19 @@ void StrToNowStrBuffer( char *str )
 
 void StrToNowStrBuffer1( char *str )
 {
-	if(ç¹ä½“å¼€å…³){
+	if(·±Ìå¿ª¹Ø){
 		int strLen,i;
-		char ç¹ä½“[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),ç¹ä½“,1024);
-		strLen=strlen(ç¹ä½“);
+		char ·±Ìå[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),·±Ìå,1024);
+		strLen=strlen(·±Ìå);
 		if(strLen>86)
 			strLen=86;
 		for(i=0;i<strLen;i++){
-			if(IsDBCSLeadByte(ç¹ä½“[i])){
-				StockStrBufferDBChar(ç¹ä½“+i);
+			if(IsDBCSLeadByte(·±Ìå[i])){
+				StockStrBufferDBChar(·±Ìå+i);
 				i++;
 			}else
-				StockStrBufferChar(ç¹ä½“[i]);
+				StockStrBufferChar(·±Ìå[i]);
 		}
 	}else{
 		int strLen,i;
@@ -520,7 +520,7 @@ void ChatProc( void )
 	//}
 	// ??????
 	if( joy_trg[ 0 ] & JOY_CTRL_V ){
-		// ?????????îš¼?????????
+		// ?????????¦V?????????
 		GetClipboad();
 	}
 
@@ -528,7 +528,7 @@ void ChatProc( void )
 	if(OnlineGmFlag == TRUE)	TalkMode = 0;
 #endif
 	
-#ifdef _TELLCHANNEL				//ROG ADD å¯†è¯­é¢‘é“
+#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
 	if( joy_trg[ 1 ] & JOY_CTRL_R 
 #ifdef __ONLINEGM
 		&& OnlineGmFlag == FALSE
@@ -547,7 +547,7 @@ void ChatProc( void )
 #endif
 #endif	
 	
-	// îš¼??????????????????
+	// ¦V??????????????????
 	if( pNowStrBuffer == &MyChatBuffer || pNowStrBuffer == &MailStr ){
 		if(	joy_trg[ 1 ] & JOY_F1 ) StrToNowStrBuffer1( chatRegistryStr[ 0 ].buffer );
 		if( joy_trg[ 1 ] & JOY_F2 ) StrToNowStrBuffer1( chatRegistryStr[ 1 ].buffer );
@@ -560,7 +560,7 @@ void ChatProc( void )
 		if( joy_trg[ 1 ] & JOY_F8 ) StrToNowStrBuffer1( chatRegistryStr[ 7 ].buffer );
 	}
 	if( pNowStrBuffer == &MyChatBuffer && GetImeString() == NULL ){
-		// î¯???????
+		// ıÆ???????
 		if( joy_auto[ 0 ] & JOY_UP ){
 			static UINT oldtime = 0;
 			if(oldtime < TimeGetTime()){
@@ -590,12 +590,12 @@ void ChatProc( void )
 
 				oldtime = TimeGetTime() + 100;
 
-				// ?????????îš¼?????
+				// ?????????¦V?????
 				if( ChatHistory.nowNo != -1 ){
-					// ?????????îœ???
+					// ?????????§I???
 					if( ChatHistory.nowNo == ChatHistory.newNo ){ 
 						ChatHistory.nowNo = -1;
-						// îš¼?????î°?????
+						// ¦V?????§ó?????
 						pNowStrBuffer->cnt = 0;
 						pNowStrBuffer->buffer[ 0 ] = NULL;
 						pNowStrBuffer->cursor=0;
@@ -603,11 +603,11 @@ void ChatProc( void )
 						ChatHistory.nowNo++;
 						// ????????
 						if( ChatHistory.nowNo >= MAX_CHAT_HISTORY ) ChatHistory.nowNo = 0;
-						// îš¼?????î°?????
+						// ¦V?????§ó?????
 						pNowStrBuffer->cnt = 0;
 						pNowStrBuffer->buffer[ 0 ] = NULL;
 						pNowStrBuffer->cursor=0;
-						// ?????î°???îš¼????????
+						// ?????§ó???¦V????????
 						StrToNowStrBuffer1( ChatHistory.str[ ChatHistory.nowNo ] );
 					}
 #ifdef _TALK_WINDOW
@@ -619,7 +619,7 @@ void ChatProc( void )
 	}
 }
 
-// ?????????î™î¡œ?? **************************************************/
+// ?????????¤œş˜?? **************************************************/
 void FlashKeyboardCursor( void )
 {
 	if(pNowStrBuffer==NULL) return;
@@ -674,17 +674,17 @@ void KeyboardTab( void )
 {
 	int i,flag = 0;
 	
-	// îš¼?î¶???????
+	// ¦V?ıÍ???????
 	if( pNowStrBuffer == NULL ) return;
 	
-	// î°?î™‘????? *******************************
+	// §ó?¥K????? *******************************
 	for( i = 0 ; i < MAX_CHAT_REGISTY_STR ; i++ ){
 		if( pNowStrBuffer == &chatRegistryStr[ i ] ){ 
 			flag = TRUE;
 			break;
 		}
 	}
-	// î°?î™‘??? *******************************
+	// §ó?¥K??? *******************************
 	if( flag == TRUE ){
 		// ???????????
 		if( joy_con[ 1 ] & JOY_RSHIFT || joy_con[ 1 ] & JOY_LSHIFT ){
@@ -696,11 +696,11 @@ void KeyboardTab( void )
 			// ????????
 			if( i >= MAX_CHAT_REGISTY_STR ) i = 0;
 		}
-		// îš¼???????î™®
+		// ¦V???????¥h
 		GetKeyInputFocus( &chatRegistryStr[ i ] );
 	}
 	
-	// ?????????????î™??
+	// ?????????????¤œ??
 	CursorFlashCnt = 20;
 #ifdef _CHANNEL_MODIFY
 	static DWORD dwChannelChangeTime = TimeGetTime();
@@ -712,7 +712,7 @@ void KeyboardTab( void )
 		switch(TalkMode){
 		case PC_ETCFLAG_CHAT_MODE_ID:
 			strcpy(secretName,"");
-			// å·²åœ¨é˜Ÿä¼é¢‘é“åˆ‡å›ä¸€èˆ¬é¢‘é“
+			// ÒÑÔÚ¶ÓÎéÆµµÀÇĞ»ØÒ»°ãÆµµÀ
 			if(pc.etcFlag & PC_ETCFLAG_CHAT_MODE){
 				pc.etcFlag &= ~PC_ETCFLAG_CHAT_MODE;
 				if(bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
@@ -720,11 +720,11 @@ void KeyboardTab( void )
 			}
 			break;
 		case PC_ETCFLAG_CHAT_TELL_ID:
-			// å¯†è¯­é¢‘é“å…³é—­,è·³åˆ°ä¸‹ä¸€ä¸ªé¢‘é“
+			// ÃÜÓïÆµµÀ¹Ø±Õ,Ìøµ½ÏÂÒ»¸öÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_TELL)) TalkMode++;
 			else break;
 		case PC_ETCFLAG_CHAT_PARTY_ID:
-			// æ— é˜Ÿä¼è·³åˆ°ä¸‹ä¸€ä¸ªé¢‘é“
+			// ÎŞ¶ÓÎéÌøµ½ÏÂÒ»¸öÆµµÀ
 			if(partyModeFlag == 0) TalkMode++;
 			else{
 				pc.etcFlag |= PC_ETCFLAG_CHAT_MODE;
@@ -733,25 +733,25 @@ void KeyboardTab( void )
 				break;
 			}
 		case PC_ETCFLAG_CHAT_FM_ID:
-			// è‹¥é˜Ÿé¢‘æœ‰å¼€,å…³æ‰é˜Ÿé¢‘
+			// Èô¶ÓÆµÓĞ¿ª,¹Øµô¶ÓÆµ
 			if(pc.etcFlag & PC_ETCFLAG_CHAT_MODE){
 				pc.etcFlag &= ~PC_ETCFLAG_CHAT_MODE;
 				if(bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
 				else old_lssproto_FS_send(sockfd,pc.etcFlag);
 			}
-			// å®¶æ—é¢‘é“å…³é—­,è·³åˆ°ä¸‹ä¸€ä¸ªé¢‘é“
+			// ¼Ò×åÆµµÀ¹Ø±Õ,Ìøµ½ÏÂÒ»¸öÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_FM)) TalkMode++;
 			else break;
 #ifdef _CHAR_PROFESSION
 		case PC_ETCFLAG_CHAT_OCC_ID:
-			// èŒä¸šé¢‘é“å…³é—­,è·³åˆ°ä¸‹ä¸€ä¸ªé¢‘é“
+			// Ö°ÒµÆµµÀ¹Ø±Õ,Ìøµ½ÏÂÒ»¸öÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_OCC))	
 				TalkMode++;
 			break;
 #endif
 #ifdef _CHATROOMPROTOCOL
 		case PC_ETCFLAG_CHAT_CHAT_ID:
-			// èŠå¤©å®¤é¢‘é“
+			// ÁÄÌìÊÒÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_CHAT)){
 				secretFlag = FALSE;
 				selChar = -1;
@@ -761,7 +761,7 @@ void KeyboardTab( void )
 #endif
 #ifdef _CHANNEL_WORLD
 		case PC_ETCFLAG_CHAT_WORLD_ID:
-			// ä¸–ç•Œé¢‘é“
+			// ÊÀ½çÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_WORLD)){
 				if((pc.etcFlag & PC_ETCFLAG_ALL_SERV)){
 					TalkMode++;
@@ -773,7 +773,7 @@ void KeyboardTab( void )
 #endif
 #ifdef _CHANNEL_ALL_SERV
 		case PC_ETCFLAG_ALL_SERV_ID:
-			// æ˜Ÿçƒé¢‘é“
+			// ĞÇÇòÆµµÀ
 			if(!(pc.etcFlag & PC_ETCFLAG_ALL_SERV)){
 				TalkMode = 0;
 			}
@@ -846,7 +846,7 @@ void KeyboardReturn( void )
 	//ttom
 	static bool first_keydown=true;
 	if(!first_keydown) {
-		//cary åä¸ƒ
+		//cary Ê®Æß
 		static DWORD PreTime=TimeGetTime(),CurTime;
 		if(((CurTime=TimeGetTime())-PreTime)<500)
 		return;
@@ -878,10 +878,10 @@ void KeyboardReturn( void )
 	//end
 	//ttom
 	char bakNo;
-	// ?????????î°????????
+	// ?????????§ó????????
 	if( GetImeString() != NULL )
 		return;
-	// ????îš¼??? *******************************
+	// ????¦V??? *******************************
 	if( pNowStrBuffer == &MyChatBuffer ){
 		if( pNowStrBuffer->cnt == 0 )
 			return;
@@ -945,7 +945,7 @@ void KeyboardReturn( void )
 #endif
 		// ??????
 		bakNo = ChatHistory.newNo;
-		// ??????îœ±??
+		// ??????§k??
 		ChatHistory.newNo++;
 		// ????????
 		if( ChatHistory.newNo >= MAX_CHAT_HISTORY )
@@ -978,11 +978,11 @@ void KeyboardReturn( void )
 			ChatHistory.newNo = bakNo;
 		}else{
 //end
-			// î“·????î°????
+			// ¡q????§ó????
 			if( strcmp( pNowStrBuffer->buffer, ChatHistory.str[ bakNo ] ) != 0 ){
-				// ???î°??????
+				// ???§ó??????
 				strcpy( ChatHistory.str[ ChatHistory.newNo ], pNowStrBuffer->buffer );
-				// ???????î°??îŸ•î”¼
+				// ???????§ó??¨ò¢V
 				SaveChatHistoryStr( ChatHistory.newNo );
 			}else{
 				// ??????????
@@ -997,32 +997,32 @@ void KeyboardReturn( void )
 		*( pNowStrBuffer->buffer )= '\0';
 	}else
 	
-	// î˜?îŸ‰??? **********************************
+	// ı¯?¨Á??? **********************************
 	if( pNowStrBuffer == &shougouChange ){
-		// ??????îŒ–
+		// ??????úÇ
 		DeathAction( pActMenuWnd3 );
 		pActMenuWnd3 = NULL;
-		// îš¼????????
+		// ¦V????????
 		GetKeyInputFocus( &MyChatBuffer );
-		// ?????î¼???
+		// ?????¨–???
 		play_se( 203, 320, 240 );
-		// î¡“î“·îŸ‰??î‘˜
+		// ş¡q¨Á??ıï
 		if( bNewServer)
 			lssproto_FT_send( sockfd, shougouChange.buffer ) ; /* ../doc/lssproto.html line 1792 */
 		else
 			old_lssproto_FT_send( sockfd, shougouChange.buffer ) ; /* ../doc/lssproto.html line 1792 */
 	}else
 	
-	// î¡“î“·îŸ‰??? **********************************
+	// ş¡q¨Á??? **********************************
 	if( pNowStrBuffer == &petNameChange ){
-		// ??????îŒ–
+		// ??????úÇ
 		DeathAction( pActMenuWnd3 );
 		pActMenuWnd3 = NULL;
-		// îš¼????????
+		// ¦V????????
 		GetKeyInputFocus( &MyChatBuffer );
-		// ?????î¼???
+		// ?????¨–???
 		play_se( 203, 320, 240 );
-		// î¡“î“·îŸ‰??î‘˜
+		// ş¡q¨Á??ıï
 		if( bNewServer)
 			lssproto_KN_send( sockfd, petStatusNo, petNameChange.buffer ) ; /* ../doc/lssproto.html line 1792 */
 		else
@@ -1038,9 +1038,9 @@ void KeyboardReturn( void )
 #endif
 
 		char *buffer=pNowStrBuffer->buffer;
-		//å°šå¯æ”¾å…¥æ–°è¡Œæ—¶
+		//ÉĞ¿É·ÅÈëĞÂĞĞÊ±
 		if(pNowStrBuffer->cnt < pNowStrBuffer->len-pNowStrBuffer->lineLen){
-			//æ”¾å…¥ä¸€è¡Œå…¨éƒ¨ä¸ºspaceçš„æ–°è¡Œ
+			//·ÅÈëÒ»ĞĞÈ«²¿ÎªspaceµÄĞÂĞĞ
 			if((pNowStrBuffer->cursor)%pNowStrBuffer->lineLen == 0)
 				StockStrBufferChar(' ');
 			while((pNowStrBuffer->cursor)%pNowStrBuffer->lineLen)
@@ -1052,17 +1052,17 @@ void KeyboardReturn( void )
 	if( pNowStrBuffer == &MailStr ){
 		// ????????????
 		if( MailStr.cnt < MailStr.len - MailStr.lineLen ){
-			// ?î– ??
+			// ?£Z??
 			if( MailStr.cnt % MailStr.lineLen == 0 )
 				StockStrBufferChar( ' ' );
-			// ??î– ???????îš¼??
+			// ??£Z???????¦V??
 			while( MailStr.cnt % MailStr.lineLen )
 				StockStrBufferChar( ' ' );
 		}
 	}
 
-	// ????îš¼??? ****************************
-#ifdef _FRIENDCHANNEL       //èŠå¤©å®¤å‘½å
+	// ????¦V??? ****************************
+#ifdef _FRIENDCHANNEL       //ÁÄÌìÊÒÃüÃû
 	char temp[STR_BUFFER_SIZE];
 	if( pNowStrBuffer == &chatRoomName ){
 		GetKeyInputFocus( &MyChatBuffer );
@@ -1076,7 +1076,7 @@ void KeyboardReturn( void )
 #endif
 
 #ifdef _TELLCHANNEL
-	if(TalkMode == 1){               //èŠå¤©å¯†è¯­æ˜¾ç¤ºäººå
+	if(TalkMode == 1){               //ÁÄÌìÃÜÓïÏÔÊ¾ÈËÃû
 		pNowStrBuffer->buffer[ 0 ] = NULL;
 		pNowStrBuffer->cursor=0;
 		pNowStrBuffer->cnt = 0;
@@ -1091,15 +1091,15 @@ void KeyboardReturn( void )
 		idKeyReturn = 1;
 	}
 	
-	// ?????????????î™??
+	// ?????????????¤œ??
 	CursorFlashCnt = 20;
 	
 }
 extern STR_BUFFER idKey;
 extern STR_BUFFER passwd;
 extern STR_BUFFER selCharName;
-/*	å°†å•ä¸€å­—å…ƒå‚¨æ”¾è‡³ç›®å‰çš„è¾“å…¥String buffer
-parameter:	c:	å­—å…ƒ					*/
+/*	½«µ¥Ò»×ÖÔª´¢·ÅÖÁÄ¿Ç°µÄÊäÈëString buffer
+parameter:	c:	×ÖÔª					*/
 void StockStrBufferChar(char c)
 {
 	if(BYTE(c)>0x1f){
@@ -1111,7 +1111,7 @@ void StockStrBufferChar(char c)
 			/*if(!(('0'<=c && c<='9') || ('A'<=c && c<='Z') || ('a'<=c && c<='z')))
 				return;*/
 		}else if(pNowStrBuffer==&selCharName){
-			if(' '==c || 'ã€€'==c|| ','==c || '|'==c || '\\'==c)
+			if(' '==c || '¡¡'==c|| ','==c || '|'==c || '\\'==c)
 				return;
 		}else if(pNowStrBuffer==&SubBuffer){
 			if('&'==c || '|'==c )
@@ -1128,8 +1128,8 @@ void StockStrBufferChar(char c)
 	}
 }
 
-/*	å°†åŒä½å…ƒå­—å…ƒå‚¨æ”¾è‡³ç›®å‰çš„è¾“å…¥String buffer
-parameter:	lpc:	åŒä½å…ƒçš„å­—å…ƒ			*/
+/*	½«Ë«Î»Ôª×ÖÔª´¢·ÅÖÁÄ¿Ç°µÄÊäÈëString buffer
+parameter:	lpc:	Ë«Î»ÔªµÄ×ÖÔª			*/
 void StockStrBufferDBChar(char *lpc)
 {
 	int cnt,cursor;
@@ -1164,12 +1164,12 @@ void StockChatBufferLine( char *str_, unsigned char color )
 #endif
 {
 	char *str=str_;
-	extern int ç¼–ç ;
-	extern int ç¹ä½“å¼€å…³;
-	if(ç¹ä½“å¼€å…³){
-		char ç¹ä½“[1024]={0};
-		LCMapString (0x804,0x4000000,str_, strlen(str_),ç¹ä½“,1024);
-		str = ç¹ä½“;
+	extern int ±àÂë;
+	extern int ·±Ìå¿ª¹Ø;
+	if(·±Ìå¿ª¹Ø){
+		char ·±Ìå[1024]={0};
+		LCMapString (0x804,0x4000000,str_, strlen(str_),·±Ìå,1024);
+		str = ·±Ìå;
 	}else{
 		str = str_;
 	}
@@ -1295,7 +1295,7 @@ void ChatBufferToFontBuffer( void )
 	if(g_bTalkWindow) return;
 #endif
 	int i, j, k = 0;
-	int x = 8, y = 400; // î¸î•?î³
+	int x = 8, y = 400; // ¤úû¨?¤õ
 	
 
 
@@ -1304,7 +1304,7 @@ void ChatBufferToFontBuffer( void )
 	if( j < 0 )
 		j = MAX_CHAT_LINE - 1;
 	
-	// ??????????î¤?î¸î•
+	// ??????????§Æ?¤úû¨
 	if( ChatLineSmoothY > 0 )
 		k = NowMaxChatLine + 1;
 	else
@@ -1314,7 +1314,7 @@ void ChatBufferToFontBuffer( void )
 	if( k > MAX_CHAT_LINE )
 		k = MAX_CHAT_LINE;
 	
-	// ???????î¤???
+	// ???????§Æ???
 	for( i = 0 ; i < k; i++ ){
 		// ?????????
 		if( *ChatBuffer[ j ].buffer != NULL
@@ -1352,7 +1352,7 @@ void ChatBufferToFontBuffer( void )
 #endif
 #endif
 		}
-		y -= _CHAT_SPACING;  // ?î³?î™®
+		y -= _CHAT_SPACING;  // ?¤õ?¥h
 #ifdef _FONT_SIZE
 		y -= (int)((ChatBuffer[j].fontsize/2)*1.4);
 #endif
@@ -1375,57 +1375,57 @@ void ChatBufferToFontBuffer( void )
 	extern int focusGraId( int *id, int cnt );
 	extern int pushGraId( int *id, int cnt );
 	extern int selGraId( int *id, int cnt );
-	int è¡¨æƒ…æŒ‰é’®ID = -1;
-	static int è¡¨æƒ…å›¾ç‰‡ç´¢å¼• = 0;
-	static int è¡¨æƒ…çª—å£çŠ¶æ€=FALSE;
-	static int è¡¨æƒ…å½“å‰é¡µ=0;
-	static int è¡¨æƒ…æ€»é¡µ = (EXPRESSION_NOID_NUM)%48?(EXPRESSION_NOID_NUM)/48+1:(EXPRESSION_NOID_NUM)/48;
+	int ±íÇé°´Å¥ID = -1;
+	static int ±íÇéÍ¼Æ¬Ë÷Òı = 0;
+	static int ±íÇé´°¿Ú×´Ì¬=FALSE;
+	static int ±íÇéµ±Ç°Ò³=0;
+	static int ±íÇé×ÜÒ³ = (EXPRESSION_NOID_NUM)%48?(EXPRESSION_NOID_NUM)/48+1:(EXPRESSION_NOID_NUM)/48;
 	int chatBtnGraNo[] =
 	{
 		CG_FIELD_CHAT_BTN_OFF,
 		CG_FIELD_CHAT_BTN_ON
 	};
-	StockDispBuffer(40, 559, DISP_PRIO_IME3, chatBtnGraNo[è¡¨æƒ…å›¾ç‰‡ç´¢å¼•], 1);
+	StockDispBuffer(40, 559, DISP_PRIO_IME3, chatBtnGraNo[±íÇéÍ¼Æ¬Ë÷Òı], 1);
 
 	if( MakeHitBox(40-10, 559-10,40+10,559+10, DISP_PRIO_IME4 ) == TRUE )
 	{
-		ShowBottomLineString(FONT_PAL_WHITE, "èŠå¤©è¡¨æƒ…ã€‚");
+		ShowBottomLineString(FONT_PAL_WHITE, "ÁÄÌì±íÇé¡£");
 		if(mouse.onceState & MOUSE_LEFT_CRICK){
-			è¡¨æƒ…å½“å‰é¡µ=1;
-			è¡¨æƒ…å›¾ç‰‡ç´¢å¼•=1;
-			if(è¡¨æƒ…çª—å£çŠ¶æ€) è¡¨æƒ…çª—å£çŠ¶æ€=FALSE;
-			else è¡¨æƒ…çª—å£çŠ¶æ€=TRUE;
+			±íÇéµ±Ç°Ò³=1;
+			±íÇéÍ¼Æ¬Ë÷Òı=1;
+			if(±íÇé´°¿Ú×´Ì¬) ±íÇé´°¿Ú×´Ì¬=FALSE;
+			else ±íÇé´°¿Ú×´Ì¬=TRUE;
 			play_se(203, 320, 240);
-		}else è¡¨æƒ…å›¾ç‰‡ç´¢å¼•=0;
+		}else ±íÇéÍ¼Æ¬Ë÷Òı=0;
 	}
-	if(è¡¨æƒ…çª—å£çŠ¶æ€){
+	if(±íÇé´°¿Ú×´Ì¬){
 		if( joy_trg[ 0 ] & JOY_ESC ) {
 			MenuToggleFlag|=JOY_ESC;
 			play_se(203, 320, 240);
-			è¡¨æƒ…çª—å£çŠ¶æ€=FALSE;
+			±íÇé´°¿Ú×´Ì¬=FALSE;
 		}
-		int æ–¹å‘æŒ‰é’®ID[2];
+		int ·½Ïò°´Å¥ID[2];
 		StockDispBuffer(120, 447, DISP_PRIO_IME3, 55103, 1);
-		æ–¹å‘æŒ‰é’®ID[0]=StockDispBuffer(89, 535, DISP_PRIO_IME4, 55104, 2);
-		æ–¹å‘æŒ‰é’®ID[1]=StockDispBuffer(152, 535, DISP_PRIO_IME4, 55105, 2);
-		int æŒ‰ä¸‹ID= selGraId(æ–¹å‘æŒ‰é’®ID,2);
-		if(æŒ‰ä¸‹ID==0){//æŒ‰æ–¹å‘å·¦
-			if(è¡¨æƒ…å½“å‰é¡µ>1) è¡¨æƒ…å½“å‰é¡µ--; 
-		}else if(æŒ‰ä¸‹ID==1){//æŒ‰æ–¹å‘å³
-			if(è¡¨æƒ…å½“å‰é¡µ < è¡¨æƒ…æ€»é¡µ) è¡¨æƒ…å½“å‰é¡µ++;
+		·½Ïò°´Å¥ID[0]=StockDispBuffer(89, 535, DISP_PRIO_IME4, 55104, 2);
+		·½Ïò°´Å¥ID[1]=StockDispBuffer(152, 535, DISP_PRIO_IME4, 55105, 2);
+		int °´ÏÂID= selGraId(·½Ïò°´Å¥ID,2);
+		if(°´ÏÂID==0){//°´·½Ïò×ó
+			if(±íÇéµ±Ç°Ò³>1) ±íÇéµ±Ç°Ò³--; 
+		}else if(°´ÏÂID==1){//°´·½ÏòÓÒ
+			if(±íÇéµ±Ç°Ò³ < ±íÇé×ÜÒ³) ±íÇéµ±Ç°Ò³++;
 		}
-		int start=(è¡¨æƒ…å½“å‰é¡µ-1)*48;
-		int end = (è¡¨æƒ…å½“å‰é¡µ*48 < EXPRESSION_NOID_NUM ?è¡¨æƒ…å½“å‰é¡µ*48:EXPRESSION_NOID_NUM);
+		int start=(±íÇéµ±Ç°Ò³-1)*48;
+		int end = (±íÇéµ±Ç°Ò³*48 < EXPRESSION_NOID_NUM ?±íÇéµ±Ç°Ò³*48:EXPRESSION_NOID_NUM);
 		int x,y;
 		for(y=0;y<6;y++){
 			for(x=0;x<8;x++){
-				è¡¨æƒ…æŒ‰é’®ID=StockDispBuffer(19+x*29, 362+y*29, DISP_PRIO_IME4, EXPRESSION_NOID_START+start, 2);
-				if(selGraId(&è¡¨æƒ…æŒ‰é’®ID,1)!=-1){
-					è¡¨æƒ…çª—å£çŠ¶æ€=FALSE;
+				±íÇé°´Å¥ID=StockDispBuffer(19+x*29, 362+y*29, DISP_PRIO_IME4, EXPRESSION_NOID_START+start, 2);
+				if(selGraId(&±íÇé°´Å¥ID,1)!=-1){
+					±íÇé´°¿Ú×´Ì¬=FALSE;
 					play_se(203, 320, 240);
-					char è¡¨æƒ…å†…å®¹[128];
-					sprintf_s(è¡¨æƒ…å†…å®¹,"#%d",start+1);
-					strcat_s(MyChatBuffer.buffer,è¡¨æƒ…å†…å®¹);
+					char ±íÇéÄÚÈİ[128];
+					sprintf_s(±íÇéÄÚÈİ,"#%d",start+1);
+					strcat_s(MyChatBuffer.buffer,±íÇéÄÚÈİ);
 					MyChatBuffer.cursor=strlen(MyChatBuffer.buffer);
 					MyChatBuffer.cnt=strlen(MyChatBuffer.buffer);
 				}
@@ -1440,53 +1440,53 @@ void ChatBufferToFontBuffer( void )
 }
 
 /*******************************************************************************/
-/* î°??????îœ™??î“»???î—•??
-/* ??î–±  	îœ™?ï¼š?
-/* 			î“»?ï¼š?
-/* 			??ï¼š?
+/* §ó??????§S??¡u???£??
+/* ??£k  	§S?£º?
+/* 			¡u?£º?
+/* 			??£º?
 /*******************************************************************************/
 int GetStrLastByte( char *str )
 {
 	int byte = 0;
 	
-	// î°??????????
+	// §ó??????????
 	while( !( *str == '\0' ) ){
 	//		( *str == ( char )0x81 && *( str + 1 ) == ( char )0x51 ) ) ){
 	
-		// î“»????
+		// ¡u????
 		if(IsDBCSLeadByte(*str)){
 		
-			// î“»??î°??î¤???????
+			// ¡u??§ó??§Æ???????
 			if( *( str + 1 ) == NULL ) return 3; // ??
 			
-			str += 2; 	// ????î??
-			byte = 2;	// î“»???
+			str += 2; 	// ????§Š??
+			byte = 2;	// ¡u???
 			
-		}else{	// îœ™????
+		}else{	// §S????
 		
-			str ++; 	// ????î??
-			byte = 1;	// îœ™???
+			str ++; 	// ????§Š??
+			byte = 1;	// §S???
 		}
 	}
 	return byte;
 }
 
 /*******************************************************************************/
-/* î°????????????î—•??
-/* ??î–±  	????
+/* §ó????????????£??
+/* ??£k  	????
 /*******************************************************************************/
 #ifndef _NEWFONT_
 int GetStrWidth( char *str )
 {
 	int width = 0;
-	// î°??????????
+	// §ó??????????
 	while(!( *str == '\0' ) ){
 		if(IsDBCSLeadByte(*str)){
 			str += 2;
-			width += FONT_SIZE; // å…¨å½¢çš„size
+			width += FONT_SIZE; // È«ĞÎµÄsize
 		}else{
 			str ++;
-			width += FONT_SIZE>>1; // åŠå½¢çš„size
+			width += FONT_SIZE>>1; // °ëĞÎµÄsize
 		}
 	}
 	return width;
@@ -1500,14 +1500,14 @@ int GetStrWidth( char *str )
 #endif
 
 /*******************************************************************************/
-/* îš¼??????î•î™¾
+/* ¦V??????ûè¥x
 /*******************************************************************************/
 void GetKeyInputFocus( STR_BUFFER *pStrBuffer )
 {	
 	pNowStrBuffer = pStrBuffer;
 }
 
-// ?????????îš¼????????? ********************************************/
+// ?????????¦V????????? ********************************************/
 void GetClipboad( void )
 {
 	HGLOBAL hMem;
@@ -1515,16 +1515,16 @@ void GetClipboad( void )
 
 	/* ???????????? */
 	OpenClipboard( hWnd );
-	/* ?????????î°????????????î•î™¾ */
+	/* ?????????§ó????????????ûè¥x */
 	hMem = GetClipboardData( CF_TEXT );
-	/* ??????????î */
+	/* ??????????û¢ */
 	if( hMem == NULL ){
 		CloseClipboard();
 		return;
 	}
 	/* ????????????? */
 	lpMem = (LPTSTR)GlobalLock( hMem );
-	/* ???????????????îš ??î“†î˜‹ */
+	/* ???????????????¥›??¡@¤e */
 //	SetWindowText( hwStrE, lpMem );
 //	lstrcpy( chat_input_buf, lpMem );
 
@@ -1540,17 +1540,17 @@ void SetClipboad( void )
 	HGLOBAL hMem;
 	LPTSTR lpMem;
 
-	// îš¼?î¶???????
+	// ¦V?ıÍ???????
 	if( pNowStrBuffer == NULL ) return;
-	// î°??î¡Š?????
+	// §ó??ş†?????
 	if( pNowStrBuffer->buffer[ 0 ] == NULL ) return;
 	
-	/* ??????????îŸ• */
+	/* ??????????¨ò */
 	hMem = GlobalAlloc( GHND, 512 );
-	/* ????????????????????î•î™¾ */
+	/* ????????????????????ûè¥x */
 	lpMem = ( LPTSTR )GlobalLock( hMem );
 //	lstrcpy( lpMem, chat_input_buf );
-	/* ??????????î°??????? */
+	/* ??????????§ó??????? */
 	lstrcpy( lpMem, pNowStrBuffer->buffer );
 	/* ??????????????? */
 	GlobalUnlock( hMem );
@@ -1558,10 +1558,10 @@ void SetClipboad( void )
 	OpenClipboard( hWnd );
 	/* ??????????? */
 	EmptyClipboard();
-	/* ??????????????????î°?????? */
+	/* ??????????????????§ó?????? */
 	SetClipboardData( CF_TEXT, hMem );
 	/* ???????????? */
 	CloseClipboard();
-	/* ??????????îŸ´ */
+	/* ??????????©— */
 	//GlobalFree( hMem );
 }

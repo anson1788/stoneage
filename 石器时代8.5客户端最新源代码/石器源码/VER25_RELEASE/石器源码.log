@@ -1,0 +1,10 @@
+﻿生成启动时间为 2016/12/5 星期一 下午 8:40:55。
+     1>项目“C:\Users\Administrator\Desktop\WGCODE\客户端代码\石器源码\石器源码.vcxproj”在节点 2 上(clean 个目标)。
+       项目文件包含 ToolsVersion="12.0"。此工具集可能未知或缺失(您可以通过安装相应版本的 MSBuild 来解决该问题)，或者该生成因策略原因已被强制更改为特殊 ToolsVersion。将此项目视作具有 ToolsVersion="4.0"。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkId=291333。
+     1>_PrepareForClean:
+         正在删除文件“VER25_RELEASE\石器源码.lastbuildstate”。
+     1>已完成生成项目“C:\Users\Administrator\Desktop\WGCODE\客户端代码\石器源码\石器源码.vcxproj”(clean 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.05
