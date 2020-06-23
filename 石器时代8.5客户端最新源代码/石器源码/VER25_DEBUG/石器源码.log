@@ -1,51 +1,32 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  CharTitle.cpp
-  winlua.cpp
-c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\mylua\winlua.cpp(193): error C3861: 'TEA解密': identifier not found
-  autil.cpp
-  oft.cpp
-  pat_dat.cpp
-  ohta.cpp
-  ohta_proc.cpp
+  ServerList.cpp
+  win.cpp
+  sys2.cpp
+  CharSignDay.cpp
+  Turntable.cpp
   ai_setting.cpp
-  battlemap.cpp
   battlemenu.cpp
   battleproc.cpp
-  character.cpp
-  CharSignDay.cpp
   chat.cpp
-  directdraw.cpp
   field.cpp
-  font.cpp
   gamemain.cpp
-  gemini.cpp
   help.cpp
-  Generating Code...
-  Compiling...
-  ime.cpp
   login.cpp
-  lssproto_cli.cpp
+  lssproto_util.cpp
   magicitem.cpp
   main.cpp
   map.cpp
-  math2.cpp
   menu.cpp
   menu2.cpp
-  mouse.cpp
-  netproc.cpp
-  onlinegm.cpp
-  pattern.cpp
-  pc.cpp
-  process.cpp
-  produce.cpp
-  savedata.cpp
-  SDLDraw.cpp
-  shop.cpp
-c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\system\shop.cpp(738): error C3861: 'TEA解密': identifier not found
-c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\system\shop.cpp(756): error C3861: 'TEA加密': identifier not found
-  testview.cpp
+  netmain.cpp
   Generating Code...
   Compiling...
-  Turntable.cpp
-  t_music.cpp
+  netproc.cpp
+  onlinegm.cpp
+  pc.cpp
+  process.cpp
+  savedata.cpp
+  shop.cpp
+  common.cpp
   Generating Code...
+  石器源码.vcxproj -> D:\stoneAge\client\sa25.exe

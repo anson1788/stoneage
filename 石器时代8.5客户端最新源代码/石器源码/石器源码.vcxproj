@@ -351,7 +351,7 @@
     <IncludePath>.\openssl;.\mylua\lua;.\curl;$(IncludePath)</IncludePath>
     <LibraryPath>.\mylua\lua;.\sdk;$(LibraryPath)</LibraryPath>
     <TargetName>sa25</TargetName>
-    <OutDir>F:\7-sa\</OutDir>
+    <OutDir>D:\stoneAge\client</OutDir>
     <IntDir>$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_TW_SERVER_RELEASE|Win32'">
@@ -406,7 +406,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;ddraw.lib;dxguid.lib;dsound.lib;winmm.lib;imm32.lib;dinput.lib;wsock32.lib;caryIme.lib;GetMacAddress.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreSpecificDefaultLibraries>LIBC.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <OutputFile>F:\7-sa\sa25.exe</OutputFile>
+      <OutputFile>D:\stoneAge\client\sa25.exe</OutputFile>
     </Link>
     <CustomBuildStep>
       <Command>

@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #ifdef _PTTERN_SEPARATION_BIN
 #include <windows.h> 
 #include "../systeminc/system.h"
@@ -23,16 +23,16 @@ void InitPteernSeparationBin(LPCTSTR lpszPath)
 	TCHAR szFind[MAX_PATH]; 
 	lstrcpy(szFind, lpszPath); 
 	lstrcat(szFind, "\\"); 
-	lstrcat(szFind, "*.*"); // ÕÒËùÓĞÎÄ¼ş 
+	lstrcat(szFind, "*.*"); // æ‰¾æ‰€æœ‰æ–‡ä»¶ 
 	WIN32_FIND_DATA wfd; 
 	HANDLE hFind = FindFirstFile(szFind, &wfd); 
-	if (hFind == INVALID_HANDLE_VALUE) // Èç¹ûÃ»ÓĞÕÒµ½»ò²éÕÒÊ§°Ü 
+	if (hFind == INVALID_HANDLE_VALUE) // å¦‚æœæ²¡æœ‰æ‰¾åˆ°æˆ–æŸ¥æ‰¾å¤±è´¥ 
 		return; 
 	int index = 2;
 	do 
 	{ 
 		if (wfd.cFileName[0] == '.') 
-			continue; // ¹ıÂËÕâÁ½¸öÄ¿Â¼ 
+			continue; // è¿‡æ»¤è¿™ä¸¤ä¸ªç›®å½• 
 		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
 		{ 
 			TCHAR szFile[MAX_PATH]; 
@@ -62,14 +62,14 @@ void InitPteernSeparationBin(LPCTSTR lpszPath)
 				index++;
 				if(index>100)break;
 			}
-			InitPteernSeparationBin(szFile); // Èç¹ûÕÒµ½µÄÊÇÄ¿Â¼£¬Ôò½øÈë´ËÄ¿Â¼½øĞĞµİ¹é
+			InitPteernSeparationBin(szFile); // å¦‚æœæ‰¾åˆ°çš„æ˜¯ç›®å½•ï¼Œåˆ™è¿›å…¥æ­¤ç›®å½•è¿›è¡Œé€’å½’
 		}
 		else 
 		{ 
 
 		} 
 	} while (FindNextFile(hFind, &wfd)); 
-	FindClose(hFind); // ¹Ø±Õ²éÕÒ¾ä±ú 
+	FindClose(hFind); // å…³é—­æŸ¥æ‰¾å¥æŸ„ 
 
 } 
 int nextMaxAdrnID=0;
@@ -91,7 +91,7 @@ BOOL AdrnInit(LPCTSTR strAdrnFileName, LPCTSTR strRealFileName, int index)
 	int size = getfilesize(Addrbinfp);
 	char * sadrnbin = (char*)malloc(size);
 	fread(sadrnbin,1,size,Addrbinfp);
-	TEA½âÃÜ((long*)sadrnbin,(size/4),(long *)_BUDING_);
+	TEAè§£å¯†((long*)sadrnbin,(size/4),(long *)_BUDING_);
 	int i=0;
 	for(i;i<size/sizeof(ADRNBIN);i++){
 		memcpy(&tmpadrnbuff,sadrnbin+i*sizeof(ADRNBIN),sizeof(ADRNBIN));

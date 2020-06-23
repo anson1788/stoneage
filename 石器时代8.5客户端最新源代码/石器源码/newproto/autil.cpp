@@ -194,7 +194,7 @@ void util_DiscardMessage(void)
 */
 }
 #ifdef _NEWNET_
-extern long TEA樓躇(long* v, long n, long* k);
+extern long TEA加密(long* v, long n, long* k);
 void stringtohexstr(char* dst, char* src,int len)
 {
 	int i;
@@ -212,9 +212,9 @@ void util_EncodeMessageTea(char *t2,char *t1)
 	int len = strlen(t1);
 	len = len%4?len/4+1:len/4;
 #ifdef _VMP_
-	TEA樓躇((long*)t1,len,(long *)VMProtectDecryptStringA(DENGLUKEY1));
+	TEA加密((long*)t1,len,(long *)VMProtectDecryptStringA(DENGLUKEY1));
 #else
-	TEA樓躇((long*)t1,len,(long *)DENGLUKEY1);
+	TEA加密((long*)t1,len,(long *)DENGLUKEY1);
 #endif
 	stringtohexstr(t2,t1,len*4);
 #ifdef _VMP_

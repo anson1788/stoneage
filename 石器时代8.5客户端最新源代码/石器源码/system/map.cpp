@@ -25,7 +25,7 @@
 #include "../systeminc/savedata.h"
 #include "../systeminc/tool.h"
 
-// ?????﹩丙???(1 ... ?﹩丙?)
+// ????????(1 ... ??)
 const short fastDrawTile = 1;
 
 short fastDrawTileFlag = 1;
@@ -35,7 +35,7 @@ int baseXFastDraw, baseYFastDraw;
 int amountXFastDraw2 = 0, amountYFastDraw2 = 0;
 int nowXFastDraw2, nowYFastDraw2;
 int baseXFastDraw2, baseYFastDraw2;
-#define SEARCH_AREA		11		// ?????????吳???????????
+#define SEARCH_AREA		11		// ????????????????????
 
 enum
 {
@@ -43,8 +43,8 @@ enum
 	MOUSE_CURSOR_MODE_MOVE
 };
 
-// ???????
-char nowFloorName[FLOOR_NAME_LEN+1];
+// ??????佋?
+char nowFloorName[FLOOR_NAME_LEN + 1];
 int nowFloor;
 int nowFloorGxSize, nowFloorGySize;
 int nowGx, nowGy;
@@ -63,24 +63,24 @@ int mapAreaWidth, mapAreaHeight;
 unsigned short tile[MAP_X_SIZE * MAP_Y_SIZE];	// ???????
 unsigned short parts[MAP_X_SIZE * MAP_Y_SIZE];	// ???????
 unsigned short event[MAP_X_SIZE * MAP_Y_SIZE];	// ????
-unsigned short hitMap[MAP_X_SIZE * MAP_Y_SIZE];	// ??????刪叉
+unsigned short hitMap[MAP_X_SIZE * MAP_Y_SIZE];	// ??????
 
-// ???????????去ㄈ????
+// ??????䥺????????
 BOOL mapEmptyFlag;
 short mapEmptyDir;
 int mapEmptyGx, mapEmptyGy;
 short getMapAreaX1[2], getMapAreaY1[2], getMapAreaX2[2], getMapAreaY2[2];
 short getMapAreaCnt;
 unsigned int mapEmptyStartTime;
-// ????阪?????
+// ?????????
 BOOL floorChangeFlag = FALSE;
-// ??????╱?????
+// ???????????
 BOOL loginFlag;
-// ?????????2???????????
+// ?????????2???????????
 BOOL warpEffectFlag = FALSE;
-BOOL warpEffectStart = FALSE;	// ?????????
-BOOL warpEffectOk = FALSE;		// ???????????
-// ????????
+BOOL warpEffectStart = FALSE;	// ?????????
+BOOL warpEffectOk = FALSE;		// ?????????ＯＫ
+// ???????
 float viewPointX;
 float viewPointY;
 int viewOffsetX = SCREEN_WIDTH_CENTER;
@@ -89,8 +89,8 @@ int viewOffsetY = SCREEN_HEIGHT_CENTER;
 int	iScreenMoveX = 0, iScreenMoveY = 0;
 #endif
 
-// ?去??
-#define MOVE_CLICK_WAIT_TIME	250		// ??企
+// ???
+#define MOVE_CLICK_WAIT_TIME	250		// ??
 short moveAddTbl[8][2] =
 {
 	{ -1,  1 }, // 0
@@ -111,7 +111,7 @@ short moveRouteGx[MOVE_MAX];
 short moveRouteGy[MOVE_MAX];
 char moveRouteDir[MOVE_MAX];
 
-#define MOVE_MAX2	2			// ???????去?????π
+#define MOVE_MAX2	2			// ???????????
 short moveRouteCnt2 = 0;
 short moveRoute2[MOVE_MAX2];
 
@@ -128,7 +128,7 @@ BOOL mouseDblRightOn = FALSE;
 unsigned int mouseLeftPushTime;
 unsigned int beforeMouseLeftPushTime;
 
-// ????????牙?！???叉?
+// ?????????????
 
 enum
 {
@@ -159,21 +159,21 @@ int charPrioCnt;
 
 // ?????????
 short nowEncountPercentage;	// ???????
-short nowEncountExtra;		// ???????卹?
-short minEncountPercentage;	// ????????
-short maxEncountPercentage;	// ?????????
+short nowEncountExtra;		// ????????
+short minEncountPercentage;	// ????????
+short maxEncountPercentage;	// ????????
 short sendEnFlag;			// EN???????????
 short encountNowFlag;		// ????????
 
 // ???????
 int eventId = 0;			// ??????ID
-short eventWarpSendFlag;	// ???????????
-short eventWarpSendId;		// ??????????ID
-short eventEnemySendFlag;	// ?叉??????????????
-short eventEnemySendId;		// ?叉?????????????ID
-short eventEnemyFlag;		// ?叉????????????
+short eventWarpSendFlag;	// ???????????
+short eventWarpSendId;		// ??????????ID
+short eventEnemySendFlag;	// ???????????????
+short eventEnemySendId;		// ??????????????ID
+short eventEnemyFlag;		// ????????????
 short etcEventFlag = 0;
-short vsLookFlag;			// ?·????
+short vsLookFlag;			// ?????
 
 // ?????????
 #define AUTO_MAPPING_W		54
@@ -183,29 +183,29 @@ unsigned char autoMappingBuf[AUTO_MAPPING_H][AUTO_MAPPING_W];
 /*
 #define AUTO_MAPPING_SEE_W		30
 #define AUTO_MAPPING_SEE_H		30
-unsigned int readMapAfterFrame = 10000;		// ????????????????
+unsigned int readMapAfterFrame = 10000;		// ???????????????
 unsigned short autoMapSeeFlagBuf[AUTO_MAPPING_SEE_H*AUTO_MAPPING_SEE_W];
 BOOL autoMapSeeFlag = FALSE;
 int autoMapSeeFloor;
 int autoMapSeeGx, autoMapSeeGy;
 */
 
-// ?????????
-//   1 ... ???????
-//   0 ... 二
+// ????????
+//   1 ... ??????
+//   0 ... 
 int transmigrationEffectFlag;
 
-// ????????????????????????
-//   1 ... ????阪??
-//   0 ... ?
+// ???????????????????????
+//   1 ... ??????
+//   0 ... ?
 int transEffectPaletteStatus;
 
-// ????????????????????
-// ??????????┴??????
+// ???????????????????
+// ????????????????
 unsigned int transEffectPaletteAfterWaitTime;
 
 
-// ?去??
+// ???
 void onceMoveProc(void);
 void partyMoveProc(void);
 void getPartyTbl(void);
@@ -217,9 +217,9 @@ void MoveScreenProc(void);
 //#define MAP_CACHE_PROC
 #ifdef MAP_CACHE_PROC
 
-#define MAX_MAP_CACHE_SIZE	3		// ?????????????
-#define MAP_CACHE_X_SIZE	800		// ??????????
-#define MAP_CACHE_Y_SIZE	1200		// ??????????
+#define MAX_MAP_CACHE_SIZE	3		// ????????????
+#define MAP_CACHE_X_SIZE	800		// ?????????
+#define MAP_CACHE_Y_SIZE	1200		// ?????????
 #define MAP_CACHE_X_BYTE	((MAP_CACHE_X_SIZE+7)/8)
 #define MAP_CACHE_Y_BYTE	MAP_CACHE_Y_SIZE
 int mapCacheFloorNo[MAX_MAP_CACHE_SIZE];
@@ -278,10 +278,10 @@ void initMap(void)
 		loginFlag = TRUE;
 	}
 
-	mapAreaX1 = nowGx+MAP_TILE_GRID_X1;
-	mapAreaY1 = nowGy+MAP_TILE_GRID_Y1;
-	mapAreaX2 = nowGx+MAP_TILE_GRID_X2;
-	mapAreaY2 = nowGy+MAP_TILE_GRID_Y2;
+	mapAreaX1 = nowGx + MAP_TILE_GRID_X1;
+	mapAreaY1 = nowGy + MAP_TILE_GRID_Y1;
+	mapAreaX2 = nowGx + MAP_TILE_GRID_X2;
+	mapAreaY2 = nowGy + MAP_TILE_GRID_Y2;
 
 	if (mapAreaX1 < 0)
 		mapAreaX1 = 0;
@@ -292,7 +292,7 @@ void initMap(void)
 	if (mapAreaY2 > nowFloorGySize)
 		mapAreaY2 = nowFloorGySize;
 
-	mapAreaWidth  = mapAreaX2 - mapAreaX1;
+	mapAreaWidth = mapAreaX2 - mapAreaX1;
 	mapAreaHeight = mapAreaY2 - mapAreaY1;
 	nowVx = 0;
 	nowVy = 0;
@@ -315,7 +315,7 @@ void initMap(void)
 	warpEffectFlag = FALSE;
 	warpEffectStart = FALSE;
 	warpEffectOk = FALSE;
-//	autoMapSeeFlag = FALSE;
+	//	autoMapSeeFlag = FALSE;
 	eventWarpSendId = -1;
 	eventEnemySendId = -1;
 	moveLastDir = -1;
@@ -345,7 +345,7 @@ void initMap(void)
 // ?????????
 void resetMap(void)
 {
-	// ?去????去！????????
+	// ?????????????
 	nowGx = (int)(nowX / GRID_SIZE);
 	nowGy = (int)(nowY / GRID_SIZE);
 	nextGx = nowGx;
@@ -370,7 +370,7 @@ void resetMap(void)
 	if (mapAreaY2 > nowFloorGySize)
 		mapAreaY2 = nowFloorGySize;
 
-	mapAreaWidth  = mapAreaX2 - mapAreaX1;
+	mapAreaWidth = mapAreaX2 - mapAreaX1;
 	mapAreaHeight = mapAreaY2 - mapAreaY1;
 	nowVx = 0;
 	nowVy = 0;
@@ -383,11 +383,11 @@ void resetMap(void)
 	mouseCursorMode = MOUSE_CURSOR_MODE_NORMAL;
 	mouseLeftPushTime = 0;
 	beforeMouseLeftPushTime = 0;
-//	autoMapSeeFlag = FALSE;
+	//	autoMapSeeFlag = FALSE;
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ???????????????????????宇??
+// ?????????????????????????
 void createMap(int fl, int maxx, int maxy)
 {
 	FILE *fp;
@@ -401,7 +401,7 @@ void createMap(int fl, int maxx, int maxy)
 	sprintf(floorname, "map\\%d.dat", fl);
 	if ((fp = fopen(floorname, "rb")) == NULL)
 	{
-		// ????????????
+		// ?????䥺??????
 		_mkdir("map");
 		if ((fp = fopen(floorname, "wb")) == NULL)
 			return;
@@ -412,7 +412,7 @@ void createMap(int fl, int maxx, int maxy)
 		{
 			for (j = 0; j < maxx; j++)
 			{
-				for (k=0; k < maxy; k++)
+				for (k = 0; k < maxy; k++)
 				{
 					fwrite(&l, sizeof(short), 1, fp);
 				}
@@ -427,7 +427,7 @@ void createMap(int fl, int maxx, int maxy)
 		if (maxx != ox || maxy != oy)
 		{
 			fclose(fp);
-			// ?????????㎏???????????
+			// ????????????????????
 			if ((fp = fopen(floorname, "wb")) == NULL)
 				return;
 			fwrite(&maxx, sizeof(int), 1, fp);
@@ -443,11 +443,11 @@ void createMap(int fl, int maxx, int maxy)
 				}
 			}
 		}
-		fclose (fp);
+		fclose(fp);
 	}
 }
 
-// ??????????????????????????
+// ?䴘???????????????????????
 void setEventMemory(int x, int y, unsigned short ev)
 {
 	event[(y - mapAreaY1) * mapAreaWidth + (x - mapAreaX1)] = ev;
@@ -455,17 +455,17 @@ void setEventMemory(int x, int y, unsigned short ev)
 
 // ???????????
 //
-//   ?????火(x1,y1)-(x2,y2)?吳?????????????
+//   ?????(x1,y1)-(x2,y2)??????????????
 //
-//     tile, parts, event ?︵?????﹨??????
+//     tile, parts, event ????????????
 //
-BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile , unsigned short *parts, unsigned short *event)
+BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, unsigned short *parts, unsigned short *event)
 {
 	FILE *fp;
 	char filename[255];
 	int fWidth, fHeight, fOffset, mWidth, width, height, fx, fy, mx, my, len, len2, i, j;
-	
-	// ??????????
+
+	// ???????䦶?
 	sprintf_s(filename, "map\\%d.dat", floor);
 
 	// ????????
@@ -476,7 +476,7 @@ BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile , 
 			return FALSE;
 	}
 	fseek(fp, 0, SEEK_SET);
-	fread(&fWidth,  sizeof(int), 1, fp);
+	fread(&fWidth, sizeof(int), 1, fp);
 	fread(&fHeight, sizeof(int), 1, fp);
 	mWidth = x2 - x1;
 	width = mWidth;
@@ -508,7 +508,7 @@ BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile , 
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fwrite(&tile[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
 	fOffset += sizeof(short) * (fWidth * fHeight);
@@ -518,46 +518,46 @@ BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile , 
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fwrite(&parts[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
-	}	
+	}
 	fOffset += sizeof(short) * (fWidth * fHeight);
 	len = fy * fWidth + fx;
 	len2 = my * mWidth + mx;
 	for (i = 0; i < height; i++)
 	{
-		// ??????????????
+		// ?????????????
 		for (j = 0; j < width; j++)
 		{
-			event[len2+j] |= (MAP_SEE_FLAG | MAP_READ_FLAG);
+			event[len2 + j] |= (MAP_SEE_FLAG | MAP_READ_FLAG);
 			if (nowFloor == floor && (mapAreaX1 <= x1 + j && x1 + j < mapAreaX2 && mapAreaY1 <= y1 + i && y1 + i < mapAreaY2))
-				// ??????????????????????????
+				// ?䴘???????????????????????
 				setEventMemory(x1 + j, y1 + i, event[len2 + j]);
 		}
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fwrite(&event[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
-	fclose (fp);
+	fclose(fp);
 
 	return TRUE;
 }
 
-// ???????????
+// ??????????
 //
-//   ?????火(x1,y1)-(x2,y2)?吳?????????????
+//   ?????(x1,y1)-(x2,y2)?????????????
 //
 BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, unsigned short *parts, unsigned short *event)
 {
 	FILE *fp;
 	char filename[255];
-#ifdef _FIX_DEL_MAP           // WON 党淏俙模喲華芞
+#ifdef _FIX_DEL_MAP           // WON 修正玩家抽地图
 	char list[10];
 #endif
-	int fWidth, fHeight, fOffset, mWidth, width, height, fx, fy, mx, my, len, len2, i;    
+	int fWidth, fHeight, fOffset, mWidth, width, height, fx, fy, mx, my, len, len2, i;
 	//printf("floor=%d x1=%d y1=%d x2=%d y2=%d\n",floor,x1,y1,x2,y2);
-	// ??????????
+	// ???????䦶?
 	sprintf_s(filename, "map\\%d.dat", floor);
 
 	// ????????
@@ -568,24 +568,24 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 		//memset(parts, 193, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
 #else
 		_mkdir("map");
-		// ??????????
-		fp = fopen(filename, "wb");     
+		// ?????????
+		fp = fopen(filename, "wb");
 		fclose(fp);
 #endif
-		// ???????????冉????
+		// ??????????????
 		if ((fp = fopen(filename, "rb")) == NULL)
 			return FALSE;
 	}
 
-#ifdef _FIX_DEL_MAP           // WON 党淏俙模喲華芞    
-    fseek(fp, 0, SEEK_SET);
-	if (!fread(list, sizeof(char), 1, fp)) {   // 俙模喲裁華芞冞潼郜
+#ifdef _FIX_DEL_MAP           // WON 修正玩家抽地图    
+	fseek(fp, 0, SEEK_SET);
+	if (!fread(list, sizeof(char), 1, fp)) {   // 玩家抽掉地图送监狱
 		//andy_add
 		memset(tile, 193, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
 		//memset(parts, 193, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
-         fclose(fp);
-         //lssproto_DM_send(sockfd);
-         return TRUE;
+		fclose(fp);
+		//lssproto_DM_send(sockfd);
+		return TRUE;
 	}
 #endif
 	//printf("MAP_X_SIZE=%d MAP_Y_SIZE=%d\n",MAP_X_SIZE,MAP_Y_SIZE);
@@ -593,7 +593,7 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 	memset(parts, 0, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
 	memset(event, 0, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
 	fseek(fp, 0, SEEK_SET);
-	fread(&fWidth,  sizeof(int), 1, fp);
+	fread(&fWidth, sizeof(int), 1, fp);
 	fread(&fHeight, sizeof(int), 1, fp);
 	//printf("fWidth=%d fHeight=%d\n",fWidth,fHeight);
 	mWidth = x2 - x1;
@@ -629,7 +629,7 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&tile[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
 	fOffset += sizeof(short) * (fWidth * fHeight);
@@ -639,7 +639,7 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&parts[len2], sizeof(short) * width, 1, fp);//aaaaaaaaaaaaa
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
 	fOffset += sizeof(short) * (fWidth * fHeight);
@@ -649,15 +649,15 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&event[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
-	fclose (fp);
+	fclose(fp);
 
 	return TRUE;
 }
 //
-// ???牙?ㄅ　叉
+// ????
 //
 void setMap(int floor, int gx, int gy)
 {
@@ -665,7 +665,7 @@ void setMap(int floor, int gx, int gy)
 	setWarpMap(gx, gy);
 }
 //
-// ????ㄅ???阪?
+// ????????
 //
 void setWarpMap(int gx, int gy)
 {
@@ -685,19 +685,19 @@ void setWarpMap(int gx, int gy)
 	viewPointX = nowX;
 	viewPointY = nowY;
 	wnCloseFlag = 1;
-#ifdef _AniCrossFrame	   // Syu ADD 雄賒脯蚔徹賒醱汜昜
+#ifdef _AniCrossFrame	   // Syu ADD 动画层游过画面生物
 	extern void crossAniRelease();
 	crossAniRelease();
 #endif
-#ifdef _SURFACE_ANIM       //ROG ADD 雄怓部劓
-	extern void ReleaseSpecAnim ();
+#ifdef _SURFACE_ANIM       //ROG ADD 动态场景
+	extern void ReleaseSpecAnim();
 	ReleaseSpecAnim();
 #endif
 }
 
-#ifdef _NEWDRAWBATTLEMAP		   // (祥褫羲溫) Syu ADD 赻雄莉汜BattleMap
-//ROG ADD 赻雄齬唗
-typedef struct{
+#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
+//ROG ADD 自动排序
+typedef struct {
 	int x;
 	int y;
 	float mx;
@@ -705,7 +705,7 @@ typedef struct{
 	int bmpNO;
 }PARTS;
 
-typedef int CMPFUNC(const void * , const void *);
+typedef int CMPFUNC(const void *, const void *);
 int sort_parts(PARTS *ptc, PARTS *ptp)
 {
 	S2 w, h;
@@ -736,31 +736,31 @@ int sort_parts(PARTS *ptc, PARTS *ptp)
 //ROG ADD end
 void ddrawBattleMap(void)
 {
-	int i, j , count = 0, x, y, tx, ty, partsCnt = 0, TilesCnt = 0, ti, tj;
+	int i, j, count = 0, x, y, tx, ty, partsCnt = 0, TilesCnt = 0, ti, tj;
 	float dx, dy;
 	U4 bmpNo;
 	PARTS tempParts[MAX_CHAR_PRIO_BUF / 2];
 	PARTS tempTiles[MAX_CHAR_PRIO_BUF / 2];
 
 	draw_map_bgm_flg = 0;
-	// ????????ㄅ?阪??????????????
+	// ??????????????????????
 	if (nowGx != oldGx || nowGy != oldGy)
 	{
 		if (readMap(nowFloor, mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0]))
 		{
-			// hitMap[]????刪叉????　叉
+			// hitMap[]????????
 			readHitMap(mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0], &hitMap[0]);
 			if (mapEmptyFlag)
 			{
 				if (!checkEmptyMap(mapEmptyDir))
 				{
 					mapEmptyFlag = FALSE;
-					autoMappingInitFlag = TRUE;	// ??????????
+					autoMappingInitFlag = TRUE;	// ?????????
 				}
 			}
 			else
-				autoMappingInitFlag = TRUE;	// ??????????
-//			readMapAfterFrame = 0;	// ?????????????????????????
+				autoMappingInitFlag = TRUE;	// ?????????
+//			readMapAfterFrame = 0;	// ????????????????????????
 		}
 		else
 			return;
@@ -796,22 +796,22 @@ void ddrawBattleMap(void)
 		y = ty;
 		while (i >= 0 && j >= 0)
 		{
-		// ???牙
-			if (tile[i * mapAreaWidth+j] > CG_INVISIBLE || parts[i * mapAreaWidth+j] > CG_INVISIBLE)
+			// ???
+			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE || parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?????????
+				// ?䴘??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 				{
-//ROG ADD 華奻昜珆尨
-					if (parts[i * mapAreaWidth+j] > CG_INVISIBLE)
+					//ROG ADD 地上物显示
+					if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 					{
 						realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
 						tempParts[partsCnt].bmpNO = parts[i * mapAreaWidth + j];
-						tempParts[partsCnt].x     = x;
-						tempParts[partsCnt].y     = y;
-						tempParts[partsCnt].mx    = (float)(mapAreaX1 + j) * GRID_SIZE;
-						tempParts[partsCnt].my    = (float)(mapAreaY1 + i) * GRID_SIZE;
+						tempParts[partsCnt].x = x;
+						tempParts[partsCnt].y = y;
+						tempParts[partsCnt].mx = (float)(mapAreaX1 + j) * GRID_SIZE;
+						tempParts[partsCnt].my = (float)(mapAreaY1 + i) * GRID_SIZE;
 						partsCnt++;
 					}
 					tempTiles[TilesCnt].x = x;
@@ -822,7 +822,7 @@ void ddrawBattleMap(void)
 		//			count++;
 				}
 			}
-//ROG ADD end			}
+			//ROG ADD end			}
 			i--;
 			j--;
 			x -= SURFACE_WIDTH;
@@ -840,19 +840,19 @@ void ddrawBattleMap(void)
 			ty -= SURFACE_HEIGHT >> 1;
 		}
 	}
-//ROG ADD 華奻昜珆尨
+	//ROG ADD 地上物显示
 	if (partsCnt > 0)
 	{
 		qsort(tempParts, partsCnt, sizeof(PARTS), (CMPFUNC*)sort_parts);
 		for (i = 0; i < partsCnt; i++)
-			StockDispBuffer(tempParts[i].x , tempParts[i].y, DISP_PRIO_TILE, tempParts[i].bmpNO, 0);
+			StockDispBuffer(tempParts[i].x, tempParts[i].y, DISP_PRIO_TILE, tempParts[i].bmpNO, 0);
 	}
 	SortDispBuffer();
 	for (i = 0; i < TilesCnt; i++)
 		StockDispBuffer(tempTiles[i].x, tempTiles[i].y, DISP_PRIO_TILE, tempTiles[i].bmpNO, 0);
 	SortDispBuffer();
-//ROG ADD end
-//	stockCharParts();
+	//ROG ADD end
+	//	stockCharParts();
 	oldGx = nowGx;
 	oldGy = nowGy;
 	if (fMapBgm >= 40 && fMapBgm <= 53 && map_bgm_no == 2)
@@ -872,25 +872,25 @@ void drawMap(void)
 	U4 bmpNo;
 
 	draw_map_bgm_flg = 0;
-//	readMapAfterFrame++;
-	// ????????ㄅ?阪??????????????
+	//	readMapAfterFrame++;
+		// ??????????????????????
 	if (nowGx != oldGx || nowGy != oldGy)
 	{
 		if (readMap(nowFloor, mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0]))
 		{
-			// hitMap[]????刪叉????　叉
+			// hitMap[]????????
 			readHitMap(mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0], &hitMap[0]);
 			if (mapEmptyFlag)
 			{
 				if (!checkEmptyMap(mapEmptyDir))
 				{
 					mapEmptyFlag = FALSE;
-					autoMappingInitFlag = TRUE;	// ??????????
+					autoMappingInitFlag = TRUE;	// ?????????
 				}
 			}
 			else
-				autoMappingInitFlag = TRUE;	// ??????????
-//			readMapAfterFrame = 0;	// ?????????????????????????
+				autoMappingInitFlag = TRUE;	// ?????????
+//			readMapAfterFrame = 0;	// ????????????????????????
 		}
 		else
 			return;
@@ -918,7 +918,7 @@ void drawMap(void)
 	ty = nowYFastDraw2 + (-mapAreaX1 + mapAreaY2 - 1) * SURFACE_HEIGHT / 2;
 
 #if 1
-	// ????吻???????????
+	// ???????????????
 	//
 	// [map]
 	//               16
@@ -940,40 +940,40 @@ void drawMap(void)
 		j = tj;
 		x = tx;
 		y = ty;
-//		if (i==30)
+		//		if (i==30)
 		while (i >= 0 && j >= 0)
 		{
-			// ???牙
-			if (tile[i * mapAreaWidth+j] > CG_INVISIBLE)
+			// ???
+			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 #if 0
-				// ?????????(???)
-				if (193 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth+j] <= 196)
+				// ??????䲡??(???)
+				if (193 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 196)
 					play_environment(0, x, y);
 #endif
-				// ?????????
+				// ?䴘??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
 			}
 			else
 			{
-				// 叻?????????
-				// ???????????
+				// ?????????
+				// ????????䲡??
 				if (20 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 39)
 					play_environment(tile[i * mapAreaWidth + j], x, y);
-				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ????????????
+				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????䲡??
 				{
 					play_map_bgm(tile[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
 				}
 			}
-			// ???牙
-			if (parts[i * mapAreaWidth+j] > CG_INVISIBLE)
+			// ???
+			if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 #if 0
-				// ?????????(???)
-				if (parts[i * mapAreaWidth+j] == 10011)
+				// ??????䲡??(???)
+				if (parts[i * mapAreaWidth + j] == 10011)
 					play_environment(2, x, y);
 				else if (parts[i * mapAreaWidth + j] == 10012)
 					play_environment(1, x, y);
@@ -986,22 +986,22 @@ void drawMap(void)
 				}
 #endif
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?????????
+				// ?䴘??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
 				yy += y;
 				if (xx < DEF_APPSIZEX && xx + ww - 1 >= 0 && yy < DEF_APPSIZEY && yy + hh - 1 >= 0)
-					// 牙?！冉?叉????仕???
+					// ?????????
 					setPartsPrio(bmpNo, x, y, 0, 0, (float)(mapAreaX1 + j) * GRID_SIZE, (float)(mapAreaY1 + i) * GRID_SIZE, -1);
 			}
 			else
 			{
-				// 叻?????????
-				// ???????????
+				// ?????????
+				// ????????䲡??
 				if (20 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 39)
 					play_environment(parts[i * mapAreaWidth + j], x, y);
-				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ????????????
+				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????䲡??
 				{
 					play_map_bgm(parts[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -1025,7 +1025,7 @@ void drawMap(void)
 		}
 	}
 #else
-	// ????吻???????????
+	// ???????????????
 	//
 	// [map] 
 	//               16
@@ -1043,32 +1043,32 @@ void drawMap(void)
 		ty = y;
 		for (j = 0; j < mapAreaWidth; j++)
 		{
-			// ???牙
+			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?????????
+				// ?䴘??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
 			}
-			// ???牙
+			// ???
 			if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?????????
+				// ?䴘??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
 				yy += y;
 				if (xx < DEF_APPSIZEX && xx + ww - 1 >= 0 && yy < DEF_APPSIZEY && yy + hh - 1 >= 0)
-					// 牙?！冉?叉????仕???
+					// ?????????
 					setPartsPrio(bmpNo, x, y, 0, 0, (float)(mapAreaX1 + j) * GRID_SIZE, (float)(mapAreaY1 + i) * GRID_SIZE, -1);
 			}
 			x += SURFACE_WIDTH >> 1;
 			y -= SURFACE_HEIGHT >> 1;
 		}
-		x = tx-SURFACE_WIDTH >> 1;
-		y = ty-SURFACE_HEIGHT >> 1;
+		x = tx - SURFACE_WIDTH >> 1;
+		y = ty - SURFACE_HEIGHT >> 1;
 	}
 #endif
 	stockCharParts();
@@ -1090,7 +1090,7 @@ void drawMap(void)
 	}
 }
 
-// ?????﹩丙??
+// ???????
 void drawMap2(void)
 {
 	int i, j, x, y, tx, ty;
@@ -1105,25 +1105,25 @@ void drawMap2(void)
 		return;
 	}
 	draw_map_bgm_flg = 0;
-//	readMapAfterFrame++;
-	// ????????ㄅ?阪??????????????
+	//	readMapAfterFrame++;
+		// ??????????????????????
 	if (nowGx != oldGx || nowGy != oldGy)
 	{
 		if (readMap(nowFloor, mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0]))
 		{
-			// hitMap[]????刪叉????　叉??
+			// hitMap[]??????????
 			readHitMap(mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0], &hitMap[0]);
 			if (mapEmptyFlag)
 			{
 				if (!checkEmptyMap(mapEmptyDir))
 				{
 					mapEmptyFlag = FALSE;
-					autoMappingInitFlag = TRUE;	// ??????????
+					autoMappingInitFlag = TRUE;	// ?????????
 				}
 			}
 			else
-				autoMappingInitFlag = TRUE;	// ??????????
-//			readMapAfterFrame = 0;	// ?????????????????????????
+				autoMappingInitFlag = TRUE;	// ?????????
+//			readMapAfterFrame = 0;	// ????????????????????????
 		}
 		else
 			return;
@@ -1131,8 +1131,8 @@ void drawMap2(void)
 #ifdef _MOVE_SCREEN
 	if (pc.bMoveScreenMode)
 	{
-		dx = (float)(+ (-nowGx) * (SURFACE_WIDTH >> 1) + -nowGy * (SURFACE_WIDTH >> 1) + viewOffsetX);
-		dy = (float)(- (-nowGx) * (SURFACE_HEIGHT >> 1) + -nowGy * (SURFACE_HEIGHT >> 1) + viewOffsetY);
+		dx = (float)(+(-nowGx) * (SURFACE_WIDTH >> 1) + -nowGy * (SURFACE_WIDTH >> 1) + viewOffsetX);
+		dy = (float)(-(-nowGx) * (SURFACE_HEIGHT >> 1) + -nowGy * (SURFACE_HEIGHT >> 1) + viewOffsetY);
 	}
 	else
 #endif
@@ -1153,7 +1153,7 @@ void drawMap2(void)
 	amountYFastDraw2 = nowYFastDraw2 - baseYFastDraw2;
 	tx = nowXFastDraw2 + (mapAreaX1 + mapAreaY2 - 1) * SURFACE_WIDTH / 2;
 	ty = nowYFastDraw2 + (-mapAreaX1 + mapAreaY2 - 1) * SURFACE_HEIGHT / 2;
-	// ????吻???????????
+	// ???????????????
 	//
 	// [map]
 	//               16
@@ -1175,12 +1175,12 @@ void drawMap2(void)
 		y = ty;
 		while (i >= 0 && j >= 0)
 		{
-			// ???牙
+			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 				if (amountXFastDraw2 != 0 || amountYFastDraw2 != 0)
 				{
-					// ????向?????????????
+					// ?䴘??????????????
 					if ((-SURFACE_WIDTH >> 1) < x && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 						(-SURFACE_HEIGHT >> 1) < y && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					{
@@ -1212,17 +1212,17 @@ void drawMap2(void)
 			}
 			else
 			{
-				// 叻?????????
-				// ???????????
+				// ?????????
+				// ????????䲡??
 				if (20 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 39)
 					play_environment(tile[i * mapAreaWidth + j], x, y);
-				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ????????????
+				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????䲡??
 				{
 					play_map_bgm(tile[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
 				}
 			}
-			// ???牙
+			// ???
 			if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 				//printf("parts[i * mapAreaWidth + j]=%d   i=%d   j=%d\n",parts[i * mapAreaWidth + j],i,j);
@@ -1230,7 +1230,7 @@ void drawMap2(void)
 
 
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?????????
+				// ?䴘??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
@@ -1240,11 +1240,11 @@ void drawMap2(void)
 			}
 			else
 			{
-				// 叻?????????
-				// ???????????
+				// ?????????
+				// ????????䲡??
 				if (20 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 39)
 					play_environment(parts[i * mapAreaWidth + j], x, y);
-				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ????????????
+				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????䲡??
 				{
 					play_map_bgm(parts[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -1279,17 +1279,17 @@ void drawMap2(void)
 	oldGy = nowGy;
 }
 
-//  ?????牙
+//  ?????
 void drawTile(void)
 {
 	int i, j, x, y, tx, ty;
 
-	// ??????????
+	// ?????????
 	if (readMap(nowFloor, mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0]))
-		readHitMap(mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0], &hitMap[0]);		// hitMap[]????刪叉????　叉??
+		readHitMap(mapAreaX1, mapAreaY1, mapAreaX2, mapAreaY2, &tile[0], &parts[0], &event[0], &hitMap[0]);		// hitMap[]??????????
 	tx = nowXFastDraw2 + (((mapAreaX1 + mapAreaY2 - 1) * SURFACE_WIDTH) >> 1);
 	ty = nowYFastDraw2 + (((-mapAreaX1 + mapAreaY2 - 1) * SURFACE_HEIGHT) >> 1);
-	// ????吻???????????
+	// ???????????????
 	//
 	// [map]
 	//               16
@@ -1312,10 +1312,10 @@ void drawTile(void)
 		y = ty;
 		while (i >= 0 && j >= 0)
 		{
-			// ???牙
+			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?????????
+				// ?䴘??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < (DEF_APPSIZEX + (SURFACE_WIDTH >> 1)) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < (DEF_APPSIZEY + (SURFACE_HEIGHT >> 1)))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
@@ -1345,42 +1345,42 @@ void redrawMap(void)
 	oldGy = -1;
 }
 #if 1
-static unsigned char BitTable[] =	/*	????杆???????????	*/
+static unsigned char BitTable[] =	/*	???????????????	*/
 {
-		0x00 , 0x80 , 0x40 , 0xC0 , 0x20 , 0xA0 , 0x60 , 0xE0 , 
-		0x10 , 0x90 , 0x50 , 0xD0 , 0x30 , 0xB0 , 0x70 , 0xF0 , 
-		0x08 , 0x88 , 0x48 , 0xC8 , 0x28 , 0xA8 , 0x68 , 0xE8 , 
-		0x18 , 0x98 , 0x58 , 0xD8 , 0x38 , 0xB8 , 0x78 , 0xF8 , 
-		0x04 , 0x84 , 0x44 , 0xC4 , 0x24 , 0xA4 , 0x64 , 0xE4 , 
-		0x14 , 0x94 , 0x54 , 0xD4 , 0x34 , 0xB4 , 0x74 , 0xF4 , 
-		0x0C , 0x8C , 0x4C , 0xCC , 0x2C , 0xAC , 0x6C , 0xEC , 
-		0x1C , 0x9C , 0x5C , 0xDC , 0x3C , 0xBC , 0x7C , 0xFC , 
-		0x02 , 0x82 , 0x42 , 0xC2 , 0x22 , 0xA2 , 0x62 , 0xE2 , 
-		0x12 , 0x92 , 0x52 , 0xD2 , 0x32 , 0xB2 , 0x72 , 0xF2 , 
-		0x0A , 0x8A , 0x4A , 0xCA , 0x2A , 0xAA , 0x6A , 0xEA , 
-		0x1A , 0x9A , 0x5A , 0xDA , 0x3A , 0xBA , 0x7A , 0xFA , 
-		0x06 , 0x86 , 0x46 , 0xC6 , 0x26 , 0xA6 , 0x66 , 0xE6 , 
-		0x16 , 0x96 , 0x56 , 0xD6 , 0x36 , 0xB6 , 0x76 , 0xF6 , 
-		0x0E , 0x8E , 0x4E , 0xCE , 0x2E , 0xAE , 0x6E , 0xEE , 
-		0x1E , 0x9E , 0x5E , 0xDE , 0x3E , 0xBE , 0x7E , 0xFE , 
-		0x01 , 0x81 , 0x41 , 0xC1 , 0x21 , 0xA1 , 0x61 , 0xE1 , 
-		0x11 , 0x91 , 0x51 , 0xD1 , 0x31 , 0xB1 , 0x71 , 0xF1 , 
-		0x09 , 0x89 , 0x49 , 0xC9 , 0x29 , 0xA9 , 0x69 , 0xE9 , 
-		0x19 , 0x99 , 0x59 , 0xD9 , 0x39 , 0xB9 , 0x79 , 0xF9 , 
-		0x05 , 0x85 , 0x45 , 0xC5 , 0x25 , 0xA5 , 0x65 , 0xE5 , 
-		0x15 , 0x95 , 0x55 , 0xD5 , 0x35 , 0xB5 , 0x75 , 0xF5 , 
-		0x0D , 0x8D , 0x4D , 0xCD , 0x2D , 0xAD , 0x6D , 0xED , 
-		0x1D , 0x9D , 0x5D , 0xDD , 0x3D , 0xBD , 0x7D , 0xFD , 
-		0x03 , 0x83 , 0x43 , 0xC3 , 0x23 , 0xA3 , 0x63 , 0xE3 , 
-		0x13 , 0x93 , 0x53 , 0xD3 , 0x33 , 0xB3 , 0x73 , 0xF3 , 
-		0x0B , 0x8B , 0x4B , 0xCB , 0x2B , 0xAB , 0x6B , 0xEB , 
-		0x1B , 0x9B , 0x5B , 0xDB , 0x3B , 0xBB , 0x7B , 0xFB , 
-		0x07 , 0x87 , 0x47 , 0xC7 , 0x27 , 0xA7 , 0x67 , 0xE7 , 
-		0x17 , 0x97 , 0x57 , 0xD7 , 0x37 , 0xB7 , 0x77 , 0xF7 , 
-		0x0F , 0x8F , 0x4F , 0xCF , 0x2F , 0xAF , 0x6F , 0xEF , 
+		0x00 , 0x80 , 0x40 , 0xC0 , 0x20 , 0xA0 , 0x60 , 0xE0 ,
+		0x10 , 0x90 , 0x50 , 0xD0 , 0x30 , 0xB0 , 0x70 , 0xF0 ,
+		0x08 , 0x88 , 0x48 , 0xC8 , 0x28 , 0xA8 , 0x68 , 0xE8 ,
+		0x18 , 0x98 , 0x58 , 0xD8 , 0x38 , 0xB8 , 0x78 , 0xF8 ,
+		0x04 , 0x84 , 0x44 , 0xC4 , 0x24 , 0xA4 , 0x64 , 0xE4 ,
+		0x14 , 0x94 , 0x54 , 0xD4 , 0x34 , 0xB4 , 0x74 , 0xF4 ,
+		0x0C , 0x8C , 0x4C , 0xCC , 0x2C , 0xAC , 0x6C , 0xEC ,
+		0x1C , 0x9C , 0x5C , 0xDC , 0x3C , 0xBC , 0x7C , 0xFC ,
+		0x02 , 0x82 , 0x42 , 0xC2 , 0x22 , 0xA2 , 0x62 , 0xE2 ,
+		0x12 , 0x92 , 0x52 , 0xD2 , 0x32 , 0xB2 , 0x72 , 0xF2 ,
+		0x0A , 0x8A , 0x4A , 0xCA , 0x2A , 0xAA , 0x6A , 0xEA ,
+		0x1A , 0x9A , 0x5A , 0xDA , 0x3A , 0xBA , 0x7A , 0xFA ,
+		0x06 , 0x86 , 0x46 , 0xC6 , 0x26 , 0xA6 , 0x66 , 0xE6 ,
+		0x16 , 0x96 , 0x56 , 0xD6 , 0x36 , 0xB6 , 0x76 , 0xF6 ,
+		0x0E , 0x8E , 0x4E , 0xCE , 0x2E , 0xAE , 0x6E , 0xEE ,
+		0x1E , 0x9E , 0x5E , 0xDE , 0x3E , 0xBE , 0x7E , 0xFE ,
+		0x01 , 0x81 , 0x41 , 0xC1 , 0x21 , 0xA1 , 0x61 , 0xE1 ,
+		0x11 , 0x91 , 0x51 , 0xD1 , 0x31 , 0xB1 , 0x71 , 0xF1 ,
+		0x09 , 0x89 , 0x49 , 0xC9 , 0x29 , 0xA9 , 0x69 , 0xE9 ,
+		0x19 , 0x99 , 0x59 , 0xD9 , 0x39 , 0xB9 , 0x79 , 0xF9 ,
+		0x05 , 0x85 , 0x45 , 0xC5 , 0x25 , 0xA5 , 0x65 , 0xE5 ,
+		0x15 , 0x95 , 0x55 , 0xD5 , 0x35 , 0xB5 , 0x75 , 0xF5 ,
+		0x0D , 0x8D , 0x4D , 0xCD , 0x2D , 0xAD , 0x6D , 0xED ,
+		0x1D , 0x9D , 0x5D , 0xDD , 0x3D , 0xBD , 0x7D , 0xFD ,
+		0x03 , 0x83 , 0x43 , 0xC3 , 0x23 , 0xA3 , 0x63 , 0xE3 ,
+		0x13 , 0x93 , 0x53 , 0xD3 , 0x33 , 0xB3 , 0x73 , 0xF3 ,
+		0x0B , 0x8B , 0x4B , 0xCB , 0x2B , 0xAB , 0x6B , 0xEB ,
+		0x1B , 0x9B , 0x5B , 0xDB , 0x3B , 0xBB , 0x7B , 0xFB ,
+		0x07 , 0x87 , 0x47 , 0xC7 , 0x27 , 0xA7 , 0x67 , 0xE7 ,
+		0x17 , 0x97 , 0x57 , 0xD7 , 0x37 , 0xB7 , 0x77 , 0xF7 ,
+		0x0F , 0x8F , 0x4F , 0xCF , 0x2F , 0xAF , 0x6F , 0xEF ,
 		0x1F , 0x9F , 0x5F , 0xDF , 0x3F , 0xBF , 0x7F , 0xFF
 };
-static unsigned short crctab16[] =	/*	crc  ??????		*/
+static unsigned short crctab16[] =	/*	crc  ??????		*/
 {
 		0x0000,  0x1021,  0x2042,  0x3063,  0x4084,  0x50a5,  0x60c6,  0x70e7,
 		0x8108,  0x9129,  0xa14a,  0xb16b,  0xc18c,  0xd1ad,  0xe1ce,  0xf1ef,
@@ -1415,12 +1415,12 @@ static unsigned short crctab16[] =	/*	crc  ??????		*/
 		0xef1f,  0xff3e,  0xcf5d,  0xdf7c,  0xaf9b,  0xbfba,  0x8fd9,  0x9ff8,
 		0x6e17,  0x7e36,  0x4e55,  0x5e74,  0x2e93,  0x3eb2,  0x0ed1,  0x1ef0,
 };
-unsigned short CheckCRC(unsigned char *p , int size)
+unsigned short CheckCRC(unsigned char *p, int size)
 {
 	unsigned short	crc = 0;
 	int		i;
-	
-	for (i = 0; i < size; i ++)
+
+	for (i = 0; i < size; i++)
 	{
 		crc = (crctab16[(crc >> 8) & 0xFF] ^ (crc << 8) ^ BitTable[p[i]]);
 	}
@@ -1434,17 +1434,17 @@ BOOL mapCheckSum(int floor, int x1, int y1, int x2, int y2, int tileSum, int par
 	unsigned short parts[MAP_X_SIZE*MAP_Y_SIZE];
 	unsigned short event[MAP_X_SIZE*MAP_Y_SIZE];
 
-	// ??????????????
+	// ?????????????
 
 	readMap(floor, x1, y1, x2, y2, tile, parts, event);
 	for (i = 0; i < height; i++)
 	{
-        for (j = 0; j < width; j++)
+		for (j = 0; j < width; j++)
 			event[i * width + j] &= 0x0fff;
-    }
+	}
 
-	tilesum  = CheckCRC((unsigned char*)tile,  27 * 27 * sizeof(short));
-	objsum   = CheckCRC((unsigned char*)parts, 27 * 27 * sizeof(short));
+	tilesum = CheckCRC((unsigned char*)tile, 27 * 27 * sizeof(short));
+	objsum = CheckCRC((unsigned char*)parts, 27 * 27 * sizeof(short));
 	eventsum = CheckCRC((unsigned char*)event, 27 * 27 * sizeof(short));
 
 	if (tileSum == tilesum && partsSum == objsum && eventSum == eventsum)
@@ -1462,7 +1462,7 @@ BOOL mapCheckSum(int floor, int x1, int y1, int x2, int y2, int tileSum, int par
 			lssproto_M_send(sockfd, floor, x1, y1, x2, y2);
 		else
 			old_lssproto_M_send(sockfd, floor, x1, y1, x2, y2);
-		//党淏華芞祑都
+		//修正地图异常
 		if (loginFlag)
 			loginFlag = FALSE;
 
@@ -1476,27 +1476,27 @@ BOOL mapCheckSum(int floor, int x1, int y1, int x2, int y2, int tileSum, int par
 	unsigned short tile[MAP_X_SIZE*MAP_Y_SIZE];
 	unsigned short parts[MAP_X_SIZE*MAP_Y_SIZE];
 	unsigned short event[MAP_X_SIZE*MAP_Y_SIZE];
-	// ??????????????
+	// ?????????????
 
 	readMap(floor, x1, y1, x2, y2, tile, parts, event);
 	for (i = 0; i < height; i++)
 	{
-        for (j = 0; j < width; j++)
+		for (j = 0; j < width; j++)
 		{
 			tilesum += (tile[i * width + j] % (27 * 27)) ^ databufferindex;
 			objsum += (parts[i * width + j] % (27 * 27)) ^ databufferindex;
 #if 1
-			eventsum +=	((event[i * width + j] & 0x0fff) % (27 * 27)) ^ databufferindex;
+			eventsum += ((event[i * width + j] & 0x0fff) % (27 * 27)) ^ databufferindex;
 #else
 			eventsum += (event[i * width + j] % (27 * 27)) ^ databufferindex;
 #endif
-        	databufferindex++;
-        }
-    }
+			databufferindex++;
+		}
+	}
 
 	if (tileSum == tilesum && partsSum == objsum && eventSum == eventsum)
 	{
-		// ???????????????????
+		// ??????????????????
 		if (loginFlag)
 		{
 			redrawMap();
@@ -1522,7 +1522,7 @@ BOOL mapCheckSum(int floor, int x1, int y1, int x2, int y2, int tileSum, int par
 #endif
 
 
-// ????????????刪叉?????
+// ????????????⿳????
 #if 1
 void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned short *parts, unsigned short *event, unsigned short *hitMap)
 {
@@ -1542,16 +1542,16 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 	{
 		for (j = 0; j < width; j++)
 		{
-			// ???????刪叉
+			// ???????
 			if (tile[i * width + j] > CG_INVISIBLE || (60 <= tile[i * width + j] && tile[i * width + j] <= 79))
 			{
 				realGetNo(tile[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
 					hitMap[i * width + j] = 1;
-				else if (hit == 2) // hit?2??????刪叉???
+				else if (hit == 2) // hit?2?????????
 					hitMap[i * width + j] = 2;
 			}
 			else
@@ -1559,24 +1559,24 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 				// 0??11??????????????
 				switch (tile[i * width + j])
 				{
-					case 0:	// 0.bmp(????)???????刪叉?????
-						// ?????????????????????
-						if ((event[i * width + j] & MAP_SEE_FLAG) == 0)
-							break;
-					case 1:
-					case 2:
-					case 5:
-					case 6:
-					case 9:
-					case 10:
-						// ???刪叉???????　叉???
-						if (hitMap[i * width + j] != 2)
-							hitMap[i * width + j] = 1;
+				case 0:	// 0.bmp(䥺???)????????????
+					// ????????????????????
+					if ((event[i * width + j] & MAP_SEE_FLAG) == 0)
 						break;
+				case 1:
+				case 2:
+				case 5:
+				case 6:
+				case 9:
+				case 10:
+					// ?????????????
+					if (hitMap[i * width + j] != 2)
+						hitMap[i * width + j] = 1;
+					break;
 
-					case 4:
-						hitMap[i * width + j] = 2;
-						break;
+				case 4:
+					hitMap[i * width + j] = 2;
+					break;
 				}
 			}
 		}
@@ -1586,14 +1586,14 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 	for (i = 0; i < height; i++)
 	{
 		for (j = 0; j < width; j++)
-		{ 
-			// ???????刪叉
+		{
+			// ???????
 			if (parts[i * width + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0)
 				{
 					realGetHitPoints(bmpNo, &hitX, &hitY);
@@ -1606,8 +1606,8 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 						}
 					}
 				}
-				// ???刪叉?????????卷?????
-				// ???卷???????
+				// ?????????????????
+				// ?????????
 				else if (hit == 2)
 				{
 					realGetHitPoints(bmpNo, &hitX, &hitY);
@@ -1632,18 +1632,18 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 							if (k == 0 && l == 0)
 								hitMap[(i - k) * width + j + l] = 1;
 						}
-					}					
-				}	
+					}
+				}
 			}
 			else if (60 <= parts[i * width + j] && parts[i * width + j] <= 79)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
 					hitMap[i * width + j] = 1;
-				// hit?2??????刪叉???
+				// hit?2?????????
 				else if (hit == 2)
 					hitMap[i * width + j] = 2;
 			}
@@ -1651,25 +1651,25 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			{
 				// 0??11??????????????
 				switch (parts[i * width + j])
-				{	
-					case 1:
-					case 2:
-					case 5:
-					case 6:
-					case 9:
-					case 10:
-						// ???刪叉???????　叉???
-						if (hitMap[i * width + j] != 2)
-							hitMap[i * width + j] = 1;
-						break;
+				{
+				case 1:
+				case 2:
+				case 5:
+				case 6:
+				case 9:
+				case 10:
+					// ?????????????
+					if (hitMap[i * width + j] != 2)
+						hitMap[i * width + j] = 1;
+					break;
 
-					case 4:
-						hitMap[i * width + j] = 2;
-						break;
+				case 4:
+					hitMap[i * width + j] = 2;
+					break;
 				}
 			}
 
-			// ?叉?????????岌?????
+			// ???????????????
 			if ((event[i * width + j] & 0x0fff) == EVENT_NPC)
 				hitMap[i * width + j] = 1;
 		}
@@ -1693,25 +1693,25 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 	{
 		for (j = 0; j < width; j++)
 		{
-			// ?????????????????????
+			// ????????????????????
 			if ((event[i * width + j] & MAP_READ_FLAG) == 0)
 				continue;
 
-			// ???????刪叉
+			// ???????
 			if (tile[i * width + j] > CG_INVISIBLE
 #if 0
-			 || (60 <= tile[i * width + j] && tile[i * width + j] <= 79))
+				|| (60 <= tile[i * width + j] && tile[i * width + j] <= 79))
 #else
-			)
+				)
 #endif
 			{
 				realGetNo(tile[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
-					hitMap[i*width+j] = 1;
-				// hit?2??????刪叉???
+					hitMap[i*width + j] = 1;
+				// hit?2?????????
 				else if (hit == 2)
 					hitMap[i * width + j] = 2;
 			}
@@ -1721,30 +1721,30 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 				// 0??11??????????????
 				switch (tile[i * width + j])
 				{
-					case 0:	// 0.bmp(????)???????刪叉?????
-					case 1:
-					case 2:
-					case 5:
-					case 6:
-					case 9:
-					case 10:
-						// ???刪叉???????　叉???
-						if (hitMap[i * width + j] != 2)
-							hitMap[i * width + j] = 1;
-						break;
-					case 4:
-						hitMap[i * width + j] = 2;
-						break;
+				case 0:	// 0.bmp(䥺???)????????????
+				case 1:
+				case 2:
+				case 5:
+				case 6:
+				case 9:
+				case 10:
+					// ?????????????
+					if (hitMap[i * width + j] != 2)
+						hitMap[i * width + j] = 1;
+					break;
+				case 4:
+					hitMap[i * width + j] = 2;
+					break;
 				}
 			}
 #endif
-			// ???????刪叉
+			// ???????
 			if (parts[i * width + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0)
 				{
 					realGetHitPoints(bmpNo, &hitX, &hitY);
@@ -1757,8 +1757,8 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 						}
 					}
 				}
-				// ???刪叉?????????卷?????
-				// ???卷???????
+				// ?????????????????
+				// ?????????
 				else if (hit == 2)
 				{
 					realGetHitPoints(bmpNo, &hitX, &hitY);
@@ -1776,12 +1776,12 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			else if (60 <= parts[i * width + j] && parts[i * width + j] <= 79)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ???刪叉???
+				// ?????䥺
 				realGetHitFlag(bmpNo, &hit);
-				// ???刪叉?????????　叉
+				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
 					hitMap[i * width + j] = 1;
-				// hit?2??????刪叉???
+				// hit?2?????????
 				else if (hit == 2)
 					hitMap[i * width + j] = 2;
 			}
@@ -1792,23 +1792,23 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 				// 0??11??????????????
 				switch (parts[i * width + j])
 				{
-					case 1:
-					case 2:
-					case 5:
-					case 6:
-					case 9:
-					case 10:
-						// ???刪叉???????　叉???
-						if (hitMap[i * width + j] != 2)
-							hitMap[i * width + j] = 1;
-						break;
-					case 4:
-						hitMap[i * width + j] = 2;
-						break;
+				case 1:
+				case 2:
+				case 5:
+				case 6:
+				case 9:
+				case 10:
+					// ?????????????
+					if (hitMap[i * width + j] != 2)
+						hitMap[i * width + j] = 1;
+					break;
+				case 4:
+					hitMap[i * width + j] = 2;
+					break;
 				}
 			}
 #endif
-			// ?叉?????????岌?????
+			// ???????????????
 			if ((event[i * width + j] & 0x0fff) == EVENT_NPC)
 				hitMap[i * width + j] = 1;
 		}
@@ -1816,8 +1816,8 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 }
 #endif
 //
-// ???刪叉?????
-//   ??πㄩTRUE ... 向?
+// ????????
+//   ??：TRUE ... ?
 //
 #ifdef _ITEM_PATH
 BOOL ITEMPATHFLAG = FALSE;
@@ -1832,7 +1832,7 @@ BOOL checkHitMap(int gx, int gy)
 	if (pc.skywalker)
 		return FALSE;
 
-	// ????吳???向?
+	// ????????
 	if (x < 0 || mapAreaWidth <= x || y < 0 || mapAreaHeight <= y)
 		return TRUE;
 #ifdef _ITEM_PATH
@@ -1842,7 +1842,7 @@ BOOL checkHitMap(int gx, int gy)
 		return FALSE;
 	}
 #endif
-	// ???刪叉????向?
+	// ????????
 	if (hitMap[y * mapAreaWidth + x] == 1)
 		return TRUE;
 
@@ -1850,11 +1850,11 @@ BOOL checkHitMap(int gx, int gy)
 }
 
 //
-// ?去！??????????去????????????┴??
+// ??????䥺??????????????????
 //
 BOOL checkEmptyMap(int dir)
 {
-	// ?????ㄅ???11????????????????TRUE?刺?
+	// ????????11???????????䥺???TRUE??
 	int i, gx, gy, tx, ty, len;
 	BOOL flag = FALSE;
 
@@ -1975,7 +1975,7 @@ BOOL checkEmptyMap(int dir)
 	return flag;
 }
 
-// 吳??????????
+// ??????????
 void checkAreaLimit(short *x1, short *y1, short *x2, short *y2)
 {
 	if (*x1 < 0)
@@ -1989,7 +1989,7 @@ void checkAreaLimit(short *x1, short *y1, short *x2, short *y2)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ???????????????牙??
+// ????䴘????????????
 //
 void drawGrid(void)
 {
@@ -2001,7 +2001,7 @@ void drawGrid(void)
 	// ????????????????
 	if ((MenuToggleFlag & JOY_CTRL_M) == 0)
 		mapWndFontNo[0] = -2;
-	// ·卯???????????????
+	// ???????????????
 	if (BattleResultWndFlag <= 0)
 		resultWndFontNo[0] = -2;
 
@@ -2014,24 +2014,24 @@ void drawGrid(void)
 	yy = mouseMapGy * GRID_SIZE;
 	camMapToGamen((float)xx, (float)yy, &x, &y);
 
-	// ???????????????????牙???
+	// ??????????????????????
 #if 0
 	if (mouse.level < DISP_PRIO_MENU || mapWndFontNo[0] == HitDispNo || resultWndFontNo[0] == HitDispNo)
 #else
 	if (mouse.level < DISP_PRIO_MENU)
 #endif
 	{
-		// ?????????牙
+		// ?????????
 		if (mouseCursorMode == MOUSE_CURSOR_MODE_NORMAL)
 			StockDispBuffer((int)(x + .5), (int)(y + .5), DISP_PRIO_GRID, CG_GRID_CURSOR, 0);
-	//cary 2002.1.15	else
-	//	{
-	//		StockDispBuffer((int)(x+.5), (int)(y+.5), DISP_PRIO_GRID, 1610, 0);
-	//	}
+		//cary 2002.1.15	else
+		//	{
+		//		StockDispBuffer((int)(x+.5), (int)(y+.5), DISP_PRIO_GRID, 1610, 0);
+		//	}
 	}
 
-	// ?????ρ
-	// fieldProc(); moveProc(); ??????????????
+	// ?????
+	// fieldProc(); moveProc(); ??????????????
 	mouseLeftCrick = FALSE;
 	mouseLeftOn = FALSE;
 	mouseRightCrick = FALSE;
@@ -2044,11 +2044,11 @@ void drawGrid(void)
 		if ((mouse.onceState & MOUSE_LEFT_CRICK))
 		{
 #ifdef _MOVE_SCREEN
-			if (!pc.bCanUseMouse)	// 曄部耀宒奀偌賑扷祥夔痄雄
+			if (!pc.bCanUseMouse)	// 剧场模式时按滑鼠不能移动
 #endif
 			{
 #ifdef _THEATER
-				// 絞 pc.iTheaterMode 湮衾 0 奀桶尨淏婓桶栳,垀眕猁參 pc.bCanUseMouse 扢隅峈 TRUE
+				// 当 pc.iTheaterMode 大于 0 时表示正在表演,所以要把 pc.bCanUseMouse 设定为 TRUE
 				if (pc.iTheaterMode > 0)
 					pc.bCanUseMouse = TRUE;
 #endif
@@ -2060,11 +2060,11 @@ void drawGrid(void)
 		if ((mouse.state & MOUSE_LEFT_CRICK))
 		{
 #ifdef _MOVE_SCREEN
-			if (!pc.bCanUseMouse)	// 曄部耀宒奀偌賑扷祥夔痄雄
+			if (!pc.bCanUseMouse)	// 剧场模式时按滑鼠不能移动
 #endif
 			{
 #ifdef _THEATER
-				// 絞 pc.iTheaterMode 湮衾 0 奀桶尨淏婓桶栳,垀眕猁參 pc.bCanUseMouse 扢隅峈 TRUE
+				// 当 pc.iTheaterMode 大于 0 时表示正在表演,所以要把 pc.bCanUseMouse 设定为 TRUE
 				if (pc.iTheaterMode > 0)
 					pc.bCanUseMouse = TRUE;
 #endif
@@ -2086,8 +2086,8 @@ void drawGrid(void)
 		if ((mouse.onceState & MOUSE_RIGHT_DBL_CRICK))
 			mouseDblRightOn = TRUE;
 #endif
-		// ???????????????????去???????
-		// ·卯??????????????????去???????
+		// ??????????????????????????
+		// ?????????????????????????
 		if (mapWndFontNo[0] == HitDispNo || resultWndFontNo[0] == HitDispNo)
 			mouseLeftCrick = FALSE;
 	}
@@ -2100,7 +2100,7 @@ void drawGrid(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?去??
+// ???
 //Terry add 2003/11/25
 bool g_bTradesystemOpen = false;
 //end
@@ -2140,8 +2140,8 @@ void moveProc(void)
 		}
 		else if (tglSw == 3 || tglSw == 4)
 		{
-			// ???刪叉牙??????
-			// ????刪叉牙??????
+			// ?????????
+			// ??????????
 			char msg[256];
 			int x, y, xx, yy, color;
 
@@ -2208,9 +2208,9 @@ void moveProc(void)
 		{
 			char msg[256];
 
-			if ((joy_trg[ 0 ] & JOY_RIGHT) && mapEffectRainLevel < 5)
+			if ((joy_trg[0] & JOY_RIGHT) && mapEffectRainLevel < 5)
 				mapEffectRainLevel++;
-			else if ((joy_trg[ 0 ] & JOY_LEFT) && mapEffectRainLevel > 0)
+			else if ((joy_trg[0] & JOY_LEFT) && mapEffectRainLevel > 0)
 				mapEffectRainLevel--;
 			sprintf_s(msg, "mapEffectRainLevel = %d", mapEffectRainLevel);
 			StockFontBuffer(240, 34, FONT_PRIO_FRONT, 0, msg, 0);
@@ -2219,9 +2219,9 @@ void moveProc(void)
 		{
 			char msg[256];
 
-			if ((joy_trg[ 0 ] & JOY_RIGHT) && mapEffectSnowLevel < 5)
+			if ((joy_trg[0] & JOY_RIGHT) && mapEffectSnowLevel < 5)
 				mapEffectSnowLevel++;
-			else if ((joy_trg[ 0 ] & JOY_LEFT) && mapEffectSnowLevel > 0)
+			else if ((joy_trg[0] & JOY_LEFT) && mapEffectSnowLevel > 0)
 				mapEffectSnowLevel--;
 			sprintf_s(msg, "mapEffectSnowLevel = %d", mapEffectSnowLevel);
 			StockFontBuffer(240, 34, FONT_PRIO_FRONT, 0, msg, 0);
@@ -2229,12 +2229,12 @@ void moveProc(void)
 	}
 #endif
 
-	// ?????????????
+	// ?????????????
 	if (sendEnFlag == 0 && eventWarpSendFlag == 0 && eventEnemySendFlag == 0)
 		etcEventFlag = 0;
 
 
-	// ????即??????????
+	// ??????????????
 	// ??????????????
 	if (mouseLeftCrick)
 	{
@@ -2245,17 +2245,17 @@ void moveProc(void)
 		if (TalkToNPC())
 			mouseLeftCrick = FALSE;
 #endif
-//Terry add 2003/11/25
+		//Terry add 2003/11/25
 		if (g_bTradesystemOpen)
 			mouseLeftCrick = FALSE;
-//end
+		//end
 	}
-	// ?????阪???????
+	// ????????????
 	if (mouseRightCrick)
 	{
-		// ????阪?
+		// ?????
 		turnAround();
-		// ?????
+		// ?????
 		getItem();
 	}
 #ifdef _MOUSE_DBL_CLICK
@@ -2263,25 +2263,25 @@ void moveProc(void)
 	{
 	}
 #endif
-	// ?去！?︻?
-	// Μ??????????向???至??
+	// ??
+	// ??????????????
 	// ?????????????????
 
 	if ((partyModeFlag == 0 || (pc.status & CHR_STATUS_LEADER) != 0) && etcSendFlag == 0 && etcEventFlag == 0)
 	{
-		// ??????企????去??????
+		// ????????????????
 		if (mouseLeftPushTime >= MOVE_MODE_CHANGE_TIME)
 			mouseCursorMode = MOUSE_CURSOR_MODE_MOVE;
-		// ?去??????
+		// ???????
 		if (mouseCursorMode == MOUSE_CURSOR_MODE_MOVE)
 		{
-			// ????????二??????
+			// ??????????????
 			if (mouseLeftCrick)
 				mouseCursorMode = MOUSE_CURSOR_MODE_NORMAL;
 			else
-			// ???????ㄅ??去！???
+				// ????????????
 			{
-				// ???????
+				// ???????
 				if (befortime + MOVE_CLICK_WAIT_TIME <= TimeGetTime())
 				{
 					befortime = TimeGetTime();
@@ -2292,28 +2292,28 @@ void moveProc(void)
 			}
 		}
 		else
-		// 二??????
-		if (mouseLeftCrick)
-		{
-			// ???????ㄅ??去！???
-			// ???????
-			if (befortime + MOVE_CLICK_WAIT_TIME <= TimeGetTime())
+			// ??????
+			if (mouseLeftCrick)
 			{
-				befortime = TimeGetTime();
-				moveStackGx = mouseMapGx;
-				moveStackGy = mouseMapGy;
-				moveStackFlag = TRUE;
+				// ????????????
+				// ???????
+				if (befortime + MOVE_CLICK_WAIT_TIME <= TimeGetTime())
+				{
+					befortime = TimeGetTime();
+					moveStackGx = mouseMapGx;
+					moveStackGy = mouseMapGy;
+					moveStackFlag = TRUE;
+				}
 			}
-		}
 	}
 
-	// ?????吻??????
+	// ???????????
 	getPartyTbl();
-	// ??????????去??
+	// ????????????
 	if (partyModeFlag == 0 || (pc.status & CHR_STATUS_LEADER) != 0)
 		onceMoveProc();
 	else
-	// ??????????去??
+		// ????????????
 		partyMoveProc();
 #ifdef _MOVE_SCREEN
 	if (pc.bMoveScreenMode)
@@ -2342,11 +2342,11 @@ short _encountFlag = 0;
 short _warpEventFlag = 0;
 short _enemyEventFlag = 0;
 int  _enemyEventDir;
-short justGoalFlag = 0;	// ?????????????
+short justGoalFlag = 0;	// ?佋???????????
 #ifdef MAX_AIRPLANENUM
 short _partyTbl[MAX_AIRPLANENUM];
 #else
-short _partyTbl[MAX_PARTY];	// ??????????????
+short _partyTbl[MAX_PARTY];	// ?????⿳????????
 #endif
 
 void _etcEventCheck(void);
@@ -2369,10 +2369,10 @@ BOOL checkEmptyMapData(int, int, int);
 
 void updateMapArea(void)
 {
-	mapAreaX1 = nowGx+MAP_TILE_GRID_X1;
-	mapAreaY1 = nowGy+MAP_TILE_GRID_Y1;
-	mapAreaX2 = nowGx+MAP_TILE_GRID_X2;
-	mapAreaY2 = nowGy+MAP_TILE_GRID_Y2;
+	mapAreaX1 = nowGx + MAP_TILE_GRID_X1;
+	mapAreaY1 = nowGy + MAP_TILE_GRID_Y1;
+	mapAreaX2 = nowGx + MAP_TILE_GRID_X2;
+	mapAreaY2 = nowGy + MAP_TILE_GRID_Y2;
 
 	if (mapAreaX1 < 0)
 		mapAreaX1 = 0;
@@ -2383,21 +2383,21 @@ void updateMapArea(void)
 	if (mapAreaY2 > nowFloorGySize)
 		mapAreaY2 = nowFloorGySize;
 
-	mapAreaWidth  = mapAreaX2 - mapAreaX1;
+	mapAreaWidth = mapAreaX2 - mapAreaX1;
 	mapAreaHeight = mapAreaY2 - mapAreaY1;
 }
 
 void onceMoveProc(void)
 {
 	int dir;
-	// ??????卷?????﹩??╱???
+	// ??????????????䥺?
 	nowSpdRate = 1.0F;
-	// ????????去??????
+	// ??????????????
 	if (mapEmptyFlag)
 		return;
-	if (sendEnFlag == 0	&& eventWarpSendFlag == 0 && eventEnemySendFlag == 0)
+	if (sendEnFlag == 0 && eventWarpSendFlag == 0 && eventEnemySendFlag == 0)
 	{
-		//cary say 垀衄event腔硒俴ㄛ冞跤server
+		//cary say 所有event的执行，送给server
 		if (_execEtcEvent())
 			return;
 		if ((float)nextGx * GRID_SIZE == nowX && (float)nextGy * GRID_SIZE == nowY)
@@ -2431,16 +2431,16 @@ void onceMoveProc(void)
 			}
 		}
 	}
-	// ??????????兝????????去！?　叉??
+	// ?????????????????????
 	setPartyMovePoint();
-	// ???????????????????????
+	// ???????????????????????
 	justGoalFlag = 0;
-	// ????????去??????
+	// ??????????????
 	if (mapEmptyFlag)
 		return;
-	// ???去????去????????
+	// ???????????????
 	_mapMove();
-	// ???????去??
+	// ?????????
 	_partyMapMove();
 	updateMapArea();
 
@@ -2457,8 +2457,8 @@ void partyMoveProc(void)
 	int i;
 	ACTION *ptAct, *ptActNext;
 
-	// ????????????????去！?????　叉?
-	// ??????????????????火?　叉?????
+	// ??????????????????????
+	// ????????????????????????
 #ifdef MAX_AIRPLANENUM
 	for (i = 0; i < MAX_AIRPLANENUM; i++)
 #else
@@ -2472,13 +2472,13 @@ void partyMoveProc(void)
 			// ?????
 			if (party[_partyTbl[i]].id != pc.id)
 			{
-				// ?????????????去！?　叉??
+				// ????????????????
 				if ((float)ptAct->nextGx * GRID_SIZE == ptAct->mx && (float)ptAct->nextGy * GRID_SIZE == ptAct->my)
 				{
-					// ????????火?????　叉
+					// ?????????????
 					if (ptAct->bufCount > 0)
 					{
-						// ????????????﹩??
+						// ??????????????
 						if (i == 0)
 						{
 							nowSpdRate = 1.0F;
@@ -2506,10 +2506,10 @@ void partyMoveProc(void)
 			// ????
 			else
 			{
-				// ?????????????去！?　叉??
+				// ????????????????
 				if ((float)nextGx * GRID_SIZE == nowX && (float)nextGy * GRID_SIZE == nowY)
 				{
-					// ????????火?????　叉
+					// ?????????????
 					if (ptAct->bufCount > 0)
 					{
 						_setMapMovePoint(ptAct->bufGx[0], ptAct->bufGy[0]);
@@ -2530,7 +2530,7 @@ void partyMoveProc(void)
 		else
 			break;
 	}
-	// ?去??
+	// ???
 #ifdef	MAX_AIRPLANENUM
 	for (i = 0; i < MAX_AIRPLANENUM; i++)
 #else
@@ -2556,7 +2556,7 @@ void partyMoveProc(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?????去！?　叉
+// ??????
 void _setMapMovePoint(int _nextGx, int _nextGy)
 {
 	float dx, dy, len, dir1;
@@ -2564,7 +2564,7 @@ void _setMapMovePoint(int _nextGx, int _nextGy)
 
 	nextGx = _nextGx;
 	nextGy = _nextGy;
-	// ?去?????
+	// ??????
 	dx = nextGx * GRID_SIZE - nowX;
 	dy = nextGy * GRID_SIZE - nowY;
 	len = (float)sqrt((double)(dx * dx + dy * dy));
@@ -2580,7 +2580,7 @@ void _setMapMovePoint(int _nextGx, int _nextGy)
 	}
 	nowVx = dx * MOVE_SPEED;
 	nowVy = dy * MOVE_SPEED;
-	// PC??????　叉
+	// PC?????
 	if (dx != 0 || dy != 0)
 	{
 		dir1 = Atan(dx, dy) + 22.5F;
@@ -2589,13 +2589,13 @@ void _setMapMovePoint(int _nextGx, int _nextGy)
 		setPcDir(dir);
 		setPcWalkFlag();
 	}
-	// PC?????????ㄅ?可???
+	// PC?????????????
 	setPcPoint();
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ???????????去????
-// ??????????????火?　叉????
+// ???????????????
+// ???????????????????
 void setPcMovePointToChar(int gx, int gy)
 {
 	if (partyModeFlag != 0 && (pc.status & CHR_STATUS_LEADER) != 0)
@@ -2606,7 +2606,7 @@ void setPcMovePointToChar(int gx, int gy)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ???????????去???兝??????去???
+// ???????????????????????
 void setPartyMovePoint(void)
 {
 	int i;
@@ -2624,15 +2624,15 @@ void setPartyMovePoint(void)
 			{
 				ptAct = party[_partyTbl[i]].ptAct;
 
-				// ???????????
+				// ???????????
 				if ((float)ptAct->nextGx * GRID_SIZE == ptAct->mx && (float)ptAct->nextGy * GRID_SIZE == ptAct->my)
 				{
-					// ????????火?????　叉
+					// ?????????????
 					if (ptAct->bufCount > 0)
 					{
 						setCharMovePoint(ptAct, ptAct->bufGx[0], ptAct->bufGy[0]);
 						shiftBufCount(ptAct);
-						// ????????火?仔?
+						// ??????????
 #ifdef MAX_AIRPLANENUM
 						if (_partyTbl[i + 1] >= 0 && (i + 1) < MAX_AIRPLANENUM)
 #else
@@ -2652,7 +2652,7 @@ void setPartyMovePoint(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?去??
+// ???
 void _mapMove(void)
 {
 	float nGx, nGy, vx, vy;
@@ -2664,19 +2664,19 @@ void _mapMove(void)
 
 		vx = nowVx * nowSpdRate;
 		vy = nowVy * nowSpdRate;
-		// ??????????去??????????
+		// ??佋??佋???????????佋???
 		if (pointLen2(nowX, nowY, nGx, nGy) <= vx * vx + vy * vy)
 		{
-			// ???????????????
+			// ?佋?????????????
 			nowX = nGx;
 			nowY = nGy;
 			nowVx = 0;
 			nowVy = 0;
-			justGoalFlag = 1;	// ????????
+			justGoalFlag = 1;	// ???佋????
 		}
 		else
 		{
-			// ?去
+			// ?
 			nowX += vx;
 			nowY += vy;
 		}
@@ -2705,7 +2705,7 @@ void _mapMove(void)
 		nowGx = (int)(nowX / GRID_SIZE);
 		nowGy = (int)(nowY / GRID_SIZE);
 	}
-	// PC?????????ㄅ?可???
+	// PC?????????????
 	setPcPoint();
 }
 
@@ -2715,7 +2715,7 @@ void _partyMapMove(void)
 {
 	int i;
 
-	// ???????????去???兝??????去??
+	// ??????????????????????
 	if (partyModeFlag != 0 && (pc.status & CHR_STATUS_LEADER) != 0)
 	{
 #ifdef MAX_AIRPLANENUM
@@ -2733,7 +2733,7 @@ void _partyMapMove(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ??????????
+// ?????⿳????
 void getPartyTbl(void)
 {
 	int i, j;
@@ -2744,13 +2744,13 @@ void getPartyTbl(void)
 		// ???????
 		for (i = 0; i < MAX_AIRPLANENUM; i++)
 			_partyTbl[i] = -1;
-		// ?????吻???????
+		// ????????????
 		for (i = 0, j = 0; i < MAX_AIRPLANENUM; i++)
 #else
 		// ???????
 		for (i = 0; i < MAX_PARTY; i++)
 			_partyTbl[i] = -1;
-		// ?????吻???????
+		// ????????????
 		for (i = 0, j = 0; i < MAX_PARTY; i++)
 #endif
 		{
@@ -2764,7 +2764,7 @@ void getPartyTbl(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ???????????
+// ???????????
 enum
 {
 	etcEventMode_None,
@@ -2820,7 +2820,7 @@ void _etcEventCheck(void)
 		}
 		else if (_checkEncount())
 		{
-			//cary 導唳郣菩
+			//cary 旧版遇敌
 			if (!bNewServer)
 			{
 				_etcEventFlag = TRUE;
@@ -2854,18 +2854,18 @@ BOOL _execEtcEvent(void)
 		{
 			switch (_etcEventMode)
 			{
-				case etcEventMode_Warp:
-					_sendWarpEvent();
-					break;
-				case etcEventMode_LocalEncount:
-					//cary 導唳郣菩
-					if (!bNewServer)
-						_sendEncount();
-					//end test
-					break;
-				case etcEventMode_Enemy:
-					_sendEnemyEvent();
-					break;
+			case etcEventMode_Warp:
+				_sendWarpEvent();
+				break;
+			case etcEventMode_LocalEncount:
+				//cary 旧版遇敌
+				if (!bNewServer)
+					_sendEncount();
+				//end test
+				break;
+			case etcEventMode_Enemy:
+				_sendEnemyEvent();
+				break;
 			}
 			_etcEventFlag = FALSE;
 			_etcEventStep = 0;
@@ -2958,12 +2958,12 @@ BOOL _checkWarpEvent(int gx, int gy)
 
 	x = gx - mapAreaX1;
 	y = gy - mapAreaY1;
-	timeZoneNo = getLSTime (&SaTime);
+	timeZoneNo = getLSTime(&SaTime);
 	_eventWarpNo = (event[y * mapAreaWidth + x] & 0x0fff);
 	// ???
 	if (_eventWarpNo == EVENT_WARP)
 		return TRUE;
-	// ??????
+	// ?????
 	else if (_eventWarpNo == EVENT_WARP_MONING && timeZoneNo == LS_MORNING)
 		return TRUE;
 	// ??????
@@ -2987,18 +2987,18 @@ void _sendWarpEvent(void)
 	else
 		old_lssproto_EV_send(sockfd, _eventWarpNo, eventId, nowGx, nowGy, -1);
 	eventId++;
-	wnCloseFlag = 1;	// 吝??????????
+	wnCloseFlag = 1;	// ?????????
 #ifdef __AI
 	void AI_CloseWnd();
-//			AI_CloseWnd();
+	//			AI_CloseWnd();
 #endif
-	closeEtcSwitch();	// ?　叉????????
-	closeCharActionAnimeChange();	// ??????????????
+	closeEtcSwitch();	// ????????
+	closeCharActionAnimeChange();	// ?????????????
 	closeJoinChannelWN();
-	// ?????
+	// ?????
 
 	SubProcNo = 200;
-	// ?????????
+	// ????䴘???
 	warpEffectProc();
 	warpEffectFlag = TRUE;
 	floorChangeFlag = TRUE;
@@ -3008,7 +3008,7 @@ void _sendWarpEvent(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?叉????????????
+// ?????????????
 //
 // ????????
 BOOL _checkEnemyEvent(int gx, int gy)
@@ -3033,9 +3033,9 @@ void _sendEnemyEvent(void)
 	etcEventFlag = 1;
 	eventEnemySendId = eventId;
 	if (bNewServer)
-		lssproto_EV_send(sockfd, EVENT_ENEMY, eventId,	nowGx, nowGy, _enemyEventDir);
+		lssproto_EV_send(sockfd, EVENT_ENEMY, eventId, nowGx, nowGy, _enemyEventDir);
 	else
-		old_lssproto_EV_send(sockfd, EVENT_ENEMY, eventId,	nowGx, nowGy, _enemyEventDir);
+		old_lssproto_EV_send(sockfd, EVENT_ENEMY, eventId, nowGx, nowGy, _enemyEventDir);
 	eventId++;
 	wnCloseFlag = 1;
 	eventEnemyFlag = 1;
@@ -3044,11 +3044,11 @@ void _sendEnemyEvent(void)
 void _checkEmptyMap(void)
 {
 	int dir, i, j, gx, gy;
-	
+
 	i = 0;
 	gx = nowGx;
 	gy = nowGy;
-	
+
 	dir = moveRoute2[i];
 	if (checkEmptyMapData(gx, gy, dir))
 	{
@@ -3069,7 +3069,7 @@ void _checkEmptyMap(void)
 
 BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 {
-	// ?????ㄅ???11????????????????TRUE?刺?
+	// ????????11???????????䥺???TRUE??
 	int i, gx, gy, tx, ty, len, egx, egy;
 	BOOL flag = FALSE;
 
@@ -3090,7 +3090,7 @@ BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 		{
 			if ((0 <= gx && gx < nowFloorGxSize) && (0 <= gy && gy < nowFloorGySize))
 			{
-				if ((event[ty*mapAreaWidth+tx] & MAP_READ_FLAG) == 0)
+				if ((event[ty*mapAreaWidth + tx] & MAP_READ_FLAG) == 0)
 				{
 					getMapAreaX1[getMapAreaCnt] = gx - 1;
 					getMapAreaY1[getMapAreaCnt] = gy - 1;
@@ -3119,7 +3119,7 @@ BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 		{
 			if ((0 <= gx && gx < nowFloorGxSize) && (0 <= gy && gy < nowFloorGySize))
 			{
-				if ((event[ty*mapAreaWidth+tx] & MAP_READ_FLAG) == 0)
+				if ((event[ty*mapAreaWidth + tx] & MAP_READ_FLAG) == 0)
 				{
 					getMapAreaX1[getMapAreaCnt] = gx - 1;
 					getMapAreaY1[getMapAreaCnt] = gy - 1;
@@ -3148,7 +3148,7 @@ BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 		{
 			if ((0 <= gx && gx < nowFloorGxSize) && (0 <= gy && gy < nowFloorGySize))
 			{
-				if ((event[ty*mapAreaWidth+tx] & MAP_READ_FLAG) == 0)
+				if ((event[ty*mapAreaWidth + tx] & MAP_READ_FLAG) == 0)
 				{
 					getMapAreaX1[getMapAreaCnt] = gx;
 					getMapAreaY1[getMapAreaCnt] = gy - 1;
@@ -3177,7 +3177,7 @@ BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 		{
 			if ((0 <= gx && gx < nowFloorGxSize) && (0 <= gy && gy < nowFloorGySize))
 			{
-				if ((event[ty*mapAreaWidth+tx] & MAP_READ_FLAG) == 0)
+				if ((event[ty*mapAreaWidth + tx] & MAP_READ_FLAG) == 0)
 				{
 					getMapAreaX1[getMapAreaCnt] = gx - 1;
 					getMapAreaY1[getMapAreaCnt] = gy;
@@ -3197,27 +3197,27 @@ BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 	return flag;
 }
 
-// ?????no吻??????(x,y)??去?
-// ???????〈????
+// ?????no??????(x,y)???
+// ???????????
 void goFrontPartyCharacter(int no, int x, int y)
 {
 	int i, ox, oy;
 	ACTION *ptAct;
-	if(no <=0) return;
-	// ????????????????????
+	if (no <= 0) return;
+	// ????⿳?䥺?????????????
 	if (party[0].ptAct == NULL)
 		return;
-	// ?????去?????
+	// ??????????
 	ptAct = party[0].ptAct;
 	if (ptAct->bufCount > 0 || (float)ptAct->nextGx*GRID_SIZE != ptAct->mx || (float)ptAct->nextGy*GRID_SIZE != ptAct->my)
 		return;
-	// 兌??????〈?????????????
-	for (i = no-1; i >= 0; i--)
+	// ??????????????????
+	for (i = no - 1; i >= 0; i--)
 	{
 #ifdef MAX_AIRPLANENUM
-		if (i >= 0 && i < MAX_AIRPLANENUM){
+		if (i >= 0 && i < MAX_AIRPLANENUM) {
 #else
-		if(i>=0 && i < MAX_PARTY ){
+		if (i >= 0 && i < MAX_PARTY) {
 #endif
 			if (party[i].useFlag && party[i].ptAct != NULL)
 			{
@@ -3227,7 +3227,7 @@ void goFrontPartyCharacter(int no, int x, int y)
 				break;
 			}
 		}
-	}
+		}
 	if (i >= 0)
 		return;
 	nowSpdRate = 1.0F;
@@ -3238,7 +3238,7 @@ void goFrontPartyCharacter(int no, int x, int y)
 	while (i < MAX_PARTY)
 #endif
 	{
-		if(i>=0){
+		if (i >= 0) {
 			if (party[i].useFlag && party[i].ptAct != NULL)
 			{
 				ptAct = party[i].ptAct;
@@ -3251,9 +3251,9 @@ void goFrontPartyCharacter(int no, int x, int y)
 		}
 		i++;
 	}
-}
+	}
 
-// ?????去！?　叉
+// ??????
 void setMapMovePoint(int _nextGx, int _nextGy)
 {
 	float dx, dy, len, dir1, rate = 1.0F;
@@ -3261,7 +3261,7 @@ void setMapMovePoint(int _nextGx, int _nextGy)
 
 	nextGx = _nextGx;
 	nextGy = _nextGy;
-	// ?去?????
+	// ??????
 	dx = nextGx * GRID_SIZE - nowX;
 	dy = nextGy * GRID_SIZE - nowY;
 	len = (float)sqrt((double)(dx * dx + dy * dy));
@@ -3278,7 +3278,7 @@ void setMapMovePoint(int _nextGx, int _nextGy)
 	nowVx = dx * MOVE_SPEED * rate;
 	nowVy = dy * MOVE_SPEED * rate;
 
-	// PC??????　叉
+	// PC?????
 	if (dx != 0 || dy != 0)
 	{
 		dir1 = Atan(dx, dy) + 22.5F;
@@ -3287,11 +3287,11 @@ void setMapMovePoint(int _nextGx, int _nextGy)
 		setPcDir(dir);
 		setPcWalkFlag();
 	}
-	// PC?????????ㄅ?可???
+	// PC?????????????
 	setPcPoint();
 }
 
-// ?????去！?　叉??﹩?????
+// ?????????????
 void setMapMovePoint2(int _nextGx, int _nextGy)
 {
 	float dx, dy, len, dir1, rate = 1.0F;
@@ -3309,7 +3309,7 @@ void setMapMovePoint2(int _nextGx, int _nextGy)
 
 	nextGx = _nextGx;
 	nextGy = _nextGy;
-	// ?去?????
+	// ??????
 	dx = nextGx * GRID_SIZE - nowX;
 	dy = nextGy * GRID_SIZE - nowY;
 	len = (float)sqrt((double)(dx * dx + dy * dy));
@@ -3325,7 +3325,7 @@ void setMapMovePoint2(int _nextGx, int _nextGy)
 	}
 	nowVx = dx * MOVE_SPEED * rate;
 	nowVy = dy * MOVE_SPEED * rate;
-	// PC??????　叉
+	// PC?????
 	if (dx != 0 || dy != 0)
 	{
 		dir1 = Atan(dx, dy) + 22.5F;
@@ -3334,19 +3334,19 @@ void setMapMovePoint2(int _nextGx, int _nextGy)
 		setPcDir(dir);
 		setPcWalkFlag();
 	}
-	// PC?????????ㄅ?可???
+	// PC?????????????
 	setPcPoint();
 }
 
-// ????去??
+// ??????
 void mapMove2(void)
 {
 	float dx, dy;
 
-	// ?去???
+	// ????
 	if (nowVx != 0 || nowVy != 0)
 	{
-		// ???????????????
+		// ?佋?????????????
 		dx = (float)nextGx * GRID_SIZE;
 		dy = (float)nextGy * GRID_SIZE;
 		if (pointLen2(nowX, nowY, dx, dy) <= nowVx * nowVx + nowVy * nowVy)
@@ -3356,7 +3356,7 @@ void mapMove2(void)
 			nowVx = 0;
 			nowVy = 0;
 		}
-		// ?去
+		// ?
 		else
 		{
 			nowX += nowVx;
@@ -3377,12 +3377,12 @@ void mapMove2(void)
 
 	nowGx = (int)(nowX / GRID_SIZE);
 	nowGy = (int)(nowY / GRID_SIZE);
-	// PC?????????ㄅ?可???
+	// PC?????????????
 	setPcPoint();
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ??????阪??
+// ????????
 //
 void turnAround(void)
 {
@@ -3394,13 +3394,13 @@ void turnAround(void)
 	// PC?????????????
 	if (pc.ptAct == NULL)
 		return;
-	// ?去?代????????
+	// ??????????
 	if (nowVx != 0 || nowVy != 0)
 		return;
 	// ???????????????????
 	if (etcSendFlag != 0 || etcEventFlag != 0)
 		return;
-	// ?????????????
+	// ???????????
 #ifdef _MOVE_SCREEN
 	if (pc.bMoveScreenMode)
 	{
@@ -3416,19 +3416,19 @@ void turnAround(void)
 	tmpDir = Atan(tmpX, tmpY) + 22.5F;
 	AdjustDir(&tmpDir);
 	dir = (int)(tmpDir / 45);
-	// ???可????????
+	// ???????????
 	if (pc.ptAct->anim_ang == dir)
 		return;
-	// ??
-	if (turnSendTime+FIELD_BTN_PUSH_WAIT < TimeGetTime())
+	// ??
+	if (turnSendTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())
 	{
 		setPcDir(dir);
 		dir2[0] = cnvServDir(dir, 1);
 		dir2[1] = '\0';
 		walkSendForServer(nowGx, nowGy, dir2);
 		turnSendTime = TimeGetTime();
-		extern int 衵瑩馴僻;
-		if(衵瑩馴僻){
+		extern int 右键攻击;
+		if (右键攻击) {
 			lssproto_AC_send(sockfd, nowGx, nowGy, 0);
 			setPcAction(0);
 
@@ -3443,22 +3443,22 @@ void turnAround2(int dir)
 	char dir2[2];
 	static unsigned int turnSendTime = 0;
 
-	// ???????????????
+	// ??????????????
 	if (dir < 0 || 7 < dir)
 		return;
 	// PC?????????????
 	if (pc.ptAct == NULL)
 		return;
-	// ?去?代????????
+	// ??????????
 	if (nowVx != 0 || nowVy != 0)
 		return;
 	// ???????????????????
 	if (etcSendFlag != 0 || etcEventFlag != 0)
 		return;
-	// ???可????????
+	// ???????????
 	if (pc.ptAct->anim_ang == dir)
 		return;
-	// ??
+	// ??
 	if (turnSendTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())
 	{
 		setPcDir(dir);
@@ -3470,57 +3470,57 @@ void turnAround2(int dir)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?去?????
+// ??????
 //
-// ????dir???1卷?去?????????台??
+// ??佋??dir??1????????????
 void getRouteData(int dir, int *x, int *y)
 {
 	switch (dir)
 	{
-		case 0:
-			*x = -1;
-			*y = 1;
-			break;
+	case 0:
+		*x = -1;
+		*y = 1;
+		break;
 
-		case 1:
-			*x = -1;
-			*y = 0;
-			break;
+	case 1:
+		*x = -1;
+		*y = 0;
+		break;
 
-		case 2:
-			*x = -1;
-			*y = -1;
-			break;
+	case 2:
+		*x = -1;
+		*y = -1;
+		break;
 
-		case 3:
-			*x = 0;
-			*y = -1;
-			break;
+	case 3:
+		*x = 0;
+		*y = -1;
+		break;
 
-		case 4:
-			*x = 1;
-			*y = -1;
-			break;
+	case 4:
+		*x = 1;
+		*y = -1;
+		break;
 
-		case 5:
-			*x = 1;
-			*y = 0;
-			break;
+	case 5:
+		*x = 1;
+		*y = 0;
+		break;
 
-		case 6:
-			*x = 1;
-			*y = 1;
-			break;
+	case 6:
+		*x = 1;
+		*y = 1;
+		break;
 
-		case 7:
-			*x = 0;
-			*y = 1;
-			break;
+	case 7:
+		*x = 0;
+		*y = 1;
+		break;
 
-		default:
-			*x = 0;
-			*y = 0;
-			break;
+	default:
+		*x = 0;
+		*y = 0;
+		break;
 	}
 }
 
@@ -3529,7 +3529,7 @@ int getDirData(int gx1, int gy1, int gx2, int gy2)
 {
 	float tmpDir, tmpX, tmpY;
 
-	// ?????????
+	// ?佋?????
 	tmpX = (float)(gx2 - gx1);
 	tmpY = (float)(gy2 - gy1);
 	tmpDir = Atan(tmpX, tmpY) + 22.5F;
@@ -3538,8 +3538,8 @@ int getDirData(int gx1, int gy1, int gx2, int gy2)
 	return (int)(tmpDir / 45);
 }
 
-// (gx1,gy2)?????(gx2,gy2)?????????????
-// ??πㄩTRUE ... ?????
+// (gx1,gy2)??佋??(gx2,gy2)????????????
+// ??：TRUE ... ?????
 BOOL checkGridAround(int gx1, int gy1, int gx2, int gy2)
 {
 	if (((gx1 == gx2) && ABS(gy2 - gy1) == 1) || (ABS(gx2 - gx1) == 1 && (gy1 == gy2)) || (ABS(gx2 - gx1) == 1 && ABS(gy2 - gy1) == 1))
@@ -3598,9 +3598,9 @@ void getRouteMap(void)
 			if (dir != targetDir && dir != checkDir1 && dir != checkDir2)
 				continue;
 			getRouteData(dir, &dx, &dy);
-			if (checkHitMap(nowx+dx, nowy+dy))
+			if (checkHitMap(nowx + dx, nowy + dy))
 			{
-				if ((nowx+dx) == mx && (nowy+dy) == my)
+				if ((nowx + dx) == mx && (nowy + dy) == my)
 				{
 					if ((dir % 2) == 0)
 						continue;
@@ -3685,7 +3685,7 @@ void getRouteMap(void)
 	dy = 0;
 	if (my - nowy > 0)
 		dy = 1;
- 	else if (my - nowy < 0)
+	else if (my - nowy < 0)
 		dy = -1;
 	if (dy != 0)
 	{
@@ -3763,7 +3763,7 @@ char cnvServDir(int dir, int mode)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ????????牙?！???叉?
+// ?????????????
 // ???
 void initCharPartsPrio(void)
 {
@@ -3779,24 +3779,24 @@ void setPartsPrio(int graNo, int x, int y, int dx, int dy, float mx, float my, i
 	CHAR_PARTS_PRIORITY *ptc, *prePtc;
 	BOOL flag;
 
-	// ???????????
+	// ?????䥺?????
 	if (charPrioCnt >= MAX_CHAR_PRIO_BUF)
 		return;
 
 	// ?????????????
 	charPrioBuf[charPrioCnt].graNo = graNo;
-	charPrioBuf[charPrioCnt].x     = x;
-	charPrioBuf[charPrioCnt].y     = y;
-	charPrioBuf[charPrioCnt].dx    = dx;
-	charPrioBuf[charPrioCnt].dy    = dy;
-	charPrioBuf[charPrioCnt].mx    = mx;
-	charPrioBuf[charPrioCnt].my    = my;
+	charPrioBuf[charPrioCnt].x = x;
+	charPrioBuf[charPrioCnt].y = y;
+	charPrioBuf[charPrioCnt].dx = dx;
+	charPrioBuf[charPrioCnt].dy = dy;
+	charPrioBuf[charPrioCnt].mx = mx;
+	charPrioBuf[charPrioCnt].my = my;
 	if (dispPrio == 0)
 		charPrioBuf[charPrioCnt].type = CHAR_PARTS_PRIO_TYPE_ANI;
 	else
-		charPrioBuf[charPrioCnt].type  = CHAR_PARTS_PRIO_TYPE_PARTS;
-	charPrioBuf[charPrioCnt].pre   = NULL;
-	charPrioBuf[charPrioCnt].next  = NULL;
+		charPrioBuf[charPrioCnt].type = CHAR_PARTS_PRIO_TYPE_PARTS;
+	charPrioBuf[charPrioCnt].pre = NULL;
+	charPrioBuf[charPrioCnt].next = NULL;
 	charPrioBuf[charPrioCnt].depth = y;
 #ifdef _SFUMATO
 	charPrioBuf[charPrioCnt].sfumato = 0;
@@ -3805,7 +3805,7 @@ void setPartsPrio(int graNo, int x, int y, int dx, int dy, float mx, float my, i
 		addCharPartsPrio(&charPrioBufTop, &charPrioBuf[charPrioCnt]);
 	else
 	{
-		// ???仕??????????
+		// ?????????????
 		flag = FALSE;
 		ptc = charPrioBufTop.next;
 		for (i = 0; i < charPrioCnt && ptc != NULL; i++, ptc = ptc->next)
@@ -3838,20 +3838,20 @@ void setCharPrio(int graNo, int x, int y, int dx, int dy, float mx, float my)
 	CHAR_PARTS_PRIORITY *ptc, *prePtc;
 	BOOL flag;
 
-	// ???????????
+	// ?????䥺?????
 	if (charPrioCnt >= MAX_CHAR_PRIO_BUF)
 		return;
 	// ?????????????
 	charPrioBuf[charPrioCnt].graNo = graNo;
-	charPrioBuf[charPrioCnt].x     = x;
-	charPrioBuf[charPrioCnt].y     = y;
-	charPrioBuf[charPrioCnt].dx    = dx;
-	charPrioBuf[charPrioCnt].dy    = dy;
-	charPrioBuf[charPrioCnt].mx    = mx;
-	charPrioBuf[charPrioCnt].my    = my;
-	charPrioBuf[charPrioCnt].type  = CHAR_PARTS_PRIO_TYPE_CHAR;
-	charPrioBuf[charPrioCnt].pre   = NULL;
-	charPrioBuf[charPrioCnt].next  = NULL;
+	charPrioBuf[charPrioCnt].x = x;
+	charPrioBuf[charPrioCnt].y = y;
+	charPrioBuf[charPrioCnt].dx = dx;
+	charPrioBuf[charPrioCnt].dy = dy;
+	charPrioBuf[charPrioCnt].mx = mx;
+	charPrioBuf[charPrioCnt].my = my;
+	charPrioBuf[charPrioCnt].type = CHAR_PARTS_PRIO_TYPE_CHAR;
+	charPrioBuf[charPrioCnt].pre = NULL;
+	charPrioBuf[charPrioCnt].next = NULL;
 	charPrioBuf[charPrioCnt].depth = y;
 
 #ifdef _SFUMATO
@@ -3862,7 +3862,7 @@ void setCharPrio(int graNo, int x, int y, int dx, int dy, float mx, float my)
 		addCharPartsPrio(&charPrioBufTop, &charPrioBuf[charPrioCnt]);
 	else
 	{
-		// ???仕??????????
+		// ?????????????
 		flag = FALSE;
 		ptc = charPrioBufTop.next;
 		for (i = 0; i < charPrioCnt && ptc != NULL; i++, ptc = ptc->next)
@@ -3881,18 +3881,18 @@ void setCharPrio(int graNo, int x, int y, int dx, int dy, float mx, float my)
 	charPrioCnt++;
 }
 
-// ????????丙??！??????
-//   ??πㄩ?????????〈?? TRUE
+// ????????????????
+//   ??：??????????? TRUE
 BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 {
 	short hit, prioType;
 	S2 w, h;
 
-	// 丙??！???叉??????
+	// ???????????
 	realGetPrioType(ptp->graNo, &prioType);
-	// ???刪叉???
+	// ?????䥺
 	realGetHitFlag(ptp->graNo, &hit);
-	// 卷??岌▍? prioType == 3 ??????
+	// ??? prioType == 3 ??????
 	if (hit != 0 && prioType == 3)
 		return FALSE;
 	// ????
@@ -3908,11 +3908,11 @@ BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 	}
 #if 0
 	// ????
-	//  ????可??????
+	//  ??????????
 	else if (prioType == 2)
 	{
-		// ??　叉??????????
-		if ((ptc->mx <= ptp->mx && ptc->my >= ptp->my) || (ptc->mx < ptp->mx-GRID_SIZE || ptc->my > ptp->my+GRID_SIZE))
+		// ????????????
+		if ((ptc->mx <= ptp->mx && ptc->my >= ptp->my) || (ptc->mx < ptp->mx - GRID_SIZE || ptc->my > ptp->my + GRID_SIZE))
 			return FALSE;
 		else
 			return TRUE;
@@ -3927,13 +3927,13 @@ BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 		realGetHitPoints(ptp->graNo, &w, &h);
 		if (ptc->x > ptp->x)
 		{
-			// PC??岌??￥???
+			// PC???????
 			if (ptp->y - (w - 1) * SURFACE_HEIGHT / 2 <= ptc->y)
 				return FALSE;
 		}
 		else if (ptc->x < ptp->x)
 		{
-			// PC??岌??￥???
+			// PC???????
 			if (ptp->y - (h - 1) * SURFACE_HEIGHT / 2 <= ptc->y)
 				return FALSE;
 		}
@@ -3947,13 +3947,13 @@ BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 	realGetHitPoints(ptp->graNo, &w, &h);
 	if (ptc->x >= ptp->x)
 	{
-		// PC??岌??￥???
+		// PC???????
 		if (ptp->y - (w - 1) * SURFACE_HEIGHT / 2 < ptc->y)
 			return FALSE;
 	}
 	else
 	{
-		// PC??岌??￥???
+		// PC???????
 		if (ptp->y - (h - 1) * SURFACE_HEIGHT / 2 < ptc->y)
 			return FALSE;
 	}
@@ -3962,7 +3962,7 @@ BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 	return TRUE;
 }
 
-// pt1???pt2??向??
+// pt1???pt2???
 void insertCharPartsPrio(CHAR_PARTS_PRIORITY *pt1, CHAR_PARTS_PRIORITY *pt2)
 {
 	if (pt1 == NULL || pt2 == NULL)
@@ -3974,7 +3974,7 @@ void insertCharPartsPrio(CHAR_PARTS_PRIORITY *pt1, CHAR_PARTS_PRIORITY *pt2)
 	pt1->pre = pt2;
 }
 
-// pt1????p2?乃???
+// pt1????p2????
 void addCharPartsPrio(CHAR_PARTS_PRIORITY *pt1, CHAR_PARTS_PRIORITY *pt2)
 {
 	if (pt1 == NULL || pt2 == NULL)
@@ -3992,7 +3992,7 @@ void delCharPartsPrio(CHAR_PARTS_PRIORITY *pt1)
 {
 	if (pt1 == NULL)
 		return;
-	// ！卡????????????
+	// ????????????
 	if (pt1->pre == NULL)
 		return;
 	(pt1->pre)->next = pt1->next;
@@ -4000,7 +4000,7 @@ void delCharPartsPrio(CHAR_PARTS_PRIORITY *pt1)
 		(pt1->next)->pre = pt1->pre;
 }
 
-// ????牙??
+// ??????
 void stockCharParts(void)
 {
 	int i;
@@ -4012,13 +4012,14 @@ void stockCharParts(void)
 
 	for (i = 0; i < charPrioCnt && pt != NULL; i++, pt = pt->next)
 	{
-		if (pt->type == CHAR_PARTS_PRIO_TYPE_ANI){
+		if (pt->type == CHAR_PARTS_PRIO_TYPE_ANI) {
 #ifdef _SFUMATO
 			StockDispBuffer2(pt->x + pt->dx, pt->y + pt->dy, 0, pt->graNo, 0, pt->sfumato);
 #else
 			StockDispBuffer2(pt->x + pt->dx, pt->y + pt->dy, 0, pt->graNo, 0);
 #endif
-		}else{
+		}
+		else {
 #ifdef _SFUMATO
 			StockDispBuffer2(pt->x + pt->dx, pt->y + pt->dy, DISP_PRIO_PARTS, pt->graNo, 0, pt->sfumato);
 #else
@@ -4036,13 +4037,13 @@ void stockCharParts(void)
 ///////////////////////////////////////////////////////////////////////////
 // ??????
 //
-#if 0	// ????????岌??????刪叉?????
+#if 0	// ???????????????????
 //
-// NPC?????????????
+// NPC?????????????
 // ???????????????????
 //
-//   ??πㄩTRUE  ... ????伶
-//           FALSE ... ????
+//   ??：TRUE  ... ????
+//           FALSE ... ??䥺?
 BOOL checkNpcEvent(int gx, int gy, int dx, int dy)
 {
 	int x, y, ev;
@@ -4051,10 +4052,10 @@ BOOL checkNpcEvent(int gx, int gy, int dx, int dy)
 	y = gy - mapAreaY1;
 
 	ev = (event[(y + dy) * mapAreaWidth + (x + dx)] & 0x0fff);
-	// ?去！?NPC
+	// ??NPC
 	if (ev == EVENT_NPC)
 	{
-		// ?去???
+		// ????
 		resetMap();
 		return TRUE;
 	}
@@ -4088,7 +4089,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 
 	memset(autoMappingBuf, 0, sizeof(autoMappingBuf));
 	sprintf(filename, "map\\%d.dat", floor);
-	if ((fp = fopen(filename, "rb"))==NULL)
+	if ((fp = fopen(filename, "rb")) == NULL)
 	{
 		_mkdir("map");
 		if ((fp = fopen(filename, "rb")) == NULL)
@@ -4099,7 +4100,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	memset(parts, 0, sizeof(parts));
 	memset(event, 0, sizeof(event));
 	fseek(fp, 0, SEEK_SET);
-	fread(&fWidth,  sizeof(int), 1, fp);
+	fread(&fWidth, sizeof(int), 1, fp);
 	fread(&fHeight, sizeof(int), 1, fp);
 	x1 = gx - (AUTO_MAPPING_W >> 1);
 	y1 = gy - (AUTO_MAPPING_H >> 1);
@@ -4136,7 +4137,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&tile[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
 
@@ -4147,7 +4148,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&parts[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
 	fOffset += sizeof(short) * (fWidth * fHeight);
@@ -4157,29 +4158,29 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	{
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
 		fread(&event[len2], sizeof(short) * width, 1, fp);
-		len  += fWidth;
+		len += fWidth;
 		len2 += mWidth;
 	}
-	fclose (fp);
-	// ???　叉
+	fclose(fp);
+	// ???
 	for (i = 0; i < AUTO_MAPPING_H; i++)
 	{
 		for (j = 0; j < AUTO_MAPPING_W; j++)
 		{
-			// ?????????????????牙???
+			// ??????䥺?????????????
 			if (event[i * AUTO_MAPPING_W + j] & MAP_SEE_FLAG)
 			{
 				autoMappingBuf[i][j] = autoMapColorTbl[tile[i * AUTO_MAPPING_W + j]];
 			}
 		}
 	}
-	// ???　叉
+	// ???
 	for (i = 0; i < AUTO_MAPPING_H; i++)
 	{
 		for (j = 0; j < AUTO_MAPPING_W; j++)
 		{
-			// ?????????????????牙???
-			if (event[i*AUTO_MAPPING_W+j] & MAP_SEE_FLAG)
+			// ??????䥺?????????????
+			if (event[i*AUTO_MAPPING_W + j] & MAP_SEE_FLAG)
 			{
 				index = autoMapColorTbl[parts[i * AUTO_MAPPING_W + j]];
 				if (index != 0)
@@ -4189,9 +4190,9 @@ BOOL createAutoMap(int floor, int gx, int gy)
 					int k, l;
 
 					realGetNo(parts[i * AUTO_MAPPING_W + j], &bmpNo);
-					// ???刪叉???
+					// ?????䥺
 					realGetHitFlag(bmpNo, &hit);
-					// ???刪叉?????????　叉
+					// ????????????
 					if (hit == 0)
 					{
 						realGetHitPoints(bmpNo, &hitX, &hitY);
@@ -4215,7 +4216,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 }
 
 /*
-// 卷????????????
+// ???????????
 void readAutoMapSeeFlag(void)
 {
 	FILE *fp;
@@ -4230,7 +4231,7 @@ void readAutoMapSeeFlag(void)
 	int x1, y1, x2, y2;
 
 
-	// ??????????
+	// ???????䦶?
 	sprintf_s(filename, "map\\%d.dat", nowFloor);
 
 	// ????????
@@ -4294,7 +4295,7 @@ void readAutoMapSeeFlag(void)
 
 	fclose (fp);
 
-	// 二??????????????????牙????????
+	// ??????????????????????????
 	for (i = 0; i < AUTO_MAPPING_SEE_H; i++)
 	{
 		for (j = 0; j < AUTO_MAPPING_SEE_W; j++)
@@ -4311,7 +4312,7 @@ void readAutoMapSeeFlag(void)
 }
 
 
-// 卷????????????
+// ????????????
 void writeAutoMapSeeFlag(void)
 {
 	FILE *fp;
@@ -4326,13 +4327,13 @@ void writeAutoMapSeeFlag(void)
 	int x1, y1, x2, y2;
 
 
-	// ???????????????????
+	// ?????????䥺?????????
 	if (!autoMapSeeFlag)
 		return;
 
 	autoMapSeeFlag = FALSE;
 
-	// ??????????
+	// ???????䦶?
 	sprintf_s(filename, "map\\%d.dat", autoMapSeeFloor);
 
 	// ????????
@@ -4417,11 +4418,11 @@ void initMapCache(void)
 	mapCacheUse = 0;
 }
 
-// ?去！????????????????????
+// ?????????????????????
 BOOL checkMapCache(int gx, int gy, short *buf, int size, int floor, int gxSize, int gySize)
 {
-	#define MAP_CACHE_RANGE		14
-	#define MAP_CACHE_RANGE2	13
+#define MAP_CACHE_RANGE		14
+#define MAP_CACHE_RANGE2	13
 	int x1[2], y1[2], x2[2], y2[2];
 	int tx1[2] = { 0xffff, 0xffff };
 	int ty1[2] = { 0xffff, 0xffff };
@@ -4430,7 +4431,7 @@ BOOL checkMapCache(int gx, int gy, short *buf, int size, int floor, int gxSize, 
 	int dir, dx, dy, cnt, i, mask;
 	unsigned char bit, tbit;
 
-	// ?去????╱????????吳?????
+	// ??????????????????
 	tbit = 0;
 	for (cnt = 0; cnt < size; cnt++)
 	{
@@ -4496,7 +4497,7 @@ BOOL checkMapCache(int gx, int gy, short *buf, int size, int floor, int gxSize, 
 		gx += dx;
 		gy += dy;
 	}
-	// ????吳??????????????
+	// ?????????????????
 	bit = 0;
 	for (i = 0, mask = 1; i < 2; i++, mask <<= 1)
 	{
@@ -4523,8 +4524,8 @@ void clearMapCacheFlag(int no)
 	memset(mapCacheFlag[no], 0, MAP_CACHE_X_BYTE*MAP_CACHE_Y_BYTE);
 }
 
-// 叉?ㄅ???????????
-//  ??πㄩTRUE  ... ????????
+// ????????????
+//  ??：TRUE  ... ????????
 //			FALSE ... ????????
 BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2, int y2)
 {
@@ -4533,7 +4534,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 	BOOL ret = TRUE;
 	BOOL thisFloorCacheFlag = FALSE;
 
-	// 叉????吻????????
+	// ???????????
 	j = mapCacheUse;
 	for (i = 0; i < MAX_MAP_CACHE_SIZE; i++)
 	{
@@ -4548,16 +4549,16 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		if (j >= MAX_MAP_CACHE_SIZE)
 			j = 0;
 	}
-	// ?????????
+	// ??????䥺??
 	if (!thisFloorCacheFlag)
 	{
 		BOOL flag;
 		unsigned int tmpTime;
 
-		// ????????????????????????
+		// ??????????????⺶??????????
 		if (gxSize < 100 || gySize < 100)
 			return FALSE;
-		// ?????????????????Π?
+		// ??????????????????
 		flag = FALSE;
 		for (i = 0; i < MAX_MAP_CACHE_SIZE; i++)
 		{
@@ -4567,7 +4568,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 				break;
 			}
 		}
-		// ????????吻?????????
+		// ???䥺?????????????
 		if (!flag)
 		{
 			i = 0;
@@ -4581,7 +4582,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 				}
 			}
 		}
-		// ?????仕?
+		// ??????
 		mapCacheUse = i;
 		mapCacheFloorNo[i] = floor;
 		mapCacheFloorGxSize[i] = gxSize;
@@ -4589,7 +4590,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		clearMapCacheFlag(i);
 		ret = FALSE;
 	}
-	// ?????????????仕?
+	// ??????????????
 	mapCacheLastTime[mapCacheUse] = TimeGetTime();
 	if (x1 < 0)
 		x1 = 0;
@@ -4599,7 +4600,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		x2 = mapCacheFloorGxSize[mapCacheUse];
 	if (y2 > mapCacheFloorGySize[mapCacheUse])
 		y2 = mapCacheFloorGySize[mapCacheUse];
-	// ???吳??
+	// ?????
 	if (x1 > x2 || y1 > y2)
 		return FALSE;
 
@@ -4623,7 +4624,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		for (j = yByteStart; j <= yByteEnd; j++)
 		{
 			if ((mapCacheFlag[mapCacheUse][j * MAP_CACHE_X_BYTE + i] & bits) != bits)
-				// ??????????????
+				// ???????䥺??????
 				ret = FALSE;
 			mapCacheFlag[mapCacheUse][j * MAP_CACHE_X_BYTE + i] |= bits;
 		}
@@ -4632,12 +4633,12 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 	return ret;
 }
 
-// ???????EVENT_ALTERRATIVE?????TRUE?刺??
+// ????⿳?EVENT_ALTERRATIVE?????TRUE???
 BOOL checkMapCacheEvent(int x1, int y1, int x2, int y2)
 {
 	int x, y, w, h, i, j;
 
-	// ????????吳?????????刺??
+	// ???????????????????
 	// ???????????????
 	if (x1 >= mapAreaX2 || x2 < 0 || y1 >= mapAreaY2 || y2 < 0)
 		return TRUE;
@@ -4746,7 +4747,7 @@ void initMapEffect(BOOL bFirstRun)
 #endif
 }
 
-// ??????????台?牙　叉???
+// ??????????????
 MAP_EFFECT *getMapEffectBuf(void)
 {
 	MAP_EFFECT *buf;
@@ -4758,14 +4759,14 @@ MAP_EFFECT *getMapEffectBuf(void)
 	if (emptyBufMapEffect != (MAP_EFFECT*)NULL)
 		emptyBufMapEffect->pre = (MAP_EFFECT*)NULL;
 	buf->next = useBufMapEffect;
-	buf->pre  = (MAP_EFFECT*)NULL;
+	buf->pre = (MAP_EFFECT*)NULL;
 	if (useBufMapEffect != (MAP_EFFECT*)NULL)
 		useBufMapEffect->pre = buf;
 	useBufMapEffect = buf;
 	return buf;
 }
 
-// ??????????????
+// ?????????????
 void delMapEffectBuf(MAP_EFFECT *buf)
 {
 	if (buf == (MAP_EFFECT*)NULL)
@@ -4782,7 +4783,7 @@ void delMapEffectBuf(MAP_EFFECT *buf)
 	buf->type = MAP_EFFECT_TYPE_NONE;
 }
 
-// ?去???卹
+// ????
 void mapEffectDirHosei(int *x, int *y)
 {
 	if (mapEffectMoveDir < 0)
@@ -4817,7 +4818,7 @@ void mapEffectDirHosei(int *x, int *y)
 	}
 }
 
-// sprdisp.cpp??PutBmp()?????
+// sprdisp.cpp?PutBmp()?????
 void drawMapEffect(void)
 {
 	if (mapEffectDrawFlag)
@@ -4827,14 +4828,14 @@ void drawMapEffect(void)
 	}
 }
 
-// ????????
+// ????????
 void mapEffectProc(void)
 {
 	mapEffectRain();
 	mapEffectSnow();
 	mapEffectStar();
 	mapEffectFallingStar();
-	mapEffectKamiFubuki();	
+	mapEffectKamiFubuki();
 #ifdef __EDEN_DICE
 	mapEffectDice();
 #endif
@@ -4843,7 +4844,7 @@ void mapEffectProc(void)
 #endif
 	if (transEffectPaletteStatus == 2 && transEffectPaletteAfterWaitTime == 0)
 		transEffectPaletteAfterWaitTime = GetTickCount();
-	// ?????????┴??向???????????
+	// ??????????????????????
 	else if (transEffectPaletteStatus == 2 && (GetTickCount() - transEffectPaletteAfterWaitTime) > 2500)
 	{
 		transEffectPaletteStatus = 0;
@@ -4874,7 +4875,7 @@ void mapEffectRain(void)
 		hosei1 = 370;
 		hosei2 = -50;
 	}
-	// ?伶
+	// ?
 	if (mapEffectRainLevel)
 	{
 		if (mapEffectRainLevel < 3)
@@ -4916,7 +4917,7 @@ void mapEffectRain(void)
 			}
 		}
 	}
-	// ?去??
+	// ???
 	buf = useBufMapEffect;
 	while (buf != (MAP_EFFECT *)NULL)
 	{
@@ -4927,7 +4928,7 @@ void mapEffectRain(void)
 			mapEffectDirHosei(&buf->x, &buf->y);
 			if (ww <= buf->x || hh <= buf->y)
 			{
-				// ?去?
+				// ??
 				MAP_EFFECT *buf2 = buf->next;
 				delMapEffectBuf(buf);
 				buf = buf2;
@@ -4940,7 +4941,7 @@ void mapEffectRain(void)
 	}
 }
 
-// ．??????
+// ??????
 void mapEffectSnow(void)
 {
 	short mapEffectSnowWaitTime = 0;
@@ -4960,7 +4961,7 @@ void mapEffectSnow(void)
 		hosei1 = 370;
 		hosei2 = -50;
 	}
-	// ．伶
+	// 
 	if (mapEffectSnowLevel)
 	{
 		if (mapEffectSnowLevel < 3)
@@ -5022,7 +5023,7 @@ void mapEffectSnow(void)
 			}
 		}
 	}
-	// ?去??
+	// ???
 	buf = useBufMapEffect;
 	while (buf != (MAP_EFFECT*)NULL)
 	{
@@ -5033,7 +5034,7 @@ void mapEffectSnow(void)
 			mapEffectDirHosei(&buf->x, &buf->y);
 			if (ww + 100 <= buf->x || hh <= buf->y)
 			{
-				// ?去?
+				// ??
 				MAP_EFFECT *buf2 = buf->next;
 				delMapEffectBuf(buf);
 				buf = buf2;
@@ -5046,7 +5047,7 @@ void mapEffectSnow(void)
 	}
 }
 
-// ?????????叉?
+// ???????佋???
 void setEffectStar(MAP_EFFECT *buf, int gx, int gy, int ggx, int ggy, int type)
 {
 	if (buf)
@@ -5063,7 +5064,7 @@ void setEffectStar(MAP_EFFECT *buf, int gx, int gy, int ggx, int ggy, int type)
 void calEffectStar(MAP_EFFECT *buf)
 {
 	float mx, my;
-	// ??牙?ㄅ
+	// ?䴘?
 	camMapToGamen((float)buf->gx * GRID_SIZE, (float)buf->gy * GRID_SIZE, &mx, &my);
 	buf->x = (int)(mx + .5) + buf->ggx;
 	buf->y = (int)(my + .5) + buf->ggy;
@@ -5081,49 +5082,49 @@ void mapEffectStar(void)
 	int i;
 
 	if ((nowFloor == 1200 || nowFloor == 20105 || nowFloor == 10920 || nowFloor == 20406)
-	 && NOON_TO_EVENING + 10 <= SaTime.hour && SaTime.hour < NIGHT_TO_MORNING + 80)
+		&& NOON_TO_EVENING + 10 <= SaTime.hour && SaTime.hour < NIGHT_TO_MORNING + 80)
 	{
 		if (nowFloor == 1200 && mapEffectStarFlag == 0)
 		{
 			for (i = 0; i < sizeof(buf) / sizeof(void*); i++)
 				buf[i] = NULL;
 			buf[0] = getMapEffectBuf();
-			setEffectStar(buf[0], 62, 28,   0,   0, 0);
+			setEffectStar(buf[0], 62, 28, 0, 0, 0);
 			buf[1] = getMapEffectBuf();
-			setEffectStar(buf[1], 63, 27,  -5,  -5, 1);
+			setEffectStar(buf[1], 63, 27, -5, -5, 1);
 			buf[2] = getMapEffectBuf();
-			setEffectStar(buf[2], 63, 28,  16, -10, 0);
+			setEffectStar(buf[2], 63, 28, 16, -10, 0);
 			buf[3] = getMapEffectBuf();
-			setEffectStar(buf[3], 63, 29,  10,   5, 1);
+			setEffectStar(buf[3], 63, 29, 10, 5, 1);
 			buf[4] = getMapEffectBuf();
-			setEffectStar(buf[4], 64, 29,   0,  -8, 1);
+			setEffectStar(buf[4], 64, 29, 0, -8, 1);
 
 			buf[5] = getMapEffectBuf();
-			setEffectStar(buf[5], 65, 29,  -8,   5, 0);
+			setEffectStar(buf[5], 65, 29, -8, 5, 0);
 			buf[6] = getMapEffectBuf();
-			setEffectStar(buf[6], 65, 30,  16,  10, 0);
+			setEffectStar(buf[6], 65, 30, 16, 10, 0);
 			buf[7] = getMapEffectBuf();
-			setEffectStar(buf[7], 66, 31,   0,   0, 1);
+			setEffectStar(buf[7], 66, 31, 0, 0, 1);
 			buf[8] = getMapEffectBuf();
-			setEffectStar(buf[8], 66, 30,   8, -12, 1);
+			setEffectStar(buf[8], 66, 30, 8, -12, 1);
 			buf[9] = getMapEffectBuf();
-			setEffectStar(buf[9], 67, 31,  20,   0, 0);
+			setEffectStar(buf[9], 67, 31, 20, 0, 0);
 
 			buf[10] = getMapEffectBuf();
-			setEffectStar(buf[10], 69, 34,  -8,  -8, 0);
+			setEffectStar(buf[10], 69, 34, -8, -8, 0);
 			buf[11] = getMapEffectBuf();
-			setEffectStar(buf[11], 70, 34,   5,  10, 1);
+			setEffectStar(buf[11], 70, 34, 5, 10, 1);
 			buf[12] = getMapEffectBuf();
-			setEffectStar(buf[12], 70, 35,   2,  24, 0);
+			setEffectStar(buf[12], 70, 35, 2, 24, 0);
 			buf[13] = getMapEffectBuf();
 			setEffectStar(buf[13], 70, 36, -20, -16, 1);
 			buf[14] = getMapEffectBuf();
-			setEffectStar(buf[14], 71, 36,   2,   4, 1);
+			setEffectStar(buf[14], 71, 36, 2, 4, 1);
 
 			buf[15] = getMapEffectBuf();
-			setEffectStar(buf[15], 71, 37,   5, -10, 1);
+			setEffectStar(buf[15], 71, 37, 5, -10, 1);
 			buf[16] = getMapEffectBuf();
-			setEffectStar(buf[16], 72, 37,   0,  12, 0);
+			setEffectStar(buf[16], 72, 37, 0, 12, 0);
 
 			mapEffectStarFlag = 1;
 		}
@@ -5132,70 +5133,70 @@ void mapEffectStar(void)
 			for (i = 0; i < sizeof(buf) / sizeof(void*); i++)
 				buf[i] = NULL;
 			buf[0] = getMapEffectBuf();
-			setEffectStar(buf[0], 21,  8,   5,   0, 1);
+			setEffectStar(buf[0], 21, 8, 5, 0, 1);
 			buf[1] = getMapEffectBuf();
-			setEffectStar(buf[1], 20, 10,  -5,   5, 1);
+			setEffectStar(buf[1], 20, 10, -5, 5, 1);
 			buf[2] = getMapEffectBuf();
-			setEffectStar(buf[2], 18, 11,   5,  10, 0);
+			setEffectStar(buf[2], 18, 11, 5, 10, 0);
 			buf[3] = getMapEffectBuf();
-			setEffectStar(buf[3], 20, 12,   0,  -5, 1);
+			setEffectStar(buf[3], 20, 12, 0, -5, 1);
 			buf[4] = getMapEffectBuf();
-			setEffectStar(buf[4], 23, 11,   0,   0, 0);
+			setEffectStar(buf[4], 23, 11, 0, 0, 0);
 
 			buf[5] = getMapEffectBuf();
-			setEffectStar(buf[5], 23, 14,   0,   0, 0);
+			setEffectStar(buf[5], 23, 14, 0, 0, 0);
 			buf[6] = getMapEffectBuf();
-			setEffectStar(buf[6], 25, 13,   8,   6, 1);
+			setEffectStar(buf[6], 25, 13, 8, 6, 1);
 			buf[7] = getMapEffectBuf();
-			setEffectStar(buf[7], 25, 16,   0,   0, 1);
+			setEffectStar(buf[7], 25, 16, 0, 0, 1);
 			buf[8] = getMapEffectBuf();
-			setEffectStar(buf[8], 26, 18,   4,  -8, 0);
+			setEffectStar(buf[8], 26, 18, 4, -8, 0);
 			buf[9] = getMapEffectBuf();
-			setEffectStar(buf[9], 28, 16, -16,   0, 0);
+			setEffectStar(buf[9], 28, 16, -16, 0, 0);
 
 			buf[10] = getMapEffectBuf();
-			setEffectStar(buf[10], 21, 14,  -5,   0, 1);
+			setEffectStar(buf[10], 21, 14, -5, 0, 1);
 			buf[11] = getMapEffectBuf();
-			setEffectStar(buf[11], 27, 14,   0,   0, 1);
+			setEffectStar(buf[11], 27, 14, 0, 0, 1);
 			buf[12] = getMapEffectBuf();
-			setEffectStar(buf[12], 24, 15,   4, -10, 1);
+			setEffectStar(buf[12], 24, 15, 4, -10, 1);
 			buf[13] = getMapEffectBuf();
-			setEffectStar(buf[13], 28, 12,   5,  -8, 0);
+			setEffectStar(buf[13], 28, 12, 5, -8, 0);
 			buf[14] = getMapEffectBuf();
-			setEffectStar(buf[14], 32, 14,   0,   0, 0);
+			setEffectStar(buf[14], 32, 14, 0, 0, 0);
 
 			buf[15] = getMapEffectBuf();
-			setEffectStar(buf[15], 30, 17,   0,   0, 0);
+			setEffectStar(buf[15], 30, 17, 0, 0, 0);
 			buf[16] = getMapEffectBuf();
-			setEffectStar(buf[16], 32, 19,   0,   0, 1);
+			setEffectStar(buf[16], 32, 19, 0, 0, 1);
 			buf[17] = getMapEffectBuf();
-			setEffectStar(buf[17], 36, 19,   5,   2, 1);
+			setEffectStar(buf[17], 36, 19, 5, 2, 1);
 			buf[18] = getMapEffectBuf();
-			setEffectStar(buf[18], 34, 22,  -4,   4, 0);
+			setEffectStar(buf[18], 34, 22, -4, 4, 0);
 			buf[19] = getMapEffectBuf();
-			setEffectStar(buf[19], 36, 25,   1,   1, 0);
+			setEffectStar(buf[19], 36, 25, 1, 1, 0);
 
 			buf[20] = getMapEffectBuf();
-			setEffectStar(buf[20], 39, 23,   0,   0, 0);
+			setEffectStar(buf[20], 39, 23, 0, 0, 0);
 			buf[21] = getMapEffectBuf();
-			setEffectStar(buf[21], 38, 25,  -8,   2, 1);
+			setEffectStar(buf[21], 38, 25, -8, 2, 1);
 			buf[22] = getMapEffectBuf();
-			setEffectStar(buf[22], 40, 24,  -5,  -5, 1);
+			setEffectStar(buf[22], 40, 24, -5, -5, 1);
 			buf[23] = getMapEffectBuf();
-			setEffectStar(buf[23], 39, 27,   0,   0, 0);
+			setEffectStar(buf[23], 39, 27, 0, 0, 0);
 			buf[24] = getMapEffectBuf();
-			setEffectStar(buf[24], 39, 30,   0,   0, 1);
+			setEffectStar(buf[24], 39, 30, 0, 0, 1);
 
 			buf[25] = getMapEffectBuf();
-			setEffectStar(buf[25], 43, 29,   0,   0, 0);
+			setEffectStar(buf[25], 43, 29, 0, 0, 0);
 			buf[26] = getMapEffectBuf();
-			setEffectStar(buf[26], 42, 32,   2,   0, 0);
+			setEffectStar(buf[26], 42, 32, 2, 0, 0);
 			buf[27] = getMapEffectBuf();
-			setEffectStar(buf[27], 44, 33,   0,   0, 1);
+			setEffectStar(buf[27], 44, 33, 0, 0, 1);
 			buf[28] = getMapEffectBuf();
-			setEffectStar(buf[28], 43, 34,   8,   2, 0);
+			setEffectStar(buf[28], 43, 34, 8, 2, 0);
 			buf[29] = getMapEffectBuf();
-			setEffectStar(buf[29], 45, 36,   0,   0, 0);
+			setEffectStar(buf[29], 45, 36, 0, 0, 0);
 
 			mapEffectStarFlag = 1;
 		}
@@ -5204,64 +5205,64 @@ void mapEffectStar(void)
 			for (i = 0; i < sizeof(buf) / sizeof(void *); i++)
 				buf[i] = NULL;
 			buf[0] = getMapEffectBuf();
-			setEffectStar(buf[0], 71,  2,   0,   0, 1);
+			setEffectStar(buf[0], 71, 2, 0, 0, 1);
 			buf[1] = getMapEffectBuf();
-			setEffectStar(buf[1], 71,  5,   0,   0, 0);
+			setEffectStar(buf[1], 71, 5, 0, 0, 0);
 			buf[2] = getMapEffectBuf();
-			setEffectStar(buf[2], 70,  7,   0,   0, 1);
+			setEffectStar(buf[2], 70, 7, 0, 0, 1);
 			buf[3] = getMapEffectBuf();
-			setEffectStar(buf[3], 73,  7,   0,   0, 1);
+			setEffectStar(buf[3], 73, 7, 0, 0, 1);
 			buf[4] = getMapEffectBuf();
-			setEffectStar(buf[4], 75,  6,   0,   0, 0);
+			setEffectStar(buf[4], 75, 6, 0, 0, 0);
 
 			buf[5] = getMapEffectBuf();
-			setEffectStar(buf[5], 75,  9,   0,   0, 0);
+			setEffectStar(buf[5], 75, 9, 0, 0, 0);
 			buf[6] = getMapEffectBuf();
-			setEffectStar(buf[6], 75, 11,   0,   0, 1);
+			setEffectStar(buf[6], 75, 11, 0, 0, 1);
 			buf[7] = getMapEffectBuf();
-			setEffectStar(buf[7], 77,  9,   0,   0, 1);
+			setEffectStar(buf[7], 77, 9, 0, 0, 1);
 			buf[8] = getMapEffectBuf();
-			setEffectStar(buf[8], 76, 13,   0,   0, 0);
+			setEffectStar(buf[8], 76, 13, 0, 0, 0);
 			buf[9] = getMapEffectBuf();
-			setEffectStar(buf[9], 79, 12,   0,   0, 0);
+			setEffectStar(buf[9], 79, 12, 0, 0, 0);
 
 			buf[10] = getMapEffectBuf();
-			setEffectStar(buf[10], 78, 15,   0,   0, 1);
+			setEffectStar(buf[10], 78, 15, 0, 0, 1);
 			buf[11] = getMapEffectBuf();
-			setEffectStar(buf[11], 80, 14,   0,   0, 0);
+			setEffectStar(buf[11], 80, 14, 0, 0, 0);
 			buf[12] = getMapEffectBuf();
-			setEffectStar(buf[12], 79, 16,   0,   0, 1);
+			setEffectStar(buf[12], 79, 16, 0, 0, 1);
 			buf[13] = getMapEffectBuf();
-			setEffectStar(buf[13], 80, 18,   0,   0, 0);
+			setEffectStar(buf[13], 80, 18, 0, 0, 0);
 			buf[14] = getMapEffectBuf();
-			setEffectStar(buf[14], 83, 18,   0,   0, 0);
+			setEffectStar(buf[14], 83, 18, 0, 0, 0);
 
 			buf[15] = getMapEffectBuf();
-			setEffectStar(buf[15], 83, 20,   0,   0, 1);
+			setEffectStar(buf[15], 83, 20, 0, 0, 1);
 			buf[16] = getMapEffectBuf();
-			setEffectStar(buf[16], 84, 20,   0,   0, 1);
+			setEffectStar(buf[16], 84, 20, 0, 0, 1);
 			buf[17] = getMapEffectBuf();
-			setEffectStar(buf[17], 84, 22,   0,   0, 0);
+			setEffectStar(buf[17], 84, 22, 0, 0, 0);
 			buf[18] = getMapEffectBuf();
-			setEffectStar(buf[18], 85, 19,   0,   0, 0);
+			setEffectStar(buf[18], 85, 19, 0, 0, 0);
 			buf[19] = getMapEffectBuf();
-			setEffectStar(buf[19], 87, 20,   0,   0, 1);
+			setEffectStar(buf[19], 87, 20, 0, 0, 1);
 
 			buf[20] = getMapEffectBuf();
-			setEffectStar(buf[20], 89, 21,   0,   0, 0);
+			setEffectStar(buf[20], 89, 21, 0, 0, 0);
 			buf[21] = getMapEffectBuf();
-			setEffectStar(buf[21], 89, 23,   0,   0, 1);
+			setEffectStar(buf[21], 89, 23, 0, 0, 1);
 			buf[22] = getMapEffectBuf();
-			setEffectStar(buf[22], 89, 26,   0,   0, 1);
+			setEffectStar(buf[22], 89, 26, 0, 0, 1);
 			buf[23] = getMapEffectBuf();
-			setEffectStar(buf[23], 91, 25,   0,   0, 0);
+			setEffectStar(buf[23], 91, 25, 0, 0, 0);
 			buf[24] = getMapEffectBuf();
-			setEffectStar(buf[24], 91, 27,   0,   0, 1);
+			setEffectStar(buf[24], 91, 27, 0, 0, 1);
 
 			buf[25] = getMapEffectBuf();
-			setEffectStar(buf[25], 93, 26,   0,   0, 1);
+			setEffectStar(buf[25], 93, 26, 0, 0, 1);
 			buf[26] = getMapEffectBuf();
-			setEffectStar(buf[26], 93, 30,   0,   0, 0);
+			setEffectStar(buf[26], 93, 30, 0, 0, 0);
 
 			mapEffectStarFlag = 1;
 		}
@@ -5270,70 +5271,70 @@ void mapEffectStar(void)
 			for (i = 0; i < sizeof(buf) / sizeof(void *); i++)
 				buf[i] = NULL;
 			buf[0] = getMapEffectBuf();
-			setEffectStar(buf[0], 16,  8,   0,   0, 1);
+			setEffectStar(buf[0], 16, 8, 0, 0, 1);
 			buf[1] = getMapEffectBuf();
-			setEffectStar(buf[1], 16, 10,   0,   0, 0);
+			setEffectStar(buf[1], 16, 10, 0, 0, 0);
 			buf[2] = getMapEffectBuf();
-			setEffectStar(buf[2], 18, 10,   0,   0, 0);
+			setEffectStar(buf[2], 18, 10, 0, 0, 0);
 			buf[3] = getMapEffectBuf();
-			setEffectStar(buf[3], 19, 12,   0,   0, 1);
+			setEffectStar(buf[3], 19, 12, 0, 0, 1);
 			buf[4] = getMapEffectBuf();
-			setEffectStar(buf[4], 20, 12,   0,   0, 1);
+			setEffectStar(buf[4], 20, 12, 0, 0, 1);
 
 			buf[5] = getMapEffectBuf();
-			setEffectStar(buf[5], 21, 14,   0,   0, 0);
+			setEffectStar(buf[5], 21, 14, 0, 0, 0);
 			buf[6] = getMapEffectBuf();
-			setEffectStar(buf[6], 22, 16,   0,   0, 0);
+			setEffectStar(buf[6], 22, 16, 0, 0, 0);
 			buf[7] = getMapEffectBuf();
-			setEffectStar(buf[7], 23, 16,   0,   0, 1);
+			setEffectStar(buf[7], 23, 16, 0, 0, 1);
 			buf[8] = getMapEffectBuf();
-			setEffectStar(buf[8], 22, 11,   0,   0, 0);
+			setEffectStar(buf[8], 22, 11, 0, 0, 0);
 			buf[9] = getMapEffectBuf();
-			setEffectStar(buf[9], 26, 15,   0,   0, 0);
+			setEffectStar(buf[9], 26, 15, 0, 0, 0);
 
 			buf[10] = getMapEffectBuf();
-			setEffectStar(buf[10], 25, 18,   0,   0, 1);
+			setEffectStar(buf[10], 25, 18, 0, 0, 1);
 			buf[11] = getMapEffectBuf();
-			setEffectStar(buf[11], 26, 17,   0,   0, 1);
+			setEffectStar(buf[11], 26, 17, 0, 0, 1);
 			buf[12] = getMapEffectBuf();
-			setEffectStar(buf[12], 27, 13,   0,   0, 0);
+			setEffectStar(buf[12], 27, 13, 0, 0, 0);
 			buf[13] = getMapEffectBuf();
-			setEffectStar(buf[13], 29, 14,   0,   0, 1);
+			setEffectStar(buf[13], 29, 14, 0, 0, 1);
 			buf[14] = getMapEffectBuf();
-			setEffectStar(buf[14], 29, 12,   0,   0, 1);
+			setEffectStar(buf[14], 29, 12, 0, 0, 1);
 
 			buf[15] = getMapEffectBuf();
-			setEffectStar(buf[15], 31, 17,   0,   0, 0);
+			setEffectStar(buf[15], 31, 17, 0, 0, 0);
 			buf[16] = getMapEffectBuf();
-			setEffectStar(buf[16], 31, 19,   0,   0, 1);
+			setEffectStar(buf[16], 31, 19, 0, 0, 1);
 			buf[17] = getMapEffectBuf();
-			setEffectStar(buf[17], 34, 18,   0,   0, 1);
+			setEffectStar(buf[17], 34, 18, 0, 0, 1);
 			buf[18] = getMapEffectBuf();
-			setEffectStar(buf[18], 33, 21,   0,   0, 1);
+			setEffectStar(buf[18], 33, 21, 0, 0, 1);
 			buf[19] = getMapEffectBuf();
-			setEffectStar(buf[19], 34, 23,   0,   0, 0);
+			setEffectStar(buf[19], 34, 23, 0, 0, 0);
 
 			buf[20] = getMapEffectBuf();
-			setEffectStar(buf[20], 38, 26,   0,   0, 0);
+			setEffectStar(buf[20], 38, 26, 0, 0, 0);
 			buf[21] = getMapEffectBuf();
-			setEffectStar(buf[21], 41, 25,   0,   0, 1);
+			setEffectStar(buf[21], 41, 25, 0, 0, 1);
 			buf[22] = getMapEffectBuf();
-			setEffectStar(buf[22], 41, 26,   0,   0, 1);
+			setEffectStar(buf[22], 41, 26, 0, 0, 1);
 			buf[23] = getMapEffectBuf();
-			setEffectStar(buf[23], 41, 32,   0,   0, 0);
+			setEffectStar(buf[23], 41, 32, 0, 0, 0);
 			buf[24] = getMapEffectBuf();
-			setEffectStar(buf[24], 44, 31,   0,   0, 0);
+			setEffectStar(buf[24], 44, 31, 0, 0, 0);
 
 			buf[25] = getMapEffectBuf();
-			setEffectStar(buf[25], 44, 33,   0,   0, 0);
+			setEffectStar(buf[25], 44, 33, 0, 0, 0);
 			buf[26] = getMapEffectBuf();
-			setEffectStar(buf[26], 42, 43,   0,   0, 1);
+			setEffectStar(buf[26], 42, 43, 0, 0, 1);
 			buf[27] = getMapEffectBuf();
-			setEffectStar(buf[27], 45, 36,   0,   0, 0);
+			setEffectStar(buf[27], 45, 36, 0, 0, 0);
 			buf[28] = getMapEffectBuf();
-			setEffectStar(buf[28], 38, 21,   0,   0, 0);
+			setEffectStar(buf[28], 38, 21, 0, 0, 0);
 			buf[29] = getMapEffectBuf();
-			setEffectStar(buf[29], 37, 19,   0,   0, 1);
+			setEffectStar(buf[29], 37, 19, 0, 0, 1);
 
 			mapEffectStarFlag = 1;
 		}
@@ -5343,27 +5344,27 @@ void mapEffectStar(void)
 			{
 				calEffectStar(buf[i]);
 				// ????
-				// ????
+				// ???
 				if (SaTime.hour < NOON_TO_EVENING + 20 || NIGHT_TO_MORNING + 70 < SaTime.hour)
 					buf[i]->mode = 5;
 				// ????
-				// ????
-				else if ((NOON_TO_EVENING + 20 <= SaTime.hour && SaTime.hour < NOON_TO_EVENING +30) || NIGHT_TO_MORNING + 60 < SaTime.hour)
+				// ???
+				else if ((NOON_TO_EVENING + 20 <= SaTime.hour && SaTime.hour < NOON_TO_EVENING + 30) || NIGHT_TO_MORNING + 60 < SaTime.hour)
 					buf[i]->mode = 6;
 				// ????
-				// ????
+				// ???
 				else if ((NOON_TO_EVENING + 30 <= SaTime.hour && SaTime.hour < NOON_TO_EVENING + 40) || NIGHT_TO_MORNING + 40 < SaTime.hour)
 					buf[i]->mode = 8;
 				else
 				{
 					if (buf[i]->type2 == 0)
 					{
-						// ???ㄩ???????
-						// ???ㄩ????????
+						// ???：??????
+						// ??：????????
 						if (SaTime.hour < NOON_TO_EVENING + 50 || NIGHT_TO_MORNING + 30 < SaTime.hour)
 							buf[i]->mode = 4;
-						// ???ㄩ?????????
-						// ???ㄩ??????
+						// ???：????????
+						// ??：??????
 						else if (SaTime.hour < NOON_TO_EVENING + 80 || NIGHT_TO_MORNING + 20 < SaTime.hour)
 							buf[i]->mode = 1;
 						else
@@ -5390,7 +5391,7 @@ void mapEffectStar(void)
 	}
 }
 
-// ???????
+// ???????
 void mapEffectFallingStar(void)
 {
 	static MAP_EFFECT *buf = NULL;
@@ -5411,38 +5412,38 @@ void mapEffectFallingStar(void)
 
 				switch (i)
 				{
-					case 0:
-						setEffectStar(buf, 76, 6, 0, 0, 0);
-						buf->dx = 10;
-						buf->dy = 6;
-						buf->ey = 120;
-						break;
-					case 1:
-						setEffectStar(buf, 77, 7, 0, 0, 0);
-						buf->dx = 8;
-						buf->dy = 7;
-						buf->ey = 120;
-						break;
-					case 2:
-						setEffectStar(buf, 80, 13, 0, 0, 0);
-						buf->dx = -10;
-						buf->dy = 9;
-						buf->ey = 120;
-						break;
-					case 3:
-						setEffectStar(buf, 84, 19, 0, 0, 0);
-						buf->dx = 12;
-						buf->dy = 7;
-						buf->ey = 90;
-						break;
-					case 4:
-						setEffectStar(buf, 95, 26, 0, 0, 0);
-						buf->dx = -10;
-						buf->dy = 7;
-						buf->ey = 120;
-						break;
+				case 0:
+					setEffectStar(buf, 76, 6, 0, 0, 0);
+					buf->dx = 10;
+					buf->dy = 6;
+					buf->ey = 120;
+					break;
+				case 1:
+					setEffectStar(buf, 77, 7, 0, 0, 0);
+					buf->dx = 8;
+					buf->dy = 7;
+					buf->ey = 120;
+					break;
+				case 2:
+					setEffectStar(buf, 80, 13, 0, 0, 0);
+					buf->dx = -10;
+					buf->dy = 9;
+					buf->ey = 120;
+					break;
+				case 3:
+					setEffectStar(buf, 84, 19, 0, 0, 0);
+					buf->dx = 12;
+					buf->dy = 7;
+					buf->ey = 90;
+					break;
+				case 4:
+					setEffectStar(buf, 95, 26, 0, 0, 0);
+					buf->dx = -10;
+					buf->dy = 7;
+					buf->ey = 120;
+					break;
 				}
-				// ??
+				// ??
 				if ((rand() % 10) < 6)
 					buf->mode = 8;
 				else
@@ -5460,56 +5461,56 @@ void mapEffectFallingStar(void)
 				i = 7;
 				switch (i)
 				{
-					case 0:
-						setEffectStar(buf, 22, 9, 0, 0, 0);
-						buf->dx = 10;
-						buf->dy = 7;
-						buf->ey = 120;
-						break;
-					case 1:
-						setEffectStar(buf, 27, 15, 0, 0, 0);
-						buf->dx = -8;
-						buf->dy = 9;
-						buf->ey = 120;
-						break;
-					case 2:
-						setEffectStar(buf, 31, 14, 0, 0, 0);
-						buf->dx = -10;
-						buf->dy = 6;
-						buf->ey = 120;
-						break;
-					case 3:
-						setEffectStar(buf, 33, 18, 0, 0, 0);
-						buf->dx = 12;
-						buf->dy = 8;
-						buf->ey = 120;
-						break;
-					case 4:
-						setEffectStar(buf, 38, 22, 0, 0, 0);
-						buf->dx = -11;
-						buf->dy = 7;
-						buf->ey = 120;
-						break;
-					case 5:
-						setEffectStar(buf, 43, 27, 0, 0, 0);
-						buf->dx = -9;
-						buf->dy = 6;
-						buf->ey = 120;
-						break;
-					case 6:
-						setEffectStar(buf, 41, 29, 0, 0, 0);
-						buf->dx = 12;
-						buf->dy = 6;
-						buf->ey = 120;
-						break;
-					case 7:
-						setEffectStar(buf, 43, 33, 0, 0, 0);
-						buf->dx = 14;
-						buf->dy = 8;
-						buf->ey = 80;
-						break;
+				case 0:
+					setEffectStar(buf, 22, 9, 0, 0, 0);
+					buf->dx = 10;
+					buf->dy = 7;
+					buf->ey = 120;
+					break;
+				case 1:
+					setEffectStar(buf, 27, 15, 0, 0, 0);
+					buf->dx = -8;
+					buf->dy = 9;
+					buf->ey = 120;
+					break;
+				case 2:
+					setEffectStar(buf, 31, 14, 0, 0, 0);
+					buf->dx = -10;
+					buf->dy = 6;
+					buf->ey = 120;
+					break;
+				case 3:
+					setEffectStar(buf, 33, 18, 0, 0, 0);
+					buf->dx = 12;
+					buf->dy = 8;
+					buf->ey = 120;
+					break;
+				case 4:
+					setEffectStar(buf, 38, 22, 0, 0, 0);
+					buf->dx = -11;
+					buf->dy = 7;
+					buf->ey = 120;
+					break;
+				case 5:
+					setEffectStar(buf, 43, 27, 0, 0, 0);
+					buf->dx = -9;
+					buf->dy = 6;
+					buf->ey = 120;
+					break;
+				case 6:
+					setEffectStar(buf, 41, 29, 0, 0, 0);
+					buf->dx = 12;
+					buf->dy = 6;
+					buf->ey = 120;
+					break;
+				case 7:
+					setEffectStar(buf, 43, 33, 0, 0, 0);
+					buf->dx = 14;
+					buf->dy = 8;
+					buf->ey = 80;
+					break;
 				}
-				// ??
+				// ??
 				if ((rand() % 10) < 6)
 					buf->mode = 8;
 				else
@@ -5527,26 +5528,26 @@ void mapEffectFallingStar(void)
 				i = 2;
 				switch (i)
 				{
-					case 0:
-						setEffectStar(buf, 63, 26, 0, 0, 0);
-						buf->dx = 10;
-						buf->dy = 7;
-						buf->ey = 80;
-						break;
-					case 1:
-						setEffectStar(buf, 66, 30, 0, 0, 0);
-						buf->dx = -10;
-						buf->dy = 6;
-						buf->ey = 70;
-						break;
-					case 2:
-						setEffectStar(buf, 70, 35, 0, 0, 0);
-						buf->dx = 8;
-						buf->dy = 6;
-						buf->ey = 40;
-						break;
+				case 0:
+					setEffectStar(buf, 63, 26, 0, 0, 0);
+					buf->dx = 10;
+					buf->dy = 7;
+					buf->ey = 80;
+					break;
+				case 1:
+					setEffectStar(buf, 66, 30, 0, 0, 0);
+					buf->dx = -10;
+					buf->dy = 6;
+					buf->ey = 70;
+					break;
+				case 2:
+					setEffectStar(buf, 70, 35, 0, 0, 0);
+					buf->dx = 8;
+					buf->dy = 6;
+					buf->ey = 40;
+					break;
 				}
-				// ??
+				// ??
 				if ((rand() % 10) < 6)
 					buf->mode = 8;
 				else
@@ -5564,44 +5565,44 @@ void mapEffectFallingStar(void)
 				i = 5;
 				switch (i)
 				{
-					case 0:
-						setEffectStar(buf, 20, 11, 0, 0, 0);
-						buf->dx = -12;
-						buf->dy = 9;
-						buf->ey = 80;
-						break;
-					case 1:
-						setEffectStar(buf, 23, 11, 0, 0, 0);
-						buf->dx = 10;
-						buf->dy = 8;
-						buf->ey = 120;
-						break;
-					case 2:
-						setEffectStar(buf, 32, 14, 0, 0, 0);
-						buf->dx = -9;
-						buf->dy = 6;
-						buf->ey = 120;
-						break;
-					case 3:
-						setEffectStar(buf, 36, 20, 0, 0, 0);
-						buf->dx = -10;
-						buf->dy = 9;
-						buf->ey = 120;
-						break;
-					case 4:
-						setEffectStar(buf, 41, 24, 0, 0, 0);
-						buf->dx = 11;
-						buf->dy = 7;
-						buf->ey = 120;
-						break;
-					case 5:
-						setEffectStar(buf, 44, 32, 0, 0, 0);
-						buf->dx = 10;
-						buf->dy = 8;
-						buf->ey = 120;
-						break;
+				case 0:
+					setEffectStar(buf, 20, 11, 0, 0, 0);
+					buf->dx = -12;
+					buf->dy = 9;
+					buf->ey = 80;
+					break;
+				case 1:
+					setEffectStar(buf, 23, 11, 0, 0, 0);
+					buf->dx = 10;
+					buf->dy = 8;
+					buf->ey = 120;
+					break;
+				case 2:
+					setEffectStar(buf, 32, 14, 0, 0, 0);
+					buf->dx = -9;
+					buf->dy = 6;
+					buf->ey = 120;
+					break;
+				case 3:
+					setEffectStar(buf, 36, 20, 0, 0, 0);
+					buf->dx = -10;
+					buf->dy = 9;
+					buf->ey = 120;
+					break;
+				case 4:
+					setEffectStar(buf, 41, 24, 0, 0, 0);
+					buf->dx = 11;
+					buf->dy = 7;
+					buf->ey = 120;
+					break;
+				case 5:
+					setEffectStar(buf, 44, 32, 0, 0, 0);
+					buf->dx = 10;
+					buf->dy = 8;
+					buf->ey = 120;
+					break;
 				}
-				// ??
+				// ??
 				if ((rand() % 10) < 6)
 					buf->mode = 8;
 				else
@@ -5627,14 +5628,14 @@ void mapEffectFallingStar(void)
 	}
 }
 
-// ．??????
+// ??????
 void mapEffectSnow2(int n)
 {
 	short mapEffectSnowWaitTime = 0;
 	short mapEffectSnowFrameMax = 0;
 	int hosei1 = 940, hosei2 = -200, ww = DEF_APPSIZEX, hh = DEF_APPSIZEY, time = 0, i, j, k;
 	MAP_EFFECT *buf;
-	
+
 	// ???????????????
 	if (ResoMode == 1)
 	{
@@ -5645,7 +5646,7 @@ void mapEffectSnow2(int n)
 	}
 	for (k = 0; k < n; k++)
 	{
-		// ．伶
+		// 
 		if (mapEffectSnowLevel)
 		{
 			if (mapEffectSnowLevel < 3)
@@ -5707,7 +5708,7 @@ void mapEffectSnow2(int n)
 				}
 			}
 		}
-		// ?去??
+		// ???
 		i = 0;
 		buf = useBufMapEffect;
 		while (buf != (MAP_EFFECT*)NULL)
@@ -5719,7 +5720,7 @@ void mapEffectSnow2(int n)
 				mapEffectDirHosei(&buf->x, &buf->y);
 				if (ww + 100 <= buf->x || hh <= buf->y)
 				{
-					// ?去?
+					// ??
 					MAP_EFFECT *buf2 = buf->next;
 					delMapEffectBuf(buf);
 					buf = buf2;
@@ -5753,7 +5754,7 @@ void mapEffectRain2(int n)
 	}
 	for (k = 0; k < n; k++)
 	{
-		// ?伶
+		// ?
 		if (mapEffectRainLevel)
 		{
 			if (mapEffectRainLevel < 3)
@@ -5795,7 +5796,7 @@ void mapEffectRain2(int n)
 				}
 			}
 		}
-		// ?去??
+		// ???
 		i = 0;
 		buf = useBufMapEffect;
 		while (buf != (MAP_EFFECT*)NULL)
@@ -5807,7 +5808,7 @@ void mapEffectRain2(int n)
 				mapEffectDirHosei(&buf->x, &buf->y);
 				if (ww <= buf->x || hh <= buf->y)
 				{
-					// ?去?
+					// ??
 					MAP_EFFECT *buf2 = buf->next;
 					delMapEffectBuf(buf);
 					buf = buf2;
@@ -5839,7 +5840,7 @@ void mapEffectKamiFubuki(void)
 		hosei1 = 470;
 		hosei2 = -50;
 	}
-	// ????伶
+	// ????
 	if (mapEffectKamiFubukiLevel)
 	{
 		if (mapEffectKamiFubukiLevel < 3)
@@ -5903,7 +5904,7 @@ void mapEffectKamiFubuki(void)
 			}
 		}
 	}
-	// ?去??
+	// ???
 	i = 0;
 	buf = useBufMapEffect;
 	while (buf != (MAP_EFFECT*)NULL)
@@ -5924,7 +5925,7 @@ void mapEffectKamiFubuki(void)
 			mapEffectDirHosei(&buf->x, &buf->y);
 			if (hh <= buf->y)
 			{
-				// ?去?
+				// ??
 				MAP_EFFECT *buf2 = buf->next;
 				delMapEffectBuf(buf);
 				buf = buf2;
@@ -5939,7 +5940,7 @@ void mapEffectKamiFubuki(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ?????火???????????????火????
+// ??????????????????䴘?????
 //
 void camMapToGamen(float sx, float sy, float *ex, float *ey)
 {
@@ -5947,23 +5948,23 @@ void camMapToGamen(float sx, float sy, float *ex, float *ey)
 
 	x0 = (sx - viewPointX) / GRID_SIZE;
 	y0 = (sy - viewPointY) / GRID_SIZE;
-	x = + x0 * tx + y0 * tx;
-	y = - x0 * ty + y0 * ty;
-	//???火
+	x = +x0 * tx + y0 * tx;
+	y = -x0 * ty + y0 * ty;
+	//?䴘?
 	*ex = x + viewOffsetX;
 	*ey = y + viewOffsetY;
 }
 
 //
-// ???火???????火(????????)????
+// ?䴘????????(????????)????
 //
 void camGamenToMap(float sx, float sy, float *ex, float *ey)
 {
 	float x0, y0, x, y;
 
-	// ???火
-	x0 = sx - viewOffsetX; 
-	y0 = sy - viewOffsetY; 
+	// ?䴘?
+	x0 = sx - viewOffsetX;
+	y0 = sy - viewOffsetY;
 	x = x0 - (float)SURFACE_WIDTH / (float)SURFACE_HEIGHT * y0;
 	y = x0 + (float)SURFACE_WIDTH / (float)SURFACE_HEIGHT * y0;
 	*ex = x + viewPointX;
@@ -5999,26 +6000,26 @@ void mapEffectDice(void)
 		case 1:
 			if (TimeGetTime() - dwDiceTimer > 100)
 			{
-#ifdef _CHAR_PROFESSION			// WON ADD 昜眥珛
-    #ifdef _GM_IDENTIFY		// Rog ADD GM妎梗
+#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _GM_IDENTIFY		// Rog ADD GM识别
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, gm_name);
-    #else
+#else
 #ifdef _NPC_PICTURE
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, 0);
 #else
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0);
 #endif
-    #endif
+#endif
 #else
-    #ifdef _GM_IDENTIFY		// Rog ADD GM妎梗
+#ifdef _GM_IDENTIFY		// Rog ADD GM识别
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, gm_name);
-    #else
-		#ifdef _NPC_PICTURE
+#else
+#ifdef _NPC_PICTURE
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0);
-		#else
+#else
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48);
-		#endif
-    #endif
+#endif
+#endif
 #endif
 				dwDiceTimer = TimeGetTime();
 				if (++i > 10)
@@ -6029,19 +6030,19 @@ void mapEffectDice(void)
 			}
 			break;
 		case 2:
-#ifdef _CHAR_PROFESSION			// WON ADD 昜眥珛
-    #ifdef _GM_IDENTIFY		// Rog ADD GM妎梗
+#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _GM_IDENTIFY		// Rog ADD GM识别
 			setNpcCharObj(0, 26410 + d1, 12, 8, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, "");
 			setNpcCharObj(1, 26416 + d2, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, "");
-    #else
-		#ifdef _NPC_PICTURE
+#else
+#ifdef _NPC_PICTURE
 			setNpcCharObj(0, 26410 + d1, 12, 8, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, 0);
 			setNpcCharObj(1, 26416 + d2, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, 0);
-		#else
+#else
 			setNpcCharObj(0, 26410 + d1, 12, 8, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0);
 			setNpcCharObj(1, 26416 + d2, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0);
-		#endif
-    #endif
+#endif
+#endif
 #else
 			setNpcCharObj(0, 26410 + d1, 12, 8, 0, "", "", "", 1, "", 1, 0, 1, 0, 48);
 			setNpcCharObj(1, 26416 + d2, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48);

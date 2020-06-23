@@ -1365,11 +1365,15 @@ void ConsoleThread(void)
 	{
 		printf("\n石器时代>");
 		i = 0;
+		
+		/*
 		while( (c = getchar()) != '\n')
 		{
-			cmd[i] = c;
+			printf("Characters: %c  \n", c);
+			cmd[i] = 'q';
 			i++;
-		}
+		}*/
+		*cmd = 'a ';
 		//cmd[i] = '\0';
 		fflush(stdin);
 

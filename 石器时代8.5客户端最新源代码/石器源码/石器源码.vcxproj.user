@@ -40,10 +40,10 @@
     <LocalDebuggerCommandArguments>OpenClient</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_Release|Win32'">
-    <LocalDebuggerCommand>F:\7-sa\sa25.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>D:\stoneAge\client\sa25.exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_Release|Win32'">
-    <LocalDebuggerWorkingDirectory>F:\7-sa</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>D:\stoneAge\client</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>OpenClient</LocalDebuggerCommandArguments>
   </PropertyGroup>

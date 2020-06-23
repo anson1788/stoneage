@@ -334,7 +334,7 @@ static int Lua_TeaDecryption(lua_State *L)
 	memset(temp,0,2024);
 	size_t l;
 	const char *str=luaL_checklstring(L, 1, &l);
-	extern long TEA賤躇(long* v, long n, long* k);
+	extern long TEA解密(long* v, long n, long* k);
 	extern int getfilesize(FILE* fp);
 	FILE *fp=NULL;
 	errno_t err = fopen_s(&fp,str,"rb");
@@ -342,7 +342,7 @@ static int Lua_TeaDecryption(lua_State *L)
 		int len = getfilesize(fp);
 		fread(temp,1,len,fp);
 		fclose(fp);
-		TEA賤躇((long*)temp,len/4,(long*)_LUA_KEY_);
+		TEA解密((long*)temp,len/4,(long*)_LUA_KEY_);
 	}
 	lua_pushstring(L, temp);
 	return 1;
