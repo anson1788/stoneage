@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../wgs/tea.h"
 #include "../systeminc/action.h"
@@ -51,7 +51,7 @@ ACTION * FreeCreateWinTypeLua( lua_State *lua )
 	int TM_Ret = lua_pcall(lua, 0, 1, 0);
 
 	if (TM_Ret != 0){
-		printf("Èë¿Ú£ºFreeCreateWinTypeLua ´íÎóÄÚÈİ:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
+		printf("å…¥å£ï¼šFreeCreateWinTypeLua é”™è¯¯å†…å®¹:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}
@@ -75,7 +75,7 @@ ACTION * FreeServerWinTypeLua( lua_State *lua )
 	int TM_Ret = lua_pcall(lua, 0, 1, 0);
 
 	if (TM_Ret != 0){
-		printf("Èë¿Ú£ºFreeServerWinTypeLua ´íÎóÄÚÈİ:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
+		printf("å…¥å£ï¼šFreeServerWinTypeLua é”™è¯¯å†…å®¹:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}
@@ -158,7 +158,7 @@ int docall (lua_State *L, int narg, int clear) {
   status = lua_pcall(L, narg, (clear ? 0 : LUA_MULTRET), base);
   lua_remove(L, base);
   if(status != 0){
-	printf("Èë¿Ú£ºdocall ´íÎóÄÚÈİ:%d(%s)\n", status, lua_tostring(L, -1));
+	printf("å…¥å£ï¼šdocall é”™è¯¯å†…å®¹:%d(%s)\n", status, lua_tostring(L, -1));
 	int iTop = lua_gettop(L);
 	lua_pop(L,iTop);
 	lua_gc(L, LUA_GCCOLLECT, 0);
@@ -178,7 +178,7 @@ int decryptLUA(lua_State *L, char *filename){
 	int luamaxlen = 0;
 	unsigned char *luabuff;
 	strcpy(loadfilename, filename);
-	fopen_s(&f,loadfilename,"rb");//´ò¿ª²¹¶¡1
+	fopen_s(&f,loadfilename,"rb");//æ‰“å¼€è¡¥ä¸1
 	if (f!=NULL){
 		fseek(f,0,SEEK_END);
 		luamaxlen = ftell(f);
@@ -190,7 +190,7 @@ int decryptLUA(lua_State *L, char *filename){
 	}else{
 		return -100;
 	}
-	TEA½âÃÜ((long*)luabuff,(luamaxlen/4),(long *)_LUA_KEY_);
+	TEAè§£å¯†((long*)luabuff,(luamaxlen/4),(long *)_LUA_KEY_);
 	int status = luaL_dostring(L,(const char *)luabuff);
 	free(luabuff);
 	return status;
@@ -224,7 +224,7 @@ int myluaload (char *filename)
 #ifdef _RELUA_
 	int re = dofile(salua->lua, filename);
 	if(re!=0){
-		printf("ÎÄ¼ş£º%s ´íÎóÌáÊ¾£º%s ĞĞÊı£º%d\n",filename,(char *)lua_tostring(salua->lua, -1),re);
+		printf("æ–‡ä»¶ï¼š%s é”™è¯¯æç¤ºï¼š%s è¡Œæ•°ï¼š%d\n",filename,(char *)lua_tostring(salua->lua, -1),re);
 		lua_gc(salua->lua, LUA_GCCOLLECT, 0);
 		return TRUE;	
 	}
@@ -232,7 +232,7 @@ int myluaload (char *filename)
 	int re = decryptLUA(salua->lua, filename);
 	if(re != 0){
 		if(re==-100) return TRUE;
-		printf("ÎÄ¼ş£º%s ´íÎóÌáÊ¾£º%s ĞĞÊı£º%d\n",filename,(char *)lua_tostring(salua->lua, -1),re);
+		printf("æ–‡ä»¶ï¼š%s é”™è¯¯æç¤ºï¼š%s è¡Œæ•°ï¼š%d\n",filename,(char *)lua_tostring(salua->lua, -1),re);
 		lua_gc(salua->lua, LUA_GCCOLLECT, 0);
 		return TRUE;
 	}
@@ -292,15 +292,15 @@ void LoadStoneAgeLUA(char *path)
 	HANDLE hFind; 
 	lstrcpy(filename, path); 
 	lstrcat(filename, "/"); 
-	lstrcat(filename, "*.*"); // ÕÒËùÓĞÎÄ¼ş 
+	lstrcat(filename, "*.*"); // æ‰¾æ‰€æœ‰æ–‡ä»¶ 
 	
 	hFind = FindFirstFile(filename, &wfd); 
-	if (hFind == INVALID_HANDLE_VALUE) // Èç¹ûÃ»ÓĞÕÒµ½»ò²éÕÒÊ§°Ü 
+	if (hFind == INVALID_HANDLE_VALUE) // å¦‚æœæ²¡æœ‰æ‰¾åˆ°æˆ–æŸ¥æ‰¾å¤±è´¥ 
 		return; 
 	do{
 		
 		if (wfd.cFileName[0] == '.') 
-			continue; // ¹ıÂËÕâÁ½¸öÄ¿Â¼ 
+			continue; // è¿‡æ»¤è¿™ä¸¤ä¸ªç›®å½• 
 		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
 		{ 
 			sprintf_s(filename, "%s//%s", path, wfd.cFileName);
@@ -322,7 +322,7 @@ void LoadStoneAgeLUA(char *path)
 			}
 		}
 	}while (FindNextFile(hFind, &wfd)); 
-	FindClose(hFind); // ¹Ø±Õ²éÕÒ¾ä±ú 
+	FindClose(hFind); // å…³é—­æŸ¥æ‰¾å¥æŸ„ 
 }
 
 void ReLoadStoneAgeLUA(char *filename)
@@ -375,7 +375,7 @@ int FreeGetBattleMap(int floor)
 	}
 	lua_getglobal(lua, "FreeGetBattleMap");
 	if (!lua_isfunction(lua, -1)) {
-		printf("FreeGetBattleMap ´íÎóÄÚÈİ (%s)\n", lua_tostring(lua, -1));
+		printf("FreeGetBattleMap é”™è¯¯å†…å®¹ (%s)\n", lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}
@@ -383,7 +383,7 @@ int FreeGetBattleMap(int floor)
 	int TM_Ret = lua_pcall(lua, 1, 1, 0);
 
 	if (TM_Ret != 0){
-		printf("Èë¿Ú£ºFreeGetBattleMap ´íÎóÄÚÈİ:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
+		printf("å…¥å£ï¼šFreeGetBattleMap é”™è¯¯å†…å®¹:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}
@@ -417,7 +417,7 @@ char* FreeGetTitleStr(int id)
 	}
 	lua_getglobal(lua, "GetTitleStr");
 	if (!lua_isfunction(lua, -1)) {
-		printf("GetTitleStr ´íÎóÄÚÈİ (%s)\n", lua_tostring(lua, -1));
+		printf("GetTitleStr é”™è¯¯å†…å®¹ (%s)\n", lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}
@@ -425,7 +425,7 @@ char* FreeGetTitleStr(int id)
 	int TM_Ret = lua_pcall(lua, 1, 1, 0);
 
 	if (TM_Ret != 0){
-		printf("Èë¿Ú£ºGetTitleStr ´íÎóÄÚÈİ:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
+		printf("å…¥å£ï¼šGetTitleStr é”™è¯¯å†…å®¹:%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
 		lua_pop(lua, 1);
 		return NULL;
 	}

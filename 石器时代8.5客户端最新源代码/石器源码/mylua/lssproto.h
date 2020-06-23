@@ -1,3 +1,3 @@
-#ifdef _WIN_LUAJIT_
+﻿#ifdef _WIN_LUAJIT_
 
 #endif

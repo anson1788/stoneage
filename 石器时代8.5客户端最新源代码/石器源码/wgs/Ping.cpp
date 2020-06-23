@@ -1,4 +1,4 @@
-//ping.cpp
+ï»¿//ping.cpp
 #include <Winsock2.h>
 #include <Windows.h>
 #include "ping.h"
@@ -6,26 +6,26 @@
 
 bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 {
-	//´´½¨Ò»¸öRawÌ×½Ú×Ö
+	//åˆ›å»ºä¸€ä¸ªRawå¥—èŠ‚å­—
 	SOCKET rawSocket = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
 	if (rawSocket == INVALID_SOCKET)
 	{
 		int err = WSAGetLastError();
 		return false;
 	}
-	int nNetTimeout = 1000;//1Ãë 
-						   //·¢ËÍÊ±ÏÞ
+	int nNetTimeout = 1000;//1ç§’ 
+						   //å‘é€æ—¶é™
 	setsockopt(rawSocket, SOL_SOCKET, SO_SNDTIMEO, (char *)&nNetTimeout, sizeof(int));
-	//½ÓÊÕÊ±ÏÞ
+	//æŽ¥æ”¶æ—¶é™
 	setsockopt(rawSocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&nNetTimeout, sizeof(int));
 
-	//»ñµÃÖ÷»úÐÅÏ¢
+	//èŽ·å¾—ä¸»æœºä¿¡æ¯
 	LPHOSTENT lpHost = gethostbyname(pstrHost);
 	if (lpHost == NULL)
 	{
 		return false;
 	}
-	//¹¹ÔìÄ¿±êÌ×½Ú×ÖµØÖ·ÐÅÏ¢
+	//æž„é€ ç›®æ ‡å¥—èŠ‚å­—åœ°å€ä¿¡æ¯
 	struct    sockaddr_in saDest;
 	struct    sockaddr_in saSrc;
 	saDest.sin_addr.s_addr = *((u_long FAR *) (lpHost->h_addr));
@@ -38,10 +38,10 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 	int     nRecvNum = 0;
 	int     nTotalTime = 0;
 
-	//¶à´Îping
+	//å¤šæ¬¡ping
 	for (UINT nLoop = 0; nLoop < nRetries; ++nLoop)
 	{
-		//·¢ËÍICMP»ØÓ¦ÇëÇó
+		//å‘é€ICMPå›žåº”è¯·æ±‚
 		if ((nRet = SendEchoRequest(rawSocket, &saDest)) < 0)
 		{
 			break;
@@ -54,14 +54,14 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 
 		if (nRet)
 		{
-			//»ñµÃ»ØÓ¦
+			//èŽ·å¾—å›žåº”
 			if ((dwTimeSent = RecvEchoReply(rawSocket, &saSrc, &cTTL)) < 0)
 			{
 				nRet = dwTimeSent;
 				break;
 			}
 
-			//¼ÆËãÊ±¼ä
+			//è®¡ç®—æ—¶é—´
 			nTotalTime += GetTickCount() - dwTimeSent;
 			++nRecvNum;
 		}
@@ -81,7 +81,7 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 
 
 
-//·¢ËÍICMPECHOÊý¾Ý°üÇëÇó
+//å‘é€ICMPECHOæ•°æ®åŒ…è¯·æ±‚
 int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 {
 	static ECHOREQUEST echoReq;
@@ -89,7 +89,7 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 	static int nSeq = 1;
 	int nRet;
 
-	//¹¹Ôì»ØÓ¦ÇëÇó
+	//æž„é€ å›žåº”è¯·æ±‚
 	echoReq.icmpHdr.Type = ICMP_ECHOREQ;
 	echoReq.icmpHdr.Code = 0;
 	echoReq.icmpHdr.Checksum = 0;
@@ -99,19 +99,19 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 	for (nRet = 0; nRet < REQ_DATASIZE; nRet++)
 		echoReq.cData[nRet] = ' ' + nRet;
 
-	//±£´æ·¢ËÍÊ±¼ä
+	//ä¿å­˜å‘é€æ—¶é—´
 	echoReq.dwTime = GetTickCount();
 
 	echoReq.icmpHdr.Checksum = in_cksum((u_short *)&echoReq, sizeof(ECHOREQUEST));
 
-	//·¢ËÍÇëÇó
+	//å‘é€è¯·æ±‚
 	nRet = sendto(s,
 		(LPSTR)&echoReq,
 		sizeof(ECHOREQUEST),
 		0,
 		(LPSOCKADDR)lpstToAddr,
 		sizeof(SOCKADDR_IN));
-	//¼ì²é·µ»ØÖµ
+	//æ£€æŸ¥è¿”å›žå€¼
 	if (nRet == SOCKET_ERROR)
 	{
 
@@ -122,14 +122,14 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 
 
 
-//½ÓÊÕICMPECHOÊý¾Ý°ü»ØÓ¦
+//æŽ¥æ”¶ICMPECHOæ•°æ®åŒ…å›žåº”
 DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 {
 	ECHOREPLY echoReply;
 	int nRet;
 	int nAddrLen = sizeof(struct sockaddr_in);
 
-	//½ÓÊÕÇëÇó»ØÓ¦
+	//æŽ¥æ”¶è¯·æ±‚å›žåº”
 	nRet = recvfrom(s,
 		(LPSTR)&echoReply,
 		sizeof(ECHOREPLY),
@@ -137,13 +137,13 @@ DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 		(LPSOCKADDR)lpsaFrom,
 		&nAddrLen);
 
-	//¼ì²é·µ»ØÖµ
+	//æ£€æŸ¥è¿”å›žå€¼
 	if (nRet == SOCKET_ERROR)
 	{
 		return nRet;
 	}
 
-	//·µ»Ø·¢ËÍµÄÊ±¼ä
+	//è¿”å›žå‘é€çš„æ—¶é—´
 	*pTTL = echoReply.ipHdr.TTL;
 
 	return(echoReply.echoRequest.dwTime);
@@ -151,7 +151,7 @@ DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 
 
 
-//µÈ´ý»ØÓ¦
+//ç­‰å¾…å›žåº”
 int CPing::WaitForEchoReply(SOCKET s)
 {
 	struct timeval Timeout;
@@ -169,7 +169,7 @@ int CPing::WaitForEchoReply(SOCKET s)
 
 
 
-//×ª»»µØÖ·
+//è½¬æ¢åœ°å€
 u_short CPing::in_cksum(u_short *addr, int len)
 {
 	register int nleft = len;

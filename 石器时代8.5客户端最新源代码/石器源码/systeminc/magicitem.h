@@ -1,4 +1,4 @@
-void InitMagicItemWin(char * ÄÚÈÝ);
+ï»¿void InitMagicItemWin(char * å›€ï §);
 ACTION* CreateMagicItemWin();
 ACTION* ShowMagicItemData();
 

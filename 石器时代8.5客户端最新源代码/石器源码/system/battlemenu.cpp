@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	battleMenu.cpp		*/
 /************************/
 #include "../systeminc/version.h"
@@ -17,14 +17,14 @@
 #include "../systeminc/field.h"
 #include "../systeminc/character.h"
 
-// ??ûï?
+// ??îœ?
 enum{ 
 	BATTLE_ATTACK,
 	BATTLE_JUJUTU,
 	BATTLE_CAPTURE,
 	BATTLE_ITEM,
 	BATTLE_WAZA,
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	BATTLE_PROWAZA,
 #endif
 };
@@ -33,7 +33,7 @@ enum{
 #define BATTLE_MENU				( 1 << 0 )
 #define BATTLE_MENU_PET			( 1 << 1 )
 
-// ??????¡š
+// ??????î”Ÿ
 #define BATTLE_MENU_SUU					9
 #define BATTLE_MENU_FONTS				9
 #define BATTLE_MENU_JUJUTSU_FONTS		6
@@ -42,35 +42,35 @@ enum{
 #define BATTLE_MENU_WAZA_FONTS			9
 
 // ????????
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 #define BATTLE_BUTTON_SUU	10
 #else
 #define BATTLE_BUTTON_SUU	9
 #endif
 
 #ifndef PK_SYSTEM_TIMER_BY_ZHU
-#define BATTLE_CNT_DOWN_TIME  _BATTLE_TIME_  //Ã¿¾ÖÕ½¶·Ê±¼ä
+#define BATTLE_CNT_DOWN_TIME  _BATTLE_TIME_  //æ¯å±€æˆ˜æ–—æ—¶é—´
 #endif
 
 char BattleCmd[ BATTLE_COMMAND_SIZE ];
 // ?????????????
 char BattleCmdBak[ BATTLE_BUF_SIZE ][ BATTLE_COMMAND_SIZE ];
-// ???????§ó???????
+// ???????î°???????
 int BattleCmdReadPointer;
 int BattleCmdWritePointer;
 
-// ???ıÖ¢t§ó??
+// ???î¿î•šî°??
 char BattleStatus[ BATTLE_COMMAND_SIZE ];
-// ???ıÖ¢t§ó????????
+// ???î¿î•šî°????????
 char BattleStatusBak[ BATTLE_BUF_SIZE ][ BATTLE_COMMAND_SIZE ];
-// ???ıÖ¢t§ó???????
+// ???î¿î•šî°???????
 int BattleStatusReadPointer;
 int BattleStatusWritePointer;
-// û«§Æ?¦”?§k?
+// î˜î¤?î›¹?îœ±?
 int BattleMyNo = 0;
-// ¡P¥f??û«§Æ???
+// î“–î™¬??î˜î¤???
 int BattleMyMp;
-// ¡P¥f?şÉü¬????
+// î“–î™¬?î’î·????
 int BattleEscFlag = FALSE;
 
 // ????????????
@@ -78,39 +78,39 @@ int BattlePetStMenCnt;
 
 // ?????
 int BattleBpFlag = FALSE;
-// ????§k?
+// ????îœ±?
 int BattleCmdNo = -1;
-// ûöüÓ§k?
+// î£îîœ±?
 int BattleJujutuNo;
-// ?§k?
+// ?îœ±?
 int BattleWazaNo;
-// úÓ¡P???§k???????
+// îŒ¢î“–???îœ±???????
 int battlePetNoBak = -2;
-// úÓ¡P???§k????????
+// îŒ¢î“–???îœ±????????
 int battlePetNoBak2 = -2;
-// ????§k?
+// ????îœ±?
 int BattleItemNo;
 
-// ?????¥`?????
+// ?????î™¦?????
 int battlePlayerEscFlag = FALSE;
 
-// ????¦V??????
+// ????îš¼??????
 int BattleAnimFlag;
-// ???ûõıï???
+// ???î¢î‘˜???
 BOOL BattleTurnReceiveFlag;
 #ifdef PK_SYSTEM_TIMER_BY_ZHU
 BOOL BattleCntDownRest;
 BOOL SendToServer;
 #endif
 int BattleCliTurnNo;
-// ??????????§k?
+// ??????????îœ±?
 int BattleSvTurnNo;
 
 #ifdef	_HUNDRED_KILL
 BOOL BattleHundredFlag = FALSE;
 #endif
 
-// ¡P¥f??????????
+// î“–î™¬??????????
 BOOL BattleResultWndFlag = FALSE;
 
 // ???????
@@ -128,25 +128,25 @@ static int battleMenuJujutsuFontNo[ BATTLE_MENU_JUJUTSU_FONTS ];
 static int battleMenuItemFontNo[ BATTLE_MENU_ITEM_FONTS ];
 static int battleMenuPetFontNo[ BATTLE_MENU_PET_FONTS ];
 static int battleMenuWazaFontNo[ BATTLE_MENU_WAZA_FONTS ];
-int battleMenuFlag = FALSE;				// ??üÒ????????????????
-static int battleMenuReturn = FALSE;			// ?????ş???????
-static int battlePetMenuFlag = FALSE;			// ???????üÒ????
+int battleMenuFlag = FALSE;				// ??î????????????????
+static int battleMenuReturn = FALSE;			// ?????î¡¡???????
+static int battlePetMenuFlag = FALSE;			// ???????î????
 int battlePetButtonFlag = FALSE;			// ??????????????
 static int battleTimeUpFlag = FALSE;
 static int battleTargetSelectFlag = FALSE;
-int battleMenuFlag2 = FALSE;	// ???????şú?¢v??
-int battleButtonBak = -1;		// ¡q???????
-static int battleButtonBak2 = -1;		// ¡q????????
-int battleWazaTargetBak = -1;		// ¡q???§k?
+int battleMenuFlag2 = FALSE;	// ???????î“?î•œ??
+int battleButtonBak = -1;		// î“·???????
+static int battleButtonBak2 = -1;		// î“·????????
+int battleWazaTargetBak = -1;		// î“·???îœ±?
 
 // ??????????????
 static ACTION *pActInfoWnd;
 static ACTION *pActWnd = NULL;
 
-// ????????¤õ
+// ????????î³
 static int buttonX, buttonY, buttonA;
 
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 int wonflag = 0 ; 
 int prouseskill = -1 ; 
 int SkillWnd2 = 0 ; 
@@ -164,7 +164,7 @@ void InitBattleMenu( void )
 	int i;
 	// ???
 	for( i = 0 ; i < BATTLE_BUTTON_SUU ; i++ ) battleButtonDispNo[ i ] = -2;
-	// ûöüÓ
+	// î£î
 	for( i = 0 ; i < BATTLE_MENU_JUJUTSU_FONTS ; i++ ) battleMenuJujutsuFontNo[ i ] = -2;
 	// ????
 	for( i = 0 ; i < BATTLE_MENU_ITEM_FONTS ; i++ ) battleMenuItemFontNo[ i ] = -2;
@@ -175,12 +175,12 @@ void InitBattleMenu( void )
 
 	battleMenuFlag = FALSE;				// ??????????
 	battleMenuReturn = TRUE;			// ????????????
-//	battleButtonBak = -1;				// ¡q???????
-	battleButtonBak2 = -1;				// ¡q????????
-	BattleEscFlag = FALSE;				// ¡P¥f?şÉü¬???????
-	// ¡P¥f??????????
+//	battleButtonBak = -1;				// î“·???????
+	battleButtonBak2 = -1;				// î“·????????
+	BattleEscFlag = FALSE;				// î“–î™¬?î’î·???????
+	// î“–î™¬??????????
 	BattleResultWndFlag = FALSE;
-	// ??????¡u???
+	// ??????î“»???
 	ClearBattleButton();
 	// ?????????????
 	battleButtonBak = 0;
@@ -193,7 +193,7 @@ void InitBattleMenu( void )
 #endif
 	pActWnd = NULL;				// ????????????
 	pActInfoWnd = NULL;
-	// ????¦V?¢v????????
+	// ????îš¼?î•œ????????
 	if( battlePetNoBak != -2 ){
 		battlePetButtonFlag = FALSE;			// ????????
 	}else{
@@ -202,11 +202,11 @@ void InitBattleMenu( void )
 
 }
 
-// ?ş°??¦Kş°?????? ********************************************/
+// ?î‘·??îš±î‘·?????? ********************************************/
 int CheckBattle1P2P( void )
 {
 	int i, cnt = 0;
-	// ??§š§Æ???
+	// ??îŸî¤???
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 		// ??????????
 		if( p_party[ i ]->func == NULL ) continue;
@@ -217,39 +217,39 @@ int CheckBattle1P2P( void )
 	else return 1;
 }
 
-// ????¦V??????????? ********************************************/
+// ????îš¼??????????? ********************************************/
 void CheckBattleAnimFlag( void )
 {
 	int i;
-	// ??????????????????¥i???¡u???????
+	// ??????????????????î™¯???î“»???????
 	if( BattleCliTurnNo != BattleSvTurnNo ){ 
-		// ??§š§Æ???
+		// ??îŸî¤???
 		for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
-			// ???????§R¤e
+			// ???????îœ˜î˜‹
 			p_party[ i ]->atr |= ACT_ATR_BTL_CMD_END;
 		}
 		return;
 	}
-	// ??§š§Æ???
+	// ??îŸî¤???
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
-		// ???????§R¤e
+		// ???????îœ˜î˜‹
 		if( ( BattleAnimFlag >> i ) & 0x00000001 )
 			p_party[ i ]->atr |= ACT_ATR_BTL_CMD_END;
 	}
 }
 
-// ????¦V?????????? ********************************************/
+// ????îš¼?????????? ********************************************/
 void InitBattleAnimFlag( void )
 {
 	int i;
-	// ??§š§Æ???
+	// ??îŸî¤???
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
-		// ???????§R¤e
+		// ???????îœ˜î˜‹
 		p_party[ i ]->atr &= ~ACT_ATR_BTL_CMD_END;
 	}
 }
 
-// ???????£?? *******************************************************/
+// ???????î—•?? *******************************************************/
 int CheckPetSuu( void )
 {
 	int i,cnt = 0;
@@ -259,15 +259,15 @@ int CheckPetSuu( void )
 	return cnt;
 }
 
-// ???§R¤e????ı¤? *****************************************************/
+// ???îœ˜î˜‹????î? *****************************************************/
 void ClearBoxFlag( void )
 {
 	int i;
-	// ???§R¤e????ı¤?
+	// ???îœ˜î˜‹????î?
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 		// ??????????
 		if( p_party[ i ]->func == NULL ) continue;
-		// ???§R¤e????¤úû¨??????
+		// ???îœ˜î˜‹????î¸î•??????
 
 		p_party[i]->atr &= ~ACT_ATR_HIT_BOX_COL1;
 		p_party[i]->atr &= ~ACT_ATR_HIT_BOX_COL2;
@@ -285,12 +285,12 @@ void ClearBoxFlag( void )
 		p_party[ i ]->atr &= ~ACT_ATR_HIT_BOX_ALL3;
 		p_party[ i ]->atr &= ~ACT_ATR_HIT_BOX_ALL4;
 		p_party[ i ]->atr |= ACT_ATR_HIT;
-		// ???§R¤e§k????
+		// ???îœ˜î˜‹îœ±????
 		p_party[ i ]->hitDispNo = -2;
 	}
 }
 
-// ??????????§R¤e ***************************************************/
+// ??????????îœ˜î˜‹ ***************************************************/
 int CheckBattelTarget( void )
 {
 	int i;
@@ -298,7 +298,7 @@ int CheckBattelTarget( void )
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 		// ??????????
 		if( p_party[ i ]->func == NULL ) continue;
-		// ¡k??????
+		// î“±??????
 
 
 		if( !( p_party[i]->atr & ACT_ATR_HIT_BOX ) &&
@@ -326,7 +326,7 @@ int CheckBattelTarget( void )
 	return -1;
 }
 
-// ??????¡u???  *****************************************************/
+// ??????î“»???  *****************************************************/
 void ClearBattleButton( void )
 {
 	// ????
@@ -337,21 +337,21 @@ void ClearBattleButton( void )
 void BattleButtonOff( void )
 {
 	play_se( 217, 320, 240 );
-	// ???????????úÇ
+	// ???????????îŒ–
 	DeathAction( pActWnd );
 	pActWnd = NULL;				// ????????????
 	// ???????????????
 	battleTargetSelectFlag = FALSE;
-	// ????§k?
+	// ????îœ±?
 	BattleCmdNo = -1;
 
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	wonflag = 0 ; 
 #endif
 
-	// ??????¡u???
+	// ??????î“»???
 	ClearBattleButton();
-	// ???§R¤e????ı¤?
+	// ???îœ˜î˜‹????î?
 	ClearBoxFlag();
 }
 
@@ -382,21 +382,21 @@ void InitItem2( int x, int y )
 	}
 }
 
-// ¢o??????¤úû¨ ***********************************************************/
+// î••??????î¸î• ***********************************************************/
 void HpMeterDisp( int no )
 {
 	int meterX = p_party[ no ]->x;
 	int meterY = p_party[ no ]->y - 80;
 	int graNo;
-	// ¢V??????????????
+	// î”¼??????????????
 	if( p_party[ no ]->func == NULL || p_party[ no ]->hp <= 0 ) return;
 	// ?????
 	if( p_party[ no ]->atr & ACT_ATR_TRAVEL ) return;
-	// û«§Æ??
+	// î˜î¤??
 	if( no == BattleMyNo ){
-		// ?¤úû¨
+		// ?î¸î•
 		StockDispBuffer( meterX, meterY, DISP_PRIO_IME1, CG_BATTLE_BAR_PLAYER_2, 0 );
-		// ¢o??¤úû¨
+		// î••??î¸î•
 		StockBoxDispBuffer( meterX - 21,
 							meterY - 3,
 							meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->hp / (double)p_party[ BattleMyNo ]->maxHp ) * 40.0 ),
@@ -407,8 +407,8 @@ void HpMeterDisp( int no )
 							meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->hp / (double)p_party[ BattleMyNo ]->maxHp ) * 40.0 ),
 							meterY - 2,
 							DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-		// ??¤úû¨
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// ??î¸î•
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		StockBoxDispBuffer( meterX - 21,
 							meterY + 1,
 							meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->mp / (double)p_party[ BattleMyNo ]->maxMp ) * 40.0 ),
@@ -431,55 +431,55 @@ void HpMeterDisp( int no )
 							meterY + 2,
 							DISP_PRIO_IME2, SYSTEM_PAL_YELLOW, 2 );
 #endif
-		//cary Ğã³öÆï³èµÄ³èÎïÑªÁ¿ 
+		//cary ç§€å‡ºéª‘å® çš„å® ç‰©è¡€é‡ 
 		if( p_party[ BattleMyNo ]->onRide > 0 ){
 			meterY += 25;
 			meterX += 20;
-			// ?¤úû¨
+			// ?î¸î•
 			StockDispBuffer( meterX , meterY, DISP_PRIO_IME1, CG_BATTLE_BAR_PET_2, 0 );
-			// ¢o??¤úû¨???????
+			// î••??î¸î•???????
 			StockBoxDispBuffer( meterX - 21,
 								meterY - 1,
 								meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->petHp / (double)p_party[ BattleMyNo ]->petMaxHp ) * 40.0 ),
 								meterY - 1,
 								DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-			// ¢o??¤úû¨???????
+			// î••??î¸î•???????
 			StockBoxDispBuffer( meterX - 21,
 								meterY + 0,
 								meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->petHp / (double)p_party[ BattleMyNo ]->petMaxHp ) * 40.0 ),
 								meterY + 0,
 								DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
 		}
-	}else{	// û«§Æ????
+	}else{	// î˜î¤????
 		if( no == BattleMyNo + 5 ) graNo = CG_BATTLE_BAR_PET_2;
 		else graNo = CG_BATTLE_BAR_PET;
-		// ?¤úû¨
+		// ?î¸î•
 		StockDispBuffer( meterX , meterY, DISP_PRIO_IME1, graNo, 0 );
-		// ¢o??¤úû¨???????
+		// î••??î¸î•???????
 		StockBoxDispBuffer( meterX - 21,
 							meterY - 1,
 							meterX - 21 + (int)( ( (double)p_party[ no ]->hp / (double)p_party[ no ]->maxHp ) * 40.0 ),
 							meterY - 1,
 							DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-		// ¢o??¤úû¨???????
+		// î••??î¸î•???????
 		StockBoxDispBuffer( meterX - 21,
 							meterY + 0,
 							meterX - 21 + (int)( ( (double)p_party[ no ]->hp / (double)p_party[ no ]->maxHp ) * 40.0 ),
 							meterY + 0,
 							DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-		//cary Ğã³öÆï³èµÄ³èÎïÑªÁ¿ 
+		//cary ç§€å‡ºéª‘å® çš„å® ç‰©è¡€é‡ 
 		if( p_party[ no ]->onRide > 0 ){
 			meterY += 25;
 			meterX += 20;
-			// ?¤úû¨
+			// ?î¸î•
 			StockDispBuffer( meterX , meterY, DISP_PRIO_IME1, CG_BATTLE_BAR_PET, 0 );
-			// ¢o??¤úû¨???????
+			// î••??î¸î•???????
 			StockBoxDispBuffer( meterX - 21,
 								meterY - 1,
 								meterX - 21 + (int)( ( (double)p_party[ no ]->petHp / (double)p_party[ no ]->petMaxHp ) * 40.0 ),
 								meterY - 1,
 								DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-			// ¢o??¤úû¨???????
+			// î••??î¸î•???????
 			StockBoxDispBuffer( meterX - 21,
 								meterY + 0,
 								meterX - 21 + (int)( ( (double)p_party[ no ]->petHp / (double)p_party[ no ]->petMaxHp ) * 40.0 ),
@@ -489,20 +489,20 @@ void HpMeterDisp( int no )
 	}
 }
 
-// ş¡q?¤úû¨ ************************************************************************/
+// î¡“î“·?î¸î• ************************************************************************/
 void BattleNameDisp( void )
 {
 
 
 	int i;
 	int color = FONT_PAL_WHITE;
-	// ş¡q¤úû¨????????
+	// î¡“î“·î¸î•????????
 	if( nameOverTheHeadFlag != TRUE ) return;
 	// ?????????????
 	for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 		// ??????????
 		if( p_party[ i ]->func == NULL ) continue;
-		// û«§Æ??
+		// î˜î¤??
 		if( i == BattleMyNo || i == ( BattleMyNo + 5 ) )
 			color = FONT_PAL_YELLOW;
 		else
@@ -586,7 +586,7 @@ void BattleButtonAttack( void )
 				}
 			}
 		}
-		strcpy( OneLineInfoStr,"¹¥»÷¡£");
+		strcpy( OneLineInfoStr,"æ”»å‡»ã€‚");
 	}
 }
 */
@@ -650,7 +650,7 @@ void BattleButtonAttack( void )
 				}
 			}
 		}
-		strcpy( OneLineInfoStr,"¹¥»÷¡£");
+		strcpy( OneLineInfoStr,"æ”»å‡»ã€‚");
 	}
 }
 
@@ -689,12 +689,12 @@ void BattleButtonJujutsu( void )
 			}
 		}
 
-		strcpy( OneLineInfoStr, "Ò÷³ªÖäÊõ¡£");
+		strcpy( OneLineInfoStr, "åŸå”±å’’æœ¯ã€‚");
 #ifdef _MAGIC_NOCAST
 	  }
 	  else
 	  {
-        strcpy( OneLineInfoStr, "³ÁÄ¬ÖĞÎŞ·¨Ò÷³ªÖäÊõ¡£");
+        strcpy( OneLineInfoStr, "æ²‰é»˜ä¸­æ— æ³•åŸå”±å’’æœ¯ã€‚");
 	  }
 #endif
 	}
@@ -855,7 +855,7 @@ void BattleButtonJujutsu( void )
 										if( p_party[i]->atr & ACT_ATR_TRAVEL )
 											continue;
 
-										// ÓÒÏÂµÚ¶şÁĞ
+										// å³ä¸‹ç¬¬äºŒåˆ—
 										p_party[i]->atr |= ACT_ATR_HIT_BOX_COL4;
 									}
 
@@ -871,7 +871,7 @@ void BattleButtonJujutsu( void )
 										if( p_party[i]->atr & ACT_ATR_TRAVEL )
 											continue;
 
-										// ÓÒÏÂµÚÒ»ÁĞ
+										// å³ä¸‹ç¬¬ä¸€åˆ—
 										p_party[i]->atr |= ACT_ATR_HIT_BOX_COL3;
 									}
 
@@ -887,7 +887,7 @@ void BattleButtonJujutsu( void )
 										if( p_party[i]->atr & ACT_ATR_TRAVEL )
 											continue;
 
-										// ×óÉÏµÚÒ»ÁĞ
+										// å·¦ä¸Šç¬¬ä¸€åˆ—
 										p_party[i]->atr |= ACT_ATR_HIT_BOX_COL1;
 									}
 
@@ -903,7 +903,7 @@ void BattleButtonJujutsu( void )
 										if( p_party[i]->atr & ACT_ATR_TRAVEL )
 											continue;
 
-										// ×óÉÏµÚ¶şÁĞ
+										// å·¦ä¸Šç¬¬äºŒåˆ—
 										p_party[i]->atr |= ACT_ATR_HIT_BOX_COL2;
 									}
 
@@ -1128,15 +1128,15 @@ void BattleButtonJujutsu( void )
 
 						if( magic[ i ].useFlag == TRUE ){
 							col = FONT_PAL_WHITE;
-							if( magic[ i ].mp > p_party[ BattleMyNo ]->mp ) col = FONT_PAL_RED;	// ??¦Û¢K?şö?
-							if( magic[ i ].field == MAGIC_FIELD_MAP ) col = FONT_PAL_GRAY;	// úé?¦Û??ıè?şö?
+							if( magic[ i ].mp > p_party[ BattleMyNo ]->mp ) col = FONT_PAL_RED;	// ??îî”±?î’½?
+							if( magic[ i ].field == MAGIC_FIELD_MAP ) col = FONT_PAL_GRAY;	// îŒ¸?î??î‘‘?î’½?
 
 							CenteringStr( magic[ i ].name, moji, MAGIC_NAME_LEN );
 							battleMenuJujutsuFontNo[ i ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, col, moji, 2 ); y += 28;
 							flag = TRUE;
 						}
 					}
-					if( flag == FALSE ) StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, "Ã»ÓĞÖäÊõ", 0 );
+					if( flag == FALSE ) StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, "æ²¡æœ‰å’’æœ¯", 0 );
 
 					battleMenuJujutsuFontNo[ 5 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 262 + 10, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 				}
@@ -1145,52 +1145,52 @@ void BattleButtonJujutsu( void )
 	}
 }
 
-// ?¨ö???? *****************************************************************/
-void BattleButtonCapture( void )//²¶×½³èÎï
+// ?îŸ™???? *****************************************************************/
+void BattleButtonCapture( void )//æ•æ‰å® ç‰©
 {
 	int i, bak;
 	if( HitDispNo == battleButtonDispNo[ 2 ] || battleButtonBak2 == 2 ){
-		// ???????£??
+		// ???????î—•??
 		if( CheckPetSuu() >= 5 ){
 			// ??????
-			strcpy( OneLineInfoStr,"²»ÄÜÔÙ²¶»ñ¸ü¶àµÄ³èÎïÁË¡£");
+			strcpy( OneLineInfoStr,"ä¸èƒ½å†æ•è·æ›´å¤šçš„å® ç‰©äº†ã€‚");
 			// ?????????
 			if( mouse.onceState & MOUSE_LEFT_CRICK ){
 				// ???
 				play_se( 220, 320, 240 );
 			}
-			// ¡q????????
+			// î“·????????
 			battleButtonBak2 = -1;
 		}else{
 			// ??????
-			strcpy( OneLineInfoStr,"²¶×½¡£");
+			strcpy( OneLineInfoStr,"æ•æ‰ã€‚");
 			// ?????????
 			if( mouse.onceState & MOUSE_LEFT_CRICK || battleButtonBak2 == 2 ){
 				bak = battleButtonFlag[ 2 ];	// ??????
-				BattleButtonOff();				// ?????¡u???????
+				BattleButtonOff();				// ?????î“»???????
 				// ?????????
 				if( bak == FALSE ){
 					// ??????????????
 					battleTargetSelectFlag = TRUE;
-					// ????§k?
+					// ????îœ±?
 					BattleCmdNo = BATTLE_CAPTURE;
 					// ?????????
 					battleButtonFlag[ 2 ] = TRUE;
 					// ????????
 					battleButtonBak = 2;
-					// ¡q????????
+					// î“·????????
 					battleButtonBak2 = -1;
-					// ???§R¤e????¤úû¨
+					// ???îœ˜î˜‹????î¸î•
 					for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 						// ??????????
 						if( p_party[ i ]->func == NULL ) continue;
-						// şs©˜????
+						// î ¸îŸµ????
 						if( ( (ATR_EQU *)p_party[ i ]->pYobi )->group_flg == ( (ATR_EQU *)p_party[ BattleMyNo ]->pYobi )->group_flg ) continue;
-						// û«§Æ????
+						// î˜î¤????
 						if( i == BattleMyNo ) continue;
 						// ??????
 						if( p_party[ i ]->hp <= 0 ) continue;
-						// ???§R¤e????¤úû¨?????
+						// ???îœ˜î˜‹????î¸î•?????
 						p_party[ i ]->atr |= ACT_ATR_HIT_BOX;
 					}
 				}
@@ -1204,7 +1204,7 @@ void BattleButtonHelp( void )
 {
 	if( HitDispNo == battleButtonDispNo[ 3 ] && battleButtonFlag[ 3 ] == FALSE ){
 
-		strcpy( OneLineInfoStr, "Çó¾È¡£");
+		strcpy( OneLineInfoStr, "æ±‚æ•‘ã€‚");
 		if( mouse.onceState & MOUSE_LEFT_CRICK ){
 
 			if( NoHelpFlag == TRUE ){
@@ -1253,11 +1253,11 @@ void BattleButtonGuard( void )
 			play_se( 203, 320, 240 );
 		}
 
-		strcpy( OneLineInfoStr, "·ÀÓù¡£");
+		strcpy( OneLineInfoStr, "é˜²å¾¡ã€‚");
 	}
 }
 #ifdef _NEW_ITEM_
-extern int µÀ¾ßÀ¸Ò³Êı;
+extern int é“å…·æ é¡µæ•°;
 #endif
 
 void BattleButtonItem( void )
@@ -1282,7 +1282,7 @@ void BattleButtonItem( void )
 #ifdef _NEW_WIN_POS_
 				pActWnd = MakeWindowDisp( 520, 160, 271, 281, 0, -1 , FALSE );
 #ifdef _NEW_ITEM_
-				µÀ¾ßÀ¸Ò³Êı=0;				
+				é“å…·æ é¡µæ•°=0;				
 #endif
 #else
 				pActWnd = MakeWindowDisp( 380, 160, 271, 281, 0, -1 , FALSE );
@@ -1295,7 +1295,7 @@ void BattleButtonItem( void )
 			}
 		}
 
-		strcpy( OneLineInfoStr, "Ê¹ÓÃµÀ¾ß¡£");
+		strcpy( OneLineInfoStr, "ä½¿ç”¨é“å…·ã€‚");
 	}
 
 	if( battleButtonFlag[ 5 ] == TRUE ){
@@ -1326,12 +1326,12 @@ void BattleButtonItem( void )
 					y = pActWnd->y + 191 + 7;
 #ifdef _NEW_ITEM_
 					for(i=0;i<3;i++){
-						if(i==µÀ¾ßÀ¸Ò³Êı){
+						if(i==é“å…·æ é¡µæ•°){
 							StockDispBuffer(513,182+i*56, DISP_PRIO_IME3,55113+i, 1);
 						}else{
 							BOOL flg=FALSE;
 							if(i){
-								if(pc.µÀ¾ßÀ¸×´Ì¬&1<<i){
+								if(pc.é“å…·æ çŠ¶æ€&1<<i){
 									flg=TRUE;
 									if (DuelFlag){
 										flg=FALSE;
@@ -1342,11 +1342,11 @@ void BattleButtonItem( void )
 								StockDispBuffer(518,182+i*56, DISP_PRIO_IME3,55110+i, 1);
 								if(MakeHitBox(508 ,154+i*56,508+20,151+i*56+60, DISP_PRIO_IME4)){
 									if(mouse.onceState & MOUSE_LEFT_CRICK){
-										µÀ¾ßÀ¸Ò³Êı=i;
+										é“å…·æ é¡µæ•°=i;
 
 #ifdef _MAPITEMNO_
 									if(nowFloor==12345)
-										StockChatBufferLine("¸ÃµØÍ¼Õ½¶·ÏÂ²»ÔÊĞíÊ¹ÓÃÀ©Õ¹°ü¹ü£¡",FONT_PAL_RED);
+										StockChatBufferLine("è¯¥åœ°å›¾æˆ˜æ–—ä¸‹ä¸å…è®¸ä½¿ç”¨æ‰©å±•åŒ…è£¹ï¼",FONT_PAL_RED);
 #endif
 									}
 								}
@@ -1354,15 +1354,15 @@ void BattleButtonItem( void )
 						}
 					}
 #ifdef _MAPITEMNO_
-					if(nowFloor==12345) µÀ¾ßÀ¸Ò³Êı=0;
+					if(nowFloor==12345) é“å…·æ é¡µæ•°=0;
 #endif
 #endif
 					for(  i = MAX_ITEM -1 ; i >= MAX_ITEMSTART ; i-- ){
 #ifdef _NEW_ITEM_
-						int µÀ¾ßÆğÊ¼ = MAX_ITEMSTART+MAX_MAXHAVEITEM*µÀ¾ßÀ¸Ò³Êı;
-						int µÀ¾ß½áÊø = µÀ¾ßÆğÊ¼+MAX_MAXHAVEITEM;
+						int é“å…·èµ·å§‹ = MAX_ITEMSTART+MAX_MAXHAVEITEM*é“å…·æ é¡µæ•°;
+						int é“å…·ç»“æŸ = é“å…·èµ·å§‹+MAX_MAXHAVEITEM;
 						if(i>=MAX_ITEMSTART){
-							if(i<µÀ¾ßÆğÊ¼||i>=µÀ¾ß½áÊø) continue;
+							if(i<é“å…·èµ·å§‹||i>=é“å…·ç»“æŸ) continue;
 						}
 #endif		
 						if( MakeHitBox( ItemBuffer[ i ].defX - 24, ItemBuffer[ i ].defY - 24, 
@@ -1613,8 +1613,8 @@ void BattleButtonItem( void )
 											play_se( 217, 320, 240 );
 											break;
 #ifdef _PET_ITEM
-										case ITEM_TARGET_PET:	// Õ½¶·ÖĞ²»¿É¸ü»»³èÎï×°±¸
-											StockChatBufferLine("Õ½¶·ÖĞ²»¿É¸ü»»³èÎï×°±¸",FONT_PAL_RED);
+										case ITEM_TARGET_PET:	// æˆ˜æ–—ä¸­ä¸å¯æ›´æ¢å® ç‰©è£…å¤‡
+											StockChatBufferLine("æˆ˜æ–—ä¸­ä¸å¯æ›´æ¢å® ç‰©è£…å¤‡",FONT_PAL_RED);
 											break;
 #endif
 										}
@@ -1669,7 +1669,7 @@ void BattleButtonPet( void )
 			}	
 		}
 
-		strcpy( OneLineInfoStr, "¸ü»»³èÎï¡£");
+		strcpy( OneLineInfoStr, "æ›´æ¢å® ç‰©ã€‚");
 	}
 
 	if( battleButtonFlag[ 6 ] == TRUE ){
@@ -1801,7 +1801,7 @@ void BattleButtonPet( void )
 							battleMenuPetFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 367, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 						}
 					}else{
-						StockFontBuffer( x + 11, y, FONT_PRIO_FRONT, 0, "Ã»ÓĞ²ÎÕ½µÄ³èÎï", 0 );
+						StockFontBuffer( x + 11, y, FONT_PRIO_FRONT, 0, "æ²¡æœ‰å‚æˆ˜çš„å® ç‰©", 0 );
 						battleMenuPetFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 367, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 					}
 				}			
@@ -1809,7 +1809,7 @@ void BattleButtonPet( void )
 		}
 	}
 }
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 void BattleButtonPPLSKILL( void )
 {
 	if ( MenuToggleFlag & JOY_ESC || MenuToggleFlag & JOY_CTRL_E || MenuToggleFlag & JOY_CTRL_A) {
@@ -1832,7 +1832,7 @@ void BattleButtonPPLSKILL( void )
 			//MenuToggleFlag &= ~JOY_CTRL_A;
 			( wonflag == 0 ) ? wonflag = 1 : wonflag = 0  ; 
 		}
-		strcpy( OneLineInfoStr, "Ö°Òµ¼¼ÄÜ");
+		strcpy( OneLineInfoStr, "èŒä¸šæŠ€èƒ½");
 	}
 	if ( wonflag == 1 ) {
 		for ( int i = 0 ; i < 3 ; i ++ ) {
@@ -1892,14 +1892,14 @@ void BattleButtonPPLSKILL( void )
 							use_color = FONT_PAL_GRAY;									
 						}
 						if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11	)
-							use_color = FONT_PAL_WHITE; //ÊÈÑª³ÉĞÔ²»×ömpÏŞÖÆ
+							use_color = FONT_PAL_WHITE; //å—œè¡€æˆæ€§ä¸åšmpé™åˆ¶
 						sprintf_s( msg2 , "%s" , profession_skill[AssitSkill [ j + i * 4 ]].name );
 						StockFontBuffer( 20, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
-						sprintf_s( msg , "  %d£¥", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
+						sprintf_s( msg , "  %dï¼…", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 				
-						sprintf_s( msg2 , "(ºÄ·ÑMP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(è€—è´¹MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );				
 
 						sprintf_s( msg , "%s" ,	 profession_skill[AssitSkill [ j + i * 4 ]].memo ) ; 
@@ -1911,7 +1911,7 @@ void BattleButtonPPLSKILL( void )
 								prouseskill = AssitSkill [ j + i * 4 ] ; 
 								BattleSetWazaHitBox( profession_skill[AssitSkill [ j + i * 4 ] ].target , 1) ; 
 							}
-							else if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11 && profession_skill[AssitSkill [ j + i * 4 ]].costmp == 0 ) { //ÊÈÑª³ÉĞÔ²»×ömpÏŞÖÆ
+							else if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11 && profession_skill[AssitSkill [ j + i * 4 ]].costmp == 0 ) { //å—œè¡€æˆæ€§ä¸åšmpé™åˆ¶
 								wonflag = 0 ; 
 								prouseskill = AssitSkill [ j + i * 4 ] ; 
 								BattleSetWazaHitBox( profession_skill[AssitSkill [ j + i * 4 ] ].target , 1) ; 
@@ -1951,10 +1951,10 @@ void BattleButtonPPLSKILL( void )
 						sprintf_s( msg2 , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].name );
 						StockFontBuffer( 20, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 						
-						sprintf_s( msg , "  %d£¥", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
+						sprintf_s( msg , "  %dï¼…", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-						sprintf_s( msg2 , "(ºÄ·ÑMP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(è€—è´¹MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
 						sprintf_s( msg , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].memo ) ; 
@@ -1962,7 +1962,7 @@ void BattleButtonPPLSKILL( void )
 					if( mouse.onceState & MOUSE_LEFT_CRICK_UP ) {
 						if ( HitDispNo == BattleSkillBtn [ j + i * 4 ] && profession_skill[ BattleSkill [ j + i * 4 ] ].useFlag != 0) {
 							if( p_party[ BattleMyNo ]->mp >= profession_skill[BattleSkill [ j + i * 4 ]].costmp && profession_skill[BattleSkill [ j + i * 4 ]].costmp != 0  ) {
-								if ( !(profession_skill[ BattleSkill [ j + i * 4 ] ].skillId == 40 && p_party[ BattleMyNo ]->hp <= 10) ) { //±ôËÀ¹¥»÷ÏŞÖÆ
+								if ( !(profession_skill[ BattleSkill [ j + i * 4 ] ].skillId == 40 && p_party[ BattleMyNo ]->hp <= 10) ) { //æ¿’æ­»æ”»å‡»é™åˆ¶
 									wonflag = 0 ; 
 									prouseskill = BattleSkill [ j + i * 4 ] ; 
 									BattleSetWazaHitBox( profession_skill[BattleSkill [ j + i * 4 ] ].target , 1) ; 
@@ -2003,7 +2003,7 @@ void BattleButtonPPLSKILL( void )
 						}
 #ifdef _PROFESSION_ADDSKILL
 					//	if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 )
-					//		use_color = FONT_PAL_WHITE; //ÕëÕëÏà¶Ô²»×ömpÏŞÖÆ
+					//		use_color = FONT_PAL_WHITE; //é’ˆé’ˆç›¸å¯¹ä¸åšmpé™åˆ¶
 #endif			
 #ifdef _PRO_ABSOLUTE_DEFENSE
 						if ( ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 75 
@@ -2018,10 +2018,10 @@ void BattleButtonPPLSKILL( void )
 						sprintf_s( msg2 , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].name );
 						StockFontBuffer( 20, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
-						sprintf_s( msg , "  %d£¥", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
+						sprintf_s( msg , "  %dï¼…", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 						
-						sprintf_s( msg2 , "(ºÄ·ÑMP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(è€—è´¹MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
 						sprintf_s( msg , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].memo ) ; 
@@ -2052,7 +2052,7 @@ void BattleButtonPPLSKILL( void )
 							}
 #endif	
 #ifdef _PROFESSION_ADDSKILL
-					//		else if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp == 0 ) { //ÕëÕëÏà¶Ô²»×ömpÏŞÖÆ
+					//		else if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp == 0 ) { //é’ˆé’ˆç›¸å¯¹ä¸åšmpé™åˆ¶
 					//			wonflag = 0 ; 
 					//			BattleSetWazaHitBox( profession_skill[AdvanceSkill [ j + i * 4 ] ].target , 1) ; 
 					//			prouseskill = AdvanceSkill [ j + i * 4  ];  
@@ -2101,29 +2101,29 @@ void BattleButtonEscape( void )
 		if( mouse.onceState & MOUSE_LEFT_CRICK ){
 			BattleButtonOff();
 			battleButtonFlag[ 7 ] = TRUE;
-			// ¥`??ıï
+			// î™¦??î‘˜
 			if( bNewServer)
 				lssproto_B_send( sockfd, "E" );
 			else
 				old_lssproto_B_send( sockfd, "E" );
-			// ?????¥`?????
+			// ?????î™¦?????
 			battlePlayerEscFlag = TRUE;
 			// ??????
 			battleMenuReturn = TRUE;
 			// ????????
 			battleButtonBak = -1;
-			// ¡q????????
+			// î“·????????
 			battleButtonBak2 = -1;
-			// ?????¨–???
+			// ?????î¼???
 			play_se( 203, 320, 240 );
 		}
 		// ??????
-		strcpy( OneLineInfoStr, "ÌÓÍÑ¡£");
+		strcpy( OneLineInfoStr, "é€ƒè„±ã€‚");
 	}
 }
 
 // ?????????????? **************************************************/
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 void BattleSetWazaHitBox( int no , int typeflag )
 #else
 void BattleSetWazaHitBox( int no )
@@ -2132,7 +2132,7 @@ void BattleSetWazaHitBox( int no )
 	char moji[ 256 ];
 	int i;
 
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	int switchnum = 0 ;
 
 	if ( typeflag == 0 ){
@@ -2150,8 +2150,8 @@ void BattleSetWazaHitBox( int no )
 #endif
 
 	case PETSKILL_TARGET_MYSELF:	// ?????
-		// ???§R¤e????¤úû¨?????
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// ???îœ˜î˜‹????î¸î•?????
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 ) 
 			p_party[ BattleMyNo ]->atr |= ACT_ATR_HIT_BOX;
 		else
@@ -2164,7 +2164,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2172,11 +2172,11 @@ void BattleSetWazaHitBox( int no )
 		BattleCmdNo = BATTLE_WAZA;
 		// ?????
 		play_se( 217, 320, 240 );
-		// ?§k???????
+		// ?îœ±???????
 		battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_OTHER:	// ¢\?ş°?û«§Æ??)
+	case PETSKILL_TARGET_OTHER:	// î•‚?î‘·?î˜î¤??)
 		for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 			if( p_party[ i ]->func == NULL ) continue;
 			if( p_party[ i ]->hp <= 0 ) continue;
@@ -2187,23 +2187,23 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
 #endif
 		BattleCmdNo = BATTLE_WAZA;
 		play_se( 217, 320, 240 );
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag != 1 )
 #endif
 			battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_ALLMYSIDE:	// şs©˜¡u¢l
+	case PETSKILL_TARGET_ALLMYSIDE:	// î ¸îŸµî“»î•’
 		// ????????
 		if( BattleMyNo < 10 ){
-			// ???§R¤e????¤úû¨
+			// ???îœ˜î˜‹????î¸î•
 			for( i = 0 ; i < 10 ; i++ ){
 				// ??????????
 				if( p_party[ i ]->func == NULL ) continue;
@@ -2215,7 +2215,7 @@ void BattleSetWazaHitBox( int no )
 		}
 		// ????????
 		else{
-			// ???§R¤e????¤úû¨
+			// ???îœ˜î˜‹????î¸î•
 			for( i = 10 ; i < 20 ; i++ ){
 				// ??????????
 				if( p_party[ i ]->func == NULL ) continue;
@@ -2230,7 +2230,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2240,10 +2240,10 @@ void BattleSetWazaHitBox( int no )
 		battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_ALLOTHERSIDE:	// ?ûê¢D¡u¢l
+	case PETSKILL_TARGET_ALLOTHERSIDE:	// ?î—î”ªî“»î•’
 		// ????????
 		if( BattleMyNo >= 10 ){
-			// ???§R¤e????¤úû¨
+			// ???îœ˜î˜‹????î¸î•
 			for( i = 0 ; i < 10 ; i++ ){
 				// ??????????
 				if( p_party[ i ]->func == NULL ) continue;
@@ -2255,7 +2255,7 @@ void BattleSetWazaHitBox( int no )
 		}
 		// ????????
 		else{
-			// ???§R¤e????¤úû¨
+			// ???îœ˜î˜‹????î¸î•
 			for( i = 10 ; i < 20 ; i++ ){
 				// ??????????
 				if( p_party[ i ]->func == NULL ) continue;
@@ -2267,13 +2267,13 @@ void BattleSetWazaHitBox( int no )
 		}
 //		if ( typeflag == 0 )
 			battleTargetSelectFlag = TRUE;
-		// ???????????úÇ
+		// ???????????îŒ–
 		DeathAction( pActWnd );
 		pActWnd = NULL;
-		// ??????¡u???
+		// ??????î“»???
 		ClearBattleButton();
-		// ????§k?
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// ????îœ±?
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2282,12 +2282,12 @@ void BattleSetWazaHitBox( int no )
 		BattleCmdNo = BATTLE_WAZA;
 		// ?????
 		play_se( 217, 320, 240 );
-		// ?§k???????
+		// ?îœ±???????
 		battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_ALL:	// ¡u?
-		// ???§R¤e????¤úû¨
+	case PETSKILL_TARGET_ALL:	// î“»?
+		// ???îœ˜î˜‹????î¸î•
 		for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 			// ??????????
 			if( p_party[ i ]->func == NULL ) continue;
@@ -2300,10 +2300,10 @@ void BattleSetWazaHitBox( int no )
 			battleTargetSelectFlag = TRUE;
 		DeathAction( pActWnd );
 		pActWnd = NULL;
-		// ??????¡u???
+		// ??????î“»???
 		ClearBattleButton();
-		// ????§k?
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// ????îœ±?
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2312,27 +2312,27 @@ void BattleSetWazaHitBox( int no )
 		BattleCmdNo = BATTLE_WAZA;
 		// ?????
 		play_se( 217, 320, 240 );
-		// ?§k???????
+		// ?îœ±???????
 		battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_NONE:	// £M?¡k¢‘üÒ????ş\????
-		BattleButtonOff(); // ?????¡u???????
+	case PETSKILL_TARGET_NONE:	// î–“?î“±î•¶î????î ¡????
+		BattleButtonOff(); // ?????î“»???????
 		battleMenuReturn = TRUE;
-		// §ó???şÎ
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// î°???î’•
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 ) 
 			sprintf_s( moji,"P|%X|%X", prouseskill, BattleMyNo );
 		else
 #endif
 		sprintf_s( moji,"W|%X|%X", BattleWazaNo, BattleMyNo + 5 );
-		// ??ıï
+		// ??î‘˜
 		lssproto_B_send( sockfd, moji );
 
-		// ?????¨–???
+		// ?????î¼???
 		play_se( 203, 320, 240 );
 		//andy_add
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 0 ){
 			battleWazaTargetBak = -1;
 			battleTargetSelectFlag = FALSE;
@@ -2340,12 +2340,12 @@ void BattleSetWazaHitBox( int no )
 #endif
 		break;
 		
-	case PETSKILL_TARGET_OTHERWITHOUTMYSELF:	// ¢\?ş°?û«§Æ????) 
-		// ???§R¤e????¤úû¨
+	case PETSKILL_TARGET_OTHERWITHOUTMYSELF:	// î•‚?î‘·?î˜î¤????) 
+		// ???îœ˜î˜‹????î¸î•
 		for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 			// ??????????
 			if( p_party[ i ]->func == NULL ) continue;
-			// û«§Æ????????
+			// î˜î¤????????
 			if( i == BattleMyNo + 5 ) continue;
 			// ??????
 			if( p_party[ i ]->hp <= 0 ) continue;
@@ -2357,7 +2357,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2366,18 +2366,18 @@ void BattleSetWazaHitBox( int no )
 		BattleCmdNo = BATTLE_WAZA;
 		// ?????
 		play_se( 217, 320, 240 );
-		// ?§k???????
+		// ?îœ±???????
 		battleWazaTargetBak = no;
 		break;
 		
-	case PETSKILL_TARGET_WITHOUTMYSELFANDPET:	// û«§Æ?????? 
-		// ???§R¤e????¤úû¨
+	case PETSKILL_TARGET_WITHOUTMYSELFANDPET:	// î˜î¤?????? 
+		// ???îœ˜î˜‹????î¸î•
 		for( i = 0 ; i < BATTLKPKPLYAERNUM ; i++ ){
 			// ??????????
 			if( p_party[ i ]->func == NULL ) continue;
-			// û«§Æ????????
+			// î˜î¤????????
 			if( i == BattleMyNo + 5 ) continue;
-			// û«§Æ????
+			// î˜î¤????
 			if( i == BattleMyNo ) continue;
 			// ??????
 			if( p_party[ i ]->hp <= 0 ) continue;
@@ -2386,13 +2386,13 @@ void BattleSetWazaHitBox( int no )
 		}
 //		if ( typeflag == 0 )
 			battleTargetSelectFlag = TRUE;
-		// ???????????úÇ
+		// ???????????îŒ–
 		DeathAction( pActWnd );
 		pActWnd = NULL;
-		// ??????¡u???
+		// ??????î“»???
 		ClearBattleButton();
-		// ????§k?
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		// ????îœ±?
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2400,17 +2400,17 @@ void BattleSetWazaHitBox( int no )
 		BattleCmdNo = BATTLE_WAZA;
 		// ?????
 		play_se( 217, 320, 240 );
-		// ?§k???????
+		// ?îœ±???????
 		battleWazaTargetBak = no;
 		break;
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	case PETSKILL_TARGET_ONE_ROW:
 		for( i = 0 ; i < 5 ; i++ )	{
 			if( p_party[i]->func == NULL )	continue;
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚ¶şÁĞ
+			// å³ä¸‹ç¬¬äºŒåˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL4;
 		}
 		for( i = 5 ; i < 10 ; i++ )	{
@@ -2418,7 +2418,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚÒ»ÁĞ
+			// å³ä¸‹ç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL3;
 		}
 		for( i = 10 ; i < 15 ; i++ ) {
@@ -2426,7 +2426,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL ) continue;
-			// ×óÉÏµÚÒ»ÁĞ
+			// å·¦ä¸Šç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL1;
 		}
 		for( i = 15 ; i < 20 ; i++ ) {
@@ -2434,7 +2434,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ×óÉÏµÚ¶şÁĞ
+			// å·¦ä¸Šç¬¬äºŒåˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL2;
 		}
 //		if ( typeflag == 0 )
@@ -2463,7 +2463,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚ¶şÁĞ
+			// å³ä¸‹ç¬¬äºŒåˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL8;
 		}
 		for( i = 5 ; i < 10 ; i++ )	{
@@ -2471,7 +2471,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚÒ»ÁĞ
+			// å³ä¸‹ç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL7;
 		}
 		for( i = 10 ; i < 15 ; i++ ) {
@@ -2479,7 +2479,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL ) continue;
-			// ×óÉÏµÚÒ»ÁĞ
+			// å·¦ä¸Šç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL5;
 		}
 		for( i = 15 ; i < 20 ; i++ ) {
@@ -2487,7 +2487,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ×óÉÏµÚ¶şÁĞ
+			// å·¦ä¸Šç¬¬äºŒåˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX_COL6;
 		}
 //		if ( typeflag == 0 )
@@ -2509,7 +2509,7 @@ void BattleSetWazaHitBox( int no )
 			if( p_party[i]->func == NULL )	continue;
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚ¶şÁĞ
+			// å³ä¸‹ç¬¬äºŒåˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX;
 			p_party[i+5]->atr |= ACT_ATR_HIT_BOX;
 		}
@@ -2518,7 +2518,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ÓÒÏÂµÚÒ»ÁĞ
+			// å³ä¸‹ç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX;
 			p_party[i-5]->atr |= ACT_ATR_HIT_BOX;
 
@@ -2528,7 +2528,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL ) continue;
-			// ×óÉÏµÚÒ»ÁĞ
+			// å·¦ä¸Šç¬¬ä¸€åˆ—
 			p_party[i]->atr |= ACT_ATR_HIT_BOX;
 			p_party[i+5]->atr |= ACT_ATR_HIT_BOX;
 
@@ -2538,7 +2538,7 @@ void BattleSetWazaHitBox( int no )
 			//if( FALSE == magic[BattleJujutuNo].deadTargetFlag )
 			if( p_party[i]->hp <= 0 ) continue;
 			if( p_party[i]->atr & ACT_ATR_TRAVEL )	continue;
-			// ×óÉÏµÚ¶şÁĞ
+			// å·¦ä¸Šç¬¬äºŒåˆ—
 			p_party[i]->atr = ACT_ATR_HIT_BOX;
 			p_party[i-5]->atr = ACT_ATR_HIT_BOX;
 
@@ -2594,66 +2594,66 @@ void BattleButtonWaza( void )
 		// ?????????
 		if( mouse.onceState & MOUSE_LEFT_CRICK || battlePetButtonFlag == TRUE ){
 			bak = battleButtonFlag[ 8 ];	// ??????
-			BattleButtonOff();				// ?????¡u???????
+			BattleButtonOff();				// ?????î“»???????
 			// ?????????
 			if( bak == FALSE ){
 				// ?????????
-				battleButtonFlag[ 8 ] = TRUE; //´ò¿ª¼¼ÄÜÑ¡ÏîºĞ
+				battleButtonFlag[ 8 ] = TRUE; //æ‰“å¼€æŠ€èƒ½é€‰é¡¹ç›’
 				// ?????????
 				battleWazaTargetBak = -1;
-				// ????§k?
+				// ????îœ±?
 				//BattleCmdNo = BATTLE_WAZA;
-				// §ó?????§R¤e???
+				// î°?????îœ˜î˜‹???
 				for( i = 0 ; i < BATTLE_MENU_WAZA_FONTS ; i++ ) battleMenuWazaFontNo[ i ] = -2;
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActWnd = MakeWindowDisp( 364, 41, 272, 348, 0, -1 );
 			}
 		}
 		// ?????????
 		battlePetButtonFlag = FALSE;
 		// ??????				 
-		strcpy( OneLineInfoStr, "Ê¹ÓÃ¼¼ÄÜ¡£");
+		strcpy( OneLineInfoStr, "ä½¿ç”¨æŠ€èƒ½ã€‚");
 	}
 	// ????????
 	if( battleButtonFlag[ 8 ] == TRUE ){
 		// ?????????
 		if( pActWnd != NULL ){
-			// ??????üÒ????????
+			// ??????î????????
 			if( pActWnd->hp > 0 ){
 				// ?????????
 				StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, ( ( WINDOW_DISP *)pActWnd->pYobi )->my, DISP_PRIO_MENU, CG_PET_WAZA_WND, 1 );
-				// ??????§Æ???
+				// ??????î¤???
 				for( i = 0 ; i < pet[ battlePetNoBak ].maxSkill ; i++ ){
-					// ?????¤úû¨
+					// ?????î¸î•
 					StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, ( ( WINDOW_DISP *)pActWnd->pYobi )->my, DISP_PRIO_IME3, CG_PET_WAZA_BAR_1 + i, 1 );
 				}
 				// ????????
 				if( mouse.onceState & MOUSE_LEFT_CRICK ){
-					// ??????¨–??
+					// ??????î¼??
 					if( HitDispNo == battleMenuWazaFontNo[ 7 ] ){
-						// ?????¡u???????
+						// ?????î“»???????
 						BattleButtonOff();				
 					}
 				}
 				// ????????
 				if( pActWnd != NULL ){
-					// ?¤õ¡@¤e
+					// ?î³î“†î˜‹
 					x = pActWnd->x + 32;
 					y = pActWnd->y + 252;
-					// ¡Cş‘?
+					// î“‰î¡•?
 					for( i = 0 ; i < pet[ battlePetNoBak ].maxSkill ; i++ ){
 						// ????????
 						if( petSkill[ battlePetNoBak ][ i ].useFlag == TRUE ){
 							if( HitFontNo == battleMenuWazaFontNo[ i ] ){
 								// ??????
 								char *splitPoint = petSkill[ battlePetNoBak ][ i ].memo;
-								// ??§Æ???
+								// ??î¤???
 								while( 1 ){
-									// ??§ó??£’????§Æ?
+									// ??î°??î——????î¤?
 									if( strlen( splitPoint ) > 24 ){
 										strncpy_s( moji, splitPoint, 24 );
-										moji[ 24 ] = NULL;	// ü¬£Z??????
-										// ¡u??§S§Æ????
+										moji[ 24 ] = NULL;	// î·î– ??????
+										// î“»??îœ™î¤????
 										if( GetStrLastByte( moji ) == 3 ){
 											moji[ 23 ] = NULL;
 											splitPoint += 23;
@@ -2670,7 +2670,7 @@ void BattleButtonWaza( void )
 								}
 								// ????????
 								if( mouse.onceState & MOUSE_LEFT_CRICK ){
-									// ¡P¥f?úé???
+									// î“–î™¬?îŒ¸???
 									if(	petSkill[ battlePetNoBak ][ i ].field != PETSKILL_FIELD_MAP ){
 #ifdef _VARY_WOLF
 										if(!((pet[battlePetNoBak].graNo==101428)&&(petSkill[battlePetNoBak][i].skillId==600))
@@ -2680,7 +2680,7 @@ void BattleButtonWaza( void )
 											)
 #endif
 											// ??????????????
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 											BattleSetWazaHitBox( i , 0 ) ; 
 #else
 										BattleSetWazaHitBox( i );
@@ -2688,32 +2688,32 @@ void BattleButtonWaza( void )
 									}else{
 										int flag = 0;
 										int j;
-										// ¡P¥f?úé????????????????
+										// î“–î™¬?îŒ¸????????????????
 										for( j = 0 ; j < pet[ battlePetNoBak ].maxSkill ; j++ ){
 											// ????????
 											if( petSkill[ battlePetNoBak ][ j ].useFlag == TRUE ){
-												// ¡P¥f?úé???
+												// î“–î™¬?îŒ¸???
 												if(	petSkill[ battlePetNoBak ][ j ].field != PETSKILL_FIELD_MAP ) flag++;
 											}
 										}
-										// ¡P¥f?úé?????????
+										// î“–î™¬?îŒ¸?????????
 										if( flag > 0 ){
 											// ???
 											play_se( 220, 320, 240 );
 										}
 										// ??????
 										else{
-											BattleButtonOff(); // ?????¡u???????
+											BattleButtonOff(); // ?????î“»???????
 											//battleMenuReturn = TRUE;
 											ClearBoxFlag();
-											// ???????????ıï
+											// ???????????î‘˜
 											if( bNewServer)
 												lssproto_B_send( sockfd, "W|FF|FF" );
 											else
 												old_lssproto_B_send( sockfd, "W|FF|FF" );
-											// ?????¨–???
+											// ?????î¼???
 											play_se( 203, 320, 240 );
-											// ?§k???????
+											// ?îœ±???????
 											battleWazaTargetBak = -1;
 											// ??????????????
 											battleTargetSelectFlag = FALSE;
@@ -2725,7 +2725,7 @@ void BattleButtonWaza( void )
 					}
 /*
 #ifndef __AI
-					//cary ³èÎïµÄ×Ô¶¯Õ½¶·
+					//cary å® ç‰©çš„è‡ªåŠ¨æˆ˜æ–—
 					if( !PauseAI && AI!=AI_NONE && FALSE==battleTargetSelectFlag){
 						if( (BattleIntervalCnt==0 && (BattleCntDown-TimeGetTime())<=29000) || BattleIntervalCnt<TimeGetTime()){
 							BattleIntervalCnt = TimeGetTime()+500;
@@ -2747,7 +2747,7 @@ void BattleButtonWaza( void )
 										if( petSkill[ battlePetNoBak ][ i ].skillId!=2 && firstattack==-1)
 											firstattack = i;
 										if( petSkill[ battlePetNoBak ][ i ].skillId == 1){
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 											BattleSetWazaHitBox( i , 0 );
 
 #else
@@ -2757,7 +2757,7 @@ void BattleButtonWaza( void )
 										}
 									}else if( ai == AI_GUARD){
 										if( petSkill[ battlePetNoBak ][ i ].skillId == 2){
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 											BattleSetWazaHitBox( i , 0 );
 #else
 											BattleSetWazaHitBox( i );
@@ -2773,15 +2773,15 @@ void BattleButtonWaza( void )
 								if( first == -1){
 									// ??????????????
 									battleTargetSelectFlag = TRUE;
-									// ???????????úÇ
+									// ???????????îŒ–
 									DeathAction( pActWnd );
 									pActWnd = NULL;
-									// ??????¡u???
+									// ??????î“»???
 									ClearBattleButton();
 									// ?????
 									//play_se( 217, 320, 240 );
 								}else
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 									BattleSetWazaHitBox( first , 0 );
 #else
 									BattleSetWazaHitBox( first );
@@ -2793,16 +2793,16 @@ void BattleButtonWaza( void )
 */
 					// ?????????
 					if( pActWnd != NULL ){
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActWnd->x + 40;
 						y = pActWnd->y + 32;
-						// ??ş????
+						// ??î¡“????
 						if( pet[ battlePetNoBak ].freeName[ 0 ] != NULL )
 							CenteringStr( pet[ battlePetNoBak ].freeName, moji, PET_NAME_LEN );
 						else
 							CenteringStr( pet[ battlePetNoBak ].name, moji, PET_NAME_LEN );
 							StockFontBuffer( x - 28, y, FONT_PRIO_FRONT, 0, moji, 0 ); y += 26; x += 18;
-						// ?¤úû¨
+						// ?î¸î•
 						for( i = 0 ; i < pet[ battlePetNoBak ].maxSkill ; i++ ){
 							// ????????
 							if( petSkill[ battlePetNoBak ][ i ].useFlag == TRUE ){
@@ -2812,7 +2812,7 @@ void BattleButtonWaza( void )
 #else
 								sprintf_s( moji,"       %-22s",petSkill[ battlePetNoBak ][ i ].name );
 #endif
-								// ¡P¥f?úé???
+								// î“–î™¬?îŒ¸???
 								if(	petSkill[ battlePetNoBak ][ i ].field != PETSKILL_FIELD_MAP ){
 #ifdef _VARY_WOLF
 									if(!((pet[battlePetNoBak].graNo==101428)&&(petSkill[battlePetNoBak][i].skillId==600))
@@ -2833,9 +2833,9 @@ void BattleButtonWaza( void )
 							}
 							y += 25;
 						}
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						y = pActWnd->y + 330;
-						// §ó?¤úû¨????????
+						// î°?î¸î•????????
 						battleMenuWazaFontNo[ 7 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, y, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 					}
 				}
@@ -2856,8 +2856,8 @@ void BattleTargetSelect( void )
 			pActInfoWnd = MakeWindowDisp( 210, 356, 3, 2, 0, 1 );
 		}else{	
 			if( pActInfoWnd->hp > 0 ){
-				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 28, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"ÇëÑ¡Ôñ", 0 );
-				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 52, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"ÄúµÄÄ¿±ê", 0 );
+				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 28, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"è¯·é€‰æ‹©", 0 );
+				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 52, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"æ‚¨çš„ç›®æ ‡", 0 );
 			}
 #ifdef _NEW_WIN_POS_
 			if( mouse.nowPoint.y > 400 ) pActInfoWnd->y = 4;
@@ -2870,7 +2870,7 @@ void BattleTargetSelect( void )
 		pActInfoWnd = NULL;
 	}
 
-	//cary ×Ô¶¯¹¥»÷
+	//cary è‡ªåŠ¨æ”»å‡»
 	if( mouse.onceState & MOUSE_LEFT_CRICK ){
 
 		if( ( targetNo = CheckBattelTarget() ) != -1 ){
@@ -2898,7 +2898,7 @@ void BattleTargetSelect( void )
 
 				#ifdef __ATTACK_MAGIC
 
-				// µĞ¾üÄ³Ò»ÈË
+				// æ•Œå†›æŸä¸€äºº
 				case MAGIC_TARGET_SINGLE:
 
 					sprintf_s( moji , "J|%X|%X" , BattleJujutuNo , targetNo );
@@ -2910,10 +2910,10 @@ void BattleTargetSelect( void )
 
 					break;
 
-				// µĞ¾üÒ»ÕûÅÅ
+				// æ•Œå†›ä¸€æ•´æ’
 				case MAGIC_TARGET_ONE_ROW:
 
-					// 23: ×óÉÏµÚÒ»ÁĞ , 24: ×óÉÏµÚ¶şÁĞ , 25: ÓÒÏÂµÚÒ»ÁĞ , 26: ÓÒÏÂµÚ¶şÁĞ
+					// 23: å·¦ä¸Šç¬¬ä¸€åˆ— , 24: å·¦ä¸Šç¬¬äºŒåˆ— , 25: å³ä¸‹ç¬¬ä¸€åˆ— , 26: å³ä¸‹ç¬¬äºŒåˆ—
 					if( targetNo >= 0 && targetNo < 5 )
 						no = BATTLKPKPLYAERNUM + 6;
 					else if( targetNo >= 5 && targetNo < 10 )
@@ -2932,7 +2932,7 @@ void BattleTargetSelect( void )
 
 					break;
 
-				// µĞ¾üÈ«Ìå
+				// æ•Œå†›å…¨ä½“
 				case MAGIC_TARGET_ALL_ROWS:
 
 					( BattleMyNo < 10 )? no = BATTLKPKPLYAERNUM + 1 : no = BATTLKPKPLYAERNUM;
@@ -3013,7 +3013,7 @@ void BattleTargetSelect( void )
 				}
 				break;
 				
-				//Change note µÀ¾ßÑ¡Ôñ¶ÔÏóºóËÍ³ö·â°ü
+				//Change note é“å…·é€‰æ‹©å¯¹è±¡åé€å‡ºå°åŒ…
 			case BATTLE_ITEM:
 				//cary*
 				switch( pc.item[ BattleItemNo ].target ){
@@ -3074,7 +3074,7 @@ void BattleTargetSelect( void )
 				}
 				break;
 
-				//Change note ³è¼¼Ñ¡Ôñ¶ÔÏóºóËÍ³ö·â°ü
+				//Change note å® æŠ€é€‰æ‹©å¯¹è±¡åé€å‡ºå°åŒ…
 			case BATTLE_WAZA:
 				switch( petSkill[ battlePetNoBak ][ BattleWazaNo ].target ){
 				case PETSKILL_TARGET_MYSELF:
@@ -3152,8 +3152,8 @@ void BattleTargetSelect( void )
 				}
 				break;
 				
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
-				//Change note Ö°Òµ¼¼ÄÜÑ¡Ôñ¶ÔÏóºóËÍ³ö·â°ü
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
+				//Change note èŒä¸šæŠ€èƒ½é€‰æ‹©å¯¹è±¡åé€å‡ºå°åŒ…
 			case BATTLE_PROWAZA:
 				switch( profession_skill[prouseskill].target ){
 				case PETSKILL_TARGET_MYSELF:
@@ -3220,7 +3220,7 @@ static int Ordinal[] = { 4+15, 2+15, 0+15, 1+15, 3+15,
 						 4+10, 2+10, 0+10, 1+10, 3+10,
 						 4+5, 2+5, 0+5, 1+5, 3+5,
 						 4, 2, 0, 1, 3 };
-// ??????????§R¤e ***************************************************/
+// ??????????îœ˜î˜‹ ***************************************************/
 #ifdef _AI_OTHER
 #ifdef _AI_CAPTURE
 extern int AI_OtherSetting[2];
@@ -3299,7 +3299,7 @@ void BattleCntDownDisp( void )
 	int x = 320 - 16 + DISPLACEMENT_X / 2;
 	int y = 240 + DISPLACEMENT_Y / 2;
 	int i;
-	// úå???
+	// îŒ´???
 
 #ifndef PK_SYSTEM_TIMER_BY_ZHU
 	int BattleCntDownRest = BattleCntDown - TimeGetTime();
@@ -3310,9 +3310,9 @@ void BattleCntDownDisp( void )
 #endif
 
 	// ?????????
-/*//ÈËÎïai
+/*//äººç‰©ai
 #ifndef __AI
-	//cary ×Ô¶¯Õ½¶·
+	//cary è‡ªåŠ¨æˆ˜æ–—
 	if( AI!=AI_NONE && !PauseAI){
 		if( battleMenuFlag&BATTLE_MENU && battleTargetSelectFlag){
 			if( (BattleIntervalCnt==0 && BattleCntDownRest<=28000) || (BattleIntervalCnt!=0 && BattleIntervalCnt<TimeGetTime())){
@@ -3321,18 +3321,18 @@ void BattleCntDownDisp( void )
 				int targetNo = GetBattelTarget();
 				char moji[256];
 				sprintf_s( moji, "H|%X", targetNo );
-				// ¤GıĞ??
+				// î—­î¹??
 				if( bNewServer)
 					lssproto_B_send( sockfd, moji );
 				else
 					old_lssproto_B_send( sockfd, moji );
 				battleTargetSelectFlag = FALSE;
 				battleMenuReturn = TRUE;
-				// ?????¨–???
+				// ?????î¼???
 				play_se( 203, 320, 240 );
 				// ????????
 				battleButtonBak = battleButtonBak2;
-				// ???????????????úÇ
+				// ???????????????îŒ–
 				if( pActInfoWnd){
 					DeathAction( pActInfoWnd );
 					pActInfoWnd = NULL;
@@ -3344,13 +3344,13 @@ void BattleCntDownDisp( void )
 				int targetNo = GetBattelTarget();
 				char moji[256];
 				switch( petSkill[ battlePetNoBak ][ BattleWazaNo ].target ){
-				case PETSKILL_TARGET_MYSELF:				// û«§Æ??
-				case PETSKILL_TARGET_OTHER:					// ¢\?ş°?û«§Æ??)
-				case PETSKILL_TARGET_OTHERWITHOUTMYSELF:	// ¢\?ş°?û«§Æ????) 
-				case PETSKILL_TARGET_WITHOUTMYSELFANDPET:	// û«§Æ??????
-					// §ó???şÎ
+				case PETSKILL_TARGET_MYSELF:				// î˜î¤??
+				case PETSKILL_TARGET_OTHER:					// î•‚?î‘·?î˜î¤??)
+				case PETSKILL_TARGET_OTHERWITHOUTMYSELF:	// î•‚?î‘·?î˜î¤????) 
+				case PETSKILL_TARGET_WITHOUTMYSELFANDPET:	// î˜î¤??????
+					// î°???î’•
 					sprintf_s( moji,"W|%X|%X", BattleWazaNo, targetNo );
-					// ??ıï
+					// ??î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, moji );
 					else
@@ -3359,13 +3359,13 @@ void BattleCntDownDisp( void )
 					play_se( 217, 320, 240 );
 					break;
 					
-				case PETSKILL_TARGET_ALLMYSIDE:	// şs©˜¡u¢l
+				case PETSKILL_TARGET_ALLMYSIDE:	// î ¸îŸµî“»î•’
 					// ????????
 					if( BattleMyNo < 10 ) no = BATTLKPKPLYAERNUM + 0;
 					else no = BATTLKPKPLYAERNUM + 1;
-					// §ó???şÎ
+					// î°???î’•
 					sprintf_s( moji,"W|%X|%X", BattleWazaNo, no );
-					// ??ıï
+					// ??î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, moji );
 					else
@@ -3374,13 +3374,13 @@ void BattleCntDownDisp( void )
 					play_se( 217, 320, 240 );
 					break;
 					
-				case PETSKILL_TARGET_ALLOTHERSIDE:	// ?ûê¢D¡u¢l
+				case PETSKILL_TARGET_ALLOTHERSIDE:	// ?î—î”ªî“»î•’
 					// ????????
 					if( BattleMyNo < 10 ) no = BATTLKPKPLYAERNUM + 1;
 					else no = BATTLKPKPLYAERNUM + 0;
-					// §ó???şÎ
+					// î°???î’•
 					sprintf_s( moji,"W|%X|%X", BattleWazaNo, no );
-					// ??ıï
+					// ??î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, moji );
 					else
@@ -3389,10 +3389,10 @@ void BattleCntDownDisp( void )
 					play_se( 217, 320, 240 );
 					break;
 					
-				case PETSKILL_TARGET_ALL:	// ¡u?
-					// §ó???şÎ
+				case PETSKILL_TARGET_ALL:	// î“»?
+					// î°???î’•
 					sprintf_s( moji,"W|%X|%X", BattleWazaNo, BATTLKPKPLYAERNUM + 2 );
-					// ??ıï
+					// ??î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, moji );
 					else
@@ -3404,11 +3404,11 @@ void BattleCntDownDisp( void )
 				// ??????
 				battleTargetSelectFlag = FALSE;
 				battleMenuReturn = TRUE;
-				// ?????¨–???
+				// ?????î¼???
 				play_se( 203, 320, 240 );
 				// ????????
 				battleButtonBak = battleButtonBak2;
-				// ???????????????úÇ
+				// ???????????????îŒ–
 				if( pActInfoWnd){
 					DeathAction( pActInfoWnd );
 					pActInfoWnd = NULL;
@@ -3427,43 +3427,43 @@ void BattleCntDownDisp( void )
 		// ??????
 		BattleCntDownFlag = FALSE;
 		BattleCntDownRest = 0;
-		// ???§R¤e????ı¤?
+		// ???îœ˜î˜‹????î?
 		ClearBoxFlag();
-		// ???????????úÇ
+		// ???????????îŒ–
 		DeathAction( pActWnd );
 		// ????????????
 		pActWnd = NULL;				
-		// ??????¡u???
+		// ??????î“»???
 		ClearBattleButton();
-		// ???????¥h¡k¢‘?????©˜??üÒ???
+		// ???????î™®î“±î•¶?????îŸµ??î???
 
 		if( battleMenuFlag & BATTLE_MENU && battleMenuReturn == FALSE ){
-			// ???????????ıï
+			// ???????????î‘˜
 			if( bNewServer)
 				lssproto_B_send( sockfd, "N" );
 			else
 				old_lssproto_B_send( sockfd, "N" );
-			// úÓ¡P?????????????????
+			// îŒ¢î“–?????????????????
 			if( battlePetNoBak == -1 || 
 				p_party[ BattleMyNo + 5 ]->hp <= 0 ){
 				// ??????
 			}else{
-				// ??????????ıï
+				// ??????????î‘˜
 				if( bNewServer)
 					lssproto_B_send( sockfd, "W|FF|FF" );
 				else
 					old_lssproto_B_send( sockfd, "W|FF|FF" );
 			}
 		}else{
-			// ?????¥h¡k¢‘???
+			// ?????î™®î“±î•¶???
 			if( ( battleMenuFlag & BATTLE_MENU && battleMenuReturn == TRUE ) ||
 				( battleMenuFlag & BATTLE_MENU_PET && battleMenuReturn == FALSE ) ){ 
-				// úÓ¡P?????????????????
+				// îŒ¢î“–?????????????????
 				if( battlePetNoBak == -1 || 
 					p_party[ BattleMyNo + 5 ]->hp <= 0 ){
 					// ??????
 				}else{
-					// ??????????ıï
+					// ??????????î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, "W|FF|FF" );
 					else
@@ -3474,15 +3474,15 @@ void BattleCntDownDisp( void )
 		// ??????
 		battleTargetSelectFlag = FALSE;
 		battleMenuReturn = TRUE;
-		// ?????¨–???
+		// ?????î¼???
 		play_se( 203, 320, 240 );
 		// ????????
 		battleButtonBak = battleButtonBak2;
-		// ???????????????úÇ
+		// ???????????????îŒ–
 		DeathAction( pActInfoWnd );
 		pActInfoWnd = NULL;
 	}
-	// §ó???¨Á??¦K?¤úû¨?
+	// î°???îŸ‰??îš±?î¸î•?
 
 #ifndef PK_SYSTEM_TIMER_BY_ZHU
 	sprintf_s( moji, "%2d", BattleCntDownRest / 1000 );
@@ -3494,24 +3494,24 @@ void BattleCntDownDisp( void )
 	sprintf( moji, "%2d", ( BattleCntDown - TimeGetTime() ) / 1000 );
 #endif
 
-	// §ó????????
+	// î°????????
 	for( i = 0 ; i < 2 ; i++ ){
 		// ??????
 		if( *work != 0x20 ){
-			// ¤úû¨
+			// î¸î•
 			StockDispBuffer( x, y, DISP_PRIO_IME1, *work - '0' + CG_CNT_DOWN_0, 0 );
 		}
-		// ??¤õ?¥h
+		// ??î³?î™®
 		x += 32;
-		// ????ş­??
+		// ????î‘´??
 		work++;
 	}
 	//??????
 	if( DuelFlag == TRUE 
 		){
-		// §ó???¨Á??¦K?¤úû¨?
-		sprintf_s( moji, "µÚ %02d »ØºÏ", BattleCliTurnNo + 1 );
-		// ¤úû¨
+		// î°???îŸ‰??îš±?î¸î•?
+		sprintf_s( moji, "ç¬¬ %02d å›åˆ", BattleCliTurnNo + 1 );
+		// î¸î•
 		if(ResoMode == 0 || ResoMode == 2){
 			StockFontBuffer( 290, 180, FONT_PRIO_BACK, FONT_PAL_YELLOW, moji, 0 );
 		}else if(ResoMode == 3){
@@ -3528,22 +3528,22 @@ void BattleDown( void )
 {
 	BattleCntDownFlag = FALSE;
 	ClearBoxFlag();
-	// ???????????úÇ
+	// ???????????îŒ–
 	DeathAction( pActWnd );
 	// ????????????
 	pActWnd = NULL;				
-	// ??????¡u???
+	// ??????î“»???
 	ClearBattleButton();
-	// ???????¥h¡k¢‘?????©˜??üÒ???
-		// ?????¥h¡k¢‘???
+	// ???????î™®î“±î•¶?????îŸµ??î???
+		// ?????î™®î“±î•¶???
 	if( ( battleMenuFlag & BATTLE_MENU && battleMenuReturn == TRUE ) ||
 		( battleMenuFlag & BATTLE_MENU_PET && battleMenuReturn == FALSE ) ){ 
-			// úÓ¡P?????????????????
+			// îŒ¢î“–?????????????????
 			if( battlePetNoBak == -1 || 
 				p_party[ BattleMyNo + 5 ]->hp <= 0 ){
 					// ??????
 				}else{
-					// ??????????ıï
+					// ??????????î‘˜
 					if( bNewServer)
 						lssproto_B_send( sockfd, "W|FF|FF" );
 					else
@@ -3553,17 +3553,17 @@ void BattleDown( void )
 	// ??????
 	battleTargetSelectFlag = FALSE;
 	battleMenuReturn = TRUE;
-	// ?????¨–???
+	// ?????î¼???
 	play_se( 203, 320, 240 );
 	// ????????
 	battleButtonBak = battleButtonBak2;
-	// ???????????????úÇ
+	// ???????????????îŒ–
 	DeathAction( pActInfoWnd );
 	pActInfoWnd = NULL;
 }
 #endif
 
-// ĞŞ¸´Õ½¶·AI×ª»»µÄBUG
+// ä¿®å¤æˆ˜æ–—AIè½¬æ¢çš„BUG
 #ifdef _FIX_BATTLE_AI
 void battleMenuFix(void)
 {
@@ -3590,7 +3590,7 @@ void BattleMenuProc( void )
 		return;
 	}
 
-	for( i  = 0 ; i < 20 ; i++ ) HpMeterDisp( i ); // ¢o??????¤úû¨
+	for( i  = 0 ; i < 20 ; i++ ) HpMeterDisp( i ); // î••??????î¸î•
 	if( p_party[ BattleMyNo ]->hp > 0 && 
 		!( BattleBpFlag & BATTLE_BP_PLAYER_MENU_NON && BattleBpFlag & BATTLE_BP_PET_MENU_NON ) ){
 
@@ -3715,7 +3715,7 @@ void BattleMenuProc( void )
 			BattleButtonItem();
 			BattleButtonPet();
 			BattleButtonEscape();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			BattleButtonPPLSKILL();
 #endif
 
@@ -3742,7 +3742,7 @@ void BattleMenuProc( void )
 				ClearBattleButton();
 			}
 		}
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		battleButtonDispNo[ 0 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_ATT_UP 		- battleButtonFlag[ 0 ], 2 );
 		battleButtonDispNo[ 1 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_JUJUTSU_UP 	- battleButtonFlag[ 1 ], 2 );
 		battleButtonDispNo[ 2 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_CAPTURE_UP 	- battleButtonFlag[ 2 ], 2 );
@@ -3766,20 +3766,20 @@ void BattleMenuProc( void )
 #endif
 
 		if( CheckPetSuu() >= 5 ){
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			StockDispBuffer( buttonX + 44, buttonY - 14, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #endif
 		}
-#ifdef _LOCKHELP_OK				// (²»¿É¿ª) Syu ADD Ëø¶¨²»¿É¼ÓÈëÕ½¶·
+#ifdef _LOCKHELP_OK				// (ä¸å¯å¼€) Syu ADD é”å®šä¸å¯åŠ å…¥æˆ˜æ–—
 		extern int nowFloor;
 		if((nowFloor <= 8213 && nowFloor >= 8200) ||
 			 (nowFloor >= 30017 && nowFloor <= 30021)
 		)	NoHelpFlag = TRUE ; 
 #endif
 		if( NoHelpFlag == TRUE ){
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			StockDispBuffer( buttonX + 28 + 54 + 4 , buttonY - 18 + 4 , DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28 + 54, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
@@ -3787,7 +3787,7 @@ void BattleMenuProc( void )
 		}
 #ifdef _MAGIC_NOCAST
 		if( NoCastFlag == TRUE ){
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			StockDispBuffer( buttonX + 28 -54 - 14, buttonY - 18 + 4, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28 -54, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
@@ -3821,19 +3821,19 @@ void BattleMenuProc( void )
 
 			ClearBoxFlag();
 
-#ifdef _PETSKILL_DAMAGETOHP	  // ³è¼¼:Ô¡Ñª¿ñÀÇ(ÊÈÑª¼¼µÄ±äÌå) 
-			if( battleWazaTargetBak != -1 ){//ÉÏÒ»»ØºÏµÄ¼¼ÄÜ±àºÅ
-				//ÎªÁË±ÜÃâµ±Õâ¸ö¼¼ÄÜ²»¿ÉÊ¹ÓÃÊ±,È´±»µ±³ÉÒÑÑ¡Ôñ,ËùÒÔÔÙÈÃÊ¹ÓÃÕßÔÙÑ¡Ò»´Î
-				if( petSkill[battlePetNoBak][battleWazaTargetBak].field == 2 //±»±êÊ¾Îª²»¿ÉÑ¡
-					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 0 //Change fix ÈËÎïÊ¹ÓÃÕëÕëÏà¶Ô»ò±©·çÓêÊ±,Èô³è½Ó×ÅÑ¡·ÀÊØ»ò´ı»ú,Ôò½ÓÏÂÀ´³èÎïµÄÑ¡µ¥²»»á³öÀ´,ÕâÀïÇ¿ÖÆÈÃÑ¡µ¥³öÏÖ
+#ifdef _PETSKILL_DAMAGETOHP	  // å® æŠ€:æµ´è¡€ç‹‚ç‹¼(å—œè¡€æŠ€çš„å˜ä½“) 
+			if( battleWazaTargetBak != -1 ){//ä¸Šä¸€å›åˆçš„æŠ€èƒ½ç¼–å·
+				//ä¸ºäº†é¿å…å½“è¿™ä¸ªæŠ€èƒ½ä¸å¯ä½¿ç”¨æ—¶,å´è¢«å½“æˆå·²é€‰æ‹©,æ‰€ä»¥å†è®©ä½¿ç”¨è€…å†é€‰ä¸€æ¬¡
+				if( petSkill[battlePetNoBak][battleWazaTargetBak].field == 2 //è¢«æ ‡ç¤ºä¸ºä¸å¯é€‰
+					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 0 //Change fix äººç‰©ä½¿ç”¨é’ˆé’ˆç›¸å¯¹æˆ–æš´é£é›¨æ—¶,è‹¥å® æ¥ç€é€‰é˜²å®ˆæˆ–å¾…æœº,åˆ™æ¥ä¸‹æ¥å® ç‰©çš„é€‰å•ä¸ä¼šå‡ºæ¥,è¿™é‡Œå¼ºåˆ¶è®©é€‰å•å‡ºç°
 					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 2 ){ 
-				//if( petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 623 ){ //623:ÔÚpetskill2.txtÄÚµÄ¼¼ÄÜ±àºÅ
+				//if( petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 623 ){ //623:åœ¨petskill2.txtå†…çš„æŠ€èƒ½ç¼–å·
 				    battleWazaTargetBak = -1;
 				    battlePetButtonFlag = TRUE;
 				}
 				else{
 					
-#ifdef _BATTLESKILL              // (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL              // (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 //					BattleWazaNo = battlePetNoBak;
 					BattleSetWazaHitBox( BattleWazaNo , 0 );
 #else
@@ -3842,8 +3842,8 @@ void BattleMenuProc( void )
 				}
 			}
 #else
-			if( battleWazaTargetBak != -1  ){ //ÉÏÒ»»ØºÏµÄ¼¼ÄÜ±àºÅ
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			if( battleWazaTargetBak != -1  ){ //ä¸Šä¸€å›åˆçš„æŠ€èƒ½ç¼–å·
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 //				BattleWazaNo = battlePetNoBak;
 				BattleSetWazaHitBox( BattleWazaNo , 0 );
 #else

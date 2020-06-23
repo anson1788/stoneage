@@ -1,6 +1,6 @@
-/*-----------------------------------------------
+ï»¿/*-----------------------------------------------
    Message.cpp -- Message format definition
-               (c) Ğí°ÙÊ¤Cary Hsu, 1999.8.18
+               (c) è®¸ç™¾èƒœCary Hsu, 1999.8.18
 -----------------------------------------------*/
 #include <stdio.h>
 #include "../systeminc/version.h"
@@ -24,11 +24,11 @@ Parameter	*messNewTailParam;
 MessNode	*messNew;
 MessNode	*messHead;
 MessNode	*messTail;
-//ÖÆ×÷Ñ¶Ï¢¸ñÊ½Ê±Ê¹ÓÃ
-int			iFormatLen;				//´ËÑ¶Ï¢¸ñÊ½µÄ³¤¶È,ÒÔDWORDÎªµ¥Î»
+//åˆ¶ä½œè®¯æ¯æ ¼å¼æ—¶ä½¿ç”¨
+int			iFormatLen;				//æ­¤è®¯æ¯æ ¼å¼çš„é•¿åº¦,ä»¥DWORDä¸ºå•ä½
 int			iNumStart=0;
 char		szFormatBuf[1024];
-//·ÖÎöÊ±Ê¹ÓÃ
+//åˆ†ææ—¶ä½¿ç”¨
 char		szAnalyzeBuf[1024];
 int			nState;
 BOOL		backslash;

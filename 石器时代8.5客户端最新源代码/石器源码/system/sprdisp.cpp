@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	sprdisp.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -12,16 +12,16 @@
 #define STOCK_DISP_BUFFER_NO_BMP	( 1 << 31 ) 	// ???????
 #define STOCK_DISP_BUFFER_LINE		( 1 << 30 ) 	// ???
 #define STOCK_DISP_BUFFER_BOX		( 1 << 29 ) 	// ????
-#define STOCK_DISP_BUFFER_BOX_FILL	( 1 << 28 )		// ????¥D????
+#define STOCK_DISP_BUFFER_BOX_FILL	( 1 << 28 )		// ????î™Š????
 #define STOCK_DISP_BUFFER_CIRCLE	( 1 << 27 ) 	// ?
 extern int displayBpp;
-// ¤úû¨?????¢B¢l
+// î¸î•?????î”¨î•’
 DISP_BUFFER DispBuffer;
 
 #ifndef __CARYTEST
-// Realbin ¥‚???????????????
+// Realbin îš‡???????????????
 char *pRealBinBits;
-// ?? Realbin ??¥‚??????????
+// ?? Realbin ??îš‡??????????
 int RealBinWidth, RealBinHeight;
 #endif
 #ifdef _READ16BITBMP
@@ -47,10 +47,10 @@ extern AddressBin_s adrntruebuff[MAX_GRAPHICS_24];
 extern BOOL g_bUseAlpha;
 #endif
 
-// ???§{???
+// ???î???
 int SortComp( DISP_SORT *pDisp1, DISP_SORT *pDisp2 );
 typedef int CMPFUNC( const void *, const void * );
-// ¤úû¨???????????????ûè?üÒ?
+// î¸î•???????????????î•?î?
 inline void GetBoxDispBuffer( DISP_INFO *pDispInfo, int bmpNo );
 #ifdef _SURFACE_ANIM
 void DrawAni(void);
@@ -74,14 +74,14 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 #endif
 void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offsety,int ow,int oh,bool bLastOne);
 void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offsety,int ow,int oh,bool bLastOne,int iGrayType);
-// ¤úû¨??????? ///////////////////////////////////////////////////////////
+// î¸î•??????? ///////////////////////////////////////////////////////////
 void SortDispBuffer( void )
 {	
 	//???????
-	qsort( 	DispBuffer.DispSort,	// ?¢B¢l?????
-			DispBuffer.DispCnt,		// §{?????
-			sizeof( DISP_SORT ), 	// ?¢B¢l????
-			( CMPFUNC * )SortComp 	// §{?????????
+	qsort( 	DispBuffer.DispSort,	// ?î”¨î•’?????
+			DispBuffer.DispCnt,		// î?????
+			sizeof( DISP_SORT ), 	// ?î”¨î•’????
+			( CMPFUNC * )SortComp 	// î?????????
 		);				
 }
 DISP_SORT *pSortTileTail;
@@ -89,7 +89,7 @@ DISP_SORT *pSortTileTail;
 
 #ifdef __SKYISLAND
 
-// ????¤ş? /////////////////////////////////////////////////////////////////
+// ????î¼? /////////////////////////////////////////////////////////////////
 BOOL PutTileBmp( void )
 {
 	DISP_INFO 	*pDispInfo;
@@ -150,7 +150,7 @@ BOOL PutTileBmp( void )
 #ifdef _SURFACE_ANIM
 				if(pSortTileTail->dispPrio == 0) continue;
 #endif
-				// ÒòÎªÓĞÅÅĞò¹ı,ËùÒÔÈç¹ûÄ¿Ç°µÄÏÔÊ¾Ë³Ğò±ÈµØ±í´óµÄ»°,±íÊ¾µØ±íÒÑ¾­´¦ÀíÍêÁË
+				// å› ä¸ºæœ‰æ’åºè¿‡,æ‰€ä»¥å¦‚æœç›®å‰çš„æ˜¾ç¤ºé¡ºåºæ¯”åœ°è¡¨å¤§çš„è¯,è¡¨ç¤ºåœ°è¡¨å·²ç»å¤„ç†å®Œäº†
 				if( pSortTileTail->dispPrio > DISP_PRIO_TILE){
 					DispBuffer.DispCnt -= i;
 #ifdef _SURFACE_ANIM
@@ -158,13 +158,13 @@ BOOL PutTileBmp( void )
 #endif
 					break;
 				}
-				// ¤úû¨????¦V????????????
-				// È¡µÃµÚÒ»¸öÒª´¦ÀíµÄÍ¼µÄ DispInfo ×ÊÁÏ
+				// î¸î•????îš¼????????????
+				// å–å¾—ç¬¬ä¸€ä¸ªè¦å¤„ç†çš„å›¾çš„ DispInfo èµ„æ–™
 				pDispInfo = DispBuffer.DispInfo + pSortTileTail->no;
-				bmpNo = pDispInfo->bmpNo; // ???§k?
+				bmpNo = pDispInfo->bmpNo; // ???îœ±?
 				
 				// ?????
-				// ???§R¤e?????§‰¤úû¨?
+				// ???îœ˜î˜‹?????îî¸î•?
 				if( pDispInfo->pAct != NULL ){
 					if( pDispInfo->pAct->atr & ACT_ATR_HIDE2 ) continue;
 				}
@@ -247,14 +247,14 @@ BOOL PutTileBmp( void )
 unsigned char AlphaBytes[64*48+1];
 unsigned char AlphaColorBytes[64*48*4+1];
 
-// ????¤ş? /////////////////////////////////////////////////////////////////
+// ????î¼? /////////////////////////////////////////////////////////////////
 void PutBmp( void )
 {
 #ifdef __SKYISLAND
-	// ????????¤ş?©˜©œ?§Æ?
-	switch( BackBufferDrawType ){//±³¾°ÀàĞÍ
-		case DRAW_BACK_NORMAL://ÎŞ±³¾°
-			ClearBackSurface();	//Çå¿Õ±³¾°ÏÔÊ¾
+	// ????????î¼?îŸµîŸ¹?î¤?
+	switch( BackBufferDrawType ){//èƒŒæ™¯ç±»å‹
+		case DRAW_BACK_NORMAL://æ— èƒŒæ™¯
+			ClearBackSurface();	//æ¸…ç©ºèƒŒæ™¯æ˜¾ç¤º
 			void SkyIslandProc();
 			SkyIslandProc();
 			if( !PutTileBmp() ){
@@ -267,7 +267,7 @@ void PutBmp( void )
 			DrawAni();
 #endif
 			break;
-		case DRAW_BACK_BATTLE:	//Õ½¶·±³¾°
+		case DRAW_BACK_BATTLE:	//æˆ˜æ–—èƒŒæ™¯
 			amountXFastDraw = amountYFastDraw = 0;
 			PutTileBmp();
 			DrawBattleMap();
@@ -298,7 +298,7 @@ void PutBmp( void )
 	SURFACE_INFO *lpSurfaceInfoSys;
 #endif
 #else
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
 	LPWORD surface;
 	int pitch;
 	BOOL locked = FALSE;
@@ -315,7 +315,7 @@ void PutBmp( void )
 	// ???????????
 	for( i = 0; i < DispBuffer.DispCnt ; i++, pDispSort++ ){
 		pDispInfo = &DispBuffer.DispInfo[pDispSort->no];
-		bmpNo = pDispInfo->bmpNo;//ĞãÍ¼ID
+		bmpNo = pDispInfo->bmpNo;//ç§€å›¾ID
 		if( putTextFlag == 0 ){
 			if( pDispSort->dispPrio >= DISP_PRIO_MENU ){
 				PutText( FONT_PRIO_BACK );
@@ -331,8 +331,8 @@ void PutBmp( void )
 				putTextFlag = 2;	
 			}
 		}
-#ifdef _TRADETALKWND				// Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-		//Ôö¼ÓÒ»²ãĞÂµÄÎÄ×ÖÏÔÊ¾Ë³Ğò
+#ifdef _TRADETALKWND				// Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+		//å¢åŠ ä¸€å±‚æ–°çš„æ–‡å­—æ˜¾ç¤ºé¡ºåº
 		if( putTextFlag == 2 ){
 			if( pDispSort->dispPrio >= DISP_PRIO_BOX3 ){
 				PutText( FONT_PRIO_AFRONT );	
@@ -344,7 +344,7 @@ void PutBmp( void )
 			if( MenuToggleFlag & JOY_CTRL_M && pActMenuWnd2 != NULL ){
 				if( pActMenuWnd2->hp > 0 ){
 #ifdef _2005_ValentineDay
-					// ²»ÈÃÍæ¼Ò¿´µ½Ğ¡µØÍ¼
+					// ä¸è®©ç©å®¶çœ‹åˆ°å°åœ°å›¾
 					if (nowFloor != 17006)
 #endif
 					drawAutoMap( pActMenuWnd2->x, pActMenuWnd2->y );
@@ -366,7 +366,7 @@ void PutBmp( void )
 			drawMapEffectFlag = 1;
 		}
 #ifndef __SKYISLAND
-		// ?????¢L¤ş?
+		// ?????î”²î¼?
 		if( fastDrawTile ){
 			RECT src;
 			int sx, sy;
@@ -427,12 +427,12 @@ void PutBmp( void )
 #ifdef _CACHE_SURFACE_
 				DrawSurfaceFromPalette(lpSurfaceInfo);
 #endif
-				if(pDispInfo->DrawEffect == 2)//±¥ºÍ´¦Àí
+				if(pDispInfo->DrawEffect == 2)//é¥±å’Œå¤„ç†
 					DrawStaturated(lpSurfaceInfo->lpSurface,
 						pDispInfo->x + lpSurfaceInfo->offsetX,pDispInfo->y + lpSurfaceInfo->offsetY,
 						lpSurfaceInfo->offsetX,lpSurfaceInfo->offsetY,
 						SpriteInfo[bmpNo].width,SpriteInfo[bmpNo].height,(lpSurfaceInfo->pNext == NULL ? true:false));
-				else if(pDispInfo->DrawEffect == 3 || pDispInfo->DrawEffect == 4)//Ê¯»¯ºÍÖĞ¶¾´¦Àí
+				else if(pDispInfo->DrawEffect == 3 || pDispInfo->DrawEffect == 4)//çŸ³åŒ–å’Œä¸­æ¯’å¤„ç†
 					DrawGray(lpSurfaceInfo->lpSurface,
 						pDispInfo->x + lpSurfaceInfo->offsetX,pDispInfo->y + lpSurfaceInfo->offsetY,
 						lpSurfaceInfo->offsetX,lpSurfaceInfo->offsetY,
@@ -540,7 +540,7 @@ void PutBmp( void )
 #endif
 		putTextFlag = 1;	
 	}
-	// ?????¤úû¨( FRONT )
+	// ?????î¸î•( FRONT )
 	if( putTextFlag == 1 ){
 		PutText( FONT_PRIO_FRONT );	
 	}
@@ -553,14 +553,14 @@ void PutBmp( void )
 }
 
 //**************************************************************************/
-// 	??£º	??¤úû¨????????????
-// 	??£º	UCHAR dispPrio£º¤úû¨????????
-//		  	int x, int y£º×ø±ê
-//			int bmpNo£ºÍ¼Æ¬ºÅ
-//			int chr_no£º??????§k?
-//			int pat_no£º????§k?
+// 	??ï¼š	??î¸î•????????????
+// 	??ï¼š	UCHAR dispPrioï¼šî¸î•????????
+//		  	int x, int yï¼šåæ ‡
+//			int bmpNoï¼šå›¾ç‰‡å·
+//			int chr_noï¼š??????îœ±?
+//			int pat_noï¼š????îœ±?
 //**************************************************************************/
-// ´¢´æËùÓĞÒª²¥·ÅµÄImage
+// å‚¨å­˜æ‰€æœ‰è¦æ’­æ”¾çš„Image
 int StockDispBuffer( int x, int y, UCHAR dispPrio, int bmpNo, BOOL hitFlag )
 {	
 	short dx,dy;
@@ -613,26 +613,26 @@ int StockDispBuffer2( int x, int y, UCHAR dispPrio, int bmpNo, BOOL hitFlag )
 {	
 	short dx,dy;
 	int BmpNo;
-	// ??¨ò¢V??ıÍ????????ş­???
+	// ??îŸ•î”¼??î¶????????î‘´???
 	DISP_SORT 	*pDispSort = DispBuffer.DispSort + DispBuffer.DispCnt;
 	DISP_INFO 	*pDispInfo = DispBuffer.DispInfo + DispBuffer.DispCnt;
 	// ??????????
 	if( DispBuffer.DispCnt >= DISP_BUFFER_SIZE ) return -2;
 	// ??????????????
 	if( -1 <= bmpNo && bmpNo <= CG_INVISIBLE ) return -2;
-	// ¤GıĞ¤úû¨???
+	// î—­î¹î¸î•???
 	if( bmpNo > CG_INVISIBLE ){
 		BmpNo = bmpNo;
 		realGetPos( BmpNo  , &dx, &dy);
-	}else{// ????¤úû¨????¨Á????
+	}else{// ????î¸î•????îŸ‰????
 		dx = 0;
 		dy = 0;
 		BmpNo = bmpNo;
 	}
-	// ¤úû¨?¡I?????¢B¢l
+	// î¸î•?î“?????î”¨î•’
 	pDispSort->dispPrio = dispPrio;
 	pDispSort->no = DispBuffer.DispCnt;
-	// ¤úû¨ıÑ©?¢B¢l? ??????¥›? ?
+	// î¸î•îºîŸ«?î”¨î•’? ??????îš ? ?
 	pDispInfo->x = x + dx;
 	pDispInfo->y = y + dy;
 	pDispInfo->bmpNo = BmpNo;
@@ -650,14 +650,14 @@ int StockDispBuffer2( int x, int y, UCHAR dispPrio, int bmpNo, BOOL hitFlag )
 }
 
 
-// ´¢´æËùÓĞÒª²¥·ÅµÄImage£¬ÒÀActµÄ×´¿öÀ´Éè¶¨
+// å‚¨å­˜æ‰€æœ‰è¦æ’­æ”¾çš„Imageï¼Œä¾Actçš„çŠ¶å†µæ¥è®¾å®š
 void StockTaskDispBuffer( void )
 {
-	ACTION *pActLoop; 	/* ¡I¥d????????ûè¥x */
+	ACTION *pActLoop; 	/* î“î™ª????????î•î™¾ */
 	DISP_SORT 	*pDispSort = DispBuffer.DispSort + DispBuffer.DispCnt;
 	DISP_INFO 	*pDispInfo = DispBuffer.DispInfo + DispBuffer.DispCnt;
 	
-	/* ??§???????? */	
+	/* ??î“???????? */	
 	//while( pActLoop != pActBtm ){
 	for(pActLoop = pActTop->pNext ; 
 		pActLoop != pActBtm ;
@@ -670,23 +670,23 @@ void StockTaskDispBuffer( void )
 		// ??????????????
 		if( -1 <= pActLoop ->bmpNo && pActLoop ->bmpNo <= CG_INVISIBLE ) continue;
 		
-		// ?©û???????????
+		// ?î Œ???????????
 		if( pActLoop ->deathFlag == TRUE ) continue;
 		
-		/* §‰¤úû¨??§I?? */
+		/* îî¸î•??îœ?? */
 		if( pActLoop->atr & ACT_ATR_HIDE ) continue;
 
-		// ¤úû¨?¡I?????¢B¢l
+		// î¸î•?î“?????î”¨î•’
 		pDispSort->dispPrio = pActLoop->dispPrio;
 		pDispSort->no = DispBuffer.DispCnt;
-		// ¤úû¨ıÑ©?¢B¢l? ??????¥›? ?
+		// î¸î•îºîŸ«?î”¨î•’? ??????îš ? ?
 		pDispInfo->x = pActLoop->x + pActLoop->anim_x;
 		pDispInfo->y = pActLoop->y + pActLoop->anim_y;
 		pDispInfo->bmpNo = pActLoop->bmpNo;
 		pDispInfo->pAct = pActLoop;
 		
-		// ???§R¤e????
-		// ¦ú?¡k¢‘??
+		// ???îœ˜î˜‹????
+		// î›?î“±î•¶??
 
 
 		if( pActLoop->atr & ACT_ATR_HIT_BOX_COL1 ) pDispInfo->hitFlag = 7;
@@ -712,14 +712,14 @@ void StockTaskDispBuffer( void )
 		if( pActLoop->atr & ACT_ATR_HIT_BOX_ALL2 ) pDispInfo->hitFlag = 4;
 		else 
 		if( pActLoop->atr & ACT_ATR_HIT_BOX_ALL1 ) pDispInfo->hitFlag = 3;
-		else // ????¤úû¨
+		else // ????î¸î•
 		if( pActLoop->atr & ACT_ATR_HIT_BOX ) pDispInfo->hitFlag = 2;
-		else // §R¤e??
+		else // îœ˜î˜‹??
 		if( pActLoop->atr & ACT_ATR_HIT ) pDispInfo->hitFlag = 1;
 		else pDispInfo->hitFlag = FALSE;
-		// 4 Ê¯»¯
+		// 4 çŸ³åŒ–
 		if(pActLoop->status == 4)	pDispInfo->DrawEffect = 3;
-		// 1 ¶¾
+		// 1 æ¯’
 		else if(pActLoop->status == 1) pDispInfo->DrawEffect = 4;
 		else pDispInfo->DrawEffect = 0;
 #ifdef _PETCOLOR_
@@ -738,12 +738,12 @@ void StockTaskDispBuffer( void )
 			if(adrntruebuff[pDispInfo->bmpNo - OLD_GRAPHICS_START].staturated == 1) pDispInfo->DrawEffect = 2;
 		}
 #endif
-		// ??????????§R¤e§k???
+		// ??????????îœ˜î˜‹îœ±???
 		pActLoop->hitDispNo = DispBuffer.DispCnt;
 #ifdef _SFUMATO
 		pDispInfo->sfumato = pActLoop->sfumato;
 #endif
-		// ¤úû¨????????
+		// î¸î•????????
 		DispBuffer.DispCnt++;
 
 		// ???????
@@ -753,11 +753,11 @@ void StockTaskDispBuffer( void )
 	
 }
 
-// ???¤úû¨???????????? ///////////////////////////////////////////////////
+// ???î¸î•???????????? ///////////////////////////////////////////////////
 // ???prio1??prio2???????????
 void StockTaskDispBuffer2( int prio1, int prio2 )
 {
-	ACTION *pActLoop; 	/* ¡I¥d????????ûè¥x */
+	ACTION *pActLoop; 	/* î“î™ª????????î•î™¾ */
 	DISP_SORT 	*pDispSort = DispBuffer.DispSort + DispBuffer.DispCnt;
 	DISP_INFO 	*pDispInfo = DispBuffer.DispInfo + DispBuffer.DispCnt;
 	int tmp;
@@ -769,7 +769,7 @@ void StockTaskDispBuffer2( int prio1, int prio2 )
 		prio2 = tmp;
 	}
 	
-	/* ??§???????? */	
+	/* ??î“???????? */	
 	//while( pActLoop != pActBtm ){
 	for(pActLoop = pActTop->pNext ; 
 		pActLoop != pActBtm ;
@@ -779,37 +779,37 @@ void StockTaskDispBuffer2( int prio1, int prio2 )
 		// ??????????
 		if( DispBuffer.DispCnt >= DISP_BUFFER_SIZE ) break;
 		
-		// prio1??prio2?úù¤e§d???????
+		// prio1??prio2?îˆî˜‹îœª???????
 		if( prio1 <= pActLoop->dispPrio && pActLoop->dispPrio <= prio2 )
 			continue;
 		
 		// ??????????????
 		if( -1 <= pActLoop ->bmpNo && pActLoop ->bmpNo <= CG_INVISIBLE ) continue;
 		
-		// ?©û???????????
+		// ?î Œ???????????
 		if( pActLoop ->deathFlag == TRUE ) continue;
 		
-		/* §‰¤úû¨??§I?? */
+		/* îî¸î•??îœ?? */
 		if( pActLoop->atr & ACT_ATR_HIDE ) continue;
 
-		// ¤úû¨?¡I?????¢B¢l
+		// î¸î•?î“?????î”¨î•’
 		pDispSort->dispPrio = pActLoop->dispPrio;
 		pDispSort->no = DispBuffer.DispCnt;
-		// ¤úû¨ıÑ©?¢B¢l? ??????¥›? ?
+		// î¸î•îºîŸ«?î”¨î•’? ??????îš ? ?
 		pDispInfo->x = pActLoop->x + pActLoop->anim_x;
 		pDispInfo->y = pActLoop->y + pActLoop->anim_y;
 		pDispInfo->bmpNo = pActLoop->bmpNo;
 		pDispInfo->pAct = pActLoop;
 		
-		// ???§R¤e????
+		// ???îœ˜î˜‹????
 		if( pActLoop->atr & ACT_ATR_HIT_BOX ) pDispInfo->hitFlag = 2;
 		else 
 		if( pActLoop->atr & ACT_ATR_HIT ) pDispInfo->hitFlag = 1;
 		else pDispInfo->hitFlag = FALSE;
-		// ??????????§R¤e§k???
+		// ??????????îœ˜î˜‹îœ±???
 		pActLoop->hitDispNo = DispBuffer.DispCnt;
 
-		// ¤úû¨????????
+		// î¸î•????????
 		DispBuffer.DispCnt++;
 		// ???????
 		pDispSort++;
@@ -818,17 +818,17 @@ void StockTaskDispBuffer2( int prio1, int prio2 )
 	
 }
 
-// ????¤úû¨???????????? ***************************************/
+// ????î¸î•???????????? ***************************************/
 void StockBoxDispBuffer( int x1, int y1, int x2, int y2, UCHAR dispPrio, int color, BOOL fill )
 {
-	int col;	// ıè?úù¤e
+	int col;	// î‘‘?îˆî˜‹
 	// int ? short ??????
-	int x = ( x1 << 16 ) | x2; 	// ıÆ????????????????
-	int y = ( y1 << 16 ) | y2;	// ıÆ????????????????
+	int x = ( x1 << 16 ) | x2; 	// î¯????????????????
+	int y = ( y1 << 16 ) | y2;	// î¯????????????????
 	
 	// ???????
 	if( fill == 0 ) col = color | STOCK_DISP_BUFFER_BOX | STOCK_DISP_BUFFER_NO_BMP ;
-	// ¥D???????
+	// î™Š???????
 	else if( fill == 1 ) col = color | STOCK_DISP_BUFFER_BOX_FILL | STOCK_DISP_BUFFER_NO_BMP ;
 	// ?????
 	else if( fill == 2 ) col = color | STOCK_DISP_BUFFER_LINE | STOCK_DISP_BUFFER_NO_BMP ;
@@ -837,28 +837,28 @@ void StockBoxDispBuffer( int x1, int y1, int x2, int y2, UCHAR dispPrio, int col
 	StockDispBuffer( x, y, dispPrio, col, 0 );
 }
 
-// ¤úû¨???????????????ûè?üÒ? *********************************/
+// î¸î•???????????????î•?î? *********************************/
 inline void GetBoxDispBuffer( DISP_INFO *pDispInfo, int bmpNo )
 {
 	// ??????
 	RECT rect;
-	int color; // ıè
-	BOOL fill = FALSE; // ¥D???????
+	int color; // î‘‘
+	BOOL fill = FALSE; // î™Š???????
 	int DispInfoX = pDispInfo->x;
 	int DispInfoY = pDispInfo->y;
 	
-	// ?¤õ?ûè?üÒ?
+	// ?î³?î•?î?
 	rect.right =	( LONG )( pDispInfo->x & 0xffff );
 	rect.bottom =	( LONG )( pDispInfo->y & 0xffff );
 
 	// ??????????
 	_asm{
-		// rect.left ?ûè?üÒ?
+		// rect.left ?î•?î?
 		mov		cl,16				// ??????????
 		mov		eax, [ DispInfoX ]
-		sar		eax, cl				// ??¦Ü????
+		sar		eax, cl				// ??î????
 		mov		[ rect.left ], eax
-		// rect.top ?ûè?üÒ?
+		// rect.top ?î•?î?
 		mov		eax, [ DispInfoY ]
 		sar		eax, cl
 		mov		[ rect.top ], eax
@@ -867,43 +867,43 @@ inline void GetBoxDispBuffer( DISP_INFO *pDispInfo, int bmpNo )
 	
 	// ???????
 	if( bmpNo & STOCK_DISP_BUFFER_BOX ){ 
-		color = bmpNo & 0xff; 			// ıè????ûè?üÒ?
-		DrawBox( &rect, color, 0 );	// ????¤ş?
+		color = bmpNo & 0xff; 			// î‘‘????î•?î?
+		DrawBox( &rect, color, 0 );	// ????î¼?
 		
-	// ¥D???????
+	// î™Š???????
 	}else if( bmpNo & STOCK_DISP_BUFFER_BOX_FILL ){ 
-		color = color = bmpNo & 0xff;	// ıèúù¤e
-		DrawBox( &rect, color, 1 );	// ????¤ş?
+		color = color = bmpNo & 0xff;	// î‘‘îˆî˜‹
+		DrawBox( &rect, color, 1 );	// ????î¼?
 		
 	}else if( bmpNo & STOCK_DISP_BUFFER_LINE ){ 
-		color = color = bmpNo & 0xff;	// ıèúù¤e
-		DrawBox( &rect, color, 2 );	// ???¤ş?
+		color = color = bmpNo & 0xff;	// î‘‘îˆî˜‹
+		DrawBox( &rect, color, 2 );	// ???î¼?
 	}
 }			
 
-// ???§{??? //////////////////////////////////////////////////////////////
+// ???î??? //////////////////////////////////////////////////////////////
 int SortComp( DISP_SORT *pDisp1, DISP_SORT *pDisp2 )
 {
-	// pDisp1 ?¤úû¨?¡I¥T?©˜?¢†????¦V?¢v?
+	// pDisp1 ?î¸î•?î“î™š?îŸµ?î•«????îš¼?î•œ?
 	if( pDisp1->dispPrio > pDisp2->dispPrio ){
 		return 1;
 	}
 	
-	// pDisp2 ?¤úû¨?¡I¥T?©˜?¢†????????
+	// pDisp2 ?î¸î•?î“î™š?îŸµ?î•«????????
 	if( pDisp1->dispPrio < pDisp2->dispPrio ){
 		return -1;
 	}
-	// ?????¥K????
-	// pDisp1 ?©˜?????????????????
+	// ?????î™‘????
+	// pDisp1 ?îŸµ?????????????????
 	if( pDisp1->no > pDisp2->no ){
 		return -1;
 	}
-	// ????????¦V?¢v???????
+	// ????????îš¼?î•œ???????
 	return 1;
 }
 
 #ifdef _SURFACE_ANIM
-// »­¶¯Ì¬µØ±í(ÓÅÏÈÈ¨Îª0µÄ¶¯Ì¬µØ±í)
+// ç”»åŠ¨æ€åœ°è¡¨(ä¼˜å…ˆæƒä¸º0çš„åŠ¨æ€åœ°è¡¨)
 void DrawAni()
 {
 	DISP_INFO 	*pDispInfo;
@@ -918,14 +918,14 @@ void DrawAni()
 		DispBuffer.DispCnt += iProcessAniNum;
 		for(int i = 0; i<DispBuffer.DispCnt; i++, pSortTileTail++ ){
 			if( pSortTileTail->dispPrio == DISP_PRIO_TILE) continue;
-			// ÒòÎªÓĞÅÅĞò¹ı,ËùÒÔÈç¹ûÄ¿Ç°µÄÏÔÊ¾Ë³Ğò±ÈµØ±í´óµÄ»°,±íÊ¾µØ±íÒÑ¾­´¦ÀíÍêÁË
+			// å› ä¸ºæœ‰æ’åºè¿‡,æ‰€ä»¥å¦‚æœç›®å‰çš„æ˜¾ç¤ºé¡ºåºæ¯”åœ°è¡¨å¤§çš„è¯,è¡¨ç¤ºåœ°è¡¨å·²ç»å¤„ç†å®Œäº†
 			if( pSortTileTail->dispPrio > DISP_PRIO_TILE){
 				DispBuffer.DispCnt -= i;
 				break;
 			}
-			// È¡µÃµÚÒ»¸öÒª´¦ÀíµÄÍ¼µÄ DispInfo ×ÊÁÏ
+			// å–å¾—ç¬¬ä¸€ä¸ªè¦å¤„ç†çš„å›¾çš„ DispInfo èµ„æ–™
 			pDispInfo = DispBuffer.DispInfo + pSortTileTail->no;
-			bmpNo = pDispInfo->bmpNo; // ???§k?
+			bmpNo = pDispInfo->bmpNo; // ???îœ±?
 			
 			if( pDispInfo->pAct != NULL ){
 				if( pDispInfo->pAct->atr & ACT_ATR_HIDE2 ) continue;
@@ -1038,7 +1038,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 0){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1077,7 +1077,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1170,7 +1170,7 @@ void DrawGrayA(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		surfacePitch2 = ddsdOverlayer.lPitch >> 2;
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 0){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1213,7 +1213,7 @@ void DrawGrayA(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1320,7 +1320,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 		int i,j,nColorSource,nColorOverlayer;
 		DWORD SR,SG,SB,OR,OG,OB;
 
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1329,8 +1329,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1357,8 +1357,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x07e0) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xf800) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x07e0) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1379,7 +1379,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 				}
 			}
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1388,8 +1388,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x00ff00) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = (nColorSource & 0xff0000) >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x00ff00) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorSource & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1416,8 +1416,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x03e0) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = nColorSource >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x03e0) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1521,7 +1521,7 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		DWORD SR,SG,SB,OR,OG,OB;
 
 		w >>= 1;
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1530,8 +1530,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1577,8 +1577,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x07e0) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xf800) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x07e0) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1619,7 +1619,7 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 			}
 			
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1628,8 +1628,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x00ff00) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = (nColorSource & 0xff0000) >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x00ff00) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1677,8 +1677,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x03e0) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = nColorSource >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x03e0) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1793,7 +1793,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 		int i,j,nColorSource,nColorOverlayer;
 		DWORD SR,SG,SB,OR,OG,OB;
 
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1802,8 +1802,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1830,8 +1830,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-							SG = (nColorSource & 0x07e0) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+							SR = (nColorSource & 0xf800) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+							SG = (nColorSource & 0x07e0) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1852,7 +1852,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 				}
 			}
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1861,8 +1861,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x00ff00) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = (nColorSource & 0xff0000) >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x00ff00) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorSource & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1889,8 +1889,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-							SG = (nColorSource & 0x03e0) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+							SR = nColorSource >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+							SG = (nColorSource & 0x03e0) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1974,7 +1974,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2004,7 +2004,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 				}
 			}
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2044,7 +2044,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2074,7 +2074,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 				}
 			}
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2172,7 +2172,7 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 
 	int i,j,nColorSource,nColorOverlayer;
 	DWORD SR,SG,SB,OR,OG,OB,Alpha;
-	// 565 ÏÔÊ¾Ä£Ê½
+	// 565 æ˜¾ç¤ºæ¨¡å¼
 	if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 		if( displayBpp == 32 ){
@@ -2182,8 +2182,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 					Alpha = (DWORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-						SG = (nColorSource & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+						SR = (nColorSource & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+						SG = (nColorSource & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 						SB = (nColorSource & 0x0000ff) << 3;
 						OR = (nColorOverlayer & 0xff0000) >> 8;
 						OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -2209,8 +2209,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(WORD*)ptOverLayerDest;
 					Alpha = (WORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xf800) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-						SG = (nColorSource & 0x07e0) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+						SR = (nColorSource & 0xf800) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+						SG = (nColorSource & 0x07e0) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 						SB = (nColorSource & 0x001f) << 3;
 						OR = (nColorOverlayer & 0xf800) >> 8;
 						OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -2229,7 +2229,7 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 				AlphaData += SURFACE_WIDTH - w;
 			}
 	}
-	// 555 ÏÔÊ¾Ä£Ê½
+	// 555 æ˜¾ç¤ºæ¨¡å¼
 	else{
 #ifdef _HI_COLOR_32
 		if( displayBpp == 32 ){
@@ -2239,8 +2239,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 					Alpha = (DWORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-						SG = (nColorSource & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+						SR = (nColorSource & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+						SG = (nColorSource & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 						SB = (nColorSource & 0x0000ff) << 3;
 						OR = (nColorOverlayer & 0xff0000) >> 8;
 						OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -2268,8 +2268,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(WORD*)ptOverLayerDest;
 					Alpha = (WORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = nColorSource >> 7;							// Ô­±¾ÒªÓÒÒÆ10×óÒÆ3,¼ò»¯³ÉÓÒÒÆ7
-						SG = (nColorSource & 0x03e0) >> 2;	// Ô­±¾ÒªÓÒÒÆ5×óÒÆ3,¼ò»¯³ÉÓÒÒÆ2
+						SR = nColorSource >> 7;							// åŸæœ¬è¦å³ç§»10å·¦ç§»3,ç®€åŒ–æˆå³ç§»7
+						SG = (nColorSource & 0x03e0) >> 2;	// åŸæœ¬è¦å³ç§»5å·¦ç§»3,ç®€åŒ–æˆå³ç§»2
 						SB = (nColorSource & 0x001f) << 3;
 						OR = nColorOverlayer >> 7;
 						OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -2353,7 +2353,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 ÏÔÊ¾Ä£Ê½
+		// 565 æ˜¾ç¤ºæ¨¡å¼
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2383,7 +2383,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 				}
 			}
 		}
-		// 555 ÏÔÊ¾Ä£Ê½
+		// 555 æ˜¾ç¤ºæ¨¡å¼
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2400,8 +2400,8 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 									int x = G - R;
 									int y = G - B;
 									if((R > 0x30 && G > 0x30 && B > 0x30)/* &&(R < 0xf0 && G < 0xf0 && B < 0xf0) */&& (x > -40 && x < 40) && (y > -40 && y < 40)){
-										R = (nColorOverlayer & 0xff0000) >> 8; // Ô­±¾ÒªÓÒÒÆ11×óÒÆ3,¼ò»¯³ÉÓÒÒÆ8
-										G = (nColorOverlayer & 0x00ff00) >> 3; // Ô­±¾ÒªÓÒÒÆ5×óÒÆ2,¼ò»¯³ÉÓÒÒÆ3
+										R = (nColorOverlayer & 0xff0000) >> 8; // åŸæœ¬è¦å³ç§»11å·¦ç§»3,ç®€åŒ–æˆå³ç§»8
+										G = (nColorOverlayer & 0x00ff00) >> 3; // åŸæœ¬è¦å³ç§»5å·¦ç§»2,ç®€åŒ–æˆå³ç§»3
 										B = (nColorOverlayer & 0x0000ff) << 3;
 
 										int OR = (sfumato & 0xff0000) >> 8;
@@ -2445,7 +2445,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 			ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 			ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-			// 565 ÏÔÊ¾Ä£Ê½
+			// 565 æ˜¾ç¤ºæ¨¡å¼
 			if(gBitRShift == 2){
 				for(j=0;j<h;j++){
 					if(oy >= 0){
@@ -2475,7 +2475,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 					}
 				}
 			}
-			// 555 ÏÔÊ¾Ä£Ê½
+			// 555 æ˜¾ç¤ºæ¨¡å¼
 			else{
 				for(j=0;j<h;j++){
 					if(oy >= 0){
@@ -2828,18 +2828,18 @@ void ablend_565(unsigned char *lpAlpha, unsigned int iAlpPitch,
 }
 
 
-//mmx ARGB»ìºÏ
+//mmx ARGBæ··åˆ
 void DrawAlpha32(
-	unsigned long*   lpDst,			// Ä¿±ê»º³å
-	unsigned long    iDstX,			// Ä¿±êÎ»ÖÃ
-	unsigned long    iDstY,			// Ä¿±êÎ»ÖÃ
-	unsigned long    iDstPitch,		// Ä¿±ê»º³åµÄpitch
-	unsigned long*   lpSrc,			// Ô­É«²Ê»º³å
-	unsigned long    iSrcX,			// Ô­É«²ÊÎ»ÖÃ
-	unsigned long    iSrcY,			// Ô­É«²ÊÎ»ÖÃ
-	unsigned long    iSrcW,			// Ô­»º³åµÄ³ß´ç
-	unsigned long    iSrcH,			// Ô­»º³åµÄ³ß´ç
-	unsigned long    iSrcPitch		// Ô­É«²Êpitch
+	unsigned long*   lpDst,			// ç›®æ ‡ç¼“å†²
+	unsigned long    iDstX,			// ç›®æ ‡ä½ç½®
+	unsigned long    iDstY,			// ç›®æ ‡ä½ç½®
+	unsigned long    iDstPitch,		// ç›®æ ‡ç¼“å†²çš„pitch
+	unsigned long*   lpSrc,			// åŸè‰²å½©ç¼“å†²
+	unsigned long    iSrcX,			// åŸè‰²å½©ä½ç½®
+	unsigned long    iSrcY,			// åŸè‰²å½©ä½ç½®
+	unsigned long    iSrcW,			// åŸç¼“å†²çš„å°ºå¯¸
+	unsigned long    iSrcH,			// åŸç¼“å†²çš„å°ºå¯¸
+	unsigned long    iSrcPitch		// åŸè‰²å½©pitch
 	)
 {
 	unsigned long *lpLinearDstBp = (iDstX)+(iDstY*iDstPitch / sizeof(DWORD)) + lpDst; //base pointer for linear destination
@@ -2847,32 +2847,32 @@ void DrawAlpha32(
 
 _asm{
 	mov edx, 0xFFFFFFFF; //255-Alpha mask 
-	pxor mm7,mm7;	//MM7Çå0
+	pxor mm7,mm7;	//MM7æ¸…0
 	movd mm6,edx;	//MM6=FFFFFFFF
 
-	mov esi, lpLinearSrcBp;                    // ÒÆÈëÔ´ÏñËØ»º³åµØÖ·
-	mov edi, lpLinearDstBp;                    // ÒÆÈëÄ¿±êÏñËØ»º³åµØÖ·
-	mov ecx, iSrcH;                            // ÏÂÃæÁ½²½²Ù×÷ÊÇÒÆÈëÔ­»º³åµÄ¸ß¶ÈºÍ¿í¶È
+	mov esi, lpLinearSrcBp;                    // ç§»å…¥æºåƒç´ ç¼“å†²åœ°å€
+	mov edi, lpLinearDstBp;                    // ç§»å…¥ç›®æ ‡åƒç´ ç¼“å†²åœ°å€
+	mov ecx, iSrcH;                            // ä¸‹é¢ä¸¤æ­¥æ“ä½œæ˜¯ç§»å…¥åŸç¼“å†²çš„é«˜åº¦å’Œå®½åº¦
 	mov ebx, iSrcW;
 
 MainLoop:
-	//Ä¿±ê£º0xFF585C58     Ô´£º0x71000008
+	//ç›®æ ‡ï¼š0xFF585C58     æºï¼š0x71000008
 	movd mm0,[esi];	//mm0=SRC        MM0=0000 0000 7100 0008
-	punpcklbw mm0,mm7;	//SRC:32Î»Bitµ½64Î»Bit   MM0=0071 0000 0000 0008
+	punpcklbw mm0,mm7;	//SRC:32ä½Bitåˆ°64ä½Bit   MM0=0071 0000 0000 0008
 	movq mm2,mm0;	//mm2=SRC MM2=0071 0000 0000 0008
-	punpckhwd mm0,mm0;	//¸ßÎ»ÊÇALPHA  Ô­0071 0000 0000 0008 ÒÆ 0071 0071 0000 0000
-	punpckhdq mm0,mm0;	//Ë«×ÖÒÆ¶¯µ½ËÄ×Ö,ÏÖÔÚÓĞ°Ë¸öÏñËØµÄAlphaÁË!  0071 0071 0071 0071
+	punpckhwd mm0,mm0;	//é«˜ä½æ˜¯ALPHA  åŸ0071 0000 0000 0008 ç§» 0071 0071 0000 0000
+	punpckhdq mm0,mm0;	//åŒå­—ç§»åŠ¨åˆ°å››å­—,ç°åœ¨æœ‰å…«ä¸ªåƒç´ çš„Alphaäº†!  0071 0071 0071 0071
 
 	movd edx,mm0;
 	cmp edx,0x00ff00ff;
 	je CopySrc;
-	test edx, 0xffffffff;						// Èç¹ûalphaÎª0 £¬ÄÇÃ´»áÓ°Ïì¼Ä´æÆ÷µÄ±êÖ¾Î»,ZF=1
+	test edx, 0xffffffff;						// å¦‚æœalphaä¸º0 ï¼Œé‚£ä¹ˆä¼šå½±å“å¯„å­˜å™¨çš„æ ‡å¿—ä½,ZF=1
 	jz BeginPixel;
 
 	movq mm1,mm6;       //MM1=0000 0000 FFFF FFFF
 	punpckhdq mm1,mm1;
 	movd mm3,[edi];       //mm3=DST      MM3=0000 0000 FF58 5C58
-	punpcklbw mm3,mm7;  //mm3=32Î»Bitµ½64Î»Bit    MM3=00FF 0058 005C 0058
+	punpcklbw mm3,mm7;  //mm3=32ä½Bitåˆ°64ä½Bit    MM3=00FF 0058 005C 0058
 	psubb mm1,mm0;      //mm1=255-src alpha bit   MM1=00FF 00FF 00FF 00FF     MM0=0071 0071 0071 0071   MM1=008E 008E 008E 008E
 
 	pmullw mm2,mm0;     //mm2=src*srcAlpha      MM2= 0071 0000 0000 0008   MM0=0071 0071 FF71 0071    MM2= 31E1 0000 0000 0388
@@ -2883,18 +2883,18 @@ MainLoop:
 	movd [edi],mm3;
 	jmp BeginPixel;
 CopySrc:
-	packuswb  mm2, mm2;							// ½ôËõµ½µÍ
+	packuswb  mm2, mm2;							// ç´§ç¼©åˆ°ä½
 	movd[edi], mm2;			
 BeginPixel:
-	add edi, 4;									// Ä¿±êÏñËØÏòÇ°ÒÆ¶¯4¸öÏñËØ
-	add esi, 4;                                 // Ô´ÏñËØÏòÇ°ÒÆ¶¯4¸öÏñËØ    
-	sub ebx, 1;                                 // ¿í¶È¼õ4
+	add edi, 4;									// ç›®æ ‡åƒç´ å‘å‰ç§»åŠ¨4ä¸ªåƒç´ 
+	add esi, 4;                                 // æºåƒç´ å‘å‰ç§»åŠ¨4ä¸ªåƒç´     
+	sub ebx, 1;                                 // å®½åº¦å‡4
 	test ebx, 0xffffffff;						// check if only 0 pixels left
-	jz NextLine;								// Èç¹ûÖ»ÓĞ0¸öÏñËØ£¬Ìø×ªµ½NextLine´¦Àí
-	jmp MainLoop;								// Ìø×ªµ½¿ªÊ¼´¦£¬ÖØĞÂ¼ÆËã
+	jz NextLine;								// å¦‚æœåªæœ‰0ä¸ªåƒç´ ï¼Œè·³è½¬åˆ°NextLineå¤„ç†
+	jmp MainLoop;								// è·³è½¬åˆ°å¼€å§‹å¤„ï¼Œé‡æ–°è®¡ç®—
 NextLine:
 	dec ecx;
-	jz  Done;									// ´¦ÀíÍê³É
+	jz  Done;									// å¤„ç†å®Œæˆ
 	mov esi, lpLinearSrcBp;						// src
 	mov edi, lpLinearDstBp;						// dst
 	add esi, iSrcPitch;							// inc src ptr by 1 line
@@ -2910,7 +2910,7 @@ Done:
 
 
 
-BOOL »ñÈ¡¶¯»­³ß´ç(ACTION* a0,S2 *wx,S2* wy)
+BOOL è·å–åŠ¨ç”»å°ºå¯¸(ACTION* a0,S2 *wx,S2* wy)
 {
 	int chrNo = ATR_CHR_NO(a0) - SPRSTART;
 	if(chrNo < 0){

@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/font.h"
 #include "../other/caryIme.h"
@@ -23,24 +23,24 @@
 #include "../systeminc/talkwindow.h"
 #endif
 #ifdef _MAGIC_ITEM_
-ACTION* µÀ¾ß¹â»·Act=NULL;
+ACTION* é“å…·å…‰ç¯Act=NULL;
 extern ACTION* MagicItemActAddr;
 extern int MagicItemCombinData[3];
 extern int MagicItemPosState[4];
 #endif
 #ifdef _RENWU_
-BOOL ÈÎÎñ²éÑ¯¿ª¹Ø=FALSE;
+BOOL ä»»åŠ¡æŸ¥è¯¢å¼€å…³=FALSE;
 #endif
 extern int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
-int ·±Ìå¿ª¹Ø = FALSE;
-int ¾­Ñé¿ª¹Ø = TRUE;
-int ÈËÎïÆÁ±Î¿ª¹Ø = FALSE;
-int ÓÒ¼ü¹¥»÷ = FALSE;
+int ç¹ä½“å¼€å…³ = FALSE;
+int ç»éªŒå¼€å…³ = TRUE;
+int äººç‰©å±è”½å¼€å…³ = FALSE;
+int å³é”®æ”»å‡» = FALSE;
 
 #ifdef _PETBLESS_
-int ×£¸£´°¿Ú¿ª¹Ø = FALSE;
-char ×£¸£´°¿ÚÄÚÈİ[128];
-int ×£¸£´°¿ÚÑ¡ÖĞ;
+int ç¥ç¦çª—å£å¼€å…³ = FALSE;
+char ç¥ç¦çª—å£å†…å®¹[128];
+int ç¥ç¦çª—å£é€‰ä¸­;
 #endif
 
 
@@ -48,7 +48,7 @@ int ×£¸£´°¿ÚÑ¡ÖĞ;
 extern void ShowBottomLineString(int iColor, LPSTR lpstr);
 extern Landed PcLanded;
 #endif
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 #ifdef _SYUTEST3
 #define MENU_STATUS_0   25
 #else
@@ -57,7 +57,7 @@ extern Landed PcLanded;
 #else
 #define MENU_STATUS_0	12
 #endif
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
 #define MENU_PET_0		24
 #else
 #define MENU_PET_0		20
@@ -65,7 +65,7 @@ extern Landed PcLanded;
 #define MENU_ITEM_0		40
 #define MENU_MAIL_0		40
 #define MENU_ALBUM_0	20
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 #define MENU_TRADE_0	22
 #endif
 #define MENU_BANK_0		20
@@ -81,21 +81,21 @@ extern BOOL g_bUseAlpha;
 #endif
 // ????
 
-#define MAX_CHAT_REGISTY_STR		8		// ?????§ó?¥K???
-#define MAX_CHAT_REGISTY_STR_LEN	26 		// ?????§ó?¥K??§ó??
+#define MAX_CHAT_REGISTY_STR		8		// ?????î°?î™‘???
+#define MAX_CHAT_REGISTY_STR_LEN	26 		// ?????î°?î™‘??î°??
 
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
-bool DropPetWndflag = false;			//¶ªÆú³èÎïÊÓ´°ÏÔÊ¾Óë·ñÆì±ê
-short DropI = -1;						//Ôİ´æiÖµ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
+bool DropPetWndflag = false;			//ä¸¢å¼ƒå® ç‰©è§†çª—æ˜¾ç¤ºä¸å¦æ——æ ‡
+short DropI = -1;						//æš‚å­˜iå€¼
 #endif
 #ifdef _NEW_ITEM_
-int µÀ¾ßÀ¸Ò³Êı = 0;
-int ÅĞ¶ÏÍæ¼ÒµÀ¾ßÊıÁ¿()
+int é“å…·æ é¡µæ•° = 0;
+int åˆ¤æ–­ç©å®¶é“å…·æ•°é‡()
 {
 	int ret = MAX_MAXHAVEITEM + MAX_ITEMSTART;
-	if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << 1){
+	if (pc.é“å…·æ çŠ¶æ€ & 1 << 1){
 		ret += MAX_MAXHAVEITEM;
-		if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << 2){
+		if (pc.é“å…·æ çŠ¶æ€ & 1 << 2){
 			ret += MAX_MAXHAVEITEM;
 		}
 	}
@@ -103,54 +103,54 @@ int ÅĞ¶ÏÍæ¼ÒµÀ¾ßÊıÁ¿()
 }
 #endif
 #ifdef _DIEJIA_
-//ÎïÆ·ÊÇ·ñÄÜ¶Ñµş
+//ç‰©å“æ˜¯å¦èƒ½å †å 
 BOOL ItemCanPile(int flg)
 {
 	return (flg & 1 << 6);
 }
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
+#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
 #define RAND(x,y)   ((x-1)+1+ (int)((double)(y-(x-1))*rand()/(RAND_MAX+1.0)))
 int UpDownflag = 0;
 #endif
 
-#define CAHT_REGISTY_STR_FILE_NAME 	"data\\chatreg.dat" 	// ?????¥K?§ó?¨ò¢V????ş
-static int systemWndFontNo[MENU_SYSTEM_0]; 			// ???§R¤e§k?
-unsigned int  systemWndNo;						// ?????§k?
-STR_BUFFER chatRegistryStr[MAX_CHAT_REGISTY_STR];		// ?????§ó?¥K??¦V??????
+#define CAHT_REGISTY_STR_FILE_NAME 	"data\\chatreg.dat" 	// ?????î™‘?î°?îŸ•î”¼????î¡“
+static int systemWndFontNo[MENU_SYSTEM_0]; 			// ???îœ˜î˜‹îœ±?
+unsigned int  systemWndNo;						// ?????îœ±?
+STR_BUFFER chatRegistryStr[MAX_CHAT_REGISTY_STR];		// ?????î°?î™‘??îš¼??????
 int MouseCursorFlag = FALSE;							// ???????
 
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-char talkmsg[4][256];					//ËÄĞĞµÄÔİ´æBuffer
-int talkwndx = 300, talkwndy = 350;   //ÆğÊ¼Î»ÖÃ
-bool talkwndflag = false;				//ÊÇ·ñ¿ÉÒÔÍÏÒ·Æì±ê
-bool tradetalkwndflag = false;			//ÊÇ·ñ²úÉú¶Ô»°´°Æì±ê
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+char talkmsg[4][256];					//å››è¡Œçš„æš‚å­˜Buffer
+int talkwndx = 300, talkwndy = 350;   //èµ·å§‹ä½ç½®
+bool talkwndflag = false;				//æ˜¯å¦å¯ä»¥æ‹–æ›³æ——æ ‡
+bool tradetalkwndflag = false;			//æ˜¯å¦äº§ç”Ÿå¯¹è¯çª—æ——æ ‡
 #endif
 
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 STR_BUFFER MymoneyBuffer;
 bool Moneyflag = false;
 #endif
 STR_BUFFER TradeBuffer;
-bool Tradeflag = false;    //ÊäÈëÎ»ÖÃFocusÆì±ê
-bool TradeBtnflag = false; //½ğ¶î·ÅÖÃÅ¥ÏÔÊ¾¿ª¹Ø
+bool Tradeflag = false;    //è¾“å…¥ä½ç½®Focusæ——æ ‡
+bool TradeBtnflag = false; //é‡‘é¢æ”¾ç½®é’®æ˜¾ç¤ºå¼€å…³
 // ???
-int mapWndFontNo[MENU_MAP_0]; 	// ???§R¤e§k?
-static unsigned int  mapWndNo;		// ?????§k?
-int MapWmdFlagBak;					// ¡P¥f??û«¥h????????¤úû¨?????
+int mapWndFontNo[MENU_MAP_0]; 	// ???îœ˜î˜‹îœ±?
+static unsigned int  mapWndNo;		// ?????îœ±?
+int MapWmdFlagBak;					// î“–î™¬??î˜î™®????????î¸î•?????
 
 // ?????
-static int statusWndFontNo[MENU_STATUS_0]; 	// ???§R¤e§k?
-static int statusWndBtnFlag[MENU_STATUS_0];	// ????¥…???
-static unsigned int statusWndNo;				// ?????§k?
-STR_BUFFER shougouChange;						// ??????ı¯??§ó??
+static int statusWndFontNo[MENU_STATUS_0]; 	// ???îœ˜î˜‹îœ±?
+static int statusWndBtnFlag[MENU_STATUS_0];	// ????îšŠ???
+static unsigned int statusWndNo;				// ?????îœ±?
+STR_BUFFER shougouChange;						// ??????î˜??î°??
 int StatusUpPoint;								// ????????????
 
 #ifdef _TRADESYSTEM2	
-static int tradeWndFontNo[MENU_TRADE_0]; 	// ???§R¤e§k?
-static int tradeWndBtnFlag[MENU_TRADE_0];	// ????¥…???
+static int tradeWndFontNo[MENU_TRADE_0]; 	// ???îœ˜î˜‹îœ±?
+static int tradeWndBtnFlag[MENU_TRADE_0];	// ????îšŠ???
 #endif
-static unsigned int tradeWndNo = 0;				// ?????§k?
+static unsigned int tradeWndNo = 0;				// ?????îœ±?
 
 int showindex[7] = { 0, 0, 0, 0, 0, 0, 0 };
 
@@ -176,11 +176,11 @@ struct showitem {
 	char damage[128];
 };
 static int tradePetIndex = -1;
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-//£±¡«£±£µÎªÎÒ·½µÀ¾ß£¬£±£¶¡«£²£°ÎªÎÒ·½³èÎï£¬£²£±ÎªÎÒ·½½ğÇ®
-//£²£²¡«£³£¶Îª¶Ô·½µÀ¾ß£¬£³£·¡«£´£±Îª¶Ô·½³èÎï£¬£´£²Îª¶Ô·½½ğÇ®
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+//ï¼‘ï½ï¼‘ï¼•ä¸ºæˆ‘æ–¹é“å…·ï¼Œï¼‘ï¼–ï½ï¼’ï¼ä¸ºæˆ‘æ–¹å® ç‰©ï¼Œï¼’ï¼‘ä¸ºæˆ‘æ–¹é‡‘é’±
+//ï¼’ï¼’ï½ï¼“ï¼–ä¸ºå¯¹æ–¹é“å…·ï¼Œï¼“ï¼—ï½ï¼”ï¼‘ä¸ºå¯¹æ–¹å® ç‰©ï¼Œï¼”ï¼’ä¸ºå¯¹æ–¹é‡‘é’±
 
-static showitem opp_item[MAX_MAXHAVEITEM];	//½»Ò×µÀ¾ßÕóÁĞÔöÎª15¸ö
+static showitem opp_item[MAX_MAXHAVEITEM];	//äº¤æ˜“é“å…·é˜µåˆ—å¢ä¸º15ä¸ª
 struct showpet {
 	char opp_petname[128];
 	char opp_petfreename[128];
@@ -204,27 +204,27 @@ struct showpet {
 	char opp_fusion[64];
 #endif
 #ifdef _PET_ITEM
-	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// ³èÎïÉíÉÏµÄµÀ¾ß
+	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// å® ç‰©èº«ä¸Šçš„é“å…·
 #endif
-};											//¶Ô·½½»Ò×³èÎïÄÜÁ¦Ôİ´æ
+};											//å¯¹æ–¹äº¤æ˜“å® ç‰©èƒ½åŠ›æš‚å­˜
 static showpet opp_pet[5];
 #ifdef _NEW_ITEM_
 int itemflag[MAX_MAXHAVEITEM * 3];
 #else
 int itemflag[MAX_MAXHAVEITEM];
 #endif
-static ACTION *SecondActPet;				//µÚ¶şÊÓ´°³èÎïAction
-bool MainTradeWndflag = true;				//Ö÷ÊÓ´°ÏÔÊ¾Óë·ñµÄflag
-bool SecondTradeWndflag = false;			//µÚ¶şÊÓ´°ÏÔÊ¾Óë·ñµÄflag
-ACTION *SecondTradeWnd;						//µÚ¶şÊÓ´°
-ACTION *TradeTalkWnd = NULL;						//¶Ô»°ÊÓ´°
-int ShowPetNum = 0;						//¼ìÊÓÕıÔÚÏÔÊ¾µÄ³èÎïºÅ
-static int SecondtradeWndFontNo[6];		//µÚ¶şÊÓ´°µÄ°´Å¥
-int mytradelist[51] = { -1 };				//ÎÒ·½¾íÒ³ÄÚÈİË³ĞòÇåµ¥
-int opptradelist[51] = { -1 };				//¶Ô·½¾íÒ³ÄÚÈİË³ĞòÇåµ¥
-int drag1Y = 67, drag2Y = 257;			//ÍÏÒ·Å¥³õÊ¼Î»ÖÃ
-int tmpdrag1Y, tmpdrag2Y;					//ÍÏ×§¿ªÊ¼Î»ÖÃ
-bool dragflag1 = false, dragflag2 = false; //ÍÏÒ·Å¥Æô¶¯Óë·ñÆì±ê
+static ACTION *SecondActPet;				//ç¬¬äºŒè§†çª—å® ç‰©Action
+bool MainTradeWndflag = true;				//ä¸»è§†çª—æ˜¾ç¤ºä¸å¦çš„flag
+bool SecondTradeWndflag = false;			//ç¬¬äºŒè§†çª—æ˜¾ç¤ºä¸å¦çš„flag
+ACTION *SecondTradeWnd;						//ç¬¬äºŒè§†çª—
+ACTION *TradeTalkWnd = NULL;						//å¯¹è¯è§†çª—
+int ShowPetNum = 0;						//æ£€è§†æ­£åœ¨æ˜¾ç¤ºçš„å® ç‰©å·
+static int SecondtradeWndFontNo[6];		//ç¬¬äºŒè§†çª—çš„æŒ‰é’®
+int mytradelist[51] = { -1 };				//æˆ‘æ–¹å·é¡µå†…å®¹é¡ºåºæ¸…å•
+int opptradelist[51] = { -1 };				//å¯¹æ–¹å·é¡µå†…å®¹é¡ºåºæ¸…å•
+int drag1Y = 67, drag2Y = 257;			//æ‹–æ›³é’®åˆå§‹ä½ç½®
+int tmpdrag1Y, tmpdrag2Y;					//æ‹–æ‹½å¼€å§‹ä½ç½®
+bool dragflag1 = false, dragflag2 = false; //æ‹–æ›³é’®å¯åŠ¨ä¸å¦æ——æ ‡
 int locknum = -1, locknum2 = -1;
 #endif
 static PET tradePet[2];
@@ -233,7 +233,7 @@ static char tradepetindexget[128] = "-1";
 static bool g_bPetItemWndFlag = false;
 #endif
 
-static ACTION *pActPet3 = NULL; //½»Ò×Ê±Ö÷ÊÓ´°ÎÒ·½Pet Action
+static ACTION *pActPet3 = NULL; //äº¤æ˜“æ—¶ä¸»è§†çª—æˆ‘æ–¹Pet Action
 static ACTION *pActPet4 = NULL;
 static ACTION *pActPet5 = NULL;
 
@@ -255,21 +255,21 @@ struct tradelist {
 	int itemup;
 #endif
 };
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 static tradelist tradeList[45];
 #endif
 static int mine_itemindex[2] = { -1, -1 };
 static char mine_itemname[2][128];
 
 static int bankGold;
-static int bankWndFontNo[MENU_TRADE_0]; 	// ???§R¤e§k?
-static int bankWndBtnFlag[MENU_TRADE_0];	// ????¥…???
+static int bankWndFontNo[MENU_TRADE_0]; 	// ???îœ˜î˜‹îœ±?
+static int bankWndBtnFlag[MENU_TRADE_0];	// ????îšŠ???
 static int cashGold = 0;
 static int totalGold = 0;
 static int bankGoldInc = 0;
 static int bankGoldCnt = 0;
 
-#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				//ROG ADD å¯†è¯­é¢‘é“
 BOOL MultiTells = FALSE;
 ACTION *pActMsgWnd;
 int CharNum = 0;
@@ -277,11 +277,11 @@ char TellInfo[10][128];
 char name[10][32];
 int index[10];
 char reSendMsg[STR_BUFFER_SIZE];
-int  TalkMode = 0;						//0:Ò»°ã 1:ÃÜÓï 2: ¶ÓÎé 3:¼Ò×å 4:Ö°Òµ 
-char secretName[32] = { "" };				//ÒªÃÜÖ®ÈËµÄÃû³Æ
+int  TalkMode = 0;						//0:ä¸€èˆ¬ 1:å¯†è¯­ 2: é˜Ÿä¼ 3:å®¶æ— 4:èŒä¸š 
+char secretName[32] = { "" };				//è¦å¯†ä¹‹äººçš„åç§°
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL				//ROG ADD å¥½å‹é¢‘é“
 typedef struct{
 	char	roomNo[4];
 	char	chiefName[CHAR_NAME_LEN+1];
@@ -295,36 +295,36 @@ typedef struct{
 }CHATINFO;
 CHATINFO chatInfo;
 
-bool secretFlag = FALSE;				//ÃÜÓïÆì±ê
-bool BtnType = FALSE;					//°´Å¥ÏÔÊ¾ÓÃ
+bool secretFlag = FALSE;				//å¯†è¯­æ——æ ‡
+bool BtnType = FALSE;					//æŒ‰é’®æ˜¾ç¤ºç”¨
 bool setRoomFlag = FALSE;
-bool assentFlag = FALSE;				//Í¬ÒâÊÓ´°Æì±ê
+bool assentFlag = FALSE;				//åŒæ„è§†çª—æ——æ ‡
 bool scrollFlag = FALSE;
-char roomInfo[MAX_ROOM_NUM][64];		//Ñ¡ÔñÁÄÌìÊÒÓÃ
+char roomInfo[MAX_ROOM_NUM][64];		//é€‰æ‹©èŠå¤©å®¤ç”¨
 char memInfo[64];						//member information
-int  scrlBtnIndex = 0;					//scrollÎ»ÒÆ
-int  BtnNo = 0;							//°´Å¥±àºÅ
-int  firMemNo = 0;						//µÚÒ»¸ö³ÉÔ±
-int  selChar = -1;						//ÒªÃÜÖ®ÈËµÄ±àºÅ
-int  closeBtn ,leaveBtn ,delBtn,chaBtn,outBtn,scrlHBtn,scrlLBtn; //°´Å¥Í¼µµ
+int  scrlBtnIndex = 0;					//scrollä½ç§»
+int  BtnNo = 0;							//æŒ‰é’®ç¼–å·
+int  firMemNo = 0;						//ç¬¬ä¸€ä¸ªæˆå‘˜
+int  selChar = -1;						//è¦å¯†ä¹‹äººçš„ç¼–å·
+int  closeBtn ,leaveBtn ,delBtn,chaBtn,outBtn,scrlHBtn,scrlLBtn; //æŒ‰é’®å›¾æ¡£
 int  roomIndex[MAX_ROOM_NUM];
 int roomNum = 0;
 int memIndex = 0;						//member index
-static int ChatRoomBtn[ 16 ];			//ÁÄÌìÊÒ°´Å¥
-STR_BUFFER chatRoomName;				//Éè¶¨ÁÄÌìÊÒÃû³ÆÓÃ
-ACTION *pSetRoomWnd;					//Éè¶¨ÁÄÌìÊÒÃû³ÆÓÃ
-ACTION *pAssentWnd;						//Í¬ÒâÊÓ´°ÓÃ
-ACTION *pChtChanlWnd;					//ÁÄÌìÊÒÊÓ´°ÓÃ
-ACTION *pSelChanlWnd;					//Ñ¡ÔñÁÄÌìÊÒÊÓ´°ÓÃ
+static int ChatRoomBtn[ 16 ];			//èŠå¤©å®¤æŒ‰é’®
+STR_BUFFER chatRoomName;				//è®¾å®šèŠå¤©å®¤åç§°ç”¨
+ACTION *pSetRoomWnd;					//è®¾å®šèŠå¤©å®¤åç§°ç”¨
+ACTION *pAssentWnd;						//åŒæ„è§†çª—ç”¨
+ACTION *pChtChanlWnd;					//èŠå¤©å®¤è§†çª—ç”¨
+ACTION *pSelChanlWnd;					//é€‰æ‹©èŠå¤©å®¤è§†çª—ç”¨
 #endif
 
-#ifdef _TIMEBAR_FUNCTION			//Ê±¼äbarº¯Ê½
+#ifdef _TIMEBAR_FUNCTION			//æ—¶é—´barå‡½å¼
 ACTION *pTimeBarWnd;
 char   timeBarTitle[32];
 int    timeBarRange;
 int    timeBarCurPos;
 bool   timeBarFlag = FALSE;
-bool   barHolder[2];                //ÓÃÀ´ÇĞ»»Ê±¼äÌõ
+bool   barHolder[2];                //ç”¨æ¥åˆ‡æ¢æ—¶é—´æ¡
 void DrawTimeBar();
 /////////TEST/////////////////
 int StartTime = 0;
@@ -333,49 +333,49 @@ int timBarIdent = -1;
 #endif
 
 // ???
-static int petWndFontNo[MENU_PET_0]; 	// ???§R¤e§k?
-static int petWndBtnFlag[MENU_PET_0]; // ????¥…???
-static unsigned int  petWndNo;			// ????????§k?
-int  petStatusNo;				// ı½???????¤úû¨?????????§k?
-int  mixPetNo;					// ?şÎ???????§k?
+static int petWndFontNo[MENU_PET_0]; 	// ???îœ˜î˜‹îœ±?
+static int petWndBtnFlag[MENU_PET_0]; // ????îšŠ???
+static unsigned int  petWndNo;			// ????????îœ±?
+int  petStatusNo;				// î¦???????î¸î•?????????îœ±?
+int  mixPetNo;					// ?î’•???????îœ±?
 static ACTION *pActPet;					// ?????????????
-BOOL BattlePetReceiveFlag;				// úÓ¡P???¨Á???????ıï???
+BOOL BattlePetReceiveFlag;				// îŒ¢î“–???îŸ‰???????î‘˜???
 #ifdef _STANDBYPET
 BOOL StandbyPetSendFlag = FALSE;
 #endif
-STR_BUFFER petNameChange;				// ????ş¡q¨Á??§ó??
-int BattlePetReceivePetNo = -1;			// ???ûõıï?????§k?
-int SelectWazaNo;						// ¡k¢‘???§k?
+STR_BUFFER petNameChange;				// ????î¡“î“·îŸ‰??î°??
+int BattlePetReceivePetNo = -1;			// ???î¢î‘˜?????îœ±?
+int SelectWazaNo;						// î“±î•¶???îœ±?
 
 // ????
-static int itemWndFontNo[MENU_ITEM_0]; 	// ???§R¤e§k?
-static int itemWndBtnFlag[MENU_ITEM_0];	// ????¥…???
+static int itemWndFontNo[MENU_ITEM_0]; 	// ???îœ˜î˜‹îœ±?
+static int itemWndBtnFlag[MENU_ITEM_0];	// ????îšŠ???
 static unsigned int  itemWndNo;
-static int  jujutuNo = -1;					// ¡k¢‘?????ûöüÓ§k?
-int  itemNo = -1;					// ¡k¢‘?????????§k?
-static int  itemWndDropGold;				// ûÎ????
-static int  itemWndDropGoldInc;				// ûÎ?????§Æ
-static int  itemWndDropGoldCnt;				// ûÎ?????§Æ?????
+static int  jujutuNo = -1;					// î“±î•¶?????î£îîœ±?
+int  itemNo = -1;					// î“±î•¶?????????îœ±?
+static int  itemWndDropGold;				// î»????
+static int  itemWndDropGoldInc;				// î»?????î¤
+static int  itemWndDropGoldCnt;				// î»?????î¤?????
 
-static int  tradeWndDropGold = 0;				// tradeûÎ????
-static int  tradeWndDropGoldInc = 0;			// tradeûÎ?????§Æ
-static int  tradeWndDropGoldCnt = 0;			// tradeûÎ?????§Æ?????
+static int  tradeWndDropGold = 0;				// tradeî»????
+static int  tradeWndDropGoldInc = 0;			// tradeî»?????î¤
+static int  tradeWndDropGoldCnt = 0;			// tradeî»?????î¤?????
 static int  tradeWndDropGoldSend = 0;
 static int  tradeWndDropGoldGet = 0;
 #ifdef _PET_ITEM
-static int	nSelectPet;						// ´ò¿ªµÀ¾ßÀ¸Ê±¼ÇÂ¼Ä¿Ç°×÷ÓÃµÄ³èÎï
+static int	nSelectPet;						// æ‰“å¼€é“å…·æ æ—¶è®°å½•ç›®å‰ä½œç”¨çš„å® ç‰©
 #endif
 
-ACTION *pActPet2;					// ?şÎ?????????????
-BOOL ItemMixRecvFlag;						// ?şÎüÒ?????
-int ItemMixPetNo = -1;				// ?şÎ????????§k?
-static unsigned int ItemUseTime = 0;		// ????úé???????
+ACTION *pActPet2;					// ?î’•?????????????
+BOOL ItemMixRecvFlag;						// ?î’•î?????
+int ItemMixPetNo = -1;				// ?î’•????????îœ±?
+static unsigned int ItemUseTime = 0;		// ????îŒ¸???????
 
 // ?????????
 ITEM_BUFFER ItemBuffer[MAX_ITEM];
 
 #ifdef _PET_ITEM		
-// Ã¿Ò»ÏîµÄµÚÒ»¸öÊÇÄÜ×°±¸Ê±µÄµ×Í¼Í¼ºÅ,µÚ¶ş¸öÊÇ²»ÄÜ×°Ê±µÄµ×Í¼Í¼ºÅ
+// æ¯ä¸€é¡¹çš„ç¬¬ä¸€ä¸ªæ˜¯èƒ½è£…å¤‡æ—¶çš„åº•å›¾å›¾å·,ç¬¬äºŒä¸ªæ˜¯ä¸èƒ½è£…æ—¶çš„åº•å›¾å›¾å·
 int nPetItemEquipBmpNumber[PET_EQUIPNUM][2] = 
 {
 	{26463, 26470}, {26460, 26467}, {26458, 26465}, {26461, 26468}, {26459, 26466},
@@ -383,43 +383,43 @@ int nPetItemEquipBmpNumber[PET_EQUIPNUM][2] =
 };
 #endif
 // ???
-#define MAIL_HISTORY_FILE_NAME 	"data\\mail.dat" 	// ??¨ò¢V????ş
+#define MAIL_HISTORY_FILE_NAME 	"data\\mail.dat" 	// ??îŸ•î”¼????î¡“
 #ifdef _TRANS_6
-char *TransmigrationStr[ 7 ] = { "","Ò¼","·¡","²Î","ËÁ","Îé","Â½" };
+char *TransmigrationStr[ 7 ] = { "","å£¹","è´°","å‚","è‚†","ä¼","é™†" };
 #else
-char *TransmigrationStr[6] = { "Áã", "Ò¼", "·¡", "²Î", "ËÁ", "Îé" };
+char *TransmigrationStr[6] = { "é›¶", "å£¹", "è´°", "å‚", "è‚†", "ä¼" };
 
 int Transmigrationcolor[6] = {0,4,5,3,6,2};
 
 
 #endif
 static int mailWndFontNo[MENU_MAIL_0];
-static int mailWndBtnFlag[MENU_MAIL_0];			// ????¥…???
-static MAIL_WND_TYPE mailWndNo;						// ???????????§k?
-static MAIL_WND_TYPE mailWndNoBak;					// ¡q?????????§k?
-static int mailViewWndPageNo;						// şúê???????????§k?
-static int mailSendWndPageNo;						// ?¤G?ıï?????????§k?
-static int mailPetSendWndPageNo;					// ????ıï?????????§k?
-static int mailItemNo;								// ????ıï??????????§k?
-static int mailWndSendFlag[MAX_ADR_BOOK]; 		// ?ıï?ûê?????
-int mailHistoryWndPageNo;							// ???????????§k?
-int mailHistoryWndSelectNo;							// ¡k¢‘?????şúê§k?
-static int mailHistoryWndNowPageNo;					// ûÂ??¤úû¨????§k?
-STR_BUFFER MailStr;									// ??§óı°
-MAIL_HISTORY MailHistory[MAX_ADR_BOOK];			// ??????§ó??
-ACTION *pActLetter[4];							// ûê?????????????????
+static int mailWndBtnFlag[MENU_MAIL_0];			// ????îšŠ???
+static MAIL_WND_TYPE mailWndNo;						// ???????????îœ±?
+static MAIL_WND_TYPE mailWndNoBak;					// î“·?????????îœ±?
+static int mailViewWndPageNo;						// î¡“îŒ¹???????????îœ±?
+static int mailSendWndPageNo;						// ?î—­?î‘˜?????????îœ±?
+static int mailPetSendWndPageNo;					// ????î‘˜?????????îœ±?
+static int mailItemNo;								// ????î‘˜??????????îœ±?
+static int mailWndSendFlag[MAX_ADR_BOOK]; 		// ?î‘˜?î—?????
+int mailHistoryWndPageNo;							// ???????????îœ±?
+int mailHistoryWndSelectNo;							// î“±î•¶?????î¡“îŒ¹îœ±?
+static int mailHistoryWndNowPageNo;					// î¯??î¸î•????îœ±?
+STR_BUFFER MailStr;									// ??î°î™
+MAIL_HISTORY MailHistory[MAX_ADR_BOOK];			// ??????î°??
+ACTION *pActLetter[4];							// î—?????????????????
 ACTION *pActMailItem = NULL;								// ????????????????
 
 // ????
-#define ALBUM_FILE_NAME 	"data\\album.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_4 	"data\\album_4.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_5 	"data\\album_5.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_6 	"data\\album_6.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_7   "data\\album_7.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_8   "data\\album_8.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_9   "data\\album_9.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_10  "data\\album_10.dat" 	// ????¨ò¢V????ş
-#define ALBUM_FILE_NAME_11  "data\\album_11.dat" 	// ????¨ò¢V????ş
+#define ALBUM_FILE_NAME 	"data\\album.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_4 	"data\\album_4.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_5 	"data\\album_5.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_6 	"data\\album_6.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_7   "data\\album_7.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_8   "data\\album_8.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_9   "data\\album_9.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_10  "data\\album_10.dat" 	// ????îŸ•î”¼????î¡“
+#define ALBUM_FILE_NAME_11  "data\\album_11.dat" 	// ????îŸ•î”¼????î¡“
 #define ALBUM_FILE_NAME_12  "data\\album_12.dat"
 #define ALBUM_FILE_NAME_13	"data\\album_13.dat"
 #define ALBUM_FILE_NAME_14	"data\\album_14.dat"
@@ -461,28 +461,28 @@ ACTION *pActMailItem = NULL;								// ????????????????
 static int albumWndFontNo[MENU_ALBUM_0];
 static int albumWndBtnFlag[MENU_ALBUM_0];
 static unsigned int albumWndNo;
-static int albumWndPageNo;					// ???§k?
-static int albumNo;						// ????§k?
-// ????????????????¢B¢l
+static int albumWndPageNo;					// ???îœ±?
+static int albumNo;						// ????îœ±?
+// ????????????????î”¨î•’
 PET_ALBUM_TBL PetAlbumTbl[] = {
 #include "../systeminc/petName.h"	// ???????????
 };
-PET_ALBUM PetAlbum[MAX_PET_KIND];		// ?????¢B¢l
-int AlbumIdCnt = 0;					// ???????????¥‚???ıÍ?????
+PET_ALBUM PetAlbum[MAX_PET_KIND];		// ?????î”¨î•’
+int AlbumIdCnt = 0;					// ???????????îš‡???î¶?????
 // ?????????
 int IdEncryptionTbl[16] = { 48, 158, 98, 23, 134, 29, 92, 67,
 70, 28, 235, 20, 189, 48, 57, 125 };
 
-// ¡P¥f???????
-int resultWndFontNo[MENU_BTL_RESULT_0];	// ???§R¤e§k?
-int ResultWndTimer;							// ı¤???????????
+// î“–î™¬???????
+int resultWndFontNo[MENU_BTL_RESULT_0];	// ???îœ˜î˜‹îœ±?
+int ResultWndTimer;							// î???????????
 
 // ?????
 #define TASK_BAR	7
 #define TASK_BAR_X 320
 #define TASK_BAR_Y 468 + DISPLACEMENT_Y 
 BOOL TaskBarFlag = FALSE;	// ????????
-// Terry add 2003/12/16 for ½»Ò×ÊÓ´°¿ªÆôÊ±,ÏÔÊ¾ÎïÆ·ËµÃ÷²»ÏÔÊ¾ÊäÈë·¨
+// Terry add 2003/12/16 for äº¤æ˜“è§†çª—å¼€å¯æ—¶,æ˜¾ç¤ºç‰©å“è¯´æ˜ä¸æ˜¾ç¤ºè¾“å…¥æ³•
 BOOL bShowItemExplain = FALSE;
 // end
 static int taskBarFontNo[TASK_BAR];
@@ -490,41 +490,41 @@ static int taskBarX = TASK_BAR_X, taskBarY = TASK_BAR_Y + 24;
 
 // ??????
 unsigned int MenuToggleFlag;
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 #define CHAR_MAX_DETAIL 8
 char CharDetail[CHAR_MAX_DETAIL][16] ; 
 char DetailDesc[CHAR_MAX_DETAIL][64] = {
-	"µØÄ§·¨¿¹ĞÔ¡¡£º" ,
-	"Ë®Ä§·¨¿¹ĞÔ¡¡£º" ,
-	"»ğÄ§·¨¿¹ĞÔ¡¡£º" ,	
-	"·çÄ§·¨¿¹ĞÔ¡¡£º" ,
-	"µØÄ§·¨ÊìÁ·¶È£º" ,
-	"Ë®Ä§·¨ÊìÁ·¶È£º" ,
-	"»ğÄ§·¨ÊìÁ·¶È£º" ,	
-	"·çÄ§·¨ÊìÁ·¶È£º" 
+	"åœ°é­”æ³•æŠ—æ€§ã€€ï¼š" ,
+	"æ°´é­”æ³•æŠ—æ€§ã€€ï¼š" ,
+	"ç«é­”æ³•æŠ—æ€§ã€€ï¼š" ,	
+	"é£é­”æ³•æŠ—æ€§ã€€ï¼š" ,
+	"åœ°é­”æ³•ç†Ÿç»ƒåº¦ï¼š" ,
+	"æ°´é­”æ³•ç†Ÿç»ƒåº¦ï¼š" ,
+	"ç«é­”æ³•ç†Ÿç»ƒåº¦ï¼š" ,	
+	"é£é­”æ³•ç†Ÿç»ƒåº¦ï¼š" 
 };
 #endif
 #ifdef _MAG_MENU
 int DetailDescicon[CHAR_MAX_DETAIL]={26479, 26475, 26477, 26481, 26478, 26474, 26476, 26480};
-char DetailDescchar[4][4]={"µØ","Ë®","»ğ","·ç"};
+char DetailDescchar[4][4]={"åœ°","æ°´","ç«","é£"};
 #endif
 
 #ifdef _ALCHEPLUS
 int iCharAlchePlus[25];
 char sAlchePlus_list[25][16] =
 {
-	"Ê¯", "Ä¾", "¹Ç", "ÑÀ", "Æ¤",
-	"±´¿Ç", "¿Ç", "×¦", "»¨", "Ò¶",
-	"Ïß", "ğ¤ÍÁ", "ÁÛ", "¶¾", "Ê¯»¯",
-	"»ìÂÒ", "¾Æ×í", "Ë¯Ãß", "»Ø¸´", "¸´»î",
-	"Ë®¾§", "µØ", "Ë®", "»ğ", "·ç"
+	"çŸ³", "æœ¨", "éª¨", "ç‰™", "çš®",
+	"è´å£³", "å£³", "çˆª", "èŠ±", "å¶",
+	"çº¿", "é»åœŸ", "é³", "æ¯’", "çŸ³åŒ–",
+	"æ··ä¹±", "é…’é†‰", "ç¡çœ ", "å›å¤", "å¤æ´»",
+	"æ°´æ™¶", "åœ°", "æ°´", "ç«", "é£"
 };
 
-int iAlchePlusIcon[25] = { 26536, 26529, 26545, 26534, 26535,	/*"Ê¯", "Ä¾",	"¹Ç", "ÑÀ",	"Æ¤"*/
-26540, 26548, 26533, 26541, 26549,	/*"±´¿Ç", "¿Ç", "×¦",	"»¨", "Ò¶"*/
-26551, 26552, 26553, 26542, 26537,	/*"Ïß", "ğ¤ÍÁ", "ÁÛ", "¶¾", "Ê¯»¯"*/
-26546, 26544, 26550, 26538, 26547,	/*"»ìÂÒ",	"¾Æ×í",	"Ë¯Ãß",	"»Ø¸´",	"¸´»î"*/
-26531, 26539, 26530, 26532, 26543 };	/*"Ë®¾§",	"µØ", "Ë®",	"»ğ", "·ç"*/
+int iAlchePlusIcon[25] = { 26536, 26529, 26545, 26534, 26535,	/*"çŸ³", "æœ¨",	"éª¨", "ç‰™",	"çš®"*/
+26540, 26548, 26533, 26541, 26549,	/*"è´å£³", "å£³", "çˆª",	"èŠ±", "å¶"*/
+26551, 26552, 26553, 26542, 26537,	/*"çº¿", "é»åœŸ", "é³", "æ¯’", "çŸ³åŒ–"*/
+26546, 26544, 26550, 26538, 26547,	/*"æ··ä¹±",	"é…’é†‰",	"ç¡çœ ",	"å›å¤",	"å¤æ´»"*/
+26531, 26539, 26530, 26532, 26543 };	/*"æ°´æ™¶",	"åœ°", "æ°´",	"ç«", "é£"*/
 #endif
 
 // ??????????????
@@ -546,19 +546,19 @@ int RIDEPET_getRIDEno(int index, int ti);
 int RIDEPET_getPETindex_New(int PetNo, int learnCode);
 #endif
 
-static char *monoStereoStr[] = { "       µ¥ÉùµÀ       ",
-"       Á¢ÌåÉù       " };
+static char *monoStereoStr[] = { "       å•å£°é“       ",
+"       ç«‹ä½“å£°       " };
 
-static char *mouseCursor[] = { "     Õı  ³£     ",
-"     Æ½  »¬     " };
+static char *mouseCursor[] = { "     æ­£  å¸¸     ",
+"     å¹³  æ»‘     " };
 
-#define WINDOW_CREATE_FRAME 10	// ??????¤úû¨????????
+#define WINDOW_CREATE_FRAME 10	// ??????î¸î•????????
 
-// ????????????ûè????
+// ????????????î•????
 extern unsigned char crs_change_tbl[];
-// ????????????ûè????
+// ????????????î•????
 extern unsigned char crs_change_tbl2[];
-// §TûÍ????
+// îœšîº????
 extern unsigned char crs_bound_tbl[][32];
 
 #ifdef _STREET_VENDOR
@@ -570,26 +570,26 @@ extern BOOL OnlineGmFlag;
 #endif
 
 #ifdef _PET_ITEM
-/*	0x01:PET_HEAD	// Í·
-	0x02:PET_WING	// Òí
-	0x04:PET_TOOTH	// ÑÀ
-	0x08:PET_PLATE	// ÉíÌå
-	0x10:PET_BACK	// ±³
-	0x20:PET_CLAW	// ×¦
-	0x40:PET_FOOT	// ½Å(÷¢)
+/*	0x01:PET_HEAD	// å¤´
+	0x02:PET_WING	// ç¿¼
+	0x04:PET_TOOTH	// ç‰™
+	0x08:PET_PLATE	// èº«ä½“
+	0x10:PET_BACK	// èƒŒ
+	0x20:PET_CLAW	// çˆª
+	0x40:PET_FOOT	// è„š(é³)
 	*/
-// ²»Í¬ÖÖµÄ³èÎï»áÓĞÄÜ×°ºÍ²»ÄÜ×°µÄ²¿Î»
+// ä¸åŒç§çš„å® ç‰©ä¼šæœ‰èƒ½è£…å’Œä¸èƒ½è£…çš„éƒ¨ä½
 unsigned char byShowPetItemBackground[MAX_PET_SPECIES + 1] =
 {
-	/*	ÎÚÁ¦	²¼±È	È­»÷ÊÖ	¿Ë¿Ë¶û	¿­±È	²¼¿Ë	òùòğ	ÎÚ±¦±¦	·ÉÌìÍÜ	·ÉÁú*/
+	/*	ä¹ŒåŠ›	å¸ƒæ¯”	æ‹³å‡»æ‰‹	å…‹å…‹å°”	å‡¯æ¯”	å¸ƒå…‹	è™è 	ä¹Œå®å®	é£å¤©è›™	é£é¾™*/
 	0x5d,	0x5d,	0x7d,	0x5d,	0x5d,	0x7d,	0x5f,	0x5d,	0x5f,	0x7f,
-	/*	´óÉàÍ·	ÎÚ¹ê	öèÓã	º£Ö÷ÈË	ÖíÓãÁú	ºô°Î°Î	ÈËÁú	Èı½ÇÁú	À×Áú	±©Áú*/
+	/*	å¤§èˆŒå¤´	ä¹Œé¾Ÿ	é²¨é±¼	æµ·ä¸»äºº	çŒªé±¼é¾™	å‘¼æ‹”æ‹”	äººé¾™	ä¸‰è§’é¾™	é›·é¾™	æš´é¾™*/
 	0x5d,	0x5d,	0x5d,	0x5d,	0x5d,	0x7d,	0x7d,	0x5d,	0x5d,	0x7d,
-	/*	Ë®Áú	ĞÉĞÉ	°Í¿Ë	ÀÏ»¢	³¤Ã«Ïó	ÄñÏµ	ÑòÏµ	´©É½¼×	ÌØÊâÏµ	ÈíÌåÏµ*/
+	/*	æ°´é¾™	çŒ©çŒ©	å·´å…‹	è€è™	é•¿æ¯›è±¡	é¸Ÿç³»	ç¾Šç³»	ç©¿å±±ç”²	ç‰¹æ®Šç³»	è½¯ä½“ç³»*/
 	0x5d,	0x7d,	0x7d,	0x5d,	0x5d,	0x5f,	0x5d,	0x5d,	0x09,	0x1d,
-	/*	Ğ¡Óã	±´¿Ç	¼¬Æ¤	ÓãÁú	ÏºĞ·	¾¨ëà	ô„Ïµ	º£Å£Ïµ	´óöèÓã	ÆìÓãÏµ*/
+	/*	å°é±¼	è´å£³	æ£˜çš®	é±¼é¾™	è™¾èŸ¹	é²¸è±š	é­Ÿç³»	æµ·ç‰›ç³»	å¤§é²¨é±¼	æ——é±¼ç³»*/
 	0x5d,	0x79,	0x1d,	0x5d,	0x79,	0x5d,	0x5d,	0x5d,	0x5d,	0x5d,
-	/*	´óÓãÏµ	öùÁúÏµ	ÈÚºÏ³è*/
+	/*	å¤§é±¼ç³»	é³„é¾™ç³»	èåˆå® */
 	0x5d,	0x5d,	0x00
 };
 #endif
@@ -600,7 +600,7 @@ int charDetailPage = 3;
 bool DrawJigsawFlag = false;
 int JigsawIdx = 0;
 int JigsawImg[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
-int JigsawOK[][3] = {//µÀ¾ßÍ¼ºÅ,µÚÒ»¿éÍ¼ºÅ,µ×Í¼Í¼ºÅ
+int JigsawOK[][3] = {//é“å…·å›¾å·,ç¬¬ä¸€å—å›¾å·,åº•å›¾å›¾å·
 	{ 25151, 25261, 25241 }, { 25152, 25270, 25242 }, { 25153, 25279, 25243 }, { 25154, 25288, 25244 }, { 25155, 25297, 25245 }, { 25156, 25306, 25246 }, { 25157, 25315, 25247 }, { 25158, 25324, 25248 }, { 25159, 25333, 25249 }, { 25150, 25252, 25250 }
 };
 void SetJigsaw(int img, char *str)
@@ -628,7 +628,7 @@ bool CheckJigsaw(int img)
 }
 #endif
 
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 bool SkillWndflag = false ; 
 short SkillWnd = 0 ; 
 ACTION *pActSkillMenuWnd;
@@ -710,14 +710,14 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%s" , profession_skill[AssitSkill [ j + i * 4 ]].name );
 					StockFontBuffer( 355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "%d£¥", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
+					sprintf_s( msg , "%dï¼…", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(ºÄ·ÑMP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(è€—è´¹MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[AssitSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[ AssitSkill [ j + i * 4 ] ].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[AssitSkill [ j + i * 4 ]].costmp && profession_skill[AssitSkill [ j + i * 4 ]].costmp != 0 ) {							
 							lssproto_BATTLESKILL_send ( sockfd , AssitSkill [ j + i * 4 ] ) ; 
@@ -753,14 +753,14 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].name );
 					StockFontBuffer( 355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "%d£¥", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
+					sprintf_s( msg , "%dï¼…", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(ºÄ·ÑMP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(è€—è´¹MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[ BattleSkill [ j + i * 4 ]].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[BattleSkill [ j + i * 4 ]].costmp && profession_skill[BattleSkill [ j + i * 4 ]].costmp != 0 ) {
 							lssproto_BATTLESKILL_send ( sockfd , BattleSkill [ j + i * 4 ] ) ; 
@@ -796,14 +796,14 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].name );
 					StockFontBuffer( 355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "%d£¥", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
+					sprintf_s( msg , "%dï¼…", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(ºÄ·ÑMP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(è€—è´¹MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AdvanceSkill [ j + i * 4 ]].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[AdvanceSkill [ j + i * 4 ]].costmp && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp != 0 ) {							
 							lssproto_BATTLESKILL_send ( sockfd , AdvanceSkill [ j + i * 4 ] ) ; 
@@ -843,15 +843,15 @@ void SkillWndfunc2() {
 }
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 void TradeTalk(char *msg) {
 	char buf[256];
 	if (pActMenuWnd4 != NULL || SecondTradeWnd != NULL) {
 		sprintf_s(buf, "%s", msg);
-		//ÅĞ¶ÏÊÇ·ñÓÉÂòÂôË«·½Ëµ³ö
+		//åˆ¤æ–­æ˜¯å¦ç”±ä¹°å–åŒæ–¹è¯´å‡º
 		if (strstr(buf, pc.name) || strstr(buf, opp_name)) {
-			//ÄÚÈİ×ªÒÆ
+			//å†…å®¹è½¬ç§»
 			while (1){
 				if (strlen(msg) > 44) {
 					strncpy_s(buf, msg, 44);
@@ -888,13 +888,13 @@ void LockAndOkfunction()
 	char mypetbuff[1024];
 	char oppitembuff[1024];
 	char opppetbuff[1024];
-	// Ë«·½½Ô°´ÏÂÈ·¶¨¼ü×´Ì¬
+	// åŒæ–¹çš†æŒ‰ä¸‹ç¡®å®šé”®çŠ¶æ€
 	if (pc.trade_confirm == 4) {
-		// ´¦Àí°´ÏÂÈ·¶¨¼ü
+		// å¤„ç†æŒ‰ä¸‹ç¡®å®šé”®
 		if ((MainTradeWndflag == true && HitDispNo == tradeWndFontNo[0]) ||
 			//andy_reEdit 2003/04/27
 			(SecondTradeWndflag == true && HitDispNo == SecondtradeWndFontNo[2])){
-			// ¶ÔË«·½½»Ò×ÎïÆ·×ö³Ébuffer	
+			// å¯¹åŒæ–¹äº¤æ˜“ç‰©å“åšæˆbuffer	
 			sprintf_s(myitembuff, "T|%s|%s|K|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|"
 				, opp_sockfd, opp_name
 				, tradeList[1].data, tradeList[2].data
@@ -927,41 +927,41 @@ void LockAndOkfunction()
 			tradeStatus = 2;
 		}
 	}
-	// ¶Ô·½°´ÏÂLock»òÎÒ·½Òª°´ÏÂLock¼ü 
+	// å¯¹æ–¹æŒ‰ä¸‹Lockæˆ–æˆ‘æ–¹è¦æŒ‰ä¸‹Locké”® 
 	if (pc.trade_confirm == 1 || pc.trade_confirm == 3) {
 		if ((MainTradeWndflag == true && HitDispNo == tradeWndFontNo[0]) ||
 			//andy_reEdit 2003/04/27
 			(SecondTradeWndflag == true && HitDispNo == SecondtradeWndFontNo[2])) {
-			//¶Ô·½ÉĞÎ´Lock½øÈë×´Ì¬ 2
+			//å¯¹æ–¹å°šæœªLockè¿›å…¥çŠ¶æ€ 2
 			if (pc.trade_confirm == 1) pc.trade_confirm = 2;
-			//¶Ô·½ÒÑ¾­Lock½øÈë×´Ì¬ 4
+			//å¯¹æ–¹å·²ç»Lockè¿›å…¥çŠ¶æ€ 4
 			if (pc.trade_confirm == 3)	pc.trade_confirm = 4;
 			sprintf_s(buffer, "T|%s|%s|C|confirm", opp_sockfd, opp_name);
 			lssproto_TD_send(sockfd, buffer);
 		}
 	}
-	// ´¦Àí Lock ¡¢ È·¶¨¼ü End
+	// å¤„ç† Lock ã€ ç¡®å®šé”® End
 }
 #endif
 
-// ?????¤úû¨????? ***************************************************/
+// ?????î¸î•????? ***************************************************/
 void WindowDisp(ACTION *pAct)
 {
-	// ?§?¢B¢l?????
+	// ?î’?î”¨î•’?????
 	WINDOW_DISP *pYobi = (WINDOW_DISP *)pAct->pYobi;
 	int i, j;
 	int x = pAct->x + 32, y = pAct->y + 24;
-	// ?¥h§k??§Æ?
+	// ?î™®îœ±??î¤?
 	switch (pAct->actNo){
 
-	case 0:	// ?????üÒ???
+	case 0:	// ?????î???
 
 		StockBoxDispBuffer(pYobi->mx - pYobi->nowX,
 			pYobi->my - pYobi->nowY,
 			pYobi->mx + pYobi->nowX,
 			pYobi->my + pYobi->nowY,
 			pYobi->boxDispPrio, SYSTEM_PAL_BLACK, 0);
-		// ?§Æ???
+		// ?î¤???
 		pYobi->nowX += pAct->dx;
 		pYobi->nowY += pAct->dy;
 		// ????????
@@ -971,7 +971,7 @@ void WindowDisp(ACTION *pAct)
 			// ?????
 			if (pYobi->wndType == -1) pAct->actNo = 1;
 			else
-				// ?¦_???????
+				// ?î›…???????
 			if (pYobi->wndType == -2) pAct->actNo = 3;
 			else pAct->actNo = 2;
 		}
@@ -979,16 +979,16 @@ void WindowDisp(ACTION *pAct)
 	case 1:	// ?????
 		pAct->hp = 1;
 		break;
-	case 2:	// ?????¤ş?
+	case 2:	// ?????î¼?
 		for (j = 0; j < pYobi->sizeY; j++){
-			// ıÆ¤úû¨
+			// î¯î¸î•
 			if (j == 0){
 				for (i = 0; i < pYobi->sizeX; i++){
-					// ?£Z
+					// ?î– 
 					if (i == 0) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 0, pYobi->hitFlag);
-					// ?£Z
+					// ?î– 
 					else if (i == pYobi->sizeX - 1) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 2, pYobi->hitFlag);
-					// ş¢??
+					// î‘©??
 #ifdef _READ16BITBMP
 					else if(g_bUseAlpha){
 						if(pYobi->wndType == CG_WND_G_0) StockDispBuffer( x, y, DISP_PRIO_MENU, pYobi->wndType + 1, pYobi->hitFlag );
@@ -997,18 +997,18 @@ void WindowDisp(ACTION *pAct)
 					}
 #endif
 					else StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 1, pYobi->hitFlag);
-					x += 64; // ?¤õ???
+					x += 64; // ?î³???
 				}
 			}
 			else
-				// ?¤úû¨
+				// ?î¸î•
 			if (j == pYobi->sizeY - 1){
 				for (i = 0; i < pYobi->sizeX; i++){
-					// ?£Z
+					// ?î– 
 					if (i == 0) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 6, pYobi->hitFlag);
-					// ?£Z
+					// ?î– 
 					else if (i == pYobi->sizeX - 1) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 8, pYobi->hitFlag);
-					// ş¢??
+					// î‘©??
 #ifdef _READ16BITBMP
 					else if(g_bUseAlpha){
 						if(pYobi->wndType == CG_WND_G_0) StockDispBuffer( x, y, DISP_PRIO_MENU, pYobi->wndType + 7, pYobi->hitFlag );
@@ -1017,15 +1017,15 @@ void WindowDisp(ACTION *pAct)
 					}
 #endif
 					else StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 7, pYobi->hitFlag);
-					x += 64; // ?¤õ???
+					x += 64; // ?î³???
 				}
 			}
 			else
-				// ş¢??¤úû¨
+				// î‘©??î¸î•
 			for (i = 0; i < pYobi->sizeX; i++){
-				// ?£Z
+				// ?î– 
 				if (i == 0) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 3, pYobi->hitFlag);
-				// ?£Z
+				// ?î– 
 #ifdef _READ16BITBMP
 				else if(g_bUseAlpha){
 					if( i == pYobi->sizeX - 1 ){
@@ -1037,18 +1037,18 @@ void WindowDisp(ACTION *pAct)
 				}
 #endif
 				else if (i == pYobi->sizeX - 1) StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 5, pYobi->hitFlag);
-				// ş¢??
+				// î‘©??
 				else StockDispBuffer(x, y, DISP_PRIO_MENU, pYobi->wndType + 4, pYobi->hitFlag);
-				x += 64; // ?¤õ???
+				x += 64; // ?î³???
 			}
-			x = pAct->x + 32; 	// ?£Z???
-			y += 48; 		// ?¤õ???
+			x = pAct->x + 32; 	// ?î– ???
+			y += 48; 		// ?î³???
 		}
-		// ????¤ş?
+		// ????î¼?
 		if (pYobi->titleNo != 0) StockDispBuffer(pYobi->titleX, pYobi->titleY, DISP_PRIO_IME3, pYobi->titleNo, pYobi->hitFlag);
 		pAct->hp = 1;
 		break;
-	case 3:	// ?¦_?????
+	case 3:	// ?î›…?????
 		// ????????
 		if (mouse.onceState & MOUSE_LEFT_CRICK){
 			// ????
@@ -1060,7 +1060,7 @@ void WindowDisp(ACTION *pAct)
 				pYobi->yesNoResult = FALSE;
 			}
 		}
-		// ?¦_?????????¤úû¨
+		// ?î›…?????????î¸î•
 		StockDispBuffer(pYobi->mx, pYobi->my, DISP_PRIO_YES_NO_WND, CG_COMMON_WIN_YORO, 1);
 		// ?????
 		pYobi->yesDispNo = StockDispBuffer(pYobi->mx, pYobi->my, DISP_PRIO_YES_NO_BTN, CG_COMMON_YES_BTN, 2);
@@ -1070,26 +1070,26 @@ void WindowDisp(ACTION *pAct)
 	}
 }
 
-// ?????¤úû¨????şÎ **************************************************************/
-//	??£º	int x,y 			¤úû¨?¤õ??ıÆ?
-//			int sizeX,sizeY 	????????????£O????????????£O??
-//			int titleNo 		????????????§k???ş†??????????
-//			int wndType 		?£ºşğ??????????§R¤e???
-//			 					?£º???????????§R¤e???
-//								?£ºşğ??????????§R¤eş†??
-//								?£º???????????§R¤eş†??
-//								?£º?¦_?????????§R¤e???
-//								-1£º???
+// ?????î¸î•????î’• **************************************************************/
+//	??ï¼š	int x,y 			î¸î•?î³??î¯?
+//			int sizeX,sizeY 	????????????î–•????????????î–•??
+//			int titleNo 		????????????îœ±???î¡Š??????????
+//			int wndType 		?ï¼šî’·??????????îœ˜î˜‹???
+//			 					?ï¼š???????????îœ˜î˜‹???
+//								?ï¼šî’·??????????îœ˜î˜‹î¡Š??
+//								?ï¼š???????????îœ˜î˜‹î¡Š??
+//								?ï¼š?î›…?????????îœ˜î˜‹???
+//								-1ï¼š???
 //****************************************************************************************/
 ACTION *MakeWindowDisp(int x, int y, int sizeX, int sizeY, int titleNo, int wndType
-#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
+#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
 	, BOOL fixType /*= TRUE*/
 #endif
 	)
 {
 	ACTION *pAct;
 	WINDOW_DISP *pYobi;
-#ifdef _NEW_RESOMODE  //800 600Ä£Ê½
+#ifdef _NEW_RESOMODE  //800 600æ¨¡å¼
 	if (fixType == TRUE){
 		if (x > 320){
 			x += DISPLACEMENT_X;
@@ -1105,18 +1105,18 @@ ACTION *MakeWindowDisp(int x, int y, int sizeX, int sizeY, int titleNo, int wndT
 	pAct = GetAction(PRIO_JIKI, sizeof(WINDOW_DISP));
 	if (pAct == NULL) return NULL;
 
-	// ûÂ???
+	// î¯???
 	pAct->func = WindowDisp;
-	// ¤úû¨?¡I¥T
+	// î¸î•?î“î™š
 	pAct->dispPrio = DISP_PRIO_MENU;
-	// ???§R¤e??
+	// ???îœ˜î˜‹??
 	pAct->atr |= ACT_ATR_HIT;
-	// ¤úû¨???
+	// î¸î•???
 	pAct->atr |= ACT_ATR_HIDE;
 
-	// ?§?¢B¢l?????
+	// ?î’?î”¨î•’?????
 	pYobi = (WINDOW_DISP *)pAct->pYobi;
-	// ?¤õ???
+	// ?î³???
 	pAct->x = x;
 	pAct->y = y;
 	pYobi->titleX = x + (sizeX * 64) / 2;
@@ -1124,7 +1124,7 @@ ACTION *MakeWindowDisp(int x, int y, int sizeX, int sizeY, int titleNo, int wndT
 	// ??????
 	pYobi->sizeX = sizeX;
 	pYobi->sizeY = sizeY;
-	// ????§k???
+	// ????îœ±???
 	pYobi->titleNo = titleNo;
 	pYobi->boxDispPrio = DISP_PRIO_MENU;
 	// ??????????
@@ -1134,7 +1134,7 @@ ACTION *MakeWindowDisp(int x, int y, int sizeX, int sizeY, int titleNo, int wndT
 	else if (wndType == 3) pYobi->wndType = CG_WND_G_0;
 	else if (wndType == 4){
 		pYobi->wndType = -2;
-		// ???§R¤e???
+		// ???îœ˜î˜‹???
 		pYobi->yesDispNo = -2;
 		pYobi->noDispNo = -2;
 		pYobi->boxDispPrio = DISP_PRIO_YES_NO_WND;
@@ -1144,28 +1144,28 @@ ACTION *MakeWindowDisp(int x, int y, int sizeX, int sizeY, int titleNo, int wndT
 	// YesNo ??????
 	pYobi->yesNoResult = -1;
 
-	// ???§R¤e???
+	// ???îœ˜î˜‹???
 	if (wndType >= 2) pYobi->hitFlag = FALSE;
 	else pYobi->hitFlag = TRUE;
 
-	// ?ıõ?¤õ?úÜ
-	// ?????????¦_???????
+	// ?î‘?î³?îŒ«
+	// ?????????î›…???????
 	if (wndType == -1 || wndType == 4){
 		pYobi->mx = sizeX / 2 + pAct->x;
 		pYobi->my = sizeY / 2 + pAct->y;
 	}
-	else{	// §[????????
+	else{	// îœ¡????????
 		pYobi->mx = (sizeX * 64) / 2 + pAct->x;
 		pYobi->my = (sizeY * 48) / 2 + pAct->y;
 	}
-	// ?§Æ?úÜ
+	// ?î¤?îŒ«
 	pAct->dx = (pYobi->mx - pAct->x) / WINDOW_CREATE_FRAME;
 	pAct->dy = (pYobi->my - pAct->y) / WINDOW_CREATE_FRAME;
 
 	return pAct;
 }
 
-// ??????????¤úû¨?? ***********************************************/
+// ??????????î¸î•?? ***********************************************/
 void AnimDisp(ACTION *pAct)
 {
 	int flag = FALSE;
@@ -1174,12 +1174,12 @@ void AnimDisp(ACTION *pAct)
 	// ?????
 	switch (pAct->actNo){
 
-	case ANIM_DISP_PET:	// ???¤úû¨
+	case ANIM_DISP_PET:	// ???î¸î•
 
-		// ??????©˜?¨Á?
+		// ??????îŸµ?îŸ‰?
 		if (pAct->hitDispNo == HitDispNo && mouse.autoState & MOUSE_LEFT_CRICK)
 		{
-			// ©˜?¨Á?
+			// îŸµ?îŸ‰?
 			pAct->anim_ang++;
 			// ????????
 			if (pAct->anim_ang >= 8) pAct->anim_ang = 0;
@@ -1190,28 +1190,28 @@ void AnimDisp(ACTION *pAct)
 
 		break;
 
-	case ANIM_DISP_PET_SEND:	// ???????ıï???ş???¥h
+	case ANIM_DISP_PET_SEND:	// ???????î‘˜???î¡¡???î™®
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 		// ?????????( ??? )( ??????? )
 		pAct->anim_ang = 2;
-		// ©˜?
+		// îŸµ?
 		pAct->crs = crs_change_tbl2[pAct->anim_ang];
 		// ?????
 		pAct->dx++;
-		// ?????????¢L
+		// ?????????î”²
 		if (pAct->dx % 3 == 0){
-			// ?????¢L
+			// ?????î”²
 			if (pAct->spd < 20){
 				pAct->spd++;
 			}
 		}
-		// ?????????¢L
+		// ?????????î”²
 		if (pAct->dx % 5 == 0){
 			if (pAct->dy >= 2) pAct->dy--;
 		}
-		// ?¥h??
+		// ?î™®??
 		gemini(pAct);
 
 		// ???????
@@ -1221,22 +1221,22 @@ void AnimDisp(ACTION *pAct)
 				pActMailItem->x = pAct->x;
 			}
 		}
-		// ?ş??ı¤????????¨–??
+		// ?î¡¡??î????????î¼??
 		if (pAct->x <= -100){
-			// ??????úÇ
+			// ??????îŒ–
 			DeathAction(pActMenuWnd);
 			pActMenuWnd = NULL;
-			// ????úÇ
+			// ????îŒ–
 			DeathAction(pActPet);
 			pActPet = NULL;
-			// ????????úÇ
+			// ????????îŒ–
 			DeathAction(pActMailItem);
 			pActMailItem = NULL;
 			// ????????
 			mailWndNo = MAIL_WND_VIEW;
-			// ?????¨–???
+			// ?????î¼???
 			play_se(203, 320, 240);
-			// ¦V????????
+			// îš¼????????
 			GetKeyInputFocus(&MyChatBuffer);
 		}
 		// ???????
@@ -1244,22 +1244,22 @@ void AnimDisp(ACTION *pAct)
 
 		break;
 
-	case ANIM_DISP_PET_RECIEVE:	// ??????ûõıï???ş¥›??¥h
+	case ANIM_DISP_PET_RECIEVE:	// ??????î¢î‘˜???î¡¡îš ??î™®
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 		// ?????????( ??? )( ??????? )
 		pAct->anim_ang = 6;
-		// ©˜?
+		// îŸµ?
 		pAct->crs = crs_change_tbl2[pAct->anim_ang];
 		// ?????
 		pAct->dx++;
-		// ?????¢L
+		// ?????î”²
 		if (pAct->spd > 0){
-			// ?????????¢L
+			// ?????????î”²
 			if (pAct->dx % 3 == 0){
 				pAct->spd--;
-				// û¢??????¥h????
+				// î??????î™®????
 				if (pAct->spd <= 0){
 					pAct->actNo = ANIM_DISP_PET_MAIN;
 					// ???????
@@ -1269,12 +1269,12 @@ void AnimDisp(ACTION *pAct)
 				}
 			}
 		}
-		// ?????????¢L
+		// ?????????î”²
 		if (pAct->dx % 8 == 0){
-			// ????????¢L
+			// ????????î”²
 			if (pAct->dy < 12) pAct->dy++;
 		}
-		// ?¥h??
+		// ?î™®??
 		gemini(pAct);
 
 		// ???????
@@ -1289,43 +1289,43 @@ void AnimDisp(ACTION *pAct)
 
 		break;
 
-	case ANIM_DISP_PET_MAIN:	// ?????¥h¡k¢‘??
+	case ANIM_DISP_PET_MAIN:	// ?????î™®î“±î•¶??
 
-		// ?§Æ???¨÷?
+		// ?î¤???îŸš?
 		if (Rnd(0, 4) >= 2){
 			pAct->actNo = ANIM_DISP_PET_WALK;
-			// ©˜?????
+			// îŸµ?????
 			pAct->anim_ang = Rnd(0, 7);
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_change_tbl2[pAct->anim_ang];
-			// ?????¥h????
+			// ?????î™®????
 			pAct->spd = Rnd(1, 12);
 			// ???????????
 			pAct->dy = 13 - pAct->spd;
 		}
 		else pAct->actNo = Rnd(ANIM_DISP_PET_STAND, ANIM_DISP_PET_DEAD);
 
-		// ¡q?????????×ü????
+		// î“·?????????î ’????
 		pAct->anim_no_bak = -1;
 
 		break;
 
-	case ANIM_DISP_PET_WALK:	// ¨÷?
+	case ANIM_DISP_PET_WALK:	// îŸš?
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 
-		// ?¥h??
+		// ?î™®??
 		gemini(pAct);
 
 		// ???????
 		if (pattern(pAct, pAct->dy, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			if (Rnd(0, 3) == 0){
 				pAct->actNo = ANIM_DISP_PET_MAIN;
 			}
 			else{
-				// ¡q?????????×ü????
+				// î“·?????????î ’????
 				pAct->anim_no_bak = -1;
 			}
 		}
@@ -1333,48 +1333,48 @@ void AnimDisp(ACTION *pAct)
 			return;
 		}
 		// ????????
-		// ıÆ
+		// î¯
 		if (pActPet->y < pActMenuWnd->y + 64){
 			pActPet->y = pActMenuWnd->y + 64;
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_bound_tbl[0][pAct->crs];
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang = crs_change_tbl[pAct->crs];
 		}
 		// ?
 		if (pActPet->y > pActMenuWnd->y + 424 - 32){
 			pActPet->y = pActMenuWnd->y + 424 - 32;
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_bound_tbl[2][pAct->crs];
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang = crs_change_tbl[pAct->crs];
 		}
 		// ?
 		if (pActPet->x < pActMenuWnd->x + 32){
 			pActPet->x = pActMenuWnd->x + 32;
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_bound_tbl[3][pAct->crs];
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang = crs_change_tbl[pAct->crs];
 		}
 		// ?
 		if (pActPet->x > pActMenuWnd->x + 272 - 32){
 			pActPet->x = pActMenuWnd->x + 272 - 32;
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_bound_tbl[1][pAct->crs];
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang = crs_change_tbl[pAct->crs];
 		}
 		break;
 
-	case ANIM_DISP_PET_STAND:	// ¢r?
+	case ANIM_DISP_PET_STAND:	// î•˜?
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_STAND;
 
 		// ???????
 		if (pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			pAct->actNo = ANIM_DISP_PET_MAIN;
 		}
 
@@ -1382,17 +1382,17 @@ void AnimDisp(ACTION *pAct)
 
 	case ANIM_DISP_PET_ATTACK:	// ??
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_ATTACK;
 
 		// ???????
 		if (pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			if (Rnd(0, 1) == 0){
 				pAct->actNo = ANIM_DISP_PET_MAIN;
 			}
 			else{
-				// ¡q?????????×ü????
+				// î“·?????????î ’????
 				pAct->anim_no_bak = -1;
 			}
 		}
@@ -1401,12 +1401,12 @@ void AnimDisp(ACTION *pAct)
 
 	case ANIM_DISP_PET_GUARD:	// ???
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_GUARD;
 
 		// ???????
 		if (pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			if (Rnd(0, 1) == 0){
 				pAct->actNo = ANIM_DISP_PET_MAIN;
 			}
@@ -1416,31 +1416,31 @@ void AnimDisp(ACTION *pAct)
 
 	case ANIM_DISP_PET_DAMAGE:	// ????
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_DAMAGE;
 
 		// ???????
 		if (pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			if (Rnd(0, 1) == 0){
 				pAct->actNo = ANIM_DISP_PET_MAIN;
 			}
 			else{
-				// ¡q?????????×ü????
+				// î“·?????????î ’????
 				pAct->anim_no_bak = -1;
 			}
 		}
 
 		break;
 
-	case ANIM_DISP_PET_DEAD:	// ?©û
+	case ANIM_DISP_PET_DEAD:	// ?î Œ
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_DEAD;
 
 		// ???????
 		if (pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP)){
-			// ??????¨ë?
+			// ??????îŸ?
 			if (Rnd(0, 2) == 0){
 				pAct->actNo = ANIM_DISP_PET_MAIN;
 			}
@@ -1448,18 +1448,18 @@ void AnimDisp(ACTION *pAct)
 
 		break;
 
-	case ANIM_DISP_PET_ITEM:	// ?ıï???????¤úû¨
+	case ANIM_DISP_PET_ITEM:	// ?î‘˜???????î¸î•
 
 		// ???????
 		pattern(pAct, ANM_NOMAL_SPD, ANM_LOOP);
 
 		break;
 
-	case ANIM_DISP_LETTER_MOVE:	// ûê??¥h
+	case ANIM_DISP_LETTER_MOVE:	// î—??î™®
 
-		// ?¥h
+		// ?î™®
 		if (pAct->x < 245) pAct->x += 5;
-		// ûê?????????
+		// î—?????????
 		else{
 			pAct->actNo = ANIM_DISP_LETTER;
 			// ???????
@@ -1468,84 +1468,84 @@ void AnimDisp(ACTION *pAct)
 		}
 		break;
 
-	case ANIM_DISP_LETTER:		// ûê????????
+	case ANIM_DISP_LETTER:		// î—????????
 
 		// ???????
 		pattern(pAct, ANM_NOMAL_SPD, ANM_LOOP);
 
 		break;
 
-	case ANIM_DISP_MIX_PET_INIT:	// ?şÎ??????
+	case ANIM_DISP_MIX_PET_INIT:	// ?î’•??????
 
-		// ?????¥h????
+		// ?????î™®????
 		pAct->spd = 11;//Rnd( 6, 12 );
 		// ???????????
 		pAct->dy = 14 - pAct->spd;
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 
-		// ????????£S?
+		// ????????î–™?
 		for (i = MAX_ITEMSTART; i < MAX_ITEM; i++){
 			if (ItemBuffer[i].mixFlag >= 1){
 				pAct->dx = i;
 				break;
 			}
 		}
-		// ?¥h?
+		// ?î™®?
 
 
 			pAct->actNo = ANIM_DISP_MIX_PET_MOVE;
 		break;
 
-	case ANIM_DISP_MIX_PET_MOVE:	// ?şÎ???ıê?????¥h
+	case ANIM_DISP_MIX_PET_MOVE:	// ?î’•???î‘“?????î™®
 
-		// ?¤†Ô¡@¤e
+		// ?î˜«ä½‹î“†î˜‹
 		x = ItemBuffer[pAct->dx].defX;
 		y = ItemBuffer[pAct->dx].defY;
 
 		// ????
 		radar(pAct, &x, &y);
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 
 		// ?????????
 		if (y >= pAct->spd / 2){
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = x;
-			// ??¡@¤e??¤†Ô¨Á????????
+			// ??î“†î˜‹??î˜«ä½‹îŸ‰????????
 			if (pAct->level == FALSE){
 				pAct->anim_ang = crs_change_tbl[pAct->crs];
-				// ????¨Á??????
+				// ????îŸ‰??????
 				pAct->level = TRUE;
 			}
 
-			// ?¥h??
+			// ?î™®??
 			gemini(pAct);
 			// ???????
 			pattern(pAct, pAct->dy, ANM_LOOP);
 		}
 		// ?????
 		else{
-			// ????¨Á???????
+			// ????îŸ‰???????
 			pAct->level = FALSE;
-			// ????úé??
+			// ????îŒ¸??
 			play_se(204, 320, 240);
 
 			// ??????????????
 			if (pAct->delta == 1){
 				// ???????
 				pAct->actNo = ANIM_DISP_MIX_PET_MOJI;
-				// ¥h?§k?
+				// î™®?îœ±?
 				pAct->anim_no = ANIM_STAND;
 
-				// ?????¥h????
+				// ?????î™®????
 				pAct->spd = 10;//Rnd( 6, 12 );
 				// ???????????
 				pAct->dy = 14 - pAct->spd;
 
-				// ¤ş??????
+				// î¼??????
 				for (i = MAX_ITEMSTART; i < MAX_ITEM; i++){
 					if (ItemBuffer[i].mixFlag >= 1){
 						ItemBuffer[i].mixFlag = 4;
@@ -1558,7 +1558,7 @@ void AnimDisp(ACTION *pAct)
 				break;
 			}
 
-			// ?¥h????£w???
+			// ?î™®????î–½???
 			pAct->spd = (int)((double)pAct->spd * 0.79);
 			// ????????
 			if (pAct->spd < 2) pAct->spd = 2;
@@ -1572,7 +1572,7 @@ void AnimDisp(ACTION *pAct)
 #endif
 				ItemBuffer[pAct->dx].mixFlag = 3;
 
-			// ???????£S?
+			// ???????î–™?
 			for (i = pAct->dx + 1; i < MAX_ITEM; i++){
 				if (ItemBuffer[i].mixFlag >= 1){
 					pAct->dx = i;
@@ -1582,18 +1582,18 @@ void AnimDisp(ACTION *pAct)
 
 			// ????????
 			if (i >= MAX_ITEM){
-				// ?????üÒ??????£S?
+				// ?????î??????î–™?
 				for (i = MAX_ITEMSTART; i < MAX_ITEM; i++){
-					// ?????????ş†??
+					// ?????????î¡Š??
 					if (pc.item[i].useFlag == FALSE){
-						// ????¤e
+						// ????î˜‹
 						pAct->dx = i;
 						break;
 					}
 					else
-						// ???şÎ?????????
+						// ???î’•?????????
 					if (ItemBuffer[i].mixFlag >= 1){
-						// ????¤e
+						// ????î˜‹
 						pAct->dx = i;
 						break;
 					}
@@ -1604,7 +1604,7 @@ void AnimDisp(ACTION *pAct)
 		}
 		break;
 
-	case ANIM_DISP_MIX_PET_MOJI:	// ?şÎ???????????şÎ?
+	case ANIM_DISP_MIX_PET_MOJI:	// ?î’•???????????î’•?
 
 		// ???????
 		pattern(pAct, 1, ANM_LOOP);
@@ -1620,20 +1620,20 @@ void AnimDisp(ACTION *pAct)
 			// ???
 		case 0:
 		case 3:
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang++;
 			// ????????
 			if (pAct->anim_ang >= 8) pAct->anim_ang = 0;
 			// ?????
 			if (pAct->hp == 0){
-				// ????úé??
+				// ????îŒ¸??
 				play_se(216, 320, 240);
 			}
 			// ???????
 			if (pAct->hp == 3){
 				pAct->dir++;
 				pAct->hp = 0;
-				// ûóı÷?????¨Á?
+				// î î‘ ?????îŸ‰?
 				pAct->mp--;
 				if (pAct->mp < 4) pAct->mp = 4;
 			}
@@ -1643,7 +1643,7 @@ void AnimDisp(ACTION *pAct)
 			// ???
 		case 1:
 		case 2:
-			// ??¡@¤e
+			// ??î“†î˜‹
 			pAct->anim_ang--;
 			// ????????
 			if (pAct->anim_ang < 0) pAct->anim_ang = 7;
@@ -1651,21 +1651,21 @@ void AnimDisp(ACTION *pAct)
 			break;
 		}
 
-		// ????ü¬???
+		// ????î·???
 		if (pAct->dir >= pAct->delta){
-			// ?ıï??
+			// ?î‘˜??
 			if (pAct->dir == pAct->delta){
 				pAct->dir++;
-				// §ó????
+				// î°????
 				char moji[256];
-				// §ó????
+				// î°????
 				moji[0] = NULL;
-				// ?şÎ???????????
+				// ?î’•???????????
 				for (i = MAX_ITEMSTART; i < MAX_ITEM; i++){
-					// ?şÎ?????????
+					// ?î’•?????????
 					if (ItemBuffer[i].mixFlag >= TRUE){//ttom
 						char work[256];
-						// §ó???şÎ
+						// î°???î’•
 						sprintf_s(work, "%d|", i);
 						strcat_s(moji, work);
 						// ??????
@@ -1674,73 +1674,73 @@ void AnimDisp(ACTION *pAct)
 				// ???|????????
 				moji[strlen(moji) - 1] = NULL;
 
-				// ??????úé???ıï????şÎ?????
+				// ??????îŒ¸???î‘˜????î’•?????
 				if (bNewServer)
 					lssproto_PS_send(sockfd, mixPetNo, SelectWazaNo, 0, moji);
 				else
 					old_lssproto_PS_send(sockfd, mixPetNo, SelectWazaNo, 0, moji);
-				// ûõıï¢r??????
+				// î¢î‘˜î•˜??????
 				ItemMixRecvFlag = TRUE;
 			}
 
-			// ûõıï¢r??????
+			// î¢î‘˜î•˜??????
 			if (ItemMixRecvFlag == FALSE){
-				// ????úé??
+				// ????îŒ¸??
 				play_se(115, 320, 240);
-				// ?şÎ???????
+				// ?î’•???????
 				for (i = MAX_ITEMSTART; i < MAX_ITEM; i++){
 					ItemBuffer[i].mixFlag = FALSE;
 				}
-				// ?????¥h????
+				// ?????î™®????
 				pAct->spd = 11;
 				// ???????????
 				pAct->dy = 14 - pAct->spd;
-				// ?ş??
+				// ?î¡¡??
 				pAct->actNo = ANIM_DISP_MIX_PET_END;
 			}
 		}
 
 		break;
 
-	case ANIM_DISP_MIX_PET_END:	// ?şÎ????ş??
+	case ANIM_DISP_MIX_PET_END:	// ?î’•????î¡¡??
 
-		// ?¤†Ô¡@¤e
+		// ?î˜«ä½‹î“†î˜‹
 		x = 750;
 		y = 240;
 
 		// ????
 		radar(pAct, &x, &y);
 
-		// ¥h?§k?
+		// î™®?îœ±?
 		pAct->anim_no = ANIM_WALK;
 
 		// ?????????
 		if (y >= pAct->spd / 2){
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = x;
 
-			// ??¡@¤e??¤†Ô¨Á????????
+			// ??î“†î˜‹??î˜«ä½‹îŸ‰????????
 			if (pAct->level == FALSE){
 				pAct->anim_ang = crs_change_tbl[pAct->crs];
-				// ????¨Á??????
+				// ????îŸ‰??????
 				pAct->level = TRUE;
 			}
 
-			// ?¥h??
+			// ?î™®??
 			gemini(pAct);
 			// ???????
 			pattern(pAct, pAct->dy, ANM_LOOP);
 		}
 		// ?????
 		else{
-			// ??????úÇ
+			// ??????îŒ–
 			DeathAction(pAct);
 			pActPet2 = NULL;
-			// ?şÎ???§k????
+			// ?î’•???îœ±????
 			ItemMixPetNo = -1;
 		}
 		break;
-#ifdef _AniCrossFrame	  // Syu ADD ¶¯»­²ãÓÎ¹ı»­ÃæÉúÎï
+#ifdef _AniCrossFrame	  // Syu ADD åŠ¨ç”»å±‚æ¸¸è¿‡ç”»é¢ç”Ÿç‰©
 	case ANIM_DISP_CROSSFRAME:
 	{
 								 extern bool delFlag;
@@ -1748,15 +1748,15 @@ void AnimDisp(ACTION *pAct)
 								 pAct->anim_no = ANIM_WALK;
 								 pAct->anim_ang = 2;
 								 pAct->crs = crs_change_tbl2[pAct->anim_ang];
-								 //ÒÆ¶¯ËÙ¶È
+								 //ç§»åŠ¨é€Ÿåº¦
 								 pAct->spd = 1;
-								 //ÏÔÊ¾²ã¼¶
+								 //æ˜¾ç¤ºå±‚çº§
 								 pAct->dispPrio = DISP_PRIO_JIKI;
 								 if (pAct->dx % 5 == 0){
 									 if (pAct->dy >= 2) pAct->dy--;
 								 }
 								 gemini(pAct);
-								 //¸÷ÖÖ·½ÏòÎ»ÒÆ
+								 //å„ç§æ–¹å‘ä½ç§»
 								 if (((pAct->anim_chr_no > 101511) && (pAct->anim_chr_no < 101516)) ||
 									 (pAct->anim_chr_no == 101517) || (pAct->anim_chr_no == 101519))
 								 {
@@ -1783,13 +1783,13 @@ void AnimDisp(ACTION *pAct)
 										 pAct->y = pAct->y;
 								 }
 								 else if ((pAct->anim_chr_no == 101520) || (pAct->anim_chr_no == 101522) ||
-									 (pAct->anim_chr_no <= 101593 && pAct->anim_chr_no >= 101588)) //ÓÒÉÏ
+									 (pAct->anim_chr_no <= 101593 && pAct->anim_chr_no >= 101588)) //å³ä¸Š
 								 {
 									 pAct->x++;
 									 pAct->y--;
 								 }
 								 else if ((pAct->anim_chr_no == 101521) || (pAct->anim_chr_no == 101523) ||
-									 (pAct->anim_chr_no <= 101587 && pAct->anim_chr_no >= 101582)) //×óÉÏ
+									 (pAct->anim_chr_no <= 101587 && pAct->anim_chr_no >= 101582)) //å·¦ä¸Š
 								 {
 									 pAct->x--;
 									 pAct->y--;
@@ -1799,7 +1799,7 @@ void AnimDisp(ACTION *pAct)
 									 pAct->x++;
 									 pAct->y++;
 								 }
-								 //³¬³öÓ«Ä»·¶Î§ÏûÃğ
+								 //è¶…å‡ºè§å¹•èŒƒå›´æ¶ˆç­
 								 if ((pAct->x <= -100 || pAct->y <= -100 || pAct->x >= 740 || pAct->y >= 580) && delFlag == true && flag22 == true)
 								 {
 									 flag22 = false;
@@ -1810,7 +1810,7 @@ void AnimDisp(ACTION *pAct)
 		break;
 #endif
 #ifdef _THEATER
-	case ANIM_DISP_THEATER_NPC:		// ¾ç³¡NPCÏÔÊ¾
+	case ANIM_DISP_THEATER_NPC:		// å‰§åœºNPCæ˜¾ç¤º
 	{
 										float	fX, fY;
 
@@ -1824,13 +1824,13 @@ void AnimDisp(ACTION *pAct)
 											);
 										switch (ATR_CHR_ACT(pAct))
 										{
-										case 0:		// ¹¥»÷
-										case 1:		// ÊÜÉË
-										case 2:		// ÔÎµ¹
-										case 5:		// ×øÏÂ
-										case 10:	// ·ÀÓù
-										case 12:	// Í¶ÖÀ
-											pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP);	// ²»ÖØ¸²¶¯×÷
+										case 0:		// æ”»å‡»
+										case 1:		// å—ä¼¤
+										case 2:		// æ™•å€’
+										case 5:		// åä¸‹
+										case 10:	// é˜²å¾¡
+										case 12:	// æŠ•æ·
+											pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP);	// ä¸é‡è¦†åŠ¨ä½œ
 											break;
 										default:
 											pattern(pAct, ANM_NOMAL_SPD, ANM_LOOP);
@@ -1841,18 +1841,18 @@ void AnimDisp(ACTION *pAct)
 #endif
 	}
 
-	// ????ş¥›?¥h?????
+	// ????î¡¡îš ?î™®?????
 	if (ANIM_DISP_PET_MAIN <= pAct->actNo && pAct->actNo <= ANIM_DISP_PET_DEAD){
 		// ????????????
 		if (pAct->hitDispNo == HitDispNo &&
 			mouse.autoState & MOUSE_LEFT_CRICK){
-			// ?¥h???
+			// ?î™®???
 			pAct->actNo = ANIM_DISP_PET_WALK;
-			// ©˜?????
+			// îŸµ?????
 			pAct->anim_ang = Rnd(0, 7);
-			// ???¡@¤e
+			// ???î“†î˜‹
 			pAct->crs = crs_change_tbl2[pAct->anim_ang];
-			// ?????¥h????
+			// ?????î™®????
 			pAct->spd = 15;
 
 			pAct->dy = 2;
@@ -1861,30 +1861,30 @@ void AnimDisp(ACTION *pAct)
 	}
 }
 
-// ???????????şÎ ***********************************************/
+// ???????????î’• ***********************************************/
 ACTION *MakeAnimDisp(int x, int y, int sprNo, int mode)
 {
 	ACTION *pAct;
 
-	// ?????????ûè¥x
+	// ?????????î•î™¾
 	pAct = GetAction(PRIO_JIKI, NULL);
 	if (pAct == NULL) return NULL;
 
-	// ûÂ???
+	// î¯???
 	pAct->func = AnimDisp;
-	// ???§R¤e??
+	// ???îœ˜î˜‹??
 	pAct->atr |= ACT_ATR_HIT;
 	pAct->anim_chr_no = sprNo;
-	// ¥h?§k?
+	// î™®?îœ±?
 	pAct->anim_no = ANIM_STAND;
 	// ?????????( ??? )( ??????? )
 	pAct->anim_ang = 1;
-	/* ¤úû¨?¡I¥T */
+	/* î¸î•?î“î™š */
 	pAct->dispPrio = DISP_PRIO_BOX3;
-	/* ???£t */
+	/* ???î–º */
 	pAct->x = x;
 	pAct->y = y;
-	// ???¡@¤e
+	// ???î“†î˜‹
 	pAct->actNo = mode;
 	// ??????????
 	if (pAct->actNo == ANIM_DISP_PET){
@@ -1902,7 +1902,7 @@ ACTION *MakeAnimDisp(int x, int y, int sprNo, int mode)
 	return pAct;
 }
 
-// ???????¨ò¢V ****************************************************************/
+// ???????îŸ•î”¼ ****************************************************************/
 BOOL SaveMailHistory(int no)
 {
 	FILE *fp;
@@ -1912,13 +1912,13 @@ BOOL SaveMailHistory(int no)
 		return FALSE;
 	}
 #ifdef _MORECHARACTERS_
-	// ??????????ıÍ????????????ş­???
-	extern int ¶àÈËÎïµ±Ç°Ò³Êı;
-	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + ¶àÈËÎïµ±Ç°Ò³Êı * 2), SEEK_SET);
+	// ??????????î¶????????????î‘´???
+	extern int å¤šäººç‰©å½“å‰é¡µæ•°;
+	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + å¤šäººç‰©å½“å‰é¡µæ•° * 2), SEEK_SET);
 #else
 	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo), SEEK_SET);
 #endif
-	// ??????şúê§k???????????????ş­??
+	// ??????î¡“îŒ¹îœ±???????????????î‘´??
 	fseek(fp, sizeof(MAIL_HISTORY)* no, SEEK_CUR);
 
 	// ???????
@@ -1933,15 +1933,15 @@ BOOL SaveMailHistory(int no)
 	return TRUE;
 }
 
-// ???????¥‚??? ****************************************************************/
+// ???????îš‡??? ****************************************************************/
 BOOL LoadMailHistory(void)
 {
 	FILE *fp;
-	MAIL_HISTORY work[MAX_ADR_BOOK * 2];	// ?????????¢B¢l
+	MAIL_HISTORY work[MAX_ADR_BOOK * 2];	// ?????????î”¨î•’
 
-	// ¥‚???????????
+	// îš‡???????????
 	if ((fp = fopen(MAIL_HISTORY_FILE_NAME, "rb")) == NULL){
-		// ?????şÉ¤†??şÎ
+		// ?????î’î˜«??î’•
 		if ((fp = fopen(MAIL_HISTORY_FILE_NAME, "wb")) != NULL){
 			// ???????
 			fwrite(MailHistory, sizeof(MAIL_HISTORY), MAX_ADR_BOOK, fp);
@@ -1955,10 +1955,10 @@ BOOL LoadMailHistory(void)
 	// ????????????
 	if (fread(work, sizeof(MAIL_HISTORY), MAX_ADR_BOOK * 2, fp) < MAX_ADR_BOOK * 2){
 		// ???????
-		// ?????şÉ¤†??şÎ
+		// ?????î’î˜«??î’•
 		if ((fp = fopen(MAIL_HISTORY_FILE_NAME, "wb")) != NULL){
 #ifdef _STONDEBUG_		
-			MessageBoxNew( hWnd, "É¾³ıÒÔÇ°µÄmail×ÊÁÏ¡£", "È·¶¨", MB_OK | MB_ICONSTOP );
+			MessageBoxNew( hWnd, "åˆ é™¤ä»¥å‰çš„mailèµ„æ–™ã€‚", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 			// ???????
 			fwrite(MailHistory, sizeof(MAIL_HISTORY), MAX_ADR_BOOK, fp);
@@ -1970,13 +1970,13 @@ BOOL LoadMailHistory(void)
 	}
 
 #ifdef _MORECHARACTERS_
-	// ¥‚???ıÍ????????????ş­???
-	extern int ¶àÈËÎïµ±Ç°Ò³Êı;
-	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + ¶àÈËÎïµ±Ç°Ò³Êı * 2), SEEK_SET);
+	// îš‡???î¶????????????î‘´???
+	extern int å¤šäººç‰©å½“å‰é¡µæ•°;
+	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + å¤šäººç‰©å½“å‰é¡µæ•° * 2), SEEK_SET);
 #else
 	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo), SEEK_SET);
 #endif
-	// ???¥‚???
+	// ???îš‡???
 	if (fread(MailHistory, sizeof(MAIL_HISTORY), MAX_ADR_BOOK, fp) < MAX_ADR_BOOK){
 
 		fclose(fp);	// ????????
@@ -1988,7 +1988,7 @@ BOOL LoadMailHistory(void)
 	return TRUE;
 }
 
-// ?????¥K?§ó??¨ò¢V ****************************************************************/
+// ?????î™‘?î°??îŸ•î”¼ ****************************************************************/
 BOOL SaveChatRegistyStr(void)
 {
 	FILE *fp;
@@ -1996,7 +1996,7 @@ BOOL SaveChatRegistyStr(void)
 	// ????????????
 	if ((fp = fopen(CAHT_REGISTY_STR_FILE_NAME, "r+b")) == NULL){
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "¼ÇÂ¼ÁÄÌìµÄµÇÂ¼ÎÄ×ÖÊ§°Ü£¡£±", "È·¶¨", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "è®°å½•èŠå¤©çš„ç™»å½•æ–‡å­—å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 		return FALSE;
 	}
@@ -2005,7 +2005,7 @@ BOOL SaveChatRegistyStr(void)
 	if (fwrite(chatRegistryStr, sizeof(STR_BUFFER), MAX_CHAT_REGISTY_STR, fp) < MAX_CHAT_REGISTY_STR){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "¼ÇÂ¼ÁÄÌìµÄµÇÂ¼ÎÄ×ÖÊ§°Ü£¡£²", "È·¶¨", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "è®°å½•èŠå¤©çš„ç™»å½•æ–‡å­—å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 		fclose(fp);// ????????
 		return FALSE;
@@ -2019,35 +2019,35 @@ BOOL SaveChatRegistyStr(void)
 	return TRUE;
 }
 
-// ?????¥K?§ó??¥‚??? ****************************************************************/
+// ?????î™‘?î°??îš‡??? ****************************************************************/
 BOOL LoadChatRegistyStr(void)
 {
 	FILE *fp;
 	int i;
 
-	// ¥‚???????????
+	// îš‡???????????
 	if ((fp = fopen(CAHT_REGISTY_STR_FILE_NAME, "rb")) == NULL){
-		// ?????şÉ¤†??şÎ
+		// ?????î’î˜«??î’•
 		if ((fp = fopen(CAHT_REGISTY_STR_FILE_NAME, "wb")) != NULL){
 #ifdef _STONDEBUG_		
-			MessageBoxNew( hWnd, "½¨Á¢ÁÄÌìµÄµÇÂ¼ÎÄ×Öµµ°¸£¡", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å»ºç«‹èŠå¤©çš„ç™»å½•æ–‡å­—æ¡£æ¡ˆï¼", "ç¡®å®š", MB_OK );
 #endif
-			// ?????§ó?¥K??¦V??????????
+			// ?????î°?î™‘??îš¼??????????
 			for (i = 0; i < 8; i++){
-				// ???§óı° ??¡@¤e
+				// ???î°î™ ??î“†î˜‹
 				chatRegistryStr[i].buffer[0] = NULL;
 				chatRegistryStr[i].cnt = 0;
 				chatRegistryStr[i].cursor = 0;
-				// §ó???£•?
+				// î°???î—š?
 				chatRegistryStr[i].len = MAX_CHAT_REGISTY_STR_LEN;
-				// ???£•?
+				// ???î—š?
 				chatRegistryStr[i].lineLen = 0;
 				// ?????
 				chatRegistryStr[i].lineDist = 20;
-				// §ó???ıè
+				// î°???î‘‘
 				chatRegistryStr[i].color = 0;
-				// §ó????¤õ
-				// §ó???¤úû¨?¡I??
+				// î°????î³
+				// î°???î¸î•?î“??
 				chatRegistryStr[i].fontPrio = FONT_PRIO_FRONT;
 			}
 			// ???????
@@ -2060,11 +2060,11 @@ BOOL LoadChatRegistyStr(void)
 		return FALSE;
 	}
 
-	// ???¥‚???
+	// ???îš‡???
 	if (fread(chatRegistryStr, sizeof(STR_BUFFER), MAX_CHAT_REGISTY_STR, fp) < MAX_CHAT_REGISTY_STR){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "ÔØÈëÁÄÌìµÄµÇÂ¼ÎÄ×Ö×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "è½½å…¥èŠå¤©çš„ç™»å½•æ–‡å­—èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 		fclose(fp);	// ????????
 		return FALSE;
@@ -2081,7 +2081,7 @@ BOOL LoadChatRegistyStr(void)
 #ifdef __ALBUM_47
 int MAX_PET_TBL;
 #endif
-// ?????¨ò¢V ****************************************************************/
+// ?????îŸ•î”¼ ****************************************************************/
 BOOL SaveAlbum(int no)
 {
 	FILE	*fp;
@@ -2091,15 +2091,15 @@ BOOL SaveAlbum(int no)
 	if (0 <= no && no < MAX_PET_TBL){
 		if (fp = fopen(ALBUM_FILE_NAME_48, "r+b")){
 			if (0 != fseek(fp, (16 + sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew(hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK);
+				MessageBoxNew(hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK);
 			if (0 != fseek(fp, 16 + sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew(hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK);
+				MessageBoxNew(hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK);
 			if (fwrite(&PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose(fp);
 		}
 		else
-			MessageBoxNew(hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK);
+			MessageBoxNew(hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK);
 	}
 	return ret;
 #elif defined(__ALBUM_46)
@@ -2107,14 +2107,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_47, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2123,14 +2123,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_46, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2139,14 +2139,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_45, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2155,14 +2155,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_44, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2171,14 +2171,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_43, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2187,14 +2187,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_42, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2203,14 +2203,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_41, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2219,14 +2219,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_40, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2235,14 +2235,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_39, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2251,14 +2251,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_38, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2267,14 +2267,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_37, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 
@@ -2283,14 +2283,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_36, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_34)
@@ -2298,14 +2298,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_35, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_33)
@@ -2313,14 +2313,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s(&fp, ALBUM_FILE_NAME_34, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_32)
@@ -2328,40 +2328,40 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_33, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+				MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£³", "È·¶¨", MB_OK );
+			MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼“", "ç¡®å®š", MB_OK );
 	}
 	return ret;
 #else
 	// ????????????
 	if ((fopen_s(&fp, ALBUM_FILE_NAME, "r+b")) != NULL){
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£±", "È·¶¨", MB_OK );
+		MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼‘", "ç¡®å®š", MB_OK );
 #endif
 		return FALSE;
 	}
-	// ¢\ş°?????§Æş­??
+	// î•‚î‘·?????î¤î‘´??
 	for (int i = 0; i < AlbumIdCnt; i++){
-		// ???????§Æ??ş­???
+		// ???????î¤??î‘´???
 		fseek(fp, 16, SEEK_CUR);
 		fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND, SEEK_CUR);
 	}
-	// ??§Æ??ş­???
+	// ??î¤??î‘´???
 	fseek(fp, 16, SEEK_CUR);
-	// ??????????§k???ş­??
+	// ??????????îœ±???î‘´??
 	fseek(fp, sizeof(PET_ALBUM)* no, SEEK_CUR);
 
 	// ???????
 	if (fwrite(&PetAlbum[no], sizeof(PET_ALBUM), 1, fp) < 1){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "´¢´æÏà²¾×ÊÁÏÊ§°Ü£¡£²", "È·¶¨", MB_OK );
+		MessageBoxNew( hWnd, "å‚¨å­˜ç›¸ç°¿èµ„æ–™å¤±è´¥ï¼ï¼’", "ç¡®å®š", MB_OK );
 #endif
 		fclose(fp);// ????????
 		return FALSE;
@@ -2420,7 +2420,7 @@ BOOL LoadAlbum_4( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			// ûº¦????????ıø??şÎ
+			// î§î›²????????î‘¡??î’•
 			// ????????????
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
@@ -2474,24 +2474,24 @@ BOOL ConvertAlbum1_4(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -2561,7 +2561,7 @@ BOOL LoadAlbum_47(char *user)
 	}
 	while (1){
 		if (fread(id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd(1, 100);
 			for (i = 0; i < 16; i++)
@@ -2577,7 +2577,7 @@ BOOL LoadAlbum_47(char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if (strcmp(id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if (fseek(fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek(fp, (sizeof(PET_ALBUM)*MAX_PET_KIND + 16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2592,7 +2592,7 @@ BOOL LoadAlbum_47(char *user)
 			}
 		}
 		else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if (fread(PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite(PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose(fp);
@@ -2616,31 +2616,31 @@ BOOL ConvertAlbumTo47(char *user, char *oldfile, DWORD num)
 	if ((fp = fopen(oldfile, "r+b")) == NULL)
 		return FALSE;
 	while (1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if (fread(id2, 16, 1, fp) < 1){
 			fclose(fp);
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for (i = 0; i < 16; i++){
 			id2[i] ^= IdEncryptionTbl[i];
 		}
 		id2[id2[15]] = NULL;
 		if (strcmp(user, id2) != 0){
-			//ID²»·û
-			if (fseek(fp, sizeof(PET_ALBUM)* num, SEEK_CUR) != 0){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if (fseek(fp, sizeof(PET_ALBUM)* num, SEEK_CUR) != 0){//ä¸‹ä¸€ä¸ª
 				fclose(fp);
 				return FALSE;
 			}
 		}
 		else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if (fread(OldAlbum, sizeof(PET_ALBUM), num, fp) < num){
 				fclose(fp);
 				return FALSE;
 			}
 			for (DWORD i = 0; i < num; i++){
-				if (440 <= i && i <= 461) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if (440 <= i && i <= 461) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory(&PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum(i);
 			}
@@ -2660,25 +2660,25 @@ BOOL ConvertAlbum1_47(char *user)
 	if ((fp = fopen(ALBUM_FILE_NAME, "r+b")) == NULL)
 		return FALSE;
 	while (1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if (fread(id2, sizeof(id2), 1, fp) < 1){
 			fclose(fp);
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for (i = 0; i < 16; i++){
 			id2[i] ^= IdEncryptionTbl[i];
 		}
 		id2[id2[15]] = NULL;
 		if (strcmp(user, id2) != 0){
-			//ID²»·û
-			if (fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND_1, SEEK_CUR) != 0){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if (fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND_1, SEEK_CUR) != 0){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose(fp);
 				return FALSE;
 			}
 		}
 		else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if (fread(OldAlbum, sizeof(PET_ALBUM), MAX_PET_KIND_1, fp) < MAX_PET_KIND_1){
 				fclose(fp);
 				return FALSE;
@@ -2747,7 +2747,7 @@ BOOL LoadAlbum_46( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -2763,7 +2763,7 @@ BOOL LoadAlbum_46( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2777,7 +2777,7 @@ BOOL LoadAlbum_46( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -2801,30 +2801,30 @@ BOOL ConvertAlbumTo46(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -2844,24 +2844,24 @@ BOOL ConvertAlbum1_46(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -2930,7 +2930,7 @@ BOOL LoadAlbum_45( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -2946,7 +2946,7 @@ BOOL LoadAlbum_45( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2960,7 +2960,7 @@ BOOL LoadAlbum_45( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -2984,30 +2984,30 @@ BOOL ConvertAlbumTo45(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3027,24 +3027,24 @@ BOOL ConvertAlbum1_45(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3113,7 +3113,7 @@ BOOL LoadAlbum_44( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3129,7 +3129,7 @@ BOOL LoadAlbum_44( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3143,7 +3143,7 @@ BOOL LoadAlbum_44( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3167,30 +3167,30 @@ BOOL ConvertAlbumTo44(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3210,24 +3210,24 @@ BOOL ConvertAlbum1_44(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3296,7 +3296,7 @@ BOOL LoadAlbum_43( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3312,7 +3312,7 @@ BOOL LoadAlbum_43( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3326,7 +3326,7 @@ BOOL LoadAlbum_43( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3350,30 +3350,30 @@ BOOL ConvertAlbumTo43(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3393,24 +3393,24 @@ BOOL ConvertAlbum1_43(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3479,7 +3479,7 @@ BOOL LoadAlbum_42( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3495,7 +3495,7 @@ BOOL LoadAlbum_42( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3509,7 +3509,7 @@ BOOL LoadAlbum_42( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3533,30 +3533,30 @@ BOOL ConvertAlbumTo42(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3576,24 +3576,24 @@ BOOL ConvertAlbum1_42(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3662,7 +3662,7 @@ BOOL LoadAlbum_41( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3678,7 +3678,7 @@ BOOL LoadAlbum_41( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3692,7 +3692,7 @@ BOOL LoadAlbum_41( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3716,30 +3716,30 @@ BOOL ConvertAlbumTo41(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3759,24 +3759,24 @@ BOOL ConvertAlbum1_41(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3845,7 +3845,7 @@ BOOL LoadAlbum_40( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3861,7 +3861,7 @@ BOOL LoadAlbum_40( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3875,7 +3875,7 @@ BOOL LoadAlbum_40( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3899,30 +3899,30 @@ BOOL ConvertAlbumTo40(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3942,24 +3942,24 @@ BOOL ConvertAlbum1_40(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4028,7 +4028,7 @@ BOOL LoadAlbum_39( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4044,7 +4044,7 @@ BOOL LoadAlbum_39( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4058,7 +4058,7 @@ BOOL LoadAlbum_39( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4082,30 +4082,30 @@ BOOL ConvertAlbumTo39(  char *user, char *oldfile, DWORD num)
 	if( (fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4125,24 +4125,24 @@ BOOL ConvertAlbum1_39(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4211,7 +4211,7 @@ BOOL LoadAlbum_38( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4227,7 +4227,7 @@ BOOL LoadAlbum_38( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4241,7 +4241,7 @@ BOOL LoadAlbum_38( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4265,30 +4265,30 @@ BOOL ConvertAlbumTo38(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4308,24 +4308,24 @@ BOOL ConvertAlbum1_38(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4394,7 +4394,7 @@ BOOL LoadAlbum_37( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4410,7 +4410,7 @@ BOOL LoadAlbum_37( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4424,7 +4424,7 @@ BOOL LoadAlbum_37( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4448,30 +4448,30 @@ BOOL ConvertAlbumTo37(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4491,24 +4491,24 @@ BOOL ConvertAlbum1_37(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4577,7 +4577,7 @@ BOOL LoadAlbum_36( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4593,7 +4593,7 @@ BOOL LoadAlbum_36( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4607,7 +4607,7 @@ BOOL LoadAlbum_36( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4631,30 +4631,30 @@ BOOL ConvertAlbumTo36(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//ĞŞÕıÎÚÁ¦Q ÎÊÌâ
+				if( 440 <= i && i <= 461 ) continue;		//ä¿®æ­£ä¹ŒåŠ›Q é—®é¢˜
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4674,24 +4674,24 @@ BOOL ConvertAlbum1_36(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4760,7 +4760,7 @@ BOOL LoadAlbum_35( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4776,7 +4776,7 @@ BOOL LoadAlbum_35( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4790,7 +4790,7 @@ BOOL LoadAlbum_35( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4814,24 +4814,24 @@ BOOL ConvertAlbumTo35(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -4856,24 +4856,24 @@ BOOL ConvertAlbum1_35(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4942,7 +4942,7 @@ BOOL LoadAlbum_34( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4958,7 +4958,7 @@ BOOL LoadAlbum_34( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4972,7 +4972,7 @@ BOOL LoadAlbum_34( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4996,24 +4996,24 @@ BOOL ConvertAlbumTo34(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5038,24 +5038,24 @@ BOOL ConvertAlbum1_34(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -5124,7 +5124,7 @@ BOOL LoadAlbum_33( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -5140,7 +5140,7 @@ BOOL LoadAlbum_33( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -5154,7 +5154,7 @@ BOOL LoadAlbum_33( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -5178,24 +5178,24 @@ BOOL ConvertAlbumTo33(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5220,24 +5220,24 @@ BOOL ConvertAlbum1_33(  char *user)
 	if( ( fp = fopen( ALBUM_FILE_NAME, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -5306,7 +5306,7 @@ BOOL LoadAlbum_32( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//ÕÒ²»µ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾ä¸åˆ°æ­¤å¸å·çš„è®°å½•
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -5322,7 +5322,7 @@ BOOL LoadAlbum_32( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//²»ÊÇ´ËÕÊºÅµÄ¼ÇÂ¼
+			//ä¸æ˜¯æ­¤å¸å·çš„è®°å½•
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -5336,7 +5336,7 @@ BOOL LoadAlbum_32( char *user)
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½´ËÕÊºÅµÄ¼ÇÂ¼
+			//æ‰¾åˆ°æ­¤å¸å·çš„è®°å½•
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -5360,24 +5360,24 @@ BOOL ConvertAlbumTo32(  char *user, char *oldfile, DWORD num)
 	if( ( fp = fopen( oldfile, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//ÕÒµ½ID¼ÍÂ¼
+			//æ‰¾åˆ°IDçºªå½•
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5402,24 +5402,24 @@ BOOL ConvertAlbum1_32(  char *user)
 	if( ( fp = fopen( ALBUM_FILE_NAME, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1 ){
-		//¶ÁÈëID
+		//è¯»å…¥ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID½âÂë
+		//IDè§£ç 
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
-			//ID²»·û
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//ÕÒÏÂÒ»¸ö
+			//IDä¸ç¬¦
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//æ‰¾ä¸‹ä¸€ä¸ª
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//¶ÁÈë×ÊÁÏ
+			//è¯»å…¥èµ„æ–™
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -5444,16 +5444,16 @@ BOOL ConvertAlbum1_32(  char *user)
 #endif
 
 
-// ?????¥‚??? ****************************************************************/
+// ?????îš‡??? ****************************************************************/
 BOOL LoadAlbum(void)
 {
 	char id[32];
 
-	// ?????ûè¥x
+	// ?????î•î™¾
 	extern char szUser[];
 	CopyMemory(id, szUser, 32);
 	ecb_crypt("f;encor1c", id, 32, DES_DECRYPT);
-	// §ó???£•?ûè¥x
+	// î°???î—š?î•î™¾
 	id[15] = strlen(id);
 
 #if defined(__ALBUM_47)
@@ -6722,10 +6722,10 @@ BOOL LoadAlbum(void)
 	FILE *fp;
 	// ?????????
 	AlbumIdCnt = 0;
-	// ¥‚???????????
+	// îš‡???????????
 	if ((fp = fopen(ALBUM_FILE_NAME, "r+b")) == NULL){
 
-		// ?????şÉ¤†??şÎ
+		// ?????î’î˜«??î’•
 		if ((fp = fopen(ALBUM_FILE_NAME, "wb")) != NULL){
 			// ????????????
 			id[id[15]] = Rnd(1, 100);
@@ -6737,10 +6737,10 @@ BOOL LoadAlbum(void)
 			// ?????????
 			fwrite(id, sizeof(id), 1, fp);
 
-			// ?????¢B¢l?¤ˆ?????
+			// ?????î”¨î•’?î˜­?????
 			for (i = 0; i < MAX_PET_KIND; i++){
 				int j;
-				// ş¡q§Æ???
+				// î¡“î“·î¤???
 				for (j = 0; j < PET_NAME_LEN + 1; j++){
 					PetAlbum[i].name[j] = Rnd(1, 255);
 					PetAlbum[i].freeName[j] = Rnd(1, 255);
@@ -6767,11 +6767,11 @@ BOOL LoadAlbum(void)
 
 		return FALSE;
 	}
-	// ??£S??????? ş†???ıø??şÎ ?
+	// ??î–™??????? î¡Š???î‘¡??î’• ?
 	while (1){
-		// ???¥‚???
+		// ???îš‡???
 		if (fread(id2, sizeof(id2), 1, fp) < 1){
-			// ûº¦????????ıø??şÎ
+			// î§î›²????????î‘¡??î’•
 			// ????????????
 			id[id[15]] = Rnd(1, 100);
 			// ??????
@@ -6789,18 +6789,18 @@ BOOL LoadAlbum(void)
 		for (i = 0; i < 16; i++){
 			id2[i] ^= IdEncryptionTbl[i];
 		}
-		// ????§ó?????
+		// ????î°?????
 		id2[id2[15]] = NULL;
 		// ??????
 		if (strcmp(id, id2) != 0){
-			// ?????ıÍ????????????ş­???
+			// ?????î¶????????????î‘´???
 			if (fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND, SEEK_CUR) != 0){
 				fclose(fp);	// ????????
 				return FALSE;
 			}
 		}
 		else{// ????
-			// ???????¥‚???
+			// ???????îš‡???
 			if (fread(PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fclose(fp);	// ????????
 				return FALSE;
@@ -6817,76 +6817,76 @@ BOOL LoadAlbum(void)
 #endif
 }
 
-// ??????????¢^¤ ¡M?? **************************************************/
+// ??????????î•„î™…î““?? **************************************************/
 void InitOhtaParam(void)
 {
-	LoadMailHistory();					// ???????¥‚???
-	LoadChatHistoryStr();				// ???????§ó??¥‚???
+	LoadMailHistory();					// ???????îš‡???
+	LoadChatHistoryStr();				// ???????î°??îš‡???
 	//LoadReadNameShield();
 	//LoadReadSayShield();
-	mailLamp = CheckMailNoReadFlag();	// şt¥‚????
+	mailLamp = CheckMailNoReadFlag();	// î ¹îš‡????
 	StatusUpPoint = 0;					// ???????????????
-	battleResultMsg.useFlag = 0;		// ¡P¥f????????
+	battleResultMsg.useFlag = 0;		// î“–î™¬????????
 	MapWmdFlagBak = 0;
 }
 
-// ???şt¥‚???? ****************************************************************/
+// ???î ¹îš‡???? ****************************************************************/
 BOOL CheckMailNoReadFlag(void)
 {
 	int i, j;
 
-	// şúê§Æ???
+	// î¡“îŒ¹î¤???
 	for (i = 0; i < MAX_ADR_BOOK; i++){
-		// ??§Æ???
+		// ??î¤???
 		for (j = 0; j < MAIL_MAX_HISTORY; j++){
-			// şt¥‚???????
+			// î ¹îš‡???????
 			if (MailHistory[i].noReadFlag[j] >= TRUE) return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-// ıø???????? ****************************************************************/
+// î‘¡???????? ****************************************************************/
 void CheckNewPet(int sprNo)
 {
-	int tblNo = sprNo - 100250; // ?????§k?
+	int tblNo = sprNo - 100250; // ?????îœ±?
 	int albumNo;
-	// ????§k?
+	// ????îœ±?
 #if defined(__ALBUM_47)
-	if (tblNo > 1800){					//Ğ¡¶ñÄ§
+	if (tblNo > 1800){					//å°æ¶é­”
 		tblNo -= 1208;
 	}
-	else if (tblNo > 1755){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	else if (tblNo > 1755){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
 	}
-	else if (tblNo > 1739){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	else if (tblNo > 1739){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
 	}
-	else if (tblNo > 1686){			//º£µ×ÈÚºÏ³è
+	else if (tblNo > 1686){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
 	}
-	else if (tblNo > 1641){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	else if (tblNo > 1641){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
 	}
-	else if (tblNo > 1635){	//÷è÷ë
+	else if (tblNo > 1635){	//éº’éºŸ
 		tblNo -= 1148;
 	}
-	else if (tblNo > 1634){	//Ã¨Å®1 Ã¨Å®2 
+	else if (tblNo > 1634){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
 	}
-	else if (tblNo > 1616){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	else if (tblNo > 1616){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
 	}
-	else if (tblNo > 1568){//»úÈËÁú
+	else if (tblNo > 1568){//æœºäººé¾™
 		tblNo -= 1103;
 	}
-	else if (tblNo > 1564){//»ÆÉ«·ÉÁú
+	else if (tblNo > 1564){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}
 	else if (tblNo > 1516){
 		tblNo -= 1055;
 	}
-	else if (tblNo == 1516){//ĞŞÕıÎÚÁ¦Íõ
+	else if (tblNo == 1516){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}
 	else if (tblNo > 1509){
@@ -6956,29 +6956,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333 + 56);
 	}
 #elif defined(__ALBUM_46)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7026,29 +7026,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_45)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7096,29 +7096,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_44)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7166,29 +7166,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_43)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7236,29 +7236,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_42)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7306,29 +7306,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_41)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7376,29 +7376,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_40)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7446,29 +7446,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_39)
-	if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+	if( tblNo > 1800 ){					//å°æ¶é­”
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7517,27 +7517,27 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_38)
 
-	if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+	if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	}else if (tblNo > 1739 ){ //1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7586,25 +7586,25 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_37)
 
-	if (tblNo > 1710 ){			//	¼ä¸ôÆï³èºóµÄ ·ÉÉß
+	if (tblNo > 1710 ){			//	é—´éš”éª‘å® åçš„ é£è›‡
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//º£µ×ÈÚºÏ³è
+	}else if (tblNo > 1686 ){			//æµ·åº•èåˆå® 
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7653,23 +7653,23 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_36)
 
-	if (tblNo > 1686 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	if (tblNo > 1686 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7718,21 +7718,21 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_35)
 
-	if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2 8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+	if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2 8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7781,21 +7781,21 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_34)
 
-	if (tblNo > 1639 ){			//¼¦ÄêÊŞ4
+	if (tblNo > 1639 ){			//é¸¡å¹´å…½4
 		tblNo -= 1167;
-	}else if (tblNo > 1635 ){	//÷è÷ë
+	}else if (tblNo > 1635 ){	//éº’éºŸ
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 ÷è÷ë
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 éº’éºŸ
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7846,17 +7846,17 @@ void CheckNewPet(int sprNo)
 
 	if (tblNo > 1635 ){
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 ÷è÷ë
+	}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 éº’éºŸ
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7905,19 +7905,19 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_32)
 
-	if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+	if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 		tblNo -= 1149;
-	}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+	}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 		tblNo -= 1147;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7966,17 +7966,17 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_31)
 
-	if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+	if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 		tblNo -= 1147;
-	}else if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	}else if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8025,15 +8025,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_30)
 
-	if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+	if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8082,15 +8082,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_29)
 
-	if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ
+	if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8139,15 +8139,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_28)
 
-	if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ
+	if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†”
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8197,15 +8197,15 @@ void CheckNewPet(int sprNo)
 
 #elif defined(__ALBUM_27)
 
-	if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2
+	if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8255,15 +8255,15 @@ void CheckNewPet(int sprNo)
 
 #elif defined(__ALBUM_26)
 
-	if ( tblNo > 1616 ){//²¼ÀïÈø¶û  ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ
+	if ( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”  èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8312,15 +8312,15 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_25)
-	if( tblNo > 1616 ){//²¼ÀïÈø¶û
+	if( tblNo > 1616 ){//å¸ƒé‡Œè¨å°”
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//»úÈËÁú
+	}else if ( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8369,13 +8369,13 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_24)
-	if( tblNo > 1568 ){//»úÈËÁú
+	if( tblNo > 1568 ){//æœºäººé¾™
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+	}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8426,7 +8426,7 @@ void CheckNewPet(int sprNo)
 #elif defined(__ALBUM_23)
 	if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8475,7 +8475,7 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_22)
-	if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+	if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8801,9 +8801,9 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #endif
-	// ???????§k?????
+	// ???????îœ±?????
 	if (0 <= tblNo && tblNo < MAX_PET_TBL){
-		// ??¥K????????§k?
+		// ??î™‘????????îœ±?
 		albumNo = PetAlbumTbl[tblNo].albumNo;
 		// ????????
 		if (albumNo != -1 ){
@@ -8811,73 +8811,73 @@ void CheckNewPet(int sprNo)
 			if (PetAlbum[albumNo].flag == 0){
 				// ???????
 				PetAlbum[albumNo].flag = 1;
-				// ş¡q???
+				// î¡“î“·???
 				strcpy(PetAlbum[albumNo].name, PetAlbumTbl[tblNo].name);
-				// ?????¨ò¢V
+				// ?????îŸ•î”¼
 				SaveAlbum(albumNo);
 			}
 		}
 	}
 }
 
-// ¡P¥f??ıø???????? **********************************************************/
+// î“–î™¬??î‘¡???????? **********************************************************/
 void CheckBattleNewPet(void)
 {
 	int i;
 
-	// ??¢l§Æ???
+	// ??î•’î¤???
 	for (i = 0; i < BATTLKPKPLYAERNUM; i++){
-		// ?????ş†?????
+		// ?????î¡Š?????
 		if (p_party[i] == NULL) continue;
 		// ??????????
 		if (p_party[i]->func == NULL) continue;
-		// ıø?????????
+		// î‘¡?????????
 		CheckNewPet(p_party[i]->anim_chr_no);
 	}
 }
 
-// §ó?????????? *****************************************************/
+// î°?????????? *****************************************************/
 void CenteringStr(char *inStr, char *outStr, int max)
 {
 	int len, space, amari;
 
-	// £•?????
+	// î—š?????
 	len = strlen(inStr);
 
 	// ????????
 	if (len >= max){
 		// ???????
 		strncpy_s(outStr, max + 1, inStr, max);
-		outStr[max] = NULL;	// ü¬£Z??????
+		outStr[max] = NULL;	// î·î– ??????
 		return;
 	}
 
 	// ???????
 	amari = (max - len) % 2;
-	// ?????úÜ
+	// ?????îŒ«
 	space = (max - len) / 2;
 
 	// ?????????
 	if (space != 0){
-		// §ó???şÎ
+		// î°???î’•
 		sprintf(outStr, "%*c%s%*c", space, ' ', inStr, space + amari, ' ');
 	}
 	else{
-		// §ó???şÎ
+		// î°???î’•
 		sprintf(outStr, "%s ", inStr);
 	}
 }
 
-// úù¤e????????????????? *************************************/
+// îˆî˜‹????????????????? *************************************/
 int CheckPetSkill(int skillId)
 {
 	int i, j;
 
-	// ?????§Æ???
+	// ?????î¤???
 	for (j = 0; j < MAX_PET; j++){
 		// ???????????
 		if (pet[j].useFlag == TRUE){
-			// ??§Æ???
+			// ??î¤???
 			for (i = 0; i < pet[j].maxSkill; i++){
 				// ????????
 				if (petSkill[j][i].useFlag == TRUE){
@@ -8913,7 +8913,7 @@ void InitItem(int x, int y, BOOL bPetItemFlag)
 	};
 #endif
 #ifdef _PET_ITEM
-	if (bPetItemFlag)		// Ä¿Ç°ÏÔÊ¾µÄÊÇ³èÎïµÀ¾ßÀ¸
+	if (bPetItemFlag)		// ç›®å‰æ˜¾ç¤ºçš„æ˜¯å® ç‰©é“å…·æ 
 	{
 		// seting x
 		InitXY[0].x = InitXY[5].x = x + 63;
@@ -9008,7 +9008,7 @@ void InitItem3(int x, int y)
 		ItemBuffer[i].y = ItemBuffer[i].defY;
 		ItemBuffer[i].bmpNo = 20000 + j / 48;
 		ItemBuffer[i].dispPrio = DISP_PRIO_ITEM;
-		j += 51; // ??¤õ???
+		j += 51; // ??î³???
 		// ????????
 		if (j >= 48 * 5){
 			j = 0;
@@ -9025,15 +9025,15 @@ void InitItem3(int x, int y)
 }
 // CoolFish: End 
 
-// ???§R¤e?????şÎ ******************************************************/
+// ???îœ˜î˜‹?????î’• ******************************************************/
 BOOL MakeHitBox(int x1, int y1, int x2, int y2, int dispPrio)
 {
-	// úî?????§R¤e
+	// îŒ½?????îœ˜î˜‹
 	if (mouse.nowPoint.x <= x2 && x1 <= mouse.nowPoint.x &&
 		mouse.nowPoint.y <= y2 && y1 <= mouse.nowPoint.y){
-		// ????¤úû¨???
+		// ????î¸î•???
 		if (dispPrio >= 0){
-			// ????¤úû¨????????????
+			// ????î¸î•????????????
 			StockBoxDispBuffer(x1, y1, x2, y2, dispPrio, BoxColor, 0);
 		}
 		return TRUE;
@@ -9041,7 +9041,7 @@ BOOL MakeHitBox(int x1, int y1, int x2, int y2, int dispPrio)
 	return FALSE;
 }
 
-// ûê?????????úÇ **************************************************************/
+// î—?????????îŒ– **************************************************************/
 void DeathLetterAction(void)
 {
 	int i;
@@ -9052,7 +9052,7 @@ void DeathLetterAction(void)
 	}
 }
 
-// ?ıï?ûê?????? ***************************************************************/
+// ?î‘˜?î—?????? ***************************************************************/
 void InitMailSendFlag(void)
 {
 	int i;
@@ -9068,18 +9068,18 @@ extern void petChange(int graphNo);
 #endif
 
 
-// ??????????úÇ??¢D? *****************************************************/
+// ??????????îŒ–??î”ª? *****************************************************/
 void DeathMenuAction(void)
 {
 
 #ifdef _MAGIC_ITEM_
-	if(µÀ¾ß¹â»·Act) DeathAction(µÀ¾ß¹â»·Act);
-	µÀ¾ß¹â»·Act=NULL;
+	if(é“å…·å…‰ç¯Act) DeathAction(é“å…·å…‰ç¯Act);
+	é“å…·å…‰ç¯Act=NULL;
 #endif
 	if(pActMenuWnd)
 		DeathAction(pActMenuWnd);
 	pActMenuWnd = NULL;
-#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
 	chatRoomBtn = 0;
 	assentFlag = FALSE;
 	DeathAction( pAssentWnd );
@@ -9088,7 +9088,7 @@ void DeathMenuAction(void)
 	DeathAction( pSetRoomWnd );
 	pSetRoomWnd = NULL;
 #endif
-	//ĞÂÔö ¶¯×÷±íÇéÇĞ»»µØÍ¼BUG
+	//æ–°å¢ åŠ¨ä½œè¡¨æƒ…åˆ‡æ¢åœ°å›¾BUG
 	extern ACTION * ptActMenuWin1;
 	if (ptActMenuWin1){
 		DeathAction(ptActMenuWin1);
@@ -9097,7 +9097,7 @@ void DeathMenuAction(void)
 	if(pActMenuWnd3)
 		DeathAction(pActMenuWnd3);
 	pActMenuWnd3 = NULL;
-	// ¦V????????
+	// îš¼????????
 	GetKeyInputFocus(&MyChatBuffer);
 	if(pActPet)
 		DeathAction(pActPet);
@@ -9108,7 +9108,7 @@ void DeathMenuAction(void)
 	if(pActYesNoWnd)
 		DeathAction(pActYesNoWnd);
 	pActYesNoWnd = NULL;
-	// ûê?????????úÇ
+	// î—?????????îŒ–
 	DeathLetterAction();
 
 	// Robin 04/14 trade
@@ -9116,8 +9116,8 @@ void DeathMenuAction(void)
 		DeathAction(pActMenuWnd4);
 		pActMenuWnd4 = NULL;
 	}
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-	//Çå³ıËùÊ¹ÓÃAction
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+	//æ¸…é™¤æ‰€ä½¿ç”¨Action
 	if (SecondTradeWnd){
 		DeathAction(SecondTradeWnd);
 		SecondTradeWnd = NULL;
@@ -9153,30 +9153,30 @@ void DeathMenuAction(void)
 	petWndNo = 0;
 #endif
 }
-// ??????????úÇ??¢D? *****************************************************/
+// ??????????îŒ–??î”ª? *****************************************************/
 void DeathMenuAction2(void)
 {
 #ifdef _MAGIC_ITEM_
-	if(µÀ¾ß¹â»·Act) DeathAction(µÀ¾ß¹â»·Act);
-	µÀ¾ß¹â»·Act=NULL;
+	if(é“å…·å…‰ç¯Act) DeathAction(é“å…·å…‰ç¯Act);
+	é“å…·å…‰ç¯Act=NULL;
 	extern void ClearMagicItemWin();
 	ClearMagicItemWin();
 #endif
 	DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 	GetKeyInputFocus(&MyChatBuffer);
 	Moneyflag = false;
 #endif
 	pActMenuWnd2 = NULL;
-	// ?şÎ????úÇ
+	// ?î’•????îŒ–
 	DeathAction(pActPet2);
 	pActPet2 = NULL;
-	// ?şÎ???????§k????
+	// ?î’•???????îœ±????
 	ItemMixPetNo = -1;
 
 	// Robin 04/14 trade
 	DeathAction(pActMenuWnd4);
-#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
 	chatRoomBtn = 0;
 	assentFlag = FALSE;
 	DeathAction( pAssentWnd );
@@ -9186,8 +9186,8 @@ void DeathMenuAction2(void)
 	pSetRoomWnd = NULL;
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-	//Çå³ıËùÊ¹ÓÃAction
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+	//æ¸…é™¤æ‰€ä½¿ç”¨Action
 	DeathAction(SecondTradeWnd);
 	SecondTradeWnd = NULL;
 	DeathAction(SecondActPet);
@@ -9195,7 +9195,7 @@ void DeathMenuAction2(void)
 	DeathAction(TradeTalkWnd);
 	TradeTalkWnd = NULL;
 #endif
-	//ÊÓ´°ÏûÃğÊ±»¹Ô­Éè¶¨
+	//è§†çª—æ¶ˆç­æ—¶è¿˜åŸè®¾å®š
 	Tradeflag = false;
 	pActMenuWnd4 = NULL;
 	DeathAction(pActPet3);
@@ -9244,28 +9244,28 @@ void InitMenu(void)
 	albumWndNo = 0;
 	// ?????
 	for (i = 0; i < TASK_BAR; i++) taskBarFontNo[i] = -2;
-	// ¡P¥f???????
+	// î“–î™¬???????
 	for (i = 0; i < MENU_BTL_RESULT_0; i++) resultWndFontNo[i] = -2;
 	// ??????
 	MenuToggleFlag = 0;
 #ifdef _ITEM_JIGSAW 
 	JigsawIdx = 0;
 #endif
-#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				//ROG ADD å¯†è¯­é¢‘é“
 	MultiTells = FALSE;
 #endif
 
-	// ??????????úÇ??¢D?
+	// ??????????îŒ–??î”ª?
 	DeathMenuAction();
-	// ??????????úÇ??¢D?
+	// ??????????îŒ–??î”ª?
 	DeathMenuAction2();
 	// ???????????
 	mouse.itemNo = -1;
-	// ????¡k¢‘§k????
+	// ????î“±î•¶îœ±????
 	itemNo = -1;
-	// ¡k¢‘????ûöüÓ???
+	// î“±î•¶????î£î???
 	jujutuNo = -1;
-	// ?şÎ???§k????
+	// ?î’•???îœ±????
 	ItemMixPetNo = -1;
 #ifdef __AI
 	void AI_CloseWnd();
@@ -9278,29 +9278,29 @@ void InitMenu2(void)
 {
 	// ??????
 	MenuToggleFlag = 0;
-	// ??????????úÇ??¢D?
+	// ??????????îŒ–??î”ª?
 	DeathMenuAction();
-	// ??????????úÇ??¢D?
+	// ??????????îŒ–??î”ª?
 	DeathMenuAction2();
 	// ???????????
 	mouse.itemNo = -1;
-	// ????¡k¢‘§k????
+	// ????î“±î•¶îœ±????
 	itemNo = -1;
-	// ¡k¢‘????ûöüÓ???
+	// î“±î•¶????î£î???
 	jujutuNo = -1;
-	// ¡P¥f???????????
+	// î“–î™¬???????????
 	BattleResultWndFlag = FALSE;
 
 }
 
-// ????üÒ??????? *******************************************************/
+// ????î??????? *******************************************************/
 BOOL CheckMenuFlag(void)
 {
 	BOOL flag = FALSE;
 
 	// ??????
 	if (MenuToggleFlag != 0) flag = TRUE;
-	// ¡P¥f???????????
+	// î“–î™¬???????????
 	if (BattleResultWndFlag >= 1) flag = TRUE;
 	// ?????????????????
 	if (MapWmdFlagBak >= TRUE) flag = TRUE;
@@ -9328,42 +9328,42 @@ void CleanSMS()
 
 
 #ifdef _AIDENGLU_
-BOOL ×Ô¶¯µÇÂ½´°¿Ú = FALSE;
-ACTION *p×Ô¶¯µÇÂ½´°¿Ú = NULL;
-ACTION * ·½Ïò¶¯×÷;
-ACTION * ÈËÎï¶¯×÷;
+BOOL è‡ªåŠ¨ç™»é™†çª—å£ = FALSE;
+ACTION *pè‡ªåŠ¨ç™»é™†çª—å£ = NULL;
+ACTION * æ–¹å‘åŠ¨ä½œ;
+ACTION * äººç‰©åŠ¨ä½œ;
 extern struct gameserver gmsv[];
 extern struct gamegroup  gmgroup[];
-void ×Ô¶¯µÇÂ½´°¿Ú»Øµ÷()
+void è‡ªåŠ¨ç™»é™†çª—å£å›è°ƒ()
 {
-	static int ·½Ïò´°¿ÚÊÇ·ñ´ò¿ª;
+	static int æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€;
 	static int btnId[15], btnState[15];
 	static int x = 0, y = 0;
 	static DWORD dwPressTime;
 	static char msg[][8] = {
-		"¶Ó³¤",
-		"¶ÓÔ±",
-		"µ¥ÈË"
+		"é˜Ÿé•¿",
+		"é˜Ÿå‘˜",
+		"å•äºº"
 	};
 	static char  chardir[][8] = {
-		"ÏÂ",
-		"×óÏÂ",
-		"×ó",
-		"×óÉÏ",
-		"ÉÏ",
-		"ÓÒÉÏ",
-		"ÓÒ",
-		"ÓÒÏÂ"
+		"ä¸‹",
+		"å·¦ä¸‹",
+		"å·¦",
+		"å·¦ä¸Š",
+		"ä¸Š",
+		"å³ä¸Š",
+		"å³",
+		"å³ä¸‹"
 	};
-	if (p×Ô¶¯µÇÂ½´°¿Ú == NULL){
-		·½Ïò´°¿ÚÊÇ·ñ´ò¿ª = FALSE;
-		·½Ïò¶¯×÷ = NULL;
-		ÈËÎï¶¯×÷ = NULL;
+	if (pè‡ªåŠ¨ç™»é™†çª—å£ == NULL){
+		æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€ = FALSE;
+		æ–¹å‘åŠ¨ä½œ = NULL;
+		äººç‰©åŠ¨ä½œ = NULL;
 		int w = 412;
 		int h = 301;
 		x = (lpDraw->xSize - w) / 2;
 		y = (lpDraw->ySize - h) / 2;
-		p×Ô¶¯µÇÂ½´°¿Ú = MakeWindowDisp(x, y, w, h, 55241, -1, FALSE);
+		pè‡ªåŠ¨ç™»é™†çª—å£ = MakeWindowDisp(x, y, w, h, 55241, -1, FALSE);
 		for (int i = 0; i < 14; i++){
 			btnId[i] = -2;
 			if (i < 10)
@@ -9372,181 +9372,181 @@ void ×Ô¶¯µÇÂ½´°¿Ú»Øµ÷()
 		dwPressTime = 0;
 	}
 	else{
-		if (p×Ô¶¯µÇÂ½´°¿Ú->hp >= 1){
+		if (pè‡ªåŠ¨ç™»é™†çª—å£->hp >= 1){
 			if (joy_trg[0] & JOY_ESC){
-				×Ô¶¯µÇÂ½´°¿Ú = FALSE;
-				DeathAction(p×Ô¶¯µÇÂ½´°¿Ú);
-				DeathAction(·½Ïò¶¯×÷);
-				DeathAction(ÈËÎï¶¯×÷);
-				ÈËÎï¶¯×÷ = NULL;
-				·½Ïò´°¿ÚÊÇ·ñ´ò¿ª = FALSE;
-				·½Ïò¶¯×÷ = NULL;
-				p×Ô¶¯µÇÂ½´°¿Ú = NULL;
+				è‡ªåŠ¨ç™»é™†çª—å£ = FALSE;
+				DeathAction(pè‡ªåŠ¨ç™»é™†çª—å£);
+				DeathAction(æ–¹å‘åŠ¨ä½œ);
+				DeathAction(äººç‰©åŠ¨ä½œ);
+				äººç‰©åŠ¨ä½œ = NULL;
+				æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€ = FALSE;
+				æ–¹å‘åŠ¨ä½œ = NULL;
+				pè‡ªåŠ¨ç™»é™†çª—å£ = NULL;
 				actBtn = 0;
 				return;
 			}
 			if (dwPressTime){
 				if (TimeGetTime() > (dwPressTime + 100)){
 					dwPressTime = 0;
-					if (btnState[0] == 1){//´óÇø¼õ
+					if (btnState[0] == 1){//å¤§åŒºå‡
 						btnState[0] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.´óÇø--;
-							if (PcLanded.´óÇø < 0){
-								PcLanded.´óÇø = 18;
+							PcLanded.å¤§åŒº--;
+							if (PcLanded.å¤§åŒº < 0){
+								PcLanded.å¤§åŒº = 18;
 							}
-							if (gmgroup[PcLanded.´óÇø].used){
+							if (gmgroup[PcLanded.å¤§åŒº].used){
 								break;
 							}
 						}
 					}
-					if (btnState[1] == 1){//´óÇø¼Ó
+					if (btnState[1] == 1){//å¤§åŒºåŠ 
 						btnState[1] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.´óÇø++;
-							if (PcLanded.´óÇø > 18){
-								PcLanded.´óÇø = 0;
+							PcLanded.å¤§åŒº++;
+							if (PcLanded.å¤§åŒº > 18){
+								PcLanded.å¤§åŒº = 0;
 							}
-							if (gmgroup[PcLanded.´óÇø].used){
+							if (gmgroup[PcLanded.å¤§åŒº].used){
 								break;
 							}
 						}
 					}
 
-					if (btnState[2] == 1){//Ğ¡Çø¼õ
+					if (btnState[2] == 1){//å°åŒºå‡
 						btnState[2] = 0;
 						play_se(217, 320, 240);
-						if (PcLanded.´óÇø != -1)
+						if (PcLanded.å¤§åŒº != -1)
 						{
 							while (TRUE){
-								PcLanded.Ğ¡Çø--;
-								if (PcLanded.Ğ¡Çø < 0){
-									PcLanded.Ğ¡Çø = gmgroup[PcLanded.´óÇø].num - 1;
+								PcLanded.å°åŒº--;
+								if (PcLanded.å°åŒº < 0){
+									PcLanded.å°åŒº = gmgroup[PcLanded.å¤§åŒº].num - 1;
 								}
-								if (gmsv[gmgroup[PcLanded.´óÇø].startindex + PcLanded.Ğ¡Çø].used){
+								if (gmsv[gmgroup[PcLanded.å¤§åŒº].startindex + PcLanded.å°åŒº].used){
 									break;
 								}
 							}
 						}
 					}
-					if (btnState[3] == 1){//Ğ¡Çø¼Ó
+					if (btnState[3] == 1){//å°åŒºåŠ 
 						btnState[3] = 0;
 						play_se(217, 320, 240);
-						if (PcLanded.´óÇø != -1)
+						if (PcLanded.å¤§åŒº != -1)
 						{
 							while (TRUE){
-								PcLanded.Ğ¡Çø++;
-								if (PcLanded.Ğ¡Çø >= gmgroup[PcLanded.´óÇø].num){
-									PcLanded.Ğ¡Çø = 0;
+								PcLanded.å°åŒº++;
+								if (PcLanded.å°åŒº >= gmgroup[PcLanded.å¤§åŒº].num){
+									PcLanded.å°åŒº = 0;
 								}
-								if (gmsv[gmgroup[PcLanded.´óÇø].startindex + PcLanded.Ğ¡Çø].used){
+								if (gmsv[gmgroup[PcLanded.å¤§åŒº].startindex + PcLanded.å°åŒº].used){
 									break;
 								}
 							}
 						}
 					}
-					if (btnState[4] == 1){//¶ÓÄ£¼õ
+					if (btnState[4] == 1){//é˜Ÿæ¨¡å‡
 						btnState[4] = 0;
 						play_se(217, 320, 240);
-						PcLanded.¶ÓÄ£--;
-						if (PcLanded.¶ÓÄ£ < 0){
-							PcLanded.¶ÓÄ£ = 2;
+						PcLanded.é˜Ÿæ¨¡--;
+						if (PcLanded.é˜Ÿæ¨¡ < 0){
+							PcLanded.é˜Ÿæ¨¡ = 2;
 						}
-						if (PcLanded.¶ÓÄ£ == 0 || PcLanded.¶ÓÄ£ == 2){
-							PcLanded.ÊÇ·ñ×Ô¶¯º°»° = FALSE;
+						if (PcLanded.é˜Ÿæ¨¡ == 0 || PcLanded.é˜Ÿæ¨¡ == 2){
+							PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯ = FALSE;
 						}
-						if (PcLanded.¶ÓÄ£ == 1){
-							PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ = FALSE;
+						if (PcLanded.é˜Ÿæ¨¡ == 1){
+							PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ = FALSE;
 						}
 					}
-					if (btnState[5] == 1){//¶ÓÄ£¼Ó
+					if (btnState[5] == 1){//é˜Ÿæ¨¡åŠ 
 						btnState[5] = 0;
 						play_se(217, 320, 240);
-						PcLanded.¶ÓÄ£++;
-						if (PcLanded.¶ÓÄ£ > 2){
-							PcLanded.¶ÓÄ£ = 0;
+						PcLanded.é˜Ÿæ¨¡++;
+						if (PcLanded.é˜Ÿæ¨¡ > 2){
+							PcLanded.é˜Ÿæ¨¡ = 0;
 						}
-						if (PcLanded.¶ÓÄ£ == 0 || PcLanded.¶ÓÄ£ == 2){
-							PcLanded.ÊÇ·ñ×Ô¶¯º°»° = FALSE;
+						if (PcLanded.é˜Ÿæ¨¡ == 0 || PcLanded.é˜Ÿæ¨¡ == 2){
+							PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯ = FALSE;
 						}
-						if (PcLanded.¶ÓÄ£ == 1){
-							PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ = FALSE;
+						if (PcLanded.é˜Ÿæ¨¡ == 1){
+							PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ = FALSE;
 						}
 					}
-					if (btnState[6] == 1){//½ÇÉ«¼õ
+					if (btnState[6] == 1){//è§’è‰²å‡
 						btnState[6] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.ÈËÎï--;
-							if (PcLanded.ÈËÎï < 0){
-								PcLanded.ÈËÎï = 3;
+							PcLanded.äººç‰©--;
+							if (PcLanded.äººç‰© < 0){
+								PcLanded.äººç‰© = 3;
 							}
-							if (PcLanded.µÇÂ½ÈËÎïÃû³Æ[PcLanded.ÈËÎï][0]) break;
+							if (PcLanded.ç™»é™†äººç‰©åç§°[PcLanded.äººç‰©][0]) break;
 						}
 					}
-					if (btnState[7] == 1){//½ÇÉ«¼Ó
+					if (btnState[7] == 1){//è§’è‰²åŠ 
 						btnState[7] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.ÈËÎï++;
-							if (PcLanded.ÈËÎï > 3){
-								PcLanded.ÈËÎï = 0;
+							PcLanded.äººç‰©++;
+							if (PcLanded.äººç‰© > 3){
+								PcLanded.äººç‰© = 0;
 							}
-							if (PcLanded.µÇÂ½ÈËÎïÃû³Æ[PcLanded.ÈËÎï][0]) break;
+							if (PcLanded.ç™»é™†äººç‰©åç§°[PcLanded.äººç‰©][0]) break;
 						}
 					}
-					if (btnState[8] == 1){//È·¶¨
+					if (btnState[8] == 1){//ç¡®å®š
 						btnState[8] = 0;
 						play_se(217, 320, 240);
-						DeathAction(p×Ô¶¯µÇÂ½´°¿Ú);
-						p×Ô¶¯µÇÂ½´°¿Ú = NULL;
-						×Ô¶¯µÇÂ½´°¿Ú = FALSE;
-						if (·½Ïò¶¯×÷){
-							DeathAction(·½Ïò¶¯×÷);
-							·½Ïò¶¯×÷ = NULL;
-							DeathAction(ÈËÎï¶¯×÷);
-							ÈËÎï¶¯×÷ = NULL;
+						DeathAction(pè‡ªåŠ¨ç™»é™†çª—å£);
+						pè‡ªåŠ¨ç™»é™†çª—å£ = NULL;
+						è‡ªåŠ¨ç™»é™†çª—å£ = FALSE;
+						if (æ–¹å‘åŠ¨ä½œ){
+							DeathAction(æ–¹å‘åŠ¨ä½œ);
+							æ–¹å‘åŠ¨ä½œ = NULL;
+							DeathAction(äººç‰©åŠ¨ä½œ);
+							äººç‰©åŠ¨ä½œ = NULL;
 						}
 						extern short actBtn;
 						actBtn = 0;
 						return;
 					}
-					if (btnState[9] == 1){//È¡Ïû
+					if (btnState[9] == 1){//å–æ¶ˆ
 						btnState[9] = 0;
 						play_se(217, 320, 240);
-						DeathAction(p×Ô¶¯µÇÂ½´°¿Ú);
-						p×Ô¶¯µÇÂ½´°¿Ú = NULL;
-						×Ô¶¯µÇÂ½´°¿Ú = FALSE;
-						if (·½Ïò¶¯×÷){
-							DeathAction(·½Ïò¶¯×÷);
-							·½Ïò¶¯×÷ = NULL;
-							DeathAction(ÈËÎï¶¯×÷);
-							ÈËÎï¶¯×÷ = NULL;
+						DeathAction(pè‡ªåŠ¨ç™»é™†çª—å£);
+						pè‡ªåŠ¨ç™»é™†çª—å£ = NULL;
+						è‡ªåŠ¨ç™»é™†çª—å£ = FALSE;
+						if (æ–¹å‘åŠ¨ä½œ){
+							DeathAction(æ–¹å‘åŠ¨ä½œ);
+							æ–¹å‘åŠ¨ä½œ = NULL;
+							DeathAction(äººç‰©åŠ¨ä½œ);
+							äººç‰©åŠ¨ä½œ = NULL;
 						}
 						extern short actBtn;
 						actBtn = 0;
 						return;
 					}
-					if (btnState[10] == 1){//·½Ïò
+					if (btnState[10] == 1){//æ–¹å‘
 						btnState[10] = 0;
 						play_se(217, 320, 240);
-						DeathAction(·½Ïò¶¯×÷);
-						·½Ïò¶¯×÷ = NULL;
-						DeathAction(ÈËÎï¶¯×÷);
-						ÈËÎï¶¯×÷ = NULL;
-						·½Ïò´°¿ÚÊÇ·ñ´ò¿ª = FALSE;
+						DeathAction(æ–¹å‘åŠ¨ä½œ);
+						æ–¹å‘åŠ¨ä½œ = NULL;
+						DeathAction(äººç‰©åŠ¨ä½œ);
+						äººç‰©åŠ¨ä½œ = NULL;
+						æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€ = FALSE;
 					}
 				}
 			}
 			else{
 				for (int i = 0; i < 10; i++){
 					if (HitDispNo == btnId[i]){
-						if (i == 0 || i == 1) ShowBottomLineString(FONT_PAL_WHITE, "ÉèÖÃ´óÇø¡£");
-						if (i == 2 || i == 3) ShowBottomLineString(FONT_PAL_WHITE, "ÉèÖÃÏßÂ·,ĞèÉèÖÃ´óÇø·½¿ÉÉèÖÃ¡£");
-						if (i == 4 || i == 5) ShowBottomLineString(FONT_PAL_WHITE, "¶Ó³¤£º¿ÉÉè×Ô¶¯ÓöµĞ ¶ÓÔ±£º¿ÉÉèº°»°ºÍ×Ô¶¯×é¶Ó µ¥ÈË£º¿ÉÉè×Ô¶¯ÓöµĞ ps£ºÈËÎïµôÏßÖØµÇ×Ô¶¯¿ªÆôAIÄ£Ê½¡£");
-						if (i == 6 || i == 7) ShowBottomLineString(FONT_PAL_WHITE, "ÉèÖÃµÇÂ½ÈËÎï¡£");
+						if (i == 0 || i == 1) ShowBottomLineString(FONT_PAL_WHITE, "è®¾ç½®å¤§åŒºã€‚");
+						if (i == 2 || i == 3) ShowBottomLineString(FONT_PAL_WHITE, "è®¾ç½®çº¿è·¯,éœ€è®¾ç½®å¤§åŒºæ–¹å¯è®¾ç½®ã€‚");
+						if (i == 4 || i == 5) ShowBottomLineString(FONT_PAL_WHITE, "é˜Ÿé•¿ï¼šå¯è®¾è‡ªåŠ¨é‡æ•Œ é˜Ÿå‘˜ï¼šå¯è®¾å–Šè¯å’Œè‡ªåŠ¨ç»„é˜Ÿ å•äººï¼šå¯è®¾è‡ªåŠ¨é‡æ•Œ psï¼šäººç‰©æ‰çº¿é‡ç™»è‡ªåŠ¨å¼€å¯AIæ¨¡å¼ã€‚");
+						if (i == 6 || i == 7) ShowBottomLineString(FONT_PAL_WHITE, "è®¾ç½®ç™»é™†äººç‰©ã€‚");
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							dwPressTime = TimeGetTime();
 							btnState[i] = 1;
@@ -9562,123 +9562,123 @@ void ×Ô¶¯µÇÂ½´°¿Ú»Øµ÷()
 				}
 			}
 
-			extern int ×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
+			extern int è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
 			if (HitFontNo == btnId[10]){
-				ShowBottomLineString(FONT_PAL_WHITE, "µÇÂ½ÓÎÏ·ÖĞ¿É°´F9¿ªÆôºÍ¹Ø±Õ,¶ÓÔ±Ä£Ê½µÇÂ½ÓÎÏ·ºóº°»°¿É¹Ø±Õ¸Ã¹¦ÄÜÍ£Ö¹º°»°¡£");
+				ShowBottomLineString(FONT_PAL_WHITE, "ç™»é™†æ¸¸æˆä¸­å¯æŒ‰F9å¼€å¯å’Œå…³é—­,é˜Ÿå‘˜æ¨¡å¼ç™»é™†æ¸¸æˆåå–Šè¯å¯å…³é—­è¯¥åŠŸèƒ½åœæ­¢å–Šè¯ã€‚");
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (PcLanded.´óÇø != -1 && PcLanded.Ğ¡Çø != -1 && PcLanded.ÈËÎï != -1){
-						×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô = !×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô;
-						if (!×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô){
-							extern int ÊÇ·ñÖØµÇ×é¶Ó, ÊÇ·ñÖØµÇº°»°, ÊÇ·ñÖØ¿ªµÇ×é¶Ó_1;
-							ÊÇ·ñÖØµÇ×é¶Ó = FALSE;
-							ÊÇ·ñÖØµÇº°»° = FALSE;
-							ÊÇ·ñÖØ¿ªµÇ×é¶Ó_1 = FALSE;
+					if (PcLanded.å¤§åŒº != -1 && PcLanded.å°åŒº != -1 && PcLanded.äººç‰© != -1){
+						è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯ = !è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯;
+						if (!è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯){
+							extern int æ˜¯å¦é‡ç™»ç»„é˜Ÿ, æ˜¯å¦é‡ç™»å–Šè¯, æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ_1;
+							æ˜¯å¦é‡ç™»ç»„é˜Ÿ = FALSE;
+							æ˜¯å¦é‡ç™»å–Šè¯ = FALSE;
+							æ˜¯å¦é‡å¼€ç™»ç»„é˜Ÿ_1 = FALSE;
 						}
 					}
 					else{
-						StockChatBufferLine("Çë°Ñ´óÇø¡¢ÏßÂ·ºÍ½ÇÉ«Ñ¡Ôñºó²ÅÄÜ²Ù×÷£¡", FONT_PAL_RED);
+						StockChatBufferLine("è¯·æŠŠå¤§åŒºã€çº¿è·¯å’Œè§’è‰²é€‰æ‹©åæ‰èƒ½æ“ä½œï¼", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[12]){
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					ShowBottomLineString(FONT_PAL_WHITE, "¶Ó³¤ºÍµ¥ÈË¿ÉÉèÖÃ¸Ã¹¦ÄÜ¡£");
-					if (PcLanded.¶ÓÄ£ == 0 || PcLanded.¶ÓÄ£ == 2)
-						PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ = !PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ;
+					ShowBottomLineString(FONT_PAL_WHITE, "é˜Ÿé•¿å’Œå•äººå¯è®¾ç½®è¯¥åŠŸèƒ½ã€‚");
+					if (PcLanded.é˜Ÿæ¨¡ == 0 || PcLanded.é˜Ÿæ¨¡ == 2)
+						PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ = !PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ;
 					else{
-						PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ = FALSE;
-						StockChatBufferLine("ÓöµĞÄ£Ê½Ö»ÓĞ¶Ó³¤ºÍµ¥ÈË¿É¿ªÆô£¡", FONT_PAL_RED);
+						PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ = FALSE;
+						StockChatBufferLine("é‡æ•Œæ¨¡å¼åªæœ‰é˜Ÿé•¿å’Œå•äººå¯å¼€å¯ï¼", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[13]){
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					ShowBottomLineString(FONT_PAL_WHITE, "Ö»ÓĞ¶ÓÔ±¿ÉÉèÖÃ¸Ã¹¦ÄÜ¡£");
-					if (PcLanded.¶ÓÄ£ == 1)
-						PcLanded.ÊÇ·ñ×Ô¶¯º°»° = !PcLanded.ÊÇ·ñ×Ô¶¯º°»°;
+					ShowBottomLineString(FONT_PAL_WHITE, "åªæœ‰é˜Ÿå‘˜å¯è®¾ç½®è¯¥åŠŸèƒ½ã€‚");
+					if (PcLanded.é˜Ÿæ¨¡ == 1)
+						PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯ = !PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯;
 					else{
-						PcLanded.ÊÇ·ñ×Ô¶¯º°»° = FALSE;
-						StockChatBufferLine("×Ô¶¯º°»°Ö»ÓĞ¶ÓÔ±Ä£Ê½¿É¿ªÆô£¡", FONT_PAL_RED);
+						PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯ = FALSE;
+						StockChatBufferLine("è‡ªåŠ¨å–Šè¯åªæœ‰é˜Ÿå‘˜æ¨¡å¼å¯å¼€å¯ï¼", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[11]){
-				ShowBottomLineString(FONT_PAL_WHITE, "µôÏßÈËÎïµÇÂ½ºóÈËÎïµÄ·½Ïò¡£");
+				ShowBottomLineString(FONT_PAL_WHITE, "æ‰çº¿äººç‰©ç™»é™†åäººç‰©çš„æ–¹å‘ã€‚");
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (·½Ïò´°¿ÚÊÇ·ñ´ò¿ª){
-						·½Ïò´°¿ÚÊÇ·ñ´ò¿ª = FALSE;
-						if (·½Ïò¶¯×÷){
-							DeathAction(·½Ïò¶¯×÷);
-							·½Ïò¶¯×÷ = NULL;
-							DeathAction(ÈËÎï¶¯×÷);
-							ÈËÎï¶¯×÷ = NULL;
+					if (æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€){
+						æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€ = FALSE;
+						if (æ–¹å‘åŠ¨ä½œ){
+							DeathAction(æ–¹å‘åŠ¨ä½œ);
+							æ–¹å‘åŠ¨ä½œ = NULL;
+							DeathAction(äººç‰©åŠ¨ä½œ);
+							äººç‰©åŠ¨ä½œ = NULL;
 						}
 					}
-					else ·½Ïò´°¿ÚÊÇ·ñ´ò¿ª = TRUE;
+					else æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€ = TRUE;
 				}
 			}
-			int ·½ÏòÆ«ÒÆX = 0;
-			if (·½Ïò´°¿ÚÊÇ·ñ´ò¿ª) ·½ÏòÆ«ÒÆX = -90;
-			if (·½Ïò´°¿ÚÊÇ·ñ´ò¿ª){
-				if (!·½Ïò¶¯×÷){
-					·½Ïò¶¯×÷ = MakeWindowDisp(607 + ·½ÏòÆ«ÒÆX, 147, 192, 148, 55242, -1, FALSE);
-					ÈËÎï¶¯×÷ = MakeAnimDisp(660 + ·½ÏòÆ«ÒÆX, 240, pc.graNo, 0);
-					ÈËÎï¶¯×÷->anim_ang = PcLanded.ÈËÎï·½Ïò;
-					pattern(ÈËÎï¶¯×÷, ANM_NOMAL_SPD, ANM_LOOP);
+			int æ–¹å‘åç§»X = 0;
+			if (æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€) æ–¹å‘åç§»X = -90;
+			if (æ–¹å‘çª—å£æ˜¯å¦æ‰“å¼€){
+				if (!æ–¹å‘åŠ¨ä½œ){
+					æ–¹å‘åŠ¨ä½œ = MakeWindowDisp(607 + æ–¹å‘åç§»X, 147, 192, 148, 55242, -1, FALSE);
+					äººç‰©åŠ¨ä½œ = MakeAnimDisp(660 + æ–¹å‘åç§»X, 240, pc.graNo, 0);
+					äººç‰©åŠ¨ä½œ->anim_ang = PcLanded.äººç‰©æ–¹å‘;
+					pattern(äººç‰©åŠ¨ä½œ, ANM_NOMAL_SPD, ANM_LOOP);
 					btnId[14] = -2;
 					btnState[10] = 0;
 				}
-				else if (·½Ïò¶¯×÷->hp >= 1){
-					StockDispBuffer(((WINDOW_DISP *)·½Ïò¶¯×÷->pYobi)->mx, ((WINDOW_DISP *)·½Ïò¶¯×÷->pYobi)->my, DISP_PRIO_MENU, 55242, 1);
-					PcLanded.ÈËÎï·½Ïò = ÈËÎï¶¯×÷->anim_ang;
-					btnId[14] = StockDispBuffer(((WINDOW_DISP *)·½Ïò¶¯×÷->pYobi)->mx - 55, ((WINDOW_DISP *)·½Ïò¶¯×÷->pYobi)->my - 90, DISP_PRIO_IME3, 26262 + btnState[10], 2);
+				else if (æ–¹å‘åŠ¨ä½œ->hp >= 1){
+					StockDispBuffer(((WINDOW_DISP *)æ–¹å‘åŠ¨ä½œ->pYobi)->mx, ((WINDOW_DISP *)æ–¹å‘åŠ¨ä½œ->pYobi)->my, DISP_PRIO_MENU, 55242, 1);
+					PcLanded.äººç‰©æ–¹å‘ = äººç‰©åŠ¨ä½œ->anim_ang;
+					btnId[14] = StockDispBuffer(((WINDOW_DISP *)æ–¹å‘åŠ¨ä½œ->pYobi)->mx - 55, ((WINDOW_DISP *)æ–¹å‘åŠ¨ä½œ->pYobi)->my - 90, DISP_PRIO_IME3, 26262 + btnState[10], 2);
 				}
 			}
-			StockDispBuffer(((WINDOW_DISP *)p×Ô¶¯µÇÂ½´°¿Ú->pYobi)->mx + ·½ÏòÆ«ÒÆX, ((WINDOW_DISP *)p×Ô¶¯µÇÂ½´°¿Ú->pYobi)->my, DISP_PRIO_MENU, 55241, 1);
-			btnId[0] = StockDispBuffer(x + 128 + ·½ÏòÆ«ÒÆX, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[0], 2);
-			btnId[1] = StockDispBuffer(x + 109 + ·½ÏòÆ«ÒÆX, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[1], 2);
+			StockDispBuffer(((WINDOW_DISP *)pè‡ªåŠ¨ç™»é™†çª—å£->pYobi)->mx + æ–¹å‘åç§»X, ((WINDOW_DISP *)pè‡ªåŠ¨ç™»é™†çª—å£->pYobi)->my, DISP_PRIO_MENU, 55241, 1);
+			btnId[0] = StockDispBuffer(x + 128 + æ–¹å‘åç§»X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[0], 2);
+			btnId[1] = StockDispBuffer(x + 109 + æ–¹å‘åç§»X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[1], 2);
 
-			btnId[2] = StockDispBuffer(x + 273 + ·½ÏòÆ«ÒÆX, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[2], 2);
-			btnId[3] = StockDispBuffer(x + 254 + ·½ÏòÆ«ÒÆX, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[3], 2);
+			btnId[2] = StockDispBuffer(x + 273 + æ–¹å‘åç§»X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[2], 2);
+			btnId[3] = StockDispBuffer(x + 254 + æ–¹å‘åç§»X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[3], 2);
 
-			btnId[4] = StockDispBuffer(x + 128 + ·½ÏòÆ«ÒÆX, y + 92 + 106, DISP_PRIO_IME3, 26064 + btnState[4], 2);
-			btnId[5] = StockDispBuffer(x + 109 + ·½ÏòÆ«ÒÆX, y + 107 + 107, DISP_PRIO_IME3, 26066 + btnState[5], 2);
+			btnId[4] = StockDispBuffer(x + 128 + æ–¹å‘åç§»X, y + 92 + 106, DISP_PRIO_IME3, 26064 + btnState[4], 2);
+			btnId[5] = StockDispBuffer(x + 109 + æ–¹å‘åç§»X, y + 107 + 107, DISP_PRIO_IME3, 26066 + btnState[5], 2);
 
-			btnId[6] = StockDispBuffer(x + 128 + ·½ÏòÆ«ÒÆX, y + 92 + 142, DISP_PRIO_IME3, 26064 + btnState[6], 2);
-			btnId[7] = StockDispBuffer(x + 109 + ·½ÏòÆ«ÒÆX, y + 107 + 143, DISP_PRIO_IME3, 26066 + btnState[7], 2);
+			btnId[6] = StockDispBuffer(x + 128 + æ–¹å‘åç§»X, y + 92 + 142, DISP_PRIO_IME3, 26064 + btnState[6], 2);
+			btnId[7] = StockDispBuffer(x + 109 + æ–¹å‘åç§»X, y + 107 + 143, DISP_PRIO_IME3, 26066 + btnState[7], 2);
 
-			btnId[8] = StockDispBuffer(x + 207 + ·½ÏòÆ«ÒÆX, y + 152, DISP_PRIO_IME3, 26262 + btnState[8], 2);
-			btnId[9] = StockDispBuffer(x + 207 + ·½ÏòÆ«ÒÆX, y + 152, DISP_PRIO_IME3, 26264 + btnState[9], 2);
+			btnId[8] = StockDispBuffer(x + 207 + æ–¹å‘åç§»X, y + 152, DISP_PRIO_IME3, 26262 + btnState[8], 2);
+			btnId[9] = StockDispBuffer(x + 207 + æ–¹å‘åç§»X, y + 152, DISP_PRIO_IME3, 26264 + btnState[9], 2);
 
 			char moji[256];
-			if (PcLanded.´óÇø != -1){
-				CenteringStr(gmgroup[PcLanded.´óÇø].name, moji, CHAR_NAME_LEN);
-				StockFontBuffer(x + 105 + ·½ÏòÆ«ÒÆX, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
+			if (PcLanded.å¤§åŒº != -1){
+				CenteringStr(gmgroup[PcLanded.å¤§åŒº].name, moji, CHAR_NAME_LEN);
+				StockFontBuffer(x + 105 + æ–¹å‘åç§»X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
 			}
-			if (PcLanded.¶ÓÄ£ != -1){
-				StockFontBuffer(x + 150 + ·½ÏòÆ«ÒÆX, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, msg[PcLanded.¶ÓÄ£], 0);
+			if (PcLanded.é˜Ÿæ¨¡ != -1){
+				StockFontBuffer(x + 150 + æ–¹å‘åç§»X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, msg[PcLanded.é˜Ÿæ¨¡], 0);
 			}
-			if (PcLanded.ÈËÎï != -1){
-				CenteringStr(PcLanded.µÇÂ½ÈËÎïÃû³Æ[PcLanded.ÈËÎï], moji, CHAR_NAME_LEN);
-				StockFontBuffer(x + 105 + ·½ÏòÆ«ÒÆX, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
+			if (PcLanded.äººç‰© != -1){
+				CenteringStr(PcLanded.ç™»é™†äººç‰©åç§°[PcLanded.äººç‰©], moji, CHAR_NAME_LEN);
+				StockFontBuffer(x + 105 + æ–¹å‘åç§»X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
 			}
 
-			if (×Ô¶¯µÇÂ½ÊÇ·ñ¿ªÆô)
-				btnId[10] = StockFontBuffer(x + 150 + ·½ÏòÆ«ÒÆX, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¿ªÆô", 2);
+			if (è‡ªåŠ¨ç™»é™†æ˜¯å¦å¼€å¯)
+				btnId[10] = StockFontBuffer(x + 150 + æ–¹å‘åç§»X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å¼€å¯", 2);
 			else
-				btnId[10] = StockFontBuffer(x + 150 + ·½ÏòÆ«ÒÆX, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø±Õ", 2);
-			if (PcLanded.Ğ¡Çø != -1){
-				StockFontBuffer(x + 305 + ·½ÏòÆ«ÒÆX, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmsv[gmgroup[PcLanded.´óÇø].startindex + PcLanded.Ğ¡Çø].name, 0);
+				btnId[10] = StockFontBuffer(x + 150 + æ–¹å‘åç§»X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³é—­", 2);
+			if (PcLanded.å°åŒº != -1){
+				StockFontBuffer(x + 305 + æ–¹å‘åç§»X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmsv[gmgroup[PcLanded.å¤§åŒº].startindex + PcLanded.å°åŒº].name, 0);
 			}
-			btnId[11] = StockFontBuffer(x + 320 + ·½ÏòÆ«ÒÆX, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, chardir[PcLanded.ÈËÎï·½Ïò], 2);
-			if (PcLanded.ÊÇ·ñ×Ô¶¯ÓöµĞ)
-				btnId[12] = StockFontBuffer(x + 320 + ·½ÏòÆ«ÒÆX, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¿ªÆô", 2);
+			btnId[11] = StockFontBuffer(x + 320 + æ–¹å‘åç§»X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, chardir[PcLanded.äººç‰©æ–¹å‘], 2);
+			if (PcLanded.æ˜¯å¦è‡ªåŠ¨é‡æ•Œ)
+				btnId[12] = StockFontBuffer(x + 320 + æ–¹å‘åç§»X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å¼€å¯", 2);
 			else
-				btnId[12] = StockFontBuffer(x + 320 + ·½ÏòÆ«ÒÆX, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø±Õ", 2);
-			if (PcLanded.ÊÇ·ñ×Ô¶¯º°»°)
-				btnId[13] = StockFontBuffer(x + 320 + ·½ÏòÆ«ÒÆX, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¿ªÆô", 2);
+				btnId[12] = StockFontBuffer(x + 320 + æ–¹å‘åç§»X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³é—­", 2);
+			if (PcLanded.æ˜¯å¦è‡ªåŠ¨å–Šè¯)
+				btnId[13] = StockFontBuffer(x + 320 + æ–¹å‘åç§»X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å¼€å¯", 2);
 			else
-				btnId[13] = StockFontBuffer(x + 320 + ·½ÏòÆ«ÒÆX, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¹Ø±Õ", 2);
+				btnId[13] = StockFontBuffer(x + 320 + æ–¹å‘åç§»X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "å…³é—­", 2);
 		}
 	}
 }
@@ -9712,15 +9712,15 @@ void MenuProc(void)
 	}
 #endif
 #ifdef _AIDENGLU_
-	if (×Ô¶¯µÇÂ½´°¿Ú){
-		×Ô¶¯µÇÂ½´°¿Ú»Øµ÷();
+	if (è‡ªåŠ¨ç™»é™†çª—å£){
+		è‡ªåŠ¨ç™»é™†çª—å£å›è°ƒ();
 	}
 #endif
 #ifdef _AI_OTHER
 	if (AI_Other_State) AI_OtherProc();
 #endif
 
-#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				//ROG ADD å¯†è¯­é¢‘é“
 	if (MultiTells == TRUE)
 	{
 		SelectChar();
@@ -9750,29 +9750,29 @@ void MenuProc(void)
 
 	// ??????????????
 #ifdef __AI
-	if (joy_trg[0] & JOY_ESC && checkFieldMenuFlag() == FALSE && !AI_State&&!×Ô¶¯µÇÂ½´°¿Ú
+	if (joy_trg[0] & JOY_ESC && checkFieldMenuFlag() == FALSE && !AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£
 
 
 		){
 #else
 	if( joy_trg[ 0 ] & JOY_ESC && checkFieldMenuFlag() == FALSE ){
 #endif
-		// ?????????§ó??ş†??
+		// ?????????î°??î¡Š??
 		if (GetImeString() == NULL){
 			// ???????
 			if (MenuToggleFlag != 0 || BattleResultWndFlag >= 1){
 				MenuToggleFlag = 0;
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ???????????
 				mouse.itemNo = -1;
-				// ????¡k¢‘§k????
+				// ????î“±î•¶îœ±????
 				itemNo = -1;
-				// ¡k¢‘????ûöüÓ???
+				// î“±î•¶????î£î???
 				jujutuNo = -1;
-				// ????????üÒ????
+				// ????????î????
 				if (MapWmdFlagBak != TRUE){
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 				}
 			}
@@ -9784,24 +9784,24 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					// ????
 					for (i = 0; i < MENU_SYSTEM_0; i++) systemWndFontNo[i] = -2;
-					systemWndNo = 0;		// ?????§k????
+					systemWndNo = 0;		// ?????îœ±????
 
 					// ????????
 					if (MenuToggleFlag & JOY_ESC){
-						MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+						MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 						MenuToggleFlag |= JOY_ESC;	// ?????
-						// ¡P¥f???????????
+						// î“–î™¬???????????
 						BattleResultWndFlag = FALSE;
 						// ????????
 						play_se(202, 320, 240);
 					}
 					else{
-						// ?????¨–???
+						// ?????î¼???
 						play_se(203, 320, 240);
 					}
 				}
 			}
-			// ??????????úÇ
+			// ??????????îŒ–
 			DeathMenuAction();
 			DeathMenuAction2();
 			// ????????
@@ -9810,7 +9810,7 @@ void MenuProc(void)
 	}
 	// ??????????????
 #ifdef __AI
-	if (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[3] && !AI_State&&!×Ô¶¯µÇÂ½´°¿Ú
+	if (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[3] && !AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£
 			
 		){
 #else
@@ -9825,23 +9825,23 @@ void MenuProc(void)
 			MenuToggleFlag ^= JOY_ESC;	// ?????
 			// ????
 			for (i = 0; i < MENU_SYSTEM_0; i++) systemWndFontNo[i] = -2;
-			systemWndNo = 0;		// ?????§k????
-			// ??????????úÇ
+			systemWndNo = 0;		// ?????îœ±????
+			// ??????????îŒ–
 			DeathMenuAction();
 			// ????????
 			saveUserSetting();
 
 			// ????????
 			if (MenuToggleFlag & JOY_ESC){
-				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 				MenuToggleFlag |= JOY_ESC;	// ?????
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 #ifdef _BATTLESKILL
@@ -9851,7 +9851,7 @@ void MenuProc(void)
 
 	// ??????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_S && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_S && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[1]))
 		
 
@@ -9860,7 +9860,7 @@ void MenuProc(void)
 	if( ( joy_trg[ 0 ] & JOY_CTRL_S && GetImeString() == NULL ) 
 		|| ( TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[ 1 ] ) ){ 
 #endif
-		// ¡P¥f???
+		// î“–î™¬???
 		if (ProcNo == PROC_BATTLE){
 			// ???
 			play_se(220, 320, 240);
@@ -9872,22 +9872,22 @@ void MenuProc(void)
 			for (i = 0; i < MENU_STATUS_0; i++) statusWndFontNo[i] = -2;
 			for (i = 0; i < MENU_STATUS_0; i++) statusWndBtnFlag[i] = 0;
 			statusWndNo = 0;
-			// ??????????úÇ
+			// ??????????îŒ–
 			DeathMenuAction();
 			// ????????
 			saveUserSetting();
 
 			// ????????
 			if (MenuToggleFlag & JOY_CTRL_S){
-				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 				MenuToggleFlag |= JOY_CTRL_S;	// ??????????
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 		}
@@ -9895,13 +9895,13 @@ void MenuProc(void)
 
 	// Nuke 0413: Trade
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && joy_trg[0] & JOY_CTRL_T && GetImeString() == NULL) {
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && joy_trg[0] & JOY_CTRL_T && GetImeString() == NULL) {
 #else
 	if ( joy_trg[ 0 ] & JOY_CTRL_T && GetImeString() == NULL ) {
 #endif
 		joy_trg[0] &= ~JOY_CTRL_T;
 
-		// ¡P¥f???
+		// î“–î™¬???
 		if (ProcNo == PROC_BATTLE){
 			// ???
 			play_se(220, 320, 240);
@@ -9927,24 +9927,24 @@ void MenuProc(void)
 			if (MenuToggleFlag & JOY_CTRL_T){
 				MenuToggleFlag &= 0;
 				MenuToggleFlag |= JOY_CTRL_T;	// ??????????
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 #else
 			int dx, dy;
 			int flag;
 
-			// û«§Æ?şÕş????????£??
+			// î˜î¤?î’œî¡¡????????î—•??
 			getRouteData(pc.dir, &dx, &dy);
 			flag = checkCharObjPoint(nowGx + dx, nowGy + dy, CHAROBJ_TYPE_USER_NPC);
-			// ?????¦V??????şÕş???????
+			// ?????îš¼??????î’œî¡¡???????
 			if (partyModeFlag == 0 && flag == TRUE && eventWarpSendFlag == 0 && eventEnemySendFlag == 0
 				&& sendEnFlag == 0 && tradeFlag == 0
 #ifdef _STREET_VENDOR
@@ -9955,7 +9955,7 @@ void MenuProc(void)
 #endif
 				)
 			{
-				if (!(MenuToggleFlag & JOY_CTRL_T))// ?ûÍ?şÉ
+				if (!(MenuToggleFlag & JOY_CTRL_T))// ?îº?î’
 				{
 					if (bNewServer)
 						lssproto_TD_send(sockfd, "D|D");
@@ -9965,11 +9965,11 @@ void MenuProc(void)
 			}
 #ifdef _STREET_VENDOR
 			if (pc.iOnStreetVendor == 1)
-				StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃ½øĞĞ½»Ò×", FONT_PAL_RED);
+				StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—è¿›è¡Œäº¤æ˜“", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
+				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
 #endif
 			play_se(217, 320, 240);	// ?????
 
@@ -9980,7 +9980,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_P && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_P && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[2]))
 			
 
@@ -9989,7 +9989,7 @@ void MenuProc(void)
 	if( ( joy_trg[ 0 ] & JOY_CTRL_P && GetImeString() == NULL )
 		|| ( TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[ 2 ] ) ){ 
 #endif
-		// ¡P¥f????????????üÒ???
+		// î“–î™¬????????????î???
 		if (ProcNo == PROC_BATTLE){
 			// ???
 			play_se(220, 320, 240);
@@ -9999,24 +9999,24 @@ void MenuProc(void)
 				MenuToggleFlag ^= JOY_CTRL_P;	// CTRL + P ??
 				// ???
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
-				petWndNo = 0;		// ?????§k????
+				petWndNo = 0;		// ?????îœ±????
 
-				// ??????????úÇ
+				// ??????????îŒ–
 				DeathMenuAction();
 				// ????????
 				saveUserSetting();
 
 				// ????????
 				if (MenuToggleFlag & JOY_CTRL_P){
-					MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+					MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 					MenuToggleFlag |= JOY_CTRL_P;
-					// ¡P¥f???????????
+					// î“–î™¬???????????
 					BattleResultWndFlag = FALSE;
 					// ????????
 					play_se(202, 320, 240);
 				}
 				else{
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 				}
 			}
@@ -10024,7 +10024,7 @@ void MenuProc(void)
 	}
 	// ?????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_I && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_I && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[4]))
 				
 		){
@@ -10032,45 +10032,45 @@ void MenuProc(void)
 	if( ( joy_trg[ 0 ] & JOY_CTRL_I && GetImeString() == NULL ) 
 		|| ( TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[ 4 ] ) ){ 
 #endif
-		// ¡P¥f???
+		// î“–î™¬???
 		if (ProcNo == PROC_BATTLE){
 			// ???
 			play_se(220, 320, 240);
 		}
 		else{
 #ifdef _STREET_VENDOR
-			if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃÊ¹ÓÃµÀ¾ß", FONT_PAL_RED);
+			if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—ä½¿ç”¨é“å…·", FONT_PAL_RED);
 			else
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
+				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
 			else if (pc.iTheaterMode & 0x00000001)
-				StockChatBufferLine("Çë×¨ĞÄ¿´±íÑİ", FONT_PAL_RED);
+				StockChatBufferLine("è¯·ä¸“å¿ƒçœ‹è¡¨æ¼”", FONT_PAL_RED);
 			else
 #endif
 			{
 				MenuToggleFlag ^= JOY_CTRL_I;	// CTRL + I ??
-				// ????????§k????
+				// ????????îœ±????
 				for (i = 0; i < MENU_ITEM_0; i++) itemWndFontNo[i] = -2;
 				for (i = 0; i < MENU_ITEM_0; i++) itemWndBtnFlag[i] = 0;
 				itemWndNo = 0;
 				mouse.itemNo = -1;
 				itemWndDropGold = 0;
 
-				// ??????????úÇ
+				// ??????????îŒ–
 				if (BattleResultWndFlag >= 1) DeathMenuAction();
-				// ??????????úÇ
+				// ??????????îŒ–
 				DeathMenuAction2();
 				// ????????			
 				saveUserSetting();
 				// ????????
 				if (MenuToggleFlag & JOY_CTRL_I){
-					MenuToggleFlag &= ~JOY_CTRL_M;	// ??????????ı¤?
+					MenuToggleFlag &= ~JOY_CTRL_M;	// ??????????î?
 					MenuToggleFlag &= ~JOY_CTRL_T;
 					MenuToggleFlag &= ~JOY_B;
 					MenuToggleFlag |= JOY_CTRL_I;
-					// ¡P¥f???????????
+					// î“–î™¬???????????
 					BattleResultWndFlag = FALSE;
 					// ?????????
 					MapWmdFlagBak = FALSE;
@@ -10079,7 +10079,7 @@ void MenuProc(void)
 
 				}
 				else{
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 				}
 			}
@@ -10088,7 +10088,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_M && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_M && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[0])
 		|| (MapWmdFlagBak == TRUE && BattleResultWndFlag == FALSE && EncountFlag == FALSE && ProcNo == PROC_GAME && SubProcNo == 3				
 
@@ -10100,7 +10100,7 @@ void MenuProc(void)
 		|| ( MapWmdFlagBak == TRUE && BattleResultWndFlag == FALSE && EncountFlag == FALSE && ProcNo == PROC_GAME && SubProcNo == 3 )
 		){  
 #endif
-		// ¡P¥f???
+		// î“–î™¬???
 		if (ProcNo == PROC_BATTLE){
 			// ???
 			play_se(220, 320, 240);
@@ -10110,19 +10110,19 @@ void MenuProc(void)
 			MenuToggleFlag ^= JOY_CTRL_M;	// CTRL + M ??
 			// ???
 			for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
-			mapWndNo = 0;		// ?????§k????
+			mapWndNo = 0;		// ?????îœ±????
 
-			// ??????????úÇ
+			// ??????????îŒ–
 			if (BattleResultWndFlag >= 1) DeathMenuAction();
 			DeathMenuAction2();
 			// ????????
 			// ????????
 			if (MenuToggleFlag & JOY_CTRL_M){
-				MenuToggleFlag &= ~JOY_CTRL_I;	// ???????????ı¤?
+				MenuToggleFlag &= ~JOY_CTRL_I;	// ???????????î?
 				MenuToggleFlag &= ~JOY_CTRL_T;
 				MenuToggleFlag &= ~JOY_B;
 				MenuToggleFlag |= JOY_CTRL_M;
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ?????????
 				MapWmdFlagBak = FALSE;
@@ -10130,7 +10130,7 @@ void MenuProc(void)
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???	
+				// ?????î¼???	
 				play_se(203, 320, 240);
 			}
 		}
@@ -10138,7 +10138,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_E && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_E && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[5]))
 			
 		){
@@ -10155,26 +10155,26 @@ void MenuProc(void)
 			MenuToggleFlag ^= JOY_CTRL_E;	// CTRL + E ??
 			// ???
 			for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
-			mailWndNo = MAIL_WND_VIEW;	// ?????§k????
-			mailViewWndPageNo = 0;		// şúê???????????§k????
-			mailItemNo = -1;			// ??????????§k????
-			InitMailSendFlag();			// ?ıï?ûê??????
-			// ??????????úÇ
+			mailWndNo = MAIL_WND_VIEW;	// ?????îœ±????
+			mailViewWndPageNo = 0;		// î¡“îŒ¹???????????îœ±????
+			mailItemNo = -1;			// ??????????îœ±????
+			InitMailSendFlag();			// ?î‘˜?î—??????
+			// ??????????îŒ–
 			DeathMenuAction();
 			// ????????
 			saveUserSetting();
 
 			// ????????
 			if (MenuToggleFlag & JOY_CTRL_E){
-				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 				MenuToggleFlag |= JOY_CTRL_E;
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 #ifdef _BATTLESKILL
@@ -10185,7 +10185,7 @@ void MenuProc(void)
 
 	// ?????????
 #ifdef __AI
-	if (!AI_State&&!×Ô¶¯µÇÂ½´°¿Ú && ((joy_trg[0] & JOY_CTRL_A && GetImeString() == NULL)
+	if (!AI_State&&!è‡ªåŠ¨ç™»é™†çª—å£ && ((joy_trg[0] & JOY_CTRL_A && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[6]))
 	
 
@@ -10203,24 +10203,24 @@ void MenuProc(void)
 			MenuToggleFlag ^= JOY_CTRL_A;	// CTRL + A ??
 			// ???
 			for (i = 0; i < MENU_ALBUM_0; i++) albumWndFontNo[i] = -2;
-			mapWndNo = 0;		// ?????§k????
+			mapWndNo = 0;		// ?????îœ±????
 
-			// ??????????úÇ
+			// ??????????îŒ–
 			DeathMenuAction();
 			// ????????
 			saveUserSetting();
 
 			// ????????
 			if (MenuToggleFlag & JOY_CTRL_A){
-				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????úå?
+				MenuToggleFlag &= JOY_CTRL_I | JOY_CTRL_M;	// ?????????????????îŒ´?
 				MenuToggleFlag |= JOY_CTRL_A;
-				// ¡P¥f???????????
+				// î“–î™¬???????????
 				BattleResultWndFlag = FALSE;
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 			//}
@@ -10230,16 +10230,16 @@ void MenuProc(void)
 	}
 
 #ifdef _SA_LIAOTIAN_
-	static int ÁÄÌì×´Ì¬1=0;
-	static int ÁÄÌì×´Ì¬2=0;
-	static int ÁÄÌì×´Ì¬3=0;
-	char ÁÄÌìÌáÊ¾[128];
-	StockDispBuffer(785, 505, DISP_PRIO_IME3, 55260+ÁÄÌì×´Ì¬1, 1);
+	static int èŠå¤©çŠ¶æ€1=0;
+	static int èŠå¤©çŠ¶æ€2=0;
+	static int èŠå¤©çŠ¶æ€3=0;
+	char èŠå¤©æç¤º[128];
+	StockDispBuffer(785, 505, DISP_PRIO_IME3, 55260+èŠå¤©çŠ¶æ€1, 1);
 	if( MakeHitBox(785-10, 505-10,785+10,505+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(ÁÄÌìÌáÊ¾,"ÁÄÌìĞÅÏ¢ÉÏÀ­,µ±Ç°ÁÄÌìĞÅÏ¢Î»ÖÃ%d£¡",NowChatLine);
-		ShowBottomLineString(FONT_PAL_WHITE, ÁÄÌìÌáÊ¾);	
+		sprintf(èŠå¤©æç¤º,"èŠå¤©ä¿¡æ¯ä¸Šæ‹‰,å½“å‰èŠå¤©ä¿¡æ¯ä½ç½®%dï¼",NowChatLine);
+		ShowBottomLineString(FONT_PAL_WHITE, èŠå¤©æç¤º);	
 		if(mouse.state & MOUSE_LEFT_CRICK){
-			ÁÄÌì×´Ì¬1 = 1;
+			èŠå¤©çŠ¶æ€1 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				if(NowChatLine > NowMaxChatLine){
 					NowChatLine--;
@@ -10249,14 +10249,14 @@ void MenuProc(void)
 				}
 				play_se(203, 320, 240);
 			}
-		}else ÁÄÌì×´Ì¬1=0;
-	}else ÁÄÌì×´Ì¬1=0;
-	StockDispBuffer(785, 530, DISP_PRIO_IME3, 55262+ÁÄÌì×´Ì¬2, 1);
+		}else èŠå¤©çŠ¶æ€1=0;
+	}else èŠå¤©çŠ¶æ€1=0;
+	StockDispBuffer(785, 530, DISP_PRIO_IME3, 55262+èŠå¤©çŠ¶æ€2, 1);
 	if( MakeHitBox(785-10, 530-10,785+10,530+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(ÁÄÌìÌáÊ¾,"ÁÄÌìĞÅÏ¢ÏÂÀ­,µ±Ç°ÁÄÌìĞÅÏ¢Î»ÖÃ%d£¡",NowChatLine);
-		ShowBottomLineString(FONT_PAL_WHITE, ÁÄÌìÌáÊ¾);	
+		sprintf(èŠå¤©æç¤º,"èŠå¤©ä¿¡æ¯ä¸‹æ‹‰,å½“å‰èŠå¤©ä¿¡æ¯ä½ç½®%dï¼",NowChatLine);
+		ShowBottomLineString(FONT_PAL_WHITE, èŠå¤©æç¤º);	
 		if( (mouse.state & MOUSE_LEFT_CRICK)){
-			ÁÄÌì×´Ì¬2 = 1;
+			èŠå¤©çŠ¶æ€2 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				if(*ChatBuffer[ NowChatLine].buffer){
 					NowChatLine++;
@@ -10265,21 +10265,21 @@ void MenuProc(void)
 				}
 				play_se(203, 320, 240);
 			}
-		}else ÁÄÌì×´Ì¬2=0;
-	}else ÁÄÌì×´Ì¬2=0;
-	StockDispBuffer(785, 555, DISP_PRIO_IME3, 55264+ÁÄÌì×´Ì¬3, 1);
+		}else èŠå¤©çŠ¶æ€2=0;
+	}else èŠå¤©çŠ¶æ€2=0;
+	StockDispBuffer(785, 555, DISP_PRIO_IME3, 55264+èŠå¤©çŠ¶æ€3, 1);
 	if( MakeHitBox(785-10, 555-10,785+10,555+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(ÁÄÌìÌáÊ¾,"ÁÄÌìĞÅÏ¢Õı³£ÏÔÊ¾,µ±Ç°ÁÄÌìĞÅÏ¢Î»ÖÃ%d£¡",NowChatLine);
-		ShowBottomLineString(FONT_PAL_WHITE, ÁÄÌìÌáÊ¾);	
+		sprintf(èŠå¤©æç¤º,"èŠå¤©ä¿¡æ¯æ­£å¸¸æ˜¾ç¤º,å½“å‰èŠå¤©ä¿¡æ¯ä½ç½®%dï¼",NowChatLine);
+		ShowBottomLineString(FONT_PAL_WHITE, èŠå¤©æç¤º);	
 		if( (mouse.state & MOUSE_LEFT_CRICK)){
-			ÁÄÌì×´Ì¬3 = 1;
+			èŠå¤©çŠ¶æ€3 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				extern int NowChatLine_Bak;
 				NowChatLine=NowChatLine_Bak;
 				play_se(203, 320, 240);
 			}
-		}else ÁÄÌì×´Ì¬3=0;
-	}else ÁÄÌì×´Ì¬3=0;
+		}else èŠå¤©çŠ¶æ€3=0;
+	}else èŠå¤©çŠ¶æ€3=0;
 #endif
 #ifdef _EFFECT_MAP_
 	if(ProcNo==PROC_GAME){
@@ -10327,7 +10327,7 @@ void MenuProc(void)
 		){
 		int w = 7;
 		int h = 8;
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (systemWndNo){
 
 		case 0:	// ???? ??????
@@ -10352,7 +10352,7 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???????
 				if (HitFontNo == systemWndFontNo[0]){
-					// ??????úÇ
+					// ??????îŒ–
 #ifdef __PHONEMESSAGE
 					CleanSMS();
 #endif
@@ -10363,9 +10363,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				// ????¡@¤e??
+				// ????î“†î˜‹??
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					systemWndNo = 2;
@@ -10373,9 +10373,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				// ???¡@¤e??
+				// ???î“†î˜‹??
 				if (HitFontNo == systemWndFontNo[4]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					systemWndNo = 4;
@@ -10383,9 +10383,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				// ???¡@¤e??
+				// ???î“†î˜‹??
 				if (HitFontNo == systemWndFontNo[3]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					systemWndNo = 3;
@@ -10393,9 +10393,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				// ????¡@¤e??
+				// ????î“†î˜‹??
 				if (HitFontNo == systemWndFontNo[5]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					systemWndNo = 6;
@@ -10403,9 +10403,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				//Ô­µØµÇ³ö
+				//åŸåœ°ç™»å‡º
 				if (HitFontNo == systemWndFontNo[6]){
-					// ??????úÇ
+					// ??????îŒ–
 #ifdef __PHONEMESSAGE
 					CleanSMS();
 #endif
@@ -10417,21 +10417,21 @@ void MenuProc(void)
 
 					break;
 				}
-				// ¨–???
+				// î¼???
 				if (HitFontNo == systemWndFontNo[2]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ?????????¨–??
+					// ?????????î¼??
 					MenuToggleFlag ^= JOY_ESC;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					break;
 				}
 #ifdef __AI
-				//×Ô¶¯Õ½¶·Éè¶¨
+				//è‡ªåŠ¨æˆ˜æ–—è®¾å®š
 				if (HitFontNo == systemWndFontNo[7]){
-					// ??????úÇ
+					// ??????îŒ–
 					extern int AI_State;
 					AI_State = 1;
 					extern short actBtn;
@@ -10448,13 +10448,13 @@ void MenuProc(void)
 				if (HitFontNo == systemWndFontNo[24]){
 					if (AI == AI_SELECT){
 						AI = AI_NONE;
-						StockChatBufferLine("¹Ø±Õ£Á£ÉÄ£Ê½£¡", FONT_PAL_RED);
+						StockChatBufferLine("å…³é—­ï¼¡ï¼©æ¨¡å¼ï¼", FONT_PAL_RED);
 						pc.etcFlag &= (~PC_AI_MOD);
 						lssproto_FS_send(sockfd, pc.etcFlag);
 					}
 					else {
 						AI = AI_SELECT;
-						StockChatBufferLine("¿ªÆô£Á£ÉÄ£Ê½£¡", FONT_PAL_RED);
+						StockChatBufferLine("å¼€å¯ï¼¡ï¼©æ¨¡å¼ï¼", FONT_PAL_RED);
 						pc.etcFlag |= PC_AI_MOD;
 						lssproto_FS_send(sockfd, pc.etcFlag);
 					}
@@ -10465,7 +10465,7 @@ void MenuProc(void)
 				static BOOL stopBGMClicked = FALSE;
 				if (HitFontNo == systemWndFontNo[8]){
 					if (MuteFlag){
-						StockChatBufferLine("¿ªÆôÉùÒô£¡", FONT_PAL_RED);
+						StockChatBufferLine("å¼€å¯å£°éŸ³ï¼", FONT_PAL_RED);
 						MuteFlag = FALSE;
 						if (stopBGMClicked)
 						{
@@ -10474,7 +10474,7 @@ void MenuProc(void)
 					}
 					else{
 						stopBGMClicked = TRUE;
-						StockChatBufferLine("¹Ø±ÕÉùÒô£¡", FONT_PAL_RED);
+						StockChatBufferLine("å…³é—­å£°éŸ³ï¼", FONT_PAL_RED);
 						play_se(202, 320, 240);
 						stop_bgm();
 						MuteFlag = TRUE;				
@@ -10492,7 +10492,7 @@ void MenuProc(void)
 					MenuToggleFlag = 0;
 					DeathMenuAction2();
 					DeathMenuAction();
-					×Ô¶¯µÇÂ½´°¿Ú = TRUE;
+					è‡ªåŠ¨ç™»é™†çª—å£ = TRUE;
 					extern short actBtn;
 					actBtn = 1;
 					break;
@@ -10503,17 +10503,17 @@ void MenuProc(void)
 					pActMenuWnd = NULL;
 					MenuToggleFlag ^= JOY_ESC;
 #ifdef _CANCEL_FANTI
-					StockChatBufferLine("¹¦ÄÜ¿ª·¢ÖĞ£¡", FONT_PAL_RED);
+					StockChatBufferLine("åŠŸèƒ½å¼€å‘ä¸­ï¼", FONT_PAL_RED);
 					play_se(202, 320, 240);
 #else
-					if (·±Ìå¿ª¹Ø)
+					if (ç¹ä½“å¼€å…³)
 					{
-						·±Ìå¿ª¹Ø = FALSE;
-						StockChatBufferLine("ÇĞ»»¼òÌå£¡", FONT_PAL_RED);
+						ç¹ä½“å¼€å…³ = FALSE;
+						StockChatBufferLine("åˆ‡æ¢ç®€ä½“ï¼", FONT_PAL_RED);
 					}
 					else{
-						·±Ìå¿ª¹Ø = TRUE;
-						StockChatBufferLine("ÇĞ»»·±Ìå£¡", FONT_PAL_RED);
+						ç¹ä½“å¼€å…³ = TRUE;
+						StockChatBufferLine("åˆ‡æ¢ç¹ä½“ï¼", FONT_PAL_RED);
 					}
 					play_se(202, 320, 240);
 					break;
@@ -10524,11 +10524,11 @@ void MenuProc(void)
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					MenuToggleFlag ^= JOY_ESC;
-					ÓÒ¼ü¹¥»÷ = !ÓÒ¼ü¹¥»÷;
-					if (ÓÒ¼ü¹¥»÷)
-						StockChatBufferLine("¿ªÆôÓÒ¼ü¹¥»÷£¡", FONT_PAL_RED);
+					å³é”®æ”»å‡» = !å³é”®æ”»å‡»;
+					if (å³é”®æ”»å‡»)
+						StockChatBufferLine("å¼€å¯å³é”®æ”»å‡»ï¼", FONT_PAL_RED);
 					else
-						StockChatBufferLine("¹Ø±ÕÓÒ¼ü¹¥»÷£¡", FONT_PAL_RED);
+						StockChatBufferLine("å…³é—­å³é”®æ”»å‡»ï¼", FONT_PAL_RED);
 
 					play_se(202, 320, 240);
 					break;
@@ -10536,23 +10536,23 @@ void MenuProc(void)
 
 				if (HitFontNo == systemWndFontNo[23]){
 					play_se(202, 320, 240);
-					¾­Ñé¿ª¹Ø = !¾­Ñé¿ª¹Ø;
-					if (¾­Ñé¿ª¹Ø)
-						StockChatBufferLine("¿ªÆô¾­ÑéÏÔÊ¾£¡", FONT_PAL_RED);
+					ç»éªŒå¼€å…³ = !ç»éªŒå¼€å…³;
+					if (ç»éªŒå¼€å…³)
+						StockChatBufferLine("å¼€å¯ç»éªŒæ˜¾ç¤ºï¼", FONT_PAL_RED);
 					else
-						StockChatBufferLine("¹Ø±Õ¾­ÑéÏÔÊ¾£¡", FONT_PAL_RED);
+						StockChatBufferLine("å…³é—­ç»éªŒæ˜¾ç¤ºï¼", FONT_PAL_RED);
 
 					break;
 				}
 				if (HitFontNo == systemWndFontNo[22]){
 					play_se(202, 320, 240);
-					ÈËÎïÆÁ±Î¿ª¹Ø = !ÈËÎïÆÁ±Î¿ª¹Ø;
-					if (ÈËÎïÆÁ±Î¿ª¹Ø)
-						StockChatBufferLine("ÆÁ±ÎÖÜ±ßÈËÎï£¡", FONT_PAL_RED);
+					äººç‰©å±è”½å¼€å…³ = !äººç‰©å±è”½å¼€å…³;
+					if (äººç‰©å±è”½å¼€å…³)
+						StockChatBufferLine("å±è”½å‘¨è¾¹äººç‰©ï¼", FONT_PAL_RED);
 					else{
-						//extern void ÉèÖÃ¾²Ö¹µÄ¶¯×÷ÎªÕ¾Á¢( void );
-						//ÉèÖÃ¾²Ö¹µÄ¶¯×÷ÎªÕ¾Á¢();
-						StockChatBufferLine("ÏÔÊ¾ÖÜ±ßÈËÎï£¡", FONT_PAL_RED);
+						//extern void è®¾ç½®é™æ­¢çš„åŠ¨ä½œä¸ºç«™ç«‹( void );
+						//è®¾ç½®é™æ­¢çš„åŠ¨ä½œä¸ºç«™ç«‹();
+						StockChatBufferLine("æ˜¾ç¤ºå‘¨è¾¹äººç‰©ï¼", FONT_PAL_RED);
 					}
 
 
@@ -10566,7 +10566,7 @@ void MenuProc(void)
 						InitMenu2();
 					extern short HelpProcNo;
 					HelpProcNo = 0;
-					ÈÎÎñ²éÑ¯¿ª¹Ø=TRUE;
+					ä»»åŠ¡æŸ¥è¯¢å¼€å…³=TRUE;
 
 					break;
 				}
@@ -10607,76 +10607,76 @@ void MenuProc(void)
 #endif
 				break;
 			}
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 28;
 
-			// §ó?¤úû¨????????
+			// î°?î¸î•????????
 			y = pActMenuWnd->y + 54;
 #ifdef _CHAR_NEWLOGOUT
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    »Ø¼ÇÂ¼µã    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    å›è®°å½•ç‚¹    ", 2);	y += 34;//y += 40;
 #else
-			systemWndFontNo[ 0 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, 	"    µÇ    ³ö    ", 2 );	y += 34;//y += 40;
+			systemWndFontNo[ 0 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, 	"    ç™»    å‡º    ", 2 );	y += 34;//y += 40;
 #endif
-			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    Ô­µØµÇ³ö    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    ÁÄÌìÉè¶¨    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    ±³¾°ÒôÀÖ  ", 2);	y += 34;//y += 40;
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    ÒôĞ§Éè¶¨    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    »¬ÊóÉè¶¨    ", 2);	y += 34;//y += 52;
-			systemWndFontNo[7] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    Õ½¶·Éè¶¨  ", 2);	y += 34;//y += 40;
+			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    åŸåœ°ç™»å‡º    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    èŠå¤©è®¾å®š    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    èƒŒæ™¯éŸ³ä¹  ", 2);	y += 34;//y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    éŸ³æ•ˆè®¾å®š    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    æ»‘é¼ è®¾å®š    ", 2);	y += 34;//y += 52;
+			systemWndFontNo[7] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    æˆ˜æ–—è®¾å®š  ", 2);	y += 34;//y += 40;
 			if (MuteFlag){
-				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    ¿ªÆôÉùÒô  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    å¼€å¯å£°éŸ³  ", 2);	y += 34;//y += 40;
 			}
 			else{	
-				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    ¹Ø±ÕÉùÒô  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    å…³é—­å£°éŸ³  ", 2);	y += 34;//y += 40;
 			}
 #ifdef _NEW_SYSTEM_MENU
 			y = pActMenuWnd->y + 54;
-			systemWndFontNo[17] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ¹Ù·½Ö÷Ò³    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[18] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ÎÒµÄÓÊÏä    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[17] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    å®˜æ–¹ä¸»é¡µ    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[18] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    æˆ‘çš„é‚®ç®±    ", 2);	y += 34;//y += 40;
 
-			systemWndFontNo[11] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    Ô­µØÓöµĞ    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[12] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    È¡ÏûÔ­µØ    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[13] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    Ö§Æ±ÖÆ×÷    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[14] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ÈÎÎñ²éÑ¯    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[15] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ÓÒ¼ü¹¥»÷    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[16] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ¸öÈËĞÅÏ¢    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[11] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    åŸåœ°é‡æ•Œ    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[12] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    å–æ¶ˆåŸåœ°    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[13] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    æ”¯ç¥¨åˆ¶ä½œ    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[14] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ä»»åŠ¡æŸ¥è¯¢    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[15] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    å³é”®æ”»å‡»    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[16] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ä¸ªäººä¿¡æ¯    ", 2);	y += 34;//y += 40;
 			y = pActMenuWnd->y + 54;
-			systemWndFontNo[19] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ÔÚÏß³äÖµ    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[20] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ¿¨ÃÜÊ¹ÓÃ    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[21] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ¿ì½İ´«ËÍ    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[9] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    µôÏßÖØÁ¬    ", 2);	y += 34;//y += 40;
-			if (·±Ìå¿ª¹Ø){
-				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ÇĞ»»¼òÌå    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[19] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    åœ¨çº¿å……å€¼    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[20] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    å¡å¯†ä½¿ç”¨    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[21] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    å¿«æ·ä¼ é€    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[9] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    æ‰çº¿é‡è¿    ", 2);	y += 34;//y += 40;
+			if (ç¹ä½“å¼€å…³){
+				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    åˆ‡æ¢ç®€ä½“    ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ÇĞ»»·±Ìå    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    åˆ‡æ¢ç¹ä½“    ", 2);	y += 34;//y += 40;
 			}
-			if (ÈËÎïÆÁ±Î¿ª¹Ø){
-				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ÈËÎïÏÔÊ¾    ", 2);	y += 34;//y += 40;
-			}
-			else{
-				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ÈËÎïÆÁ±Î    ", 2);	y += 34;//y += 40;
-			}
-			if (¾­Ñé¿ª¹Ø){
-				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ¾­Ñé¹Ø±Õ  ", 2);	y += 34;//y += 40;
+			if (äººç‰©å±è”½å¼€å…³){
+				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    äººç‰©æ˜¾ç¤º    ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ¾­ÑéÏÔÊ¾  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    äººç‰©å±è”½    ", 2);	y += 34;//y += 40;
+			}
+			if (ç»éªŒå¼€å…³){
+				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ç»éªŒå…³é—­  ", 2);	y += 34;//y += 40;
+			}
+			else{
+				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ç»éªŒæ˜¾ç¤º  ", 2);	y += 34;//y += 40;
 			}
 			if (AI == AI_SELECT){
-				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ¹Ø±ÕÕ½¶·    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    å…³é—­æˆ˜æ–—    ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ×Ô¶¯Õ½¶·    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    è‡ªåŠ¨æˆ˜æ–—    ", 2);	y += 34;//y += 40;
 			}
 
-			systemWndFontNo[25] = StockFontBuffer(x + 0  , y, FONT_PRIO_FRONT, 0, "    Õ½Á¦ÏêÇé    ", 2);	//y += 40;
-			systemWndFontNo[26] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    ²¶Óã´ïÈË    ", 2);	//y += 40;
-			systemWndFontNo[27] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    ³É¾ÍÅÅĞĞ    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[25] = StockFontBuffer(x + 0  , y, FONT_PRIO_FRONT, 0, "    æˆ˜åŠ›è¯¦æƒ…    ", 2);	//y += 40;
+			systemWndFontNo[26] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    æ•é±¼è¾¾äºº    ", 2);	//y += 40;
+			systemWndFontNo[27] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    æˆå°±æ’è¡Œ    ", 2);	y += 34;//y += 40;
 
-			systemWndFontNo[2] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    ¹Ø    ±Õ    ", 2);
+			systemWndFontNo[2] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    å…³    é—­    ", 2);
 #else
-			systemWndFontNo[ 2 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, 	"    ¹Ø    ±Õ    ", 2 );
+			systemWndFontNo[ 2 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, 	"    å…³    é—­    ", 2 );
 #endif
 			break;
 
@@ -10696,7 +10696,7 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ????
 				if (HitFontNo == systemWndFontNo[0]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 #ifdef _CHAR_NEWLOGOUT
@@ -10711,34 +10711,34 @@ void MenuProc(void)
 				}
 				// ?????
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ????¨–??
+					// ????î¼??
 					systemWndNo = 0;
 					play_se(203, 320, 240);
 					break;
 				}
 			}
 
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 38;
 			y = pActMenuWnd->y + 56;
 
 #ifdef _NEWFONT_
-			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     È·  ¶¨     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ²»  Òª     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ç¡®  å®š     ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ä¸  è¦     ", 2);	y += 40;
 #else
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     È·  ¶¨     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ²»  Òª     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ç¡®  å®š     ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ä¸  è¦     ", 2);	y += 40;
 #endif
 			break;
 
-		case 2:	// ?????¡@¤e ??????
+		case 2:	// ?????î“†î˜‹ ??????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????
+				// ?????î¸î•????
 #ifndef _TALK_WINDOW
 				x = (lpDraw->xSize - 4 * 64) / 2;
 				y = (lpDraw->ySize - 8 * 48) / 2;
@@ -10757,7 +10757,7 @@ void MenuProc(void)
 
 			// ?????????????
 			if (mouse.autoState & MOUSE_LEFT_CRICK){
-				// ????¤úû¨???  ????
+				// ????î¸î•???  ????
 				if (HitFontNo == systemWndFontNo[0]){
 					NowMaxChatLine++;
 					if (NowMaxChatLine > DEF_CHAT_LINE){
@@ -10769,9 +10769,9 @@ void MenuProc(void)
 						play_se(217, 320, 240);
 					}
 				}
-				// ????¤úû¨???  ????
+				// ????î¸î•???  ????
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??¨Á?
+					// ??îŸ‰?
 					NowMaxChatLine--;
 					// ????????
 					if (NowMaxChatLine <= -1){
@@ -10784,9 +10784,9 @@ void MenuProc(void)
 						play_se(217, 320, 240);
 					}
 				}
-				// ????§ó??ıè¡@¤e??
+				// ????î°??î‘‘î“†î˜‹??
 				if (HitFontNo == systemWndFontNo[2]){
-					// ıè¨Á?
+					// î‘‘îŸ‰?
 					MyChatBuffer.color++;
 					// ????????
 					if (MyChatBuffer.color >= FONT_PAL_NUM) MyChatBuffer.color = 0;
@@ -10794,9 +10794,9 @@ void MenuProc(void)
 					play_se(217, 320, 240);
 				}
 
-				// §ó?¥K?
+				// î°?î™‘?
 				if (HitFontNo == systemWndFontNo[4]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					systemWndNo = 5;
@@ -10804,9 +10804,9 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				// ????şÜ?¢†??  ????
+				// ????î’£?î•«??  ????
 				if (HitFontNo == systemWndFontNo[5]){
-					// ¢†??¨Á?
+					// î•«??îŸ‰?
 					NowMaxVoice++;
 					// ????????
 					if (NowMaxVoice > MAX_VOICE){
@@ -10819,9 +10819,9 @@ void MenuProc(void)
 						play_se(217, 320, 240);
 					}
 				}
-				// ????şÜ?¢†??  ????
+				// ????î’£?î•«??  ????
 				if (HitFontNo == systemWndFontNo[6]){
-					// ¢†??¨Á?
+					// î•«??îŸ‰?
 					NowMaxVoice--;
 					// ????????
 					if (NowMaxVoice <= 0){
@@ -10838,7 +10838,7 @@ void MenuProc(void)
 				if(HitFontNo == systemWndFontNo[7]){
 					g_bTalkWindow = !g_bTalkWindow;
 					if(!WindowMode && g_bTalkWindow){
-						StockChatBufferLine("È«Ó«Ä»Ä£Ê½ÏÂÎŞ·¨Ê¹ÓÃ±¾¹¦ÄÜ",FONT_PAL_RED);
+						StockChatBufferLine("å…¨è§å¹•æ¨¡å¼ä¸‹æ— æ³•ä½¿ç”¨æœ¬åŠŸèƒ½",FONT_PAL_RED);
 						g_bTalkWindow = FALSE;
 					}
 					play_se(217,320,240);
@@ -10851,47 +10851,47 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???
 				if (HitFontNo == systemWndFontNo[3]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ????¡@¤e????¨–??
+					// ????î“†î˜‹????î¼??
 					systemWndNo = 0;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					// ????????
 					saveUserSetting();
 					break;
 				}
 			}
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 56;
 			y = pActMenuWnd->y + 56;
-			sprintf_s(moji, "¡ôÄ¿Ç°ÏÔÊ¾µÄĞĞÊı%3d ĞĞ¡ô", NowMaxChatLine);
+			sprintf_s(moji, "â—†ç›®å‰æ˜¾ç¤ºçš„è¡Œæ•°%3d è¡Œâ—†", NowMaxChatLine);
 			StockFontBuffer(x - 16, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 32;
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      Ôö    ¼Ó      ", 2);	y += 32;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      ¼õ    ÉÙ      ", 2);	y += 32;
-			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, MyChatBuffer.color, "    ¸Ä±äÎÄ×ÖÑÕÉ«    ", 2);	y += 32;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      ¼ÇÂ¼ÎÄ×Ö      ", 2);	y += 44;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      å¢    åŠ       ", 2);	y += 32;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      å‡    å°‘      ", 2);	y += 32;
+			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, MyChatBuffer.color, "    æ”¹å˜æ–‡å­—é¢œè‰²    ", 2);	y += 32;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      è®°å½•æ–‡å­—      ", 2);	y += 44;
 
-			sprintf_s(moji, "¡ôÄ¿Ç°µÄÒôÁ¿%3d ¡ô", NowMaxVoice);
+			sprintf_s(moji, "â—†ç›®å‰çš„éŸ³é‡%3d â—†", NowMaxVoice);
 			StockFontBuffer(x - 16, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 32;
-			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     Ôö    ¼Ó     ", 2);	y += 32;
-			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ¼õ    ÉÙ     ", 2);	y += 44;
+			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å¢    åŠ      ", 2);	y += 32;
+			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å‡    å°‘     ", 2);	y += 44;
 
 #ifdef _TALK_WINDOW
-			StockFontBuffer(x - 16,y,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"¡ôÁÄÌìÊÓ´°Éè¶¨¡ô",0);y += 32;
-			systemWndFontNo[7] = StockFontBuffer(x + 20,y,FONT_PRIO_FRONT,0,g_bTalkWindow ? "¹Ø±ÕÁÄÌìÊÓ´°":"´ò¿ªÁÄÌìÊÓ´°",2);y += 32;
+			StockFontBuffer(x - 16,y,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"â—†èŠå¤©è§†çª—è®¾å®šâ—†",0);y += 32;
+			systemWndFontNo[7] = StockFontBuffer(x + 20,y,FONT_PRIO_FRONT,0,g_bTalkWindow ? "å…³é—­èŠå¤©è§†çª—":"æ‰“å¼€èŠå¤©è§†çª—",2);y += 32;
 #endif																																						
 
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "     »ØÉÏÒ»Ò³     ", 2);	y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "     å›ä¸Šä¸€é¡µ     ", 2);	y += 40;
 
 			break;
 
-		case 3:	// ????¡@¤e ??????
+		case 3:	// ????î“†î˜‹ ??????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				x = (lpDraw->xSize - 4 * 64) / 2;
 				y = (lpDraw->ySize - 6 * 48) / 2;
 				pActMenuWnd = MakeWindowDisp(x, y, 4, 6, CG_WND_TITLE_SE, 1, FALSE);
@@ -10904,9 +10904,9 @@ void MenuProc(void)
 
 			// ?????????????
 			if (mouse.autoState & MOUSE_LEFT_CRICK){
-				// ??¢†?????
+				// ??î•«?????
 				if (HitFontNo == systemWndFontNo[0]){
-					// ??¨Á?
+					// ??îŸ‰?
 					t_music_se_volume++;
 					// ????????
 					if (t_music_se_volume > 15){
@@ -10919,7 +10919,7 @@ void MenuProc(void)
 						play_se(217, 320, 240);
 					}
 				}
-				// ??¢†?????
+				// ??î•«?????
 				if (HitFontNo == systemWndFontNo[1]){
 					t_music_se_volume--;
 					if (t_music_se_volume <= 0){
@@ -10930,9 +10930,9 @@ void MenuProc(void)
 						play_se(217, 320, 240);
 					}
 				}
-				// ??????????şú?¢v???
+				// ??????????î“?î•œ???
 				if (HitFontNo == systemWndFontNo[2]){
-					// ????????¨Á?
+					// ????????îŸ‰?
 					stereo_flg = !stereo_flg;
 					// ?????
 					play_se(217, 320, 240);
@@ -10942,34 +10942,34 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???
 				if (HitFontNo == systemWndFontNo[3]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ????¡@¤e????¨–??
+					// ????î“†î˜‹????î¼??
 					systemWndNo = 0;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					// ????????
 					saveUserSetting();
 					break;
 				}
 			}
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 56;
 			y = pActMenuWnd->y + 64;
-			sprintf_s(moji, "¡ô  Ä¿Ç°µÄÒôÁ¿%3d   ¡ô", t_music_se_volume);
+			sprintf_s(moji, "â—†  ç›®å‰çš„éŸ³é‡%3d   â—†", t_music_se_volume);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     Ôö     ¼Ó     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ¼õ     ÉÙ     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å¢     åŠ      ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å‡     å°‘     ", 2);	y += 40;
 			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, monoStereoStr[stereo_flg], 2);	y += 52;
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      »ØÉÏÒ»Ò³      ", 2);	y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      å›ä¸Šä¸€é¡µ      ", 2);	y += 40;
 
 			break;
 
-		case 4:	// ????¡@¤e ??????
+		case 4:	// ????î“†î˜‹ ??????
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				x = (lpDraw->xSize - 4 * 64) / 2;
 				y = (lpDraw->ySize - 8 * 48) / 2;
 				pActMenuWnd = MakeWindowDisp(x, y, 4, 8, CG_WND_TITLE_BGM, 1, FALSE);
@@ -10982,9 +10982,9 @@ void MenuProc(void)
 
 			// ?????????????
 			if (mouse.autoState & MOUSE_LEFT_CRICK){
-				// ??¢†?????
+				// ??î•«?????
 				if (HitFontNo == systemWndFontNo[0]){
-					// ??¨Á?
+					// ??îŸ‰?
 					t_music_bgm_volume++;
 					// ????????
 					if (t_music_bgm_volume > 15){
@@ -10994,12 +10994,12 @@ void MenuProc(void)
 					}
 					else{
 						play_se(217, 320, 240);	// ?????
-						bgm_volume_change();		// ??¨Á?
+						bgm_volume_change();		// ??îŸ‰?
 					}
 				}
-				// ??üí?????
+				// ??î¸?????
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??¨Á?
+					// ??îŸ‰?
 					t_music_bgm_volume--;
 					// ????????
 					if (t_music_bgm_volume <= 0){
@@ -11009,10 +11009,10 @@ void MenuProc(void)
 					}
 					else{
 						play_se(217, 320, 240);	// ?????
-						bgm_volume_change();		// ??¨Á?
+						bgm_volume_change();		// ??îŸ‰?
 					}
 				}
-				// ????¢L????
+				// ????î”²????
 				if (HitFontNo == systemWndFontNo[3]){
 					// ??????
 					t_music_bgm_pitch[t_music_bgm_no]++;
@@ -11025,10 +11025,10 @@ void MenuProc(void)
 					}
 					else{
 						play_se(217, 320, 240);	// ?????
-						set_gbm_pitch();			// ???¨Á?
+						set_gbm_pitch();			// ???îŸ‰?
 					}
 				}
-				// ????£w???
+				// ????î–½???
 				if (HitFontNo == systemWndFontNo[4]){
 					// ??????
 					t_music_bgm_pitch[t_music_bgm_no]--;
@@ -11040,7 +11040,7 @@ void MenuProc(void)
 					}
 					else{
 						play_se(217, 320, 240);	// ?????
-						set_gbm_pitch();			// ???¨Á?
+						set_gbm_pitch();			// ???îŸ‰?
 					}
 				}
 			}
@@ -11048,47 +11048,47 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???
 				if (HitFontNo == systemWndFontNo[2]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ????¡@¤e????¨–??
+					// ????î“†î˜‹????î¼??
 					systemWndNo = 0;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					// ????????
 					saveUserSetting();
 					break;
 				}
 			}
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 56;
 			y = pActMenuWnd->y + 64;
-			sprintf_s(moji, "¡ô  Ä¿Ç°µÄÒôÁ¿ %3d  ¡ô", t_music_bgm_volume);
+			sprintf_s(moji, "â—†  ç›®å‰çš„éŸ³é‡ %3d  â—†", t_music_bgm_volume);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     Ôö      ¼Ó     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ¼õ      ÉÙ     ", 2);	y += 48;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å¢      åŠ      ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     å‡      å°‘     ", 2);	y += 48;
 			if (t_music_bgm_pitch[t_music_bgm_no] == 0){
-				sprintf_s(moji, "¡ô Ä¿Ç°µÄ½Ú×à   0 ¡ô");
+				sprintf_s(moji, "â—† ç›®å‰çš„èŠ‚å¥   0 â—†");
 			}
 			else
-				sprintf_s(moji, "¡ô Ä¿Ç°µÄ½Ú×à %+3d ¡ô", t_music_bgm_pitch[t_music_bgm_no]);
+				sprintf_s(moji, "â—† ç›®å‰çš„èŠ‚å¥ %+3d â—†", t_music_bgm_pitch[t_music_bgm_no]);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      ¼Ó    ¿ì      ", 2);	y += 40;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      ¼õ    Âı      ", 2);	y += 52;
-			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      »ØÉÏÒ»Ò³      ", 2);	y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      åŠ     å¿«      ", 2);	y += 40;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      å‡    æ…¢      ", 2);	y += 52;
+			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      å›ä¸Šä¸€é¡µ      ", 2);	y += 40;
 
 			break;
 
-		case 5:	// §ó?¥K???
+		case 5:	// î°?î™‘???
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				x = (lpDraw->xSize - 272) / 2;
 				y = (lpDraw->ySize - 430) / 2;
 				pActMenuWnd = MakeWindowDisp(x, y, 272, 430, CG_WND_TITLE_CHAT, -1, FALSE);
 				for (i = 0; i < MENU_SYSTEM_0; i++) systemWndFontNo[i] = -2;
-				// ¦V??????¨Á?
+				// îš¼??????îŸ‰?
 				GetKeyInputFocus(&chatRegistryStr[0]);
 
 				break;
@@ -11097,44 +11097,44 @@ void MenuProc(void)
 				if (pActMenuWnd->hp <= 0) break;
 			}
 
-			// §ó?¥K??????¤úû¨
+			// î°?î™‘??????î¸î•
 			StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_CHAT_REGISTY_WND, 1);
 			// ????????
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???
 				if (HitDispNo == systemWndFontNo[3]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ¦V????????
+					// îš¼????????
 					GetKeyInputFocus(&MyChatBuffer);
-					// ????¡@¤e????¨–??
+					// ????î“†î˜‹????î¼??
 					systemWndNo = 0;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					// ????????
 					saveUserSetting();
-					// ?????¥K?§ó??¨ò¢V
+					// ?????î™‘?î°??îŸ•î”¼
 					SaveChatRegistyStr();
 					break;
 				}
 			}
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 18;
 			y = pActMenuWnd->y + 58;
 
-			// ¥K??§Æ???
+			// î™‘??î¤???
 			for (i = 0; i < 8; i++){
-				// §ó????¤õ
+				// î°????î³
 				chatRegistryStr[i].x = x + 2;
 				chatRegistryStr[i].y = y;
 				StockFontBuffer2(&chatRegistryStr[i]); y += 43;
-				// ?¥›?¦V?????
+				// ?îš ?îš¼?????
 				if (MakeHitBox(chatRegistryStr[i].x - 4, chatRegistryStr[i].y - 3,
 					chatRegistryStr[i].x + 234 + 3, chatRegistryStr[i].y + 16 + 3, DISP_PRIO_IME3) == TRUE){
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ¦V??????¨Á?
+						// îš¼??????îŸ‰?
 						GetKeyInputFocus(&chatRegistryStr[i]);
 						play_se(217, 320, 240); // ?????
 					}
@@ -11145,11 +11145,11 @@ void MenuProc(void)
 
 			break;
 
-		case 6:	// ???¡@¤e??
+		case 6:	// ???î“†î˜‹??
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				x = (lpDraw->xSize - 3 * 64) / 2;
 				y = (lpDraw->ySize - 4 * 48) / 2;
 				pActMenuWnd = MakeWindowDisp(x, y, 3, 4, CG_WND_TITLE_MOUSE, 1, FALSE);
@@ -11160,12 +11160,12 @@ void MenuProc(void)
 				if (pActMenuWnd->hp <= 0) break;
 			}
 
-			// ???????¨Á???
+			// ???????îŸ‰???
 			if (HitFontNo == systemWndFontNo[0]){
-				// ?¤ˆ??
+				// ?î˜­??
 				if (MouseCursorFlag == TRUE){
 					// ??????
-					strcpy(OneLineInfoStr, "Á½É«µÄ»¬ÊóÓÎ±ê£¬·´Ó¦½Ï¿ì¡£");
+					strcpy(OneLineInfoStr, "ä¸¤è‰²çš„æ»‘é¼ æ¸¸æ ‡ï¼Œååº”è¾ƒå¿«ã€‚");
 
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
@@ -11181,7 +11181,7 @@ void MenuProc(void)
 				}
 				else{
 					// ??????
-					strcpy(OneLineInfoStr, "ÆÕÍ¨µÄ»¬ÊóÓÎ±ê¡£");
+					strcpy(OneLineInfoStr, "æ™®é€šçš„æ»‘é¼ æ¸¸æ ‡ã€‚");
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ??????????
@@ -11199,12 +11199,12 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ???
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ???¡@¤e?????¨–??
+					// ???î“†î˜‹?????î¼??
 					systemWndNo = 0;
-					// ?????¨–???
+					// ?????î¼???
 					play_se(203, 320, 240);
 					// ????????
 					saveUserSetting();
@@ -11212,21 +11212,21 @@ void MenuProc(void)
 				}
 			}
 
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 38;
 			y = pActMenuWnd->y + 56;
 
-			// §ó?¤úû¨????????
-			StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "¡ô  ÓÎ±êÉè¶¨  ¡ô", 0);	y += 40;
+			// î°?î¸î•????????
+			StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "â—†  æ¸¸æ ‡è®¾å®š  â—†", 0);	y += 40;
 			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, mouseCursor[MouseCursorFlag], 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    »ØÉÏÒ»Ò³    ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    å›ä¸Šä¸€é¡µ    ", 2);	y += 40;
 			break;
 
 		case 7:	// ????? ??????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				x = (lpDraw->xSize - 3 * 64) / 2;
 				y = (lpDraw->ySize - 3 * 48) / 2;
 				pActMenuWnd = MakeWindowDisp(x, y, 3, 3, CG_WND_TITLE_LOGOUT, 1, FALSE);
@@ -11241,7 +11241,7 @@ void MenuProc(void)
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				// ????
 				if (HitFontNo == systemWndFontNo[0]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					GameState = GAME_LOGIN;
@@ -11252,35 +11252,35 @@ void MenuProc(void)
 				}
 				// ?????
 				if (HitFontNo == systemWndFontNo[1]){
-					// ??????úÇ
+					// ??????îŒ–
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
-					// ????¨–??
+					// ????î¼??
 					systemWndNo = 0;
 					play_se(203, 320, 240);
 					break;
 				}
 			}
 
-			// ?¤õ¡@¤e
+			// ?î³î“†î˜‹
 			x = pActMenuWnd->x + 38;
 			y = pActMenuWnd->y + 56;
 
 #ifdef _NEWFONT_
 
-			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     È·  ¶¨     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ²»  Òª     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ç¡®  å®š     ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     ä¸  è¦     ", 2);	y += 40;
 #else
 
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     È·  ¶¨     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ²»  Òª     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ç¡®  å®š     ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     ä¸  è¦     ", 2);	y += 40;
 #endif
 			break;
 		}
 	}
 
 	//? ???????????? *****************************************************/
-#ifdef _FRIENDCHANNEL				//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL				//ROG ADD å¥½å‹é¢‘é“
 	if(setRoomFlag == TRUE)
 	{
 		setRoomName();
@@ -11295,33 +11295,33 @@ void MenuProc(void)
 
 	if (MenuToggleFlag & JOY_CTRL_S){
 
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (statusWndNo){
 
-		case 0:	// û«§Æ??????
+		case 0:	// î˜î¤??????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 360, 0, -1);
 #ifdef _CHARTITLE_STR_
-				extern void ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú();
-				extern BOOL »ñÈ¡³ÆºÅÈ¡Ïû´°¿Ú();
-				if(»ñÈ¡³ÆºÅÈ¡Ïû´°¿Ú()) ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú();
+				extern void è®¾ç½®ç§°å·å–æ¶ˆçª—å£();
+				extern BOOL è·å–ç§°å·å–æ¶ˆçª—å£();
+				if(è·å–ç§°å·å–æ¶ˆçª—å£()) è®¾ç½®ç§°å·å–æ¶ˆçª—å£();
 #endif
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndFontNo[i] = -2;
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndBtnFlag[i] = 0;
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 				SkillWndflag = false ; 
 #endif
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ???????????????¤úû¨
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+					// ???????????????î¸î•
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 					if ( SkillWndflag == true ) {
 						SkillWndfunc2();
 					}
@@ -11341,27 +11341,27 @@ void MenuProc(void)
 #endif
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ¶ÓÎé
+						// é˜Ÿä¼
 						if (HitDispNo == statusWndFontNo[0]){
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							statusWndNo = 1;
 							play_se(202, 320, 240);
 						}
-						// ¹Ø±Õ
+						// å…³é—­
 						if (HitDispNo == statusWndFontNo[1]){
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							MenuToggleFlag ^= JOY_CTRL_S;
 							play_se(203, 320, 240);
 						}
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 						if( HitDispNo == statusWndFontNo[ 12 ] ){
 							DeathAction( pActMenuWnd);
 							pActMenuWnd = NULL;
 							statusWndNo = 3;
 							play_se( 202, 320, 240);
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 							lssproto_RESIST_send ( sockfd , "" ) ; 
 #endif
 #ifdef _ALCHEPLUS
@@ -11382,14 +11382,14 @@ void MenuProc(void)
 #endif
 
 					}
-					// ¸Ä±ä³ÆºÅ
+					// æ”¹å˜ç§°å·
 					if (HitDispNo == statusWndFontNo[6]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 #ifdef _CHARTITLE_
 							statusWndBtnFlag[6] = TRUE;
-							extern void ´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯();
-							´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯();
+							extern void æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–();
+							æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–();
 							if (pActMenuWnd3 == NULL){
 								pActMenuWnd3 = MakeWindowDisp(363, 105, 0, 0, 55249, -1, 0);
 								play_se(202, 320, 240);
@@ -11402,8 +11402,8 @@ void MenuProc(void)
 #else
 #ifdef _CHARTITLE_STR_
 							statusWndBtnFlag[6] = TRUE;
-							extern void ´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯();
-							´ò¿ª³ÆºÅ´°¿Ú³õÊ¼»¯();
+							extern void æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–();
+							æ‰“å¼€ç§°å·çª—å£åˆå§‹åŒ–();
 							if (pActMenuWnd3 == NULL){
 								pActMenuWnd3 = MakeWindowDisp(363, 105, 0, 0, 55249, -1, 0);
 								play_se(202, 320, 240);
@@ -11414,7 +11414,7 @@ void MenuProc(void)
 								play_se(203, 320, 240);
 							}
 #else
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 							SkillWndflag = false ; 
 							MenuToggleFlag &= ~JOY_CTRL_I;
 							//MenuToggleFlag &= ~JOY_CTRL_M;
@@ -11422,14 +11422,14 @@ void MenuProc(void)
 #ifdef _TAIKEN			
 							// ???
 							play_se( 220, 320, 240 );
-							// ???????¤úû¨
-							sprintf_s( moji,"ÌåÑé°æ²»ÄÜÑ¡Ôñ£¡" );
-							// ????§ó??????????????
+							// ???????î¸î•
+							sprintf_s( moji,"ä½“éªŒç‰ˆä¸èƒ½é€‰æ‹©ï¼" );
+							// ????î°??????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
 							if (pActMenuWnd3 == NULL){
-								// ?????¤úû¨????şÎ
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+								// ?????î¸î•????î’•
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 								pActMenuWnd3 = MakeWindowDisp( 304, 16 + 280 + 48, 272, 88, 0, -1 );
 #else
 #ifdef _NEW_CHARDATA_
@@ -11440,29 +11440,29 @@ void MenuProc(void)
 #endif
 								// ????????
 								play_se(202, 320, 240);
-								// ş¡q????
+								// î¡“î“·????
 								shougouChange.buffer[0] = NULL;
 								shougouChange.cnt = 0;
 								shougouChange.cursor = 0;
-								// §ó???£•?
+								// î°???î—š?
 								shougouChange.len = 12;
-								// §ó???ıè
+								// î°???î‘‘
 								shougouChange.color = 0;
-								// §ó????¤õ
+								// î°????î³
 								shougouChange.x = pActMenuWnd3->x + 38;
 								shougouChange.y = pActMenuWnd3->y + 25;
-								// §ó???¤úû¨?¡I??
+								// î°???î¸î•?î“??
 								shougouChange.fontPrio = FONT_PRIO_FRONT;
 								// ????
 								statusWndBtnFlag[6] = TRUE;
 							}
 							else{
-								// ??????úÇ
+								// ??????îŒ–
 								DeathAction(pActMenuWnd3);
 								pActMenuWnd3 = NULL;
-								// ¦V????????
+								// îš¼????????
 								GetKeyInputFocus(&MyChatBuffer);
-								// ?????¨–???
+								// ?????î¼???
 								play_se(203, 320, 240);
 							}
 							statusWndBtnFlag[6] = TRUE;
@@ -11476,31 +11476,31 @@ void MenuProc(void)
 							statusWndBtnFlag[6] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							statusWndBtnFlag[6] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						statusWndBtnFlag[6] = FALSE;
 					}
 					// ??????????
 					if (StatusUpPoint != 0){
 						// ????????
 						for (i = 2; i < 6; i++){
-							// ¡‰?????
+							// î”?????
 							if (HitDispNo == statusWndFontNo[i]){
 								// ????
 								// ????????
 								if (mouse.onceState & MOUSE_LEFT_CRICK){
-									// ???????ıï
+									// ???????î‘˜
 									if (bNewServer)
 										lssproto_SKUP_send(sockfd, i - 2);
 									else
 										old_lssproto_SKUP_send(sockfd, i - 2);
 
 
-#ifndef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifndef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 									StatusUpPoint--;
 #endif
 
@@ -11514,12 +11514,12 @@ void MenuProc(void)
 									statusWndBtnFlag[i] = TRUE;
 								}
 								else{
-									// ???¥…
+									// ???îšŠ
 									statusWndBtnFlag[i] = FALSE;
 								}
 							}
 							else{
-								// ???¥…
+								// ???îšŠ
 								statusWndBtnFlag[i] = FALSE;
 							}
 						}
@@ -11535,29 +11535,29 @@ void MenuProc(void)
 						StockFontBuffer(x - 6, y - 2, FONT_PRIO_FRONT, 0, moji, 0);
 						sprintf_s(moji, "%8d", pc.dp);
 						StockFontBuffer(x + 170, y - 2, FONT_PRIO_FRONT, 0, moji, 0); y += 21;
-						// §ó??????????
+						// î°??????????
 #ifndef _CHARTITLE_
 #ifndef _CHARTITLE_STR_
-						CenteringStr(pc.freeName, moji, 32);	// ?¤e¡u??§ó?
+						CenteringStr(pc.freeName, moji, 32);	// ?î˜‹î“»??î°?
 #endif
 #endif
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
-						//Î»ÒÆ³ÆºÅ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
+						//ä½ç§»ç§°å·
 						StockFontBuffer( x + 77, y + 2 , FONT_PRIO_FRONT, 0, moji, 0 );
-#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
-						//Ó¢ĞÛÕ½³¡³ÆºÅ
-						if ( pc.herofloor == 132 )		sprintf_s( moji , "%s" , "ÄáË¹´óÂ½Ó¢ĞÛ" ) ;
-						else if ( pc.herofloor >= 130 )	sprintf_s( moji , "%s" , "ÄáË¹´óÂ½Õ½Ê¿" ) ; 
-						else if ( pc.herofloor >= 125 )	sprintf_s( moji , "%s" , "ÄáË¹´óÂ½ÓÂÊ¿" ) ; 
-						else if ( pc.herofloor >= 120 )	sprintf_s( moji , "%s" , "ÈøÒÁÄÇË¹Ó¢ĞÛ" ) ; 
-						else if ( pc.herofloor >= 115 )	sprintf_s( moji , "%s" , "Ë¹°Í´ïÕ½Ê¿" ) ; 
-						else if ( pc.herofloor >= 110 )	sprintf_s( moji , "%s" , "ÈøÄ·¼ª¶ûÕ½Ê¿" ) ; 
-						else if ( pc.herofloor >= 100 )	sprintf_s( moji , "%s" , "ÂêÀöÄÇË¿Õ½Ê¿" ) ; 
-						else if ( pc.herofloor >=  80 )	sprintf_s( moji , "%s" , "¿¨Ì¹Õ½Ê¿" ) ; 
-						else if ( pc.herofloor >=  60 )	sprintf_s( moji , "%s" , "»ôÌØ¶ûÕ½Ê¿" ) ; 
-						else if ( pc.herofloor >=  40 )	sprintf_s( moji , "%s" , "½µÄ§ÓÂÊ¿" ) ; 
-						else if ( pc.herofloor >=  20 )	sprintf_s( moji , "%s" , "Ê¥ÁéÓÂÊ¿" ) ; 
-						else if ( pc.herofloor >=   1 )	sprintf_s( moji , "%s" , "³õ¶¿ÓÂÊ¿" ) ; 
+#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
+						//è‹±é›„æˆ˜åœºç§°å·
+						if ( pc.herofloor == 132 )		sprintf_s( moji , "%s" , "å°¼æ–¯å¤§é™†è‹±é›„" ) ;
+						else if ( pc.herofloor >= 130 )	sprintf_s( moji , "%s" , "å°¼æ–¯å¤§é™†æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >= 125 )	sprintf_s( moji , "%s" , "å°¼æ–¯å¤§é™†å‹‡å£«" ) ; 
+						else if ( pc.herofloor >= 120 )	sprintf_s( moji , "%s" , "è¨ä¼Šé‚£æ–¯è‹±é›„" ) ; 
+						else if ( pc.herofloor >= 115 )	sprintf_s( moji , "%s" , "æ–¯å·´è¾¾æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >= 110 )	sprintf_s( moji , "%s" , "è¨å§†å‰å°”æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >= 100 )	sprintf_s( moji , "%s" , "ç›ä¸½é‚£ä¸æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >=  80 )	sprintf_s( moji , "%s" , "å¡å¦æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >=  60 )	sprintf_s( moji , "%s" , "éœç‰¹å°”æˆ˜å£«" ) ; 
+						else if ( pc.herofloor >=  40 )	sprintf_s( moji , "%s" , "é™é­”å‹‡å£«" ) ; 
+						else if ( pc.herofloor >=  20 )	sprintf_s( moji , "%s" , "åœ£çµå‹‡å£«" ) ; 
+						else if ( pc.herofloor >=   1 )	sprintf_s( moji , "%s" , "åˆçŠŠå‹‡å£«" ) ; 
 						else							sprintf_s( moji , " " );
 						StockFontBuffer( x + 72, y + 28 , FONT_PRIO_FRONT, 5, moji, 0 ); 
 						sprintf_s( moji , "%d" , pc.profession_level);
@@ -11580,7 +11580,7 @@ void MenuProc(void)
 						if (pc.transmigration >= 1 && pc.transmigration <= 5){
 #endif
 #ifndef _NEW_CHARDATA_
-							sprintf_s(moji, "×ªÉú%s", TransmigrationStr[pc.transmigration]);
+							sprintf_s(moji, "è½¬ç”Ÿ%s", TransmigrationStr[pc.transmigration]);
 							StockFontBuffer(x + 178 + 12, y + 2, FONT_PRIO_FRONT, FONT_PAL_AQUA, moji, 0);
 #else
 							;
@@ -11597,7 +11597,7 @@ void MenuProc(void)
 #endif
 #endif
 						sprintf_s(moji, "%3d", pc.level);
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 						y += 35;
 						StockFontBuffer( x + 38, y - 2, FONT_PRIO_FRONT, 0, moji, 0 ); y += 21;
 						sprintf_s( moji, "%8d", pc.exp );
@@ -11631,30 +11631,30 @@ void MenuProc(void)
 #ifdef _NEW_CHARDATA_
 
 						/*
-						static int ÈËÎïÍ·Ïñ×ó×´Ì¬=0,ÈËÎïÍ·ÏñÓÒ×´Ì¬=0;
+						static int äººç‰©å¤´åƒå·¦çŠ¶æ€=0,äººç‰©å¤´åƒå³çŠ¶æ€=0;
 
-						StockDispBuffer( pActMenuWnd->x + 187, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_PREV_BTN+ÈËÎïÍ·Ïñ×ó×´Ì¬, 1 );
+						StockDispBuffer( pActMenuWnd->x + 187, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_PREV_BTN+äººç‰©å¤´åƒå·¦çŠ¶æ€, 1 );
 						if( MakeHitBox( pActMenuWnd->x + 187-18, pActMenuWnd->y + 118+72-10, pActMenuWnd->x + 187+18,pActMenuWnd->y + 118+72+10, DISP_PRIO_IME4 ) == TRUE ){
-						ShowBottomLineString(FONT_PAL_WHITE, "ĞŞ¸ÄÈËÎïÍ·Ïñ");
+						ShowBottomLineString(FONT_PAL_WHITE, "ä¿®æ”¹äººç‰©å¤´åƒ");
 						if(mouse.state & MOUSE_LEFT_CRICK){
-						ÈËÎïÍ·Ïñ×ó×´Ì¬ = 1;
+						äººç‰©å¤´åƒå·¦çŠ¶æ€ = 1;
 						if(mouse.onceState & MOUSE_LEFT_CRICK){
 						play_se(203, 320, 240);
-						//ÈËÎïÍ·Ïñ·â°ü
+						//äººç‰©å¤´åƒå°åŒ…
 						}
-						}else ÈËÎïÍ·Ïñ×ó×´Ì¬=0;
-						}else ÈËÎïÍ·Ïñ×ó×´Ì¬=0;
-						StockDispBuffer( pActMenuWnd->x + 232, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_NEXT_BTN+ÈËÎïÍ·ÏñÓÒ×´Ì¬, 1 );
+						}else äººç‰©å¤´åƒå·¦çŠ¶æ€=0;
+						}else äººç‰©å¤´åƒå·¦çŠ¶æ€=0;
+						StockDispBuffer( pActMenuWnd->x + 232, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_NEXT_BTN+äººç‰©å¤´åƒå³çŠ¶æ€, 1 );
 						if( MakeHitBox( pActMenuWnd->x + 232-18, pActMenuWnd->y + 118+72-10, pActMenuWnd->x + 232+18,pActMenuWnd->y + 118+72+10, DISP_PRIO_IME4 ) == TRUE ){
-						ShowBottomLineString(FONT_PAL_WHITE, "ĞŞ¸ÄÈËÎïÍ·Ïñ");
+						ShowBottomLineString(FONT_PAL_WHITE, "ä¿®æ”¹äººç‰©å¤´åƒ");
 						if(mouse.state & MOUSE_LEFT_CRICK){
-						ÈËÎïÍ·ÏñÓÒ×´Ì¬ = 1;
+						äººç‰©å¤´åƒå³çŠ¶æ€ = 1;
 						if(mouse.onceState & MOUSE_LEFT_CRICK){
 						play_se(203, 320, 240);
-						//ÈËÎïÍ·Ïñ·â°ü
+						//äººç‰©å¤´åƒå°åŒ…
 						}
-						}else ÈËÎïÍ·ÏñÓÒ×´Ì¬=0;
-						}else ÈËÎïÍ·ÏñÓÒ×´Ì¬=0;
+						}else äººç‰©å¤´åƒå³çŠ¶æ€=0;
+						}else äººç‰©å¤´åƒå³çŠ¶æ€=0;
 
 						*/
 
@@ -11724,19 +11724,19 @@ void MenuProc(void)
 #endif
 #endif
 
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 						y += 50;
 #else
 						y += 17;
 #endif
 						statusWndFontNo[0] = StockDispBuffer(x + 59, y, DISP_PRIO_IME3, CG_STATUS_WND_GROUP_BTN, 2);
 						statusWndFontNo[1] = StockDispBuffer(x + 173, y, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
-						// ???????¤úû¨
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+						// ???????î¸î•
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 						statusWndFontNo[ 12 ] = StockDispBuffer( x + 164 , y - 102, DISP_PRIO_IME3, CG_STATUS_DETAIL, 2 );
 						if ( pc.profession_class != 0 )
 							statusWndFontNo[ 14 ] = StockDispBuffer( x + 213 , y - 318 , DISP_PRIO_IME3, CG_WAR_ICON_BIG + pc.profession_class - 1, 2 );
-						//else //ÕÒÊ±¼ä·Å¿ÕÍ¼
+						//else //æ‰¾æ—¶é—´æ”¾ç©ºå›¾
 						//	statusWndFontNo[ 14 ] = StockDispBuffer( x + 213 , y - 318 , DISP_PRIO_IME3, CG_WAR_ICON_BIG + pc.profession_class - 1, 2 );
 
 
@@ -11758,7 +11758,7 @@ void MenuProc(void)
 #endif					
 						if (StatusUpPoint != 0){
 							// ??????????
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 							StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx + 14 , ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my + 67 , DISP_PRIO_IME3, CG_STATUS_WND_LV_UP_POINT, 0 );
 							sprintf_s( moji, "%2d", StatusUpPoint );
 							StockFontBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx + 70, ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my + 156, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0 );
@@ -11811,30 +11811,30 @@ void MenuProc(void)
 #endif
 #endif
 						}
-						// ı¯?¨Á?
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
-						//Î»ÒÆ¸Ä±ä³ÆºÅÅ¥
+						// î˜?îŸ‰?
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
+						//ä½ç§»æ”¹å˜ç§°å·é’®
 						statusWndFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx - 124 , ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[ 6 ], 2 );
 #else
 #ifdef _CHARTITLE_
-						extern void ³ÆºÅÕ¹Ê¾();
-						³ÆºÅÕ¹Ê¾();
+						extern void ç§°å·å±•ç¤º();
+						ç§°å·å±•ç¤º();
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx - 125, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my + 3, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
 #else
 #ifdef _CHARTITLE_STR_
-						extern void ³ÆºÅÕ¹Ê¾();
-						extern BOOL »ñÈ¡µ±Ç°³ÆºÅÊÇ·ñ´æÔÚ();
-						extern BOOL »ñÈ¡³ÆºÅÈ¡Ïû´°¿Ú();
-						extern void ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú();
-						if(»ñÈ¡³ÆºÅÈ¡Ïû´°¿Ú()){
-							StockDispBuffer(138,450,DISP_PRIO_MENU,55259,1);//È·¶¨´°¿Úµ×Í¼
+						extern void ç§°å·å±•ç¤º();
+						extern BOOL è·å–å½“å‰ç§°å·æ˜¯å¦å­˜åœ¨();
+						extern BOOL è·å–ç§°å·å–æ¶ˆçª—å£();
+						extern void è®¾ç½®ç§°å·å–æ¶ˆçª—å£();
+						if(è·å–ç§°å·å–æ¶ˆçª—å£()){
+							StockDispBuffer(138,450,DISP_PRIO_MENU,55259,1);//ç¡®å®šçª—å£åº•å›¾
 							int bnt;
-							StockFontBuffer(70,425,1,0,"ÊÇ·ñÈ¡Ïû³ÆºÅÏÔÊ¾£¿",0);
-							bnt = StockFontBuffer(90,462,1,FONT_PAL_YELLOW,"È·¶¨",2);
+							StockFontBuffer(70,425,1,0,"æ˜¯å¦å–æ¶ˆç§°å·æ˜¾ç¤ºï¼Ÿ",0);
+							bnt = StockFontBuffer(90,462,1,FONT_PAL_YELLOW,"ç¡®å®š",2);
 							if(mouse.onceState & MOUSE_LEFT_CRICK>0){
 								if(HitFontNo == bnt){
-									ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú();
-									if(»ñÈ¡µ±Ç°³ÆºÅÊÇ·ñ´æÔÚ()){
+									è®¾ç½®ç§°å·å–æ¶ˆçª—å£();
+									if(è·å–å½“å‰ç§°å·æ˜¯å¦å­˜åœ¨()){
 										int checksum=0;
 										char buf[1024*4];
 										memset(buf,0,1024*4);
@@ -11845,15 +11845,15 @@ void MenuProc(void)
 									play_se(203, 320, 240);
 								}
 							}
-							bnt = StockFontBuffer(155,462,1,FONT_PAL_YELLOW,"È¡Ïû",2);
+							bnt = StockFontBuffer(155,462,1,FONT_PAL_YELLOW,"å–æ¶ˆ",2);
 							if(mouse.onceState & MOUSE_LEFT_CRICK>0){
 								if(HitFontNo == bnt){
-									ÉèÖÃ³ÆºÅÈ¡Ïû´°¿Ú();
+									è®¾ç½®ç§°å·å–æ¶ˆçª—å£();
 									play_se(203, 320, 240);
 								}
 							}
 						}
-						³ÆºÅÕ¹Ê¾();
+						ç§°å·å±•ç¤º();
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
 #else
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
@@ -11861,10 +11861,10 @@ void MenuProc(void)
 #endif
 #endif
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 19;
 						y = pActMenuWnd->y + 174;
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 						x -= 4;
 						y += 43;
 #endif
@@ -11882,7 +11882,7 @@ void MenuProc(void)
 						}
 						y += 20;
 
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pc.water > 0){
 							x2 = (int)(pc.water * 0.8);
 
@@ -11892,7 +11892,7 @@ void MenuProc(void)
 						}
 						y += 20;
 
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pc.fire > 0){
 							x2 = (int)(pc.fire * 0.8);
 							StockBoxDispBuffer(x + PET_WND_ATTR_X + 0, y + PET_WND_ATTR_Y + 0, x + PET_WND_ATTR_X + 0 + x2, y + PET_WND_ATTR_Y + 8, DISP_PRIO_IME4, SYSTEM_PAL_RED, 1);
@@ -11901,7 +11901,7 @@ void MenuProc(void)
 						}
 						y += 20;
 
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pc.wind > 0){
 							x2 = (int)(pc.wind * 0.8);
 							StockBoxDispBuffer(x + PET_WND_ATTR_X + 0, y + PET_WND_ATTR_Y + 0, x + PET_WND_ATTR_X + 0 + x2, y + PET_WND_ATTR_Y + 8, DISP_PRIO_IME4, SYSTEM_PAL_YELLOW, 1);
@@ -11912,12 +11912,12 @@ void MenuProc(void)
 					}
 				}
 			}
-			// ı¯?¨Á??????????
+			// î˜?îŸ‰??????????
 			if (pActMenuWnd3 != NULL){
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd3->hp > 0){
-					// ???ı½??????¤úû¨
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+					// ???î¦??????î¸î•
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 					StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd3->pYobi )->mx, ( ( WINDOW_DISP *)pActMenuWnd3->pYobi )->my, DISP_PRIO_MENU, CG_NAME_CHANGE_WND, 1 );
 #else
 #ifdef _CHARTITLE_
@@ -11931,15 +11931,15 @@ void MenuProc(void)
 #endif
 #endif
 #ifdef _CHARTITLE_
-					extern BOOL ÈËÎï³ÆºÅ´¦Àí(ACTION * pct);
-					if (ÈËÎï³ÆºÅ´¦Àí(pActMenuWnd3)){
+					extern BOOL äººç‰©ç§°å·å¤„ç†(ACTION * pct);
+					if (äººç‰©ç§°å·å¤„ç†(pActMenuWnd3)){
 						pActMenuWnd3 = NULL;
 
 					}
 #else
 #ifdef _CHARTITLE_STR_
-					extern BOOL ÈËÎï³ÆºÅ´¦Àí(ACTION * pct);
-					if (ÈËÎï³ÆºÅ´¦Àí(pActMenuWnd3)){
+					extern BOOL äººç‰©ç§°å·å¤„ç†(ACTION * pct);
+					if (äººç‰©ç§°å·å¤„ç†(pActMenuWnd3)){
 						pActMenuWnd3 = NULL;
 
 					}
@@ -11947,28 +11947,28 @@ void MenuProc(void)
 					GetKeyInputFocus(&shougouChange);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ı¯?¨Á?£Ï£Ë???
+						// î˜?îŸ‰?ï¼¯ï¼«???
 						if (HitDispNo == statusWndFontNo[7]){
 							// ???????? 
 							KeyboardReturn();
 						}
-						// ı¯?¨Á?????????
+						// î˜?îŸ‰?????????
 						if (HitDispNo == statusWndFontNo[8]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd3);
 							pActMenuWnd3 = NULL;
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
-					// ??????üÒ????????
+					// ??????î????????
 					if (pActMenuWnd3 != NULL){
-						// §ó???¤úû¨
+						// î°???î¸î•
 						StockFontBuffer2(&shougouChange);
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd3->x + 20;
 						y = pActMenuWnd3->y + 60;
 						statusWndFontNo[7] = StockDispBuffer(x + 60, y + 7, DISP_PRIO_IME3, CG_OK_BTN, 2);
@@ -11984,26 +11984,26 @@ void MenuProc(void)
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(4, 0, 256, 456, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndFontNo[i] = -2;
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndBtnFlag[i] = 0;
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ????????????¤úû¨
+					// ????????????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_STATUS_WND_GROUP_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ???
 						if (HitDispNo == statusWndFontNo[11]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							statusWndNo = 0;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 #ifdef _TEAM_KICKPARTY
@@ -12017,8 +12017,8 @@ void MenuProc(void)
 					}
 					// ????????
 					if (pActMenuWnd != NULL){
-						int selectFlag;	// ¡k¢‘????¤úû¨??????
-						// ?¤õ¡@¤e
+						int selectFlag;	// î“±î•¶????î¸î•??????
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 17;
 						y = pActMenuWnd->y + 25;
 
@@ -12065,7 +12065,7 @@ void MenuProc(void)
 								CenteringStr(party[i].name, moji, CHAR_NAME_LEN);
 								statusWndFontNo[i + 6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, selectFlag); y += 20;
 #ifdef _TEAM_KICKPARTY
-								//andy_add ¶Ó³¤ÌßÈË
+								//andy_add é˜Ÿé•¿è¸¢äºº
 								statusWndFontNo[i + 12] = StockDispBuffer(x + 187, y - 10, DISP_PRIO_IME3, CG_MAIL_WND_DELETE_BTN, 2);
 #endif
 								sprintf_s(moji, "%4d", party[i].mp);
@@ -12127,14 +12127,14 @@ void MenuProc(void)
 								if( index >= 25 ) break;
 								if( iCharAlchePlus[index] <= 0 ) continue;
 								if( HitDispNo == StockDispBuffer( x + 45 + j * 60 , y + 96 + i * 57 , DISP_PRIO_IME3 + 1, iAlchePlusIcon[index], 2 ) ) {
-									sprintf_s( moji , "%s µÄ²ÄÁÏ¼ø¶¨Êì¶È", sAlchePlus_list[index]); 
+									sprintf_s( moji , "%s çš„ææ–™é‰´å®šç†Ÿåº¦", sAlchePlus_list[index]); 
 									StockFontBuffer( 25, 311, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									sprintf_s( moji , "%d %%", iCharAlchePlus[index] / 1000 ); 
 									StockFontBuffer( 220, 311, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 
-									sprintf_s( moji , "¶ÔÓÚ %s ²ÄÁÏµÄ¼ø¶¨Êì¶È£¬¿ÉÌá¸ß", sAlchePlus_list[index] ); 
+									sprintf_s( moji , "å¯¹äº %s ææ–™çš„é‰´å®šç†Ÿåº¦ï¼Œå¯æé«˜", sAlchePlus_list[index] ); 
 									StockFontBuffer( 25, 340, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-									sprintf_s( moji , "ËØ²ÄºÏ³É³É¹¦ÂÊ¡£"); 	
+									sprintf_s( moji , "ç´ æåˆæˆæˆåŠŸç‡ã€‚"); 	
 									StockFontBuffer( 25, 360, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 
 								}
@@ -12159,15 +12159,15 @@ void MenuProc(void)
 									sprintf_s( moji , "%s%d" , DetailDesc[j + i * 4] , atoi ( CharDetail[j + i * 4] ) ) ; 
 									StockFontBuffer( 25, 310, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									if( i == 0 ){
-										sprintf_s( moji , "¶ÔÓÚ%s¾«ÁéÄ§·¨µÄ¿¹ĞÔ£¬¿É¼õÉÙÊÜµ½", DetailDescchar[j] ); 
+										sprintf_s( moji , "å¯¹äº%sç²¾çµé­”æ³•çš„æŠ—æ€§ï¼Œå¯å‡å°‘å—åˆ°", DetailDescchar[j] ); 
 										StockFontBuffer( 25, 330, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-										sprintf_s( moji , "%s¾«ÁéÄ§·¨µÄÉËº¦¡£", DetailDescchar[j] ); 	
+										sprintf_s( moji , "%sç²¾çµé­”æ³•çš„ä¼¤å®³ã€‚", DetailDescchar[j] ); 	
 										StockFontBuffer( 25, 350, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									}
 									else if( i == 1 ){
-										sprintf_s( moji , "Ê¹ÓÃ%s¾«ÁéÄ§·¨µÄÊìÁ·¶È£¬¿ÉÔö¼ÓÊ¹ÓÃ", DetailDescchar[j] ); 
+										sprintf_s( moji , "ä½¿ç”¨%sç²¾çµé­”æ³•çš„ç†Ÿç»ƒåº¦ï¼Œå¯å¢åŠ ä½¿ç”¨", DetailDescchar[j] ); 
 										StockFontBuffer( 25, 330, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-										sprintf_s( moji , "%s¾«ÁéÄ§·¨Ê±µÄÍşÁ¦¡£", DetailDescchar[j] ) ; 
+										sprintf_s( moji , "%sç²¾çµé­”æ³•æ—¶çš„å¨åŠ›ã€‚", DetailDescchar[j] ) ; 
 										StockFontBuffer( 25, 350, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									}
 
@@ -12257,9 +12257,9 @@ void MenuProc(void)
 	if (MenuToggleFlag & JOY_CTRL_P){
 #ifdef _STREET_VENDOR
 		if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2){
-			StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃ¸ü»»³èÎï×´Ì¬", FONT_PAL_RED);
+			StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—æ›´æ¢å® ç‰©çŠ¶æ€", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
-			// ÎªÁË²»Ö´ĞĞ³èÎïÊÓ´°ËùÒÔÉè¶¨Îª 3,²»×÷ÊÂ
+			// ä¸ºäº†ä¸æ‰§è¡Œå® ç‰©è§†çª—æ‰€ä»¥è®¾å®šä¸º 3,ä¸ä½œäº‹
 			petWndNo = 3;
 		}
 #endif
@@ -12267,45 +12267,45 @@ void MenuProc(void)
 		if (pc.iTheaterMode > 0)
 		{
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
+				StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
 			else if (pc.iTheaterMode & 0x00000001)
-				StockChatBufferLine("Çë×¨ĞÄ¿´±íÑİ", FONT_PAL_RED);
+				StockChatBufferLine("è¯·ä¸“å¿ƒçœ‹è¡¨æ¼”", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
-			// ÎªÁË²»Ö´ĞĞ³èÎïÊÓ´°ËùÒÔÉè¶¨Îª 3,²»×÷ÊÂ
+			// ä¸ºäº†ä¸æ‰§è¡Œå® ç‰©è§†çª—æ‰€ä»¥è®¾å®šä¸º 3,ä¸ä½œäº‹
 			petWndNo = 3;
 		}
 #endif
 #ifdef _NPC_DANCE
 		if (pc.iDanceMode)
 		{
-			StockChatBufferLine("ÌØÊâ×´Ì¬ÎŞ·¨²é¿´³èÎï", FONT_PAL_RED);
+			StockChatBufferLine("ç‰¹æ®ŠçŠ¶æ€æ— æ³•æŸ¥çœ‹å® ç‰©", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
 			petWndNo = 3;
 		}
 #endif
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (petWndNo){
 
 		case 0:	// ??????????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 320, 0, -1);
 
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
-				// ûõıï§k????
+				// î¢î‘˜îœ±????
 				BattlePetReceivePetNo = -1;
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
 				DropPetWndflag = false;
 				DropI = -1;
 #endif
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ??????????¤úû¨
+					// ??????????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_PET_WND_VIEW, 1);
 
 					// ??????????
@@ -12331,11 +12331,11 @@ void MenuProc(void)
 
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ?????§Æ???
+						// ?????î¤???
 						for (i = 0; i < 5; i++){
-							// ??????????????ûõıï?????
+							// ??????????????î¢î‘˜?????
 							if (pet[i].useFlag == TRUE && BattlePetReceivePetNo != i){
-								// ???¡k¢‘???
+								// ???î“±î•¶???
 								if (HitDispNo == petWndFontNo[i]){
 									// ride Pet
 #if 1
@@ -12352,7 +12352,7 @@ void MenuProc(void)
 									else
 										// when ride Pet
 									if (i == pc.ridePetNo && pc.graNo != SPR_pet021
-										&& pc.graNo != 100362){//½ğ·É
+										&& pc.graNo != 100362){//é‡‘é£
 										char buf[64];
 										sprintf_s(buf, "R|P|-1");
 										if (bNewServer)
@@ -12365,16 +12365,16 @@ void MenuProc(void)
 											lssproto_PETST_send(sockfd, i, 0);
 									}
 									else
-										// ¡I§D??
+										// î“îœŠ??
 									if (i == pc.battlePetNo && BattlePetReceiveFlag == FALSE){
-										// ¡I§D?????
+										// î“îœŠ?????
 										if (bNewServer)
 											lssproto_KS_send(sockfd, -1);
 										else
 											old_lssproto_KS_send(sockfd, -1);
-										// ûõıï¢r??????
+										// î¢î‘˜î•˜??????
 										BattlePetReceiveFlag = TRUE;
-										// ???ûõıï?????§k???
+										// ???î¢î‘˜?????îœ±???
 										BattlePetReceivePetNo = i;
 
 										// ?????
@@ -12401,18 +12401,18 @@ void MenuProc(void)
 									else
 										// ??????
 									if (pc.selectPetNo[i] == TRUE){
-										// ¡I§D???????
+										// î“îœŠ???????
 										if (pc.battlePetNo == -1 && BattlePetReceiveFlag == FALSE){
-											// ???ş†??
+											// ???î¡Š??
 											if (pet[i].hp > 0){
-												// ¡I§D?ıï
+												// î“îœŠ?î‘˜
 												if (bNewServer)
 													lssproto_KS_send(sockfd, i);
 												else
 													old_lssproto_KS_send(sockfd, i);
-												// ûõıï¢r??????
+												// î¢î‘˜î•˜??????
 												BattlePetReceiveFlag = TRUE;
-												// ???ûõıï?????§k???
+												// ???î¢î‘˜?????îœ±???
 												BattlePetReceivePetNo = i;
 												play_se(217, 320, 240); // ?????
 											}
@@ -12478,11 +12478,11 @@ void MenuProc(void)
 #endif
 
 								}
-								// ı½??????¡k¢‘???
+								// î¦??????î“±î•¶???
 								if (HitFontNo == petWndFontNo[i + 5]){
-									petStatusNo = i; // ???§k???
+									petStatusNo = i; // ???îœ±???
 									petWndNo = 1;
-									// ??????úÇ
+									// ??????îŒ–
 									DeathAction(pActMenuWnd);
 									pActMenuWnd = NULL;
 									// ????????
@@ -12491,22 +12491,22 @@ void MenuProc(void)
 
 							}
 						}
-						// ¨–??
+						// î¼??
 						if (HitDispNo == petWndFontNo[10]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ????????¨–??
+							// ????????î¼??
 							MenuToggleFlag ^= JOY_CTRL_P;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 							// ????????
 
 							saveUserSetting();
 						}
-						// ı½????
+						// î¦????
 						if (HitDispNo == petWndFontNo[11]){
-							petStatusNo = 0; // ???§k???
+							petStatusNo = 0; // ???îœ±???
 							// ??????????
 							for (i = 0; i < 5; i++){
 								// ???????????
@@ -12516,13 +12516,13 @@ void MenuProc(void)
 								}
 							}
 							petWndNo = 1;
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							// ????????
 							play_se(202, 320, 240);
 						}
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
 						if (HitDispNo == petWndFontNo[21]) {
 							i = DropI;
 							DropI = -1;
@@ -12548,23 +12548,23 @@ void MenuProc(void)
 					}
 					// ????????
 					if (mouse.onceState & MOUSE_RIGHT_CRICK){
-						// ?????§Æ???
+						// ?????î¤???
 						for (i = 0; i < 5; i++){
 							// ???????????
 							if (pet[i].useFlag == TRUE && eventWarpSendFlag == FALSE){
-								// ???¡k¢‘???
+								// ???î“±î•¶???
 								if (HitFontNo == petWndFontNo[i + 5]){
-									// ?????şÎ???ş†?? or ride Pet
+									// ?????î’•???î¡Š?? or ride Pet
 									if (ItemMixPetNo != i
 										&& pc.ridePetNo != i)
 									{
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
 										DropPetWndflag = true;
 										DropI = i;
 #else
 
 
-										// ????£t??ıï
+										// ????î–º??î‘˜
 										if( bNewServer)
 											lssproto_DP_send( sockfd, nowGx, nowGy, i );
 										else
@@ -12574,9 +12574,9 @@ void MenuProc(void)
 											pc.selectPetNo[ i ] = FALSE; // ????
 											BattlePetStMenCnt--; // ?????????
 										}
-										// ¡I§D??
+										// î“îœŠ??
 										if( i == pc.battlePetNo ){
-											// ¡I§D?????
+											// î“îœŠ?????
 											if( bNewServer)
 												lssproto_KS_send( sockfd, -1 );
 											else
@@ -12598,9 +12598,9 @@ void MenuProc(void)
 							}
 						}
 					}
-#ifdef _DROPPETWND					// (¿É¿ª·Å) Syu ADD ¶ªÆú³èÎïÈ·ÈÏ
+#ifdef _DROPPETWND					// (å¯å¼€æ”¾) Syu ADD ä¸¢å¼ƒå® ç‰©ç¡®è®¤
 					if (DropPetWndflag == true) {
-						StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, "È·¶¨Òª¶ª³öÄãµÄ³èÎïÂğ£¿", 0); y += 40;
+						StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, "ç¡®å®šè¦ä¸¢å‡ºä½ çš„å® ç‰©å—ï¼Ÿ", 0); y += 40;
 						StockDispBuffer(320, 240, DISP_PRIO_YES_NO_WND, CG_DROPWND, 0);
 						petWndFontNo[21] = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_YES_BTN, 2);
 						petWndFontNo[22] = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_NO_BTN, 2);
@@ -12616,19 +12616,19 @@ void MenuProc(void)
 						int atrGraNo[4];
 
 						x = pActMenuWnd->x + 16 + 50, y = pActMenuWnd->y + 31;
-						// ???§Æ???
+						// ???î¤???
 						for (i = 0; i < 5; i++){
 							// ???????????
 							if (pet[i].useFlag == TRUE){
 
-								color = FONT_PAL_WHITE;		// ?????ıè
+								color = FONT_PAL_WHITE;		// ?????î‘‘
 								btnNo = 0;					// ???????
-								// ????¦V???
+								// ????îš¼???
 								if (pc.selectPetNo[i] == TRUE){
 									color = FONT_PAL_AQUA;
 									btnNo = 2;
 								}
-								// ¡I§D??
+								// î“îœŠ??
 								if (i == pc.battlePetNo){
 									color = FONT_PAL_YELLOW;
 									btnNo = 1;
@@ -12662,42 +12662,42 @@ void MenuProc(void)
 								}
 								petWndFontNo[i + 5] = StockFontBuffer(x + 3, y, FONT_PRIO_FRONT, color, moji, 2); y += 24;
 #ifdef _SHOWPETTRN_
-								sprintf(moji, "%d×ª", pet[i].trn);
+								sprintf(moji, "%dè½¬", pet[i].trn);
 								StockFontBuffer(x + 122, y - 24, FONT_PRIO_FRONT, color, moji, 2);
 #endif
 								atrFlag = FALSE;
-								// ¢NşÍ¤úû¨
-								if (pet[i].earth > 0){	// Ô
-									// ¢†??
+								// î”´î’”î¸î•
+								if (pet[i].earth > 0){	// ä½‹
+									// î•«??
 									if (pet[i].earth > 50) atrGraNo[atrFlag] = CG_ATR_ICON_EARTH_BIG;
-									// üí??
+									// î¸??
 									else atrGraNo[atrFlag] = CG_ATR_ICON_EARTH_SML;
 									atrFlag++; // ?????
 								}
 								if (pet[i].water > 0){	// ?
-									// ¢†??
+									// î•«??
 									if (pet[i].water > 50) atrGraNo[atrFlag] = CG_ATR_ICON_WATER_BIG;
-									// üí??
+									// î¸??
 									else atrGraNo[atrFlag] = CG_ATR_ICON_WATER_SML;
 									atrFlag++; // ?????
 								}
 								if (pet[i].fire > 0){	// ?
-									// ¢†??
+									// î•«??
 									if (pet[i].fire > 50) atrGraNo[atrFlag] = CG_ATR_ICON_FIRE_BIG;
-									// üí??
+									// î¸??
 									else atrGraNo[atrFlag] = CG_ATR_ICON_FIRE_SML;
 									atrFlag++; // ?????
 								}
 								if (pet[i].wind > 0){	// ?
-									// ¢†??
+									// î•«??
 									if (pet[i].wind > 50) atrGraNo[atrFlag] = CG_ATR_ICON_WIND_BIG;
-									// üí??
+									// î¸??
 									else atrGraNo[atrFlag] = CG_ATR_ICON_WIND_SML;
 									atrFlag++; // ?????
 								}
 								// ???
 								if (atrFlag > 0) StockDispBuffer(pActMenuWnd->x + 228, y - 16, DISP_PRIO_IME3, atrGraNo[0], 0);
-								// ¦K??
+								// îš±??
 								if (atrFlag > 1) StockDispBuffer(pActMenuWnd->x + 228 + 16, y - 16, DISP_PRIO_IME3, atrGraNo[1], 0);
 
 								petWndFontNo[i] = StockDispBuffer(x - 27, y - 14, DISP_PRIO_IME3, CG_PET_WND_REST_BTN + btnNo, 2);
@@ -12732,12 +12732,12 @@ void MenuProc(void)
 						}
 						// ????????
 						if (flag != TRUE){
-							// ¨–??¤úû¨
+							// î¼??î¸î•
 							petWndFontNo[10] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, pActMenuWnd->y + 299, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
-							StockFontBuffer(x + 10, y, FONT_PRIO_FRONT, 0, "ÄãÃ»ÓĞ³èÎï", 0); y += 40;
+							StockFontBuffer(x + 10, y, FONT_PRIO_FRONT, 0, "ä½ æ²¡æœ‰å® ç‰©", 0); y += 40;
 						}
 						else{
-							// ¨–??¤úû¨
+							// î¼??î¸î•
 							petWndFontNo[10] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx + 56, pActMenuWnd->y + 299, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 							petWndFontNo[11] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx - 56, pActMenuWnd->y + 299, DISP_PRIO_IME3, CG_PET_WND_STATUS_BTN, 2);
 						}
@@ -12746,28 +12746,28 @@ void MenuProc(void)
 			}
 			break;
 
-		case 1: // ????ı½??????
+		case 1: // ????î¦??????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 332, 0, -1);
 #ifdef _PETBLESS_
-				×£¸£´°¿Ú¿ª¹Ø = 0;
-				memset(×£¸£´°¿ÚÄÚÈİ, 0, 128);
+				ç¥ç¦çª—å£å¼€å…³ = 0;
+				memset(ç¥ç¦çª—å£å†…å®¹, 0, 128);
 #endif
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ???ı½??????¤úû¨
+					// ???î¦??????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_PET_WND_DETAIL, 1);
 					// ????????????????
 					if (pActPet == NULL)
 					{
-#ifdef _LIZARDPOSITION			   // (¿É¿ª·Å) Syu ADD ĞŞÕıÁúòáÏÔÊ¾Î»ÖÃ¹ıµÍ
+#ifdef _LIZARDPOSITION			   // (å¯å¼€æ”¾) Syu ADD ä¿®æ­£é¾™èœ¥æ˜¾ç¤ºä½ç½®è¿‡ä½
 						if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 							(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 						{
@@ -12789,51 +12789,51 @@ void MenuProc(void)
 						if (HitDispNo == petWndFontNo[0]){
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
 							// ?????????????
 							petWndNo = 0;
-							// ş¡q¨Á???????úÇ
+							// î¡“î“·îŸ‰???????îŒ–
 							DeathAction(pActMenuWnd3);
 							pActMenuWnd3 = NULL;
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 						// ????????
 						if (HitDispNo == petWndFontNo[4]){
-							// ??????§k?
+							// ??????îœ±?
 							petWndNo = 2;
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
 							// ?????????????
 							petWndNo = 2;
-							// ş¡q¨Á???????úÇ
+							// î¡“î“·îŸ‰???????îŒ–
 							DeathAction(pActMenuWnd3);
 							pActMenuWnd3 = NULL;
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
 							// ????????
 							play_se(202, 320, 240);
 						}
 					}
-					// ¡q??????????
+					// î“·??????????
 					if (HitDispNo == petWndFontNo[1] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
-							// ş¡q¨Á??????????
+							// î¡“î“·îŸ‰??????????
 							if (pActMenuWnd3 != NULL){
-								// ??????úÇ
+								// ??????îŒ–
 								DeathAction(pActMenuWnd3);
 								pActMenuWnd3 = NULL;
-								// ¦V????????
+								// îš¼????????
 								GetKeyInputFocus(&MyChatBuffer);
-								// ?????¨–???
+								// ?????î¼???
 								play_se(203, 320, 240);
 							}
 							while (1){
@@ -12842,8 +12842,8 @@ void MenuProc(void)
 								if (petStatusNo <= -1) petStatusNo = 4;
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
-							// ???????§k?¨Á?
-#ifdef _LIZARDPOSITION			   // (¿É¿ª·Å) Syu ADD ĞŞÕıÁúòáÏÔÊ¾Î»ÖÃ¹ıµÍ
+							// ???????îœ±?îŸ‰?
+#ifdef _LIZARDPOSITION			   // (å¯å¼€æ”¾) Syu ADD ä¿®æ­£é¾™èœ¥æ˜¾ç¤ºä½ç½®è¿‡ä½
 							if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 								(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 							{
@@ -12870,26 +12870,26 @@ void MenuProc(void)
 							petWndBtnFlag[1] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[1] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[1] = FALSE;
 					}
 					// ???????????
 					if (HitDispNo == petWndFontNo[2] || joy_con[0] & JOY_B){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
-							// ş¡q¨Á??????????
+							// î¡“î“·îŸ‰??????????
 							if (pActMenuWnd3 != NULL){
-								// ??????úÇ
+								// ??????îŒ–
 								DeathAction(pActMenuWnd3);
 								pActMenuWnd3 = NULL;
-								// ¦V????????
+								// îš¼????????
 								GetKeyInputFocus(&MyChatBuffer);
-								// ?????¨–???
+								// ?????î¼???
 								play_se(203, 320, 240);
 							}
 							while (1){
@@ -12898,8 +12898,8 @@ void MenuProc(void)
 								if (petStatusNo >= 5) petStatusNo = 0;
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
-							// ???????§k?¨Á
-#ifdef _LIZARDPOSITION			   // (¿É¿ª·Å) Syu ADD ĞŞÕıÁúòáÏÔÊ¾Î»ÖÃ¹ıµÍ
+							// ???????îœ±?îŸ‰
+#ifdef _LIZARDPOSITION			   // (å¯å¼€æ”¾) Syu ADD ä¿®æ­£é¾™èœ¥æ˜¾ç¤ºä½ç½®è¿‡ä½
 							if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 								(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 							{
@@ -12926,46 +12926,46 @@ void MenuProc(void)
 							petWndBtnFlag[2] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[2] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[2] = FALSE;
 					}
-					// ş¡q¨Á????
+					// î¡“î“·îŸ‰????
 					if (HitDispNo == petWndFontNo[3]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
-							// ş¦Ü?ş©???¨Á??¦u?
+							// î¡“î?î‘°???îŸ‰??î››?
 							if (pet[petStatusNo].changeNameFlag == TRUE){
 								if (pActMenuWnd3 == NULL){
-									// ?????¤úû¨????şÎ
+									// ?????î¸î•????î’•
 									pActMenuWnd3 = MakeWindowDisp(4, 4 + 280 + 56, 272, 88, 0, -1, 0);
 									// ????????
 									play_se(202, 320, 240);
-									// ş¡q????
+									// î¡“î“·????
 									petNameChange.buffer[0] = NULL;
 									petNameChange.cnt = 0;
 									petNameChange.cursor = 0;
-									// §ó???£•?
+									// î°???î—š?
 									petNameChange.len = 16;
-									// §ó???ıè
+									// î°???î‘‘
 									petNameChange.color = 0;
-									// §ó????¤õ
+									// î°????î³
 									petNameChange.x = pActMenuWnd3->x + 22;
 									petNameChange.y = pActMenuWnd3->y + 25;
-									// §ó???¤úû¨?¡I??
+									// î°???î¸î•?î“??
 									petNameChange.fontPrio = FONT_PRIO_FRONT;
 								}
-								else{	// ?????????¨–??
-									// ??????úÇ
+								else{	// ?????????î¼??
+									// ??????îŒ–
 									DeathAction(pActMenuWnd3);
 									pActMenuWnd3 = NULL;
-									// ¦V????????
+									// îš¼????????
 									GetKeyInputFocus(&MyChatBuffer);
-									// ?????¨–???
+									// ?????î¼???
 									play_se(203, 320, 240);
 								}
 								petWndBtnFlag[3] = TRUE;
@@ -12982,12 +12982,12 @@ void MenuProc(void)
 							petWndBtnFlag[3] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[3] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[3] = FALSE;
 					}
 #ifndef _PET_SKINS
@@ -12999,55 +12999,55 @@ void MenuProc(void)
 							pet[petStatusNo].graNo != 101279 && pet[petStatusNo].graNo != 100401 &&
 							pet[petStatusNo].graNo != 101414 && pet[petStatusNo].graNo != 101167 &&
 							pet[petStatusNo].graNo != 101172 && pet[petStatusNo].graNo != 102011 &&
-							pet[petStatusNo].graNo != 102012)	// fix ÄÄĞ©³èÎï²»ÄÜÕÕ³èÕÕ
+							pet[petStatusNo].graNo != 102012)	// fix å“ªäº›å® ç‰©ä¸èƒ½ç…§å® ç…§
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 #ifdef _TAIKEN			
 							// ???
 							play_se( 220, 320, 240 );
-							// ???????¤úû¨
-							sprintf_s( moji,"ÌåÑé°æ²»ÄÜÑ¡Ôñ£¡" );
-							// ????§ó??????????????
+							// ???????î¸î•
+							sprintf_s( moji,"ä½“éªŒç‰ˆä¸èƒ½é€‰æ‹©ï¼" );
+							// ????î°??????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
-							int tblNo = pet[petStatusNo].graNo - 100250; // ?????§k?
+							int tblNo = pet[petStatusNo].graNo - 100250; // ?????îœ±?
 #if defined(__ALBUM_47)
-							if (tblNo > 1800){					//Ğ¡¶ñÄ§
+							if (tblNo > 1800){					//å°æ¶é­”
 								tblNo -= 1208;
 							}
-							else if (tblNo > 1755){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							else if (tblNo > 1755){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201;
 							}
-							else if (tblNo > 1739){			//·ÉÉß
+							else if (tblNo > 1739){			//é£è›‡
 								tblNo -= 1200;
 							}
-							else if (tblNo > 1686){			//8.0³èÎï
+							else if (tblNo > 1686){			//8.0å® ç‰©
 								tblNo -= 1175;
 							}
-							else if (tblNo > 1641){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							else if (tblNo > 1641){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
 							}
-							else if (tblNo > 1635){   //÷è÷ë
+							else if (tblNo > 1635){   //éº’éºŸ
 								tblNo -= 1148;
 							}
-							else if (tblNo > 1634){	//Ã¨Å®1 Ã¨Å®2
+							else if (tblNo > 1634){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
 							}
-							else if (tblNo > 1628){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							else if (tblNo > 1628){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
 							}
-							else if (tblNo > 1615){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							else if (tblNo > 1615){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
 							}
-							else if (tblNo > 1568){//»úÈËÁú
+							else if (tblNo > 1568){//æœºäººé¾™
 								tblNo -= 1103;
 							}
-							else if (tblNo > 1564){//»ÆÉ«·ÉÁú
+							else if (tblNo > 1564){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}
 							else if (tblNo > 1516){
 								tblNo -= 1055;
 							}
-							else if (tblNo == 1516){//ĞŞÕıÎÚÁ¦Íõ
+							else if (tblNo == 1516){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455;
 							}
 							else if (tblNo > 1509){
@@ -13117,31 +13117,31 @@ void MenuProc(void)
 								tblNo -= (333 + 56);
 							}
 #elif defined(__ALBUM_46)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13189,31 +13189,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_45)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13261,31 +13261,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_44)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13333,31 +13333,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_43)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13405,31 +13405,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_42)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13477,31 +13477,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_41)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13549,31 +13549,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_40)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13621,31 +13621,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_39)
-							if( tblNo > 1800 ){					//Ğ¡¶ñÄ§
+							if( tblNo > 1800 ){					//å°æ¶é­”
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							}else if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13693,29 +13693,29 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_38)
-							if( tblNo > 1755 ){					//¼ä¸ôÄÏ¹ÏÄ§ÍõºóµÄ ºüºï
+							if( tblNo > 1755 ){					//é—´éš”å—ç“œé­”ç‹åçš„ ç‹çŒ´
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//·ÉÉß
+							}else if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13763,27 +13763,27 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_37)
-							if (tblNo > 1739 ){			//·ÉÉß
+							if (tblNo > 1739 ){			//é£è›‡
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0³èÎï
+							}else if (tblNo > 1686 ){			//8.0å® ç‰©
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13831,25 +13831,25 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_36)
-							if (tblNo > 1686 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							if (tblNo > 1686 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							}else if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13897,23 +13897,23 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_35)
-							if (tblNo > 1641 ){			//¼¦ÄêÊŞ4 ¼×³æ2	8.0µÚÒ»´ÎÕûºÏ²âÊÔ
+							if (tblNo > 1641 ){			//é¸¡å¹´å…½4 ç”²è™«2	8.0ç¬¬ä¸€æ¬¡æ•´åˆæµ‹è¯•
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13962,23 +13962,23 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_34)
-							if (tblNo > 1639 ){			//¼¦ÄêÊŞ4
+							if (tblNo > 1639 ){			//é¸¡å¹´å…½4
 								tblNo -= 1167;
-							}else if (tblNo > 1635 ){   //÷è÷ë
+							}else if (tblNo > 1635 ){   //éº’éºŸ
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14028,19 +14028,19 @@ void MenuProc(void)
 #elif defined(__ALBUM_33)
 							if (tblNo > 1635 ){
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2 ÷è÷ë
+							}else if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2 éº’éºŸ
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14088,19 +14088,19 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_32)
-							if ( tblNo > 1634 ){	//Ã¨Å®1 Ã¨Å®2
+							if ( tblNo > 1634 ){	//çŒ«å¥³1 çŒ«å¥³2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							}else if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14148,17 +14148,17 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_31)
-							if ( tblNo > 1628 ){	//»ğÒÏ1 »ğÒÏ2 Å£ÈË1 Å£ÈË2
+							if ( tblNo > 1628 ){	//ç«èš1 ç«èš2 ç‰›äºº1 ç‰›äºº2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							}else if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14206,15 +14206,15 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_30)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ ²¼ÒÁ¿á
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼ å¸ƒä¼Šé…·
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14262,15 +14262,15 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_29)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ °×ÀÇ
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†” ç™½ç‹¼
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14319,15 +14319,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_28)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2 »ÒÈËÈÛ
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2 ç°äººç†”
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14376,15 +14376,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_27)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ Ê¨ÈË1 Ê¨ÈË2
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹ ç‹®äºº1 ç‹®äºº2
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14433,15 +14433,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_26)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û ÃÛ·ä1 ÃÛ·ä2 ºûµû1 ºûµû2 °µºÚÎÚÁ¦Íõ
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°” èœœèœ‚1 èœœèœ‚2 è´è¶1 è´è¶2 æš—é»‘ä¹ŒåŠ›ç‹
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14490,15 +14490,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_25)
-							if( tblNo > 1615 ){//²¼ÀïÈø¶û
+							if( tblNo > 1615 ){//å¸ƒé‡Œè¨å°”
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//»úÈËÁú
+							}else if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14547,13 +14547,13 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_24)
-							if( tblNo > 1568 ){//»úÈËÁú
+							if( tblNo > 1568 ){//æœºäººé¾™
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//»ÆÉ«·ÉÁú
+							}else if( tblNo > 1564 ){//é»„è‰²é£é¾™
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14605,7 +14605,7 @@ void MenuProc(void)
 								tblNo -= 1057;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							}else if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14654,7 +14654,7 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_22)
-							if ( tblNo == 1516 ){//ĞŞÕıÎÚÁ¦Íõ
+							if ( tblNo == 1516 ){//ä¿®æ­£ä¹ŒåŠ›ç‹
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14980,7 +14980,7 @@ void MenuProc(void)
 							int albumNo;
 							// ???????
 							if (0 <= tblNo && tblNo < MAX_PET_TBL){
-								// ????§Æ???
+								// ????î¤???
 
 								if (tblNo == 442)
 									albumNo = 0;
@@ -14988,33 +14988,33 @@ void MenuProc(void)
 								albumNo = PetAlbumTbl[tblNo].albumNo;
 								// ????????
 								if (albumNo != -1){
-									// ûÌş¢úÄ???????
+									// î¹î‘©îŒ“???????
 									PetAlbum[albumNo].flag = 2;
 
-									// ??ş????
+									// ??î¡“????
 									if (pet[petStatusNo].freeName[0] != NULL){
 										strcpy(PetAlbum[albumNo].freeName, pet[petStatusNo].freeName);
 									}
 									else{
-										// şoş???
+										// î ´î¡“???
 										strcpy(PetAlbum[albumNo].freeName, PetAlbumTbl[tblNo].name);
 									}
-									// şoş???
+									// î ´î¡“???
 									strcpy(PetAlbum[albumNo].name, PetAlbumTbl[tblNo].name);
-									// ???????§k?
+									// ???????îœ±?
 									PetAlbum[albumNo].faceGraNo = PetAlbumTbl[tblNo].faceGraNo;
 									// ???
 									PetAlbum[albumNo].level = pet[petStatusNo].level;
-									// ?¢†??
+									// ?î•«??
 									PetAlbum[albumNo].maxHp = pet[petStatusNo].maxHp;
 									// ??
 									PetAlbum[albumNo].str = pet[petStatusNo].atk;
-									// ¡‰??
+									// î”??
 									PetAlbum[albumNo].quick = pet[petStatusNo].quick;
-									// ş\?
+									// î ¡?
 									PetAlbum[albumNo].def = pet[petStatusNo].def;
 
-									// Ô
+									// ä½‹
 									PetAlbum[albumNo].earth = pet[petStatusNo].earth;
 									// ?
 									PetAlbum[albumNo].water = pet[petStatusNo].water;
@@ -15023,15 +15023,15 @@ void MenuProc(void)
 									// ?
 									PetAlbum[albumNo].wind = pet[petStatusNo].wind;
 
-									// ûÌş¢?úÄ??
+									// î¹î‘©?îŒ“??
 									play_se(201, 320, 240);
-									// ???????¤úû¨
-									sprintf_s(moji, "%s ÕÕÏàÍê³É£¡", PetAlbum[albumNo].freeName);
-									// ????§ó??????????????
+									// ???????î¸î•
+									sprintf_s(moji, "%s ç…§ç›¸å®Œæˆï¼", PetAlbum[albumNo].freeName);
+									// ????î°??????????????
 									StockChatBufferLine(moji, FONT_PAL_WHITE);
 
 									petWndBtnFlag[7] = TRUE;
-									// ?????¨ò¢V 
+									// ?????îŸ•î”¼ 
 									SaveAlbum(albumNo);
 
 								}
@@ -15039,8 +15039,8 @@ void MenuProc(void)
 									// ???
 									play_se(220, 320, 240);
 #ifdef _STONDEBUG_		
-									sprintf_s( moji,"Í¼ĞÎ±àºÅºÜÆæ¹Ö %d",pet[ petStatusNo ].graNo );
-									MessageBoxNew( hWnd, moji, "È·¶¨", MB_OK | MB_ICONSTOP );
+									sprintf_s( moji,"å›¾å½¢ç¼–å·å¾ˆå¥‡æ€ª %d",pet[ petStatusNo ].graNo );
+									MessageBoxNew( hWnd, moji, "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 									//	}
 								}
@@ -15049,8 +15049,8 @@ void MenuProc(void)
 								// ???
 								play_se(220, 320, 240);
 #ifdef _STONDEBUG_		
-								sprintf_s( moji,"³èÎïµÄtable±àºÅºÜÆæ¹Ö %d",tblNo );
-								MessageBoxNew( hWnd, moji, "È·¶¨", MB_OK | MB_ICONSTOP );
+								sprintf_s( moji,"å® ç‰©çš„tableç¼–å·å¾ˆå¥‡æ€ª %d",tblNo );
+								MessageBoxNew( hWnd, moji, "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 							}
 #endif
@@ -15061,12 +15061,12 @@ void MenuProc(void)
 							petWndBtnFlag[7] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[7] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[7] = FALSE;
 					}
 #endif
@@ -15084,60 +15084,60 @@ void MenuProc(void)
 							int blessNoid;
 							if (pet[petStatusNo].blesshp != 2){
 								blessNoid = StockDispBuffer(x + 140, y + 128, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "³èÎï×£¸£¡£");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "å® ç‰©ç¥ç¦ã€‚");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									×£¸£´°¿ÚÑ¡ÖĞ = 1;
-									if (!×£¸£´°¿Ú¿ª¹Ø)
+									ç¥ç¦çª—å£é€‰ä¸­ = 1;
+									if (!ç¥ç¦çª—å£å¼€å…³)
 										lssproto_petbless_send(sockfd, petStatusNo, -1);
-									×£¸£´°¿Ú¿ª¹Ø = TRUE;
+									ç¥ç¦çª—å£å¼€å…³ = TRUE;
 								}
 							}
 							if (pet[petStatusNo].blessatk != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 150, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "³èÎï×£¸£¡£");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "å® ç‰©ç¥ç¦ã€‚");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									×£¸£´°¿ÚÑ¡ÖĞ = 2;
-									if (!×£¸£´°¿Ú¿ª¹Ø)
+									ç¥ç¦çª—å£é€‰ä¸­ = 2;
+									if (!ç¥ç¦çª—å£å¼€å…³)
 										lssproto_petbless_send(sockfd, petStatusNo, -2);
-									×£¸£´°¿Ú¿ª¹Ø = TRUE;
+									ç¥ç¦çª—å£å¼€å…³ = TRUE;
 
 								}
 							}
 							if (pet[petStatusNo].blessdef != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 175, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "³èÎï×£¸£¡£");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "å® ç‰©ç¥ç¦ã€‚");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									×£¸£´°¿ÚÑ¡ÖĞ = 3;
-									if (!×£¸£´°¿Ú¿ª¹Ø)
+									ç¥ç¦çª—å£é€‰ä¸­ = 3;
+									if (!ç¥ç¦çª—å£å¼€å…³)
 										lssproto_petbless_send(sockfd, petStatusNo, -3);
-									×£¸£´°¿Ú¿ª¹Ø = TRUE;
+									ç¥ç¦çª—å£å¼€å…³ = TRUE;
 								}
 							}
 							if (pet[petStatusNo].blessquick != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 200, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "³èÎï×£¸£¡£");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "å® ç‰©ç¥ç¦ã€‚");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									×£¸£´°¿ÚÑ¡ÖĞ = 4;
-									if (!×£¸£´°¿Ú¿ª¹Ø)
+									ç¥ç¦çª—å£é€‰ä¸­ = 4;
+									if (!ç¥ç¦çª—å£å¼€å…³)
 										lssproto_petbless_send(sockfd, petStatusNo, -4);
-									×£¸£´°¿Ú¿ª¹Ø = TRUE;
+									ç¥ç¦çª—å£å¼€å…³ = TRUE;
 								}
 							}
-							if (×£¸£´°¿Ú¿ª¹Ø){
+							if (ç¥ç¦çª—å£å¼€å…³){
 								StockDispBuffer(x + 115, y + 345, DISP_PRIO_MENU, 55259, 1);
-								StockFontBuffer(x - 10, y + 325, FONT_PRIO_FRONT, 0, ×£¸£´°¿ÚÄÚÈİ, 0);
+								StockFontBuffer(x - 10, y + 325, FONT_PRIO_FRONT, 0, ç¥ç¦çª—å£å†…å®¹, 0);
 								blessNoid = StockDispBuffer(x + 65, y + 367, DISP_PRIO_IME3, 55233, 2);
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									if (×£¸£´°¿Ú¿ª¹Ø) lssproto_petbless_send(sockfd, petStatusNo, ×£¸£´°¿ÚÑ¡ÖĞ);
-									×£¸£´°¿Ú¿ª¹Ø = FALSE;
+									if (ç¥ç¦çª—å£å¼€å…³) lssproto_petbless_send(sockfd, petStatusNo, ç¥ç¦çª—å£é€‰ä¸­);
+									ç¥ç¦çª—å£å¼€å…³ = FALSE;
 
 								}
 								blessNoid = StockDispBuffer(x + 165, y + 367, DISP_PRIO_IME3, 55235, 2);
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									×£¸£´°¿Ú¿ª¹Ø = FALSE;
+									ç¥ç¦çª—å£å¼€å…³ = FALSE;
 								}
 							}
 						}
@@ -15145,13 +15145,13 @@ void MenuProc(void)
 #endif
 #ifdef _PETCOM_
 						extern void ShowBottomLineString(int iColor, LPSTR lpstr);
-						static int ³èËãÍ¼Æ¬Ë÷Òı = 0;
-						static int ³èËã´°¿Ú°´Å¥ID = 0;
-						³èËã´°¿Ú°´Å¥ID = StockDispBuffer(x + 193, y + 5, DISP_PRIO_IME3, CG_PETCOM_CHANGE_BTN + ³èËãÍ¼Æ¬Ë÷Òı, 2);
-						if (HitDispNo == ³èËã´°¿Ú°´Å¥ID)
-							ShowBottomLineString(FONT_PAL_WHITE, "³èÎï³É³¤¼ÆËã¡£");
-						if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == ³èËã´°¿Ú°´Å¥ID)){
-							³èËãÍ¼Æ¬Ë÷Òı = 1;
+						static int å® ç®—å›¾ç‰‡ç´¢å¼• = 0;
+						static int å® ç®—çª—å£æŒ‰é’®ID = 0;
+						å® ç®—çª—å£æŒ‰é’®ID = StockDispBuffer(x + 193, y + 5, DISP_PRIO_IME3, CG_PETCOM_CHANGE_BTN + å® ç®—å›¾ç‰‡ç´¢å¼•, 2);
+						if (HitDispNo == å® ç®—çª—å£æŒ‰é’®ID)
+							ShowBottomLineString(FONT_PAL_WHITE, "å® ç‰©æˆé•¿è®¡ç®—ã€‚");
+						if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == å® ç®—çª—å£æŒ‰é’®ID)){
+							å® ç®—å›¾ç‰‡ç´¢å¼• = 1;
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
 								petWndNo = 4;
 								DeathAction(pActMenuWnd);
@@ -15165,7 +15165,7 @@ void MenuProc(void)
 							}
 						}
 						else{
-							³èËãÍ¼Æ¬Ë÷Òı = 0;
+							å® ç®—å›¾ç‰‡ç´¢å¼• = 0;
 						}
 #endif
 
@@ -15175,7 +15175,7 @@ void MenuProc(void)
 							CenteringStr(pet[petStatusNo].name, moji, PET_NAME_LEN);
 						StockFontBuffer(x - 7, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #ifdef _SHOWPETTRN_
-						sprintf(moji, "[%d×ª]", pet[petStatusNo].trn);
+						sprintf(moji, "[%dè½¬]", pet[petStatusNo].trn);
 						StockFontBuffer(x + 108, y - 24, FONT_PRIO_FRONT, 5, moji, 0);
 #endif
 						petWndFontNo[3] = StockDispBuffer(x + 66, y + 7, DISP_PRIO_IME3, CG_NAME_CHANGE_BTN + petWndBtnFlag[3], 2);
@@ -15211,7 +15211,7 @@ void MenuProc(void)
 						StockFontBuffer(x + 48 + 45, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #endif
 #endif
-						// Ô¢NşÍ???
+						// ä½‹î”´î’”???
 						if (pet[petStatusNo].earth > 0){
 							x2 = (int)(pet[petStatusNo].earth * 0.8);
 							StockBoxDispBuffer(x + PET_WND_ATTR_X + 0, y + PET_WND_ATTR_Y + 0, x + PET_WND_ATTR_X + 0 + x2, y + PET_WND_ATTR_Y + 8, DISP_PRIO_IME4, SYSTEM_PAL_GREEN, 1);
@@ -15237,7 +15237,7 @@ void MenuProc(void)
 						StockFontBuffer(x + 50, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #endif
 #endif
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pet[petStatusNo].water > 0){
 							x2 = (int)(pet[petStatusNo].water * 0.8);
 
@@ -15264,7 +15264,7 @@ void MenuProc(void)
 						StockFontBuffer(x + 50, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #endif
 #endif
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pet[petStatusNo].fire > 0){
 							x2 = (int)(pet[petStatusNo].fire * 0.8);
 							StockBoxDispBuffer(x + PET_WND_ATTR_X + 0, y + PET_WND_ATTR_Y + 0, x + PET_WND_ATTR_X + 0 + x2, y + PET_WND_ATTR_Y + 8, DISP_PRIO_IME4, SYSTEM_PAL_RED, 1);
@@ -15289,7 +15289,7 @@ void MenuProc(void)
 						StockFontBuffer(x + 50, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #endif
 #endif
-						// ?¢NşÍ???
+						// ?î”´î’”???
 						if (pet[petStatusNo].wind > 0){
 							x2 = (int)(pet[petStatusNo].wind * 0.8);
 							StockBoxDispBuffer(x + PET_WND_ATTR_X + 0, y + PET_WND_ATTR_Y + 0, x + PET_WND_ATTR_X + 0 + x2, y + PET_WND_ATTR_Y + 8, DISP_PRIO_IME4, SYSTEM_PAL_YELLOW, 1);
@@ -15299,7 +15299,7 @@ void MenuProc(void)
 						sprintf_s(moji, "%3d", pet[petStatusNo].ai);
 						StockFontBuffer(x + 50, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 						y += 12;
-						// ûÌş¢?úÄ????
+						// î¹î‘©?îŒ“????
 
 #ifndef _PET_SKINS
 						petWndFontNo[7] = StockDispBuffer(x + 52, y, DISP_PRIO_IME3, CG_ALBUM_WND_SNAP_BTN_UP + petWndBtnFlag[7], 2);
@@ -15314,33 +15314,33 @@ void MenuProc(void)
 			if (pActMenuWnd3 != NULL){
 				if (pActMenuWnd3->hp > 0){
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd3->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd3->pYobi)->my, DISP_PRIO_MENU, CG_NAME_CHANGE_WND, 1);
-					// ¦V??????ûè¥x
+					// îš¼??????î•î™¾
 					GetKeyInputFocus(&petNameChange);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ş¡q¨Á?£Ï£Ë???
+						// î¡“î“·îŸ‰?ï¼¯ï¼«???
 						if (HitDispNo == petWndFontNo[5]){
 							// ????????
 							KeyboardReturn();
 
 						}
-						// ş¡q¨Á?????????
+						// î¡“î“·îŸ‰?????????
 						if (HitDispNo == petWndFontNo[6]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd3);
 							pActMenuWnd3 = NULL;
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
-					// ??????üÒ????????
+					// ??????î????????
 					if (pActMenuWnd3 != NULL){
-						// §ó???¤úû¨
+						// î°???î¸î•
 						StockFontBuffer2(&petNameChange);
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd3->x + 20;
 						y = pActMenuWnd3->y + 60;
 						petWndFontNo[5] = StockDispBuffer(x + 60, y + 7, DISP_PRIO_IME3, CG_OK_BTN, 2);
@@ -15354,36 +15354,36 @@ void MenuProc(void)
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 348, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					// ?????????
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_PET_WAZA_WND, 1);
-					// ??????§Æ???
+					// ??????î¤???
 					for (i = 0; i < pet[petStatusNo].maxSkill; i++){
-						// ?????¤úû¨
+						// ?????î¸î•
 						StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_PET_WAZA_BAR_1 + i, 1);
 					}
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ???ı½?????????
+						// ???î¦?????????
 						if (HitDispNo == petWndFontNo[7]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							// ?????????????
 							petWndNo = 1;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
-					// ¡q??????????
+					// î“·??????????
 					if (HitDispNo == petWndFontNo[8] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
@@ -15393,7 +15393,7 @@ void MenuProc(void)
 								if (petStatusNo <= -1) petStatusNo = 4;
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
-							// ???§R¤e???
+							// ???îœ˜î˜‹???
 							for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
 							// ?????
 							play_se(217, 320, 240);
@@ -15405,12 +15405,12 @@ void MenuProc(void)
 							petWndBtnFlag[8] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[8] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[8] = FALSE;
 					}
 					// ???????????
@@ -15423,7 +15423,7 @@ void MenuProc(void)
 								if (petStatusNo >= 5) petStatusNo = 0;
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
-							// ???§R¤e???
+							// ???îœ˜î˜‹???
 							for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
 							// ?????
 							play_se(217, 320, 240);
@@ -15435,23 +15435,23 @@ void MenuProc(void)
 							petWndBtnFlag[9] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							petWndBtnFlag[9] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						petWndBtnFlag[9] = FALSE;
 					}
 
 					// ????????
 					if (pActMenuWnd != NULL){
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 32;
 						y = pActMenuWnd->y + 252;
 
-						// ¡Cş‘?
+						// î“‰î¡•?
 						for (i = 0; i < pet[petStatusNo].maxSkill; i++){
 							// ????????
 							if (petSkill[petStatusNo][i].useFlag == TRUE){
@@ -15459,13 +15459,13 @@ void MenuProc(void)
 								if (HitFontNo == petWndFontNo[i]){
 									// ??????
 									char *splitPoint = petSkill[petStatusNo][i].memo;
-									// ??§Æ???
+									// ??î¤???
 									while (1){
-										// ??§ó??£’????§Æ?
+										// ??î°??î——????î¤?
 										if (strlen(splitPoint) > 24){
 											strncpy_s(moji, splitPoint, 24);
-											moji[24] = NULL;	// ü¬£Z??????
-											// ¡u??§S§Æ????
+											moji[24] = NULL;	// î·î– ??????
+											// î“»??îœ™î¤????
 											if (GetStrLastByte(moji) == 3){
 												moji[23] = NULL;
 												splitPoint += 23;
@@ -15485,37 +15485,37 @@ void MenuProc(void)
 #ifdef _STONDEBUG_						
 									// ????????
 									if( mouse.onceState & MOUSE_RIGHT_CRICK ){
-										// ??????úé???
+										// ??????îŒ¸???
 										if( petSkill[ petStatusNo ][ i ].field != PETSKILL_FIELD_BATTLE ){
 											int j;
 											int cnt = 0;
 											switch( petSkill[ petStatusNo ][ i ].skillId ){
 
-											case PETSKILL_MERGE: 	// ?¤G?????şÎ
-												// ¦K??ıÆ???????????????
+											case PETSKILL_MERGE: 	// ?î—­?????î’•
+												// îš±??î¯???????????????
 												for( j = MAX_ITEMSTART ; j < MAX_ITEMSTART ; j++ ){
 													if( ItemBuffer[ j ].mixFlag == 1 ) cnt++;
 												}
 												break;
 
-											case PETSKILL_MERGE2: 	// ???????şÎ
-												// ¦K??ıÆ???????????????
+											case PETSKILL_MERGE2: 	// ???????î’•
+												// îš±??î¯???????????????
 												for( j = MAX_ITEMSTART ; j < MAX_ITEM ; j++ ){
 													if( ItemBuffer[ j ].mixFlag == 2 ) cnt++;
 												}
 												break;
 											}
 
-											// ¦K??ıÆ??????
+											// îš±??î¯??????
 											if( cnt >= 2 ){
-												// §ó????
+												// î°????
 												moji[ 0 ] = NULL;
-												// ?şÎ???????????
+												// ?î’•???????????
 												for( j = MAX_ITEMSTART ; j <  MAX_ITEM ; j++ ){
-													// ?şÎ?????????
+													// ?î’•?????????
 													if( ItemBuffer[ j ].mixFlag >= TRUE ){
 														char work[ 256 ];
-														// §ó???şÎ
+														// î°???î’•
 														sprintf_s( work,"%d|", j );
 														strcat_s( moji, work );
 														// ??????
@@ -15525,13 +15525,13 @@ void MenuProc(void)
 												// ???|????????
 												moji[ strlen( moji ) - 1 ] = NULL;
 
-												// ??????úé???ıï????şÎ?????
+												// ??????îŒ¸???î‘˜????î’•?????
 												if( bNewServer)
 													lssproto_PS_send( sockfd, mixPetNo, i, 0, moji );
 												else
 													old_lssproto_PS_send( sockfd, mixPetNo, i, 0, moji );
 
-												// ????úé??
+												// ????îŒ¸??
 												play_se(212, 320, 240);
 											}
 											else{
@@ -15547,23 +15547,23 @@ void MenuProc(void)
 #endif									
 									// ????????
 									if (mouse.onceState & MOUSE_LEFT_CRICK){
-										// ??????úé????????????????????????????ş†??
+										// ??????îŒ¸????????????????????????????î¡Š??
 										if (petSkill[petStatusNo][i].field != PETSKILL_FIELD_BATTLE && pActPet2 == NULL
 											/* && MenuToggleFlag & JOY_CTRL_I*/){
 											int j;
 											int cnt = 0;
-											// ?şÎ?ûï??§Æ?
+											// ?î’•?îœ??î¤?
 											switch (petSkill[petStatusNo][i].skillId){
 
-											case PETSKILL_MERGE: 	// ?¤G?????şÎ
-												// ¦K??ıÆ???????????????
+											case PETSKILL_MERGE: 	// ?î—­?????î’•
+												// îš±??î¯???????????????
 												for (j = MAX_ITEMSTART; j < MAX_ITEM; j++){
 													if (ItemBuffer[j].mixFlag == 1) cnt++;
 												}
 												break;
 
-											case PETSKILL_MERGE2: 	// ???????şÎ
-												// ¦K??ıÆ???????????????
+											case PETSKILL_MERGE2: 	// ???????î’•
+												// îš±??î¯???????????????
 												for (j = MAX_ITEMSTART; j < MAX_ITEM; j++){
 													if (ItemBuffer[j].mixFlag == 2) cnt++;
 												}
@@ -15606,22 +15606,22 @@ void MenuProc(void)
 												break;
 #endif
 											}
-											// ¦K??ıÆ??????
+											// îš±??î¯??????
 											if (cnt >= 2){
 
 												// ????????????????
 												if (pActPet2 == NULL){
-													// ?????????şÎ
+													// ?????????î’•
 													pActPet2 = MakeAnimDisp(750, 240, pet[petStatusNo].graNo, ANIM_DISP_MIX_PET_INIT);
-													// ?şÎ???§k???
+													// ?î’•???îœ±???
 													ItemMixPetNo = petStatusNo;
 												}
-												// ?§k???
+												// ?îœ±???
 												SelectWazaNo = i;
-												// ?şÎ???????§k???
+												// ?î’•???????îœ±???
 												mixPetNo = petStatusNo;
 
-												// ????úé??
+												// ????îŒ¸??
 												play_se(212, 320, 240);
 											}
 											else{
@@ -15632,22 +15632,22 @@ void MenuProc(void)
 													if (!(MenuToggleFlag & JOY_CTRL_I) || (MenuToggleFlag & JOY_CTRL_I && itemWndNo != 0)){
 														int j;
 														MenuToggleFlag |= JOY_CTRL_I;	// CTRL + I ??
-														// ????????§k????
+														// ????????îœ±????
 														for (j = 0; j < MENU_ITEM_0; j++) itemWndFontNo[j] = -2;
 														for (j = 0; j < MENU_ITEM_0; j++) itemWndBtnFlag[j] = 0;
 														itemWndNo = 0;
 														mouse.itemNo = -1;
 														itemWndDropGold = 0;
 
-														// ??????????úÇ
+														// ??????????îŒ–
 														if (BattleResultWndFlag >= 1) DeathMenuAction();
-														// ??????????úÇ
+														// ??????????îŒ–
 														DeathMenuAction2();
 														// ????????
 														saveUserSetting();
 
-														MenuToggleFlag &= ~JOY_CTRL_M;	// ??????????ı¤?
-														// ¡P¥f???????????
+														MenuToggleFlag &= ~JOY_CTRL_M;	// ??????????î?
+														// î“–î™¬???????????
 														BattleResultWndFlag = FALSE;
 														// ?????????
 														MapWmdFlagBak = FALSE;
@@ -15692,11 +15692,11 @@ void MenuProc(void)
 							y += 25;
 						}
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 20;
 						y = pActMenuWnd->y + 330;
 
-						// §ó?¤úû¨????????
+						// î°?î¸î•????????
 						petWndFontNo[7] = StockDispBuffer(x + 100 + 70, y, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 						petWndFontNo[8] = StockDispBuffer(x + 16 + 16 + 8, y, DISP_PRIO_IME3, CG_PREV_BTN + petWndBtnFlag[8], 2);
 						petWndFontNo[9] = StockDispBuffer(x + 50 + 16 + 18, y, DISP_PRIO_IME3, CG_NEXT_BTN + petWndBtnFlag[9], 2);
@@ -15715,19 +15715,19 @@ void MenuProc(void)
 			else{
 				if (pActMenuWnd->hp > 0){
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_PETCOM_WND, 1);
-					int °´Å¥ID = StockDispBuffer(pActMenuWnd->x + 190, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
-					if ((mouse.onceState & MOUSE_LEFT_CRICK) && (HitDispNo == °´Å¥ID)){
+					int æŒ‰é’®ID = StockDispBuffer(pActMenuWnd->x + 190, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
+					if ((mouse.onceState & MOUSE_LEFT_CRICK) && (HitDispNo == æŒ‰é’®ID)){
 						DeathAction(pActMenuWnd);
 						pActMenuWnd = NULL;
 						petWndNo = 1;
 						play_se(203, 320, 240);
 						break;
 					}
-					static int ³èËã×ó°´Å¥Ë÷Òı = 0;
-					static int ³èËãÓÒ°´Å¥Ë÷Òı = 0;
-					°´Å¥ID = StockDispBuffer(pActMenuWnd->x + 60, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_PREV_BTN + ³èËã×ó°´Å¥Ë÷Òı, 2);
-					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == °´Å¥ID)){
-						³èËã×ó°´Å¥Ë÷Òı = 1;
+					static int å® ç®—å·¦æŒ‰é’®ç´¢å¼• = 0;
+					static int å® ç®—å³æŒ‰é’®ç´¢å¼• = 0;
+					æŒ‰é’®ID = StockDispBuffer(pActMenuWnd->x + 60, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_PREV_BTN + å® ç®—å·¦æŒ‰é’®ç´¢å¼•, 2);
+					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == æŒ‰é’®ID)){
+						å® ç®—å·¦æŒ‰é’®ç´¢å¼• = 1;
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							while (1){
 								petStatusNo--;
@@ -15738,11 +15738,11 @@ void MenuProc(void)
 						}
 					}
 					else{
-						³èËã×ó°´Å¥Ë÷Òı = 0;
+						å® ç®—å·¦æŒ‰é’®ç´¢å¼• = 0;
 					}
-					°´Å¥ID = StockDispBuffer(pActMenuWnd->x + 104, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_NEXT_BTN + ³èËãÓÒ°´Å¥Ë÷Òı, 2);
-					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == °´Å¥ID)){
-						³èËãÓÒ°´Å¥Ë÷Òı = 1;
+					æŒ‰é’®ID = StockDispBuffer(pActMenuWnd->x + 104, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_NEXT_BTN + å® ç®—å³æŒ‰é’®ç´¢å¼•, 2);
+					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == æŒ‰é’®ID)){
+						å® ç®—å³æŒ‰é’®ç´¢å¼• = 1;
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							while (1){
 								petStatusNo++;
@@ -15754,7 +15754,7 @@ void MenuProc(void)
 						}
 					}
 					else{
-						³èËãÓÒ°´Å¥Ë÷Òı = 0;
+						å® ç®—å³æŒ‰é’®ç´¢å¼• = 0;
 					}
 #define _PETCMOX 10
 					if (pet[petStatusNo].freeName[0] != NULL)
@@ -15860,7 +15860,7 @@ void MenuProc(void)
 	//? ??????????? *******************************************************/
 	if (MenuToggleFlag & JOY_CTRL_I){
 		int x1 = 0, y1 = 0;
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 		SkillWndflag = false ; 
 		/*		if( pActMenuWnd3 != NULL ) {
 					DeathAction ( pActMenuWnd3 ) ; 
@@ -15872,7 +15872,7 @@ void MenuProc(void)
 #ifdef _NPC_DANCE
 		if (pc.iDanceMode)
 		{
-			StockChatBufferLine("ÌØÊâ×´Ì¬ÎŞ·¨Ê¹ÓÃµÀ¾ß", FONT_PAL_RED);
+			StockChatBufferLine("ç‰¹æ®ŠçŠ¶æ€æ— æ³•ä½¿ç”¨é“å…·", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_I;
 			itemWndNo = 3;
 		}
@@ -15882,36 +15882,36 @@ void MenuProc(void)
 		case 0:	
 			if (pActMenuWnd2 == NULL)
 			{
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 #ifndef _PET_ITEM
 				pActMenuWnd2 = MakeWindowDisp(365, 4, 271, 440, 0, -1);
 #ifdef _NEW_ITEM_
-				µÀ¾ßÀ¸Ò³Êı = 0;
+				é“å…·æ é¡µæ•° = 0;
 #endif
 #ifdef _MAGIC_ITEM_
-				µÀ¾ß¹â»·Act=NULL;
+				é“å…·å…‰ç¯Act=NULL;
 #endif
 				InitItem(pActMenuWnd2->x, pActMenuWnd2->y, 0);
 #else
 				pActMenuWnd2 = MakeWindowDisp(351, 4, 271, 440, 0, -1);
 #ifdef _NEW_ITEM_
-				µÀ¾ßÀ¸Ò³Êı = 0;
+				é“å…·æ é¡µæ•° = 0;
 #endif
 				pActMenuWnd2->x += 14;
 				((WINDOW_DISP*)pActMenuWnd2->pYobi)->mx = 271 / 2 + pActMenuWnd2->x;
 				InitItem(pActMenuWnd2->x, pActMenuWnd2->y, g_bPetItemWndFlag);
 #endif
-				// ¡k¢‘???????§k????
+				// î“±î•¶???????îœ±????
 				itemNo = -1;
-				// ?şÎ???§k????
+				// ?î’•???îœ±????
 				ItemMixPetNo = -1;
-				// ???????????¡k¢‘???????
+				// ???????????î“±î•¶???????
 				if (MenuToggleFlag & JOY_CTRL_E && mailWndNo == MAIL_WND_ITEM){
-					// ?????????¨–??
+					// ?????????î¼??
 					MenuToggleFlag &= ~JOY_CTRL_E;
 					DeathMenuAction();
 				}
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 				MymoneyBuffer.buffer[0] = NULL;
 				MymoneyBuffer.cnt = 0;
 				MymoneyBuffer.cursor = 0;
@@ -15928,7 +15928,7 @@ void MenuProc(void)
 
 				for (i = 0; i < MAX_PET; i++)
 				{
-					// ÓĞÕâÖ»³è
+					// æœ‰è¿™åªå® 
 					if (pet[i].useFlag)
 					{
 						nSelectPet = i;
@@ -15939,16 +15939,16 @@ void MenuProc(void)
 			}
 			else
 			{
-				//andy_log ×°±¸À¸Î»ĞŞ¸Ä´¦
+				//andy_log è£…å¤‡æ ä½ä¿®æ”¹å¤„
 				if (pActMenuWnd2->hp > 0)
 				{
 #ifdef _PET_ITEM
-					// ¼ì²éÊÇ·ñ°´ÏÂÁËµÀ¾ßÊÓ´°×ó±ßµÄ±êÇ©
+					// æ£€æŸ¥æ˜¯å¦æŒ‰ä¸‹äº†é“å…·è§†çª—å·¦è¾¹çš„æ ‡ç­¾
 					x1 = pActMenuWnd2->x - 21;
 					y1 = pActMenuWnd2->y + 12;
 					if (g_bPetItemWndFlag)
 					{
-						if (MakeHitBox(x1, y1, x1 + 23, y1 + 60, DISP_PRIO_IME3) == TRUE)	// °´ÏÂÁËÈËÎï×°±¸
+						if (MakeHitBox(x1, y1, x1 + 23, y1 + 60, DISP_PRIO_IME3) == TRUE)	// æŒ‰ä¸‹äº†äººç‰©è£…å¤‡
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
 							g_bPetItemWndFlag = false;
@@ -15957,7 +15957,7 @@ void MenuProc(void)
 					}
 					else
 					{
-						if (MakeHitBox(x1, y1 + 78, x1 + 23, y1 + 142, DISP_PRIO_IME3) == TRUE)	// °´ÏÂÁË³èÎï×°±¸
+						if (MakeHitBox(x1, y1 + 78, x1 + 23, y1 + 142, DISP_PRIO_IME3) == TRUE)	// æŒ‰ä¸‹äº†å® ç‰©è£…å¤‡
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
 							g_bPetItemWndFlag = true;
@@ -15978,9 +15978,9 @@ void MenuProc(void)
 #endif
 #endif
 
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 #ifdef _PET_ITEM
-					if (!g_bPetItemWndFlag)	// ÈËÎï×°±¸À¸²ÅÒªÏÔÊ¾ÒÔÏÂµÄ¶«Î÷
+					if (!g_bPetItemWndFlag)	// äººç‰©è£…å¤‡æ æ‰è¦æ˜¾ç¤ºä»¥ä¸‹çš„ä¸œè¥¿
 #endif
 					{
 						x1 = pActMenuWnd2->x + 175;
@@ -16014,44 +16014,44 @@ void MenuProc(void)
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
-						// °´ÏÂ¹Ø±ÕÅ¥
+						// æŒ‰ä¸‹å…³é—­é’®
 						if (HitDispNo == itemWndFontNo[0]){
 #ifdef _MAGIC_ITEM_
-							if(µÀ¾ß¹â»·Act) DeathAction(µÀ¾ß¹â»·Act);
-							µÀ¾ß¹â»·Act=NULL;
+							if(é“å…·å…‰ç¯Act) DeathAction(é“å…·å…‰ç¯Act);
+							é“å…·å…‰ç¯Act=NULL;
 							extern void ClearMagicItemWin();
 							ClearMagicItemWin();
 #endif
 							DeathAction(pActMenuWnd2);
 
 							pActMenuWnd2 = NULL;
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet2);
 							pActPet2 = NULL;
-							// ?şÎ???§k????
+							// ?î’•???îœ±????
 							ItemMixPetNo = -1;
-							// ?????????¨–??
+							// ?????????î¼??
 							MenuToggleFlag ^= JOY_CTRL_I;
-							// ????????????????¨–??
+							// ????????????????î¼??
 							if (MenuToggleFlag & JOY_CTRL_S){
 
 								MenuToggleFlag ^= JOY_CTRL_S;	// CTRL + S ??
-								// ??????????úÇ
+								// ??????????îŒ–
 								DeathMenuAction();
 							}
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 							itemNo = -1;
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 						}
-						// °´ÁËÖäÊõ
+						// æŒ‰äº†å’’æœ¯
 						if (HitDispNo == itemWndFontNo[1]){
 							itemWndNo = 1;
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -16092,10 +16092,10 @@ void MenuProc(void)
 							}
 						}
 #ifdef _PET_ITEM
-						// Ä¿Ç°´¦ÔÚ³èÎï×°±¸ÊÓ´°
+						// ç›®å‰å¤„åœ¨å® ç‰©è£…å¤‡è§†çª—
 						if (g_bPetItemWndFlag)
 						{
-							// °´ÏÂÁË×ó¼ıÍ·
+							// æŒ‰ä¸‹äº†å·¦ç®­å¤´
 							if (HitDispNo == itemWndFontNo[5])
 							{
 								if (nSelectPet != -1)
@@ -16111,7 +16111,7 @@ void MenuProc(void)
 									while (!pet[nSelectPet].useFlag);
 								}
 							}
-							// °´ÏÂÁËÓÒ¼ıÍ·
+							// æŒ‰ä¸‹äº†å³ç®­å¤´
 							if (HitDispNo == itemWndFontNo[6])
 							{
 								if (nSelectPet != -1)
@@ -16149,7 +16149,7 @@ void MenuProc(void)
 							else
 								old_lssproto_DG_send(sockfd, nowGx, nowGy, itemWndDropGold);
 							itemWndDropGold = 0;
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							Moneyflag = false;
 #endif
 
@@ -16166,22 +16166,22 @@ void MenuProc(void)
 						}
 						// ??????
 						if (itemWndBtnFlag[3] == TRUE){
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 							// ???
 							itemWndDropGold += itemWndDropGoldInc;
-							// ûÎ?????§Æ????????
+							// î»?????î¤????????
 							itemWndDropGoldCnt++;
-							// ?§Æ¨Á???
+							// ?î¤îŸ‰???
 							if (itemWndDropGoldCnt >= 30){
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								itemWndDropGoldCnt = 0;
 								// ????????
 								if (itemWndDropGoldInc == 0) itemWndDropGoldInc = 1;
 								else{
-									// ??¦•???
+									// ??î›º???
 									itemWndDropGoldInc *= 5;
 									// ????????
 									if (itemWndDropGoldInc > 10000) itemWndDropGoldInc = 10000;
@@ -16205,9 +16205,9 @@ void MenuProc(void)
 								play_se(220, 320, 240);
 							}
 							else{
-								// ûÎ?????§Æ
+								// î»?????î¤
 								itemWndDropGoldInc = 0;
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								itemWndDropGoldCnt = 0;
 								// ???????
 								itemWndBtnFlag[3] = TRUE;
@@ -16218,7 +16218,7 @@ void MenuProc(void)
 
 					}
 					else
-						// ???¥…???
+						// ???îšŠ???
 						itemWndBtnFlag[3] = FALSE;
 
 					// ??????????
@@ -16231,21 +16231,21 @@ void MenuProc(void)
 						// ??????
 						if (itemWndBtnFlag[4] == TRUE){
 							// ????
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 							itemWndDropGold -= itemWndDropGoldInc;
-							// ûÎ?????§Æ????????
+							// î»?????î¤????????
 							itemWndDropGoldCnt++;
-							// ?§Æ¨Á???
+							// ?î¤îŸ‰???
 							if (itemWndDropGoldCnt >= 30){
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								itemWndDropGoldCnt = 0;
 								// ????????
 								if (itemWndDropGoldInc == 0) itemWndDropGoldInc = 1;
 								else{
-									// ??¦•???
+									// ??î›º???
 									itemWndDropGoldInc *= 5;
 									// ????????
 									if (itemWndDropGoldInc > 10000) itemWndDropGoldInc = 10000;
@@ -16269,9 +16269,9 @@ void MenuProc(void)
 								play_se(220, 320, 240);
 							}
 							else{
-								// ûÎ?????§Æ
+								// î»?????î¤
 								itemWndDropGoldInc = 0;
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								itemWndDropGoldCnt = 0;
 								// ???????
 								itemWndBtnFlag[4] = TRUE;
@@ -16287,15 +16287,15 @@ void MenuProc(void)
 					if (pActMenuWnd2 != NULL)
 					{
 #ifdef _NEW_ITEM_
-						//µÀ¾ßÀ¸Ò³Êı
+						//é“å…·æ é¡µæ•°
 						for (i = 0; i < 3; i++){
-							if (i == µÀ¾ßÀ¸Ò³Êı){
+							if (i == é“å…·æ é¡µæ•°){
 								StockDispBuffer(513, 188 + i * 56, DISP_PRIO_IME3, 55113 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << i){
+									if (pc.é“å…·æ çŠ¶æ€ & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -16304,9 +16304,9 @@ void MenuProc(void)
 									StockDispBuffer(518, 188 + i * 56, DISP_PRIO_IME3, 55110 + i, 1);
 									if (MakeHitBox(508, 160 + i * 56, 508 + 20, 157 + i * 56 + 60, DISP_PRIO_IME4)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											µÀ¾ßÀ¸Ò³Êı = i;
+											é“å…·æ é¡µæ•° = i;
 										}
-										if (mouse.itemNo != -1) µÀ¾ßÀ¸Ò³Êı = i;
+										if (mouse.itemNo != -1) é“å…·æ é¡µæ•° = i;
 									}
 								}
 								else StockDispBuffer(518, 188 + i * 56, DISP_PRIO_IME3, 55107 + i, 1);
@@ -16325,21 +16325,21 @@ void MenuProc(void)
 						for (i = MAX_ITEM - 1; i >= 0; i--)
 						{
 #ifdef _NEW_ITEM_
-							int µÀ¾ßÆğÊ¼ = MAX_ITEMSTART + MAX_MAXHAVEITEM*µÀ¾ßÀ¸Ò³Êı;
-							int µÀ¾ß½áÊø = µÀ¾ßÆğÊ¼ + MAX_MAXHAVEITEM;
+							int é“å…·èµ·å§‹ = MAX_ITEMSTART + MAX_MAXHAVEITEM*é“å…·æ é¡µæ•°;
+							int é“å…·ç»“æŸ = é“å…·èµ·å§‹ + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < µÀ¾ßÆğÊ¼ || i >= µÀ¾ß½áÊø) continue;
+								if (i < é“å…·èµ·å§‹ || i >= é“å…·ç»“æŸ) continue;
 							}
 #endif
 #ifdef _MAGIC_ITEM_
-							if(pc.µÀ¾ß¹â»·Ğ§¹û > 100000){
-								if(µÀ¾ß¹â»·Act==NULL){
-									µÀ¾ß¹â»·Act = MakeAnimDisp(ItemBuffer[i].defX, ItemBuffer[i].defY,pc.µÀ¾ß¹â»·Ğ§¹û, 0);
+							if(pc.é“å…·å…‰ç¯æ•ˆæœ > 100000){
+								if(é“å…·å…‰ç¯Act==NULL){
+									é“å…·å…‰ç¯Act = MakeAnimDisp(ItemBuffer[i].defX, ItemBuffer[i].defY,pc.é“å…·å…‰ç¯æ•ˆæœ, 0);
 								}
 							}
 #endif
 #ifdef _PET_ITEM
-							// µ±ÏÔÊ¾³èÎïµÀ¾ßÀ¸Ê±,³èÎïÉíÉÏµÄ×°±¸Ö»ÏÔÊ¾Æß¸ö,¶àµÄ¾ÍÌø¹ı²»´¦Àí
+							// å½“æ˜¾ç¤ºå® ç‰©é“å…·æ æ—¶,å® ç‰©èº«ä¸Šçš„è£…å¤‡åªæ˜¾ç¤ºä¸ƒä¸ª,å¤šçš„å°±è·³è¿‡ä¸å¤„ç†
 							if (g_bPetItemWndFlag && (i >= PET_EQUIPNUM && i < MAX_ITEMSTART))
 								continue;
 #endif
@@ -16359,7 +16359,7 @@ void MenuProc(void)
 								ItemBuffer[i].defX + 26, ItemBuffer[i].defY + 23, DISP_PRIO_IME3) == TRUE)
 							{
 #ifdef _PET_ITEM
-								// ´¦ÀíÏÔÊ¾³èÎï×°±¸
+								// å¤„ç†æ˜¾ç¤ºå® ç‰©è£…å¤‡
 								if (g_bPetItemWndFlag && (i >= PET_HEAD && i < PET_EQUIPNUM) && nSelectPet > -1)
 								{
 									if (pet[nSelectPet].item[i].useFlag == TRUE && (ItemBuffer[i].mixFlag <= 2 || ItemBuffer[i].mixFlag == 10))
@@ -16370,15 +16370,15 @@ void MenuProc(void)
 
 										StockFontBuffer(pActMenuWnd2->x + 16, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, pet[nSelectPet].item[i].name, 0);
 
-										// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
-										sprintf_s(damage_msg, "ÄÍ¾Ã¶È(%s)", pet[nSelectPet].item[i].damage);
+										// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
+										sprintf_s(damage_msg, "è€ä¹…åº¦(%s)", pet[nSelectPet].item[i].damage);
 										StockFontBuffer(pActMenuWnd2->x + 150, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, damage_msg, 0);
 
 #ifdef	_NPC_ITEMUP
-										ShowItemup(pet[nSelectPet].item[i].itemup,mouse.nowPoint.x,mouse.nowPoint.y);// ÏÔÊ¾ÎïÆ·Éı¼¶×´Ì¬	
+										ShowItemup(pet[nSelectPet].item[i].itemup,mouse.nowPoint.x,mouse.nowPoint.y);// æ˜¾ç¤ºç‰©å“å‡çº§çŠ¶æ€	
 #endif									
 #ifdef _ITEM_COUNTDOWN
-										ShowCounttime(pet[nSelectPet].item[i].counttime,mouse.nowPoint.x,mouse.nowPoint.y);// ÏÔÊ¾ÎïÆ·µ¹Êı¼ÆÊ±×´Ì¬	
+										ShowCounttime(pet[nSelectPet].item[i].counttime,mouse.nowPoint.x,mouse.nowPoint.y);// æ˜¾ç¤ºç‰©å“å€’æ•°è®¡æ—¶çŠ¶æ€	
 #endif
 										while (1)
 										{
@@ -16409,7 +16409,7 @@ void MenuProc(void)
 									}
 								}
 								else
-									// ÈËÎï×°±¸
+									// äººç‰©è£…å¤‡
 #endif
 								{
 #ifdef _ALCHEMIST
@@ -16424,16 +16424,16 @@ void MenuProc(void)
 										StockFontBuffer(pActMenuWnd2->x + 16, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, pc.item[i].name, 0);
 										{
 
-											// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+											// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 											char damage_msg[256];
-											sprintf_s(damage_msg, "ÄÍ¾Ã¶È(%s)", pc.item[i].damage);
+											sprintf_s(damage_msg, "è€ä¹…åº¦(%s)", pc.item[i].damage);
 											StockFontBuffer(pActMenuWnd2->x + 150, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, damage_msg, 0);
 										}
 #ifdef	_NPC_ITEMUP
-										ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);// ÏÔÊ¾ÎïÆ·Éı¼¶×´Ì¬	
+										ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);// æ˜¾ç¤ºç‰©å“å‡çº§çŠ¶æ€	
 #endif
 #ifdef _ITEM_COUNTDOWN
-										ShowCounttime(pc.item[i].counttime, mouse.nowPoint.x, mouse.nowPoint.y);// ÏÔÊ¾ÎïÆ·µ¹Êı¼ÆÊ±×´Ì¬	
+										ShowCounttime(pc.item[i].counttime, mouse.nowPoint.x, mouse.nowPoint.y);// æ˜¾ç¤ºç‰©å“å€’æ•°è®¡æ—¶çŠ¶æ€	
 #endif
 										while (1){
 											if (strlen(splitPoint) > 28){
@@ -16497,8 +16497,8 @@ void MenuProc(void)
 												{
 													if (nSelectPet > -1 && !(mouse.itemNo >= CHAR_EQUIPPLACENUM && i >= CHAR_EQUIPPLACENUM))
 													{
-														if (i < CHAR_EQUIPPLACENUM && nSelectPet == pc.ridePetNo)	// ÈôÊÇÒª×°ÉÏÈ¥,¼ì²éÊÇ²»ÊÇÆï³è
-															StockChatBufferLine("Æï³è²»¿É×°×°±¸£¡", FONT_PAL_YELLOW);
+														if (i < CHAR_EQUIPPLACENUM && nSelectPet == pc.ridePetNo)	// è‹¥æ˜¯è¦è£…ä¸Šå»,æ£€æŸ¥æ˜¯ä¸æ˜¯éª‘å® 
+															StockChatBufferLine("éª‘å® ä¸å¯è£…è£…å¤‡ï¼", FONT_PAL_YELLOW);
 														else
 															lssproto_PetItemEquip_send(sockfd, nowGx, nowGy, nSelectPet, mouse.itemNo, i);
 													}
@@ -16528,7 +16528,7 @@ void MenuProc(void)
 									{
 										ItemUseTime = TimeGetTime();
 #ifdef _PET_ITEM
-										// ÈôÄ¿Ç°ÊÇÔÚÈËÎï×°±¸À¸ÇÒÏë×°±¸³èÎï×°±¸Ê±,×Ô¶¯ÇĞµ½³èÎï×°±¸À¸
+										// è‹¥ç›®å‰æ˜¯åœ¨äººç‰©è£…å¤‡æ ä¸”æƒ³è£…å¤‡å® ç‰©è£…å¤‡æ—¶,è‡ªåŠ¨åˆ‡åˆ°å® ç‰©è£…å¤‡æ 
 										if (!g_bPetItemWndFlag)
 										{
 											if (pc.item[i].useFlag && pc.item[i].type >= ITEM_PET_HEAD && pc.item[i].type < ITEM_CATEGORYNUM)
@@ -16538,7 +16538,7 @@ void MenuProc(void)
 												break;
 											}
 										}
-										// ÈôÄ¿Ç°ÊÇÔÚ³èÎï×°±¸À¸ÇÒÏë×°±¸ÈËÎï×°±¸Ê±,×Ô¶¯ÇĞµ½ÈËÎï×°±¸À¸
+										// è‹¥ç›®å‰æ˜¯åœ¨å® ç‰©è£…å¤‡æ ä¸”æƒ³è£…å¤‡äººç‰©è£…å¤‡æ—¶,è‡ªåŠ¨åˆ‡åˆ°äººç‰©è£…å¤‡æ 
 										else
 										{
 											if (pc.item[i].useFlag && pc.item[i].type < ITEM_PET_HEAD && i >= MAX_ITEMSTART)
@@ -16552,14 +16552,14 @@ void MenuProc(void)
 										if (pc.item[i].useFlag != TRUE || pc.item[i].field == ITEM_FIELD_BATTLE || pc.transmigration == 0 && pc.level < pc.item[i].level){
 											play_se(220, 320, 240);
 										}
-										else{ // úé??¦u??
+										else{ // îŒ¸??î››??
 											mouse.itemNo = -1;
 											switch (pc.item[i].target){
-											case ITEM_TARGET_MYSELF:	// û«§Æ??
+											case ITEM_TARGET_MYSELF:	// î˜î¤??
 												if (eventWarpSendFlag == FALSE){
 #ifdef _ITEM_JIGSAW
 													if (strlen(pc.item[i].jigsaw)){
-														if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159 //µ×°æµÀ¾ßÍ¼
+														if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159 //åº•ç‰ˆé“å…·å›¾
 															&& strcmp(pc.item[i].jigsaw, "111111111")
 															|| pc.item[i].graNo == 25150){
 															SetJigsaw(pc.item[i].graNo, pc.item[i].jigsaw);
@@ -16589,9 +16589,9 @@ void MenuProc(void)
 														else{
 															if (!DrawJigsawFlag){
 																if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159)
-																	StockChatBufferLine("ÇëÏÈ¿ªÆô´óÆ´Í¼µ×°æ", FONT_PAL_YELLOW);
+																	StockChatBufferLine("è¯·å…ˆå¼€å¯å¤§æ‹¼å›¾åº•ç‰ˆ", FONT_PAL_YELLOW);
 																else
-																	StockChatBufferLine("ÇëÏÈ¿ªÆôĞ¡Æ´Í¼µ×°æ", FONT_PAL_YELLOW);
+																	StockChatBufferLine("è¯·å…ˆå¼€å¯å°æ‹¼å›¾åº•ç‰ˆ", FONT_PAL_YELLOW);
 																break;
 															}
 															if (statusWndNo == 4 && CheckJigsaw(pc.item[i].graNo))
@@ -16602,10 +16602,10 @@ void MenuProc(void)
 													if (CheckJigsaw(pc.item[i].graNo)){
 														if (!DrawJigsawFlag){
 															if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159){
-																StockChatBufferLine("ÇëÏÈ¿ªÆô´óÆ´Í¼µ×°æ", FONT_PAL_YELLOW);
+																StockChatBufferLine("è¯·å…ˆå¼€å¯å¤§æ‹¼å›¾åº•ç‰ˆ", FONT_PAL_YELLOW);
 															}
 															else{
-																StockChatBufferLine("ÇëÏÈ¿ªÆôĞ¡Æ´Í¼µ×°æ", FONT_PAL_YELLOW);
+																StockChatBufferLine("è¯·å…ˆå¼€å¯å°æ‹¼å›¾åº•ç‰ˆ", FONT_PAL_YELLOW);
 															}
 															break;
 														}
@@ -16621,7 +16621,7 @@ void MenuProc(void)
 													play_se(212, 320, 240);
 												}
 												break;
-											case ITEM_TARGET_OTHER:	// ¢\?ş°?û«§Æ??)
+											case ITEM_TARGET_OTHER:	// î•‚?î‘·?î˜î¤??)
 												itemNo = i;
 												play_se(217, 320, 240);
 												if (!(MenuToggleFlag & JOY_CTRL_S)){
@@ -16649,11 +16649,11 @@ void MenuProc(void)
 											case ITEM_TARGET_PET:
 												if (eventWarpSendFlag == FALSE)
 												{
-													// ÈôÊÇÔÚÒÑ×°±¸µÄ×°±¸ÉÏÁ¬µã¶şÏÂÔò²»¶¯×÷
+													// è‹¥æ˜¯åœ¨å·²è£…å¤‡çš„è£…å¤‡ä¸Šè¿ç‚¹äºŒä¸‹åˆ™ä¸åŠ¨ä½œ
 													if (i >= PET_HEAD && i < PET_EQUIPNUM)
 														break;
-													if (pc.ridePetNo != -1 && nSelectPet == pc.ridePetNo)	// ¼ì²éÊÇ²»ÊÇÆï³è
-														StockChatBufferLine("Æï³è²»¿É×°×°±¸£¡", FONT_PAL_YELLOW);
+													if (pc.ridePetNo != -1 && nSelectPet == pc.ridePetNo)	// æ£€æŸ¥æ˜¯ä¸æ˜¯éª‘å® 
+														StockChatBufferLine("éª‘å® ä¸å¯è£…è£…å¤‡ï¼", FONT_PAL_YELLOW);
 													else
 														lssproto_PetItemEquip_send(sockfd, nowGx, nowGy, nSelectPet, i, -1);
 													play_se(212, 320, 240);
@@ -16664,31 +16664,31 @@ void MenuProc(void)
 										}
 									}
 									//#ifdef _STONDEBUG_		
-									// ??????????????????????şÎ¤úû¨
+									// ??????????????????????î’•î¸î•
 									if (mouse.onceState & MOUSE_RIGHT_CRICK  && mouse.itemNo == -1)
 									{
 										int j;
 										int cnt = 0;
-										// ??????????????????§???????şÎ????
+										// ??????????????????î’???????î’•????
 										if (pc.item[i].useFlag == TRUE && i >= MAX_ITEMSTART /*&& pc.item[ i ].sendFlag & ITEM_FLAG_MIX */)
 										{
 											int j;
 											int flag = 0;
-											// ¡k¢‘????§k????
+											// î“±î•¶????îœ±????
 											if (itemNo != -1) itemNo = -1;
-											// ??şÎ??£??
+											// ??î’•??î—•??
 											for (j = MAX_ITEMSTART; j < MAX_ITEM; j++)
 											{
-												// ?şÎ?????????
+												// ?î’•?????????
 												if (ItemBuffer[j].mixFlag >= TRUE){
 													flag = ItemBuffer[j].mixFlag;
 													break;
 												}
 											}
-											// ?şÎ????????
+											// ?î’•????????
 											if (ItemBuffer[i].mixFlag == FALSE)
 											{
-												// ????¡k¢‘????????
+												// ????î“±î•¶????????
 												if (flag == 0){
 													// ????
 													if (pc.item[i].sendFlag & ITEM_FLAG_COOKING_MIX){
@@ -16746,10 +16746,10 @@ void MenuProc(void)
 													}
 #endif
 													else{
-#ifdef _ALCHEMIST // µÚÒ»¸öÊÇ·ñ¾«Á¶Îï
+#ifdef _ALCHEMIST // ç¬¬ä¸€ä¸ªæ˜¯å¦ç²¾ç‚¼ç‰©
 														if (CheckPetSkill(PETSKILL_ALCHEMIST) == TRUE &&
 															pc.item[i].sendFlag & ITEM_FLAG_MIX &&
-															strcmp(pc.item[i].alch, "ÔÓ") != NULL){
+															strcmp(pc.item[i].alch, "æ‚") != NULL){
 															ItemBuffer[i].mixFlag = 9;
 														}
 														else
@@ -16788,7 +16788,7 @@ void MenuProc(void)
 															// ?????
 															play_se(217, 320, 240);
 														}
-#ifdef _ALCHEMIST // µÚÒ»¸öÖ®ºóµÄ¾«Á¶Îï
+#ifdef _ALCHEMIST // ç¬¬ä¸€ä¸ªä¹‹åçš„ç²¾ç‚¼ç‰©
 														else if (flag == 9){
 															if (strcmp(pc.item[i].alch, pc.item[j].alch) == FALSE) {
 																ItemBuffer[i].mixFlag = 9;
@@ -16827,7 +16827,7 @@ void MenuProc(void)
 											}
 											else
 											{
-#ifdef _ALCHEMIST // È¡ÏûÒ»¸öºÏ³ÉÎïÊ±...
+#ifdef _ALCHEMIST // å–æ¶ˆä¸€ä¸ªåˆæˆç‰©æ—¶...
 												if (ItemBuffer[i].mixFlag == 9) {
 													int k;
 													ItemBuffer[i].mixFlag = 1;
@@ -16887,7 +16887,7 @@ void MenuProc(void)
 												saveUserSetting();
 												play_se(202, 320, 240);
 
-												MenuToggleFlag &= JOY_CTRL_I;	// ?????????????úå?
+												MenuToggleFlag &= JOY_CTRL_I;	// ?????????????îŒ´?
 												MenuToggleFlag |= JOY_CTRL_P;	// ??????????
 											}
 										}
@@ -16948,13 +16948,13 @@ void MenuProc(void)
 									}
 #endif
 									else if (ItemBuffer[i].mixFlag == 3)
-									{	// ???ıê?¨÷??
-										// ????¤úû¨
+									{	// ???î‘“?îŸš??
+										// ????î¸î•
 										StockDispBuffer(pActPet2->x, pActPet2->y - 16, DISP_PRIO_DRAG, pc.item[i].graNo, 0);
 									}
 									else if (ItemBuffer[i].mixFlag == 4)
-									{	// ???????şÎ?
-										// ????¤úû¨
+									{	// ???????î’•?
+										// ????î¸î•
 										StockDispBuffer(pActPet2->x, pActPet2->y, ItemBuffer[i].dispPrio, pc.item[i].graNo, 0);
 									}
 #ifdef _MAGIC_ITEM_
@@ -16968,56 +16968,56 @@ void MenuProc(void)
 
 								}
 							}
-							// ÏÔÊ¾ºÏ³ÉÎÄ×Ö
+							// æ˜¾ç¤ºåˆæˆæ–‡å­—
 							if (ItemBuffer[i].mixFlag >= TRUE)
 							{
 								// ?????????????
 								if (pc.item[i].useFlag == TRUE){
-									// ÆÕÍ¨ºÏ³ÉµÄÊ±ºò
+									// æ™®é€šåˆæˆçš„æ—¶å€™
 									if (ItemBuffer[i].mixFlag == 1){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ºÏ³É", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "åˆæˆ", 0);
 									}
 									else
-										// ÁÏÀíºÏ³ÉµÄÊ±ºò
+										// æ–™ç†åˆæˆçš„æ—¶å€™
 									if (ItemBuffer[i].mixFlag == 2){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ÁÏÀí", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "æ–™ç†", 0);
 									}
 #ifdef _ALCHEMIST
 									if (ItemBuffer[i].mixFlag == 9){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "¾«Á¶", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ç²¾ç‚¼", 0);
 									}
 #endif
 									if (ItemBuffer[i].mixFlag == 10){// PETSKILL_INSLAY ANDY_ADD
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "¾«¹¤", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ç²¾å·¥", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 11){// PETSKILL_FIXITEM ANDY_ADD
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ĞŞ¸´", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ä¿®å¤", 0);
 									}
 #ifdef _ITEM_INTENSIFY
 									if (ItemBuffer[i].mixFlag == 12){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "Ç¿»¯", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "å¼ºåŒ–", 0);
 									}
 #endif
 #ifdef _ITEM_UPINSLAY
 									if (ItemBuffer[i].mixFlag == 13){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "Ôä¿×", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "å‡¿å­”", 0);
 									}
 #endif
 #ifdef _MAGIC_ITEM_
 									if (ItemBuffer[i].mixFlag == 14){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "Ö÷Ìå", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ä¸»ä½“", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 15){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "±¦Ê¯", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "å®çŸ³", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 16){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "×£¸£", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "ç¥ç¦", 0);
 									}
 #endif
 
 								}
 								else{
-									// ?şÎ??????
+									// ?î’•??????
 									ItemBuffer[i].mixFlag = TRUE;
 								}
 							}
@@ -17031,8 +17031,8 @@ void MenuProc(void)
 							if(MagicItemActAddr){
 								if(MagicItemPosState[0]){
 									if(MagicItemCombinData[0]) ItemBuffer[MagicItemCombinData[0]].mixFlag= 0;
-							//		if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ==25) {
-									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ>=0&&pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ<20 && pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ!=16) {
+							//		if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].é“å…·ç±»å‹==25) {
+									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].é“å…·ç±»å‹>=0&&pc.item[mouse.itemNo].é“å…·ç±»å‹<20 && pc.item[mouse.itemNo].é“å…·ç±»å‹!=16) {
 										MagicItemCombinData[0] = mouse.itemNo;
 										ItemBuffer[mouse.itemNo].mixFlag=14;
 									}
@@ -17040,7 +17040,7 @@ void MenuProc(void)
 								}
 								else if(MagicItemPosState[1]){
 									if(MagicItemCombinData[1]) ItemBuffer[MagicItemCombinData[1]].mixFlag= 0;
-									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ==38){
+									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].é“å…·ç±»å‹==38){
 										ItemBuffer[mouse.itemNo].mixFlag=15;
 										MagicItemCombinData[1] = mouse.itemNo;
 									}else MagicItemCombinData[1]=-1;
@@ -17048,7 +17048,7 @@ void MenuProc(void)
 								}
 								else if(MagicItemPosState[2]){
 									if(MagicItemCombinData[2]) ItemBuffer[MagicItemCombinData[2]].mixFlag= 0;
-									if(mouse.itemNo!=-1  && pc.item[mouse.itemNo].µÀ¾ßÀàĞÍ==39) {
+									if(mouse.itemNo!=-1  && pc.item[mouse.itemNo].é“å…·ç±»å‹==39) {
 										ItemBuffer[mouse.itemNo].mixFlag=16;
 										MagicItemCombinData[2] = mouse.itemNo;
 									}else MagicItemCombinData[2]=-1;
@@ -17067,7 +17067,7 @@ void MenuProc(void)
 										lssproto_PetItemEquip_send(sockfd, nowGx, nowGy, nSelectPet, mouse.itemNo, -2);
 									else
 #endif
-										// ?????£t??ıï
+										// ?????î–º??î‘˜
 									if (bNewServer) {
 										lssproto_DI_send(sockfd, nowGx, nowGy, mouse.itemNo);
 									}
@@ -17077,7 +17077,7 @@ void MenuProc(void)
 								}
 								// ??????????
 								ItemBuffer[mouse.itemNo].dragFlag = FALSE;
-								// ????????§k????
+								// ????????îœ±????
 								mouse.itemNo = -1;
 								// ?????
 								play_se(217, 320, 240);
@@ -17089,15 +17089,15 @@ void MenuProc(void)
 							// ??????????????
 							if (mouse.onceState & MOUSE_RIGHT_CRICK)
 							{
-								// ???£t???
+								// ???î–º???
 								// ??????????
 								ItemBuffer[mouse.itemNo].dragFlag = FALSE;
-								// ????????§k????
+								// ????????îœ±????
 								mouse.itemNo = -1;
 								// ?????
 								play_se(217, 320, 240);
 							}
-							// ????¤úû¨
+							// ????î¸î•
 #ifdef _PET_ITEM
 							if (g_bPetItemWndFlag && nSelectPet > -1 && (mouse.itemNo >= PET_HEAD && mouse.itemNo < PET_EQUIPNUM) && pet[nSelectPet].useFlag == TRUE)
 								StockDispBuffer(mouse.nowPoint.x, mouse.nowPoint.y, DISP_PRIO_DRAG, pet[nSelectPet].item[mouse.itemNo].graNo, 0);
@@ -17109,25 +17109,25 @@ void MenuProc(void)
 						if (pActMenuWnd2 != NULL)
 						{
 #ifdef _DIEJIA_
-							static int µş¼ÓÊ±¼ä = 0;
-							int °´Å¥ID = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx - 60, pActMenuWnd2->y + 422, DISP_PRIO_IME3, 55246, 2);
+							static int å åŠ æ—¶é—´ = 0;
+							int æŒ‰é’®ID = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx - 60, pActMenuWnd2->y + 422, DISP_PRIO_IME3, 55246, 2);
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
-								if (HitDispNo == °´Å¥ID){
-									if (TimeGetTime() > µş¼ÓÊ±¼ä){
-										µş¼ÓÊ±¼ä = TimeGetTime() + 4000;
+								if (HitDispNo == æŒ‰é’®ID){
+									if (TimeGetTime() > å åŠ æ—¶é—´){
+										å åŠ æ—¶é—´ = TimeGetTime() + 4000;
 										int itemMax = CHAR_EQUIPPLACENUM + MAX_MAXHAVEITEM;
 #ifdef _NEW_ITEM_
-										if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << 1){
+										if (pc.é“å…·æ çŠ¶æ€ & 1 << 1){
 											itemMax += MAX_MAXHAVEITEM;
 										}
-										if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << 2){
+										if (pc.é“å…·æ çŠ¶æ€ & 1 << 2){
 											itemMax += MAX_MAXHAVEITEM;
 										}
 #endif
-										chatStrSendForServer("/µş¼Ó",0);
+										chatStrSendForServer("/å åŠ ",0);
 									}
 									else{
-										StockChatBufferLine("Äãµã»÷µÄÌ«Æµ·±À²£¡", FONT_PAL_YELLOW);
+										StockChatBufferLine("ä½ ç‚¹å‡»çš„å¤ªé¢‘ç¹å•¦ï¼", FONT_PAL_YELLOW);
 									}
 								}
 							}
@@ -17142,12 +17142,12 @@ void MenuProc(void)
 							if (g_bPetItemWndFlag)
 							{
 								itemWndFontNo[1] = -2;
-								// ÏÔÊ¾×ó¼ıÍ·
+								// æ˜¾ç¤ºå·¦ç®­å¤´
 								itemWndFontNo[5] = StockDispBuffer(pActMenuWnd2->x + 188, pActMenuWnd2->y + 142, DISP_PRIO_IME3, 26047, 2);
-								// ÏÔÊ¾ÓÒ¼ıÍ·
+								// æ˜¾ç¤ºå³ç®­å¤´
 								itemWndFontNo[6] = StockDispBuffer(pActMenuWnd2->x + 236, pActMenuWnd2->y + 142, DISP_PRIO_IME3, 26048, 2);
 
-								// ÏÔÊ¾³èÎï×ÊÁÏ
+								// æ˜¾ç¤ºå® ç‰©èµ„æ–™
 								if (nSelectPet > -1 && pet[nSelectPet].useFlag)
 								{
 									char szTemp[16];
@@ -17155,7 +17155,7 @@ void MenuProc(void)
 
 									if (wSpecies < 0 || wSpecies >= MAX_PET_SPECIES)
 										wSpecies = MAX_PET_SPECIES;
-									// ÏÔÊ¾³èÎï×°±¸À¸µÄµ×Í¼
+									// æ˜¾ç¤ºå® ç‰©è£…å¤‡æ çš„åº•å›¾
 									for (i = 0; i < PET_EQUIPNUM; i++)
 									{
 										if (byShowPetItemBackground[wSpecies] & (1 << i))
@@ -17164,12 +17164,12 @@ void MenuProc(void)
 											StockDispBuffer(ItemBuffer[i].defX, ItemBuffer[i].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[i][1], 0);
 									}
 
-									// ÏÔÊ¾³èÎïÃû³Æ
+									// æ˜¾ç¤ºå® ç‰©åç§°
 									if (strlen(pet[nSelectPet].freeName) > 0)
 										StockFontBuffer(pActMenuWnd2->x + 148, pActMenuWnd2->y + 17, FONT_PRIO_FRONT, 0, pet[nSelectPet].freeName, 0);
 									else
 										StockFontBuffer(pActMenuWnd2->x + 148, pActMenuWnd2->y + 17, FONT_PRIO_FRONT, 0, pet[nSelectPet].name, 0);
-									// ÏÔÊ¾³èÎïµÄÊôĞÔ
+									// æ˜¾ç¤ºå® ç‰©çš„å±æ€§
 									_itoa_s(pet[nSelectPet].maxHp, szTemp, 10);
 									StockFontBuffer(pActMenuWnd2->x + 222, pActMenuWnd2->y + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, szTemp, 0);
 									_itoa_s(pet[nSelectPet].atk, szTemp, 10);
@@ -17184,7 +17184,7 @@ void MenuProc(void)
 									nSelectPet = -1;
 									for (i = 0; i < MAX_PET; i++)
 									{
-										// ÓĞÕâÖ»³è
+										// æœ‰è¿™åªå® 
 										if (pet[i].useFlag)
 										{
 											nSelectPet = i;
@@ -17197,12 +17197,12 @@ void MenuProc(void)
 #endif
 							{
 								itemWndFontNo[1] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd2->pYobi)->my, DISP_PRIO_IME3, CG_ITEM_WND_JUJUTU_BTN, 2);
-								// ??¤úû¨
+								// ??î¸î•
 								sprintf_s(moji, "%7d", pc.gold);
 								StockFontBuffer(pActMenuWnd2->x + 32 + 48 * 3 + 16, pActMenuWnd2->y + 87, FONT_PRIO_FRONT, 0, moji, 0);
-								// ?????¤úû¨
+								// ?????î¸î•
 								sprintf_s(moji, "%7d", itemWndDropGold);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 								if (Moneyflag == false)
 									StockFontBuffer(pActMenuWnd2->x + 32 + 48 * 3 + 16, pActMenuWnd2->y + 138, FONT_PRIO_FRONT, 0, moji, 0);
 #else
@@ -17221,7 +17221,7 @@ void MenuProc(void)
 			}
 			break;
 
-		case 1:	// ûöüÓ¡k¢‘?????
+		case 1:	// î£îî“±î•¶?????
 
 			// ?????????
 			if (pActMenuWnd2 == NULL){
@@ -17229,21 +17229,21 @@ void MenuProc(void)
 				// ????
 				for (i = 0; i < MENU_ITEM_0; i++) itemWndFontNo[i] = -2;
 				for (i = 0; i < MENU_ITEM_0; i++) itemWndBtnFlag[i] = 0;
-				jujutuNo = -1;	// ¡k¢‘????ûöüÓ???
+				jujutuNo = -1;	// î“±î•¶????î£î???
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd2->hp > 0){
 					x = pActMenuWnd2->x + 74;
 					y = pActMenuWnd2->y + 208;
-					// ?????????ıÆ¤úû¨
+					// ?????????î¯î¸î•
 #ifdef _READ16BITBMP
 					if (g_bUseAlpha) StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd2->pYobi)->my + 7, DISP_PRIO_MENU, CG_JUJUTU_WND, 1);
 					else
 #endif
 						StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd2->pYobi)->my + 10, DISP_PRIO_MENU, CG_JUJUTU_WND, 1);
-					// ûöüÓ¡k¢‘???
+					// î£îî“±î•¶???
 					for (i = 0; i < 5; i++){
 						if (HitFontNo == itemWndFontNo[i]){
 							// ??????
@@ -17251,11 +17251,11 @@ void MenuProc(void)
 							sprintf_s(moji, "%2d/%2d", magic[i].mp, pc.mp);
 							StockFontBuffer(pActMenuWnd2->x + 74 + 81, pActMenuWnd2->y + 183, FONT_PRIO_FRONT, 0, moji, 0);
 							while (1){
-								// ??§ó??£’????§Æ?
+								// ??î°??î——????î¤?
 								if (strlen(splitPoint) > 22){
 									strncpy_s(moji, splitPoint, 22);
-									moji[22] = NULL;	// ü¬£Z??????
-									// ¡u??§S§Æ????
+									moji[22] = NULL;	// î·î– ??????
+									// î“»??îœ™î¤????
 									if (GetStrLastByte(moji) == 3){
 										moji[21] = NULL;
 										splitPoint += 21;
@@ -17273,7 +17273,7 @@ void MenuProc(void)
 								}
 							}
 #if 0
-							// §ó??????
+							// î°??????
 							if( magic[ i ].memo[ 0 ] != NULL ){
 								strncpy_s(moji, magic[i].memo, 22);
 								moji[22] = NULL;
@@ -17286,25 +17286,25 @@ void MenuProc(void)
 								}
 							}
 #endif
-							// ????¤úû¨
+							// ????î¸î•
 							StockDispBuffer(pActMenuWnd2->x + 37, pActMenuWnd2->y + 220, DISP_PRIO_ITEM, pc.item[i].graNo, 0);
 
 							// ????????
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
-								// úé?¦Û?????¦Û¢K??
+								// îŒ¸?î?????îî”±??
 								if (magic[i].field == MAGIC_FIELD_BATTLE || magic[i].mp > pc.mp){
 									// ???
 									play_se(220, 320, 240);
 								}
-								else{ // úé??¦u??
-									// ??????§Æ?
+								else{ // îŒ¸??î››??
+									// ??????î¤?
 									switch (magic[i].target){
 
-									case MAGIC_TARGET_MYSELF:	// û«§Æ??
+									case MAGIC_TARGET_MYSELF:	// î˜î¤??
 
 										// ????????????
 										if (eventWarpSendFlag == FALSE){
-											// ûöüÓúé??ıï
+											// î£îîŒ¸??î‘˜
 											if (bNewServer)
 												lssproto_MU_send(sockfd, nowGx, nowGy, i, 0);
 											else
@@ -17313,43 +17313,43 @@ void MenuProc(void)
 										}
 										break;
 
-									case MAGIC_TARGET_OTHER:	// ¢\?ş°?û«§Æ??)
+									case MAGIC_TARGET_OTHER:	// î•‚?î‘·?î˜î¤??)
 										jujutuNo = i;
 										// ?????
 										play_se(217, 320, 240);
 										//itemNo = -1;
 										break;
 #if 0
-									case MAGIC_TARGET_ALLMYSIDE:	// şs©˜¡u¢l
+									case MAGIC_TARGET_ALLMYSIDE:	// î ¸îŸµî“»î•’
 
-										// ûöüÓúé??ıï
+										// î£îîŒ¸??î‘˜
 										if( bNewServer)
 											lssproto_MU_send( sockfd, nowGx, nowGy, i, 0 );
 										else
 											old_lssproto_MU_send( sockfd, nowGx, nowGy, i, 0 );
-										// ûöüÓ?
+										// î£î?
 										play_se( 100, 320, 240 );
 										break;
 
-									case MAGIC_TARGET_ALLOTHERSIDE:	// ?ûê¢D¡u¢l
+									case MAGIC_TARGET_ALLOTHERSIDE:	// ?î—î”ªî“»î•’
 
-										// ûöüÓúé??ıï
+										// î£îîŒ¸??î‘˜
 										if( bNewServer)
 											lssproto_MU_send( sockfd, nowGx, nowGy, i, 0 );
 										else
 											old_lssproto_MU_send( sockfd, nowGx, nowGy, i, 0 );
-										// ûöüÓ?
+										// î£î?
 										play_se( 100, 320, 240 );
 										break;
 
-									case MAGIC_TARGET_ALL:	// ¡u?
+									case MAGIC_TARGET_ALL:	// î“»?
 
-										// ûöüÓúé??ıï
+										// î£îîŒ¸??î‘˜
 										if (bNewServer)
 											lssproto_MU_send(sockfd, nowGx, nowGy, i, 0);
 										else
 											old_lssproto_MU_send(sockfd, nowGx, nowGy, i, 0);
-										// ûöüÓ?
+										// î£î?
 										play_se(100, 320, 240);
 										break;
 #endif									
@@ -17362,42 +17362,42 @@ void MenuProc(void)
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ???
 						if (HitDispNo == itemWndFontNo[12]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 							pActMenuWnd2 = NULL;
 							itemWndNo = 0;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
-							// ¡k¢‘????ûöüÓ???
+							// î“±î•¶????î£î???
 							jujutuNo = -1;
 
-							// ????????????????¨–??
+							// ????????????????î¼??
 							if (MenuToggleFlag & JOY_CTRL_S){
 
 								MenuToggleFlag ^= JOY_CTRL_S;	// CTRL + S ??
-								// ??????????úÇ
+								// ??????????îŒ–
 								DeathMenuAction();
 							}
 						}
-						// ûöüÓ¡k¢‘?????
+						// î£îî“±î•¶?????
 						if (jujutuNo != -1 && MenuToggleFlag & JOY_CTRL_S && statusWndNo == 1){
-							// ş°?§Æ???
+							// î‘·?î¤???
 							for (i = 0; i < 11; i++){
-								// ûöüÓúé?ş°¡k¢‘
+								// î£îîŒ¸?î‘·î“±î•¶
 								if (HitFontNo == statusWndFontNo[i] && eventWarpSendFlag == FALSE){
-									// ûöüÓúé??ıï
+									// î£îîŒ¸??î‘˜
 									if (bNewServer)
 										lssproto_MU_send(sockfd, nowGx, nowGy, jujutuNo, i);
 									else
 										old_lssproto_MU_send(sockfd, nowGx, nowGy, jujutuNo, i);
-									// ûöüÓ?
+									// î£î?
 									play_se(100, 320, 240);
-									// úå????úÜ
-									if (magic[jujutuNo].mp > pc.mp - magic[jujutuNo].mp) jujutuNo = -1;;	// ??¦Û¢K?şö?
+									// îŒ´????îŒ«
+									if (magic[jujutuNo].mp > pc.mp - magic[jujutuNo].mp) jujutuNo = -1;;	// ??îî”±?î’½?
 
 								}
 							}
@@ -17408,37 +17408,37 @@ void MenuProc(void)
 					if (pActMenuWnd2 != NULL){
 						int flag = FALSE;
 						int col;
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd2->x + 30;
 						y = pActMenuWnd2->y + 35;
 
-						// ûöüÓ¤úû¨
+						// î£îî¸î•
 						for (i = 0; i < 5; i++){
 							if (magic[i].useFlag == TRUE){
-								col = FONT_PAL_WHITE;	// úé??¦u?ıè???
-								if (jujutuNo == i) col = FONT_PAL_AQUA;	// ¡k¢‘??ûöüÓ
+								col = FONT_PAL_WHITE;	// îŒ¸??î››?î‘‘???
+								if (jujutuNo == i) col = FONT_PAL_AQUA;	// î“±î•¶??î£î
 								//cary 2001.12.3
 								if (pc.familySprite == 0){
-									if ((magic[i].mp * 80 / 100) > pc.mp) col = FONT_PAL_RED;	// ??¦Û¢K?şö?
+									if ((magic[i].mp * 80 / 100) > pc.mp) col = FONT_PAL_RED;	// ??îî”±?î’½?
 								}
 								else{
-									if (magic[i].mp > pc.mp) col = FONT_PAL_RED;	// ??¦Û¢K?şö?
+									if (magic[i].mp > pc.mp) col = FONT_PAL_RED;	// ??îî”±?î’½?
 								}
-								if (magic[i].field == MAGIC_FIELD_BATTLE) col = FONT_PAL_GRAY;	// úé?¦Û??ıè?şö?
+								if (magic[i].field == MAGIC_FIELD_BATTLE) col = FONT_PAL_GRAY;	// îŒ¸?î??î‘‘?î’½?
 								CenteringStr(magic[i].name, moji, MAGIC_NAME_LEN);
 								itemWndFontNo[i] = StockFontBuffer(x, y, FONT_PRIO_FRONT, col, moji, 2); y += 28;
 								flag = TRUE;
 							}
 						}
-						if (flag == FALSE) StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "Ã»ÓĞÖäÊõ", 0);
-						// §ó?¤úû¨????????
+						if (flag == FALSE) StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "æ²¡æœ‰å’’æœ¯", 0);
+						// î°?î¸î•????????
 						itemWndFontNo[12] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, pActMenuWnd2->y + 262 + 10, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
 				}
 			}
 			break;
 
-		case 2:	// ?????¡k¢‘?????
+		case 2:	// ?????î“±î•¶?????
 
 			// ?????????
 			if (pActMenuWnd2 == NULL){
@@ -17449,107 +17449,107 @@ void MenuProc(void)
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd2->hp > 0){
-					// ?????????ıÆ¤úû¨
+					// ?????????î¯î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd2->pYobi)->my, DISP_PRIO_MENU, CG_ITEM_WND_SELECT_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// úé?ş°¡k¢‘???
+						// îŒ¸?î‘·î“±î•¶???
 						for (i = 0; i < 11; i++){
 							if (HitFontNo == itemWndFontNo[i] && eventWarpSendFlag == FALSE){
-								// ûöüÓ¡k¢‘??
+								// î£îî“±î•¶??
 								if (jujutuNo != -1){
-									// ûöüÓúé??ıï
+									// î£îîŒ¸??î‘˜
 									if (bNewServer)
 										lssproto_MU_send(sockfd, nowGx, nowGy, jujutuNo, i);
 									else
 										old_lssproto_MU_send(sockfd, nowGx, nowGy, jujutuNo, i);
-									// ûöüÓ?
+									// î£î?
 									play_se(100, 320, 240);
-									// ??ş†???????
+									// ??î¡Š???????
 									if (magic[jujutuNo].mp > pc.mp - magic[jujutuNo].mp){
-										// ??????úÇ
+										// ??????îŒ–
 										DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 										GetKeyInputFocus(&MyChatBuffer);
 										Moneyflag = false;
 #endif
 										pActMenuWnd2 = NULL;
 										itemWndNo = 1;
-										// ?????¨–???
+										// ?????î¼???
 										play_se(203, 320, 240);
 									}
 								}
 								else{	// ??????
-									//????úé??ıï
+									//????îŒ¸??î‘˜
 									if (bNewServer)
 										lssproto_ID_send(sockfd, nowGx, nowGy, itemNo, i);
 									else
 										old_lssproto_ID_send(sockfd, nowGx, nowGy, itemNo, i);
-									// ????úé??
+									// ????îŒ¸??
 									play_se(212, 320, 240);
-									// ??????úÇ
+									// ??????îŒ–
 									DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 									GetKeyInputFocus(&MyChatBuffer);
 									Moneyflag = false;
 #endif
 									pActMenuWnd2 = NULL;
 									itemWndNo = 0;
-									// ????????????????¨–??
+									// ????????????????î¼??
 									if (MenuToggleFlag & JOY_CTRL_S){
 
 										MenuToggleFlag ^= JOY_CTRL_S;	// CTRL + S ??
-										// ??????????úÇ
+										// ??????????îŒ–
 										DeathMenuAction();
 									}
-									// ?????¨–???
+									// ?????î¼???
 									play_se(203, 320, 240);
 								}
 							}
 						}
 						// ???
 						if (HitDispNo == itemWndFontNo[11]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 							pActMenuWnd2 = NULL;
-							// ûöüÓ¡k¢‘??
+							// î£îî“±î•¶??
 							if (jujutuNo != -1) itemWndNo = 1;
 							else{
 								// ????????????
 								itemWndNo = 0;
-								// ????????????????¨–??
+								// ????????????????î¼??
 								if (MenuToggleFlag & JOY_CTRL_S){
 
 									MenuToggleFlag ^= JOY_CTRL_S;	// CTRL + S ??
-									// ??????????úÇ
+									// ??????????îŒ–
 									DeathMenuAction();
 								}
 							}
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
 					// ????????
 					if (pActMenuWnd2 != NULL){
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd2->x + 25;
 						y = pActMenuWnd2->y + 30;
 
-						// §ó?¤úû¨????????
-						// û«§Æ?ş¡q
+						// î°?î¸î•????????
+						// î˜î¤?î¡“î“·
 						sprintf_s(moji, "%-16s", pc.name);
 						itemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, 2); y += 23;
 						// ???
 						for (i = 0; i < 5; i++){
 							// ???????????
 							if (pet[i].useFlag == TRUE){
-								// ??ş????
+								// ??î¡“????
 								if (pet[i].freeName[0] != NULL)
 									sprintf_s(moji, "%-16s", pet[i].freeName);
 								else
@@ -17560,13 +17560,13 @@ void MenuProc(void)
 						y = 183;
 						// ??
 						for (i = 0; i < 5; i++){
-							// û«§Æ????????????????
+							// î˜î¤????????????????
 							if (pc.id != party[i].id && party[i].useFlag == TRUE){
 								sprintf_s(moji, "%-16s", party[i].name);
 								itemWndFontNo[i + 6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, 2); y += 23;
 							}
 						}
-						// §ó?¤úû¨????????
+						// î°?î¸î•????????
 						itemWndFontNo[11] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, pActMenuWnd2->y + 287, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
 				}
@@ -17578,10 +17578,10 @@ void MenuProc(void)
 	//? ?????????? *******************************************************/
 
 	if (MenuToggleFlag & JOY_CTRL_M){
-#ifdef _NEWPANEL //Syu ADD 7.0 ĞÂÈËÎï×´Ì¬½éÃæ
+#ifdef _NEWPANEL //Syu ADD 7.0 æ–°äººç‰©çŠ¶æ€ä»‹é¢
 		SkillWndflag = false;
 #endif
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (mapWndNo){
 
 		case 0:	// ????????
@@ -17593,43 +17593,43 @@ void MenuProc(void)
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd2->hp > 0){
-					// ????????¤úû¨
+					// ????????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd2->pYobi)->my, DISP_PRIO_MENU, CG_MAP_WND, 0);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ¨–???
+						// î¼???
 						if (HitDispNo == mapWndFontNo[0]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 							pActMenuWnd2 = NULL;
-							// ?????¨–??
+							// ?????î¼??
 							MenuToggleFlag ^= JOY_CTRL_M;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
 
 					// ????????
 					if (pActMenuWnd2 != NULL){
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd2->x + 61;
 						y = pActMenuWnd2->y + 186;
 
-						// ????ş¡q¤úû¨
+						// ????î¡“î“·î¸î•
 						StockFontBuffer(pActMenuWnd2->x + 22, pActMenuWnd2->y + 31, FONT_PRIO_FRONT, 0, nowFloorName, 0);
 
-						// §ó?¤úû¨????????
-						sprintf_s(moji, "¶« %3d", nowGx);
+						// î°?î¸î•????????
+						sprintf_s(moji, "ä¸œ %3d", nowGx);
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
-						sprintf_s(moji, "ÄÏ %3d", nowGy);
+						sprintf_s(moji, "å— %3d", nowGy);
 						StockFontBuffer(x + 73, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0); y += 36;
-						// ¨–?????
+						// î¼?????
 						mapWndFontNo[0] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, y, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 					}
 				}
@@ -17641,25 +17641,25 @@ void MenuProc(void)
 	//? ?????????? *******************************************************/
 
 	if (MenuToggleFlag & JOY_CTRL_E){
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (mailWndNo){
 
-		case MAIL_WND_VIEW:	// şúê???????
+		case MAIL_WND_VIEW:	// î¡“îŒ¹???????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 440, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
-				// ????¥ˆ???????§k??£S??ş†?????????
+				// ????îš???????îœ±??î–™??î¡Š?????????
 				for (i = 0; i < MAX_ADR_BOOK; i++){
 					int j;
-					// ?????§Æ???
+					// ?????î¤???
 					for (j = 0; j < MAIL_MAX_HISTORY; j++){
-						// şt¥‚????
+						// î ¹îš‡????
 						if (MailHistory[i].noReadFlag[j] >= TRUE){
-							// ???§k?????
+							// ???îœ±?????
 							mailViewWndPageNo = i / MAX_ADR_BOOK_COUNT;
 							i = MAX_ADR_BOOK;
 							break;
@@ -17668,19 +17668,19 @@ void MenuProc(void)
 				}
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					static int nowDelNo;
-					// şúê???????¤úû¨
+					// î¡“îŒ¹???????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_MAIL_WND, 1);
 
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK && pActYesNoWnd == NULL){
 
 						int nowNo = mailViewWndPageNo * MAX_ADR_BOOK_COUNT;
-						// ???¥›???
+						// ???îš ???
 						for (i = 0; i < 12; i += 3, nowNo++){
-							// ş¡q?????????¦V???????
+							// î¡“î“·?????????îš¼???????
 #ifdef _EXTEND_AB
 							if (addressBook[nowNo].useFlag == TRUE
 								|| addressBook[nowNo].useFlag == 2
@@ -17690,10 +17690,10 @@ void MenuProc(void)
 #endif	
 								if (HitFontNo == mailWndFontNo[i]){
 									mailHistoryWndSelectNo = nowNo;
-									// ??????úÇ
+									// ??????îŒ–
 									DeathAction(pActMenuWnd);
 									pActMenuWnd = NULL;
-									// ûê?????????úÇ
+									// î—?????????îŒ–
 									DeathLetterAction();
 									// ????????
 									mailWndNo = MAIL_WND_HISTORY;
@@ -17703,43 +17703,43 @@ void MenuProc(void)
 
 								// ?????
 								if (HitDispNo == mailWndFontNo[i + 1]){
-									// ?¦_????????
+									// ?î›…????????
 									if (pActYesNoWnd == NULL){
 										// ????????
 										play_se(202, 320, 240);
-										// ?¦_?????¤úû¨????şÎ
+										// ?î›…?????î¸î•????î’•
 										pActYesNoWnd = MakeWindowDisp(pActMenuWnd->x + 42, i * 32 + 54, 176, 56, 0, 4);
 
-										// ????§k????
+										// ????îœ±????
 										nowDelNo = nowNo;
 									}
 								}
 								// ??????
 								if (HitDispNo == mailWndFontNo[i + 2]){
-									// ??????úÇ
+									// ??????îŒ–
 									DeathAction(pActMenuWnd);
 									pActMenuWnd = NULL;
-									// ûê?????????úÇ
+									// î—?????????îŒ–
 									DeathLetterAction();
-									// ?ıï?ûê??????
+									// ?î‘˜?î—??????
 									InitMailSendFlag();
-									// ?ıï?ûê????????
+									// ?î‘˜?î—????????
 									mailWndSendFlag[nowNo] = TRUE;
-									// ?????§k???????
+									// ?????îœ±???????
 									mailWndNoBak = mailWndNo;
-									// ¡P¥f???
+									// î“–î™¬???
 									if (ProcNo == PROC_BATTLE){
-										// ?¤G????ıï?????
+										// ?î—­????î‘˜?????
 										mailWndNo = MAIL_WND_SEND;
 									}
 									else{
-										// ???????¡k¢‘??????
+										// ???????î“±î•¶??????
 										if (pc.mailPetNo != -1){
-											// ¡k¢‘??????
+											// î“±î•¶??????
 											mailWndNo = MAIL_WND_SELECT;
 										}
 										else{
-											// ?¤G????ıï?????
+											// ?î—­????î‘˜?????
 											mailWndNo = MAIL_WND_SEND;
 										}
 									}
@@ -17748,20 +17748,20 @@ void MenuProc(void)
 								}
 							}
 						}
-						// ¨–???
+						// î¼???
 						if (HitDispNo == mailWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
 							MenuToggleFlag ^= JOY_CTRL_E;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
 
-					// ¡q???
+					// î“·???
 					if ((HitDispNo == mailWndFontNo[26] || joy_con[0] & JOY_A) && pActYesNoWnd == NULL){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
@@ -17770,7 +17770,7 @@ void MenuProc(void)
 							// ?????
 							play_se(217, 320, 240);
 							mailWndBtnFlag[26] = TRUE;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
 						}
 						// ?????????
@@ -17779,24 +17779,24 @@ void MenuProc(void)
 							mailWndBtnFlag[26] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[26] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[26] = FALSE;
 					}
-					// ??ş­?
+					// ??î‘´?
 					if ((HitDispNo == mailWndFontNo[27] || joy_con[0] & JOY_B) && pActYesNoWnd == NULL){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
-							mailViewWndPageNo++; // ???ş­???
+							mailViewWndPageNo++; // ???î‘´???
 							if (mailViewWndPageNo >= MAX_ADR_BOOK_PAGE) mailViewWndPageNo = 0;
 							// ?????
 							play_se(217, 320, 240);
 							mailWndBtnFlag[27] = TRUE;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
 						}
 						// ?????????
@@ -17805,23 +17805,23 @@ void MenuProc(void)
 							mailWndBtnFlag[27] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[27] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[27] = FALSE;
 					}
 
 					// ????????
 					if (pActMenuWnd != NULL){
 						int nowNo = mailViewWndPageNo * MAX_ADR_BOOK_COUNT;
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x;
 						y = pActMenuWnd->y;
 
-						// ????????????????????§k?
+						// ????????????????????îœ±?
 						int graNo[7] = { CG_MAIL_WND_OFF_LINE_BTN,
 							CG_MAIL_WND_ON_LINE_SUN_BTN,
 							CG_MAIL_WND_ON_LINE_MOON_BTN,
@@ -17832,7 +17832,7 @@ void MenuProc(void)
 						};
 
 						for (i = 0; i < 12; i += 3, nowNo++){
-							// ş¡q????
+							// î¡“î“·????
 #ifdef _EXTEND_AB
 							if (addressBook[nowNo].useFlag == TRUE
 								|| addressBook[nowNo].useFlag == 2
@@ -17841,12 +17841,12 @@ void MenuProc(void)
 							if (addressBook[nowNo].useFlag == TRUE){
 #endif
 								int j = 0;
-								// ûê????????¤úû¨
+								// î—????????î¸î•
 								for (j = 0; j < MAIL_MAX_HISTORY; j++){
-									// ûê??????????
+									// î—??????????
 									if (pActLetter[i / 3] == NULL){
 										if (MailHistory[nowNo].noReadFlag[j] >= TRUE){
-											// ???????????şÎ
+											// ???????????î’•
 											pActLetter[i / 3] = MakeAnimDisp(x - 20, y + 38, SPR_mail, ANIM_DISP_LETTER_MOVE);
 										}
 									}
@@ -17854,16 +17854,16 @@ void MenuProc(void)
 								// ?
 #ifdef _EXTEND_AB
 								if (addressBook[nowNo].useFlag == 2)
-									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "¾«ÁéÊ¹Õß", 0);
+									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "ç²¾çµä½¿è€…", 0);
 								if (addressBook[nowNo].useFlag == 3)
-									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "¾«ÁéÓÂÕß", 0);
+									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "ç²¾çµå‹‡è€…", 0);
 #endif
 								StockDispBuffer(x + 44, y + 68, DISP_PRIO_IME3, addressBook[nowNo].graNo, 0);
 								CenteringStr(addressBook[nowNo].name, moji, CHAR_NAME_LEN);
 								mailWndFontNo[i] = StockFontBuffer(x + 80, y + 30, FONT_PRIO_FRONT, 0, moji, 2);
 								sprintf_s(moji, "%3d", addressBook[nowNo].level);
 								StockFontBuffer(x + 104, y + 60, FONT_PRIO_FRONT, 0, moji, 0);
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 								sprintf_s(moji, "%8s", addressBook[nowNo].planetname);
 								StockFontBuffer(x + 198, y + 30, FONT_PRIO_FRONT, 5, moji, 0);
 #endif
@@ -17885,15 +17885,15 @@ void MenuProc(void)
 							else{
 								if (nowNo == MAX_ADR_BOOK - 1)
 								{
-									StockFontBuffer(x + 100, y + 30, FONT_PRIO_FRONT, FONT_PAL_RED, "¾«ÁéÕÙ»½ÓÃ", 0);
+									StockFontBuffer(x + 100, y + 30, FONT_PRIO_FRONT, FONT_PAL_RED, "ç²¾çµå¬å”¤ç”¨", 0);
 								}
 							}
 #endif
 							y += 96;
 						}
-						// ¡q???
+						// î“·???
 						mailWndFontNo[26] = StockDispBuffer(pActMenuWnd->x + 25 + 28 - 8, pActMenuWnd->y + 421, DISP_PRIO_IME3, CG_PREV_BTN + mailWndBtnFlag[26], 2);
-						// ???§k?¤úû¨
+						// ???îœ±?î¸î•
 						sprintf_s(moji, "%2d", mailViewWndPageNo + 1);
 						StockFontBuffer(pActMenuWnd->x + 46 + 28 - 8, pActMenuWnd->y + 413, FONT_PRIO_FRONT, 0, moji, 0);
 						// ????
@@ -17901,29 +17901,29 @@ void MenuProc(void)
 						mailWndFontNo[19] = StockDispBuffer(pActMenuWnd->x + 220 - 28, pActMenuWnd->y + 421, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 					}
 
-					// ?¦_????????
+					// ?î›…????????
 					if (pActYesNoWnd != NULL){
 						// ????
 						if (((WINDOW_DISP *)pActYesNoWnd->pYobi)->yesNoResult == TRUE){
-							// ??????ıï
+							// ??????î‘˜
 							if (bNewServer)
 								lssproto_DAB_send(sockfd, nowDelNo);
 							else
 								old_lssproto_DAB_send(sockfd, nowDelNo);
 							play_se(217, 320, 240);
-							// ?¦_??????úÇ
+							// ?î›…??????îŒ–
 							DeathAction(pActYesNoWnd);
 							pActYesNoWnd = NULL;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 						else
 							// ?????
 						if (((WINDOW_DISP *)pActYesNoWnd->pYobi)->yesNoResult == FALSE){
-							// ?¦_??????úÇ
+							// ?î›…??????îŒ–
 							DeathAction(pActYesNoWnd);
 							pActYesNoWnd = NULL;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
@@ -17932,12 +17932,12 @@ void MenuProc(void)
 			}
 			break;
 
-		case MAIL_WND_SELECT:	// ¡k¢‘?????
+		case MAIL_WND_SELECT:	// î“±î•¶?????
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(40, 40, 3, 3, NULL, 0);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
 				// ??????????
 				for (i = 0; i < 5; i++){
@@ -17953,16 +17953,16 @@ void MenuProc(void)
 				}
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ?¤G?????
+						// ?î—­?????
 						if (HitFontNo == mailWndFontNo[0]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ?¤G????ıï??????
+							// ?î—­????î‘˜??????
 							mailWndNo = MAIL_WND_SEND;
 							// ????????
 							play_se(202, 320, 240);
@@ -17972,31 +17972,31 @@ void MenuProc(void)
 #ifdef _TAIKEN			
 							// ???
 							play_se(220, 320, 240);
-							// ???????¤úû¨
-							sprintf_s(moji, "ÌåÑé°æ²»ÄÜÑ¡Ôñ£¡");
-							// ????§ó??????????????
+							// ???????î¸î•
+							sprintf_s(moji, "ä½“éªŒç‰ˆä¸èƒ½é€‰æ‹©ï¼");
+							// ????î°??????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
 #ifdef _STREET_VENDOR
 							if (pc.iOnStreetVendor == 1){
 								play_se(220, 320, 240);
-								StockChatBufferLine("°ÚÌ¯ÖĞ²»µÃÊ¹ÓÃ³èÎïÓÊ¼ş", FONT_PAL_RED);
+								StockChatBufferLine("æ‘†æ‘Šä¸­ä¸å¾—ä½¿ç”¨å® ç‰©é‚®ä»¶", FONT_PAL_RED);
 							}
 							else
 #endif
 #ifdef _THEATER
 							if (pc.iTheaterMode & 0x00000002)
-								StockChatBufferLine("Çë×¨ĞÄ±íÑİ", FONT_PAL_RED);
+								StockChatBufferLine("è¯·ä¸“å¿ƒè¡¨æ¼”", FONT_PAL_RED);
 							else if (pc.iTheaterMode & 0x00000001)
-								StockChatBufferLine("Çë×¨ĞÄ¿´±íÑİ", FONT_PAL_RED);
+								StockChatBufferLine("è¯·ä¸“å¿ƒçœ‹è¡¨æ¼”", FONT_PAL_RED);
 							else
 #endif
-								// ??????¡k¢‘?????
+								// ??????î“±î•¶?????
 							if (pc.mailPetNo != -1){
-								// ??????úÇ
+								// ??????îŒ–
 								DeathAction(pActMenuWnd);
 								pActMenuWnd = NULL;
-								// ???????ıï??????
+								// ???????î‘˜??????
 								mailWndNo = MAIL_WND_PET_SEND;
 								// ????????
 								play_se(202, 320, 240);
@@ -18009,12 +18009,12 @@ void MenuProc(void)
 						}
 						// ???
 						if (HitDispNo == mailWndFontNo[2]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							// ????????
 							mailWndNo = MAIL_WND_VIEW;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
@@ -18023,67 +18023,67 @@ void MenuProc(void)
 					if (pActMenuWnd != NULL){
 						int color = FONT_PAL_WHITE;
 
-						// ??????¡k¢‘???ş†??
+						// ??????î“±î•¶???î¡Š??
 						if (pc.mailPetNo == -1)
 							color = FONT_PAL_RED;
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 28;
 						y = pActMenuWnd->y + 32;
 
-						// §ó?¤úû¨????????
-						mailWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "  ÆÕ Í¨ ÓÊ ¼ş   ", 2);	y += 32;
-						mailWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, color, "  ³è Îï ÓÊ ¼ş   ", 2);	y += 48;
+						// î°?î¸î•????????
+						mailWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "  æ™® é€š é‚® ä»¶   ", 2);	y += 32;
+						mailWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, color, "  å®  ç‰© é‚® ä»¶   ", 2);	y += 48;
 						mailWndFontNo[2] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, y, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
 				}
 			}
 			break;
 
-		case MAIL_WND_SEND:	// ?¤G????ıï?????
+		case MAIL_WND_SEND:	// ?î—­????î‘˜?????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 304, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
-				mailPetSendWndPageNo = mailViewWndPageNo;		// ?¤G?ıï?ûê???§k????
+				mailPetSendWndPageNo = mailViewWndPageNo;		// ?î—­?î‘˜?î—???îœ±????
 
 				MailStr.len = 140;
-				// ???£•?
+				// ???î—š?
 				MailStr.lineLen = 28;
 				// ?????
 				MailStr.lineDist = 20;
-				// §ó???ıè
+				// î°???î‘‘
 				MailStr.color = 0;
-				// §ó????¤õ
+				// î°????î³
 				MailStr.x = pActMenuWnd->x + 12;
 				MailStr.y = pActMenuWnd->y + 280 - 136;
-				// §ó???¤úû¨?¡I??
+				// î°???î¸î•?î“??
 				MailStr.fontPrio = FONT_PRIO_FRONT;
 
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ?ıï?????¤úû¨
+					// ?î‘˜?????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_MAIL_WND_SEND_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						int nowNo = mailPetSendWndPageNo * MAX_ADR_BOOK_COUNT;
-						// ???¥›???
+						// ???îš ???
 						for (i = 0; i < MAX_ADR_BOOK_COUNT; i++){
-							// ?ıï?ûê¡k¢‘???
+							// ?î‘˜?î—î“±î•¶???
 							if (HitFontNo == mailWndFontNo[i]){
-								// ş¡q??????
+								// î¡“î“·??????
 #ifdef _EXTEND_AB
 								if (addressBook[nowNo + i].useFlag == TRUE
 									|| addressBook[nowNo + i].useFlag == 2
 									|| addressBook[nowNo + i].useFlag == 3){
-#else								???¦V???????
+#else								???îš¼???????
 								if (addressBook[nowNo + i].useFlag == TRUE){
 #endif
-									// ¡k¢‘?????????
+									// î“±î•¶?????????
 									if (mailWndSendFlag[nowNo + i] == FALSE) mailWndSendFlag[nowNo + i] = TRUE;
 									else mailWndSendFlag[nowNo + i] = FALSE;
 									// ?????
@@ -18094,31 +18094,31 @@ void MenuProc(void)
 						}
 						// ???
 						if (HitDispNo == mailWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ¡q?????????
+							// î“·?????????
 							mailWndNo = mailWndNoBak;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
 						}
 					}
-					// ?ıï???
+					// ?î‘˜???
 					if (HitDispNo == mailWndFontNo[18]){
-						// ?????????????úé???ûÍ?şÉ?0.5¥ø???
+						// ?????????????îŒ¸???îº?î’?0.5î¾???
 						if (mouse.onceState & MOUSE_LEFT_CRICK && ItemUseTime < TimeGetTime() - 5000){
 							int flag = FALSE;
 							// ?????
 							ItemUseTime = TimeGetTime();
-							// ??¡k¢‘????????
+							// ??î“±î•¶????????
 							for (i = 0; i < MAX_ADR_BOOK; i++){
 								if (mailWndSendFlag[i] == TRUE) flag = TRUE;
 							}
-							// §ó??????
+							// î°??????
 							if (MailStr.buffer[0] != NULL && flag == TRUE){
-								// ??ş°§Æ???
+								// ??î‘·î¤???
 								for (i = 0; i < MAX_ADR_BOOK; i++){
 									// ????????
 									if (mailWndSendFlag[i] == TRUE){
@@ -18127,7 +18127,7 @@ void MenuProc(void)
 										strcpy(moji2, MailStr.buffer);
 										// ???????
 										makeEscapeString(moji2, moji, sizeof(moji));
-										// ????ıï
+										// ????î‘˜
 										if (bNewServer)
 											lssproto_MSG_send(sockfd, i, moji, FONT_PAL_WHITE);
 										else
@@ -18149,16 +18149,16 @@ void MenuProc(void)
 							mailWndBtnFlag[18] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[18] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[18] = FALSE;
 					}
 
-					// ¡q???
+					// î“·???
 					if (HitDispNo == mailWndFontNo[16] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
@@ -18174,19 +18174,19 @@ void MenuProc(void)
 							mailWndBtnFlag[16] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[16] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[16] = FALSE;
 					}
-					// ??ş­?
+					// ??î‘´?
 					if (HitDispNo == mailWndFontNo[17] || joy_con[0] & JOY_B){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
-							mailPetSendWndPageNo++; // ???ş­???
+							mailPetSendWndPageNo++; // ???î‘´???
 							if (mailPetSendWndPageNo >= MAX_ADR_BOOK_PAGE) mailPetSendWndPageNo = 0;
 							// ?????
 							play_se(217, 320, 240);
@@ -18198,20 +18198,20 @@ void MenuProc(void)
 							mailWndBtnFlag[17] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[17] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[17] = FALSE;
 					}
 
-					// §óı°??????
+					// î°î™??????
 					if (HitDispNo == mailWndFontNo[14]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
-							// ???§óı° ??¡@¤e
+							// ???î°î™ ??î“†î˜‹
 							MailStr.buffer[0] = NULL;
 							MailStr.cnt = 0;
 							MailStr.cursor = 0;
@@ -18225,19 +18225,19 @@ void MenuProc(void)
 							mailWndBtnFlag[14] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[14] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[14] = FALSE;
 					}
-					// ¡k¢‘??????
+					// î“±î•¶??????
 					if (HitDispNo == mailWndFontNo[15]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
-							// ?ıï?ûê??????
+							// ?î‘˜?î—??????
 							InitMailSendFlag();
 							// ?????
 							play_se(217, 320, 240);
@@ -18249,12 +18249,12 @@ void MenuProc(void)
 							mailWndBtnFlag[15] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[15] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[15] = FALSE;
 					}
 
@@ -18263,16 +18263,16 @@ void MenuProc(void)
 						int nowNo = mailPetSendWndPageNo * MAX_ADR_BOOK_COUNT;
 						int color;
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x;
 						y = pActMenuWnd->y;
-						// ¦V??????ûè¥x
+						// îš¼??????î•î™¾
 						GetKeyInputFocus(&MailStr);
-						// §ó???¤úû¨
+						// î°???î¸î•
 						StockFontBuffer2(&MailStr);
 
 						for (i = 0; i < MAX_ADR_BOOK_COUNT; i++){
-							// ş¡q?????????¦V???????
+							// î¡“î“·?????????îš¼???????
 #ifdef _EXTEND_AB
 							if (addressBook[nowNo + i].useFlag == TRUE
 								|| addressBook[nowNo + i].useFlag == 2
@@ -18280,36 +18280,36 @@ void MenuProc(void)
 #else
 							if (addressBook[nowNo + i].useFlag == TRUE){
 #endif
-								color = FONT_PAL_GRAY;	// ?????ıè
+								color = FONT_PAL_GRAY;	// ?????î‘‘
 								// ???????
 								if (addressBook[nowNo + i].onlineFlag > 0){
-									// ?ıè
+									// ?î‘‘
 									color = FONT_PAL_WHITE;
 								}
-								// ¡k¢‘??????
+								// î“±î•¶??????
 								if (mailWndSendFlag[nowNo + i] == TRUE){
-									// ?ıè
+									// ?î‘‘
 									color = FONT_PAL_AQUA;
 								}
-								// ş¡q¤úû¨
+								// î¡“î“·î¸î•
 								CenteringStr(addressBook[nowNo + i].name, moji, CHAR_NAME_LEN);
 								mailWndFontNo[i] = StockFontBuffer(x + 111, y + 177 - 136, FONT_PRIO_FRONT, color, moji, 2);
 
 							}
 							y += 23;
 						}
-						// ¡k¢‘??????
+						// î“±î•¶??????
 						mailWndFontNo[15] = StockDispBuffer(pActMenuWnd->x + 51, pActMenuWnd->y + 211 - 136, DISP_PRIO_IME3, CG_MAIL_WND_CLEAR_BTN_UP + mailWndBtnFlag[15], 2);
-						// ¡q???
+						// î“·???
 						mailWndFontNo[16] = StockDispBuffer(pActMenuWnd->x + 26 - 8 + 4, pActMenuWnd->y + 241 - 132, DISP_PRIO_IME3, CG_PREV_BTN + mailWndBtnFlag[16], 2);
-						// ???§k?¤úû¨
+						// ???îœ±?î¸î•
 						sprintf_s(moji, "%2d", mailPetSendWndPageNo + 1);
 						StockFontBuffer(pActMenuWnd->x + 47 - 8 + 4, pActMenuWnd->y + 233 - 132, FONT_PRIO_FRONT, 0, moji, 0);
 						// ????
 						mailWndFontNo[17] = StockDispBuffer(pActMenuWnd->x + 76 + 4, pActMenuWnd->y + 241 - 132, DISP_PRIO_IME3, CG_NEXT_BTN + mailWndBtnFlag[17], 2);
-						// §óı°??????
+						// î°î™??????
 						mailWndFontNo[14] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx + 60, pActMenuWnd->y + 390 - 136, DISP_PRIO_IME3, CG_MAIL_WND_CLEAR_BTN_UP + mailWndBtnFlag[14], 2);
-						// ?ıï???
+						// ?î‘˜???
 						mailWndFontNo[18] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx - 60, pActMenuWnd->y + 421 - 136, DISP_PRIO_IME3, CG_SEND_BTN + mailWndBtnFlag[18] * 75, 2);
 						// ??
 						mailWndFontNo[19] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx + 60, pActMenuWnd->y + 421 - 136, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
@@ -18318,82 +18318,82 @@ void MenuProc(void)
 			}
 			break;
 
-		case MAIL_WND_PET_SEND:	// ???????ıï?????
+		case MAIL_WND_PET_SEND:	// ???????î‘˜?????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 440, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
-				mailPetSendWndPageNo = mailViewWndPageNo;		// ?¤G?ıï?ûê???§k????
+				mailPetSendWndPageNo = mailViewWndPageNo;		// ?î—­?î‘˜?î—???îœ±????
 				MailStr.len = MAIL_STR_LEN;
-				// ???£•?
+				// ???î—š?
 				MailStr.lineLen = 28;
 				// ?????
 				MailStr.lineDist = 20;
-				// §ó???ıè
+				// î°???î‘‘
 				MailStr.color = 0;
-				// §ó????¤õ
+				// î°????î³
 				MailStr.x = pActMenuWnd->x + 12;
 				MailStr.y = pActMenuWnd->y + 280;
-				// §ó???¤úû¨?¡I??
+				// î°???î¸î•?î“??
 				MailStr.fontPrio = FONT_PRIO_FRONT;
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					// ????????????????
 					if (pActPet == NULL){
-						// ?????????şÎ
+						// ?????????î’•
 						pActPet = MakeAnimDisp(pActMenuWnd->x + 190, pActMenuWnd->y + 120, pet[pc.mailPetNo].graNo, ANIM_DISP_PET);
 					}
-					// ???????????????????¡k¢‘??????
+					// ???????????????????î“±î•¶??????
 					if (pActMailItem == NULL && mailItemNo != -1){
-						// ??????????şÎ
+						// ??????????î’•
 						pActMailItem = MakeAnimDisp(pActMenuWnd->x + 56, pActMenuWnd->y + 96, pc.item[mailItemNo].graNo, ANIM_DISP_PET_ITEM);
 						pActMailItem->atr |= ACT_ATR_INFO;
 						pActMailItem->atr |= ACT_ATR_TYPE_ITEM;
 						pActMailItem->dispPrio = DISP_PRIO_DRAG;
-						// ????ş???
+						// ????î¡“???
 						strcpy(pActMailItem->name, pc.item[mailItemNo].name);
 					}
-					// ?ıï?????¤úû¨
+					// ?î‘˜?????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_MAIL_WND_PET_SEND_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						int nowNo = mailPetSendWndPageNo * MAX_ADR_BOOK_COUNT;
-						// ???¥›???
+						// ???îš ???
 						for (i = 0; i < MAX_ADR_BOOK_COUNT; i++){
-							// ?ıï?ûê¡k¢‘????????????ş°????????
+							// ?î‘˜?î—î“±î•¶????????????î‘·????????
 							if (HitFontNo == mailWndFontNo[i]){
-								// ş¡q????????
+								// î¡“î“·????????
 #ifdef _EXTEND_AB
 								if (addressBook[nowNo + i].useFlag == TRUE
 									|| addressBook[nowNo + i].useFlag == 2
 									|| addressBook[nowNo + i].useFlag == 3){
-#else								?¦V???????
+#else								?îš¼???????
 								if (addressBook[nowNo + i].useFlag == TRUE){
 #endif
 									int j, flag = FALSE;
-									// ??¡k¢‘????????
+									// ??î“±î•¶????????
 									for (j = 0; j < MAX_ADR_BOOK; j++){
 										if (mailWndSendFlag[j] == TRUE) flag = TRUE;
 									}
 
-									// ¡k¢‘???????
+									// î“±î•¶???????
 									if (flag == FALSE){
 										mailWndSendFlag[nowNo + i] = TRUE;
 										// ?????
 										play_se(217, 320, 240);
 									}
-									else{ // ??¡k¢‘??????
-										// ¡k¢‘????????????????
+									else{ // ??î“±î•¶??????
+										// î“±î•¶????????????????
 										if (mailWndSendFlag[nowNo + i] == TRUE){
 											mailWndSendFlag[nowNo + i] = FALSE;
 											// ?????
 											play_se(217, 320, 240);
 										}
-										else{ // ¡k¢‘?????????????????
+										else{ // î“±î•¶?????????????????
 											// ???
 											play_se(220, 320, 240);
 										}
@@ -18403,52 +18403,52 @@ void MenuProc(void)
 						}
 						// ???
 						if (HitDispNo == mailWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
 							// ????????
 							mailWndNo = MAIL_WND_VIEW;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
 						}
 						// ???????
 						if (HitDispNo == mailWndFontNo[15]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
-							// ¡q?????????
+							// î“·?????????
 							mailWndNo = MAIL_WND_ITEM;
 							// ????????
 							play_se(202, 320, 240);
-							// ¦V????????
+							// îš¼????????
 							GetKeyInputFocus(&MyChatBuffer);
 						}
 					}
-					// ?ıï???
+					// ?î‘˜???
 					if (HitDispNo == mailWndFontNo[18]){
 
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							int flag = FALSE;
-							// ??¡k¢‘????????
+							// ??î“±î•¶????????
 							for (i = 0; i < MAX_ADR_BOOK; i++){
 								if (mailWndSendFlag[i] == TRUE) flag = TRUE;
 							}
-							// §ó??????
+							// î°??????
 							if (MailStr.buffer[0] != NULL && flag == TRUE
 								&& pActPet != NULL
 								&& pActPet->actNo == ANIM_DISP_PET
@@ -18457,7 +18457,7 @@ void MenuProc(void)
 									// ????????
 									if (mailWndSendFlag[i] == TRUE){
 										// Terry add fix can send mail to offline character 2004/2/5
-										if (addressBook[i].onlineFlag == 0) StockChatBufferLine("¸ÃÍæ¼Ò²»ÔÚÏßÉÏ£¡", FONT_PAL_RED);
+										if (addressBook[i].onlineFlag == 0) StockChatBufferLine("è¯¥ç©å®¶ä¸åœ¨çº¿ä¸Šï¼", FONT_PAL_RED);
 										else
 											// end
 										{
@@ -18466,19 +18466,19 @@ void MenuProc(void)
 											strcpy(moji2, MailStr.buffer);
 											// ???????
 											makeEscapeString(moji2, moji, sizeof(moji));
-											// ???????ıï
+											// ???????î‘˜
 											if (bNewServer)
 												lssproto_PMSG_send(sockfd, i, pc.mailPetNo, mailItemNo, moji2, FONT_PAL_WHITE);
 											else
 												old_lssproto_PMSG_send(sockfd, i, pc.mailPetNo, mailItemNo, moji2, FONT_PAL_WHITE);
 											pc.mailPetNo = -1;
-											// ?şÎ?????????
+											// ?î’•?????????
 											ItemBuffer[mailItemNo].mixFlag = 0;
 											// ????????
 											saveUserSetting();
 											// ????????????????
 											if (pActPet != NULL){
-												// ????ş??
+												// ????î¡¡??
 												pActPet->actNo = 1;
 											}
 										}
@@ -18498,16 +18498,16 @@ void MenuProc(void)
 							mailWndBtnFlag[18] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[18] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[18] = FALSE;
 					}
 
-					// ¡q???
+					// î“·???
 					if (HitDispNo == mailWndFontNo[16] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
@@ -18523,19 +18523,19 @@ void MenuProc(void)
 							mailWndBtnFlag[16] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[16] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[16] = FALSE;
 					}
-					// ??ş­?
+					// ??î‘´?
 					if (HitDispNo == mailWndFontNo[17] || joy_con[0] & JOY_B){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
-							mailPetSendWndPageNo++; // ???ş­???
+							mailPetSendWndPageNo++; // ???î‘´???
 							if (mailPetSendWndPageNo >= MAX_ADR_BOOK_PAGE) mailPetSendWndPageNo = 0;
 							// ?????
 							play_se(217, 320, 240);
@@ -18547,20 +18547,20 @@ void MenuProc(void)
 							mailWndBtnFlag[17] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[17] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[17] = FALSE;
 					}
 
-					// §óı°??????
+					// î°î™??????
 					if (HitDispNo == mailWndFontNo[14]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
-							// ???§óı° ??¡@¤e
+							// ???î°î™ ??î“†î˜‹
 							MailStr.buffer[0] = NULL;
 							MailStr.cnt = 0;
 							MailStr.cursor = 0;
@@ -18574,12 +18574,12 @@ void MenuProc(void)
 							mailWndBtnFlag[14] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[14] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[14] = FALSE;
 					}
 
@@ -18588,10 +18588,10 @@ void MenuProc(void)
 						int nowNo = mailPetSendWndPageNo * MAX_ADR_BOOK_COUNT;
 						int color;
 
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x;
 						y = pActMenuWnd->y;
-						// ¦V??????ûè¥x
+						// îš¼??????î•î™¾
 						GetKeyInputFocus(&MailStr);
 
 						if (pet[pc.mailPetNo].freeName[0] == NULL){
@@ -18603,7 +18603,7 @@ void MenuProc(void)
 						StockFontBuffer(x + 120, y + 14, FONT_PRIO_FRONT, 0, moji, 0);
 						StockFontBuffer2(&MailStr);
 						for (i = 0; i < MAX_ADR_BOOK_COUNT; i++){
-							// ş¡q?????????¦V???????
+							// î¡“î“·?????????îš¼???????
 #ifdef _EXTEND_AB
 							if (addressBook[nowNo + i].useFlag == TRUE
 								|| addressBook[nowNo + i].useFlag == 2
@@ -18611,18 +18611,18 @@ void MenuProc(void)
 #else
 							if (addressBook[nowNo + i].useFlag == TRUE){
 #endif
-								color = FONT_PAL_GRAY;	// ?????ıè
+								color = FONT_PAL_GRAY;	// ?????î‘‘
 								// ???????
 								if (addressBook[nowNo + i].onlineFlag > 0){
-									// ?ıè
+									// ?î‘‘
 									color = FONT_PAL_WHITE;
 								}
-								// ¡k¢‘??????
+								// î“±î•¶??????
 								if (mailWndSendFlag[nowNo + i] == TRUE){
-									// ?ıè
+									// ?î‘‘
 									color = FONT_PAL_AQUA;
 								}
-								// ş¡q¤úû¨
+								// î¡“î“·î¸î•
 								CenteringStr(addressBook[nowNo + i].name, moji, CHAR_NAME_LEN);
 								mailWndFontNo[i] = StockFontBuffer(x + 111, y + 177, FONT_PRIO_FRONT, color, moji, 2);
 
@@ -18631,16 +18631,16 @@ void MenuProc(void)
 						}
 						// ???????
 						mailWndFontNo[15] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_MAIL_WND_ITEM_BTN, 2);
-						// ¡q???
+						// î“·???
 						mailWndFontNo[16] = StockDispBuffer(pActMenuWnd->x + 25 - 8 + 4, pActMenuWnd->y + 241, DISP_PRIO_IME3, CG_PREV_BTN + mailWndBtnFlag[16], 2);
-						// ???§k?¤úû¨
+						// ???îœ±?î¸î•
 						sprintf_s(moji, "%2d", mailPetSendWndPageNo + 1);
 						StockFontBuffer(pActMenuWnd->x + 46 - 8 + 4, pActMenuWnd->y + 233, FONT_PRIO_FRONT, 0, moji, 0);
 						// ????
 						mailWndFontNo[17] = StockDispBuffer(pActMenuWnd->x + 75 + 4, pActMenuWnd->y + 241, DISP_PRIO_IME3, CG_NEXT_BTN + mailWndBtnFlag[17], 2);
-						// §óı°??????
+						// î°î™??????
 						mailWndFontNo[14] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx + 60, pActMenuWnd->y + 390, DISP_PRIO_IME3, CG_MAIL_WND_CLEAR_BTN_UP + mailWndBtnFlag[14], 2);
-						// ?ıï???
+						// ?î‘˜???
 						mailWndFontNo[18] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx - 60, pActMenuWnd->y + 421, DISP_PRIO_IME3, CG_SEND_BTN + mailWndBtnFlag[18] * 75, 2);
 						// ??
 						mailWndFontNo[19] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx + 60, pActMenuWnd->y + 421, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
@@ -18649,56 +18649,56 @@ void MenuProc(void)
 			}
 			break;
 
-		case MAIL_WND_ITEM:	// ????¡k¢‘?????
+		case MAIL_WND_ITEM:	// ????î“±î•¶?????
 			// ?????????
 			if (pActMenuWnd == NULL){
 #ifdef _NEW_ITEM_
-				µÀ¾ßÀ¸Ò³Êı = 0;
+				é“å…·æ é¡µæ•° = 0;
 #endif
 				pActMenuWnd = MakeWindowDisp(4, 30, 271, 281, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
-				mailSendWndPageNo = 0;		// ?ıï?ûê???§k????
+				mailSendWndPageNo = 0;		// ?î‘˜?î—???îœ±????
 				// ??????????
 				InitItem(pActMenuWnd->x, pActMenuWnd->y - 1, FALSE);
 				// ???????????
 				if (MenuToggleFlag & JOY_CTRL_I && itemWndNo == 0){
-					// ?????????¨–??
+					// ?????????î¼??
 					MenuToggleFlag &= ~JOY_CTRL_I;
 					DeathMenuAction2();
 				}
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_ITEM_WND_1, 1);
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my-80, DISP_PRIO_IME3, CG_BTL_ITEM_WND_TITLE, 1);
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ???
 						if (HitDispNo == mailWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							// ????????
 							mailWndNo = MAIL_WND_PET_SEND;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
 					// ????????
 					if (pActMenuWnd != NULL){
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 16;
 						y = pActMenuWnd->y + 191 + 6;
 #ifdef _NEW_ITEM_
 						for (i = 0; i < 3; i++){
-							if (i == µÀ¾ßÀ¸Ò³Êı){
+							if (i == é“å…·æ é¡µæ•°){
 								StockDispBuffer(287, 39 + i * 56, DISP_PRIO_BOX2, 55223 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << i){
+									if (pc.é“å…·æ çŠ¶æ€ & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -18707,7 +18707,7 @@ void MenuProc(void)
 									StockDispBuffer(271 + 10, 39 + i * 56, DISP_PRIO_IME3, 55226 + i, 1);
 									if (MakeHitBox(261 + 10, 11 + i * 56, 281 + 10, 8 + i * 56 + 60, DISP_PRIO_IME3)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											µÀ¾ßÀ¸Ò³Êı = i;
+											é“å…·æ é¡µæ•° = i;
 										}
 									}
 								}
@@ -18717,11 +18717,11 @@ void MenuProc(void)
 #endif
 						for (i = MAX_ITEM - 1; i >= MAX_ITEMSTART; i--){
 #ifdef _NEW_ITEM_
-							//ÕâÀïÊÇÓÊ¼ş
-							int µÀ¾ßÆğÊ¼ = MAX_ITEMSTART + MAX_MAXHAVEITEM*µÀ¾ßÀ¸Ò³Êı;
-							int µÀ¾ß½áÊø = µÀ¾ßÆğÊ¼ + MAX_MAXHAVEITEM;
+							//è¿™é‡Œæ˜¯é‚®ä»¶
+							int é“å…·èµ·å§‹ = MAX_ITEMSTART + MAX_MAXHAVEITEM*é“å…·æ é¡µæ•°;
+							int é“å…·ç»“æŸ = é“å…·èµ·å§‹ + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < µÀ¾ßÆğÊ¼ || i >= µÀ¾ß½áÊø) continue;
+								if (i < é“å…·èµ·å§‹ || i >= é“å…·ç»“æŸ) continue;
 							}
 #endif
 							if (MakeHitBox(ItemBuffer[i].defX - 24, ItemBuffer[i].defY - 24 - 160,
@@ -18732,18 +18732,18 @@ void MenuProc(void)
 									char *splitPoint = pc.item[i].memo;
 									int color = pc.item[i].color;
 
-									// ?§????????
+									// ?î’????????
 									if (pc.level < pc.item[i].level) color = FONT_PAL_RED;
-									// ?????ş¡q¤úû¨
+									// ?????î¡“î“·î¸î•
 									StockFontBuffer(pActMenuWnd->x + 16, pActMenuWnd->y + 332 - 160 - 1, FONT_PRIO_FRONT, color, pc.item[i].name, 0);
-									// ?????¡Cş‘¤úû¨
-									// ??§Æ???
+									// ?????î“‰î¡•î¸î•
+									// ??î¤???
 									while (1){
-										// ??§ó??£’????§Æ?
+										// ??î°??î——????î¤?
 										if (strlen(splitPoint) > 28){
 											strncpy_s(moji, splitPoint, 28);
-											moji[28] = NULL;	// ü¬£Z??????
-											// ¡u??§S§Æ????
+											moji[28] = NULL;	// î·î– ??????
+											// î“»??îœ™î¤????
 											if (GetStrLastByte(moji) == 3){
 												moji[27] = NULL;
 												splitPoint += 27;
@@ -18762,18 +18762,18 @@ void MenuProc(void)
 									}
 								}
 
-								// ?????????????úé?
+								// ?????????????îŒ¸?
 								if (mouse.onceState & MOUSE_LEFT_DBL_CRICK){
 									if (pc.item[i].useFlag == TRUE && pc.item[i].sendFlag & ITEM_FLAG_PET_MAIL){
-										mailItemNo = i;	// ????§k???
-										// ??????úÇ
+										mailItemNo = i;	// ????îœ±???
+										// ??????îŒ–
 										DeathAction(pActMenuWnd);
 										pActMenuWnd = NULL;
 										// ????????
 										mailWndNo = MAIL_WND_PET_SEND;
-										// ?????¨–???
+										// ?????î¼???
 										play_se(203, 320, 240);
-										// ¦V????????
+										// îš¼????????
 										GetKeyInputFocus(&MyChatBuffer);
 									}
 									else{
@@ -18783,13 +18783,13 @@ void MenuProc(void)
 								}
 							}
 							if (pc.item[i].useFlag == TRUE){
-								// ????¤úû¨
+								// ????î¸î•
 								StockDispBuffer(ItemBuffer[i].defX, ItemBuffer[i].defY - 160, ItemBuffer[i].dispPrio, pc.item[i].graNo, 0);
 							}
 						}
 						// ?????????
 						if (pActMenuWnd != NULL){
-							// §ó?¤úû¨????????
+							// î°?î¸î•????????
 							mailWndFontNo[19] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, pActMenuWnd->y + 262, DISP_PRIO_IME4, CG_CLOSE_BTN, 2);
 						}
 					}
@@ -18801,81 +18801,81 @@ void MenuProc(void)
 			// ?????????
 			if (pActMenuWnd == NULL){
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 424, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_MAIL_0; i++) mailWndFontNo[i] = -2;
 
-				// ¤úû¨??????¡@¤e??§k??şt¥‚????¡k¢‘???
-				// ??§Æ???		
+				// î¸î•??????î“†î˜‹??îœ±??î ¹îš‡????î“±î•¶???
+				// ??î¤???		
 				for (mailHistoryWndPageNo = MAIL_MAX_HISTORY - 1; mailHistoryWndPageNo > 0; mailHistoryWndPageNo--){
 					// ????????
 					if (mailHistoryWndPageNo < 0) mailHistoryWndPageNo = MAIL_MAX_HISTORY - 1;
-					// ûÂ??¤úû¨????§k?
+					// î¯??î¸î•????îœ±?
 					mailHistoryWndNowPageNo = (MailHistory[mailHistoryWndSelectNo].newHistoryNo + mailHistoryWndPageNo) % MAIL_MAX_HISTORY;
-					// şt¥‚??????????§I??
+					// î ¹îš‡??????????îœ??
 					if (MailHistory[mailHistoryWndSelectNo].noReadFlag[mailHistoryWndNowPageNo] >= TRUE) break;
 				}
 #if 0
 				// ????????????????
 				if( pActPet == NULL ){
-					// ?????????şÎ
+					// ?????????î’•
 					pActPet = MakeAnimDisp( pActMenuWnd->x - 204, pActMenuWnd->y + 160, pet[ pc.mailPetNo ].graNo, ANIM_DISP_PET_RECIEVE );
 					pActPet->atr |= ACT_ATR_INFO;
 					pActPet->atr |= ACT_ATR_TYPE_PET;
 					pActPet->level = 32;
-					strcpy( pActPet->name, "²âÊÔ³èÎï" );
+					strcpy( pActPet->name, "æµ‹è¯•å® ç‰©" );
 				}
-				// ????????????????????¥ˆ?????
+				// ????????????????????îš?????
 				if (pActMailItem == NULL && MailHistory[mailHistoryWndSelectNo].itemGraNo[mailHistoryWndNowPageNo] != -1){
-					// ??????????şÎ
+					// ??????????î’•
 					pActMailItem = MakeAnimDisp(pActMenuWnd->x - 204, pActMenuWnd->y + 128, pc.item[5].graNo, ANIM_DISP_PET_ITEM);
 					pActMailItem->atr |= ACT_ATR_INFO;
 					pActMailItem->atr |= ACT_ATR_TYPE_ITEM;
 					pActMailItem->dispPrio = DISP_PRIO_DRAG;
-					// ????ş???
-					strcpy(pActMailItem->name, "µÀ¾ßÍê³É");
+					// ????î¡“???
+					strcpy(pActMailItem->name, "é“å…·å®Œæˆ");
 				}
 #endif
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					static int nowDelNo;
-					// ???????¤úû¨
+					// ???????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_MAIL_WND_HISTORY_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ??????
 						if (HitDispNo == mailWndFontNo[18]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
-							// ?????§k???????
+							// ?????îœ±???????
 							mailWndNoBak = mailWndNo;
-							// ?ıï?ûê??????
+							// ?î‘˜?î—??????
 							InitMailSendFlag();
-							// ?ıï?ûê????????
+							// ?î‘˜?î—????????
 							mailWndSendFlag[mailHistoryWndSelectNo] = TRUE;
-							// ¡P¥f???
+							// î“–î™¬???
 							if (ProcNo == PROC_BATTLE){
-								// ?¤G????ıï?????
+								// ?î—­????î‘˜?????
 								mailWndNo = MAIL_WND_SEND;
 							}
 							else{
-								// ???????¡k¢‘??????
+								// ???????î“±î•¶??????
 								if (pc.mailPetNo != -1){
-									// ¡k¢‘??????
+									// î“±î•¶??????
 									mailWndNo = MAIL_WND_SELECT;
 								}
 								else{
-									// ?¤G????ıï?????
+									// ?î—­????î‘˜?????
 									mailWndNo = MAIL_WND_SEND;
 								}
 							}
@@ -18884,35 +18884,35 @@ void MenuProc(void)
 						}
 						// ???
 						if (HitDispNo == mailWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
 							// ????????
 							mailWndNo = MAIL_WND_VIEW;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
-					// ¡q???
+					// î“·???
 					if (HitDispNo == mailWndFontNo[16] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
 							mailHistoryWndPageNo--; // ?????
 							if (mailHistoryWndPageNo < 0) mailHistoryWndPageNo = MAIL_MAX_HISTORY - 1;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
 							// ?????
@@ -18925,26 +18925,26 @@ void MenuProc(void)
 							mailWndBtnFlag[16] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[16] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[16] = FALSE;
 					}
-					// ??ş­?
+					// ??î‘´?
 					if (HitDispNo == mailWndFontNo[17] || joy_con[0] & JOY_B){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
-							mailHistoryWndPageNo++; // ???ş­???
+							mailHistoryWndPageNo++; // ???î‘´???
 							if (mailHistoryWndPageNo >= MAIL_MAX_HISTORY) mailHistoryWndPageNo = 0;
-							// ûê?????????úÇ
+							// î—?????????îŒ–
 							DeathLetterAction();
-							// ????úÇ
+							// ????îŒ–
 							DeathAction(pActPet);
 							pActPet = NULL;
-							// ?????úÇ
+							// ?????îŒ–
 							DeathAction(pActMailItem);
 							pActMailItem = NULL;
 							// ?????
@@ -18957,76 +18957,76 @@ void MenuProc(void)
 							mailWndBtnFlag[17] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							mailWndBtnFlag[17] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						mailWndBtnFlag[17] = FALSE;
 					}
 
 					// ????????
 					if (pActMenuWnd != NULL){
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x;
 						y = pActMenuWnd->y;
 						char *splitPoint;
-						// ûÂ??¤úû¨????§k?
+						// î¯??î¸î•????îœ±?
 						mailHistoryWndNowPageNo = (MailHistory[mailHistoryWndSelectNo].newHistoryNo + mailHistoryWndPageNo) % MAIL_MAX_HISTORY;
-						// şt¥‚?????????
+						// î ¹îš‡?????????
 						if (MailHistory[mailHistoryWndSelectNo].noReadFlag[mailHistoryWndNowPageNo] >= TRUE){
 							// ????????
 							if (MailHistory[mailHistoryWndSelectNo].noReadFlag[mailHistoryWndNowPageNo] > TRUE){
 								// ????????????????
 								if (pActPet == NULL){
-									// ?????????şÎ
+									// ?????????î’•
 									pActPet = MakeAnimDisp(pActMenuWnd->x - 204, pActMenuWnd->y + 160, MailHistory[mailHistoryWndSelectNo].noReadFlag[mailHistoryWndNowPageNo], ANIM_DISP_PET_RECIEVE);
 									pActPet->atr |= ACT_ATR_INFO;
 									pActPet->atr |= ACT_ATR_TYPE_PET;
 									// ??????
 									pActPet->level = MailHistory[mailHistoryWndSelectNo].petLevel[mailHistoryWndNowPageNo];
-									// ????ş¡q
+									// ????î¡“î“·
 									strcpy(pActPet->name, MailHistory[mailHistoryWndSelectNo].petName[mailHistoryWndNowPageNo]);
 								}
-								// ????????????????????¥ˆ?????
+								// ????????????????????îš?????
 								if (pActMailItem == NULL && MailHistory[mailHistoryWndSelectNo].itemGraNo[mailHistoryWndNowPageNo] != -1){
-									// ??????????şÎ
+									// ??????????î’•
 									pActMailItem = MakeAnimDisp(pActMenuWnd->x - 204, pActMenuWnd->y + 128, MailHistory[mailHistoryWndSelectNo].itemGraNo[mailHistoryWndNowPageNo], ANIM_DISP_PET_ITEM);
 									pActMailItem->atr |= ACT_ATR_INFO;
 									pActMailItem->atr |= ACT_ATR_TYPE_ITEM;
 									pActMailItem->dispPrio = DISP_PRIO_DRAG;
-									// ????ş???
-									strcpy(pActMailItem->name, "µÀ¾ßÍê³É");
+									// ????î¡“???
+									strcpy(pActMailItem->name, "é“å…·å®Œæˆ");
 								}
 							}
-							// ûê???????????
+							// î—???????????
 							if (pActLetter[0] == NULL){
-								// ???????????şÎ
+								// ???????????î’•
 								pActLetter[0] = MakeAnimDisp(x + 28, y + 244, SPR_mail, ANIM_DISP_LETTER);
 							}
-							// ?¥‚???
+							// ?îš‡???
 							MailHistory[mailHistoryWndSelectNo].noReadFlag[mailHistoryWndNowPageNo] = FALSE;
-							// ???????¨ò¢V
+							// ???????îŸ•î”¼
 							SaveMailHistory(mailHistoryWndSelectNo);
-							// şt¥‚????
+							// î ¹îš‡????
 							mailLamp = CheckMailNoReadFlag();
 
 						}
 						// ??????
 						splitPoint = MailHistory[mailHistoryWndSelectNo].str[mailHistoryWndNowPageNo];
-						// ş¡q¤úû¨
+						// î¡“î“·î¸î•
 						CenteringStr(addressBook[mailHistoryWndSelectNo].name, moji, CHAR_NAME_LEN);
 						StockFontBuffer(x + 64, y + 34, FONT_PRIO_FRONT, 0, moji, 0);
-						// ¦T¦Ü¤úû¨
+						// îšºîî¸î•
 						StockFontBuffer(x + 148, y + 236, FONT_PRIO_FRONT, 0, MailHistory[mailHistoryWndSelectNo].dateStr[mailHistoryWndNowPageNo], 0);
-						// §óı°¤úû¨
+						// î°î™î¸î•
 						while (1){
-							// ??§ó??£’????§Æ?
+							// ??î°??î——????î¤?
 							if (strlen(splitPoint) > 28){
 								strncpy_s(moji, splitPoint, 28);
-								moji[28] = NULL;	// ü¬£Z??????
-								// ¡u??§S§Æ????
+								moji[28] = NULL;	// î·î– ??????
+								// î“»??îœ™î¤????
 								if (GetStrLastByte(moji) == 3){
 									moji[27] = NULL;
 									splitPoint += 27;
@@ -19043,16 +19043,16 @@ void MenuProc(void)
 								break;
 							}
 						}
-						// ¡q???
+						// î“·???
 						mailWndFontNo[16] = StockDispBuffer(pActMenuWnd->x + 25 + 16 + 8, pActMenuWnd->y + 405, DISP_PRIO_IME3, CG_PREV_BTN + mailWndBtnFlag[16], 2);
-						// ???§k?¤úû¨
+						// ???îœ±?î¸î•
 						sprintf_s(moji, "%2d", mailHistoryWndPageNo + 1);
 						StockFontBuffer(pActMenuWnd->x + 46 + 16 + 9, pActMenuWnd->y + 397, FONT_PRIO_FRONT, 0, moji, 0);
 						// ????
 						mailWndFontNo[17] = StockDispBuffer(pActMenuWnd->x + 75 + 16 + 9 + 8, pActMenuWnd->y + 405, DISP_PRIO_IME3, CG_NEXT_BTN + mailWndBtnFlag[17], 2);
 						// ??????
 						mailWndFontNo[18] = StockDispBuffer(pActMenuWnd->x + 196, pActMenuWnd->y + 371, DISP_PRIO_IME3, CG_MAIL_WND_MAIL_BTN, 2);
-						// ¨–?????
+						// î¼?????
 						mailWndFontNo[19] = StockDispBuffer(pActMenuWnd->x + 220 - 16 - 8, pActMenuWnd->y + 405, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
 				}
@@ -19067,58 +19067,58 @@ void MenuProc(void)
 
 	if (MenuToggleFlag & JOY_CTRL_A){
 
-		// ?????§k??§Æ?
+		// ?????îœ±??î¤?
 		switch (albumWndNo){
 
-		case 0:	// û«§Æ??????
+		case 0:	// î˜î¤??????
 
 			// ?????????
 			if (pActMenuWnd == NULL){
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 448, 0, -1);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_ALBUM_0; i++) albumWndFontNo[i] = -2;
-				// ???§k????
+				// ???îœ±????
 				albumWndPageNo = 0;
-				// ????§k????
+				// ????îœ±????
 				albumNo = -1;
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
-					// ?????????¤úû¨
+					// ?????????î¸î•
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_ALBUM_WND, 1);
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ????¡I¥d????§k?
+						// ????î“î™ª????îœ±?
 						int nowTopNo = albumWndPageNo * 8;
-						// ????§Æ???
+						// ????î¤???
 						for (i = 0; i < 8; i++){
-							// ???¡k??????ûÌş¢???????
+							// ???î“±??????î¹î‘©???????
 							if (HitFontNo == albumWndFontNo[i] && PetAlbum[nowTopNo + i].flag >= 2){
-								// ????§k???
+								// ????îœ±???
 								albumNo = nowTopNo + i;
-								// ıø??????
+								// î‘¡??????
 								PetAlbum[albumNo].flag = 3;
-								// ?????¨ò¢V
+								// ?????îŸ•î”¼
 								SaveAlbum(albumNo);
 								// ?????
 								play_se(217, 320, 240);
 							}
 						}
-						// ¨–???
+						// î¼???
 						if (HitDispNo == albumWndFontNo[19]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ?????¨–??
+							// ?????î¼??
 							MenuToggleFlag ^= JOY_CTRL_A;
-							// ?????¨–???
+							// ?????î¼???
 							play_se(203, 320, 240);
 						}
 					}
 
-					// ¡q???
+					// î“·???
 					if (HitDispNo == albumWndFontNo[16] || joy_con[0] & JOY_A){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_A){
@@ -19136,20 +19136,20 @@ void MenuProc(void)
 							albumWndBtnFlag[16] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							albumWndBtnFlag[16] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						albumWndBtnFlag[16] = FALSE;
 					}
-					// ??ş­?
+					// ??î‘´?
 					if (HitDispNo == albumWndFontNo[17] || joy_con[0] & JOY_B){
 						// ????????
 						if (mouse.autoState & MOUSE_LEFT_CRICK || joy_auto[0] & JOY_B){
 							int limitPage = ((MAX_PET_KIND + MAX_PET_PAGE_SIZE - 1) / MAX_PET_PAGE_SIZE) - 1;
-							albumWndPageNo++; // ???ş­???
+							albumWndPageNo++; // ???î‘´???
 							// ????????
 							if (albumWndPageNo > limitPage) albumWndPageNo = 0;
 							// ?????
@@ -19162,12 +19162,12 @@ void MenuProc(void)
 							albumWndBtnFlag[17] = TRUE;
 						}
 						else{
-							// ???¥…
+							// ???îšŠ
 							albumWndBtnFlag[17] = FALSE;
 						}
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						albumWndBtnFlag[17] = FALSE;
 					}
 
@@ -19177,14 +19177,14 @@ void MenuProc(void)
 #define ALBUM_WND_ATTR_X 34
 #define ALBUM_WND_ATTR_Y 0
 						int x2;
-						int nowTopNo;	// ????¡I¥d????§k?
-						// ?¤õ¡@¤e
+						int nowTopNo;	// ????î“î™ª????îœ±?
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x;
 						y = pActMenuWnd->y + 28;
 
-						// ????§k????
+						// ????îœ±????
 						if (albumNo != -1){
-							// ş¡q§ó??????????
+							// î¡“î“·î°??????????
 							CenteringStr(PetAlbum[albumNo].freeName, moji, PET_NAME_LEN);
 							StockFontBuffer(x + 13, y, FONT_PRIO_FRONT, 0, moji, 0); y += 22;
 
@@ -19203,7 +19203,7 @@ void MenuProc(void)
 							sprintf_s(moji, "%3d", PetAlbum[albumNo].def);
 							StockFontBuffer(x + 36 + 72, y, FONT_PRIO_FRONT, 0, moji, 0); y += 29;
 
-							// Ô¢NşÍ???
+							// ä½‹î”´î’”???
 							if (PetAlbum[albumNo].earth > 0){
 								x2 = (int)(PetAlbum[albumNo].earth * 0.8);
 
@@ -19213,7 +19213,7 @@ void MenuProc(void)
 							}
 							y += 20;
 
-							// ?¢NşÍ???
+							// ?î”´î’”???
 							if (PetAlbum[albumNo].water > 0){
 								x2 = (int)(PetAlbum[albumNo].water * 0.8);
 
@@ -19223,7 +19223,7 @@ void MenuProc(void)
 							}
 							y += 20;
 
-							// ?¢NşÍ???
+							// ?î”´î’”???
 							if (PetAlbum[albumNo].fire > 0){
 								x2 = (int)(PetAlbum[albumNo].fire * 0.8);
 
@@ -19233,7 +19233,7 @@ void MenuProc(void)
 							}
 							y += 20;
 
-							// ?¢NşÍ???
+							// ?î”´î’”???
 							if (PetAlbum[albumNo].wind > 0){
 								x2 = (int)(PetAlbum[albumNo].wind * 0.8);
 
@@ -19247,19 +19247,19 @@ void MenuProc(void)
 
 						y = pActMenuWnd->y + 215;
 
-						// ????¡I¥d????§k?
+						// ????î“î™ª????îœ±?
 						nowTopNo = albumWndPageNo * 8;
-						// ????§Æ???
+						// ????î¤???
 						for (i = 0; i < 8; i++){
 							// ????????
 							if (nowTopNo + i >= MAX_PET_KIND) break;
 
-							// ıø??????????
+							// î‘¡??????????
 							if (PetAlbum[nowTopNo + i].flag == 2){
-								// ıø?¤úû¨
+								// î‘¡?î¸î•
 								StockDispBuffer(x + 24, y + 9, DISP_PRIO_IME3, CG_ALBUM_WND_NEW_ICON, 0);
 							}
-							// ??????¤úû¨
+							// ??????î¸î•
 							sprintf_s(moji, "No.%3d", nowTopNo + i + 1);
 							StockFontBuffer(x + 46, y + 1, FONT_PRIO_FRONT, 0, moji, 0);
 
@@ -19268,27 +19268,27 @@ void MenuProc(void)
 								if (PetAlbum[nowTopNo + i].flag == 1){
 									CenteringStr(PetAlbum[nowTopNo + i].name, moji, PET_NAME_LEN);
 									StockFontBuffer(x + 112, y, FONT_PRIO_FRONT, FONT_PAL_GRAY, moji, 0);
-									// ???§R¤e§k????
+									// ???îœ˜î˜‹îœ±????
 									albumWndFontNo[i] = -2;
 								}
 								else
-									// ûÌş¢úÄ???
+									// î¹î‘©îŒ“???
 								if (PetAlbum[nowTopNo + i].flag >= 2){
 									CenteringStr(PetAlbum[nowTopNo + i].name, moji, PET_NAME_LEN);
 									albumWndFontNo[i] = StockFontBuffer(x + 112, y, FONT_PRIO_FRONT, 0, moji, 2);
 								}
 							}
 							else{
-								// ???§R¤e§k????
+								// ???îœ˜î˜‹îœ±????
 								albumWndFontNo[i] = -2;
 							}
 							y += 22;
 						}
 
-						// ¡q???
+						// î“·???
 						albumWndFontNo[16] = StockDispBuffer(pActMenuWnd->x + 25 + 32 + 10 + 40, pActMenuWnd->y + 400, DISP_PRIO_IME3, CG_PREV_BTN + albumWndBtnFlag[16], 2);
 						albumWndFontNo[17] = StockDispBuffer(pActMenuWnd->x + 75 + 32 + 9 + 10 + 40, pActMenuWnd->y + 400, DISP_PRIO_IME3, CG_NEXT_BTN + albumWndBtnFlag[17], 2);
-						// ¨–?????
+						// î¼?????
 						albumWndFontNo[19] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, pActMenuWnd->y + 448 - 19, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 					}
 				}
@@ -19297,32 +19297,32 @@ void MenuProc(void)
 		}
 	}
 
-	//? ¡P¥f??????? ***********************************************************/
+	//? î“–î™¬??????? ***********************************************************/
 	if (BattleResultWndFlag >= 1 && ProcNo == PROC_GAME && SubProcNo == 3){
 		// ??????
 		if (--ResultWndTimer <= 0){
-			// ??????úÇ
+			// ??????îŒ–
 			DeathAction(pActMenuWnd);
 			pActMenuWnd = NULL;
-			// ?????????¨–??
+			// ?????????î¼??
 			BattleResultWndFlag = FALSE;
-			// ????????üÒ????
+			// ????????î????
 			if (MapWmdFlagBak != TRUE){
-				// ?????¨–???
+				// ?????î¼???
 				play_se(203, 320, 240);
 			}
 		}
 
-		static int ³èÎï¾­ÑéÅĞ¶Ï = FALSE;
+		static int å® ç‰©ç»éªŒåˆ¤æ–­ = FALSE;
 		switch (BattleResultWndFlag){
 
-		case 1:	// ??£k???????
+		case 1:	// ??î–±???????
 			if (pActMenuWnd == NULL){
-				³èÎï¾­ÑéÅĞ¶Ï = FALSE;
+				å® ç‰©ç»éªŒåˆ¤æ–­ = FALSE;
 				int flag = 0;
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(320 - 160, 240 - 120, 5, 6, CG_WND_TITLE_RESULT, 2);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_BTL_RESULT_0; i++) resultWndFontNo[i] = -2;
 				// ??????????
 				for (i = 0; i < 4; i++){
@@ -19339,20 +19339,20 @@ void MenuProc(void)
 				}
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ¨–???
+						// î¼???
 						if (HitDispNo == resultWndFontNo[0]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ?????????¨–??
+							// ?????????î¼??
 							BattleResultWndFlag = FALSE;
-							// ????????üÒ????
+							// ????????î????
 							if (MapWmdFlagBak != TRUE){
-								// ?????¨–???
+								// ?????î¼???
 								play_se(203, 320, 240);
 							}
 						}
@@ -19362,54 +19362,54 @@ void MenuProc(void)
 					if (pActMenuWnd != NULL){
 						int color;
 						int flag, j;
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 12;
 						y = pActMenuWnd->y + 44;
 						
-						// û«§Æ?ş¡q
+						// î˜î¤?î¡“î“·
 						CenteringStr( pc.name, moji, CHAR_NAME_LEN );
 						StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, moji, 0 ); 
-						color = FONT_PAL_GRAY;	// ?????ıè
+						color = FONT_PAL_GRAY;	// ?????î‘‘
 						// ????????
 						if( battleResultMsg.resChr[ 0 ].levelUp == TRUE ){
-							// ??????¤úû¨
+							// ??????î¸î•
 							StockFontBuffer( x + 152, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "LvUp!", 0 ); 
 						}
-						// ??£k¤úû¨
+						// ??î–±î¸î•
 						sprintf( moji,"Exp %+5d", battleResultMsg.resChr[ 0 ].exp );
 						StockFontBuffer( x + 148 + 58, y, FONT_PRIO_FRONT, 0, moji, 0 ); 
 						y += 20;
 						
-						// ???§Æ???
+						// ???î¤???
 						for( i = 0 ; i < 5 ; i++ ){
 							// ??????????? ?? ??????
 							if( pet[ i ].useFlag == TRUE
 									&& (pc.selectPetNo[ i ] == TRUE || pc.ridePetNo == i ) ){
-								// ş¡q?§ó???şÎ
-								// ??ş????
+								// î¡“î“·?î°???î’•
+								// ??î¡“????
 								if( pet[ i ].freeName[ 0 ] != NULL )
 									CenteringStr( pet[ i ].freeName, moji, PET_NAME_LEN );
 								else
 									CenteringStr( pet[ i ].name, moji, PET_NAME_LEN );
 								StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, moji, 0 );
-								color = FONT_PAL_GRAY;	// ?????ıè
+								color = FONT_PAL_GRAY;	// ?????î‘‘
 								flag = FALSE;			// ??????
-								// ¡P¥f???¢B¢l????£S??
+								// î“–î™¬???î”¨î•’????î–™??
 								for( j = 1 ; j < RESULT_CHR_EXP ; j++ ){
 									// ????
 									if( battleResultMsg.resChr[ j ].petNo == i ){
 										// ????????
 										if( battleResultMsg.resChr[ j ].levelUp == TRUE ){	// ????????
-											// ??????¤úû¨
+											// ??????î¸î•
 											StockFontBuffer( x + 152, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW,"LvUp!", 0 ); 
 										}
-										// ??£k¤úû¨
+										// ??î–±î¸î•
 										sprintf( moji,"Exp %+5d", battleResultMsg.resChr[ j ].exp );
 										StockFontBuffer( x + 148 + 58, y, FONT_PRIO_FRONT, 0, moji, 0 ); 
 										flag = TRUE;
 									}
 								}
-								// ş†????
+								// î¡Š????
 								if( flag == FALSE ){
 									sprintf( moji,"Exp %+4d", battleResultMsg.resChr[ j ].exp );
 									StockFontBuffer( x + 148 + 58, y, FONT_PRIO_FRONT, 0, "Exp    +0", 0 ); 
@@ -19419,8 +19419,8 @@ void MenuProc(void)
 						}
 						flag = FALSE;
 						y = pActMenuWnd->y + 134;
-						// 	????: ¤úû¨
-						StockFontBuffer( x, y+30, FONT_PRIO_FRONT, 0, "  µÀ¾ß £º", 0 ); 
+						// 	????: î¸î•
+						StockFontBuffer( x, y+30, FONT_PRIO_FRONT, 0, "  é“å…· ï¼š", 0 ); 
 						char itemName[128];
 						memset(itemName,0,128);
 						for( i = 0 ; i < 3 ; i++ ){
@@ -19433,11 +19433,11 @@ void MenuProc(void)
 							}
 						}
 						if( flag == FALSE ){
-							StockFontBuffer( x + 85, y+30, FONT_PRIO_FRONT, 0, "Ã»ÓĞµÃµ½ÈÎºÎµÀ¾ß¡£", 0 ); 
+							StockFontBuffer( x + 85, y+30, FONT_PRIO_FRONT, 0, "æ²¡æœ‰å¾—åˆ°ä»»ä½•é“å…·ã€‚", 0 ); 
 						}
 						resultWndFontNo[ 0 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx, pActMenuWnd->y + 216+30, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 
-						if (!³èÎï¾­ÑéÅĞ¶Ï&&¾­Ñé¿ª¹Ø){
+						if (!å® ç‰©ç»éªŒåˆ¤æ–­&&ç»éªŒå¼€å…³){
 							int petexp[2];
 							int petlevel[2];
 							int petindex[2];
@@ -19461,25 +19461,25 @@ void MenuProc(void)
 									}
 								}
 							}
-							³èÎï¾­ÑéÅĞ¶Ï = !³èÎï¾­ÑéÅĞ¶Ï;
+							å® ç‰©ç»éªŒåˆ¤æ–­ = !å® ç‰©ç»éªŒåˆ¤æ–­;
 							char token[256];
 							if(battleResultMsg.resChr[0].levelUp)
-								sprintf_s(token, "µÃµ½¾­Ñé£º[×Ô¼º£º%d UpLv!] ", battleResultMsg.resChr[0].exp);
+								sprintf_s(token, "å¾—åˆ°ç»éªŒï¼š[è‡ªå·±ï¼š%d UpLv!] ", battleResultMsg.resChr[0].exp);
 							else
-								sprintf_s(token, "µÃµ½¾­Ñé£º[×Ô¼º£º%d] ", battleResultMsg.resChr[0].exp);
+								sprintf_s(token, "å¾—åˆ°ç»éªŒï¼š[è‡ªå·±ï¼š%d] ", battleResultMsg.resChr[0].exp);
 							if(petindex[0]>=0){
 								if (petlevel[0])
-									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%s£º%d UpLv!] ",pet[ petindex[0] ].name , petexp[0]);
+									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%sï¼š%d UpLv!] ",pet[ petindex[0] ].name , petexp[0]);
 								else
-									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%s£º%d] ", pet[ petindex[0] ].name , petexp[0]);
+									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%sï¼š%d] ", pet[ petindex[0] ].name , petexp[0]);
 							}
 							if(petindex[1]>=0){
 								if (petlevel[1])
-									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%s£º%d UpLv!] ",pet[ petindex[1] ].name , petexp[1]);
+									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%sï¼š%d UpLv!] ",pet[ petindex[1] ].name , petexp[1]);
 								else
-									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%s£º%d] ", pet[ petindex[1] ].name , petexp[1]);
+									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%sï¼š%d] ", pet[ petindex[1] ].name , petexp[1]);
 							}
-							if (itemName[0]) sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "µÃµ½ÎïÆ·£º[%s]", itemName);
+							if (itemName[0]) sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "å¾—åˆ°ç‰©å“ï¼š[%s]", itemName);
 							StockChatBufferLine(token, FONT_PAL_YELLOW);
 						}
 					}
@@ -19492,28 +19492,28 @@ void MenuProc(void)
 			// ?????????
 			if (pActMenuWnd == NULL){
 				int flag = 0;
-				// ?????¤úû¨????şÎ
+				// ?????î¸î•????î’•
 				pActMenuWnd = MakeWindowDisp(320 - 96, 240 - 72, 3, 3, CG_WND_TITLE_RESULT, 2);
-				// ???§R¤e???
+				// ???îœ˜î˜‹???
 				for (i = 0; i < MENU_BTL_RESULT_0; i++) resultWndFontNo[i] = -2;
 				// ????????
 				play_se(202, 320, 240);
 			}
 			else{
-				// ??????üÒ????????
+				// ??????î????????
 				if (pActMenuWnd->hp > 0){
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// ¨–???
+						// î¼???
 						if (HitDispNo == resultWndFontNo[0]){
-							// ??????úÇ
+							// ??????îŒ–
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
-							// ?????????¨–??
+							// ?????????î¼??
 							BattleResultWndFlag = FALSE;
-							// ????????üÒ????
+							// ????????î????
 							if (MapWmdFlagBak != TRUE){
-								// ?????¨–???
+								// ?????î¼???
 								play_se(203, 320, 240);
 							}
 						}
@@ -19522,18 +19522,18 @@ void MenuProc(void)
 					// ????????
 					if (pActMenuWnd != NULL){
 						int color = FONT_PAL_WHITE;
-						// ?¤õ¡@¤e
+						// ?î³î“†î˜‹
 						x = pActMenuWnd->x + 17;
 						y = pActMenuWnd->y + 48;
-						// ??¤úû¨
-						sprintf_s(moji, " £Ä  £Ğ  %+8d", battleResultMsg.resChr[0].exp);
+						// ??î¸î•
+						sprintf_s(moji, " ï¼¤  ï¼°  %+8d", battleResultMsg.resChr[0].exp);
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, color, moji, 0);
 						y += 28;
-						// ??¤úû¨
-						sprintf_s(moji, " ºÏ  ¼Æ  %8d", battleResultMsg.resChr[1].exp);
+						// ??î¸î•
+						sprintf_s(moji, " åˆ  è®¡  %8d", battleResultMsg.resChr[1].exp);
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, 0);
 
-						// §ó?¤úû¨????????
+						// î°?î¸î•????????
 						resultWndFontNo[0] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, pActMenuWnd->y + 120, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 					}
 				}
@@ -19542,11 +19542,11 @@ void MenuProc(void)
 		}
 	}
 
-	//ÒÔÏÂ¿ªÊ¼Îª½»Ò×ÊÓ´°²¿·Ö
+	//ä»¥ä¸‹å¼€å§‹ä¸ºäº¤æ˜“è§†çª—éƒ¨åˆ†
 	if (MenuToggleFlag & JOY_CTRL_T)
 	{
 		char buffer[1024];
-#ifdef _TRADESYSTEM2	// Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 		char buffer2[1024];
 		int j;
 #endif
@@ -19559,7 +19559,7 @@ void MenuProc(void)
 		{
 			static int btnYes = -1, btnNo = -1;
 			char questStr[200];
-			sprintf(questStr, "È·¶¨½ÓÊÜÍæ¼Ò[style c=5]%s[/style]µÄ½»Ò×ÇëÇóÂğ£¿", opp_name);
+			sprintf(questStr, "ç¡®å®šæ¥å—ç©å®¶[style c=5]%s[/style]çš„äº¤æ˜“è¯·æ±‚å—ï¼Ÿ", opp_name);
 			StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, questStr, 0); 
 			StockDispBuffer(320, 240, DISP_PRIO_YES_NO_WND, CG_DROPWND, 0);
 			btnYes = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_YES_BTN, 2);
@@ -19570,7 +19570,7 @@ void MenuProc(void)
 				if (btnYes == HitDispNo)
 				{
 					sprintf_s(buffer, "C|%s|%s|1", opp_sockfd, opp_name);
-					//ËÍ³öÈ¡ÏûÑ¶Ï¢¸øServerÍ¨Öª¶Ô·½
+					//é€å‡ºå–æ¶ˆè®¯æ¯ç»™Serveré€šçŸ¥å¯¹æ–¹
 					lssproto_TD_send(sockfd, buffer);
 					play_se(203, 320, 240);
 					btnYes = -1;
@@ -19580,7 +19580,7 @@ void MenuProc(void)
 				else if (btnNo == HitDispNo)
 				{
 					sprintf_s(buffer, "C|%s|%s|0", opp_sockfd, opp_name);
-					//ËÍ³öÈ¡ÏûÑ¶Ï¢¸øServerÍ¨Öª¶Ô·½
+					//é€å‡ºå–æ¶ˆè®¯æ¯ç»™Serveré€šçŸ¥å¯¹æ–¹
 					lssproto_TD_send(sockfd, buffer);
 					play_se(203, 320, 240);
 					btnYes = -1;
@@ -19592,12 +19592,12 @@ void MenuProc(void)
 		}
 #endif
 		default:
-			//ÊÓ´°Îª²úÉúÊ±³õÊ¼»¯
+			//è§†çª—ä¸ºäº§ç”Ÿæ—¶åˆå§‹åŒ–
 			if (pActMenuWnd4 == NULL)
 			{
 				DeathMenuAction();
 				DeathMenuAction2();
-				//ÊÖ¶¯ÊäÈë½ğ¶îbuff³õÊ¼»¯
+				//æ‰‹åŠ¨è¾“å…¥é‡‘é¢buffåˆå§‹åŒ–
 				TradeBuffer.buffer[0] = NULL;
 				TradeBuffer.cnt = 0;
 				TradeBuffer.cursor = 0;
@@ -19611,15 +19611,15 @@ void MenuProc(void)
 				y = (lpDraw->ySize - 456) / 2;
 				pActMenuWnd4 = MakeWindowDisp(x, y, 620, 456, 0, -1, FALSE);
 #ifdef _NEW_ITEM_
-				µÀ¾ßÀ¸Ò³Êı = 0;
+				é“å…·æ é¡µæ•° = 0;
 #endif
-#ifdef _CHANGETRADERULE		   // (²»¿É¿ª) Syu ADD ½»Ò×¹æÔòĞŞ¶©
+#ifdef _CHANGETRADERULE		   // (ä¸å¯å¼€) Syu ADD äº¤æ˜“è§„åˆ™ä¿®è®¢
 				TradeBtnflag = false;
 #endif
 
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-				//×´Ì¬³õÊ¼»¯
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+				//çŠ¶æ€åˆå§‹åŒ–
 				locknum = -1;
 				locknum2 = -1;
 				MainTradeWndflag = true;
@@ -19631,8 +19631,8 @@ void MenuProc(void)
 
 				for (i = 0; i < 43; i++)
 					tradeList[i].data = -1;
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-				//ÊÓ´°¿ªÆôÇå¿ÕÄÚÈİ
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+				//è§†çª—å¼€å¯æ¸…ç©ºå†…å®¹
 				tradetalkwndflag = false;
 				for (i = 0; i < 4; i++)
 					sprintf_s(talkmsg[i], "");
@@ -19643,11 +19643,11 @@ void MenuProc(void)
 				x = (lpDraw->xSize - 620) / 2;
 				y = (lpDraw->ySize - 456) / 2;
 				SecondTradeWnd = MakeWindowDisp(x, y, 620, 456, 0, -1, FALSE);
-				for (i = 0; i < 43; i++) {   //ÇåÀí½»Ò×ÁĞ±í
+				for (i = 0; i < 43; i++) {   //æ¸…ç†äº¤æ˜“åˆ—è¡¨
 					tradeList[i].data = -1;
 					tradeList[i].kind = 'S';
 				}
-				for (i = 0; i < 21; i++){	//ÇåÀí½»Ò×ÁĞ±í
+				for (i = 0; i < 21; i++){	//æ¸…ç†äº¤æ˜“åˆ—è¡¨
 					mytradelist[i] = -1;
 					opptradelist[i] = -1;
 				}
@@ -19692,8 +19692,8 @@ void MenuProc(void)
 			else
 			{
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-				// Ö÷ÊÓ´°ÄÚÈİ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+				// ä¸»è§†çª—å†…å®¹
 				if (MainTradeWndflag == true)
 				{
 					SecondTradeWndflag = false;
@@ -19703,9 +19703,9 @@ void MenuProc(void)
 					{
 
 
-						//²úÉú½»Ò×Ö÷ÊÓ´°
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-						//»ØÖ÷ÊÓ´°Ê±Çå³ı¼ìÊÓÊÓ´°PetAction
+						//äº§ç”Ÿäº¤æ˜“ä¸»è§†çª—
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+						//å›ä¸»è§†çª—æ—¶æ¸…é™¤æ£€è§†è§†çª—PetAction
 						if (SecondActPet != NULL)
 						{
 							DeathAction(SecondActPet);
@@ -19717,35 +19717,35 @@ void MenuProc(void)
 #endif
 
 
-						// ÒÔÏÂÎª»¬Êó×ó¼ü±»°´ÏÂÊ± Start
+						// ä»¥ä¸‹ä¸ºæ»‘é¼ å·¦é”®è¢«æŒ‰ä¸‹æ—¶ Start
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
-							// ´¦ÀíÈ¡Ïû¼ü Start
-							//´¦Àí°´ÏÂÈ¡Ïû¼ü
+							// å¤„ç†å–æ¶ˆé”® Start
+							//å¤„ç†æŒ‰ä¸‹å–æ¶ˆé”®
 							if (HitDispNo == tradeWndFontNo[1])
 							{
-								//¹Ø±Õ½»Ò×ÊÓ´°
+								//å…³é—­äº¤æ˜“è§†çª—
 								MenuToggleFlag &= ~JOY_CTRL_T;
 
-								//ÊÓ´°¹Ø±ÕÒôĞ§
+								//è§†çª—å…³é—­éŸ³æ•ˆ
 								play_se(203, 320, 240);
 								sprintf_s(buffer, "W|%s|%s", opp_sockfd, opp_name);
-								//ËÍ³öÈ¡ÏûÑ¶Ï¢¸øServerÍ¨Öª¶Ô·½
+								//é€å‡ºå–æ¶ˆè®¯æ¯ç»™Serveré€šçŸ¥å¯¹æ–¹
 								lssproto_TD_send(sockfd, buffer);
 								tradeStatus = 0;
 								tradeInit();
 								pc.trade_confirm = 1;
 							}
-							// ´¦ÀíÈ¡Ïû¼ü End						
+							// å¤„ç†å–æ¶ˆé”® End						
 
 
-							// ´¦Àí Lock ¡¢ È·¶¨¼ü Start
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-							//Ö÷ÊÓ´°Óë¼ìÊÓÊÓ´°¹²ÓÃLock¸úÈ·¶¨function
+							// å¤„ç† Lock ã€ ç¡®å®šé”® Start
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+							//ä¸»è§†çª—ä¸æ£€è§†è§†çª—å…±ç”¨Lockè·Ÿç¡®å®šfunction
 							LockAndOkfunction();
-							// ´¦Àí Lock ¡¢ È·¶¨¼ü End
+							// å¤„ç† Lock ã€ ç¡®å®šé”® End
 
-							//Ö÷¸±ÊÓ´°ÇĞ»»Å¥
+							//ä¸»å‰¯è§†çª—åˆ‡æ¢é’®
 							if (HitDispNo == tradeWndFontNo[21])
 							{
 								MainTradeWndflag = false;
@@ -19755,7 +19755,7 @@ void MenuProc(void)
 								for (i = 0; i < 6; i++) SecondtradeWndFontNo[i] = -2;
 
 							}
-							//¶Ô·½ÎïÆ·ÏòÉÏ¾í¶¯Å¥
+							//å¯¹æ–¹ç‰©å“å‘ä¸Šå·åŠ¨é’®
 							if (HitDispNo == tradeWndFontNo[18])
 							{
 								if (drag1Y >= 67)
@@ -19763,7 +19763,7 @@ void MenuProc(void)
 								if (drag1Y < 67)
 									drag1Y = 67;
 							}
-							//¶Ô·½ÎïÆ·ÏòÏÂ¾í¶¯Å¥
+							//å¯¹æ–¹ç‰©å“å‘ä¸‹å·åŠ¨é’®
 							if (HitDispNo == tradeWndFontNo[19])
 							{
 								if (drag1Y <= 151)
@@ -19771,7 +19771,7 @@ void MenuProc(void)
 								if (drag1Y > 151)
 									drag1Y = 151;
 							}
-							//ÎÒ·½ÎïÆ·ÏòÉÏ¾í¶¯Å¥
+							//æˆ‘æ–¹ç‰©å“å‘ä¸Šå·åŠ¨é’®
 							if (HitDispNo == tradeWndFontNo[15])
 							{
 								if (drag2Y >= 257)
@@ -19779,7 +19779,7 @@ void MenuProc(void)
 								if (drag2Y < 257)
 									drag2Y = 257;
 							}
-							//ÎÒ·½ÎïÆ·ÏòÏÂ¾í¶¯Å¥
+							//æˆ‘æ–¹ç‰©å“å‘ä¸‹å·åŠ¨é’®
 							if (HitDispNo == tradeWndFontNo[16])
 							{
 								if (drag2Y <= 341)
@@ -19787,7 +19787,7 @@ void MenuProc(void)
 								if (drag2Y > 341)
 									drag2Y = 341;
 							}
-							//ÎÒ·½ÎïÆ·ÍÏÒ·Æô¶¯
+							//æˆ‘æ–¹ç‰©å“æ‹–æ›³å¯åŠ¨
 							if (HitDispNo == tradeWndFontNo[20])
 							{
 								if (!dragflag1)
@@ -19796,7 +19796,7 @@ void MenuProc(void)
 									dragflag1 = true;
 								}
 							}
-							//¶Ô·½ÎïÆ·ÍÏÒ·Æô¶¯
+							//å¯¹æ–¹ç‰©å“æ‹–æ›³å¯åŠ¨
 							if (HitDispNo == tradeWndFontNo[17])
 							{
 								if (!dragflag2)
@@ -19805,35 +19805,35 @@ void MenuProc(void)
 									dragflag2 = true;
 								}
 							}
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-							//ÍÏÒ·Å¥
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+							//æ‹–æ›³é’®
 							if (HitDispNo == tradeWndFontNo[14])
 								talkwndflag = true;
-							//¹Ø±ÕÅ¥
+							//å…³é—­é’®
 
 #endif
 #endif						
 
 						}
-						// ÒÔÉÏÎª»¬Êó×ó¼ü±»°´ÏÂÊ± End
+						// ä»¥ä¸Šä¸ºæ»‘é¼ å·¦é”®è¢«æŒ‰ä¸‹æ—¶ End
 
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-						//ÎÒ·½ÍÏÒ·Å¥½çÏßÏŞÖÆ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+						//æˆ‘æ–¹æ‹–æ›³é’®ç•Œçº¿é™åˆ¶
 						if (dragflag1 == true &&
 							(tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) <= 151 &&
 							(tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) >= 67){
 							drag1Y = tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y;
 						}
 
-						//¶Ô·½ÍÏÒ·Å¥½çÏßÏŞÖÆ
+						//å¯¹æ–¹æ‹–æ›³é’®ç•Œçº¿é™åˆ¶
 						if (dragflag2 == true &&
 							(tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) <= 341 &&
 							(tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) >= 257){
 							drag2Y = tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y;
 						}
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-						//¶Ô»°·½¿òÍÏÒ·Î»ÒÆ
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+						//å¯¹è¯æ–¹æ¡†æ‹–æ›³ä½ç§»
 						if (talkwndflag == true)
 						{
 							talkwndx = mouse.nowPoint.x;
@@ -19844,8 +19844,8 @@ void MenuProc(void)
 #endif
 #endif
 
-						// ´¦Àí³èÎïÑ¡È¡×ó¼ü Start
-						// ´¦Àí³èÎïÑ¡È¡×ó¼ü
+						// å¤„ç†å® ç‰©é€‰å–å·¦é”® Start
+						// å¤„ç†å® ç‰©é€‰å–å·¦é”®
 						if (HitDispNo == tradeWndFontNo[2])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
@@ -19873,10 +19873,10 @@ void MenuProc(void)
 
 							}
 						}
-						// ´¦Àí³èÎïÑ¡È¡×ó¼ü End
+						// å¤„ç†å® ç‰©é€‰å–å·¦é”® End
 
-						// ´¦Àí³èÎïÑ¡È¡ÓÒ¼ü Start
-						// ´¦Àí³èÎïÑ¡È¡ÓÒ¼ü
+						// å¤„ç†å® ç‰©é€‰å–å³é”® Start
+						// å¤„ç†å® ç‰©é€‰å–å³é”®
 						if (HitDispNo == tradeWndFontNo[3])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
@@ -19905,18 +19905,18 @@ void MenuProc(void)
 							}
 						}
 
-						// ´¦Àí³èÎïÑ¡È¡ÓÒ¼ü End
+						// å¤„ç†å® ç‰©é€‰å–å³é”® End
 
-						// ´¦Àí½ğ¶îÔö¼Ó¼ü Start
+						// å¤„ç†é‡‘é¢å¢åŠ é”® Start
 						if (HitDispNo == tradeWndFontNo[4])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP && tradeWndBtnFlag[4] == TRUE)
 								tradeWndBtnFlag[4] = FALSE;
 							if (tradeWndBtnFlag[4] == TRUE)
 							{
-								// °´ÏÂÔö¼ÓÊ±½«Focus»¹¸øChatBuffer
+								// æŒ‰ä¸‹å¢åŠ æ—¶å°†Focusè¿˜ç»™ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// ÊÓ´°ÏûÃğÊ±»¹Ô­Éè¶¨
+								// è§†çª—æ¶ˆç­æ—¶è¿˜åŸè®¾å®š
 								Tradeflag = false;
 								tradeWndDropGold += tradeWndDropGoldInc;
 								tradeWndDropGoldCnt++;
@@ -19930,7 +19930,7 @@ void MenuProc(void)
 											tradeWndDropGoldInc = 10000;
 									}
 								}
-								//½ğ¶îÉÏÏŞÈ·ÈÏ
+								//é‡‘é¢ä¸Šé™ç¡®è®¤
 								if (tradeWndDropGold >= pc.gold)
 								{
 									tradeWndDropGold = pc.gold;
@@ -19956,18 +19956,18 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[4] = FALSE;
-						// ´¦Àí½ğ¶îÔö¼Ó¼ü End
+						// å¤„ç†é‡‘é¢å¢åŠ é”® End
 
-						// ´¦Àí½ğ¶î¼õÉÙ¼ü Start
+						// å¤„ç†é‡‘é¢å‡å°‘é”® Start
 						if (HitDispNo == tradeWndFontNo[5])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP && tradeWndBtnFlag[5] == TRUE)
 								tradeWndBtnFlag[5] = FALSE;
 							if (tradeWndBtnFlag[5] == TRUE)
 							{
-								// °´ÏÂ¼õÉÙÊ±½«Focus»¹¸øChatBuffer
+								// æŒ‰ä¸‹å‡å°‘æ—¶å°†Focusè¿˜ç»™ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// ÊÓ´°ÏûÃğÊ±»¹Ô­Éè¶¨
+								// è§†çª—æ¶ˆç­æ—¶è¿˜åŸè®¾å®š
 								Tradeflag = false;
 								tradeWndDropGold -= tradeWndDropGoldInc;
 								tradeWndDropGoldCnt++;
@@ -20009,16 +20009,16 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[5] = FALSE;
-						// ´¦Àí½ğ¶î¼õÉÙ¼ü End
+						// å¤„ç†é‡‘é¢å‡å°‘é”® End
 
-						// ´¦Àí½ğ¶î·ÅÖÃ¼ü Start
+						// å¤„ç†é‡‘é¢æ”¾ç½®é”® Start
 						if (HitDispNo == tradeWndFontNo[6])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
 							{
-								// °´ÏÂ·ÅÖÃÊ±½«Focus»¹¸øChatBuffer
+								// æŒ‰ä¸‹æ”¾ç½®æ—¶å°†Focusè¿˜ç»™ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// ÊÓ´°ÏûÃğÊ±»¹Ô­Éè¶¨
+								// è§†çª—æ¶ˆç­æ—¶è¿˜åŸè®¾å®š
 								Tradeflag = false;
 								if (tradeWndDropGold > 0 && eventWarpSendFlag == FALSE)
 								{
@@ -20035,7 +20035,7 @@ void MenuProc(void)
 								tradeWndBtnFlag[6] = FALSE;
 								int TradeGoldIndex = 0;
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 								if ((tradeList[21].data == -1))
 								{
 									tradeList[21].data = tradeWndDropGold;
@@ -20046,7 +20046,7 @@ void MenuProc(void)
 
 								if (TradeGoldIndex != 0)
 								{
-#ifdef _CHANGETRADERULE		   // (²»¿É¿ª) Syu ADD ½»Ò×¹æÔòĞŞ¶©
+#ifdef _CHANGETRADERULE		   // (ä¸å¯å¼€) Syu ADD äº¤æ˜“è§„åˆ™ä¿®è®¢
 									TradeBtnflag = true;
 #endif
 									play_se(212, 320, 240);
@@ -20059,12 +20059,12 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[6] = FALSE;
-						// ´¦Àí½ğ¶î·ÅÖÃ¼ü End
+						// å¤„ç†é‡‘é¢æ”¾ç½®é”® End
 
-						// ´¦Àí³èÎï·ÅÖÃ¼ü Start		
+						// å¤„ç†å® ç‰©æ”¾ç½®é”® Start		
 						if (HitDispNo == tradeWndFontNo[7])
 						{
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 							tradeWndBtnFlag[7] = TRUE;
 #endif
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
@@ -20089,7 +20089,7 @@ void MenuProc(void)
 									tradePet[0].maxHp = pet[tradePetIndex].maxHp;
 
 									tradePet[0].index = tradePetIndex;
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 									pet[tradePetIndex].useFlag = NULL;
 									if (pActPet3)
 									{
@@ -20101,7 +20101,7 @@ void MenuProc(void)
 
 									DeathAction(pActPet4);
 									pActPet4 = NULL;
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 									tradeList[tradePetIndex + 16].data = tradePetIndex;
 									tradeList[tradePetIndex + 16].kind = 'P';
 									strcpy(tradeList[tradePetIndex + 16].name, pet[tradePetIndex].name);
@@ -20114,13 +20114,13 @@ void MenuProc(void)
 									if (pet[tradePetIndex].freeName[0] != NULL)
 										strcpy(tradeList[tradePetIndex + 16].freename, pet[tradePetIndex].freeName);
 									else
-										strcpy(tradeList[tradePetIndex + 16].freename, "");// change fix ·ÀÖ¹Î´¸ÄÃûµÄ³èÎïÏÔÊ¾³öÉÏÒ»¸ö¶ªµô³èÎïµÄ¸ÄÃûbug
+										strcpy(tradeList[tradePetIndex + 16].freename, "");// change fix é˜²æ­¢æœªæ”¹åçš„å® ç‰©æ˜¾ç¤ºå‡ºä¸Šä¸€ä¸ªä¸¢æ‰å® ç‰©çš„æ”¹åbug
 #endif
 
 									if (tradeStatus)
 									{
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-										//Ôö¼ÓËÍ³öÓû½»Ò×³èÎïµÄ¼¼ÄÜ¡¢Ô­Ãû¡¢¸ü¸ÄÃû
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+										//å¢åŠ é€å‡ºæ¬²äº¤æ˜“å® ç‰©çš„æŠ€èƒ½ã€åŸåã€æ›´æ”¹å
 										sprintf_s(buffer2, "%s|%s|%s|%s|%s|%s|%s|%s|%s",
 											petSkill[tradePetIndex][0].name,
 											petSkill[tradePetIndex][1].name,
@@ -20139,20 +20139,20 @@ void MenuProc(void)
 								}
 							}
 						}
-						// ´¦Àí³èÎï·ÅÖÃ¼ü End
+						// å¤„ç†å® ç‰©æ”¾ç½®é”® End
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-						//»¬Êó×ó¼ü·ÅµôÈ¡ÏûËùÓĞÍÏÒ·Æì±ê
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+						//æ»‘é¼ å·¦é”®æ”¾æ‰å–æ¶ˆæ‰€æœ‰æ‹–æ›³æ——æ ‡
 						if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
 						{
 							dragflag1 = false;
 							dragflag2 = false;
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 							talkwndflag = false;
 #endif
 						}
 #endif
-						//Î´±»°´ÏÂµÄÅ¥È«²¿»¹Ô­
+						//æœªè¢«æŒ‰ä¸‹çš„é’®å…¨éƒ¨è¿˜åŸ
 						for (i = 2; i <= 8; i++)
 						{
 							if (mouse.state & MOUSE_LEFT_CRICK && tradeWndBtnFlag[i] == TRUE)
@@ -20160,17 +20160,17 @@ void MenuProc(void)
 							else
 								tradeWndBtnFlag[i] = FALSE;
 						}
-						// ²úÉúÖ÷ÊÓ´°¸÷Áã¼ş
+						// äº§ç”Ÿä¸»è§†çª—å„é›¶ä»¶
 						if (pActMenuWnd4 != NULL)
 						{
-							// È¡µÃÊÓ´°»ù×¼X , Y×ù±ê
+							// å–å¾—è§†çª—åŸºå‡†X , Yåº§æ ‡
 							x = pActMenuWnd4->x;
 							y = pActMenuWnd4->y;
-							// ¸öÈË½ğ¶î×î´óÖµÏÔÊ¾
+							// ä¸ªäººé‡‘é¢æœ€å¤§å€¼æ˜¾ç¤º
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-							//¶Ô»°¿òÄÚÈİ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+							//å¯¹è¯æ¡†å†…å®¹
 							if (tradetalkwndflag != false)
 							{
 								for (i = 3; i >= 0; i--)
@@ -20183,10 +20183,10 @@ void MenuProc(void)
 #endif						
 							int ShowPoint;
 							int j = 0;
-							//¶Ô·½µÄ½»Ò×Çåµ¥³ÊÏÖ¿ªÊ¼Î»ÖÃ  
+							//å¯¹æ–¹çš„äº¤æ˜“æ¸…å•å‘ˆç°å¼€å§‹ä½ç½®  
 							ShowPoint = (drag2Y - 257) / 4;
-							//½¨Á¢ÎÒ·½ListÇåµ¥    
-							for (i = 0; i < 21; i++)				//ĞŞÕı½»Ò×ÁĞ±í  xiezi
+							//å»ºç«‹æˆ‘æ–¹Listæ¸…å•    
+							for (i = 0; i < 21; i++)				//ä¿®æ­£äº¤æ˜“åˆ—è¡¨  xiezi
 							{
 								if (tradeList[i + 1].data != -1)
 								{
@@ -20195,8 +20195,8 @@ void MenuProc(void)
 								}
 							}
 							j = 0;
-							//½¨Á¢¶Ô·½ListÇåµ¥
-							for (i = 21; i < 42; i++)				//ĞŞÕı½»Ò×ÁĞ±í  xiezi
+							//å»ºç«‹å¯¹æ–¹Listæ¸…å•
+							for (i = 21; i < 42; i++)				//ä¿®æ­£äº¤æ˜“åˆ—è¡¨  xiezi
 							{
 								if (tradeList[i + 1].data != -1)
 								{
@@ -20205,15 +20205,15 @@ void MenuProc(void)
 								}
 							}
 							j = 0;
-							//ÏÔÊ¾ÎÒ·½½»Ò×Çåµ¥      
-							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //½»Ò×Çåµ¥ĞŞÕı xiezi
+							//æ˜¾ç¤ºæˆ‘æ–¹äº¤æ˜“æ¸…å•      
+							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //äº¤æ˜“æ¸…å•ä¿®æ­£ xiezi
 							{
 								if (mytradelist[i] == -1) break;
-								//ËµÃ÷¿òÓÃµÄHitBoxÔİÊ±²»×ö
+								//è¯´æ˜æ¡†ç”¨çš„HitBoxæš‚æ—¶ä¸åš
 								//								if( MakeHitBox( x + 10 , y + 226 + j * 29, x + 280  , y + 244 + j * 29 , DISP_PRIO_IME3 ) == TRUE ){
 								//								}
 								sprintf_s(moji, "%c", tradeList[mytradelist[i]].kind);
-								//ÏÔÊ¾µÀ¾ß
+								//æ˜¾ç¤ºé“å…·
 								if (strcmp(moji, "I") == 0)
 								{
 									sprintf_s(moji, "%s", tradeList[mytradelist[i]].name);
@@ -20231,7 +20231,7 @@ void MenuProc(void)
 									StockFontBuffer(x + 220, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									j++;
 								}
-								//ÏÔÊ¾³èÎï
+								//æ˜¾ç¤ºå® ç‰©
 								else if (strcmp(moji, "P") == 0)
 								{
 									int colors = 0;
@@ -20248,24 +20248,24 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 									sprintf_s( moji , "Lv:%d%s" , tradeList[mylist].level, "");
 									if (tradeList[mylist].trns == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "Ò»×ª");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "ä¸€è½¬");
 									else if (tradeList[mylist].trns == 2)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "¶ş×ª");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "äºŒè½¬");
 #ifdef _SHOW_FUSION
 									if (LOWORD(tradeList[mylist].fusion) == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "ÈÚºÏ");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "èåˆ");
 #endif
 #else
-									sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, (tradeList[mylist].trns == 0) ? "" : "×ª");
+									sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, (tradeList[mylist].trns == 0) ? "" : "è½¬");
 #endif
 									StockFontBuffer(x + 220, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 
 									j++;
 								}
-								//ÏÔÊ¾½ğÇ®
+								//æ˜¾ç¤ºé‡‘é’±
 								else if (strcmp(moji, "G") == 0)
 								{
-									StockFontBuffer(x + 12, y + 228 + j * 29, FONT_PRIO_FRONT, 0, "Ê¯±Ò", 0);
+									StockFontBuffer(x + 12, y + 228 + j * 29, FONT_PRIO_FRONT, 0, "çŸ³å¸", 0);
 									sprintf_s(moji, "%d", tradeList[mytradelist[i]].data);
 									StockFontBuffer(x + 102, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									sprintf_s(moji, "%s", "Gold");
@@ -20276,22 +20276,22 @@ void MenuProc(void)
 									break;
 							}
 							j = 0;
-							//¶Ô·½µÄ½»Ò×Çåµ¥³ÊÏÖ¿ªÊ¼Î»ÖÃ       
+							//å¯¹æ–¹çš„äº¤æ˜“æ¸…å•å‘ˆç°å¼€å§‹ä½ç½®       
 							ShowPoint = (drag1Y - 67) / 4;
-							//ÏÔÊ¾¶Ô·½½»Ò×Çåµ¥
-							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //½»Ò×Çåµ¥ĞŞÕı xiezi
+							//æ˜¾ç¤ºå¯¹æ–¹äº¤æ˜“æ¸…å•
+							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //äº¤æ˜“æ¸…å•ä¿®æ­£ xiezi
 							{
 								if (opptradelist[i] == -1) break;
-								//ËµÃ÷¿òÓÃµÄHitBoxÔİÊ±²»×ö
+								//è¯´æ˜æ¡†ç”¨çš„HitBoxæš‚æ—¶ä¸åš
 								//								if( MakeHitBox( x + 10 , y + 37 + j * 29, x + 280  , y + 55 + j * 29 , DISP_PRIO_IME3 ) == TRUE ){
 								//								}
 								sprintf_s(moji, "%c", tradeList[opptradelist[i]].kind);
-								//ÏÔÊ¾µÀ¾ß
+								//æ˜¾ç¤ºé“å…·
 								if (strcmp(moji, "I") == 0)
 								{
 									int colors = 0;
 									int opptradlist = opptradelist[i];
-									// Terry modify for ¶¼ÓÃÔ­Ãû 2004/6/9
+									// Terry modify for éƒ½ç”¨åŸå 2004/6/9
 									sprintf_s(moji, "%s", tradeList[opptradlist].name);
 									//									sprintf_s( moji , "%s" , tradeList[ opptradlist].freename ) ; 
 									//									if( strcmp( tradeList[opptradlist].name, tradeList[opptradlist].freename ) ){
@@ -20313,13 +20313,13 @@ void MenuProc(void)
 									j++;
 								}
 								else if (strcmp(moji, "P") == 0)
-								{//ÏÔÊ¾³èÎï
+								{//æ˜¾ç¤ºå® ç‰©
 									int colors = 0; //FONT_PAL_RED
 									int opplist = opptradelist[i];
 									sprintf_s(moji, "%s", tradeList[opplist].name);
 									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 #ifdef _SHOW_FUSION									
-									// change fix Ö»ÎªÁËò«Ê¾-----> []
+									// change fix åªä¸ºäº†é¢¢ç¤º-----> []
 									if (strcmp(tradeList[opplist].freename, tradeList[opplist].name) == 0)
 									{
 										sprintf_s(moji, "[]");
@@ -20336,23 +20336,23 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 									sprintf_s( moji , "Lv:%d%s" , tradeList[opplist].level, (tradeList[opplist].trns==0)?"":"");
 									if (tradeList[opplist].trns == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "Ò»×ª");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "ä¸€è½¬");
 									else if (tradeList[opplist].trns == 2)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "¶ş×ª");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "äºŒè½¬");
 #ifdef _SHOW_FUSION
 									if (LOWORD(tradeList[opplist].fusion) == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "ÈÚºÏ");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "èåˆ");
 #endif
 #else
-									sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, (tradeList[opplist].trns == 0) ? "" : "×ª");
+									sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, (tradeList[opplist].trns == 0) ? "" : "è½¬");
 #endif
 									StockFontBuffer(x + 220, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									j++;
 								}
-								//ÏÔÊ¾½ğÇ®
+								//æ˜¾ç¤ºé‡‘é’±
 								else if (strcmp(moji, "G") == 0)
 								{
-									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, "Ê¯±Ò", 0);
+									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, "çŸ³å¸", 0);
 									sprintf_s(moji, "%d", tradeList[opptradelist[i]].data);
 									StockFontBuffer(x + 102, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									sprintf_s(moji, "%s", "Gold");
@@ -20366,7 +20366,7 @@ void MenuProc(void)
 #endif
 							sprintf_s(moji, "%7d", pc.gold);
 							StockFontBuffer(x + 550, y + 65, FONT_PRIO_FRONT, 0, moji, 0);
-							// Focus²»ÔÚÊÖ¶¯ÊäÈëÊ±ÏÔÊ¾Ô­ÊıÖµ
+							// Focusä¸åœ¨æ‰‹åŠ¨è¾“å…¥æ—¶æ˜¾ç¤ºåŸæ•°å€¼
 							if (Tradeflag == false)
 							{
 								sprintf_s(moji, "%7d", tradeWndDropGold);
@@ -20377,7 +20377,7 @@ void MenuProc(void)
 							{
 								if (pActPet3 == NULL)
 								{
-#ifdef _LIZARDPOSITION			   // (¿É¿ª·Å) Syu ADD ĞŞÕıÁúòáÏÔÊ¾Î»ÖÃ¹ıµÍ
+#ifdef _LIZARDPOSITION			   // (å¯å¼€æ”¾) Syu ADD ä¿®æ­£é¾™èœ¥æ˜¾ç¤ºä½ç½®è¿‡ä½
 									if ((pet[tradePetIndex].graNo == 101493) || (pet[tradePetIndex].graNo == 101494) ||
 										(pet[tradePetIndex].graNo == 101495) || (pet[tradePetIndex].graNo == 101496))
 									{
@@ -20395,9 +20395,9 @@ void MenuProc(void)
 								else
 									CenteringStr(pet[tradePetIndex].name, moji, PET_NAME_LEN);
 
-								//ÓĞ×ªÉúÊ±ÑÕÉ«ÏÔÊ¾À¶É«
-#ifdef _TRADESYSTEM2			// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-								//ĞÂÏµÍ³Î»ÖÃÆ«ÒÆĞŞÕı
+								//æœ‰è½¬ç”Ÿæ—¶é¢œè‰²æ˜¾ç¤ºè“è‰²
+#ifdef _TRADESYSTEM2			// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+								//æ–°ç³»ç»Ÿä½ç½®åç§»ä¿®æ­£
 								if (pet[tradePetIndex].trn == 1)
 									StockFontBuffer(x + 330, y + 33, FONT_PRIO_FRONT, 1, moji, 0);
 								else
@@ -20417,13 +20417,13 @@ void MenuProc(void)
 							}
 
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-							// ÒÔ½»Ò×½øĞĞµ½µÄ×´Ì¬¾ö¶¨ButtonÑùÊ½
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+							// ä»¥äº¤æ˜“è¿›è¡Œåˆ°çš„çŠ¶æ€å†³å®šButtonæ ·å¼
 							if (pc.trade_confirm == 1 || pc.trade_confirm == 3)
 								tradeWndFontNo[0] = StockDispBuffer(x + 59, y + 390, DISP_PRIO_IME3, CG_TRADE_LOCK_BTN, 2);
 							if (pc.trade_confirm == 4)
 								tradeWndFontNo[0] = StockDispBuffer(x + 59, y + 390, DISP_PRIO_IME3, CG_TRADE_OK_BTN, 2);
-							//Æ«ÒÆ
+							//åç§»
 							tradeWndFontNo[1] = StockDispBuffer(x + 240, y + 390, DISP_PRIO_IME3, CG_TRADE_CANCEL_BTN, 2);
 #endif
 
@@ -20431,45 +20431,45 @@ void MenuProc(void)
 							tradeWndFontNo[3] = StockDispBuffer(x + 486 + 20, y + 63 + 8, DISP_PRIO_IME3, CG_TRADE_RIGHT_BTN_UP + tradeWndBtnFlag[3], 2);
 							tradeWndFontNo[4] = StockDispBuffer(x + 554 - 94, y + 93 + 106, DISP_PRIO_IME3, CG_TRADE_UP_BTN_UP + tradeWndBtnFlag[4], 2);
 							tradeWndFontNo[5] = StockDispBuffer(x + 560 - 94, y + 93 + 106, DISP_PRIO_IME3, CG_TRADE_DOWN_BTN_UP + tradeWndBtnFlag[5], 2);
-#ifdef _CHANGETRADERULE		   // (²»¿É¿ª) Syu ADD ½»Ò×¹æÔòĞŞ¶©
+#ifdef _CHANGETRADERULE		   // (ä¸å¯å¼€) Syu ADD äº¤æ˜“è§„åˆ™ä¿®è®¢
 							if (TradeBtnflag == false)
 								tradeWndFontNo[6] = StockDispBuffer(x + 562 - 62 + 25, y + 148 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[6], 2);
 #else
 							tradeWndFontNo[6] = StockDispBuffer(x + 562 - 62 + 25, y + 148 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[6], 2);
 #endif
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-							//Æ«ÒÆ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+							//åç§»
 							tradeWndFontNo[7] = StockDispBuffer(x + 365 - 62 + 25, y + 190 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[7], 2);
 #endif
-#ifndef _CHANGETRADERULE		   // (²»¿É¿ª) Syu ADD ½»Ò×¹æÔòĞŞ¶©
+#ifndef _CHANGETRADERULE		   // (ä¸å¯å¼€) Syu ADD äº¤æ˜“è§„åˆ™ä¿®è®¢
 							tradeWndFontNo[8] = StockDispBuffer(x + 55 + 25, y + 190 + 18, DISP_PRIO_IME3, CG_MAIL_WND_CLEAR_BTN_UP + tradeWndBtnFlag[8], 2);
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-							//Æ«ÒÆ
-							//½»Ò×ÏÔÊ¾Ë«·½Ãû³Æ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+							//åç§»
+							//äº¤æ˜“æ˜¾ç¤ºåŒæ–¹åç§°
 							StockFontBuffer(x + 5, y + 193, FONT_PRIO_FRONT, FONT_PAL_PURPLE, pc.name, 0);
 							StockFontBuffer(x + 5, y + 6, FONT_PRIO_FRONT, FONT_PAL_PURPLE, opp_name, 0);
-							//¼ìÊÓÊÓ´°Å¥
+							//æ£€è§†è§†çª—é’®
 							tradeWndFontNo[21] = StockDispBuffer(x + 150, y + 390, DISP_PRIO_IME3, CG_TRADE_VIEW_BTN, 2);
-							//ÎÒ·½¾íÖáÍÏÒ·Å¥
+							//æˆ‘æ–¹å·è½´æ‹–æ›³é’®
 							tradeWndFontNo[18] = StockDispBuffer(x + 302, y + 42, DISP_PRIO_IME3, CG_TRADE_SCROLL_UP, 2);
-							//ÎÒ·½¾íÖáÉÏÒÆÅ¥
+							//æˆ‘æ–¹å·è½´ä¸Šç§»é’®
 							tradeWndFontNo[19] = StockDispBuffer(x + 302, y + 176, DISP_PRIO_IME3, CG_TRADE_SCROLL_DOWN, 2);
-							//ÎÒ·½¾íÖáÏÂÒÆÅ¥
+							//æˆ‘æ–¹å·è½´ä¸‹ç§»é’®
 							tradeWndFontNo[20] = StockDispBuffer(x + 302, y + drag1Y, DISP_PRIO_IME3, CG_TRADE_SCROLL_BTN, 2);
-							//¶Ô·½¾íÖáÍÏÒ·Å¥
+							//å¯¹æ–¹å·è½´æ‹–æ›³é’®
 							tradeWndFontNo[15] = StockDispBuffer(x + 302, y + 232, DISP_PRIO_IME3, CG_TRADE_SCROLL_UP, 2);
-							//¶Ô·½¾íÖáÉÏÒÆÅ¥
+							//å¯¹æ–¹å·è½´ä¸Šç§»é’®
 							tradeWndFontNo[16] = StockDispBuffer(x + 302, y + 366, DISP_PRIO_IME3, CG_TRADE_SCROLL_DOWN, 2);
-							//¶Ô·½¾íÖáÏÂÒÆÅ¥
+							//å¯¹æ–¹å·è½´ä¸‹ç§»é’®
 							tradeWndFontNo[17] = StockDispBuffer(x + 302, y + drag2Y, DISP_PRIO_IME3, CG_TRADE_SCROLL_BTN, 2);
 #endif
 
-							// ¼ÙÉèÓÎ±êÔÚ½ğ¶îÎ»ÖÃÊ±
+							// å‡è®¾æ¸¸æ ‡åœ¨é‡‘é¢ä½ç½®æ—¶
 							if (MakeHitBox(x + 530, y + 115, x + +530 + 86, y + 115 + 25, DISP_PRIO_IME3) == TRUE)
 							{
-								// °´ÏÂ»¬ÊóÈ¡µÃfocus¼°³õÊ¼»¯
+								// æŒ‰ä¸‹æ»‘é¼ å–å¾—focusåŠåˆå§‹åŒ–
 								if (mouse.onceState & MOUSE_LEFT_CRICK)
 								{
 									strcpy(TradeBuffer.buffer, "");
@@ -20481,7 +20481,7 @@ void MenuProc(void)
 									play_se(217, 320, 240);
 								}
 							}
-							// focusÔÚÊÖ¶¯ÊäÈëÊ±ÏÔÊ¾buffer
+							// focusåœ¨æ‰‹åŠ¨è¾“å…¥æ—¶æ˜¾ç¤ºbuffer
 							if (Tradeflag == true)
 							{
 								TradeBuffer.x = pActMenuWnd4->x + 600 - strlen(TradeBuffer.buffer) * 7;
@@ -20497,32 +20497,32 @@ void MenuProc(void)
 
 							if (pc.trade_confirm == 2)
 							{
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-								//Æ«ÒÆ
-								StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "Ëø¶¨½»Ò×", 0);
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+								//åç§»
+								StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "é”å®šäº¤æ˜“", 0);
 							}
 							if (pc.trade_confirm == 3)
 							{
-								StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "¶Ô·½Ëø¶¨½»Ò×", 0);
+								StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "å¯¹æ–¹é”å®šäº¤æ˜“", 0);
 							}
 							if (pc.trade_confirm == 4)
 							{
 								if (tradeStatus == 2)
-									StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "½»Ò×È·ÈÏ", 0);
+									StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "äº¤æ˜“ç¡®è®¤", 0);
 								else
-									StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "×îºó½»Ò×È·ÈÏ", 0);
+									StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "æœ€åäº¤æ˜“ç¡®è®¤", 0);
 							}
 #endif
 						}
 #ifdef _NEW_ITEM_
 						for (i = 0; i < 3; i++){
-							if (i == µÀ¾ßÀ¸Ò³Êı){
+							if (i == é“å…·æ é¡µæ•°){
 								StockDispBuffer(722, 335 + i * 56, DISP_PRIO_IME2, 55223 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.µÀ¾ßÀ¸×´Ì¬ & 1 << i){
+									if (pc.é“å…·æ çŠ¶æ€ & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -20531,7 +20531,7 @@ void MenuProc(void)
 									StockDispBuffer(727 - 11, 335 + i * 56, DISP_PRIO_IME2, 55226 + i, 1);
 									if (MakeHitBox(717 - 11, 307 + i * 56, 717 + 20 - 11, 304 + i * 56 + 60, DISP_PRIO_IME4)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											µÀ¾ßÀ¸Ò³Êı = i;
+											é“å…·æ é¡µæ•° = i;
 										}
 									}
 								}
@@ -20542,14 +20542,14 @@ void MenuProc(void)
 						for (i = MAX_ITEM - 1; i >= MAX_ITEMSTART; i--)
 						{
 #ifdef _NEW_ITEM_
-							int µÀ¾ßÆğÊ¼ = MAX_ITEMSTART + MAX_MAXHAVEITEM*µÀ¾ßÀ¸Ò³Êı;
-							int µÀ¾ß½áÊø = µÀ¾ßÆğÊ¼ + MAX_MAXHAVEITEM;
+							int é“å…·èµ·å§‹ = MAX_ITEMSTART + MAX_MAXHAVEITEM*é“å…·æ é¡µæ•°;
+							int é“å…·ç»“æŸ = é“å…·èµ·å§‹ + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < µÀ¾ßÆğÊ¼ || i >= µÀ¾ß½áÊø) continue;
+								if (i < é“å…·èµ·å§‹ || i >= é“å…·ç»“æŸ) continue;
 							}
 #endif
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-							//ÒÑÑ¡È¡½»Ò×µÄ¸ÇÕÈÓ¡ÕÂ
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+							//å·²é€‰å–äº¤æ˜“çš„ç›–æ–å°ç« 
 #ifdef _ITEM_PILENUMS
 							if (itemflag[i - MAX_ITEMSTART] <= 0)
 							{
@@ -20557,9 +20557,9 @@ void MenuProc(void)
 							if (itemflag[i - MAX_ITEMSTART] == 1)
 							{
 #endif
-								//Ô­±¾ÎªÏÔÊ¾Ô­µÀ¾ß²¢¸ÇÉÏÕÂ
+								//åŸæœ¬ä¸ºæ˜¾ç¤ºåŸé“å…·å¹¶ç›–ä¸Šç« 
 								//StockDispBuffer( ItemBuffer[ i ].defX, ItemBuffer[ i ].defY, ItemBuffer[ i ].dispPrio, CG_TRADE_SEAL , 0 );
-								//ĞŞÕıÎªµÀ¾ßÒş²Ø£¬Ö±½ÓÌø¹ı²»×öºóĞøÏÔÊ¾
+								//ä¿®æ­£ä¸ºé“å…·éšè—ï¼Œç›´æ¥è·³è¿‡ä¸åšåç»­æ˜¾ç¤º
 
 								continue;
 
@@ -20570,49 +20570,49 @@ void MenuProc(void)
 								x + ItemBuffer[i].defX + 15, y + ItemBuffer[i].defY + 28, DISP_PRIO_IME3) == TRUE)
 							{
 #ifdef _TELLCHANNEL
-								// Terry fix 2003/12/16 for ½»Ò×ÊÓ´°¿ªÆôÊ±,ÏÔÊ¾ÎïÆ·ËµÃ÷²»ÏÔÊ¾ÊäÈë·¨
-								//TaskBarFlag = TRUE;ÕâĞĞ²»Òª
-								bShowItemExplain = TRUE; // ĞÂÔöÕâĞĞ
+								// Terry fix 2003/12/16 for äº¤æ˜“è§†çª—å¼€å¯æ—¶,æ˜¾ç¤ºç‰©å“è¯´æ˜ä¸æ˜¾ç¤ºè¾“å…¥æ³•
+								//TaskBarFlag = TRUE;è¿™è¡Œä¸è¦
+								bShowItemExplain = TRUE; // æ–°å¢è¿™è¡Œ
 								// end
 #endif
-								// ¸ÃÀ¸Î»ÓĞµÀ¾ßµÄÇé¿ö
+								// è¯¥æ ä½æœ‰é“å…·çš„æƒ…å†µ
 								if (pc.item[i].useFlag == TRUE && ItemBuffer[i].mixFlag <= 2)
 								{
 									char *splitPoint = pc.item[i].memo;
 									int color = pc.item[i].color;
-									// ½»Ò×ÎïÆ·ÄÜ·ñÊ¹ÓÃCheck
+									// äº¤æ˜“ç‰©å“èƒ½å¦ä½¿ç”¨Check
 									if (pc.transmigration == 0 && pc.level < pc.item[i].level)
 										color = FONT_PAL_RED;
-									// µÀ¾ßÃû³ÆÏÔÊ¾
+									// é“å…·åç§°æ˜¾ç¤º
 									StockFontBuffer(0, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, color, pc.item[i].name, 0);
-									// µÀ¾ßËµÃ÷
+									// é“å…·è¯´æ˜
 									StockFontBuffer(160, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, 0, splitPoint, 0);
 #ifdef _NPC_ITEMUP
 									ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);
 #endif
 								}
-								// ÔÚµÀ¾ßÉÏµãÁ½ÏÂµÄÇé¿ö
+								// åœ¨é“å…·ä¸Šç‚¹ä¸¤ä¸‹çš„æƒ…å†µ
 								if (mouse.onceState & MOUSE_LEFT_DBL_CRICK)
 								{
 									if (tradeStatus != 1)	return;
 									if (pc.trade_confirm == 2 || pc.trade_confirm == 4) return;
-									// ºÏ³ÉÆì±ê¹Ø±Õ
+									// åˆæˆæ——æ ‡å…³é—­
 									ItemBuffer[i].mixFlag = FALSE;
-									// È·ÈÏ¸ÃÎ»ÖÃÓĞµÀ¾ß
+									// ç¡®è®¤è¯¥ä½ç½®æœ‰é“å…·
 									if (pc.item[i].useFlag == TRUE){
 										ItemBuffer[i].dragFlag = TRUE;
 										mouse.itemNo = i;
-										// µÀ¾ßÑ¡Ôñ³õÆÚ»¯
+										// é“å…·é€‰æ‹©åˆæœŸåŒ–
 										itemNo = -1;
 									}
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 									if (mouse.itemNo != -1)
 									{
-										//µÀ¾ßÀ¸Ò³Êı
+										//é“å…·æ é¡µæ•°
 										char buf[1024];
 
 										int chkindex = 0, frontempIndex = 0;
-										//¼ì²éµÀ¾ßtradeList¿Õ¼äÊÇ·ñÒÑÂú  ĞŞÕı  xiezi
+										//æ£€æŸ¥é“å…·tradeListç©ºé—´æ˜¯å¦å·²æ»¡  ä¿®æ­£  xiezi
 										for (int scanindex = 1; scanindex < 16; scanindex++)
 										{
 											if (tradeList[chkindex].data == i)
@@ -20654,10 +20654,10 @@ void MenuProc(void)
 							}
 							if (pc.item[i].useFlag == TRUE)
 							{
-								// ·ÇºÏ³ÉÎïÆ·µÄÇé¿ö
+								// éåˆæˆç‰©å“çš„æƒ…å†µ
 								if (ItemBuffer[i].mixFlag <= 2) {
 									char buf[256];
-									// µÀ¾ßÏÔÊ¾
+									// é“å…·æ˜¾ç¤º
 									StockDispBuffer(x + ItemBuffer[i].defX - 8, y + ItemBuffer[i].defY, ItemBuffer[i].dispPrio, pc.item[i].graNo, 0);
 
 
@@ -20680,9 +20680,9 @@ void MenuProc(void)
 
 						}
 					}
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 				}
-				// ¼ìÊÓÊÓ´°ÄÚÈİ
+				// æ£€è§†è§†çª—å†…å®¹
 				else  if (SecondTradeWndflag == true)
 				{
 					MainTradeWndflag = false;
@@ -20690,8 +20690,8 @@ void MenuProc(void)
 					{
 						x = SecondTradeWnd->x;
 						y = SecondTradeWnd->y;
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
-						//¶Ô»°¿òÄÚÈİ
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
+						//å¯¹è¯æ¡†å†…å®¹
 						if (tradetalkwndflag != false)
 						{
 							for (i = 3; i >= 0; i--)
@@ -20704,7 +20704,7 @@ void MenuProc(void)
 #endif						
 						SecondtradeWndFontNo[0] = StockDispBuffer(x + 254, y + 380, DISP_PRIO_IME3, CG_TRADE_CANCEL_BTN, 2);
 						SecondtradeWndFontNo[1] = StockDispBuffer(x + 159, y + 380, DISP_PRIO_IME3, CG_TRADE_BACK_BTN, 2);
-						//½»Ò×½øĞĞ×´Ì¬
+						//äº¤æ˜“è¿›è¡ŒçŠ¶æ€
 						if (pc.trade_confirm == 1 || pc.trade_confirm == 3)
 							SecondtradeWndFontNo[2] = StockDispBuffer(x + 63, y + 380, DISP_PRIO_IME3, CG_TRADE_LOCK_BTN, 2);
 						if (pc.trade_confirm == 4)
@@ -20713,7 +20713,7 @@ void MenuProc(void)
 						sprintf_s(moji, "%7d", tradeWndDropGoldGet);
 
 #ifdef _PET_ITEM
-						// ÏÔÊ¾³èÎï×°±¸×ÊÁÏ
+						// æ˜¾ç¤ºå® ç‰©è£…å¤‡èµ„æ–™
 						if (locknum != -1 && tradeList[locknum + 37].data != -1)
 						{
 							if (bViewPetEquip)
@@ -20723,14 +20723,14 @@ void MenuProc(void)
 						}
 #endif
 
-						//ÏÔÊ¾½ğÇ®
+						//æ˜¾ç¤ºé‡‘é’±
 						if (tradeWndDropGoldGet > 0)
 							StockFontBuffer(x + 95, y + 336, FONT_PRIO_FRONT, 0, moji, 0);
 						for (i = 0; i < 5; i++)
 						{
 							if (MakeHitBox(x + 320, y + 12 + i * 42, x + 600, y + 51 + i * 42, DISP_PRIO_IME3) == TRUE)
 							{
-#ifdef _TRADELOCKBTN				// (²»¿É¿ª) Syu ADD Ôö¼ÓËø¶¨¼ü
+#ifdef _TRADELOCKBTN				// (ä¸å¯å¼€) Syu ADD å¢åŠ é”å®šé”®
 								if (mouse.onceState & MOUSE_LEFT_CRICK)
 								{
 #ifdef _PET_ITEM
@@ -20756,7 +20756,7 @@ void MenuProc(void)
 										int		iY = 251, iColor;
 										char	*splitPoint;
 
-										// ÏÔÊ¾³èÎï×°±¸À¸µÄµ×Í¼¼°×°±¸
+										// æ˜¾ç¤ºå® ç‰©è£…å¤‡æ çš„åº•å›¾åŠè£…å¤‡
 										for (int iCount = 0; iCount < PET_EQUIPNUM; iCount++)
 										{	
 											StockDispBuffer(ItemBuffer[iCount].defX, ItemBuffer[iCount].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[iCount][0], 0);
@@ -20765,7 +20765,7 @@ void MenuProc(void)
 										}
 										for (int iCount = 0; iCount < PET_EQUIPNUM; iCount++)
 										{
-											// ÏÔÊ¾×°±¸ÄÚÈİ
+											// æ˜¾ç¤ºè£…å¤‡å†…å®¹
 											if (MakeHitBox( ItemBuffer[iCount].defX - 26, ItemBuffer[iCount].defY - 26,
 												ItemBuffer[iCount].defX + 26, ItemBuffer[iCount].defY + 23, DISP_PRIO_IME3) == TRUE)
 											{
@@ -20773,13 +20773,13 @@ void MenuProc(void)
 												{
 													iColor = opp_pet[locknum].oPetItemInfo[iCount].color;
 													splitPoint = opp_pet[locknum].oPetItemInfo[iCount].memo;
-													// ×°±¸Ãû³Æ
+													// è£…å¤‡åç§°
 													StockFontBuffer(x + 25, y + 195, FONT_PRIO_FRONT, iColor, opp_pet[locknum].oPetItemInfo[iCount].name,0);
-													// ÄÍ¾Ã¶È
-													sprintf_s(moji, "ÄÍ¾Ã¶È(%s)", opp_pet[locknum].oPetItemInfo[iCount].damage);
+													// è€ä¹…åº¦
+													sprintf_s(moji, "è€ä¹…åº¦(%s)", opp_pet[locknum].oPetItemInfo[iCount].damage);
 													StockFontBuffer(x + 25, y + 215, FONT_PRIO_FRONT, iColor, moji, 0);
 
-													// ÏÔÊ¾µÀ¾ßĞğÊö
+													// æ˜¾ç¤ºé“å…·å™è¿°
 													while (1)
 													{
 														if (strlen(splitPoint) > 28)
@@ -20813,12 +20813,12 @@ void MenuProc(void)
 									else
 #endif
 									{
-										//²úÉú³èÎïAction
+										//äº§ç”Ÿå® ç‰©Action
 										if (SecondActPet == NULL) {
 											ShowPetNum = atoi(opp_pet[locknum].opp_petgrano);
 											SecondActPet = MakeAnimDisp(x + 215, y + 130, ShowPetNum, ANIM_DISP_PET);
 										}
-										//ÒÑ´æÔÚÏÔÊ¾µÄ³èÎï
+										//å·²å­˜åœ¨æ˜¾ç¤ºçš„å® ç‰©
 										else if (SecondActPet != NULL && ShowPetNum != atoi(opp_pet[locknum].opp_petgrano)) {
 											DeathAction(SecondActPet);
 											SecondActPet = NULL;
@@ -20827,7 +20827,7 @@ void MenuProc(void)
 										}
 
 										//opp_petfreename
-										//ÏÔÊ¾ÊıÖµ¡¢¼¼ÄÜ ( ×ó·½ )
+										//æ˜¾ç¤ºæ•°å€¼ã€æŠ€èƒ½ ( å·¦æ–¹ )
 										StockDispBuffer(x + 95, y + 40, DISP_PRIO_IME3, CG_TRADE_LINE, 0);
 										sprintf_s(moji, "%s", opp_pet[locknum].opp_petname);
 										StockFontBuffer(x + 55, y + 30, FONT_PRIO_FRONT, 0, moji, 0);
@@ -20845,15 +20845,15 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 										sprintf_s( moji,"%s", "" );
 										if (atoi(opp_pet[locknum].opp_pettrans) == 1)
-											sprintf_s(moji, "%s", "Ò»×ª");
+											sprintf_s(moji, "%s", "ä¸€è½¬");
 										else if (atoi(opp_pet[locknum].opp_pettrans) == 2)
-											sprintf_s(moji, "%s", "¶ş×ª");
+											sprintf_s(moji, "%s", "äºŒè½¬");
 #ifdef _SHOW_FUSION
 										if (LOWORD(atoi(opp_pet[locknum].opp_fusion)) == 1)
-											sprintf_s(moji, "%s", "ÈÚºÏ");
+											sprintf_s(moji, "%s", "èåˆ");
 #endif
 #else
-										sprintf_s(moji, "%s", (atoi(opp_pet[locknum].opp_pettrans) == 0) ? "" : "×ª");
+										sprintf_s(moji, "%s", (atoi(opp_pet[locknum].opp_pettrans) == 0) ? "" : "è½¬");
 #endif
 										StockFontBuffer(x + 90, y + 62, FONT_PRIO_FRONT, 2, moji, 0);
 
@@ -20937,7 +20937,7 @@ void MenuProc(void)
 								}
 #endif
 							}
-							//ÏÔÊ¾ÊıÖµ¡¢¼¼ÄÜ ( ÓÒ·½ )
+							//æ˜¾ç¤ºæ•°å€¼ã€æŠ€èƒ½ ( å³æ–¹ )
 							if (tradeList[i + 37].data != -1)
 							{
 								sprintf_s(moji, "%s", opp_pet[i].opp_petname);
@@ -20952,15 +20952,15 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 								sprintf_s( moji,"%s", "" );
 								if (atoi(opp_pet[i].opp_pettrans) == 1)
-									sprintf_s(moji, "%s", "Ò»×ª");
+									sprintf_s(moji, "%s", "ä¸€è½¬");
 								else if (atoi(opp_pet[i].opp_pettrans) == 2)
-									sprintf_s(moji, "%s", "¶ş×ª");
+									sprintf_s(moji, "%s", "äºŒè½¬");
 #ifdef _SHOW_FUSION
 								if (LOWORD(atoi(opp_pet[i].opp_fusion)) == 1)
-									sprintf_s(moji, "%s", "ÈÚºÏ");
+									sprintf_s(moji, "%s", "èåˆ");
 #endif
 #else
-								sprintf_s(moji, "%s", (atoi(opp_pet[i].opp_pettrans) == 0) ? "" : "×ª");
+								sprintf_s(moji, "%s", (atoi(opp_pet[i].opp_pettrans) == 0) ? "" : "è½¬");
 #endif
 								StockFontBuffer(x + 590, y + 13 + i * 42, FONT_PRIO_FRONT, 2, moji, 0);
 
@@ -20976,7 +20976,7 @@ void MenuProc(void)
 								StockFontBuffer(x + 451, y + 33 + i * 42, FONT_PRIO_FRONT, atoi(opp_pet[i].opp_pettrans), moji, 0);
 							}
 						}
-						//ÏÔÊ¾µÀ¾ß
+						//æ˜¾ç¤ºé“å…·
 						for (i = 0; i < 3; i++)
 						{
 							for (j = 0; j < 5; j++)
@@ -20984,7 +20984,7 @@ void MenuProc(void)
 								if (MakeHitBox(x + 368 + 51 * j - 35, y + 265 + 47 * i - 23,
 									x + 368 + 51 * j + 18, y + 265 + 47 * i + 23, DISP_PRIO_IME3) == TRUE)
 								{
-#ifdef _TRADELOCKBTN				// (²»¿É¿ª) Syu ADD Ôö¼ÓËø¶¨¼ü
+#ifdef _TRADELOCKBTN				// (ä¸å¯å¼€) Syu ADD å¢åŠ é”å®šé”®
 									if (mouse.onceState & MOUSE_LEFT_CRICK) {
 										locknum2 = i * 5 + j;
 										locknum = -1;
@@ -21007,7 +21007,7 @@ void MenuProc(void)
 									y = SecondTradeWnd->y;
 									if (tradeList[locknum2 + 22].data != -1)
 									{
-										//ËµÃ÷¹ı³¤»»ĞĞ
+										//è¯´æ˜è¿‡é•¿æ¢è¡Œ
 										char *splitPoint = opp_item[locknum2].effect;
 										while (1)
 										{
@@ -21057,7 +21057,7 @@ void MenuProc(void)
 
 
 										if (strcmp(opp_item[locknum2].damage, "") != 0)
-											sprintf_s(moji, "ÄÍ¾Ã¶È£º%s", opp_item[locknum2].damage);
+											sprintf_s(moji, "è€ä¹…åº¦ï¼š%s", opp_item[locknum2].damage);
 										StockFontBuffer(x + 50, y + 240, FONT_PRIO_FRONT, 0, moji, 0);
 									}
 #endif
@@ -21081,7 +21081,7 @@ void MenuProc(void)
 
 						if (SecondTradeWnd->hp > 0)
 						{
-							//²úÉú½»Ò×µÚ¶şÊÓ´°
+							//äº§ç”Ÿäº¤æ˜“ç¬¬äºŒè§†çª—
 							if (pActPet3 != NULL)
 							{
 								DeathAction(pActPet3);
@@ -21092,12 +21092,12 @@ void MenuProc(void)
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
 							{
 								if (HitDispNo == SecondtradeWndFontNo[0]) {
-									//¹Ø±Õ½»Ò×ÊÓ´°
+									//å…³é—­äº¤æ˜“è§†çª—
 									MenuToggleFlag &= ~JOY_CTRL_T;
-									//ÊÓ´°¹Ø±ÕÒôĞ§
+									//è§†çª—å…³é—­éŸ³æ•ˆ
 									play_se(203, 320, 240);
 									sprintf_s(buffer, "W|%s|%s", opp_sockfd, opp_name);
-									//ËÍ³öÈ¡ÏûÑ¶Ï¢¸øServerÍ¨Öª¶Ô·½
+									//é€å‡ºå–æ¶ˆè®¯æ¯ç»™Serveré€šçŸ¥å¯¹æ–¹
 									lssproto_TD_send(sockfd, buffer);
 									tradeStatus = 0;
 									tradeInit();
@@ -21115,7 +21115,7 @@ void MenuProc(void)
 									bViewPetEquip = FALSE;
 #endif
 								}
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 								else if (HitDispNo == SecondtradeWndFontNo[4])
 									talkwndflag = true;
 #endif
@@ -21129,7 +21129,7 @@ void MenuProc(void)
 								else
 									LockAndOkfunction();
 							}
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 							if (talkwndflag == true)
 							{
 								talkwndx = mouse.nowPoint.x;
@@ -21160,7 +21160,7 @@ void MenuProc(void)
 		pc.trade_confirm = 1;
 	}
 
-	// ½»Ò×ÊÓ´°²¿·Öµ½´Ë½áÊø
+	// äº¤æ˜“è§†çª—éƒ¨åˆ†åˆ°æ­¤ç»“æŸ
 
 
 	// show Bank Window
@@ -21193,12 +21193,12 @@ void MenuProc(void)
 
 		}
 		else{
-			// ??????üÒ????????
+			// ??????î????????
 			if (pActMenuWnd5->hp > 0){
 
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
 
-					// ¨–???
+					// î¼???
 					if (HitDispNo == bankWndFontNo[0]){
 						closeBankman();
 						return;
@@ -21231,16 +21231,16 @@ void MenuProc(void)
 							cashGold += bankGoldInc;
 							bankGoldCnt++;
 
-							// ?§Æ¨Á???
+							// ?î¤îŸ‰???
 							if (bankGoldCnt >= 30){
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								bankGoldCnt = 0;
 								// ????????
 								if (bankGoldInc == 0) {
 									bankGoldInc = 1;
 								}
 								else{
-									// ??¦•???
+									// ??î›º???
 									bankGoldInc *= 5;
 									// ????????
 									if (bankGoldInc > 10000) {
@@ -21271,9 +21271,9 @@ void MenuProc(void)
 								play_se(220, 320, 240);
 							}
 							else {
-								// ûÎ?????§Æ
+								// î»?????î¤
 								bankGoldInc = 0;
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								bankGoldCnt = 0;
 								// ???????
 								bankWndBtnFlag[2] = TRUE;
@@ -21285,7 +21285,7 @@ void MenuProc(void)
 					}
 				}
 				else{
-					// ???¥…???
+					// ???îšŠ???
 					bankWndBtnFlag[2] = FALSE;
 				}
 				// ??????????
@@ -21293,7 +21293,7 @@ void MenuProc(void)
 					// ???????????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK_UP && bankWndBtnFlag[3] == TRUE){
 						bankWndBtnFlag[3] = FALSE;
-						// ????úé??
+						// ????îŒ¸??
 						//play_se( 212, 320, 240 );
 					}
 					if ((cashGold > 0) && (totalGold - cashGold < MAX_BANKGOLD)) {
@@ -21302,19 +21302,19 @@ void MenuProc(void)
 
 							// ????
 							cashGold -= bankGoldInc;
-							// ûÎ?????§Æ????????
+							// î»?????î¤????????
 							bankGoldCnt++;
 
-							// ?§Æ¨Á???
+							// ?î¤îŸ‰???
 							if (bankGoldCnt >= 30){
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								bankGoldCnt = 0;
 								// ????????
 								if (bankGoldInc == 0) {
 									bankGoldInc = 1;
 								}
 								else{
-									// ??¦•???
+									// ??î›º???
 									bankGoldInc *= 5;
 									// ????????
 									if (bankGoldInc > 10000) {
@@ -21348,9 +21348,9 @@ void MenuProc(void)
 								play_se(220, 320, 240);
 							}
 							else{
-								// ûÎ?????§Æ
+								// î»?????î¤
 								bankGoldInc = 0;
-								// ûÎ?????§Æ????????
+								// î»?????î¤????????
 								bankGoldCnt = 0;
 								// ???????
 								bankWndBtnFlag[3] = TRUE;
@@ -21368,7 +21368,7 @@ void MenuProc(void)
 
 				}
 				else{
-					// ???¥…???
+					// ???îšŠ???
 					bankWndBtnFlag[3] = FALSE;
 				}
 				// ?????????
@@ -21378,12 +21378,12 @@ void MenuProc(void)
 						tradeWndBtnFlag[i] = TRUE;
 					}
 					else{
-						// ???¥…
+						// ???îšŠ
 						tradeWndBtnFlag[i] = FALSE;
 					}
 				}
 				if (pActMenuWnd5 != NULL) {
-					// ?¤õ¡@¤e
+					// ?î³î“†î˜‹
 					x = pActMenuWnd5->x;
 					y = pActMenuWnd5->y + 5;
 
@@ -21418,7 +21418,7 @@ void MenuProc(void)
 
 
 }
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 void lssproto_RESIST_recv ( int fd, char *data)
 {
 	for ( int  i = 0 ; i < CHAR_MAX_DETAIL ; i ++ ) 
@@ -21438,7 +21438,7 @@ void lssproto_ALCHEPLUS_recv(int fd, char *data)
 }
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 void lssproto_BATTLESKILL_recv(int fd, char *data) {
 	setCharMind(pc.ptAct, atoi(data));
 }
@@ -21473,7 +21473,7 @@ void lssproto_TD_recv(int fd, char *data)
 	char buf_sockfd[128] = "";
 	char buf_name[128] = "";
 	char buf[128] = "";
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 	char opp_index[128];
 	int  index;
 	char realname[256];
@@ -21483,7 +21483,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 	getStringToken(data, '|', 1, sizeof(char), Head);
 
-	// ½»Ò×¿ªÆô×ÊÁÏ³õÊ¼»¯	
+	// äº¤æ˜“å¼€å¯èµ„æ–™åˆå§‹åŒ–	
 	if (strcmp(Head, "C") == 0) {
 
 #ifdef _TRADE_BUG_LOG
@@ -21517,7 +21517,7 @@ void lssproto_TD_recv(int fd, char *data)
 #endif
 
 	}
-	//´¦ÀíÎïÆ·½»Ò××ÊÑ¶´«µİ
+	//å¤„ç†ç‰©å“äº¤æ˜“èµ„è®¯ä¼ é€’
 	else if (strcmp(Head, "T") == 0) {
 
 		if (tradeStatus == 0)	return;
@@ -21538,7 +21538,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 				pActMenuWnd4 = MakeWindowDisp(x, y, w, h, NULL, -1, FALSE);
 				InitItem3(325, 230);
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 				if (SecondTradeWnd == NULL)
 					SecondTradeWnd = MakeWindowDisp(10, 0, 620, 456, 0, -1);
 #endif
@@ -21596,7 +21596,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 			getStringToken(data, '|', 6, sizeof(opp_goldmount)-1, opp_goldmount);
 			int mount = atoi(opp_goldmount);
-#ifdef _CHANGETRADERULE		   // (²»¿É¿ª) Syu ADD ½»Ò×¹æÔòĞŞ¶©
+#ifdef _CHANGETRADERULE		   // (ä¸å¯å¼€) Syu ADD äº¤æ˜“è§„åˆ™ä¿®è®¢
 			if (tradeWndDropGoldGet != 0) {
 				MenuToggleFlag ^= JOY_CTRL_T;
 				play_se(203, 320, 240);
@@ -21605,13 +21605,13 @@ void lssproto_TD_recv(int fd, char *data)
 					lssproto_TD_send(sockfd, buf);
 				else
 					old_lssproto_TD_send(sockfd, buf);
-				sprintf_s(buf, "%sÒÔ²»Õı³£·½Ê½ĞŞ¸Ä½»Ò×½ğÇ®£¬ÏµÍ³Ç¿ÖÆ¹Ø±Õ½»Ò×ÊÓ´°£¡", opp_name);
+				sprintf_s(buf, "%sä»¥ä¸æ­£å¸¸æ–¹å¼ä¿®æ”¹äº¤æ˜“é‡‘é’±ï¼Œç³»ç»Ÿå¼ºåˆ¶å…³é—­äº¤æ˜“è§†çª—ï¼", opp_name);
 				StockChatBufferLine(buf, FONT_PAL_RED);
 				return;
 			}
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 			//andy_reEdit
 			if (mount != -1) {
 				tradeList[42].kind = 'G';
@@ -21670,7 +21670,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 			getStringToken(data, '|', 9, sizeof(opp_itemeffect)-1, opp_itemeffect);
 			getStringToken(data, '|', 10, sizeof(opp_itemindex)-1, opp_itemindex);
-			getStringToken(data, '|', 11, sizeof(opp_itemdamage)-1, opp_itemdamage);// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+			getStringToken(data, '|', 11, sizeof(opp_itemdamage)-1, opp_itemdamage);// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 
 #ifdef _ITEM_PILENUMS
 			getStringToken(data, '|', 12, sizeof(pilenum)-1, pilenum);//pilenum
@@ -21679,7 +21679,7 @@ void lssproto_TD_recv(int fd, char *data)
 			getStringToken(data, '|', 13, sizeof(itemup)-1, itemup);
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 			if (strcmp(opp_itemgraph, "-1") == 0)
 				return;
 
@@ -21687,7 +21687,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 
 			int chkindex = -1, frontempIndex = -1;
-			//¼ì²éµÀ¾ßopp_item¿Õ¼äÊÇ·ñÒÑÂú  ĞŞÕı  xiezi
+			//æ£€æŸ¥é“å…·opp_itemç©ºé—´æ˜¯å¦å·²æ»¡  ä¿®æ­£  xiezi
 			for (int scanindex = 0; scanindex < 15; scanindex++)
 			{
 				if (strcmp(opp_item[chkindex].itemindex, opp_itemindex) == 0)
@@ -21711,7 +21711,7 @@ void lssproto_TD_recv(int fd, char *data)
 				strcpy(opp_item[chkindex].damage, makeStringFromEscaped(opp_itemdamage));
 
 				chkindex = 0, frontempIndex = 0;
-				//¼ì²éµÀ¾ßtradeList¿Õ¼äÊÇ·ñÒÑÂú  ĞŞÕı  xiezi
+				//æ£€æŸ¥é“å…·tradeListç©ºé—´æ˜¯å¦å·²æ»¡  ä¿®æ­£  xiezi
 				for (int scanindex = 22; scanindex < 37; scanindex++)
 				{
 					if (tradeList[chkindex].data == i)
@@ -21752,11 +21752,11 @@ void lssproto_TD_recv(int fd, char *data)
 			char	szData[256];
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 			getStringToken(data, '|', 12, sizeof(opp_index)-1, opp_index);
 			index = -1;
 
-			//¼ì²éµÀ¾ßopp_item¿Õ¼äÊÇ·ñÒÑÂú  ĞŞÕı  xiezi
+			//æ£€æŸ¥é“å…·opp_itemç©ºé—´æ˜¯å¦å·²æ»¡  ä¿®æ­£  xiezi
 			for (int scanindex = 0; scanindex < 5; scanindex++)
 			{
 				if (opp_pet[scanindex].opp_petindex[0] == NULL || strcmp(opp_pet[scanindex].opp_petindex, "-1") == 0)
@@ -21809,7 +21809,7 @@ void lssproto_TD_recv(int fd, char *data)
 				}
 #endif
 
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 				tradeList[index + 37].data = atoi(opp_pet[index].opp_petindex);
 				tradeList[index + 37].kind = 'P';
 				strcpy(tradeList[index + 37].freename, freename);
@@ -21822,7 +21822,7 @@ void lssproto_TD_recv(int fd, char *data)
 #endif
 
 				if (opp_showindex == 3) {
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
 					if (strcmp(opp_pet[index].opp_petgrano, "-1") == 0) {
 #endif
 						showindex[6] = 0;
@@ -21848,7 +21848,7 @@ void lssproto_TD_recv(int fd, char *data)
 			tradeStatus = 2;
 
 	}
-	else if (strcmp(Head, "W") == 0) {//È¡Ïû½»Ò×
+	else if (strcmp(Head, "W") == 0) {//å–æ¶ˆäº¤æ˜“
 		getStringToken(data, '|', 2, sizeof(buf_sockfd)-1, buf_sockfd);
 		getStringToken(data, '|', 3, sizeof(buf_name)-1, buf_name);
 		if ((strcmp(buf_sockfd, opp_sockfd) == 0) && (strcmp(buf_name, opp_name) == 0)) {
@@ -21863,8 +21863,8 @@ void lssproto_TD_recv(int fd, char *data)
 
 void tradeInit(void)
 {
-#ifdef _TRADESYSTEM2	// (²»¿É¿ª) Syu ADD ĞÂ½»Ò×ÏµÍ³
-	//³õÊ¼»¯Ê±Çå¿ÕAction
+#ifdef _TRADESYSTEM2	// (ä¸å¯å¼€) Syu ADD æ–°äº¤æ˜“ç³»ç»Ÿ
+	//åˆå§‹åŒ–æ—¶æ¸…ç©ºAction
 	DeathAction(SecondTradeWnd);
 	SecondTradeWnd = NULL;
 	DeathAction(SecondActPet);
@@ -21876,7 +21876,7 @@ void tradeInit(void)
 	//end
 #endif
 	DeathAction(pActMenuWnd4);
-	// ½»Ò×ÊÓ´°³õÊ¼»¯Ê±½«focus»¹¸øchat
+	// äº¤æ˜“è§†çª—åˆå§‹åŒ–æ—¶å°†focusè¿˜ç»™chat
 	GetKeyInputFocus(&MyChatBuffer);
 	Tradeflag = false;
 	pActMenuWnd4 = NULL;
@@ -21954,25 +21954,25 @@ void checkRidePet(int pindex)
 		return;
 
 #ifdef _PET_ITEM
-	// ³èÉíÉÏÓĞ×°±¸²»¿ÉÆï
+	// å® èº«ä¸Šæœ‰è£…å¤‡ä¸å¯éª‘
 	for (j = 0; j < MAX_PET_ITEM; ++j){
-		if (pet[pindex].item[j].useFlag){	// ÉíÉÏÓĞ×°×°±¸
+		if (pet[pindex].item[j].useFlag){	// èº«ä¸Šæœ‰è£…è£…å¤‡
 			bHavePetItem = TRUE;
 			break;
 		}
 	}
 #endif
 	if( pc.ridePetNo < 0 
-		&& pc.learnride >= pet[pindex].level //Change fix ÕâÀï±»×¢½âµôÁË 20050801´ò¿ª
+		&& pc.learnride >= pet[pindex].level //Change fix è¿™é‡Œè¢«æ³¨è§£æ‰äº† 20050801æ‰“å¼€
 		&& (pc.level + 5) > pet[pindex].level
 		&& pet[pindex].ai >= 100 
 		&& pc.graNo != SPR_pet021 
-		&& pc.graNo != 100362 //½ğ·É
-#ifdef _PETSKILL_BECOMEPIG // ÎÚÁ¦»¯ÖĞ²»¿ÉÆï
+		&& pc.graNo != 100362 //é‡‘é£
+#ifdef _PETSKILL_BECOMEPIG // ä¹ŒåŠ›åŒ–ä¸­ä¸å¯éª‘
 		&& pc.graNo != 100250
 #endif
 #ifdef _THEATER
-		&& pc.graNo != 101989	// ´©²¼Å¼×°Ê±²»ÄÜÆï³è
+		&& pc.graNo != 101989	// ç©¿å¸ƒå¶è£…æ—¶ä¸èƒ½éª‘å® 
 #endif
 		)
 	{
@@ -21984,8 +21984,8 @@ void checkRidePet(int pindex)
 //			if (((ridePetTable[j].charNo == pc.graNo) || (ridePetTable[j].charNo == pc.baseGraNo)) /*&& ridePetTable[j].petNo == pet[pindex].graNo*/){
 //				char buf[64];
 //#ifdef _PET_ITEM
-//				if (bHavePetItem){	// ÓĞ×°±¸²»¿ÉÆï
-//					StockChatBufferLine("³èÎïÉíÉÏÓĞ×°±¸²»¿ÉÆï³Ë£¡", FONT_PAL_YELLOW);
+//				if (bHavePetItem){	// æœ‰è£…å¤‡ä¸å¯éª‘
+//					StockChatBufferLine("å® ç‰©èº«ä¸Šæœ‰è£…å¤‡ä¸å¯éª‘ä¹˜ï¼", FONT_PAL_YELLOW);
 //					pc.selectPetNo[pindex] = 0;
 //					return;
 //				}
@@ -22012,8 +22012,8 @@ void checkRidePet(int pindex)
 				pc.big4fm != 0 && pc.familyleader != FMMEMBER_APPLY && pc.familyleader != FMMEMBER_NONE){	
 				char buf[64];
 #ifdef _PET_ITEM
-				if (bHavePetItem){	// ÓĞ×°±¸²»¿ÉÆï
-					StockChatBufferLine("³èÎïÉíÉÏÓĞ×°±¸²»¿ÉÆï³Ë£¡", FONT_PAL_YELLOW);
+				if (bHavePetItem){	// æœ‰è£…å¤‡ä¸å¯éª‘
+					StockChatBufferLine("å® ç‰©èº«ä¸Šæœ‰è£…å¤‡ä¸å¯éª‘ä¹˜ï¼", FONT_PAL_YELLOW);
 					pc.selectPetNo[pindex] = 0;
 					return;
 				}
@@ -22028,7 +22028,7 @@ void checkRidePet(int pindex)
 			}
 #endif
 		}
-		{//andy_add ĞÂÆï³è
+		{//andy_add æ–°éª‘å® 
 			int ti = -1, index;
 			unsigned int LRCode = 1<<30;
 			if ((ti = RIDEPET_getPETindex(pet[pindex].graNo, pc.lowsride)) < 0)
@@ -22051,8 +22051,8 @@ void checkRidePet(int pindex)
 				char buf[64];	
 				if (RIDEPET_getRIDEno(index, ti) >= 0){
 #ifdef _PET_ITEM
-					if (bHavePetItem){	// ÓĞ×°±¸²»¿ÉÆï
-						StockChatBufferLine("³èÎïÉíÉÏÓĞ×°±¸²»¿ÉÆï³Ë£¡", FONT_PAL_YELLOW);
+					if (bHavePetItem){	// æœ‰è£…å¤‡ä¸å¯éª‘
+						StockChatBufferLine("å® ç‰©èº«ä¸Šæœ‰è£…å¤‡ä¸å¯éª‘ä¹˜ï¼", FONT_PAL_YELLOW);
 						pc.selectPetNo[pindex] = 0;
 						return;
 					}
@@ -22116,7 +22116,7 @@ int RIDEPET_getRIDEno(int index, int ti)
 	return RideNoList[index].RideNo[ti];
 }
 
-#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				//ROG ADD å¯†è¯­é¢‘é“
 void InitSelectChar(char *msg, BOOL endFlag)
 {
 	int turn, level;
@@ -22167,7 +22167,7 @@ void SelectChar(void)
 	else if (pActMsgWnd->hp > 0){
 		x = pActMsgWnd->x;
 		y = pActMsgWnd->y;
-		char title[] = { "           Ãû ×Ö           êÇ ³Æ  ×ª Éú  µÈ ¼¶ " };
+		char title[] = { "           å å­—           æ˜µ ç§°  è½¬ ç”Ÿ  ç­‰ çº§ " };
 		StockFontBuffer(x + 10, y + 15, FONT_PRIO_FRONT, 4, title, 0);
 		for (int i = 0; i < CharNum; i++){
 			StockFontBuffer(x + 10, y + 40 + i * 20, FONT_PRIO_FRONT, 5, TellInfo[i], 0);
@@ -22208,7 +22208,7 @@ void DeathTellChannel(void)
 
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL				//ROG ADD å¥½å‹é¢‘é“
 
 void initSetRoomName()
 {
@@ -22223,7 +22223,7 @@ void initSetRoomName()
 
 void setRoomName(void)
 {
-	static int setRoomBtn[2];				//Éè¶¨ÁÄÌìÊÒÃû³ÆÓÃ
+	static int setRoomBtn[2];				//è®¾å®šèŠå¤©å®¤åç§°ç”¨
 
 	if(pSetRoomWnd == NULL){
 		pSetRoomWnd = MakeWindowDisp( 270, 0, 3, 2, NULL, 0 );
@@ -22244,7 +22244,7 @@ void setRoomName(void)
 		setRoomBtn[0] = StockDispBuffer( pSetRoomWnd->x + 53, pSetRoomWnd->y + 70, DISP_PRIO_IME3, CG_OK_BTN, 2 );
 		setRoomBtn[1] = StockDispBuffer( pSetRoomWnd->x + 140, pSetRoomWnd->y + 70, DISP_PRIO_IME3, CG_CANCEL_BTN, 2 );
 
-		char title[] = {"ÇëÊäÈëÆµµÀÃû³Æ"};
+		char title[] = {"è¯·è¾“å…¥é¢‘é“åç§°"};
 		StockFontBuffer( x + 22, y + 10, FONT_PRIO_FRONT,4 , title, 0 );
 		GetKeyInputFocus( &chatRoomName );
 		StockFontBuffer2( &chatRoomName );
@@ -22310,7 +22310,7 @@ void SelectChatRoom(void)
 	else if(pSelChanlWnd->hp > 0 ){
 		int x = pSelChanlWnd->x;
 		int y = pSelChanlWnd->y;
-		char title[] = {"          ÆµµÀÃû³Æ          ¶Ó³¤Ãû³Æ  ÈËÊı "};
+		char title[] = {"          é¢‘é“åç§°          é˜Ÿé•¿åç§°  äººæ•° "};
 		StockFontBuffer( x + 10, y + 15, FONT_PRIO_FRONT,4 , title, 0 );
 		int i;
 		for(i = 0 ; i < roomNum ; i++ ){
@@ -22319,12 +22319,12 @@ void SelectChatRoom(void)
 				if( mouse.onceState & MOUSE_LEFT_CRICK ){
 					sprintf_s(tmpMsg,"J|%d",roomIndex[i]);
 					lssproto_CHATROOM_send ( sockfd , tmpMsg ) ; 
-					SelRoomBtn = 0;         //¹Ø±ÕÑ¡ÔñÆµµÀÊÓ´°
+					SelRoomBtn = 0;         //å…³é—­é€‰æ‹©é¢‘é“è§†çª—
 				}
 			}
 		}
 
-		StockFontBuffer( x + 30, y + 50 + i * 20, FONT_PRIO_FRONT,5 , "  ½¨Á¢ĞÂµÄÁÄÌìÊÒ", 0 );
+		StockFontBuffer( x + 30, y + 50 + i * 20, FONT_PRIO_FRONT,5 , "  å»ºç«‹æ–°çš„èŠå¤©å®¤", 0 );
 		if( MakeHitBox(x + 30 ,y + 47 + i * 20 , x + 340 , y + 68 + i * 20, DISP_PRIO_BOX2 )){
 			if( mouse.onceState & MOUSE_LEFT_CRICK )
 				initSetRoomName();
@@ -22365,11 +22365,11 @@ void InitRoomInfo()
 	firMemNo = 0;
 }
 
-void InitCreateChatRoom(char *msg)		//³õÊ¼»¯ÁÄÌìÊÒÊÓ´°
+void InitCreateChatRoom(char *msg)		//åˆå§‹åŒ–èŠå¤©å®¤è§†çª—
 {
 	char temp[64],*temp1;
 	chatInfo.chiefFlag = 0;
-	InitRoomInfo();					    //³õÊ¼»¯²ÎÊı
+	InitRoomInfo();					    //åˆå§‹åŒ–å‚æ•°
 	chatRoomBtn = 1;
 	getStringToken( msg, '|', 2 , sizeof(temp) -1 ,temp );
 	char *sss;
@@ -22401,7 +22401,7 @@ void InitCreateChatRoom(char *msg)		//³õÊ¼»¯ÁÄÌìÊÒÊÓ´°
 			getStringToken( msg, '|', 9+i*3, sizeof(chatInfo.nickName[i]) -1 
 				,chatInfo.nickName[i] );
 			if(i > 0 && chatInfo.memberIndex[i] == chatInfo.chiefIndex)
-				SwapOrder(i, 0);                 //ÊÒ³¤ÅÅĞò
+				SwapOrder(i, 0);                 //å®¤é•¿æ’åº
 			secretFlag = FALSE;			  
 			selChar = -1;
 		}
@@ -22413,7 +22413,7 @@ void InitCreateChatRoom(char *msg)		//³õÊ¼»¯ÁÄÌìÊÒÊÓ´°
 }
 
 #ifdef _CHATROOMPROTOCOL
-void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
+void ChatRoomWnd( void )			//èŠå¤©å®¤è§†çª—
 {
 	char tmpMsg[STR_BUFFER_SIZE];
 	int nameColor;
@@ -22426,7 +22426,7 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 		int	x = pChtChanlWnd->x + 2; 
 		int y = pChtChanlWnd->y - 5; 
 
-		int scrTop = y + 69;           //Scroll¸ß¶È
+		int scrTop = y + 69;           //Scrollé«˜åº¦
 
 		StockDispBuffer(  ( ( WINDOW_DISP *)pChtChanlWnd->pYobi )->mx - 120, ( ( WINDOW_DISP *)pChtChanlWnd->pYobi )->my -28, DISP_PRIO_MENU, CG_FIELD_CHATROOM_PANEL, 1 );
 		char title[32] = {""};
@@ -22441,7 +22441,7 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 			scrlHBtn = CG_FIELD_SCROLL_HUP;
 			scrlLBtn = CG_FIELD_SCROLL_LUP;
 
-			if(chatInfo.chiefFlag == 1){									//¶Ó³¤×¨ÓĞ°´Å¥
+			if(chatInfo.chiefFlag == 1){									//é˜Ÿé•¿ä¸“æœ‰æŒ‰é’®
 				delBtn = CG_FIELD_DELETE_BTN_UP;
 				if(secretFlag && chatInfo.chiefIndex != chatInfo.memberIndex[selChar]){
 					outBtn = CG_FIELD_OUTMEMBER_BTN_UP;
@@ -22469,7 +22469,7 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 		for(int i = 0 ; i < 10 ; i++ ){	
 			if(chatInfo.memberNum - 1 < i + firMemNo )
 				break;
-			//ÈËÃû±äÉ«
+			//äººåå˜è‰²
 			if( MakeHitBox(x + 20 ,y + 77 + i * 20 , x + 250 , y + 96+ i * 20, DISP_PRIO_BOX2 )){
 				if( mouse.onceState & MOUSE_LEFT_CRICK ){
 					if(strcmp(chatInfo.memberName[i + firMemNo], pc.name) != 0 || strcmp(chatInfo.nickName[i + firMemNo], pc.freeName) != 0){
@@ -22507,9 +22507,9 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 		}
 
 		for( int i = 0; i < 8; i++){
-			if( i == 2 &&  chatInfo.chiefFlag == 0 )		//²»ÊÇ¶Ó³¤ÔòÌø¹ıÈı¸ö°´Å¥
+			if( i == 2 &&  chatInfo.chiefFlag == 0 )		//ä¸æ˜¯é˜Ÿé•¿åˆ™è·³è¿‡ä¸‰ä¸ªæŒ‰é’®
 				i = 5;
-			else if( i == 2 && chatInfo.chiefFlag == 1 && selChar == -1)			//ÊÇ¶Ó³¤Î´Ñ¡ÈË
+			else if( i == 2 && chatInfo.chiefFlag == 1 && selChar == -1)			//æ˜¯é˜Ÿé•¿æœªé€‰äºº
 				i = 4;
 
 			if( HitDispNo == ChatRoomBtn[ i ] ) {
@@ -22555,18 +22555,18 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 
 				}else if(mouse.onceState & MOUSE_LEFT_CRICK_UP){
 					switch(i){
-					case 0:						//¹Ø±ÕÊÓ´°
+					case 0:						//å…³é—­è§†çª—
 						DeathMenuAction();
 						break;
 
-					case 1:						//Àë¿ªÆµµÀ
+					case 1:						//ç¦»å¼€é¢‘é“
 						if(chatInfo.chiefFlag == 1)
-							StockChatBufferLine(  "ÊÒ³¤²»µÃÀë¿ªÁÄÌìÊÒ,ÈçÓûÀë¿ªÇë»»±ğÈËµ±ÊÒ³¤£¡" , FONT_PAL_RED);
+							StockChatBufferLine(  "å®¤é•¿ä¸å¾—ç¦»å¼€èŠå¤©å®¤,å¦‚æ¬²ç¦»å¼€è¯·æ¢åˆ«äººå½“å®¤é•¿ï¼" , FONT_PAL_RED);
 						else{
 							lssproto_CHATROOM_send ( sockfd , "L|" ) ;
 							strcpy(pc.chatRoomNum,""); 
 							DeathMenuAction();
-							StockChatBufferLine(  "ÄãÒÑÀë¿ªÁÄÌìÊÒ" , FONT_PAL_BLUE);
+							StockChatBufferLine(  "ä½ å·²ç¦»å¼€èŠå¤©å®¤" , FONT_PAL_BLUE);
 							TalkMode = 0;
 #ifdef _CHANNEL_MODIFY
 							pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
@@ -22574,18 +22574,18 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 						}
 						break;
 
-					case 2:						//ÌßÈË
+					case 2:						//è¸¢äºº
 						sprintf_s(tmpMsg,"K|%d", chatInfo.memberIndex[selChar]);
 						lssproto_CHATROOM_send ( sockfd , tmpMsg ) ;
 						break;
 
-					case 3:					//»»¶Ó³¤
+					case 3:					//æ¢é˜Ÿé•¿
 						sprintf_s(tmpMsg,"M|%d", chatInfo.memberIndex[selChar]);
 						lssproto_CHATROOM_send ( sockfd , tmpMsg );
 						TalkMode = 0;
 						break;
 
-					case 4:					//É¾³ıÆµµÀ
+					case 4:					//åˆ é™¤é¢‘é“
 						lssproto_CHATROOM_send ( sockfd ,"D|") ;
 						strcpy(pc.chatRoomNum,"");
 						TalkMode = 0;
@@ -22620,17 +22620,17 @@ void ChatRoomWnd( void )			//ÁÄÌìÊÒÊÓ´°
 }
 #endif
 
-void initAssentWnd(char *data)			//ÒªÇó¼ÓÈëÊÓ´°
+void initAssentWnd(char *data)			//è¦æ±‚åŠ å…¥è§†çª—
 {
 	assentFlag = TRUE;
 	char temp[64];
 	getStringToken( data, '|', 2 , sizeof(temp) -1 ,temp );
-	sprintf_s(memInfo,"%s ÉêÇë¼ÓÈë",temp);
+	sprintf_s(memInfo,"%s ç”³è¯·åŠ å…¥",temp);
 	memIndex = getIntegerToken( data, '|', 3);
 }
 
 #ifdef _CHATROOMPROTOCOL
-void AssentWnd(void)                    //ÒªÇó¼ÓÈëÊÓ´°
+void AssentWnd(void)                    //è¦æ±‚åŠ å…¥è§†çª—
 {
 	int i = 0;
 	char tmpMsg[128] = {""};
@@ -22678,16 +22678,16 @@ void InitRecvMsg(char *data)
 	char msg[STR_BUFFER_SIZE];
 	getStringToken( data, '|', 2 , sizeof(temp) -1 ,temp );
 #ifndef _CHANNEL_MODIFY
-	sprintf_s(msg,"[ÆµµÀ]%s",temp);
+	sprintf_s(msg,"[é¢‘é“]%s",temp);
 #else
-	sprintf_s(msg,"[ÁÄ]%s",temp);
+	sprintf_s(msg,"[èŠ]%s",temp);
 	TradeTalk(msg);
 	SaveChatData(msg,'R',false);
 #endif
 	StockChatBufferLine( msg, 2);
 }
 
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 void lssproto_CHATROOM_recv ( int fd, char *data)
 {
 	char type[3] = {""};
@@ -22700,23 +22700,23 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 	case 'D':						//Delete
 		chatRoomBtn = 0;
 		strcpy(pc.chatRoomNum,"");
-		StockChatBufferLine(  "ÁÄÌìÊÒÒÑ±»É¾³ı£¡" , FONT_PAL_RED);
+		StockChatBufferLine(  "èŠå¤©å®¤å·²è¢«åˆ é™¤ï¼" , FONT_PAL_RED);
 #ifdef _CHANNEL_MODIFY
 		pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
 #endif
 		break;
 	case 'T':
-		InitRecvMsg(data);    //´¦ÀíÑ¶Ï¢
+		InitRecvMsg(data);    //å¤„ç†è®¯æ¯
 		break;
-	case 'K'://ÌŞ³ı
+	case 'K'://å‰”é™¤
 		chatRoomBtn = 0;
 		strcpy(pc.chatRoomNum,"");
-		StockChatBufferLine( "ÄãÒÑ±»ÊÒ³¤Ìß³öÁÄÌìÊÒ£¡" , FONT_PAL_RED);
+		StockChatBufferLine( "ä½ å·²è¢«å®¤é•¿è¸¢å‡ºèŠå¤©å®¤ï¼" , FONT_PAL_RED);
 #ifdef _CHANNEL_MODIFY
 		pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
 #endif
 		break;
-	case 'J'://¼ÓÈëÉêÇë
+	case 'J'://åŠ å…¥ç”³è¯·
 		if(assentFlag == FALSE)
 		{
 			DeathAction(pAssentWnd);
@@ -22724,7 +22724,7 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 			initAssentWnd(data);
 		}
 		break;
-	case 'R':			//¸üĞÂÁÄÌìÊÒ×ÊÑ¶
+	case 'R':			//æ›´æ–°èŠå¤©å®¤èµ„è®¯
 		InitCreateChatRoom(data);
 		break;
 	}
@@ -22735,12 +22735,12 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 
 #ifdef _TIMEBAR_FUNCTION
 /***********************************************************
-²ÎÊı:
-title :  TimeBar ±êÍ·  ·¶Î§32bit
-range :  TimeBar ·¶Î§
-»Ø´«Öµ:	 TimeBar Ê¶±ğÓÃ.ÓÃÒÔÉè¶¨ÕıÈ·µÄÖµ
+å‚æ•°:
+title :  TimeBar æ ‡å¤´  èŒƒå›´32bit
+range :  TimeBar èŒƒå›´
+å›ä¼ å€¼:	 TimeBar è¯†åˆ«ç”¨.ç”¨ä»¥è®¾å®šæ­£ç¡®çš„å€¼
 
-barHolder[timBarIdent] : ¿ÉÓÃÒÔÅĞ¶ÏÏÖÔÚÊÇ·ñÎª´Ëº¯Ê½µÄÓµÓĞÕß
+barHolder[timBarIdent] : å¯ç”¨ä»¥åˆ¤æ–­ç°åœ¨æ˜¯å¦ä¸ºæ­¤å‡½å¼çš„æ‹¥æœ‰è€…
 ***********************************************************/
 int SetTimeBar(char *title, int range)
 {
@@ -22772,17 +22772,17 @@ int SetTimeBar(char *title, int range)
 	return timBarIdent;
 }
 /*******************************************
-return -1: ×¢Òâ!!´ú±íÎŞ·¨Éè¶¨ÏÖÔÚµÄÎ»Ö·,¿ÉÄÜ±»ÆäËû³ÌÊ½Õ¼ÓÃ
-return  1: ÒÑ¾­Íê³É 100 %
+return -1: æ³¨æ„!!ä»£è¡¨æ— æ³•è®¾å®šç°åœ¨çš„ä½å€,å¯èƒ½è¢«å…¶ä»–ç¨‹å¼å ç”¨
+return  1: å·²ç»å®Œæˆ 100 %
 *******************************************/
 int SetTimeBarPos(int timBarIdent, int CurPos)
 {
 	if(!barHolder[timBarIdent] )//|| CurPos > timeBarRange)
 		return -1;
-	timeBarCurPos = 20 * CurPos / timeBarRange;  //20ÎªbarµÄµ¥Î»×ÜÊı.
+	timeBarCurPos = 20 * CurPos / timeBarRange;  //20ä¸ºbarçš„å•ä½æ€»æ•°.
 	if(timeBarCurPos > 20){
 		timeBarCurPos = 20;
-		return 1;				//ÒÑ¾­µ½´ï100 %ÁË
+		return 1;				//å·²ç»åˆ°è¾¾100 %äº†
 	}
 	return 0;
 }
@@ -22824,12 +22824,12 @@ void send_StandBy_Pet(void)
 #endif
 /* =========================================
 
-×¢Òâ!!
-Õâ¸öµµ°¸ÒÑ¾­³¬¹ı1Íò5Ç§¶àĞĞÁË£¬Ôì³ÉVC±à¼­Æ÷Ğ§ÂÊµÍÂä£¬
-Çë¾¡Á¿²»ÒªÔÚºóÃæÔö¼ÓĞÂCodeÁË¡£
+æ³¨æ„!!
+è¿™ä¸ªæ¡£æ¡ˆå·²ç»è¶…è¿‡1ä¸‡5åƒå¤šè¡Œäº†ï¼Œé€ æˆVCç¼–è¾‘å™¨æ•ˆç‡ä½è½ï¼Œ
+è¯·å°½é‡ä¸è¦åœ¨åé¢å¢åŠ æ–°Codeäº†ã€‚
 
 ~Robin~
 
-ËùÒÔÇë¼Óµ½menu2.cpp  by  Change
+æ‰€ä»¥è¯·åŠ åˆ°menu2.cpp  by  Change
 ========================================= */
 

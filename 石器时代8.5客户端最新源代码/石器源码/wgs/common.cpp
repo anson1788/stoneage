@@ -1,6 +1,6 @@
-/*-----------------------------------------------
+ï»¿/*-----------------------------------------------
    Common.cpp -- common function 
-               (c) Ðí°ÙÊ¤Cary Hsu, 1999.10.4
+               (c) è®¸ç™¾èƒœCary Hsu, 1999.10.4
 -----------------------------------------------*/
 #include <windows.h>
 #include <time.h>
@@ -20,24 +20,24 @@ char		szAnnouncement[1024];
 
 
 //#ifdef CHINA_VER
-	// ´óÂ½°æ
+	// å¤§é™†ç‰ˆ
 //	char		szWGS[]="210.51.17.41";
 //	WORD		wWGS=9125;
 //#else
 
 
 #ifdef _BACK_VERSION ////
-	// ¸´¿Ì°æ
+	// å¤åˆ»ç‰ˆ
 	char		szWGS[]="210.64.97.28";
 	WORD		wWGS=13009;
 #else
 
 #ifdef _PK_SERVER
-	// °ÙÍòPK°æ
+	// ç™¾ä¸‡PKç‰ˆ
 	char		szWGS[]="210.64.97.28";
 	WORD		wWGS=13010;
 #else
-	// ÕýÊ½°æ
+	// æ­£å¼ç‰ˆ
 	char		szWGS[]="210.64.97.28";
 	//char		szWGS[]="wgs.hwaei.com.tw";
 	WORD		wWGS=13005;
@@ -202,39 +202,39 @@ void SetTestServer()
 	ZeroMemory( gmgroup, sizeof(gamegroup)*MAX_GMGROUP);
 	/*
 	nGroup = 2;
-	strcpy( gmgroup[0].name, "²âÊÔÇø");
+	strcpy( gmgroup[0].name, "æµ‹è¯•åŒº");
 	gmgroup[0].num = 2;
 	gmgroup[0].startindex = 0;
 	gmgroup[0].used = 1;
-	strcpy( gmgroup[1].name, "²âÊÔ´óÇø");
+	strcpy( gmgroup[1].name, "æµ‹è¯•å¤§åŒº");
 	gmgroup[1].num = 2;
 	gmgroup[1].startindex = 2;
 	gmgroup[1].used = 1;
 
 	strcpy( gmsv[0].ipaddr, "127.0.0.1");    
-	strcpy( gmsv[0].name, "²âÊÔÒ»Ïß");
+	strcpy( gmsv[0].name, "æµ‹è¯•ä¸€çº¿");
 	strcpy( gmsv[0].port, "7001");
 	gmsv[0].used = '1';
 
 	strcpy( gmsv[1].ipaddr, "114.215.158.113");    
-	strcpy( gmsv[1].name, "²âÊÔ¶þÏß");
+	strcpy( gmsv[1].name, "æµ‹è¯•äºŒçº¿");
 	strcpy( gmsv[1].port, "7001");
 	gmsv[1].used = '1';
 
 	strcpy( gmsv[2].ipaddr, "192.168.0.104");    
-	strcpy( gmsv[2].name, "²âÊÔÈýÏß");
+	strcpy( gmsv[2].name, "æµ‹è¯•ä¸‰çº¿");
 	strcpy( gmsv[2].port, "7001");
 	gmsv[2].used = '1';
 
 	strcpy( gmsv[3].ipaddr, "my.gamma7happy.com");    
-	strcpy( gmsv[3].name, "²âÊÔËÄÏß");
+	strcpy( gmsv[3].name, "æµ‹è¯•å››çº¿");
 	strcpy( gmsv[3].port, "7001");
 	gmsv[3].used = '1';
 	*/
 	HRESULT hr = ::CoInitialize( NULL );
 	if ( FAILED( hr ) )
 	{
-		MessageBoxA( NULL, "³õÊ¼»¯Ê§°Ü", "ERROR", MB_OK );
+		MessageBoxA( NULL, "åˆå§‹åŒ–å¤±è´¥", "ERROR", MB_OK );
 		return;
 	}
 	::CoUninitialize();
@@ -252,7 +252,7 @@ void ipAddressAnalyze()
 	DWORD dwCafeKey = GetCafeNumber();
 	Parameter *param = messHead->param;
 	HKEY		hkey;
-	if( RegOpenKeyEx( HKEY_LOCAL_MACHINE , "Software\\Waei\\Ê¯Æ÷Ê±´ú\\5.00.000" , 0 , KEY_READ , &hkey ) == ERROR_SUCCESS ){
+	if( RegOpenKeyEx( HKEY_LOCAL_MACHINE , "Software\\Waei\\çŸ³å™¨æ—¶ä»£\\5.00.000" , 0 , KEY_READ , &hkey ) == ERROR_SUCCESS ){
 		dwCafeKey |= 0x02;
 		RegCloseKey( hkey );
 	}
@@ -266,7 +266,7 @@ void ipAddressAnalyze()
 			nGroup1 = MAX_GMGROUP;
 		param = ReleaseMessHeadParam();
 
-#ifdef _SHOW_COUNT						// WON ADD Ðã·þÎñÆ÷Á÷Á¿
+#ifdef _SHOW_COUNT						// WON ADD ç§€æœåŠ¡å™¨æµé‡
 		if( param && param->lpstrParam){
 			param = ReleaseMessHeadParam();
 		}
@@ -277,16 +277,16 @@ void ipAddressAnalyze()
 				dwID = atoi( param->lpstrParam);
 				param = ReleaseMessHeadParam();
 				dwResult = dwID & dwCafeKey;
-				dwLevel = 1;				//¿ÉÒÔÑ¡
+				dwLevel = 1;				//å¯ä»¥é€‰
 				if( dwCafeKey){
-					// Ö»ÒªÓÐÐ¡µØÇò¾Í¿ÉÒÔ¿´µ½ËùÓÐÐÇÏµ
+					// åªè¦æœ‰å°åœ°çƒå°±å¯ä»¥çœ‹åˆ°æ‰€æœ‰æ˜Ÿç³»
 					/*if(dwID){
 						if( 0 == dwResult)
-							dwLevel = 0;	//¿´²»µ½
+							dwLevel = 0;	//çœ‹ä¸åˆ°
 					}*/
 				}else{
 					if(dwID){
-						dwLevel = 0;//¿´²»µ½						
+						dwLevel = 0;//çœ‹ä¸åˆ°						
 					}
 #ifdef _8_TEST
 					if( dwID == 2 )
@@ -296,12 +296,12 @@ void ipAddressAnalyze()
 #endif
 				}
 /*
-				dwLevel = 1;	//¿ÉÒÔÑ¡
+				dwLevel = 1;	//å¯ä»¥é€‰
 				if( 0 == dwResult){
 					if( dwID > 1)
-						dwLevel = 2;	//Ö»ÄÜ¿´²»ÄÜÑ¡
+						dwLevel = 2;	//åªèƒ½çœ‹ä¸èƒ½é€‰
 					else if( 1 == dwID)
-						dwLevel = 0;	//¿´²»µ½
+						dwLevel = 0;	//çœ‹ä¸åˆ°
 				}
 */
 			}
@@ -319,7 +319,7 @@ void ipAddressAnalyze()
 				param = ReleaseMessHeadParam();
 				gmgroup[nGroup].startindex = indexgm;
 
-#ifdef _SHOW_COUNT						// WON ADD Ðã·þÎñÆ÷Á÷Á¿
+#ifdef _SHOW_COUNT						// WON ADD ç§€æœåŠ¡å™¨æµé‡
 			if( param && param->lpstrParam){
 				param = ReleaseMessHeadParam();
 			}
@@ -336,11 +336,11 @@ void ipAddressAnalyze()
 						if( dwLevel){
 							char *sss;
 							if( lpstrTemp = strtok_s( param->lpstrParam, ":",&sss)){
-								if( szIP[0]){	//Í¬Ò»groupÔÚÍ¬Ò»C classµÄ·¶Î§
+								if( szIP[0]){	//åŒä¸€groupåœ¨åŒä¸€C classçš„èŒƒå›´
 									strcpy( gmsv[indexgm].ipaddr, szIP);
 									strcat_s( gmsv[indexgm].ipaddr, ".");
 									strcat_s( gmsv[indexgm].ipaddr, lpstrTemp);
-								}else			//Copy ÍêÕûµÄIP address
+								}else			//Copy å®Œæ•´çš„IP address
 									strcpy( gmsv[indexgm].ipaddr, lpstrTemp);
 								char *sss;
 								if( lpstrTemp = strtok_s( NULL, ":",&sss)){
@@ -351,7 +351,7 @@ void ipAddressAnalyze()
 						}
 						param = ReleaseMessHeadParam();
 					}
-#ifdef _SHOW_COUNT						// WON ADD Ðã·þÎñÆ÷Á÷Á¿
+#ifdef _SHOW_COUNT						// WON ADD ç§€æœåŠ¡å™¨æµé‡
 					if( param && param->lpstrParam){
 						strcpy( gmsv[indexgm].count, param->lpstrParam);
 						param = ReleaseMessHeadParam();

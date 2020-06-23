@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/talkwindow.h"
 #include "../systeminc/main.h"
 #include "../resource.h"
@@ -48,14 +48,14 @@ void CTalkWindow::Init(HWND hWnd,HINSTANCE hInstance)
 	}
 	pCBL = m_pCBLView = m_pCBLViewBottom = m_pCBLString = m_pCBLHead = (ChatBufferLink*)MALLOC(sizeof(ChatBufferLink));
 	if(pCBL == NULL){
-		MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()¼ÇÒäÌåÅäÖÃÊ§°Ü(1)!!"),TEXT("È·¶¨"),MB_OK);
+		MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()è®°å¿†ä½“é…ç½®å¤±è´¥(1)!!"),TEXT("ç¡®å®š"),MB_OK);
 		return;
 	}
 	memset(pCBL,0,sizeof(ChatBufferLink));
 	for(i=0;i<TALK_WINDOW_MAX_CHAT_LINE;i++){
 		pCBL->next = (ChatBufferLink*)MALLOC(sizeof(ChatBufferLink));
 		if(pCBL == NULL){
-			MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()¼ÇÒäÌåÅäÖÃÊ§°Ü(2)!!"),TEXT("È·¶¨"),MB_OK);
+			MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()è®°å¿†ä½“é…ç½®å¤±è´¥(2)!!"),TEXT("ç¡®å®š"),MB_OK);
 			Release();
 			return;
 		}
@@ -164,7 +164,7 @@ void CTalkWindow::LoadSkin(char *szSkinPath)
 	char szFileName[5][32] = 
 	{ "\\base.bmp","\\up_arrow_g.bmp","\\up_arrow_r.bmp","\\down_arrow_g.bmp","\\down_arrow_r.bmp"};
 	char szTemp[128];
-	// ¶ÁÈëskinµÄÍ¼
+	// è¯»å…¥skinçš„å›¾
 	for(int i=0;i<SKIN_KIND;i++){
 		sprintf_s(szTemp,"%s%s",szSkinPath,szFileName[i]);
 		m_hSkin[i] = LoadImage(NULL,szTemp,IMAGE_BITMAP,0,0,LR_LOADFROMFILE | LR_DEFAULTSIZE);
@@ -186,7 +186,7 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 	HDC hdc;
 	ChatBufferLink *pCBL;
 	
-	// ÏÔÊ¾skinµ½backbuffer dc
+	// æ˜¾ç¤ºskinåˆ°backbuffer dc
 	BitBlt(m_hdcBackBuffer,0,0,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[0],0,0,SRCCOPY);
 	if(m_bUpArrowHit) BitBlt(m_hdcBackBuffer,620,8,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[2],0,0,SRCCOPY);
 	else BitBlt(m_hdcBackBuffer,620,8,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[1],0,0,SRCCOPY);
@@ -196,7 +196,7 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 	SetBkMode(m_hdcBackBuffer,TRANSPARENT);
 	hOldFont = (HFONT)SelectObject(m_hdcBackBuffer,hFont);
 	j = 0;
-	// ÏÔÊ¾Êä³öµÄÎÄ×Ö
+	// æ˜¾ç¤ºè¾“å‡ºçš„æ–‡å­—
 	pCBL = m_pCBLView;
 	for(int i=0;i<MAX_TALK_WINDOW_LINE;i++){
 		if(pCBL != NULL){
@@ -217,21 +217,21 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 		if(pCBL->next == NULL) pCBL = m_pCBLHead;
 		else pCBL = pCBL->next;
 	}
-	// ÏÔÊ¾ÊäÈëµÄÎÄ×Ö
+	// æ˜¾ç¤ºè¾“å…¥çš„æ–‡å­—
 	strcpy(szBuffer,MyChatBuffer.buffer);
 	color = MyChatBuffer.color;
 	SetTextColor(m_hdcBackBuffer,0);
 #ifdef _CHANNEL_MODIFY
-	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 25,TALK_WINDOW_SYI+1,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode]));  // ÏÔÊ¾ÆµµÀ
+	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 25,TALK_WINDOW_SYI+1,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode]));  // æ˜¾ç¤ºé¢‘é“
 #endif
 	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI + 1,TALK_WINDOW_SYI + 1,szBuffer,(int)strlen(szBuffer)); 
 	SetTextColor(m_hdcBackBuffer,FontPal[color]);
 #ifdef _CHANNEL_MODIFY
-	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 26,TALK_WINDOW_SYI,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode])); // ÏÔÊ¾ÆµµÀ
+	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 26,TALK_WINDOW_SYI,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode])); // æ˜¾ç¤ºé¢‘é“
 #endif
 	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI,TALK_WINDOW_SYI,szBuffer,(int)strlen(szBuffer)); 
 	
-	// ÏÔÊ¾ÓÎ±ê
+	// æ˜¾ç¤ºæ¸¸æ ‡
 	if(bShowCursor){
 		int x;
 
@@ -254,47 +254,47 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 void CTalkWindow::AddString(char *szString,int color)
 {
 	if(m_hTalkWindow){
-		// ÓÎÏ·Ò»¿ªÊ¼Ã»×Ö´®,ËùÒÔÒªÏÈ°Ñ m_iline ÀÛ¼Óµ½ MAX_TALK_WINDOW_LINE ²Å½øĞĞÏÔÊ¾¿òµÄÒÆ¶¯
+		// æ¸¸æˆä¸€å¼€å§‹æ²¡å­—ä¸²,æ‰€ä»¥è¦å…ˆæŠŠ m_iline ç´¯åŠ åˆ° MAX_TALK_WINDOW_LINE æ‰è¿›è¡Œæ˜¾ç¤ºæ¡†çš„ç§»åŠ¨
 		if(m_iline <= MAX_TALK_WINDOW_LINE) m_iline++;
 		strcpy(m_pCBLString->ChatBuffer.buffer,szString);
 		m_pCBLString->ChatBuffer.color = color;
 		m_pCBLString->bUse = TRUE;
-		// ÓÎÏ·Ò»¿ªÊ¼¶¼Ã»ÓĞ×Ö´®,ËùÒÔÒªµ± m_iline Öµ´óÓÚµÈÓÚ MAX_TALK_WINDOW_LINE Ê±²Å½øĞĞÏÔÊ¾¿òµÄÒÆ¶¯
-		// Õı´¦ÓÚ¾í¶¯×´Ì¬Ê±²»½øĞĞÏÔÊ¾¿òµÄÒÆ¶¯
+		// æ¸¸æˆä¸€å¼€å§‹éƒ½æ²¡æœ‰å­—ä¸²,æ‰€ä»¥è¦å½“ m_iline å€¼å¤§äºç­‰äº MAX_TALK_WINDOW_LINE æ—¶æ‰è¿›è¡Œæ˜¾ç¤ºæ¡†çš„ç§»åŠ¨
+		// æ­£å¤„äºå·åŠ¨çŠ¶æ€æ—¶ä¸è¿›è¡Œæ˜¾ç¤ºæ¡†çš„ç§»åŠ¨
 		if(!m_bScroll && m_iline > MAX_TALK_WINDOW_LINE){
 			if(m_pCBLView->next != NULL) m_pCBLView = m_pCBLView->next;
 			else m_pCBLView = m_pCBLHead;
 		}
-		// ²»´¦ÓÚ¾í¶¯×´Ì¬Ê±½øĞĞÏÔÊ¾¿òµÄÒÆ¶¯
+		// ä¸å¤„äºå·åŠ¨çŠ¶æ€æ—¶è¿›è¡Œæ˜¾ç¤ºæ¡†çš„ç§»åŠ¨
 		if(!m_bScroll){
 			if(m_pCBLViewBottom->next != NULL) m_pCBLViewBottom = m_pCBLViewBottom->next;
 			else m_pCBLViewBottom = m_pCBLHead;
 		}
-		// µ± m_pCBLString->next Ê±,±íÊ¾ÒÑµ½ list Î²,Ö¸»Ø list Í·
+		// å½“ m_pCBLString->next æ—¶,è¡¨ç¤ºå·²åˆ° list å°¾,æŒ‡å› list å¤´
 		if(m_pCBLString->next == NULL) m_pCBLString = m_pCBLHead;
 		else m_pCBLString = m_pCBLString->next;
 	}
 }
 
-// ÉÏ¾í
+// ä¸Šå·
 void CTalkWindow::UpArrowHit(BOOL bHit)
 { 
 	m_bUpArrowHit = bHit;
 	if(bHit){
 		m_bScroll = FALSE;
-		// Èô m_pCBLView ºÍ m_pCBLString ²»ÏàµÈ,±íÊ¾Ä¿Ç°ÏÔÊ¾·¶Î§»¹Ã»³¬¹ı m_pCBLString
+		// è‹¥ m_pCBLView å’Œ m_pCBLString ä¸ç›¸ç­‰,è¡¨ç¤ºç›®å‰æ˜¾ç¤ºèŒƒå›´è¿˜æ²¡è¶…è¿‡ m_pCBLString
 		if(m_pCBLView != m_pCBLString){
-			// Èô m_pCBLView->prev Îª NULL,±íÊ¾ÉÏ¾íµ½µ×ÁË
+			// è‹¥ m_pCBLView->prev ä¸º NULL,è¡¨ç¤ºä¸Šå·åˆ°åº•äº†
 			if(m_pCBLView->prev == NULL){
-				// ÈôlistÎ²²¿ÓĞÔÚÊ¹ÓÃµÄ»°,°Ñ m_pCBLView Ö¸Ïò m_pCBLTail
+				// è‹¥listå°¾éƒ¨æœ‰åœ¨ä½¿ç”¨çš„è¯,æŠŠ m_pCBLView æŒ‡å‘ m_pCBLTail
 				if(m_pCBLTail->bUse){
 					m_pCBLView = m_pCBLTail;
 					m_bScroll = TRUE;
-					m_pCBLViewBottom = m_pCBLViewBottom->prev;	// ÒÆ¶¯ÏÔÊ¾¿ò
+					m_pCBLViewBottom = m_pCBLViewBottom->prev;	// ç§»åŠ¨æ˜¾ç¤ºæ¡†
 					if(m_pCBLViewBottom == NULL) m_pCBLViewBottom = m_pCBLTail;
 				}
 			}
-			// Î´¾íµ½µ×
+			// æœªå·åˆ°åº•
 			else if(m_pCBLView->prev->bUse){
 				m_pCBLView = m_pCBLView->prev;
 				m_bScroll = TRUE;
@@ -305,25 +305,25 @@ void CTalkWindow::UpArrowHit(BOOL bHit)
 	}
 }
 
-// ÏÂ¾í
+// ä¸‹å·
 void CTalkWindow::DownArrowHit(BOOL bHit)
 { 
 	m_bDownArrowHit = bHit;
 	if(bHit){
 		m_bScroll = FALSE;
-		// Èô m_pCBLViewBottom ºÍ m_pCBLString ²»ÏàµÈ,±íÊ¾Ä¿Ç°ÏÔÊ¾·¶Î§»¹Ã»³¬¹ı m_pCBLString
+		// è‹¥ m_pCBLViewBottom å’Œ m_pCBLString ä¸ç›¸ç­‰,è¡¨ç¤ºç›®å‰æ˜¾ç¤ºèŒƒå›´è¿˜æ²¡è¶…è¿‡ m_pCBLString
 		if(m_pCBLViewBottom != m_pCBLString){
-			// Èô m_pCBLView->next Îª NULL,±íÊ¾ÏÂ¾íµ½µ×ÁË
+			// è‹¥ m_pCBLView->next ä¸º NULL,è¡¨ç¤ºä¸‹å·åˆ°åº•äº†
 			if(m_pCBLView->next == NULL){
-				// ÈôlistÎ²²¿ÓĞÔÚÊ¹ÓÃµÄ»°,°Ñ m_pCBLView Ö¸Ïò m_pCBLHead
+				// è‹¥listå°¾éƒ¨æœ‰åœ¨ä½¿ç”¨çš„è¯,æŠŠ m_pCBLView æŒ‡å‘ m_pCBLHead
 				if(m_pCBLTail->bUse){
 					m_pCBLView = m_pCBLHead;
 					m_bScroll = TRUE;
-					m_pCBLViewBottom = m_pCBLViewBottom->next;	// ÒÆ¶¯ÏÔÊ¾¿ò
+					m_pCBLViewBottom = m_pCBLViewBottom->next;	// ç§»åŠ¨æ˜¾ç¤ºæ¡†
 					if(m_pCBLViewBottom == NULL) m_pCBLViewBottom = m_pCBLHead;
 				}
 			}
-			// Î´¾íµ½µ×
+			// æœªå·åˆ°åº•
 			else if(m_pCBLView->next->bUse){
 				m_pCBLView = m_pCBLView->next;
 				m_bScroll = TRUE;
@@ -389,7 +389,7 @@ void CTalkWindow::InitFaceSymbol(COLORREF MaskColor)
 				m_fsFaceSymbol[i].bUse = FALSE;
 				continue;
 			}
-			hTemp = CopyImage(m_fsFaceSymbol[i].hLoadBMP,IMAGE_BITMAP,SYMBOL_WIDTH,SYMBOL_HEIGHT,LR_COPYDELETEORG); // Èç¹ûÔ­Í¼±È19 19´ó,Ôò»á×Ô¶¯ËõĞ¡
+			hTemp = CopyImage(m_fsFaceSymbol[i].hLoadBMP,IMAGE_BITMAP,SYMBOL_WIDTH,SYMBOL_HEIGHT,LR_COPYDELETEORG); // å¦‚æœåŸå›¾æ¯”19 19å¤§,åˆ™ä¼šè‡ªåŠ¨ç¼©å°
 			DeleteObject(m_fsFaceSymbol[i].hLoadBMP);
 			if(hTemp == NULL){
 				m_fsFaceSymbol[i].bUse = FALSE;
@@ -399,15 +399,15 @@ void CTalkWindow::InitFaceSymbol(COLORREF MaskColor)
 			m_fsFaceSymbol[i].hDraw = CreateCompatibleDC(NULL);
 			m_fsFaceSymbol[i].hOldLoadBMP = SelectObject(m_fsFaceSymbol[i].hDraw,m_fsFaceSymbol[i].hLoadBMP);
 			m_fsFaceSymbol[i].hDrawMask = CreateCompatibleDC(m_fsFaceSymbol[i].hDraw);
-			// ²úÉúµ¥É«Í¨Í¸Í¼
+			// äº§ç”Ÿå•è‰²é€šé€å›¾
 			m_fsFaceSymbol[i].hbmpMaskBMP = CreateBitmap(SYMBOL_WIDTH,SYMBOL_HEIGHT,1,1,NULL);
 			m_fsFaceSymbol[i].hOldMaskBMP = SelectObject(m_fsFaceSymbol[i].hDrawMask,m_fsFaceSymbol[i].hbmpMaskBMP);
-			// Éè¶¨Í¸Ã÷É«
+			// è®¾å®šé€æ˜è‰²
 			SetBkColor(m_fsFaceSymbol[i].hDraw,MaskColor);
 			SetTextColor(m_fsFaceSymbol[i].hDraw,RGB(0,0,0));
-			// ²úÉúÍ¸Ã÷ÇøÓòÎª°×É«,ÆäËûÇøÓòÎªºÚÉ«µÄµ¥É«Í¼
+			// äº§ç”Ÿé€æ˜åŒºåŸŸä¸ºç™½è‰²,å…¶ä»–åŒºåŸŸä¸ºé»‘è‰²çš„å•è‰²å›¾
 			BitBlt(m_fsFaceSymbol[i].hDrawMask,0,0,SYMBOL_WIDTH,SYMBOL_HEIGHT,m_fsFaceSymbol[i].hDraw,0,0,SRCCOPY);
-			// °ÑÔ­Í¼»»³ÉÍ¸Ã÷ÇøÓòÎªºÚÉ«,ÆäËûÇøÓò²»±äµÄÍ¼
+			// æŠŠåŸå›¾æ¢æˆé€æ˜åŒºåŸŸä¸ºé»‘è‰²,å…¶ä»–åŒºåŸŸä¸å˜çš„å›¾
 			SetBkColor(m_fsFaceSymbol[i].hDraw,RGB(0,0,0));
 			SetTextColor(m_fsFaceSymbol[i].hDraw,RGB(255,255,255));
 			BitBlt(m_fsFaceSymbol[i].hDraw,0,0,SYMBOL_WIDTH,SYMBOL_HEIGHT,m_fsFaceSymbol[i].hDrawMask,0,0,SRCAND);
@@ -459,7 +459,7 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 					if(szSourString[i] == m_fsFaceSymbol[j].szSymbol[k]){
 						k++;iCheck++;
 						if(m_fsFaceSymbol[j].szSymbol[k] == '\0'){
-							// ÏÔÊ¾µÄÍ¼ x ×ù±ê³¬¹ıÁË×îÓÒ±ß,°Ñ½ÓÏÂÀ´µÄ×Ö´®Æ´Èëµ½ÏÂÒ»ĞĞ
+							// æ˜¾ç¤ºçš„å›¾ x åº§æ ‡è¶…è¿‡äº†æœ€å³è¾¹,æŠŠæ¥ä¸‹æ¥çš„å­—ä¸²æ‹¼å…¥åˆ°ä¸‹ä¸€è¡Œ
 							if((x + (iStoreX + iSymbolNum) * (FONT_SIZE>>1)) > 610){
 								if(pCBL->next != NULL){
 									sprintf_s(szTemp,"%s%s",&szSourString[iStoreX],pCBL->next->ChatBuffer.buffer);
@@ -468,11 +468,11 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 									sprintf_s(szTemp,"%s%s",&szSourString[iStoreX],m_pCBLHead->ChatBuffer.buffer);
 									sprintf_s(m_pCBLHead->ChatBuffer.buffer,"%s",szTemp);
 								}
-								// °ÑÔ­ÏÈµÄ×Ö´®·ÖÀë³É¶şĞĞ
+								// æŠŠåŸå…ˆçš„å­—ä¸²åˆ†ç¦»æˆäºŒè¡Œ
 								memcpy(szTemp,szSourString,iStoreX);
 								sprintf_s(szSourString,"%s",szTemp);
 								sprintf_s(pCBL->ChatBuffer.buffer,"%s",szTemp);
-								// Éè¶¨ i Îª STR_BUFFER_SIZE + 1 ÊÇÎªÁËÖ±½ÓÀë¿ª i ÄÇ²ã loop
+								// è®¾å®š i ä¸º STR_BUFFER_SIZE + 1 æ˜¯ä¸ºäº†ç›´æ¥ç¦»å¼€ i é‚£å±‚ loop
 								i = STR_BUFFER_SIZE + 1;
 								bBreak = TRUE;
 								break;
@@ -480,7 +480,7 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 							szDestString[iCount++] = ' ';
 							szDestString[iCount++] = ' ';
 							szDestString[iCount++] = ' ';
-							// ¼ÇÂ¼ÒªÔÚÄÇ¸öÎ»ÖÃÏÔÊ¾±íÇé·ûºÅ
+							// è®°å½•è¦åœ¨é‚£ä¸ªä½ç½®æ˜¾ç¤ºè¡¨æƒ…ç¬¦å·
 							m_ssStoreSymbol[m_iSymbolCount].bUse = TRUE;
 							m_ssStoreSymbol[m_iSymbolCount].hDraw = m_fsFaceSymbol[j].hDraw;
 							m_ssStoreSymbol[m_iSymbolCount].hDrawMask = m_fsFaceSymbol[j].hDrawMask;
@@ -516,7 +516,7 @@ void CTalkWindow::ShowFaceSymbol(void)
 			BitBlt(m_hdcBackBuffer,m_ssStoreSymbol[i].x,m_ssStoreSymbol[i].y,SKIN_WIDTH,SKIN_HEIGHT,m_ssStoreSymbol[i].hDrawMask,0,0,SRCAND);
 			BitBlt(m_hdcBackBuffer,m_ssStoreSymbol[i].x,m_ssStoreSymbol[i].y,SKIN_WIDTH,SKIN_HEIGHT,m_ssStoreSymbol[i].hDraw,0,0,SRCPAINT);
 		}
-		// ÒòÎª m_ssStoreSymbol ÄÚÈİµÄ²úÉúÊÇÕÕË³Ğò²úÉúµÄ,ËùÒÔÖ»ÒªÓĞÒ»¸ö m_ssStoreSymbol µÄ bUse Îª FALSE ¾Í¿ÉÒÔÖ±½ÓÀë¿ª loop
+		// å› ä¸º m_ssStoreSymbol å†…å®¹çš„äº§ç”Ÿæ˜¯ç…§é¡ºåºäº§ç”Ÿçš„,æ‰€ä»¥åªè¦æœ‰ä¸€ä¸ª m_ssStoreSymbol çš„ bUse ä¸º FALSE å°±å¯ä»¥ç›´æ¥ç¦»å¼€ loop
 		else break;
 	}
 	memset(m_ssStoreSymbol,0,sizeof(m_ssStoreSymbol));

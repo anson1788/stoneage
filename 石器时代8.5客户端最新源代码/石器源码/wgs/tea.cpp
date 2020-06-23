@@ -1,11 +1,11 @@
-#include <windows.h>
+Ôªø#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "tea.h"
 #include "../systeminc/VMProtectSDK.h"
 unsigned long DELTA=0x9e3779b9;
 #define MX (z>>5^y<<2) + (y>>3^z<<4)^(sum^y) + (k[p&3^e]^z);
-long TEAº”√‹(long* v, long n, long* k)
+long TEAÂä†ÂØÜ(long* v, long n, long* k)
 {
 #ifdef _VMP_
 	VMProtectBegin("teajiami");
@@ -15,7 +15,7 @@ long TEAº”√‹(long* v, long n, long* k)
 	y=v[0];
 	sum=0;
 	long p, q;
-	/* º”√‹π˝≥Ã */
+	/* Âä†ÂØÜËøáÁ®ã */
 	q = 6 + 52/n;
 	while (q-- > 0)
 	{
@@ -32,7 +32,7 @@ long TEAº”√‹(long* v, long n, long* k)
     return 0 ;
 }
 
-long TEAΩ‚√‹(long* v, long n, long* k)
+long TEAËß£ÂØÜ(long* v, long n, long* k)
 {
 	unsigned long z,y,sum,e;
 	z=v[n-1];

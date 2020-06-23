@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	t_music.h			*/
 /************************/
 #ifndef _T_MUSIC_
@@ -10,12 +10,12 @@
 #define TONE_MAX	500//400//256
 
 typedef struct{
-	int voice_place;	//????ıÍ???????????
+	int voice_place;	//????î‰‚???????????
 	int voice_cnt;		//?????
 	int voice_loop;		//??????
-	int voice_volume;		//?ıè?????
-	int voice_note;		//???§k?
-	int play_time;		//?şØ??
+	int voice_volume;		//?î‰?????
+	int voice_note;		//???å»?
+	int play_time;		//?î‹ª??
 	int voice_rate;
 	int voice_address;
 } TONE_EQU;
@@ -43,7 +43,7 @@ extern int t_music_se_no;
 extern char t_music_bgm_pitch[16];
 extern int draw_map_bgm_flg;
 extern int map_bgm_no;
-//¾²Òô±êÖ¾
+//å™™ç§æ¢“ç¥©
 extern BOOL MuteFlag;
 
 bool cdda_play(int);

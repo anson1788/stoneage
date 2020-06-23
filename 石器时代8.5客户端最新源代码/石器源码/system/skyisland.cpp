@@ -1,4 +1,4 @@
-
+ï»¿
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/loadrealbin.h"
@@ -12,7 +12,7 @@ LPDIRECTDRAWSURFACE lpsurLand = NULL;
 LPDIRECTDRAWSURFACE lpsurCloud1 = NULL;
 LPDIRECTDRAWSURFACE lpsurCloud2 = NULL;
 
-#ifdef _MOON_FAIRYLAND				// (²»¿É¿ª) ROG ADD ÔÂÖ®ÏÉ¾³
+#ifdef _MOON_FAIRYLAND				// (ä¸å¯å¼€) ROG ADD æœˆä¹‹ä»™å¢ƒ
 BOOL moonFlag  = FALSE;
 #endif
 #ifdef _NEW_CLOUD
@@ -47,38 +47,38 @@ void LoadBmpToSurface( int noFrom, LPDIRECTDRAWSURFACE lpsurTo, int w, int h)
 							( unsigned char **)&pRealBinBits, 
 							&RealBinWidth, 
 							&RealBinHeight ) ){
-			// realbinµµÍ¼ËØÒªµ¹×Å¶Á
+			// realbinæ¡£å›¾ç´ è¦å€’ç€è¯»
 			pRealBinBits += (w * (h-1));
 			if( displayBpp == 32){
 				extern unsigned int highColor32Palette[256];
 				int* surface;
 				surface = (int *)ddsd.lpSurface;
-				// ¸ß²ÊÒ»¸öµãÒªÓÃ2¸öbyte,ËùÒÔpitch³ý2·½±ãÌîÑÕÉ«Öµ
+				// é«˜å½©ä¸€ä¸ªç‚¹è¦ç”¨2ä¸ªbyte,æ‰€ä»¥pitché™¤2æ–¹ä¾¿å¡«é¢œè‰²å€¼
 				ddsd.lPitch >>= 2; // ddsd.lPitch /= 2;
 				unsigned int pixel;
 				for( int i = 0; i < h; i++){
 					for( int j = 0; j < w; j++){
 						pixel = highColor32Palette[(unsigned char)pRealBinBits[j]];
-						// Í¸Ã÷É«²»´¦Àí
+						// é€æ˜Žè‰²ä¸å¤„ç†
 						if( pixel) surface[j] = pixel;
 					}
-					// »»ÏÂÒ»ÐÐ
+					// æ¢ä¸‹ä¸€è¡Œ
 					surface += ddsd.lPitch;
 					pRealBinBits -= w;
 				}
 			}else if( displayBpp == 16){
 				LPWORD surface;
 				surface = (LPWORD)ddsd.lpSurface;
-				// ¸ß²ÊÒ»¸öµãÒªÓÃ2¸öbyte,ËùÒÔpitch³ý2·½±ãÌîÑÕÉ«Öµ
+				// é«˜å½©ä¸€ä¸ªç‚¹è¦ç”¨2ä¸ªbyte,æ‰€ä»¥pitché™¤2æ–¹ä¾¿å¡«é¢œè‰²å€¼
 				ddsd.lPitch >>= 1; // ddsd.lPitch /= 2;
 				unsigned short pixel;
 				for( short i = 0; i < h; i++){
 					for( short j = 0; j < w; j++){
 						pixel = highColorPalette[(unsigned char)pRealBinBits[j]];
-						// Í¸Ã÷É«²»´¦Àí
+						// é€æ˜Žè‰²ä¸å¤„ç†
 						if( pixel) surface[j] = pixel;
 					}
-					// »»ÏÂÒ»ÐÐ
+					// æ¢ä¸‹ä¸€è¡Œ
 					surface += ddsd.lPitch;
 					pRealBinBits -= w;
 				}
@@ -197,14 +197,14 @@ void SkyIslandSetNo( int fl)
 	sky_island_no_bak = sky_island_no;
 	sky_island_no = 0;
 
-#ifdef _MOON_FAIRYLAND				// (²»¿É¿ª) ROG ADD ÔÂÖ®ÏÉ¾³
+#ifdef _MOON_FAIRYLAND				// (ä¸å¯å¼€) ROG ADD æœˆä¹‹ä»™å¢ƒ
 	moonFlag =	FALSE;
 #endif
 #ifdef _NEW_CLOUD
 	NCLOUD_Flag = FALSE;
 #endif
 	switch( fl){
-//±ÜÃâÖØ¸´µÄloadmap¶¯×÷
+//é¿å…é‡å¤çš„loadmapåŠ¨ä½œ
 	case 30691:
 		sky_island_no = (1<<16) | 40510;
 		break;
@@ -223,10 +223,10 @@ void SkyIslandSetNo( int fl)
 	case 30689:
 		sky_island_no = (6<<16) | 40510;
 		break;
-	case 5581://½ð·Éº½¿Õ
+	case 5581://é‡‘é£žèˆªç©º
 		sky_island_no = (1<<16) | 40511;
 		break;
-#ifdef _MOON_FAIRYLAND				// (²»¿É¿ª) ROG ADD ÔÂÖ®ÏÉ¾³
+#ifdef _MOON_FAIRYLAND				// (ä¸å¯å¼€) ROG ADD æœˆä¹‹ä»™å¢ƒ
 	case 8255:
 		sky_island_no = (1<<16) | 40512;
 		moonFlag =	TRUE;
@@ -247,7 +247,7 @@ void SkyIslandSetNo( int fl)
 		sky_island_no = (1<<16);
 		break;
 #endif
-	// ÉñÌ¨
+	// ç¥žå°
 	case 104:
 		sky_island_no = (2<<16) | 40511;
 		break;
@@ -288,30 +288,30 @@ void SkyIslandDraw()
 		bDrawUpCloud = TRUE;
 		if(compx != (int)pc.ptAct->mx || compy != (int)pc.ptAct->my){
 			switch(pc.dir){
-			// ÏÂ
+			// ä¸‹
 			case 0:	g_rc.top++; break;
-			// ×óÏÂ
+			// å·¦ä¸‹
 			case 1:
 				g_rc.left--;
 				g_rc.top++;
 				break;
-			// ×ó
+			// å·¦
 			case 2:	g_rc.left--; break;
-			// ×óÉÏ
+			// å·¦ä¸Š
 			case 3:
 				g_rc.left--;
 				g_rc.top--;
 				break;
-			// ÉÏ
+			// ä¸Š
 			case 4:	g_rc.top--; break;
-			// ÓÒÉÏ
+			// å³ä¸Š
 			case 5:
 				g_rc.left++;
 				g_rc.top--;
 				break;
-			// ÓÒ
+			// å³
 			case 6:	g_rc.left++; break;
-			// ÓÒÏÂ
+			// å³ä¸‹
 			case 7:
 				g_rc.left++;
 				g_rc.top++;
@@ -343,7 +343,7 @@ void SkyIslandDraw()
 #ifdef _READ16BITBMP
 		if(g_bUseAlpha) lpDraw->lpBACKBUFFERSYS->BltFast( 0, 0, lpsurLand, &rc, DDBLTFAST_WAIT);	
 #endif
-#ifdef _MOON_FAIRYLAND				// (²»¿É¿ª) ROG ADD ÔÂÖ®ÏÉ¾³
+#ifdef _MOON_FAIRYLAND				// (ä¸å¯å¼€) ROG ADD æœˆä¹‹ä»™å¢ƒ
 		if(moonFlag == TRUE) return;
 #endif
 
@@ -352,7 +352,7 @@ void SkyIslandDraw()
 			iCloudX1 += iCloudDX;
 			iCloudY1 += iCloudDY;
 			if(((iCloudX1>=DEF_APPSIZEX) || (iCloudY1>=DEF_APPSIZEY)) ){
-				//²úÉúÒ»¶äÐÂµÄÔÆ
+				//äº§ç”Ÿä¸€æœµæ–°çš„äº‘
 #ifdef __CARYTEST
 				iCloudNo1 = 40500+(rand()&0x3);
 				DWORD no;
@@ -428,7 +428,7 @@ void SkyIslandDraw2( int fl )
 void SkyIslandDraw2()
 #endif
 {
-#ifdef _MOON_FAIRYLAND				// (²»¿É¿ª) ROG ADD ÔÂÖ®ÏÉ¾³
+#ifdef _MOON_FAIRYLAND				// (ä¸å¯å¼€) ROG ADD æœˆä¹‹ä»™å¢ƒ
 	if(moonFlag == TRUE)
 	return;
 #endif
@@ -449,7 +449,7 @@ void SkyIslandDraw2()
 				iCloudY2 += iCloudDY;
 				if( (iCloudX2>=DEF_APPSIZEX) || //((iCloudX2+CloudWidth2)<0) ||
 					(iCloudY2>=DEF_APPSIZEY) /*|| ((iCloudY2+CloudHeight2)<0)*/){
-					//²úÉúÒ»¶äÐÂµÄÔÆ
+					//äº§ç”Ÿä¸€æœµæ–°çš„äº‘
 					DWORD no;
 #ifdef _NEW_CLOUD
 					if( fl == 61000 || fl == 61100 ){

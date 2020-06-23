@@ -1,16 +1,16 @@
-//==========================================================================
-// µµÃû : PhoneMsg.cpp
-// ¹¦ÓÃ : Ê¯Æ÷Ê±´ú[¼òÑ¶]°´Å¥µÄ¹¦ÄÜÊµ×÷(V3.0ºóĞÂÔöµÄ¹¦ÄÜ)
-// ×«Ğ´ÈË   : ÁÖ ²ı ÀÚ  (Leiboy)
-// ³õ°æÍê³ÉÈÕÆÚ : 2002Äê01ÔÂ26ÈÕ
-// µÚ¶ş°æ¸üĞÂÈÕÆÚ : 2002Äê02ÔÂ02ÈÕ==>ĞÂÔöMultithread(º¯Ê½Îå)
-// µÚÈı°æ¸üĞÂÈÕÆÚ : 2002Äê02ÔÂ20ÈÕ==>½«MFC¸ÄĞ´³ÉWinsock·½Ê½!(±¾°æÎªÒÑÍê³É°æ!)
-// µÚËÄ°æÍê³ÉÈÕÆÚ : 2002Äê02ÔÂ26ÈÕ==>ĞÂÔöDNS(º¯Ê½Æß)
-// ÏßÉÏÕıÊ½ÔË×÷ÈÕÆÚ : 2002Äê03ÔÂ04ÈÕ
-// ²¹³äËµÃ÷ : ÓÎÏ·ÖĞ³É¹¦µØ´«ËÍÒ»Í¨¼òÑ¶Ã¿´Î½«¿ÛWGSµãÊıÎåµã!
+ï»¿//==========================================================================
+// æ¡£å : PhoneMsg.cpp
+// åŠŸç”¨ : çŸ³å™¨æ—¶ä»£[ç®€è®¯]æŒ‰é’®çš„åŠŸèƒ½å®ä½œ(V3.0åæ–°å¢çš„åŠŸèƒ½)
+// æ’°å†™äºº   : æ— æ˜Œ ç£Š  (Leiboy)
+// åˆç‰ˆå®Œæˆæ—¥æœŸ : 2002å¹´01æœˆ26æ—¥
+// ç¬¬äºŒç‰ˆæ›´æ–°æ—¥æœŸ : 2002å¹´02æœˆ02æ—¥==>æ–°å¢Multithread(å‡½å¼äº”)
+// ç¬¬ä¸‰ç‰ˆæ›´æ–°æ—¥æœŸ : 2002å¹´02æœˆ20æ—¥==>å°†MFCæ”¹å†™æˆWinsockæ–¹å¼!(æœ¬ç‰ˆä¸ºå·²å®Œæˆç‰ˆ!)
+// ç¬¬å››ç‰ˆå®Œæˆæ—¥æœŸ : 2002å¹´02æœˆ26æ—¥==>æ–°å¢DNS(å‡½å¼ä¸ƒ)
+// çº¿ä¸Šæ­£å¼è¿ä½œæ—¥æœŸ : 2002å¹´03æœˆ04æ—¥
+// è¡¥å……è¯´æ˜ : æ¸¸æˆä¸­æˆåŠŸåœ°ä¼ é€ä¸€é€šç®€è®¯æ¯æ¬¡å°†æ‰£WGSç‚¹æ•°äº”ç‚¹!
 //==========================================================================
 
-//ÏÈ×ö°æ±¾µÄ¿ØÖÆ
+//å…ˆåšç‰ˆæœ¬çš„æ§åˆ¶
 #include "../systeminc/version.h"
 #ifdef __PHONEMESSAGE
 
@@ -29,38 +29,38 @@
 #include "../wgs/descrypt.h"
 #include "../other/caryIme.h"
 
-#define MSG_SURE_D	     26288 //È·¶¨(°´ÏÂ)(»ÆÉ«µÄ)
-#define MSG_SURE_U	     26289 //È·¶¨(µ¯Æğ)(»ÆÉ«µÄ)
-#define MSG_CANCEL_U	 26284 //È¡Ïû(Î´°´ÏÂ)
-#define MSG_CANCEL_D	 26285 //È¡Ïû(°´ÏÂ)
-#define MSG_CLEAR_U      26298 //Çå³ı(µ¯Æğ)
-#define MSG_CLEAR_D      26299 //Çå³ı(°´ÏÂ)
+#define MSG_SURE_D	     26288 //ç¡®å®š(æŒ‰ä¸‹)(é»„è‰²çš„)
+#define MSG_SURE_U	     26289 //ç¡®å®š(å¼¹èµ·)(é»„è‰²çš„)
+#define MSG_CANCEL_U	 26284 //å–æ¶ˆ(æœªæŒ‰ä¸‹)
+#define MSG_CANCEL_D	 26285 //å–æ¶ˆ(æŒ‰ä¸‹)
+#define MSG_CLEAR_U      26298 //æ¸…é™¤(å¼¹èµ·)
+#define MSG_CLEAR_D      26299 //æ¸…é™¤(æŒ‰ä¸‹)
 
-//Messsage µÄLog ×¨ÓÃÇø Begin
+//Messsage çš„Log ä¸“ç”¨åŒº Begin
 #ifdef _STONDEBUG_
 char    logstr[512];
 #define logfilename     "message.log"
 #endif
-//Messsage µÄLog ×¨ÓÃÇø End
+//Messsage çš„Log ä¸“ç”¨åŒº End
 
 BOOL QueryMyIP(char HostName[]);
-//Ê¯Æ÷¼òÑ¶Server IP : 210.64.97.17
+//çŸ³å™¨ç®€è®¯Server IP : 210.64.97.17
 char *MsgIP;
 #define SMSDomainName   "sms.hwaei.com.tw"
-//Ä¿Ç°Ëù²ÉÓÃµÄASP filename
-#define ASPname   "//sms//stoneage.asp"  //2002 Feb. 20ºóÆôÓÃ!
+//ç›®å‰æ‰€é‡‡ç”¨çš„ASP filename
+#define ASPname   "//sms//stoneage.asp"  //2002 Feb. 20åå¯ç”¨!
 int     myvalue;
 char    seqno[14];        //Wayia_seqno
 //************************************************
-//º¯Ê½Ò» : ´¦ÀíÖ÷³ÌÊ½ÓëASP¼ä¹µÍ¨µÄ×¨ÓÃº¯Ê½
-//»Ø´«Öµ : 0 --- ´¦ÀíÍê±Ï & ¼òÑ¶·¢ËÍ³É¹¦
-//         1 --- ¼òÑ¶·¢ËÍÊ§°Ü
-//         2 --- ÊÖ»úºÅÂë²ÎÊı´íÎó
-//         3 --- ÊÖ»úÑ¶Ï¢²ÎÊı´íÎó(¹ı³¤)
-//         4 --- ÍøÂ·¶Ë´íÎó
-//         5 --- WGSµãÊı(»òÍ¨Êı)ÒÑ²»×ã!!(Ğ¡ÓÚÎåµã)
-//         6 --- Á¬ÏßÓâÊ±(»òDNSÊ§°Ü)
-//         7 --- ASP»Ø´«´íÎó
+//å‡½å¼ä¸€ : å¤„ç†ä¸»ç¨‹å¼ä¸ASPé—´æ²Ÿé€šçš„ä¸“ç”¨å‡½å¼
+//å›ä¼ å€¼ : 0 --- å¤„ç†å®Œæ¯• & ç®€è®¯å‘é€æˆåŠŸ
+//         1 --- ç®€è®¯å‘é€å¤±è´¥
+//         2 --- æ‰‹æœºå·ç å‚æ•°é”™è¯¯
+//         3 --- æ‰‹æœºè®¯æ¯å‚æ•°é”™è¯¯(è¿‡é•¿)
+//         4 --- ç½‘è·¯ç«¯é”™è¯¯
+//         5 --- WGSç‚¹æ•°(æˆ–é€šæ•°)å·²ä¸è¶³!!(å°äºäº”ç‚¹)
+//         6 --- è¿çº¿é€¾æ—¶(æˆ–DNSå¤±è´¥)
+//         7 --- ASPå›ä¼ é”™è¯¯
 //************************************************
 int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 {
@@ -74,8 +74,8 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		i++;
 	}while( dv && (i<8));
 	if(!dv)  return 2;
-	//ºÍJasonÌÖÂÛºó,ĞÂ¶©µÄÎÄ×ÖÉÏÏŞÎª66bytes!!  Feb. 5,2002
-	//±£Áô16bytes¸øÍæ¼ÒÃû³ÆÓÃ!                 Feb.22,2002
+	//å’ŒJasonè®¨è®ºå,æ–°è®¢çš„æ–‡å­—ä¸Šé™ä¸º66bytes!!  Feb. 5,2002
+	//ä¿ç•™16bytesç»™ç©å®¶åç§°ç”¨!                 Feb.22,2002
 	int x=0,mc=0;
 	do
 	{
@@ -91,7 +91,7 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		return 3;
 	else
 
-#ifdef _FIX_URLENCODE   // WON ADD	±±¾©ĞŞÕı¼òÑ¶ÎŞ·¨¼Ó¿Õ¸ñµÄÎÊÌâ
+#ifdef _FIX_URLENCODE   // WON ADD	åŒ—äº¬ä¿®æ­£ç®€è®¯æ— æ³•åŠ ç©ºæ ¼çš„é—®é¢˜
 	{
 		char OutTmp[768];
 		char *pInTmp,*pOutTmp;
@@ -242,7 +242,7 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		if(result[0]=='1')
 		{
 #ifdef _STONDEBUG_
-			lstrcpy(logstr,"Ê§°Ü ");
+			lstrcpy(logstr,"å¤±è´¥ ");
 			lstrcat(logstr,pps);
 			sprintf_s(logstr,"%s %s",logstr,extpms);
 #endif
@@ -264,7 +264,7 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 			seqno[14] = 0;
 			if(j == 14) return 5;
 #ifdef _STONDEBUG_
-			lstrcpy(logstr,"³É¹¦-");
+			lstrcpy(logstr,"æˆåŠŸ-");
 			lstrcat(logstr,seqno);
 			lstrcat(logstr," ");
 			lstrcat(logstr,pps);
@@ -278,9 +278,9 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 }
 
 //************************************************
-//º¯Ê½¶ş : ²úÉúLogµµ(ÓÚLocal¶ËÄ¿Â¼ÏÂ)µÄ×¨ÓÃº¯Ê½
-//»Ø´«Öµ : None
-//¸½  ×¢ : Ö»ÓĞDebug mode²ÅÔÚÓ²µúĞ´Èëlogµµ!!
+//å‡½å¼äºŒ : äº§ç”ŸLogæ¡£(äºLocalç«¯ç›®å½•ä¸‹)çš„ä¸“ç”¨å‡½å¼
+//å›ä¼ å€¼ : None
+//é™„  æ³¨ : åªæœ‰Debug modeæ‰åœ¨ç¡¬ç¢Ÿå†™å…¥logæ¡£!!
 //************************************************
 #ifdef _STONDEBUG_
 void WriteLog( char cData[], char cFile[])
@@ -309,8 +309,8 @@ STR_BUFFER  pno,ptext;
 static STR_BUFFER *MsgFocus[] ={ &pno, &ptext };
 static int MsgFocusSw;
 //************************************************
-//º¯Ê½Èı : ×ÊÁÏÊäÈëÀ¸Î»µÄ³õÊ¼»¯º¯Ê½
-//»Ø´«Öµ : None
+//å‡½å¼ä¸‰ : èµ„æ–™è¾“å…¥æ ä½çš„åˆå§‹åŒ–å‡½å¼
+//å›ä¼ å€¼ : None
 //************************************************
 void InitMsgInput()
 {
@@ -342,8 +342,8 @@ void InitMsgInput()
 }
 
 //************************************************
-//º¯Ê½ËÄ : ´¦Àí×ÊÁÏÊäÈëÀ¸Î»µÄÖ÷º¯Ê½
-//»Ø´«Öµ : None
+//å‡½å¼å›› : å¤„ç†èµ„æ–™è¾“å…¥æ ä½çš„ä¸»å‡½å¼
+//å›ä¼ å€¼ : None
 //************************************************
 int InputMsgData()
 {
@@ -400,8 +400,8 @@ HANDLE MHandle;
 extern short msgBtn;
 extern char szUser[],szPassword[];
 //************************************************
-//º¯Ê½Îå : ´¦ÀíMultithreadµÄÖ÷º¯Ê½
-//»Ø´«Öµ : OL
+//å‡½å¼äº” : å¤„ç†Multithreadçš„ä¸»å‡½å¼
+//å›ä¼ å€¼ : OL
 //************************************************
 DWORD WINAPI MsgThread(LPVOID param)
 {
@@ -421,39 +421,39 @@ DWORD WINAPI MsgThread(LPVOID param)
 	switch(myvalue)
 	{
 				case 1:
-					StockChatBufferLine("±¾Ôò¼òÑ¶´«ËÍÊ§°Ü!",FONT_PAL_RED);
-					StockChatBufferLine("ÇëÄúÖØĞÂ²Ù×÷!!",FONT_PAL_WHITE);
+					StockChatBufferLine("æœ¬åˆ™ç®€è®¯ä¼ é€å¤±è´¥!",FONT_PAL_RED);
+					StockChatBufferLine("è¯·æ‚¨é‡æ–°æ“ä½œ!!",FONT_PAL_WHITE);
 					break;
 				case 2:
-					StockChatBufferLine("ÊÖ»úºÅÂë¸ñÊ½´íÎó!!",FONT_PAL_RED);
-					StockChatBufferLine("ÎŞ·¨·¢ËÍ±¾Ôò¼òÑ¶!",FONT_PAL_RED);
+					StockChatBufferLine("æ‰‹æœºå·ç æ ¼å¼é”™è¯¯!!",FONT_PAL_RED);
+					StockChatBufferLine("æ— æ³•å‘é€æœ¬åˆ™ç®€è®¯!",FONT_PAL_RED);
 					break;
 				case 3:
-					StockChatBufferLine("ÊÖ»úÑ¶Ï¢¹ı³¤!!",FONT_PAL_RED);
-					StockChatBufferLine("ÎŞ·¨·¢ËÍ±¾Ôò¼òÑ¶!",FONT_PAL_RED);
+					StockChatBufferLine("æ‰‹æœºè®¯æ¯è¿‡é•¿!!",FONT_PAL_RED);
+					StockChatBufferLine("æ— æ³•å‘é€æœ¬åˆ™ç®€è®¯!",FONT_PAL_RED);
 					break;
 				case 4:
-					StockChatBufferLine("ÍøÂ··¢Éú´íÎó!!",FONT_PAL_RED);
-					StockChatBufferLine("ÎŞ·¨·¢ËÍ±¾Ôò¼òÑ¶!",FONT_PAL_RED);
+					StockChatBufferLine("ç½‘è·¯å‘ç”Ÿé”™è¯¯!!",FONT_PAL_RED);
+					StockChatBufferLine("æ— æ³•å‘é€æœ¬åˆ™ç®€è®¯!",FONT_PAL_RED);
 					break;
 				case 5:
-					StockChatBufferLine("ÄúµÄWGSµãÊı(»òÍ¨Êı)ÒÑ²»×ã!!",FONT_PAL_RED);
-					StockChatBufferLine("ÎŞ·¨·¢ËÍ±¾Ôò¼òÑ¶!",FONT_PAL_RED);
+					StockChatBufferLine("æ‚¨çš„WGSç‚¹æ•°(æˆ–é€šæ•°)å·²ä¸è¶³!!",FONT_PAL_RED);
+					StockChatBufferLine("æ— æ³•å‘é€æœ¬åˆ™ç®€è®¯!",FONT_PAL_RED);
 					break;
 				case 6:
-					StockChatBufferLine("¼òÑ¶·şÎñÆ÷ÎŞ·¨Á¬½á!!",FONT_PAL_RED);
-					StockChatBufferLine("ÇëÄúÉÔºóÔÙÊÔ...",FONT_PAL_WHITE);
+					StockChatBufferLine("ç®€è®¯æœåŠ¡å™¨æ— æ³•è¿ç»“!!",FONT_PAL_RED);
+					StockChatBufferLine("è¯·æ‚¨ç¨åå†è¯•...",FONT_PAL_WHITE);
 					break;
 				case 7:
-					StockChatBufferLine("¼òÑ¶·şÎñÆ÷Ã»ÓĞÕıÈ·µØ»ØÓ¦!!",FONT_PAL_RED);
-					StockChatBufferLine("ÎŞ·¨È·¶¨±¾Ôò¼òÑ¶ÊÇ·ñ³É¹¦?!",FONT_PAL_WHITE);
+					StockChatBufferLine("ç®€è®¯æœåŠ¡å™¨æ²¡æœ‰æ­£ç¡®åœ°å›åº”!!",FONT_PAL_RED);
+					StockChatBufferLine("æ— æ³•ç¡®å®šæœ¬åˆ™ç®€è®¯æ˜¯å¦æˆåŠŸ?!",FONT_PAL_WHITE);
 					break;
 				case -1:
-					StockChatBufferLine("³ÌÊ½ÄÚ²¿´íÎó!!!",FONT_PAL_RED);
-					StockChatBufferLine("±¾Ôò¼òÑ¶´«ËÍÊ§°Ü!",FONT_PAL_RED);
+					StockChatBufferLine("ç¨‹å¼å†…éƒ¨é”™è¯¯!!!",FONT_PAL_RED);
+					StockChatBufferLine("æœ¬åˆ™ç®€è®¯ä¼ é€å¤±è´¥!",FONT_PAL_RED);
 					break;
 				default:
-					StockChatBufferLine("¼òÑ¶ÒÑ¾­ËÍ³öÁË!",FONT_PAL_YELLOW);
+					StockChatBufferLine("ç®€è®¯å·²ç»é€å‡ºäº†!",FONT_PAL_YELLOW);
 	}
 #ifdef _STONDEBUG_
 	if(logstr[0] != 0) WriteLog(logstr,logfilename);
@@ -466,10 +466,10 @@ DWORD WINAPI MsgThread(LPVOID param)
 
 int MsgID;
 //************************************************
-//º¯Ê½Áù : ÊÖ»ú¼òÑ¶¹¦ÄÜµÄÖ÷Òªº¯Ê½
-//»Ø´«Öµ : 0 --- ÊÓ´°OPEN
-//         1 --- ÊÓ´°CLOSE
-//         2 --- °´ÏÂÈ·¶¨µÄ½áÊø
+//å‡½å¼å…­ : æ‰‹æœºç®€è®¯åŠŸèƒ½çš„ä¸»è¦å‡½å¼
+//å›ä¼ å€¼ : 0 --- è§†çª—OPEN
+//         1 --- è§†çª—CLOSE
+//         2 --- æŒ‰ä¸‹ç¡®å®šçš„ç»“æŸ
 //************************************************
 int MsgProc()
 {
@@ -478,7 +478,7 @@ int MsgProc()
 	static int btnState[2];
 	static DWORD dwPressTime;
 	static ACTION *pActMenuWin = NULL;
-	char MsgHint[][30] = {"¶Ô·½µÄÊÖ»úºÅÂë¡£","¼òÑ¶ÄÚÈİ(×î¶à50ÖĞ/Ó¢×Ö)¡£","ËÍ³ö¼òÑ¶¡£","¹Ø±Õ¼òÑ¶ÊÓ´°¡£","Çå¿Õ¼òÑ¶ÄÚÈİ¡£"};
+	char MsgHint[][30] = {"å¯¹æ–¹çš„æ‰‹æœºå·ç ã€‚","ç®€è®¯å†…å®¹(æœ€å¤š50ä¸­/è‹±å­—)ã€‚","é€å‡ºç®€è®¯ã€‚","å…³é—­ç®€è®¯è§†çª—ã€‚","æ¸…ç©ºç®€è®¯å†…å®¹ã€‚"};
 
 	if(MsgID == 0)
 	{
@@ -533,7 +533,7 @@ int MsgProc()
 				btnState[id] = 1;
 				id = -1;
 				dwPressTime = TimeGetTime();
-				play_se( 217, 320, 240);  //°´Å¥Éù
+				play_se( 217, 320, 240);  //æŒ‰é’®å£°
 			}
 		}
 
@@ -561,19 +561,19 @@ int MsgProc()
 		{
 			id = 99;
 		}
-		else //°´Esc¹Ø±Õ
+		else //æŒ‰Escå…³é—­
 			if( (joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)
 			{
 				id = 100;
-				play_se( 203, 320, 240);//ÊÓ´°¹Ø±ÕÉù
+				play_se( 203, 320, 240);//è§†çª—å…³é—­å£°
 			}
-			else //°´ÏÂÈ¡ÏûÅ¥
+			else //æŒ‰ä¸‹å–æ¶ˆé’®
 				if(btnState[1] == 1)
 				{
 					id = 100;
 					play_se( 203, 320, 240);
 				}
-		//¹Ø±Õ¼òÑ¶ÊÓ´°
+		//å…³é—­ç®€è®¯è§†çª—
 		if( id >= 0)
 		{
 			DeathAction( pActMenuWin);
@@ -584,8 +584,8 @@ int MsgProc()
 				MHandle = CreateThread(NULL, 0, MsgThread,&dwThrdParam,0,&dwThreadID);
 				if(MHandle == NULL)
 				{
-					StockChatBufferLine("ÄúµÄ×÷ÒµÏµÍ³×ÊÔ´ÒÑ²»×ã!!",FONT_PAL_RED);
-					StockChatBufferLine("±¾Ôò¼òÑ¶·¢ËÍÊ§°Ü!",FONT_PAL_RED);
+					StockChatBufferLine("æ‚¨çš„ä½œä¸šç³»ç»Ÿèµ„æºå·²ä¸è¶³!!",FONT_PAL_RED);
+					StockChatBufferLine("æœ¬åˆ™ç®€è®¯å‘é€å¤±è´¥!",FONT_PAL_RED);
 					return 1;
 				}				
 				return 2;
@@ -598,9 +598,9 @@ int MsgProc()
 }
 
 //************************************************
-//º¯Ê½Æß : DNS×¨ÓÃº¯Ê½
-//»Ø´«Öµ : TRUE  --- ×ª»»³É¹¦
-//         FALSE --- ×ª»»Ê§°Ü
+//å‡½å¼ä¸ƒ : DNSä¸“ç”¨å‡½å¼
+//å›ä¼ å€¼ : TRUE  --- è½¬æ¢æˆåŠŸ
+//         FALSE --- è½¬æ¢å¤±è´¥
 //************************************************
 BOOL QueryMyIP(char HostName[])
 {

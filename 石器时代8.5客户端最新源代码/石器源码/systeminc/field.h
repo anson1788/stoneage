@@ -1,13 +1,13 @@
-#ifndef _FIELD_H_ 
+ï»¿#ifndef _FIELD_H_ 
 #define _FIELD_H_
 
 #include<time.h>
 
-// ?ûÍ????ûõ?¦Ü????
-#define FIELD_BTN_PUSH_WAIT			500		// 0.5¥ø
+// ?îº????î¢?î????
+#define FIELD_BTN_PUSH_WAIT			500		// 0.5î¾
 
-// ???????¤œş˜??
-#define FIELD_MAIL_LAMP_FLASH_TIME	1000	// 1¥ø??
+// ???????î™î¡œ??
+#define FIELD_MAIL_LAMP_FLASH_TIME	1000	// 1î¾??
 
 enum
 {
@@ -33,7 +33,7 @@ enum
 	#endif
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
 	FIELD_FUNC_CHATROOM,
 #endif
 
@@ -62,55 +62,55 @@ enum
 #ifdef _PET_ITEM
 typedef struct SPetItemInfo
 {
-	int bmpNo;										// Í¼ºÅ
-	int color;										// ÎÄ×ÖÑÕÉ«
-	char memo[ITEM_MEMO_LEN+1];						// ËµÃ÷
-	char name[ITEM_NAME_LEN+1];						// Ãû×Ö
-	char damage[16];								// ÄÍ¾Ã¶È
+	int bmpNo;										// å›¾å·
+	int color;										// æ–‡å­—é¢œè‰²
+	char memo[ITEM_MEMO_LEN+1];						// è¯´æ˜
+	char name[ITEM_NAME_LEN+1];						// åå­—
+	char damage[16];								// è€ä¹…åº¦
 }PetItemInfo;
 #endif
 
 #ifdef _STREET_VENDOR
-#define MAX_SELL_ITEM 20							// µÀ¾ß¼Ó³èÎï¹²¿ÉÂô¶şÊ®¸ö
+#define MAX_SELL_ITEM 20							// é“å…·åŠ å® ç‰©å…±å¯å–äºŒåä¸ª
 typedef struct _Show_Sell_Item{
-	int index;										// Ë÷Òı
-	int pile;										// ÊıÁ¿
-	int price;										// ¼Û¸ñ
-	bool needGetPrice;								// ÊÇ·ñÒªµÃµ½¼Û¸ñ
-	bool usage;										// ÊÇ·ñÊ¹ÓÃÖĞ
-	char name[ITEM_NAME_LEN+1];						// Ãû×Ö
-	char freeName[ITEM_NAME_LEN+1];					// Ãû×Ö
-	char kind;										// µÀ¾ß»òÊÇ³èÎï 0:µÀ¾ß 1:³èÎï
+	int index;										// ç´¢å¼•
+	int pile;										// æ•°é‡
+	int price;										// ä»·æ ¼
+	bool needGetPrice;								// æ˜¯å¦è¦å¾—åˆ°ä»·æ ¼
+	bool usage;										// æ˜¯å¦ä½¿ç”¨ä¸­
+	char name[ITEM_NAME_LEN+1];						// åå­—
+	char freeName[ITEM_NAME_LEN+1];					// åå­—
+	char kind;										// é“å…·æˆ–æ˜¯å® ç‰© 0:é“å…· 1:å® ç‰©
 }Show_Sell_Item;
 
 typedef struct _Show_Vendor_Item{
-	int bmpNo;										// Í¼ºÅ
-	int pile;										// ÊıÁ¿
-	int price;										// ¼Û¸ñ
-	int color;										// ÎÄ×ÖÑÕÉ«
-	int level;										// µÈ¼¶
-	int maxhp,attack,defence,dex;					// ËÄÎ§
-	int earth,water,fire,wind,fidelity;				// ËÄÊôĞÔ¼°ÖÒ³Ï¶È
-	int maxSkill;									// ³è¼¼ÊıÁ¿
-	int index;										// ÔÚserverµÄ´¢´æÎ»ÖÃ
-	bool usage;										// ÊÇ·ñÊ¹ÓÃÖĞ
-	bool bBuy;										// ÊÇ·ñÒªÂò
-	bool bGetData;									// ÊÇ·ñÒÑ½ÓÊÕµ½ÏêÏ¸×ÊÁÏ
-	char name[ITEM_NAME_LEN+1];						// Ãû×Ö
-	char freeName[ITEM_NAME_LEN+1];					// Ãû×Ö
-	char memo[ITEM_MEMO_LEN+1];						// ËµÃ÷
-	char damage[20];								// ÄÍ¾Ã¶È
-	char skillname[MAX_SKILL][SKILL_NAME_LEN+1];	// ³è¼¼Ãû³Æ
-	char kind;										// µÀ¾ß»òÊÇ³èÎï 0:µÀ¾ß 1:³èÎï
-	char trans;										// ×ªÉúÊı
+	int bmpNo;										// å›¾å·
+	int pile;										// æ•°é‡
+	int price;										// ä»·æ ¼
+	int color;										// æ–‡å­—é¢œè‰²
+	int level;										// ç­‰çº§
+	int maxhp,attack,defence,dex;					// å››å›´
+	int earth,water,fire,wind,fidelity;				// å››å±æ€§åŠå¿ è¯šåº¦
+	int maxSkill;									// å® æŠ€æ•°é‡
+	int index;										// åœ¨serverçš„å‚¨å­˜ä½ç½®
+	bool usage;										// æ˜¯å¦ä½¿ç”¨ä¸­
+	bool bBuy;										// æ˜¯å¦è¦ä¹°
+	bool bGetData;									// æ˜¯å¦å·²æ¥æ”¶åˆ°è¯¦ç»†èµ„æ–™
+	char name[ITEM_NAME_LEN+1];						// åå­—
+	char freeName[ITEM_NAME_LEN+1];					// åå­—
+	char memo[ITEM_MEMO_LEN+1];						// è¯´æ˜
+	char damage[20];								// è€ä¹…åº¦
+	char skillname[MAX_SKILL][SKILL_NAME_LEN+1];	// å® æŠ€åç§°
+	char kind;										// é“å…·æˆ–æ˜¯å® ç‰© 0:é“å…· 1:å® ç‰©
+	char trans;										// è½¬ç”Ÿæ•°
 #ifdef _PET_ITEM
-	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// ³èÎïÉíÉÏµÄµÀ¾ß
+	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// å® ç‰©èº«ä¸Šçš„é“å…·
 #endif
 #ifdef _NPC_ITEMUP
 	int itemup;
 #endif
 #ifdef _PETCOM_
-	int ylv,yhp,yack,ydef,ydex;				            //³õÊ¼ËÄÎ§
+	int ylv,yhp,yack,ydef,ydex;				            //åˆå§‹å››å›´
 #endif
 }Show_Vendor_Item;
 
@@ -120,14 +120,14 @@ typedef struct _Show_Vendor_Item{
 
 #define MAXMISSION	300 
 typedef struct _JOBDAILY{
-	int JobId;								// ÈÎÎñ±àºÅ
-	char explain[200];						// ÈÎÎñËµÃ÷
-	char state[10];							// ×´Ì¬
+	int JobId;								// ä»»åŠ¡ç¼–å·
+	char explain[200];						// ä»»åŠ¡è¯´æ˜
+	char state[10];							// çŠ¶æ€
 }JOBDAILY;
 
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD ºÃÓÑÆµµÀ
+#ifdef _FRIENDCHANNEL			//ROG ADD å¥½å‹é¢‘é“
 	extern short chatRoomBtn;
 	extern short SelRoomBtn;
 #endif
@@ -171,20 +171,20 @@ void drawFieldInfoWin( void );
 
 void actionShortCutKeyProc( void );
 
-#ifdef _SPECIALSPACEANIM	// Syu ADD ÌØÊâ³¡¾°¶¯»­ÅäÖÃ
-	#ifdef _SURFACE_ANIM        //¶¯Ì¬µØÉÏÎïÏÔÊ¾
-//#define TOTAL_ANIM 5 //ÕóÁĞ×ÜÁ¿
+#ifdef _SPECIALSPACEANIM	// Syu ADD ç‰¹æ®Šåœºæ™¯åŠ¨ç”»é…ç½®
+	#ifdef _SURFACE_ANIM        //åŠ¨æ€åœ°ä¸Šç‰©æ˜¾ç¤º
+//#define TOTAL_ANIM 5 //é˜µåˆ—æ€»é‡
 #ifdef _SA_VERSION_25
-		#define MAX_ANIM   256 //Í¬Ò»¸öfloorÏŞ¶¨×î´óÁ¿¶¯»­Êı
+		#define MAX_ANIM   256 //åŒä¸€ä¸ªflooré™å®šæœ€å¤§é‡åŠ¨ç”»æ•°
 #endif
 
 	#else
-		#ifdef _MOON_FAIRYLAND       // ROG ADD ÔÂÖ®ÏÉ¾³
-			#define TOTAL_ANIM 5 //ÕóÁĞ×ÜÁ¿
-			#define MAX_ANIM   4 //Í¬Ò»¸öfloorÄÚÏÖ´æ×î´óÁ¿Anim
+		#ifdef _MOON_FAIRYLAND       // ROG ADD æœˆä¹‹ä»™å¢ƒ
+			#define TOTAL_ANIM 5 //é˜µåˆ—æ€»é‡
+			#define MAX_ANIM   4 //åŒä¸€ä¸ªfloorå†…ç°å­˜æœ€å¤§é‡Anim
 		#else
-			#define TOTAL_ANIM 1 //ÕóÁĞ×ÜÁ¿
-			#define MAX_ANIM  1  //Í¬Ò»¸öfloorÄÚÏÖ´æ×î´óÁ¿Anim
+			#define TOTAL_ANIM 1 //é˜µåˆ—æ€»é‡
+			#define MAX_ANIM  1  //åŒä¸€ä¸ªfloorå†…ç°å­˜æœ€å¤§é‡Anim
 	#endif
 #endif
 

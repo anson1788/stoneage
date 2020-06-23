@@ -1,4 +1,4 @@
-#ifndef _PROTOCOL_H_
+ï»¿#ifndef _PROTOCOL_H_
 #define _PROTOCOL_H_
 
 int SaDispatchMessage(int fd, char *encoded);
@@ -107,12 +107,12 @@ int SaDispatchMessage(int fd, char *encoded);
 #define LSSPROTO_MA_SEND    98
 #endif
 #ifdef _FIX_DEL_MAP
-#define LSSPROTO_DM_SEND    99   // Íæ¼Ò³éµØÍ¼ËÍ¼àÓü
+#define LSSPROTO_DM_SEND    99   // ç©å®¶æŠ½åœ°å›¾é€ç›‘ç‹±
 #endif
 #ifdef _ITEM_CRACKER
 #define LSSPROTO_IC_RECV    100   
 #endif
-#ifdef _MAGIC_NOCAST//³ÁÄ¬
+#ifdef _MAGIC_NOCAST//æ²‰é»˜
 #define LSSPROTO_NC_RECV    101   
 #endif
 #ifdef _CHECK_GAMESPEED
@@ -127,35 +127,35 @@ int SaDispatchMessage(int fd, char *encoded);
 #ifdef _PETS_SELECTCON
 #define LSSPROTO_PETST_RECV	107
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 #define LSSPROTO_RESIST_SEND 108
 #define LSSPROTO_RESIST_RECV 109
 #endif
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 #define LSSPROTO_BATTLESKILL_SEND 110
 #define LSSPROTO_BATTLESKILL_RECV 111
 #endif
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 #define LSSPROTO_CHATROOM_SEND 112
 #define LSSPROTO_CHATROOM_RECV 113
 #endif
 
 
-#define LSSPROTO_SPET_SEND 	114		// Robin ´ı»ú³è
+#define LSSPROTO_SPET_SEND 	114		// Robin å¾…æœºå® 
 #define LSSPROTO_SPET_RECV 	115
 
 #ifdef _STREET_VENDOR
-#define LSSPROTO_STREET_VENDOR_SEND 	116		// °ÚÌ¯¹¦ÄÜ
+#define LSSPROTO_STREET_VENDOR_SEND 	116		// æ‘†æ‘ŠåŠŸèƒ½
 #define LSSPROTO_STREET_VENDOR_RECV 	117
 #endif
 		
 #ifdef _JOBDAILY
-#define LSSPROTO_JOBDAILY_SEND 	121		// CYG¡¡ÈÎÎñÈÕÖ¾¹¦ÄÜ
+#define LSSPROTO_JOBDAILY_SEND 	121		// CYGã€€ä»»åŠ¡æ—¥å¿—åŠŸèƒ½
 #define LSSPROTO_JOBDAILY_RECV 	120
 #endif
 
 #ifdef _TEACHER_SYSTEM
-#define LSSPROTO_TEACHER_SYSTEM_SEND 	122		// µ¼Ê¦¹¦ÄÜ
+#define LSSPROTO_TEACHER_SYSTEM_SEND 	122		// å¯¼å¸ˆåŠŸèƒ½
 #define LSSPROTO_TEACHER_SYSTEM_RECV 	123
 #endif
 
@@ -255,7 +255,7 @@ int SaDispatchMessage(int fd, char *encoded);
 #define	LSSPROTO_VB_RECV 219
 #endif
 
-#ifdef _RIDEQUERY_//Æï³è²éÑ¯
+#ifdef _RIDEQUERY_//éª‘å® æŸ¥è¯¢
 #define LSSPROTO_RIDEQUERY_SEND 220
 #endif
 
@@ -267,7 +267,7 @@ int SaDispatchMessage(int fd, char *encoded);
 
 void lssproto_W_send(int fd,int x,int y,char* direction);
 void lssproto_W2_send(int fd,int x,int y,char* direction);
-//Cary say Õ½¶·½áÊøºóµÄ´óµØÍ¼×ù±ê
+//Cary say æˆ˜æ–—ç»“æŸåçš„å¤§åœ°å›¾åº§æ ‡
 void lssproto_XYD_recv(int fd,int x,int y,int dir);
 void lssproto_EV_send(int fd,int event,int seqno,int x,int y,int dir);
 void lssproto_EV_recv(int fd,int seqno,int result);
@@ -292,7 +292,7 @@ void lssproto_I_recv(int fd,char* data);
 void lssproto_MI_send(int fd,int fromindex,int toindex);
 void lssproto_SI_recv(int fd,int fromindex,int toindex);
 void lssproto_MSG_send(int fd,int index,char* message,int color);
-//Cary say ÊÕµ½ÆÕÍ¨ÓÊ¼ş»ò³èÎïÓÊ¼ş
+//Cary say æ”¶åˆ°æ™®é€šé‚®ä»¶æˆ–å® ç‰©é‚®ä»¶
 void lssproto_MSG_recv(int fd,int aindex,char* text,int color);
 void lssproto_PMSG_send(int fd,int index,int petindex,int itemindex,char* message,int color);
 void lssproto_PME_recv(int fd,int objindex,int graphicsno,int x,int y,int dir,int flg,int no,char* cdata);
@@ -318,12 +318,12 @@ void lssproto_D_recv(int fd,int category,int dx,int dy,char* data);
 void lssproto_FS_send(int fd,int flg);
 void lssproto_FS_recv(int fd,int flg);
 void lssproto_HL_send(int fd,int flg);
-//Õ½¶·ÖĞÊÇ·ñÒªHelp
+//æˆ˜æ–—ä¸­æ˜¯å¦è¦Help
 void lssproto_HL_recv(int fd,int flg);
 void lssproto_PR_send(int fd,int x,int y,int request);
 void lssproto_PR_recv(int fd,int request,int result);
 void lssproto_KS_send(int fd,int petarray);
-//Cary say Ö¸¶¨ÄÇÒ»Ö»³èÎï³ö³¡Õ½¶·
+//Cary say æŒ‡å®šé‚£ä¸€åªå® ç‰©å‡ºåœºæˆ˜æ–—
 void lssproto_KS_recv(int fd,int petarray,int result);
 
 #ifdef _STANDBYPET
@@ -334,12 +334,12 @@ void lssproto_SPET_recv(int fd,int standbypet,int result);
 void lssproto_AC_send(int fd,int x,int y,int actionno);
 void lssproto_MU_send(int fd,int x,int y,int array,int toindex);
 void lssproto_PS_send(int fd,int havepetindex,int havepetskill,int toindex,char* data);
-//Cary say ³èÎïºÏ³É
+//Cary say å® ç‰©åˆæˆ
 void lssproto_PS_recv(int fd,int result,int havepetindex,int havepetskill,int toindex);
 void lssproto_ST_send(int fd,int titleindex);
 void lssproto_DT_send(int fd,int titleindex);
 void lssproto_FT_send(int fd,char* data);
-//Cary say È¡µÃ¿É¼ÓµÄÊôĞÔµãÊı
+//Cary say å–å¾—å¯åŠ çš„å±æ€§ç‚¹æ•°
 void lssproto_SKUP_recv(int fd,int point);
 void lssproto_SKUP_send(int fd,int skillid);
 void lssproto_KN_send(int fd,int havepetindex,char* data);
@@ -377,12 +377,12 @@ void lssproto_TD_send(int fd, char* data);
 void lssproto_TD_recv(int fd, char* data);
 void lssproto_FM_send(int fd, char* data);
 void lssproto_FM_recv(int fd, char* data);
-//Cary say È¡µÃ×ªÉúµÄÌØĞ§
+//Cary say å–å¾—è½¬ç”Ÿçš„ç‰¹æ•ˆ
 void lssproto_WO_recv( int fd, int effect );
-void lssproto_PETST_send(int fd, int nPet, int sPet);// sPet  0:ĞİÏ¢ 1:µÈ´ı 4:ÓÊ¼ş
+void lssproto_PETST_send(int fd, int nPet, int sPet);// sPet  0:ä¼‘æ¯ 1:ç­‰å¾… 4:é‚®ä»¶
 void lssproto_BM_send(int fd, int iindex);             // _BLACK_MARKET
 #ifdef _FIX_DEL_MAP
-void lssproto_DM_send(int fd);                         // WON ADD Íæ¼Ò³éµØÍ¼ËÍ¼àÓü
+void lssproto_DM_send(int fd);                         // WON ADD ç©å®¶æŠ½åœ°å›¾é€ç›‘ç‹±
 #endif
 #ifdef _MIND_ICON 
 void lssproto_MA_send(int fd, int x, int y, int nMind);
@@ -390,7 +390,7 @@ void lssproto_MA_send(int fd, int x, int y, int nMind);
 #ifdef _ITEM_CRACKER 
 void lssproto_IC_recv(int fd, int x, int y);
 #endif
-#ifdef _MAGIC_NOCAST//³ÁÄ¬
+#ifdef _MAGIC_NOCAST//æ²‰é»˜
 void lssproto_NC_recv(int fd,int flg);
 #endif
 
@@ -408,11 +408,11 @@ void lssproto_KTEAM_send( int fd,int si);
 #ifdef _PETS_SELECTCON
 void lssproto_PETST_recv( int fd,int petarray,int result );
 #endif
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 void lssproto_CHATROOM_send( int fd , char *data );
 void lssproto_CHATROOM_recv( int fd , char *data ) ; 
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 void lssproto_RESIST_send( int fd , char *data );
 void lssproto_RESIST_recv( int fd , char *data ) ; 
 #endif
@@ -422,16 +422,16 @@ void lssproto_ALCHEPLUS_send( int fd , char *data );
 void lssproto_ALCHEPLUS_recv( int fd , char *data ); 
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 void lssproto_BATTLESKILL_send( int fd, int SkillNum);
 void lssproto_BATTLESKILL_recv( int fd, char *data) ; 
 #endif
 void lssproto_CHAREFFECT_recv ( int fd, char *data);
 
-void lssproto_SPET_send(int fd, int standbypet); // Robin ´ı»ú³è
+void lssproto_SPET_send(int fd, int standbypet); // Robin å¾…æœºå® 
 #ifdef _STREET_VENDOR
-void lssproto_STREET_VENDOR_send(int fd,char *data);	// °ÚÌ¯¹¦ÄÜ
-void lssproto_STREET_VENDOR_recv(int fd,char *data);	// °ÚÌ¯¹¦ÄÜ
+void lssproto_STREET_VENDOR_send(int fd,char *data);	// æ‘†æ‘ŠåŠŸèƒ½
+void lssproto_STREET_VENDOR_recv(int fd,char *data);	// æ‘†æ‘ŠåŠŸèƒ½
 #endif
 
 #ifdef _JOBDAILY
@@ -445,7 +445,7 @@ void lssproto_FamilyBadge_recv(char *data);
 #endif
 
 #ifdef _TEACHER_SYSTEM
-void lssproto_TEACHER_SYSTEM_send(int fd,char *data);	// µ¼Ê¦¹¦ÄÜ
+void lssproto_TEACHER_SYSTEM_send(int fd,char *data);	// å¯¼å¸ˆåŠŸèƒ½
 void lssproto_TEACHER_SYSTEM_recv(int fd,char *data);
 #endif
 
@@ -455,28 +455,28 @@ void lssproto_S2_recv(int fd,char *data);
 #endif
 
 #ifdef _ITEM_FIREWORK
-void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum);	// ÑÌ»ğ¹¦ÄÜ
+void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum);	// çƒŸç«åŠŸèƒ½
 #endif
 #ifdef _PET_ITEM
-void lssproto_PetItemEquip_send(int fd, int nGx, int nGy, int nPetNo, int nItemNo, int nDestNO);	// ³èÎï×°±¸¹¦ÄÜ
+void lssproto_PetItemEquip_send(int fd, int nGx, int nGy, int nPetNo, int nItemNo, int nDestNO);	// å® ç‰©è£…å¤‡åŠŸèƒ½
 #endif
 #ifdef _THEATER
 void lssproto_TheaterData_recv(int fd, char *pData);
 #endif
 #ifdef _MOVE_SCREEN
-void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY);	// client ÒÆ¶¯Ó«Ä»
+void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY);	// client ç§»åŠ¨è§å¹•
 #endif
 #ifdef _GET_HOSTNAME
 void lssproto_HostName_send(int fd);
 #endif
 
 #ifdef _NPC_MAGICCARD
-void lssproto_MagiccardAction_recv(int fd, char *data);	//Ä§·¨ÅÆ¹¦ÄÜ
+void lssproto_MagiccardAction_recv(int fd, char *data);	//é­”æ³•ç‰ŒåŠŸèƒ½
 void lssproto_MagiccardDamage_recv(int fd, int position , int damage , int offsetx, int offsety);
 #endif
 
 #ifdef  _NPC_DANCE
-void lssproto_DancemanOption_recv(int fd, int option );	//¶¯Ò»¶¯×´Ì¬
+void lssproto_DancemanOption_recv(int fd, int option );	//åŠ¨ä¸€åŠ¨çŠ¶æ€
 #endif
 
 

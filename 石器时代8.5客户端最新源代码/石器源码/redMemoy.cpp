@@ -1,4 +1,4 @@
-#include "systeminc\version.h"
+ï»¿#include "systeminc\version.h"
 #include "systeminc/system.h"
 #include "redMemoy.h"
 #ifdef _RED_MEMOY_
@@ -30,11 +30,11 @@ void RedMemoyCall()
 		if(TimeGetTime() < redMemoy.time){
 			char str[128];
 			int id;
-			sprintf(str,"[%s]Íæ¼Ò %s ·ÖÏíºì°ü%d½ð±Ò£¡",
-				redMemoy.type?"È«·þ":"¼Ò×å",redMemoy.name,redMemoy.vip);
-			StockDispBuffer(400, 70, DISP_PRIO_ITEM, 60001, 1);//µ×Í¼
+			sprintf(str,"[%s]çŽ©å®¶ %s åˆ†äº«çº¢åŒ…%dé‡‘å¸ï¼",
+				redMemoy.type?"å…¨æœ":"å®¶æ—",redMemoy.name,redMemoy.vip);
+			StockDispBuffer(400, 70, DISP_PRIO_ITEM, 60001, 1);//åº•å›¾
 			if(MakeHitBox(630-16,75-16,630+16,75+16,DISP_PRIO_ITEM+2)==1){
-				StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60003, 1);//°´Å¥
+				StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60003, 1);//æŒ‰é’®
 				if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 					redMemoy.flg=0;
 					extern void lssproto_redMemoy_send(int fd,int index,char *str);
@@ -42,7 +42,7 @@ void RedMemoyCall()
 					sprintf(str,"%d",redMemoy.index);
 					lssproto_redMemoy_send(sockfd,2,str);
 				}
-			}else StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60002, 1);//°´Å¥
+			}else StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60002, 1);//æŒ‰é’®
 			static int colorindex = 0;
 
 			if(TimeGetTime() > redMemoy.colortime){

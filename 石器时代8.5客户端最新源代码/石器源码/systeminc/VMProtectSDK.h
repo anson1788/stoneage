@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifdef _WIN64
 	#pragma comment(lib, "VMProtectSDK64.lib")

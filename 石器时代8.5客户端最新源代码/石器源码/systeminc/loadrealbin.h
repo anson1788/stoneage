@@ -1,4 +1,4 @@
-#ifndef _LOADREALBIN_H_
+ï»¿#ifndef _LOADREALBIN_H_
 #define _LOADREALBIN_H_
 #include "directdraw.h"
 void initAutoMapColor( char * );
@@ -39,30 +39,30 @@ int realGetSoundEffect(U4 GraphicNo);
 int realGetWalkSoundEffect(U4 GraphicNo);
 int realGetBitmapNo( int num );
 typedef struct {
-	unsigned char atari_x,atari_y;	//¢†??
-	unsigned short hit;				// ¿É·ñĞĞ×ß //¨÷???
+	unsigned char atari_x,atari_y;	//î•«??
+	unsigned short hit;				// å¯å¦è¡Œèµ° //îŸš???
 	short height;				//?????
 	short broken;				//????
-	short indamage;				//¦VHP????
-	short outdamage;			//üÒ????
-	short inpoison;				//¦V¥€
-	short innumb;				//¦V???
-	short inquiet;				//¦V£œ?
-	short instone;				//¦Vşğ?
-	short indark;				//¦V??
-	short inconfuse;			//¦V??
-	short outpoison;			//üÒ¥€
-	short outnumb;				//üÒ??
-	short outquiet;				//üÒ£œ?
-	short outstone;				//üÒşğ?
-	short outdark;				//üÒ??
-	short outconfuse;			//üÒ??
-	short effect1;				//?????1??ş????????ş?????
-	short effect2;				//?????2?¦V???????ş?????
+	short indamage;				//îš¼HP????
+	short outdamage;			//î????
+	short inpoison;				//îš¼îš…
+	short innumb;				//îš¼???
+	short inquiet;				//îš¼î—¡?
+	short instone;				//îš¼î’·?
+	short indark;				//îš¼??
+	short inconfuse;			//îš¼??
+	short outpoison;			//îîš…
+	short outnumb;				//î??
+	short outquiet;				//îî—¡?
+	short outstone;				//îî’·?
+	short outdark;				//î??
+	short outconfuse;			//î??
+	short effect1;				//?????1??î¡¡????????î¡¡?????
+	short effect2;				//?????2?îš¼???????î¡¡?????
 	unsigned short damy_a;
 	unsigned short damy_b;
 	unsigned short damy_c;
-	unsigned int bmpnumber;		//??§k?
+	unsigned int bmpnumber;		//??îœ±?
 } MAP_ATTR;
 
 struct ADRNBIN{
@@ -78,17 +78,17 @@ struct ADRNBIN{
 
 #ifdef _READ16BITBMP
 struct AddressBin_s{
-	unsigned int bitmapno;			// Í¼ºÅ
-	unsigned int adder;					// ×ÊÁÏÔÚÍ¼ËØµµÀïµÄÆğÊ¼Î»Ö·
-	unsigned int palSize;				// É«ÅÌ×ÊÁÏ´óĞ¡
-	unsigned int size;					// Ò»±Ê×ÊÁÏµÄ´óĞ¡
-	unsigned int alpha_size;		// alpha_size²»Îª0±íÊ¾ÔÚÍ¼ËØ×ÊÁÏºóÁ¬×ÅÊÇalpha×ÊÁÏ,alpha_size¾ÍÊÇalpha×ÊÁÏµÄ´óĞ¡
-															// Èç¹ûalpha_sizeÎª0±íÊ¾Ã»ÓĞ´øalpha×ÊÁÏ
+	unsigned int bitmapno;			// å›¾å·
+	unsigned int adder;					// èµ„æ–™åœ¨å›¾ç´ æ¡£é‡Œçš„èµ·å§‹ä½å€
+	unsigned int palSize;				// è‰²ç›˜èµ„æ–™å¤§å°
+	unsigned int size;					// ä¸€ç¬”èµ„æ–™çš„å¤§å°
+	unsigned int alpha_size;		// alpha_sizeä¸ä¸º0è¡¨ç¤ºåœ¨å›¾ç´ èµ„æ–™åè¿ç€æ˜¯alphaèµ„æ–™,alpha_sizeå°±æ˜¯alphaèµ„æ–™çš„å¤§å°
+															// å¦‚æœalpha_sizeä¸º0è¡¨ç¤ºæ²¡æœ‰å¸¦alphaèµ„æ–™
 	int	xoffset;
 	int	yoffset;
-	unsigned int width;					// Í¼¿í
-	unsigned int height;				// Í¼¸ß
-	unsigned int staturated;		// ÊÇ·ñÓÃ±¥ºÍĞ§¹û
+	unsigned int width;					// å›¾å®½
+	unsigned int height;				// å›¾é«˜
+	unsigned int staturated;		// æ˜¯å¦ç”¨é¥±å’Œæ•ˆæœ
 };
 #endif
 
@@ -130,23 +130,23 @@ static DWORD FontPal[FONT_PAL_NUM]={
 };
 
 /*
-BOOL InitRealbinFileOpen( char *realbinfilename, char *addrbinfilename);	//³õÊ¼»¯realbinµÄ×ÊÁÏ²¢ÅäÖÃÏà¹ØµÄ¼ÇÒäÌå
-//void SetCurFrame();									//ÀÛ¼ÓCurFrameµÄcounter£¬ÇëÃ¿¸öframeÖ´ĞĞÒ»´Î
-void CacheRLU( int howlong);							//ÊÍ·ÅÌ«¾ÃÃ»Ê¹ÓÃµÄÍ¼µµ¼ÇÒäÌå
-BOOL realGetNo( DWORD CharAction, DWORD *GraphicNo);	//´Óchar action×ª³ÉÍ¼µµ±àºÅ
-DWORD realGetNo2( DWORD bnum);							//´Óbnum×ª³ÉÍ¼µµ±àºÅ
-BOOL realIsValid( DWORD CharAction);					//¼ì²éÍ¼ºÅÊÇ·ñÓĞĞ§
-DWORD realGetBitmapNo( DWORD num);						//´ÓÍ¼µµ±àºÅ×ª»Øbnum
-BOOL realGetPos( DWORD GraphicNo, short *x, short *y);	//È¡»ØGraphicNoµÄxºÍy offset
-BOOL realGetWH( DWORD GraphicNo, short *w, short *h);	//È¡»ØGraphicNoµÄ¿íºÍ¸ß
-BOOL realGetHitPoints( DWORD GraphicNo, short *HitX, short *HitY);	//È¡»ØGraphicNoµÄÊµ¼Ê¿íºÍ¸ß
-BOOL realGetPrioType( DWORD GraphicNo , short *prioType);	//È¡»ØGraphicNoµÄÓÅÏÈÈ¨ÖÖÀà
-BOOL realGetHitFlag( DWORD GraphicNo, short *Hit);			//È¡»ØGraphicNoµÄHit
-BOOL realGetHeightFlag( DWORD GraphicNo, short *Height);	//È¡»ØGraphicNoÊÇ·ñÓĞ¸ß¶È
-int realGetSoundEffect( DWORD GraphicNo);					//È¡»ØGraphicNoµÄ»·¾³Òô
-int realGetWalkSoundEffect( DWORD GraphicNo);				//È¡»ØGraphicNoµÄ½Å²½Éù
+BOOL InitRealbinFileOpen( char *realbinfilename, char *addrbinfilename);	//åˆå§‹åŒ–realbinçš„èµ„æ–™å¹¶é…ç½®ç›¸å…³çš„è®°å¿†ä½“
+//void SetCurFrame();									//ç´¯åŠ CurFrameçš„counterï¼Œè¯·æ¯ä¸ªframeæ‰§è¡Œä¸€æ¬¡
+void CacheRLU( int howlong);							//é‡Šæ”¾å¤ªä¹…æ²¡ä½¿ç”¨çš„å›¾æ¡£è®°å¿†ä½“
+BOOL realGetNo( DWORD CharAction, DWORD *GraphicNo);	//ä»char actionè½¬æˆå›¾æ¡£ç¼–å·
+DWORD realGetNo2( DWORD bnum);							//ä»bnumè½¬æˆå›¾æ¡£ç¼–å·
+BOOL realIsValid( DWORD CharAction);					//æ£€æŸ¥å›¾å·æ˜¯å¦æœ‰æ•ˆ
+DWORD realGetBitmapNo( DWORD num);						//ä»å›¾æ¡£ç¼–å·è½¬å›bnum
+BOOL realGetPos( DWORD GraphicNo, short *x, short *y);	//å–å›GraphicNoçš„xå’Œy offset
+BOOL realGetWH( DWORD GraphicNo, short *w, short *h);	//å–å›GraphicNoçš„å®½å’Œé«˜
+BOOL realGetHitPoints( DWORD GraphicNo, short *HitX, short *HitY);	//å–å›GraphicNoçš„å®é™…å®½å’Œé«˜
+BOOL realGetPrioType( DWORD GraphicNo , short *prioType);	//å–å›GraphicNoçš„ä¼˜å…ˆæƒç§ç±»
+BOOL realGetHitFlag( DWORD GraphicNo, short *Hit);			//å–å›GraphicNoçš„Hit
+BOOL realGetHeightFlag( DWORD GraphicNo, short *Height);	//å–å›GraphicNoæ˜¯å¦æœ‰é«˜åº¦
+int realGetSoundEffect( DWORD GraphicNo);					//å–å›GraphicNoçš„ç¯å¢ƒéŸ³
+int realGetWalkSoundEffect( DWORD GraphicNo);				//å–å›GraphicNoçš„è„šæ­¥å£°
 LPBYTE ReadRealBin( DWORD GraphicNo);
-//»­³örealbin
+//ç”»å‡ºrealbin
 BOOL DrawScaleImage( DWORD GraphicNo, int screenx, int screeny, int screenw, int screenh, LPWORD dest,
 					int destw, int desth, int pitch, LPWORD pal);
 */

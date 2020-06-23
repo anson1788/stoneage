@@ -1,13 +1,13 @@
-/************************/
+ï»¿/************************/
 /*	pattern.cpp			*/
 /************************/
 
 /*	ENT	:   ACTION *a0 , 
-		:	???????¢L¥T???????????¢L¥T??
+		:	???????î”²î™š???????????î”²î™š??
 		:	????????????????????????????
 
-	RET	:   ?£º????????
-		:   ?£º?????
+	RET	:   ?ï¼š????????
+		:   ?ï¼š?????
 */
 #include "../systeminc/version.h"
 #include 	"../systeminc/system.h"
@@ -30,7 +30,7 @@ void picture_play( ACTION *a0 )
 		int picture3 = ((((a0->picture)&0x0000ff00)>>8 )&0x000000ff);
 		int picture4 = (  (a0->picture)&0x000000ff );
 		//a0->anim_no = ANIM_WALK;
-		if( picture1 == 1 ){//²»¶Ï±äÉí
+		if( picture1 == 1 ){//ä¸æ–­å˜èº«
 			if( a0->anim_chr_no  == 101936 ){
 				a0->anim_chr_no = 101863;
 				return;
@@ -44,7 +44,7 @@ void picture_play( ACTION *a0 )
 			if(a0->picturetemp == 9 )
 				a0->picturetemp = 0;
 		}
-		else if( picture1 == 2 ){//±äÉíÓÚÄ³¸öÍ¼ºÅ
+		else if( picture1 == 2 ){//å˜èº«äºæŸä¸ªå›¾å·
 			if( a0->anim_chr_no != pictable[picture2] ){ 
 				if( a0->anim_chr_no  == 101863 )
 					a0->anim_chr_no = pictable[a0->picturetemp];
@@ -52,7 +52,7 @@ void picture_play( ACTION *a0 )
 					a0->anim_chr_no = 101863;
 			}
 			else{
-				if( a0->anim_no == 0 )//Éè¶¨¶¯×÷
+				if( a0->anim_no == 0 )//è®¾å®šåŠ¨ä½œ
 					a0->anim_no = 3;
 				else
 					a0->anim_no = 0;
@@ -74,8 +74,8 @@ void picture_play( ACTION *a0 )
 #endif
 
 /*----------  ?????????  ----------*/
-// Return 1:²¥ÍêÁË´Ë¶¯»­( ÎŞÖØ¸²²¥·ÅµÄ×´¿öÏÂ )
-// Return 0:²¥·Å´Ë¶¯»­ÖĞ
+// Return 1:æ’­å®Œäº†æ­¤åŠ¨ç”»( æ— é‡è¦†æ’­æ”¾çš„çŠ¶å†µä¸‹ )
+// Return 0:æ’­æ”¾æ­¤åŠ¨ç”»ä¸­
 int pattern( ACTION *a0, int anim_spd, int loop_flg)
 {
 	ANIMLIST	*ptAnimlist;
@@ -97,37 +97,37 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 	if(ATR_CHR_ACT_OLD(a0) != ATR_CHR_ACT(a0) ||
 	ATR_CHR_ANG(a0) != ATR_CHR_ANG_OLD(a0) ||
 	ATR_CHR_NO(a0) != ATR_CHR_NO_OLD(a0)){
-		ATR_CHR_NO_OLD(a0) = ATR_CHR_NO(a0);		/*ıø????????????*/
-		ATR_CHR_ACT_OLD(a0) = ATR_CHR_ACT(a0);		/*ıø??¥h????*/
-		ATR_CHR_ANG_OLD(a0) = ATR_CHR_ANG(a0);		/*ıø???????*/
-		ATR_CHR_TIM(a0) = 0;//frame counterÉèÎªÒ»
-		ATR_CHR_CNT(a0) = 0;//Õâ¸ö¶¯»­µÄµÚ¼¸ÕÅÍ¼
+		ATR_CHR_NO_OLD(a0) = ATR_CHR_NO(a0);		/*î‘¡????????????*/
+		ATR_CHR_ACT_OLD(a0) = ATR_CHR_ACT(a0);		/*î‘¡??î™®????*/
+		ATR_CHR_ANG_OLD(a0) = ATR_CHR_ANG(a0);		/*î‘¡???????*/
+		ATR_CHR_TIM(a0) = 0;//frame counterè®¾ä¸ºä¸€
+		ATR_CHR_CNT(a0) = 0;//è¿™ä¸ªåŠ¨ç”»çš„ç¬¬å‡ å¼ å›¾
 	}
 	if(ATR_CHR_TIM(a0)){
-		ATR_CHR_TIM(a0)--;	//frame counter¼õÒ»
+		ATR_CHR_TIM(a0)--;	//frame counterå‡ä¸€
 		return 0;
 	}
 	if(ATR_CHR_NO(a0) <= CG_INVISIBLE){
-		ATR_PAT_NO(a0) = 0;	//Ö¸¶¨ÎªµÚ0ÕÅÍ¼
+		ATR_PAT_NO(a0) = 0;	//æŒ‡å®šä¸ºç¬¬0å¼ å›¾
 #ifdef _NPC_PICTURE
 		picture_play(a0);
 #endif
 		return 0;
 	}
-	if(ATR_CHR_NO(a0) < SPRSTART){	//²»ÊÇsprite
+	if(ATR_CHR_NO(a0) < SPRSTART){	//ä¸æ˜¯sprite
 	 	realGetNo( ATR_CHR_NO(a0) , (U4 *)&BmpNo );
 		realGetPos( BmpNo  , &dx, &dy);
-		ATR_PAT_NO(a0) = BmpNo;		//BMPµÄÍ¼µµ±àºÅ
+		ATR_PAT_NO(a0) = BmpNo;		//BMPçš„å›¾æ¡£ç¼–å·
 #ifdef _FIX_CG_ATR_ICON
 		if (ATR_CHR_NO(a0)>= CG_ATR_ICON_EARTH_BATTLE && ATR_CHR_NO(a0)<=CG_ATR_ICON_WIND_BATTLE){
-			ATR_CHR_H_POS(a0) = dx - 20;		//X×ù±ê
+			ATR_CHR_H_POS(a0) = dx - 20;		//Xåº§æ ‡
 		}else{
-			ATR_CHR_H_POS(a0) = dx;		//X×ù±ê
+			ATR_CHR_H_POS(a0) = dx;		//Xåº§æ ‡
 		}
 #else
-		ATR_CHR_H_POS(a0) = dx;		//X×ù±ê
+		ATR_CHR_H_POS(a0) = dx;		//Xåº§æ ‡
 #endif
-		ATR_CHR_V_POS(a0) = dy;		//Y×ù±ê
+		ATR_CHR_V_POS(a0) = dy;		//Yåº§æ ‡
 		ATR_CHR_TIM(a0)=0x7fffffff;
 		//cary 
 		if( ATR_CHR_ACT(a0) == ANIM_ATTACK && ATR_CHR_CNT(a0) == 0){
@@ -157,7 +157,7 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 #ifdef _NPC_PICTURE
 		picture_play(a0);
 #endif
-		return 0;		//³¬³öspriteµÄ·¶Î§
+		return 0;		//è¶…å‡ºspriteçš„èŒƒå›´
 	}
 	chrNo = ATR_CHR_NO(a0) - SPRSTART;
 	ptAnimlist = SpriteData[chrNo].ptAnimlist;
@@ -165,9 +165,9 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 #ifdef _NPC_PICTURE
 		picture_play(a0);
 #endif
-		return 0;	//ÎŞ¶¯»­
+		return 0;	//æ— åŠ¨ç”»
 	}
-	//Ñ¡ÔñÏëÒªµÄ·½ÏòºÍ¶¯»­
+	//é€‰æ‹©æƒ³è¦çš„æ–¹å‘å’ŒåŠ¨ç”»
 	for(i=0 ; i < SpriteData[chrNo].animSize; i++){
 		if( ATR_CHR_ANG(a0) == ptAnimlist[i].dir && ptAnimlist[i].no == ATR_CHR_ACT(a0) )
 			break;
@@ -185,7 +185,7 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 		}
 	}
 	ptFramelist = ptAnimlist[i].ptFramelist;
-	if(anim_spd)	//ÓĞÖ¸¶¨¶¯»­ËÙ¶È
+	if(anim_spd)	//æœ‰æŒ‡å®šåŠ¨ç”»é€Ÿåº¦
 		ATR_CHR_TIM(a0) = anim_spd;
 	else
 		ATR_CHR_TIM(a0) = ptAnimlist[i].dtAnim;
@@ -196,26 +196,26 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 			|| (((a0->picture&0xff000000)>>24) & 0x000000ff) == 3
 			|| ( (((a0->picture&&0xff000000)>>24) & 0x000000ff) == 2 
 			&& ( a0->anim_chr_no != pictable[(((a0->picture&0x00ff0000)>>16)&0x000000ff)] ) ) )
-			ATR_CHR_TIM(a0) = 1;//±äÉínpcËÙ¶Èµ÷×î¿ì
+			ATR_CHR_TIM(a0) = 1;//å˜èº«npcé€Ÿåº¦è°ƒæœ€å¿«
 		*/
 		if( a0->anim_chr_no != pictable[(((a0->picture&0x00ff0000)>>16)&0x000000ff)] 
 			|| (((a0->picture&0xff000000)>>24) & 0x000000ff) == 1 
 			|| (((a0->picture&0xff000000)>>24) & 0x000000ff) == 3 )
 			if( a0->anim_chr_no != 101805 && a0->anim_chr_no != 101858 && a0->anim_chr_no != 101936 )
-				ATR_CHR_TIM(a0) = 1;//±äÉínpcËÙ¶Èµ÷×î¿ì
+				ATR_CHR_TIM(a0) = 1;//å˜èº«npcé€Ÿåº¦è°ƒæœ€å¿«
 	}
 #endif
 	if((U4)ATR_CHR_CNT(a0) >= ptAnimlist[i].frameCnt){	//????????????
 #ifdef _NPC_PICTURE	
 		picture_play(a0);
 #endif
-		if(loop_flg == ANM_NO_LOOP){		//???ş†??
+		if(loop_flg == ANM_NO_LOOP){		//???î¡Š??
 			ATR_CHR_TIM(a0) = 255;
-			return 1;		//???????ü¬?
+			return 1;		//???????î·?
 		} else
-			ATR_CHR_CNT(a0) = 0;		//¡I¥d???
+			ATR_CHR_CNT(a0) = 0;		//î“î™ª???
 	}
-	//????şØ??
+	//????î’Ÿ??
 	if( ptFramelist[ATR_CHR_CNT(a0)].SoundNo != 0 ){
 		if(ptFramelist[ATR_CHR_CNT(a0)].SoundNo < 10000)
 			play_se( ptFramelist[ATR_CHR_CNT(a0)].SoundNo, ATR_H_POS(a0), ATR_V_POS(a0) );
@@ -228,40 +228,40 @@ int pattern( ACTION *a0, int anim_spd, int loop_flg)
 			int soundnum = 0;
 			switch(ATR_PAT_NO(a0)){
 			case 156+OLD_GRAPHICS_START:
-				soundnum = 390;break;//Ë®½á½ç390
+				soundnum = 390;break;//æ°´ç»“ç•Œ390
 			case 193+OLD_GRAPHICS_START:
-				soundnum = 390;break;//Ë®½á½ç390
+				soundnum = 390;break;//æ°´ç»“ç•Œ390
 			case 304+OLD_GRAPHICS_START:
-				soundnum = 327;break;//µØ½á½ç
+				soundnum = 327;break;//åœ°ç»“ç•Œ
 			case 341+OLD_GRAPHICS_START:
-				soundnum = 327;break;//µØ½á½ç
+				soundnum = 327;break;//åœ°ç»“ç•Œ
 			case 231+OLD_GRAPHICS_START:
-				soundnum = 395;break;//»ğ½á½ç
+				soundnum = 395;break;//ç«ç»“ç•Œ
 			case 268+OLD_GRAPHICS_START:
-				soundnum = 268;break;//»ğ½á½ç
+				soundnum = 268;break;//ç«ç»“ç•Œ
 			case 380+OLD_GRAPHICS_START:
-				soundnum = 154;break;//·ç½á½ç
+				soundnum = 154;break;//é£ç»“ç•Œ
 			case 417+OLD_GRAPHICS_START:
-				soundnum = 154;break;//·ç½á½ç	
+				soundnum = 154;break;//é£ç»“ç•Œ	
 			case 75+OLD_GRAPHICS_START:
-				soundnum = 324;break;//ÆÆ½á½ç
+				soundnum = 324;break;//ç ´ç»“ç•Œ
 			case 97+OLD_GRAPHICS_START:
-				soundnum = 324;break;//ÆÆ½á½ç
+				soundnum = 324;break;//ç ´ç»“ç•Œ
 			case 117+OLD_GRAPHICS_START:
-				soundnum = 385;break;//ºÅÕÙ×ÔÈ»
+				soundnum = 385;break;//å·å¬è‡ªç„¶
 			case 137+OLD_GRAPHICS_START:
-				soundnum = 385;break;//ºÅÕÙ×ÔÈ»	
+				soundnum = 385;break;//å·å¬è‡ªç„¶	
 			case 60+OLD_GRAPHICS_START:
-				soundnum = 388;break;//×ÔÈ»ÍşÄÜ	
+				soundnum = 388;break;//è‡ªç„¶å¨èƒ½	
 			}
 			play_se(soundnum,ATR_H_POS(a0),ATR_V_POS(a0));
 		}
 	}
 #endif
-	ATR_PAT_NO(a0) = ptFramelist[ATR_CHR_CNT(a0)].BmpNo;			//???§k????
-	realGetPos(ptFramelist[ATR_CHR_CNT(a0)].BmpNo, &dx, &dy);		//??????????¤õûè?üÒ?
-	ATR_CHR_H_POS(a0) = ptFramelist[ATR_CHR_CNT(a0)].PosX + dx;		//??¤õ????????
-	ATR_CHR_V_POS(a0) = ptFramelist[ATR_CHR_CNT(a0)].PosY + dy;		//??¤õ????????
+	ATR_PAT_NO(a0) = ptFramelist[ATR_CHR_CNT(a0)].BmpNo;			//???îœ±????
+	realGetPos(ptFramelist[ATR_CHR_CNT(a0)].BmpNo, &dx, &dy);		//??????????î³î•?î?
+	ATR_CHR_H_POS(a0) = ptFramelist[ATR_CHR_CNT(a0)].PosX + dx;		//??î³????????
+	ATR_CHR_V_POS(a0) = ptFramelist[ATR_CHR_CNT(a0)].PosY + dy;		//??î³????????
 	ATR_CHR_CNT(a0)++;
 	ATR_CHR_TIM(a0)--;
 	return 0;

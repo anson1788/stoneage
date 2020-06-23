@@ -1,30 +1,30 @@
-/************************/
+ï»¿/************************/
 /*	sprmgr.h			*/
 /************************/
 #ifndef _SPRMGR_H_
 #define _SPRMGR_H_
 #include <ddraw.h>
 #ifndef _READ16BITBMP
-	//¹ØºóÓÃ _READ16BITBMPVARIABLES µÄ²ÎÊıÀ´´úÌæ
-	#define OLD_GRAPHICS_START	1000000		// Ô­±¾realbinÍ¼µÄ×î´óÁ¿
-	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START	// ×î´óÍ¼Á¿// ????¢†?
+	//å…³åç”¨ _READ16BITBMPVARIABLES çš„å‚æ•°æ¥ä»£æ›¿
+	#define OLD_GRAPHICS_START	1000000		// åŸæœ¬realbinå›¾çš„æœ€å¤§é‡
+	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START	// æœ€å¤§å›¾é‡// ????î•«?
 #else
-	#define MAX_GRAPHICS_24		50000		// ¸ß²ÊÍ¼×î´óÍ¼Á¿
-	#define OLD_GRAPHICS_START	1000000		// Ô­±¾realbinÍ¼µÄ×î´óÁ¿
-	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START + MAX_GRAPHICS_24  // ×î´óÍ¼Á¿// ????¢†?
-	#define MAX_GRAPHICS_ALPHA	50000		// ¸ß²ÊÍ¼alphaÍ¨µÀ×î´óÍ¼Á¿
+	#define MAX_GRAPHICS_24		50000		// é«˜å½©å›¾æœ€å¤§å›¾é‡
+	#define OLD_GRAPHICS_START	1000000		// åŸæœ¬realbinå›¾çš„æœ€å¤§é‡
+	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START + MAX_GRAPHICS_24  // æœ€å¤§å›¾é‡// ????î•«?
+	#define MAX_GRAPHICS_ALPHA	50000		// é«˜å½©å›¾alphaé€šé“æœ€å¤§å›¾é‡
 #endif
 
-#ifdef _READ16BITBMPVARIABLES					//¹Ø _READ16BITBMP ºó»¹ĞëÒªµÄ²ÎÊı
-	#define MAX_GRAPHICS_24		50000		// ¸ß²ÊÍ¼×î´óÍ¼Á¿
-	#define OLD_GRAPHICS_START	500000		// Ô­±¾realbinÍ¼µÄ×î´óÁ¿
-	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START + MAX_GRAPHICS_24  // ×î´óÍ¼Á¿// ??
+#ifdef _READ16BITBMPVARIABLES					//å…³ _READ16BITBMP åè¿˜é¡»è¦çš„å‚æ•°
+	#define MAX_GRAPHICS_24		50000		// é«˜å½©å›¾æœ€å¤§å›¾é‡
+	#define OLD_GRAPHICS_START	500000		// åŸæœ¬realbinå›¾çš„æœ€å¤§é‡
+	#define MAX_GRAPHICS	 	OLD_GRAPHICS_START + MAX_GRAPHICS_24  // æœ€å¤§å›¾é‡// ??
 #endif
 
-#define	DEF_COLORKEY		0				//Ô¤ÉèÍ¸Ã÷É«// ¥aş‘ıè???ıè§k?
+#define	DEF_COLORKEY		0				//é¢„è®¾é€æ˜è‰²// î™§î¡•î‘‘???î‘‘îœ±?
 
-#define SURFACE_WIDTH   64 			//´æÍ¼ÓÃµÄsource face¿í//
-#define SURFACE_HEIGHT  48			//´æÍ¼ÓÃµÄsource face¸ß//
+#define SURFACE_WIDTH   64 			//å­˜å›¾ç”¨çš„source faceå®½//
+#define SURFACE_HEIGHT  48			//å­˜å›¾ç”¨çš„source faceé«˜//
 
 extern LPDIRECTDRAWSURFACE lpBattleSurface;
 #ifdef _READ16BITBMP
@@ -37,11 +37,11 @@ extern UINT SurfaceDate;
 struct surfaceInfo{
 	LPDIRECTDRAWSURFACE lpSurface;
 #ifdef _CACHE_SURFACE_
-	char *lpCacheData;				//»º³åÊı¾İ
-	int palNo;						//µ±Ç°µ÷É«°å
-	int sizeX;						//»æÖÆ¿í¶È
-	int sizeY;						//»æÖÆ¸ß¶È
-	BOOL colordepth;					//Ê¹ÓÃµ÷É«°å
+	char *lpCacheData;				//ç¼“å†²æ•°æ®
+	int palNo;						//å½“å‰è°ƒè‰²æ¿
+	int sizeX;						//ç»˜åˆ¶å®½åº¦
+	int sizeY;						//ç»˜åˆ¶é«˜åº¦
+	BOOL colordepth;					//ä½¿ç”¨è°ƒè‰²æ¿
 #endif
 #ifdef _READ16BITBMP
 	BYTE *lpAlphaData;
@@ -49,10 +49,10 @@ struct surfaceInfo{
 #endif
 #ifdef _NEW_COLOR_
 	BOOL useAlpha;
-	BYTE *lpAlphaData;				//16Î»·Ö±æÂÊÏÂ±£´æ°ëÍ¸Ã÷ÏñËØ
+	BYTE *lpAlphaData;				//16ä½åˆ†è¾¨ç‡ä¸‹ä¿å­˜åŠé€æ˜åƒç´ 
 #endif
-	int	bmpNo;						//Í¼µÄ±àºÅ,-1 ´ú±ísource faceÎª¿ÕµÄ// ??????§k?
-	UINT date;						//¼ÇÂ¼Õâ¸ösource faceÊ¹ÓÃµÄÈÕÆÚ
+	int	bmpNo;						//å›¾çš„ç¼–å·,-1 ä»£è¡¨source faceä¸ºç©ºçš„// ??????îœ±?
+	UINT date;						//è®°å½•è¿™ä¸ªsource faceä½¿ç”¨çš„æ—¥æœŸ
 	short offsetX;					
 	short offsetY;					
 	surfaceInfo	*pNext;				

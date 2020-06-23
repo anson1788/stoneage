@@ -1,4 +1,4 @@
-#ifndef	ENCRYPTCLIENT_H
+ï»¿#ifndef	ENCRYPTCLIENT_H
 #define ENCRYPTCLIENT_H
 
 #include <stdlib.h>
@@ -22,7 +22,7 @@ protected:
 	public:
 		CEncryptCode()
 		{
-		//* ÓëÏÂÃæELSEËã·¨ÏàÍ¬£¬Ö»Îª¼ÓÇ¿¸´ÔÓĞÔ£º)
+		//* ä¸ä¸‹é¢ELSEç®—æ³•ç›¸åŒï¼Œåªä¸ºåŠ å¼ºå¤æ‚æ€§ï¼š)
 				unsigned char	nCode = fst1;
 				int i;
 				for(i = 0; i < 256; i++)
@@ -44,7 +44,7 @@ protected:
 		}
 		unsigned char m_bufEncrypt1[256];
 		unsigned char m_bufEncrypt2[256];
-	}m_cGlobalEncrypt;		//??? Ó¦¸Ä³É¾²Ì¬¹²ÏíµÄ³ÉÔ±¶ÔÏó£¬ÒÔ½ÚÔ¼×ÊÔ´
+	}m_cGlobalEncrypt;		//??? åº”æ”¹æˆé™æ€å…±äº«çš„æˆå‘˜å¯¹è±¡ï¼Œä»¥èŠ‚çº¦èµ„æº
 };
 
 template <unsigned char a1, unsigned char b1, unsigned char c1, unsigned char fst1, 
@@ -69,7 +69,7 @@ inline void CEncryptClient<a1, b1, c1, fst1, a2, b2, c2, fst2>::Encrypt(unsigned
 
 		if(!bMove)
 		{
-			// »Ö¸´Ö¸Õë
+			// æ¢å¤æŒ‡é’ˆ
 			m_nPos1 = nOldPos1;
 			m_nPos2 = nOldPos2;
 		}

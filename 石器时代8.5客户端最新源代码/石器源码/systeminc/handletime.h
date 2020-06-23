@@ -1,4 +1,4 @@
-#ifndef __HANDLETIME_H__
+Ôªø#ifndef __HANDLETIME_H__
 #define __HANDLETIME_H__
 
 //#undef EXTERN
@@ -31,9 +31,9 @@
 #endif
 
 /*??????HiO?LS?????*/
-/*  ˚¬??150(ß∆)*60=9000•¯=750*12 ?   LS1¶T   */
-/*  LS1200??  LS1¶T   */
-/*  LS100¶T?   LS1¶g   */
+/*  ÓÉΩ??150(Â∏å)*60=9000‰ºÅ=750*12 ?   LS1Âêã   */
+/*  LS1200??  LS1Âêã   */
+/*  LS100Âêã?   LS1Â§ô   */
 typedef struct tagLSTIME
 {
 	int year;
@@ -55,13 +55,13 @@ extern LSTIME SaTime;
 extern long serverTime;
 extern long FirstTime; //the second
 extern long clientTime; //the third
-extern int SaTimeZoneNo;	// ?????¢q
-extern BOOL TimeZonePalChangeFlag; // ??¢q??????????????
+extern int SaTimeZoneNo;	// ?????‚îº
+extern BOOL TimeZonePalChangeFlag; // ??‚îº??????????????
 
 void RealTimeToSATime( LSTIME *lstime );
 /*void LSTimeToRealTime( LSTIME *lstime, long *t);*/
 LSTIME_SECTION getLSTime (LSTIME *lstime);
-// ??¢q??????????? ***********************************/
+// ??‚îº??????????? ***********************************/
 void TimeZoneProc( void );
 
 #endif  /*__HANDLETIME_H__*/

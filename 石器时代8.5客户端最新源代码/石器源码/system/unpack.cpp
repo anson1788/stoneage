@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include "../systeminc/version.h"
@@ -220,7 +220,7 @@ unsigned char *encoder( unsigned char *buf, unsigned char **disBuf,
 		l = header->size;
 	}
 	else
-	// ?üÎ??????
+	// ?î†¦??????
 	{
 		header->compressFlag = 0;
 		header->size = (int)wBuf + width * height + sizeof( RD_HEADER );
@@ -258,7 +258,7 @@ unsigned char *decoder( unsigned char *buf, unsigned char **disBuf,
 	}
 	width  = header->width;
 	height = header->height;
-	if( header->compressFlag == 0 ){//Ã»¼ÓÃÜ
+	if( header->compressFlag == 0 ){//ç¾¶æ¨“èº‡
 		wBuf1 = wBuf;
 		buf1 = buf+sizeof( RD_HEADER );
 		el = width * height;
@@ -282,7 +282,7 @@ unsigned char *decoder( unsigned char *buf, unsigned char **disBuf,
 		}
 		return wBuf;
 #endif
-	}else{//¼ÓÃÜ
+	}else{//æ¨“èº‡
 		eBuf = buf + header->size;
 		ewBuf = wBuf + width * height;
 		wBuf1 = wBuf;

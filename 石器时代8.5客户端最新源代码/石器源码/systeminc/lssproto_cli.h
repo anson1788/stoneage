@@ -1,4 +1,4 @@
-/* output by ./lsgen.perl 0.41 ( 1998 May)
+ï»¿/* output by ./lsgen.perl 0.41 ( 1998 May)
  * made Mon Jun 12 11:17:33 2000
  * user kawata
  * host unicorn.lan.titan.co.jp
@@ -145,7 +145,7 @@ void lssproto_TD_recv( int fd, char *data ) ;
 void old_lssproto_FM_send( int fd, char *data ) ;
 void lssproto_FM_recv( int fd, char *data ) ;
 #ifdef _FIX_DEL_MAP
-void lssproto_DM_send(int fd);  // WON ADD Íæ¼Ò³éµØÍ¼ËÍ¼àÓü
+void lssproto_DM_send(int fd);  // WON ADD ä¿™æ¨¡å–²è¯èŠå†æ½¼éƒœ
 #endif
 //#endif
 

@@ -1,2 +1,2 @@
-long TEAº”√‹(long* v, long n, long* k);
-long TEAΩ‚√‹(long* v, long n, long* k);
+Ôªølong TEAÊ®ìË∫á(long* v, long n, long* k);
+long TEAË≥§Ë∫á(long* v, long n, long* k);

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <winsock.h>
 #include <time.h>
 #include <tchar.h>
@@ -48,9 +48,9 @@ extern Landed PcLanded;
 #ifdef _STONDEBUG_
 extern int g_iMallocCount;
 #endif
-#define NETPROC_NOTSEND     0           // ????ıï??????
-#define NETPROC_SENDING     1           // ?ıï????¥N?
-#define NETPROC_RECEIVED    2           // ûõıï???
+#define NETPROC_NOTSEND     0           // ????î‘˜??????
+#define NETPROC_SENDING     1           // ?î‘˜????î™”?
+#define NETPROC_RECEIVED    2           // î¢î‘˜???
 #define SET_SENDTIME(time)	time = TimeGetTime()
 #define CHECK_TIMEOUT(time, timeout) \
 	if ((TimeGetTime() - (time)) > (timeout)) \
@@ -83,19 +83,19 @@ short newCharStatus = 0;
 short charLoginStatus = 0;
 short charLogoutStatus = 0;
 
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 extern struct gameserver gmsv[];
 #endif
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGSµÄĞÂÊÓ´°
+#ifdef _NEW_WGS_MSG				// WON ADD WGSçš„æ–°è§†çª—
 int ERROR_MESSAGE = 0;
 #endif
 
-// GAMESTATE_CHOOSESERVER????¡@¤e?????????ıÑ©?
+// GAMESTATE_CHOOSESERVER????î“†î˜‹?????????îºîŸ«?
 char gamestate_chooseserver_name[128];
-// GAMESTATE_LOGIN????¡@¤e?????????ıÑ©?
+// GAMESTATE_LOGIN????î“†î˜‹?????????îºîŸ«?
 char gamestate_login_charname[128];
-// GAMESTATE_DELETECHAR????¡@¤e?????????ıÑ©?
+// GAMESTATE_DELETECHAR????î“†î˜‹?????????îºîŸ«?
 char gamestate_deletechar_charname[128];
 char netprocErrmsg[1024];
 int netproc_sending = NETPROC_NOTSEND; 
@@ -126,15 +126,15 @@ void SortSkill()
 	{
 		switch (profession_skill[i].kind)
 		{
-		case 1: // Õ½¶·¼¼ÄÜ
+		case 1: // æˆ˜æ–—æŠ€èƒ½
 			BattleSkill[count1] = i;
 			count1++;
 			break;
-		case 2: // ¸¨Öú
+		case 2: // è¾…åŠ©
 			AssitSkill[count2] = i;
 			count2++;
 			break;
-		case 3: // ½ø½×
+		case 3: // è¿›é˜¶
 			AdvanceSkill[count3] = i;
 			count3++;
 			break;
@@ -144,7 +144,7 @@ void SortSkill()
 #endif
 
 #ifdef _CHANNEL_MODIFY
-// ´¢´æ¶Ô»°ÄÚÈİ
+// å‚¨å­˜å¯¹è¯å†…å®¹
 void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile);
 #endif
 void initConnectServer(void)
@@ -162,7 +162,7 @@ void LogToRecvdata2(char *data)
 		rfp = fopen(lssproto_readlogfilename, "a+");
 		if (rfp)
 		{
-			fprintf(rfp, "ÊÕµ½£º\t%s\n", data);
+			fprintf(rfp, "æ”¶åˆ°ï¼š\t%s\n", data);
 			fclose(rfp);
 		}
 	}
@@ -189,7 +189,7 @@ int ConnectWGS()
 			if (INVALID_SOCKET == (sockfd = socket(AF_INET, SOCK_STREAM, 0)))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 				return -3;
@@ -203,7 +203,7 @@ int ConnectWGS()
 				if (!(h = gethostbyname(szWGS)))
 				{
 #ifdef _AIDENGLU_
-					PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+					PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 					closesocket(sockfd);
@@ -220,7 +220,7 @@ int ConnectWGS()
 					closesocket(sockfd);
 					dwServer = NULL;
 #ifdef _AIDENGLU_
-					PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+					PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 					return -5;
@@ -233,7 +233,7 @@ int ConnectWGS()
 		else
 		{
 #ifdef _AIDENGLU_
-			PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+			PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 			strcpy(netprocErrmsg, NET_ERRMSG_SOCKLIBERROR);
 			return -1;
@@ -262,13 +262,13 @@ int ConnectWGS()
 		}
 #ifdef _OMIT_WGS
 		testtest();
-		connectServerCounter = 143;   // Ôİ¶¨
+		connectServerCounter = 143;   // æš‚å®š
 		iWGS = 7;
 #endif
 		if (FD_ISSET(sockfd, &efds))
 		{
 #ifdef _AIDENGLU_
-			PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+			PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
 			closesocket(sockfd);
@@ -289,7 +289,7 @@ int ConnectWGS()
 			if (INVALID_SOCKET == (sockfd = socket(AF_INET, SOCK_STREAM, 0)))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 				return -3;
@@ -303,7 +303,7 @@ int ConnectWGS()
 				if (!(h = gethostbyname(szCSIP)))
 				{
 #ifdef _AIDENGLU_
-					PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+					PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 					closesocket(sockfd);
@@ -320,7 +320,7 @@ int ConnectWGS()
 					closesocket(sockfd);
 					dwServer = NULL;
 #ifdef _AIDENGLU_
-					PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+					PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 					return -5;
@@ -355,7 +355,7 @@ int ConnectWGS()
 		if (FD_ISSET(sockfd, &efds))
 		{
 #ifdef _AIDENGLU_
-			PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+			PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
 			closesocket(sockfd);
@@ -422,7 +422,7 @@ int connectServer(void)
 		{
 			count = 0;
 #ifdef _AIDENGLU_
-			PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+			PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_BADNAME);
 			return -2;
@@ -432,7 +432,7 @@ int connectServer(void)
 		{
 			count = 0;
 #ifdef _AIDENGLU_
-			PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+			PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 			return -3;
@@ -461,7 +461,7 @@ int connectServer(void)
 			{
 				count = 0;
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 				closesocket(sockfd); 
@@ -480,7 +480,7 @@ int connectServer(void)
 				closesocket(sockfd);
 				dwServer = NULL;
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 				return -5;
@@ -524,7 +524,7 @@ int connectServer(void)
 					if (c_temp[0] == 'E')
 					{
 #ifdef _AIDENGLU_
-						PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+						PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 						count = 0;
 						sprintf_s(netprocErrmsg, c_temp + 1);
@@ -544,7 +544,7 @@ int connectServer(void)
 					else
 					{
 #ifdef _AIDENGLU_
-						PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+						PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 						count = 0;
 						sprintf_s(netprocErrmsg, NET_ERRMSG_VERSIONERROR);
@@ -555,7 +555,7 @@ int connectServer(void)
 				}else
 				{
 #ifdef _AIDENGLU_
-					PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+					PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 					count = 0;
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -568,7 +568,7 @@ int connectServer(void)
 			if (FD_ISSET(sockfd, &efds))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -583,7 +583,7 @@ int connectServer(void)
 			if(count >= 1500)
 			{
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -606,10 +606,10 @@ int connectServer(void)
 			CopyMemory(userPassword, szPassword, 32);
 			ecb_crypt("f;encor1c", userPassword, 32, DES_DECRYPT);
 
-			extern char »úÆ÷Êı¾İ[];
+			extern char æœºå™¨æ•°æ®[];
 			unsigned char tmp[256];
 			CHAR mac[64];
-			MD5( (const unsigned char*)»úÆ÷Êı¾İ, strlen(»úÆ÷Êı¾İ), tmp );
+			MD5( (const unsigned char*)æœºå™¨æ•°æ®, strlen(æœºå™¨æ•°æ®), tmp );
 			size_t leng = 0;
 			for (int i = 0; i < 16; i ++)
 			{
@@ -621,8 +621,8 @@ int connectServer(void)
 			CHAR token[64];
 			sprintf_s(token, "%s-%s",_SA_MAC_VERSION, mac);
 #ifdef _LOGIP_
-			extern char Íæ¼Ò¹«ÍøIP[];
-			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,Íæ¼Ò¹«ÍøIP);
+			extern char ç©å®¶å…¬ç½‘IP[];
+			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,ç©å®¶å…¬ç½‘IP);
 #else
 			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,"192.168.1.1");
 #endif
@@ -655,7 +655,7 @@ int connectServer(void)
 			else
 			{
 #ifdef _AIDENGLU_
-				PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime() + 2000;
+				PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				netproc_sending = NETPROC_NOTSEND;
@@ -696,11 +696,11 @@ void lssproto_ClientLogin_recv(int fd, char *result)
 			cleanupNetwork();
 			// ????????????
 			PaletteChange(DEF_PAL, 0);
-			// ?????ş?
+			// ?????î¡¡?
 			//cary
 			ChangeProc( PROC_ID_PASSWORD );
 			SubProcNo = 5;
-			// ??????úÇ
+			// ??????îŒ–
 			DeathAllAction();
 
 		}
@@ -714,8 +714,8 @@ void charListStart(void)
 	for (i = 0; i < MAXCHARACTER; i++)
 		resetCharacterList(i);
 #ifdef _MORECHARACTERS_
-	extern int ¶àÈËÎïµ±Ç°Ò³Êı;
-	¶àÈËÎïµ±Ç°Ò³Êı=0;
+	extern int å¤šäººç‰©å½“å‰é¡µæ•°;
+	å¤šäººç‰©å½“å‰é¡µæ•°=0;
 #endif
 	charListStatus = 0;
 	if (bNewServer)
@@ -750,15 +750,15 @@ int charListProc(void)
 }
 
 
-TCHAR µÇÂ½´íÎóÄÚÈİ[1024];
+TCHAR ç™»é™†é”™è¯¯å†…å®¹[1024];
 
 void lssproto_CharList_recv(int fd, char *result, char *data)
 {
-	memset(µÇÂ½´íÎóÄÚÈİ,0,1024);
+	memset(ç™»é™†é”™è¯¯å†…å®¹,0,1024);
 	if(strcmp(result,_T("failed"))==0) {
-		strcpy(µÇÂ½´íÎóÄÚÈİ,data);
+		strcpy(ç™»é™†é”™è¯¯å†…å®¹,data);
 #ifdef _AIDENGLU_
-		PcLanded.µÇÂ½ÑÓÊ±Ê±¼ä = TimeGetTime()+2000;
+		PcLanded.ç™»é™†å»¶æ—¶æ—¶é—´ = TimeGetTime()+2000;
 #endif
 	}
 	if (netproc_sending == NETPROC_SENDING)
@@ -796,7 +796,7 @@ void lssproto_CharList_recv(int fd, char *result, char *data)
 void charLoginStart(void)
 {
 	charLoginStatus = 0;
-#ifdef _NEW_WGS_MSG				// WON ADD WGSµÄĞÂÊÓ´°
+#ifdef _NEW_WGS_MSG				// WON ADD WGSçš„æ–°è§†çª—
 	ERROR_MESSAGE = 0;
 #endif
 	if (bNewServer){
@@ -830,7 +830,7 @@ int charLoginProc(void)
 			return 1;
 		else
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGSµÄĞÂÊÓ´°
+#ifdef _NEW_WGS_MSG				// WON ADD WGSçš„æ–°è§†çª—
 			if (ERROR_MESSAGE != 0)
 				return ERROR_MESSAGE;
 			else
@@ -865,7 +865,7 @@ void lssproto_CharLogin_recv(int fd, char* result, char* data)
 		}
 
 #ifdef __NEW_CLIENT
-#ifdef _NEW_WGS_MSG				// WON ADD WGSµÄĞÂÊÓ´°
+#ifdef _NEW_WGS_MSG				// WON ADD WGSçš„æ–°è§†çª—
 		if (strcmp(result, "failed" ) == 0 && !hPing)
 			ERROR_MESSAGE = atoi(data);
 #endif
@@ -914,20 +914,20 @@ void lssproto_CharLogout_recv(int fd, char *result, char *data)
 #define S_DELIM '|'
 
 /*================================
-C warp ÓÃ
-D ĞŞÕıÊ±¼ä
-X Æï³è
-P ÈËÎï×´Ì¬
-F ¼Ò×å×´Ì¬
+C warp ç”¨
+D ä¿®æ­£æ—¶é—´
+X éª‘å® 
+P äººç‰©çŠ¶æ€
+F å®¶æ—çŠ¶æ€
 M HP,MP,EXP
-K ³èÎï×´Ì¬
+K å® ç‰©çŠ¶æ€
 E nowEncountPercentage
-J Ä§·¨
-N ¶ÓÎé×ÊÑ¶
-I µÀ¾ß
-W ³èÎï¼¼ÄÜ
-S Ö°Òµ¼¼ÄÜ
-G Ö°Òµ¼¼ÄÜÀäÈ´Ê±¼ä
+J é­”æ³•
+N é˜Ÿä¼èµ„è®¯
+I é“å…·
+W å® ç‰©æŠ€èƒ½
+S èŒä¸šæŠ€èƒ½
+G èŒä¸šæŠ€èƒ½å†·å´æ—¶é—´
 ================================*/
 void lssproto_S_recv(int fd, char *data)
 {
@@ -1042,20 +1042,20 @@ void lssproto_S_recv(int fd, char *data)
 					if (strlen(freeName) <= CHAR_FREENAME_LEN)
 						strcpy_s(pc.freeName, freeName);
 #ifdef _NEW_ITEM_
-					pc.µÀ¾ßÀ¸×´Ì¬ = getIntegerToken(data, S_DELIM, 32);
+					pc.é“å…·æ çŠ¶æ€ = getIntegerToken(data, S_DELIM, 32);
 #endif
 #ifdef _SA_VERSION_25
 					int pointindex = getIntegerToken(data, S_DELIM, 33);
 					char pontname[][32]={
-						"ÈøÄ·¼ª¶û´å",
-						"ÂêÀöÄÈË¿´å",
-						"¼Ó¼Ó´å",
-						"¿¨Â³ËüÄÇ´å",
+						"è¨å§†å‰å°”æ‘",
+						"ç›ä¸½å¨œä¸æ‘",
+						"åŠ åŠ æ‘",
+						"å¡é²å®ƒé‚£æ‘",
 					};
 					sprintf(pc.chusheng,"%s",pontname[pointindex]);
 #ifdef _MAGIC_ITEM_
-					pc.·¨±¦µÀ¾ß×´Ì¬ = getIntegerToken(data, S_DELIM, 34);
-					pc.µÀ¾ß¹â»·Ğ§¹û = getIntegerToken(data, S_DELIM, 35);
+					pc.æ³•å®é“å…·çŠ¶æ€ = getIntegerToken(data, S_DELIM, 34);
+					pc.é“å…·å…‰ç¯æ•ˆæœ = getIntegerToken(data, S_DELIM, 35);
 #endif
 #endif
 
@@ -1227,7 +1227,7 @@ void lssproto_S_recv(int fd, char *data)
 #ifdef _CHARSIGNADY_NO_
 							else if (mask == 0x80000000) // ( 1 << 31 )
 							{
-								pc.Ç©µ½±ê¼Ç = getIntegerToken(data, S_DELIM, i);// 0x80000000
+								pc.ç­¾åˆ°æ ‡è®° = getIntegerToken(data, S_DELIM, i);// 0x80000000
 								i++;
 							}
 #endif
@@ -1245,7 +1245,7 @@ void lssproto_S_recv(int fd, char *data)
 
 #ifdef _STONDEBUG_
 				char title[128];
-				sprintf_s( title, "%s %s [%s  %s:%s]", DEF_APPNAME, "µ÷ÊÔ°æ±¾",
+				sprintf_s( title, "%s %s [%s  %s:%s]", DEF_APPNAME, "è°ƒè¯•ç‰ˆæœ¬",
 					gmsv[selectServerIndex].name,
 					gmsv[selectServerIndex].ipaddr, gmsv[selectServerIndex].port );
 #else
@@ -1253,17 +1253,17 @@ void lssproto_S_recv(int fd, char *data)
 				extern int nServerGroup;
 				sprintf_s( title, "%s %s [%s] %s", DEF_APPNAME, gmgroup[nServerGroup].name, gmsv[selectServerIndex].name,pc.name );
 
-				extern int ·±Ìå¿ª¹Ø;	
-				if(·±Ìå¿ª¹Ø){
-					char ·±Ìå[1024]={0};
-					LCMapString (0x804,0x4000000,title, strlen(title),·±Ìå,1024);
-					sprintf(title,"%s",·±Ìå);
+				extern int ç¹ä½“å¼€å…³;	
+				if(ç¹ä½“å¼€å…³){
+					char ç¹ä½“[1024]={0};
+					LCMapString (0x804,0x4000000,title, strlen(title),ç¹ä½“,1024);
+					sprintf(title,"%s",ç¹ä½“);
 				}
 
 #endif
-				extern int ±àÂë;
+				extern int ç¼–ç ;
 				extern char* GB2312ToBIG5(const char* szGBString);
-				if(±àÂë==950){
+				if(ç¼–ç ==950){
 					SetWindowText( hWnd, GB2312ToBIG5((const char *)title));
 				}else{
 
@@ -1820,7 +1820,7 @@ void lssproto_S_recv(int fd, char *data)
 					pc.item[i].level = getIntegerToken(data, '|', no + 8);
 					pc.item[i].sendFlag = getIntegerToken(data, '|', no + 9);
 
-					// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+					// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 					getStringToken(data, '|', no + 10, sizeof(temp) - 1, temp);
 					makeStringFromEscaped(temp);
 					if (strlen(temp) <= 16)
@@ -1839,7 +1839,7 @@ void lssproto_S_recv(int fd, char *data)
 					pc.item[i].type = getIntegerToken(data, '|', no + 13);
 #else
 #ifdef _MAGIC_ITEM_
-					pc.item[i].µÀ¾ßÀàĞÍ = getIntegerToken(data, '|', no + 13);
+					pc.item[i].é“å…·ç±»å‹ = getIntegerToken(data, '|', no + 13);
 #endif
 #endif
 #ifdef _ITEM_JIGSAW
@@ -1856,7 +1856,7 @@ void lssproto_S_recv(int fd, char *data)
 				}
 			}
 			break;
-		//½ÓÊÕµ½µÄ³èÎï¼¼ÄÜ
+		//æ¥æ”¶åˆ°çš„å® ç‰©æŠ€èƒ½
 		case 'W':
 			{
 				int i, no, no2;
@@ -1890,7 +1890,7 @@ void lssproto_S_recv(int fd, char *data)
 				}
 			}
 		break;
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 		case 'S':
 			{
 				char name[CHAR_NAME_LEN + 1];
@@ -1970,7 +1970,7 @@ void lssproto_S_recv(int fd, char *data)
 #endif
 					getStringToken(data, '|', no + 1, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
-					if (strlen(szData) == 0)	// Ã»µÀ¾ß
+					if (strlen(szData) == 0)	// æ²¡é“å…·
 					{
 						memset(&pet[nPetIndex].item[i], 0, sizeof(pet[nPetIndex].item[i]));
 						continue;
@@ -2002,7 +2002,7 @@ void lssproto_S_recv(int fd, char *data)
 					pet[nPetIndex].item[i].level				= getIntegerToken(data, '|', no + 8);
 					pet[nPetIndex].item[i].sendFlag				= getIntegerToken(data, '|', no + 9);
 					
-					// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+					// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 					getStringToken(data, '|', no + 10, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
 					if (strlen(szData) <= 16)
@@ -2018,7 +2018,7 @@ void lssproto_S_recv(int fd, char *data)
 					getStringToken(data, '|', no + 14, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
 					strcpy( pet[nPetIndex].item[i].jigsaw, szData );
-					//¿ÉÄÃ¸ø³èÎï×°±¸µÄµÀ¾ß,¾Í²»»áÊÇÆ´Í¼ÁË,ÒÔÏÂ¾ÍÃâÁË
+					//å¯æ‹¿ç»™å® ç‰©è£…å¤‡çš„é“å…·,å°±ä¸ä¼šæ˜¯æ‹¼å›¾äº†,ä»¥ä¸‹å°±å…äº†
 					//if( i == JigsawIdx )
 					//	SetJigsaw( pc.item[i].graNo, pc.item[i].jigsaw );
 #endif
@@ -2044,7 +2044,7 @@ void lssproto_MC_recv( int fd, int fl, int x1, int y1, int x2, int y2, int tileS
 
 #ifdef DEBUGPUSH
     char msg[800];
-    sprintf_s(msg, "Ô???????????????FL%d %d,%d-%d,%d (%ud/%ud)", fl, x1, y1, x2, y2, tileSum, partsSum);
+    sprintf_s(msg, "ä½‹???????????????FL%d %d,%d-%d,%d (%ud/%ud)", fl, x1, y1, x2, y2, tileSum, partsSum);
     PUSH(msg);
 #endif
 	getStringToken(data, '|', 1, sizeof(showString) - 1, showString);
@@ -2118,7 +2118,7 @@ void lssproto_M_recv(int fd, int fl, int x1, int y1, int x2, int y2, char* data)
 
 #ifdef DEBUGPUSH
     char msg[800];
-    sprintf_s(msg , "??????Ô????????FL%d %d,%d-%d,%d", fl, x1, y1, x2, y2);
+    sprintf_s(msg , "??????ä½‹????????FL%d %d,%d-%d,%d", fl, x1, y1, x2, y2);
     PUSH(msg);
 #endif
 	getStringToken(data, '|', 1, sizeof(showString) - 1, showString);
@@ -2212,10 +2212,10 @@ void lssproto_C_recv(int fd, char *data)
 	*titlestr = 0;
 #endif
 	int petlevel;
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 	int profession_class, profession_level, profession_skill_point;
 #endif
-#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
 	int herofloor;
 #endif
 #ifdef _NPC_PICTURE
@@ -2245,8 +2245,8 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 3, sizeof(smalltoken) - 1, smalltoken);
 			id = a62toi(smalltoken);
 
-			extern BOOL ÈËÎïÆÁ±Î¿ª¹Ø;
-			if(ÈËÎïÆÁ±Î¿ª¹Ø){
+			extern BOOL äººç‰©å±è”½å¼€å…³;
+			if(äººç‰©å±è”½å¼€å…³){
 				if(id != pc.id){
 					if(charType <4 )
 						continue;
@@ -2294,7 +2294,7 @@ void lssproto_C_recv(int fd, char *data)
 				sprintf(titlestr,"%s",FreeGetTitleStr(titleindex));
 			}
 #endif
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 			getStringToken(bigtoken, '|', 18, sizeof(smalltoken) - 1, smalltoken);
 			profession_class = atoi(smalltoken);
 			getStringToken(bigtoken, '|', 19, sizeof(smalltoken) - 1, smalltoken);
@@ -2303,7 +2303,7 @@ void lssproto_C_recv(int fd, char *data)
 //			profession_exp = atoi(smalltoken);
 			getStringToken(bigtoken, '|', 20, sizeof(smalltoken) - 1, smalltoken);
 			profession_skill_point = atoi(smalltoken);
-#ifdef _ALLDOMAN // Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN // Syu ADD æ’è¡Œæ¦œNPC
 			getStringToken(bigtoken, '|', 21, sizeof(smalltoken) - 1, smalltoken);
 			herofloor = atoi(smalltoken);
 #endif
@@ -2311,7 +2311,7 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 22, sizeof(smalltoken) - 1, smalltoken);
 			picture = atoi(smalltoken);
 #endif
-//    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
+//    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
 //			getStringToken(bigtoken , '|', 23 , sizeof( gm_name ) - 1, gm_name );
 //			makeStringFromEscaped( gm_name );
 //  #endif
@@ -2332,13 +2332,13 @@ void lssproto_C_recv(int fd, char *data)
 				getCharTitleSplit(titlestr,&pc.ptAct->TitleText);
 #endif
 				updateMapArea();
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
-//    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+//    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
 //				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_exp, profession_skill_point , gm_name);
 //				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_skill_point , gm_name);
 //    #else
 //				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_exp, profession_skill_point);
-#ifdef _ALLDOMAN // Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN // Syu ADD æ’è¡Œæ¦œNPC
 				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_skill_point , herofloor);
 #else
 				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_skill_point);
@@ -2371,8 +2371,8 @@ void lssproto_C_recv(int fd, char *data)
 			}
 			else
 			{
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
-    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
 				setNpcCharObj(id, graNo, x, y, dir, fmname, name, freeName,
 					level, petname, petlevel, nameColor, walkable, height, charType, profession_class, gm_name);
     #else
@@ -2471,8 +2471,8 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 7, sizeof(smalltoken) - 1, smalltoken);
 			y = atoi(smalltoken);
 
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
-    #ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ğ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
+    #ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
 			setNpcCharObj( id, graNo, x, y, dir, "", name, "",
 				level, petname, petlevel, nameColor, 0, height, 2, 0, "");
     #else
@@ -2503,7 +2503,7 @@ void lssproto_C_recv(int fd, char *data)
 #else
 		getStringToken(bigtoken , '|' , 11 , sizeof(smalltoken) - 1, smalltoken);
 		if ( strlen(smalltoken) > 0 ){
-			// NPC?ıÑ©
+			// NPC?îºîŸ«
 			charType = getIntegerToken(bigtoken, '|', 1 );
 			getStringToken(bigtoken, '|', 2, sizeof(smalltoken) - 1, smalltoken);
 			id = a62toi(smalltoken);
@@ -2648,11 +2648,11 @@ void lssproto_CA_recv( int fd, char *data )
 	ACTION *ptAct;
 
 
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
-	// ¡P¥f??ş†???
+	// î“–î™¬??î¡Š???
 	if ( encountNowFlag )
 	{
 		return;
@@ -2687,11 +2687,11 @@ void lssproto_CA_recv( int fd, char *data )
 
 		if ( pc.id == charindex )
 		{
-			// PC????¥h?¨Á?
+			// PC????î™®?îŸ‰?
 			if ( pc.ptAct == NULL
 			 || (pc.ptAct != NULL && pc.ptAct->anim_chr_no == 0) )
 			{
-				// ?????üÒ??????C????????????
+				// ?????î??????C????????????
 				if (bNewServer)
 					lssproto_C_send(sockfd, charindex );
 				else
@@ -2724,7 +2724,7 @@ void lssproto_CA_recv( int fd, char *data )
 		ptAct = getCharObjAct( charindex );
 		if ( ptAct == NULL )
 		{
-			// ¥i?ID?¦ú??????????????????ID??????
+			// î™¯?ID?î›??????????????????ID??????
 			tellflag = 0;
 			for ( j = 0; j < tellCindex; j++ )
 			{
@@ -2759,13 +2759,13 @@ void lssproto_CA_recv( int fd, char *data )
 }
 
 
-// ?????ı¤
+// ?????î
 void lssproto_CD_recv( int fd, char *data )
 {
 	int i, j;
 	int id;
 
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -2796,8 +2796,8 @@ void lssproto_CD_recv( int fd, char *data )
 
 
 
-// ?¥h ///////////////////////////////////////////////////////////////////
-// ?????¥h?????¤??
+// ?î™® ///////////////////////////////////////////////////////////////////
+// ?????î™®?????î™‚??
 void walkSendForServer( int x, int y, char *direction )
 {
 #ifdef _REMAKE_20
@@ -2811,8 +2811,8 @@ void walkSendForServer( int x, int y, char *direction )
 }
 
 
-// ?????¥h?????¤??
-//  ????????????????????¥T??????????úé????
+// ?????î™®?????î™‚??
+//  ????????????????????î™š??????????îŒ¸????
 void noChecksumWalkSendForServer( int x, int y, char *direction )
 {
 	if (bNewServer)
@@ -2822,10 +2822,10 @@ void noChecksumWalkSendForServer( int x, int y, char *direction )
 }
 
 
-// ?¥h?????¨ë?ûõıï
+// ?î™®?????îŸ?î¢î‘˜
 void lssproto_W_recv( int fd, int id, int x, int y )
 {
-	// ??????§R¤e???????????
+	// ??????îœ˜î˜‹???????????
 	// ??????????????????????
 }
 
@@ -2844,7 +2844,7 @@ void chatStrSendForServer( char *str, int color )
 #endif
 
 
-#ifdef _STONDEBUG_ // ÊÖ¶¯ËÍ³ö·â°ü
+#ifdef _STONDEBUG_ // æ‰‹åŠ¨é€å‡ºå°åŒ…
 	{
 		if ( !strncmp( str, "send ", 5) ) {
 			sendDataToServer( str+5);
@@ -2873,10 +2873,10 @@ void chatStrSendForServer( char *str, int color )
 	}
 #endif
 #ifdef _CHAR_MANOR_DEBUG
-	if(strstr(str,".¹â»·")){
-		int ¹â»·ID=0;
-		¹â»·ID = getIntegerToken(str, ' ',2);
-		setCharmManor(pc.ptAct, ¹â»·ID);
+	if(strstr(str,".å…‰ç¯")){
+		int å…‰ç¯ID=0;
+		å…‰ç¯ID = getIntegerToken(str, ' ',2);
+		setCharmManor(pc.ptAct, å…‰ç¯ID);
 		return;
 	}
 #endif
@@ -2894,14 +2894,14 @@ void chatStrSendForServer( char *str, int color )
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
 		{
-			StockChatBufferLine("±íÑİÖĞÇëÎğĞú»©¡£¡£¡£", FONT_PAL_YELLOW);
+			StockChatBufferLine("è¡¨æ¼”ä¸­è¯·å‹¿å–§å“—ã€‚ã€‚ã€‚", FONT_PAL_YELLOW);
 			return;
 		}
 #endif
 #ifdef _NPC_DANCE
 		if( pc.iDanceMode )
 		{
-			StockChatBufferLine("Ğê£¡Äã¿ÉÄÜ»á³³µ½±ğÈË¡£", FONT_PAL_YELLOW);
+			StockChatBufferLine("å˜˜ï¼ä½ å¯èƒ½ä¼šåµåˆ°åˆ«äººã€‚", FONT_PAL_YELLOW);
 			return;
 		}
 #endif
@@ -2912,7 +2912,7 @@ void chatStrSendForServer( char *str, int color )
 		break;
 	case 1:
 		if ( strcmp ( tmp1 , str ) == 0 || strlen(tmp1) > 16) {
-			StockChatBufferLine(  "Ö¸ÁîÊ¹ÓÃ¸ñÊ½²»ÕıÈ·£¡" , FONT_PAL_RED);
+			StockChatBufferLine(  "æŒ‡ä»¤ä½¿ç”¨æ ¼å¼ä¸æ­£ç¡®ï¼" , FONT_PAL_RED);
 			strcpy(secretName,"");
 			return ; 
 		}
@@ -2935,16 +2935,16 @@ void chatStrSendForServer( char *str, int color )
 			break;
 			/*
 		case 4:
-			sprintf_s(m,"P|/OCC%s£º%s",pc.name,dest);
+			sprintf_s(m,"P|/OCC%sï¼š%s",pc.name,dest);
 			break;
 #ifdef _CHATROOMPROTOCOL
 		case 5:
-			sprintf_s(tmpMsg,"T|%s£º%s",pc.name,dest);
+			sprintf_s(tmpMsg,"T|%sï¼š%s",pc.name,dest);
 			lssproto_CHATROOM_send (sockfd ,tmpMsg);
 			return;
 #endif
 			*/
-#ifdef _CHANNEL_WORLD  ///ÊÀ½çÆµµÀ
+#ifdef _CHANNEL_WORLD  ///ä¸–ç•Œé¢‘é“
 		case 4:
 			sprintf_s(m,"P|/WD %s",dest);
 			break;
@@ -2977,7 +2977,7 @@ void chatStrSendForServer( char *str, int color )
 
 
 
-// ????ûõıï ///////////////////////////////////////////////////////////
+// ????î¢î‘˜ ///////////////////////////////////////////////////////////
 void lssproto_TK_recv( int fd, int index, char *message, int color )
 {
 	char id[2];
@@ -2995,7 +2995,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 	msg1[2] = 0;
 	msg = msg1+2;
 #endif
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3005,7 +3005,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 #ifndef _CHANNEL_MODIFY
 		getStringToken( message, '|', 2, 2022 - 1, msg );
 		makeStringFromEscaped( msg );
-	#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+	#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 		TradeTalk( msg ) ; 
 	#endif
 #endif
@@ -3032,12 +3032,12 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 			}
 			else{
 				switch (szToken[0]){
-				// ÃÜÓïÆµµÀ
+				// å¯†è¯­é¢‘é“
 				case 'M':
 					{
 						char tellName[32] = { "" };
 						char szMsgBuf[2024];
-						char temp[] = "¸æËßÄã£º";
+						char temp[] = "å‘Šè¯‰ä½ ï¼š";
 						char *found;
 					
 						if (found = strstr(msg,temp)){
@@ -3050,11 +3050,11 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 						}
 					}
 					break;
-				// ¼Ò×åÆµµÀ
+				// å®¶æ—é¢‘é“
 				case 'F':
-				// ¶ÓÎéÆµµÀ
+				// é˜Ÿä¼é¢‘é“
 				case 'T':
-				// Ö°ÒµÆµµÀ
+				// èŒä¸šé¢‘é“
 				case 'O':
 					break;
 				}
@@ -3066,7 +3066,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 		if (!g_bTalkWindow)
 #endif
 		TradeTalk(msg);
-		if (strcmp(msg,"³ÉÁ¢ÁÄÌìÊÒ¿Û³ı£²£°£°Ê¯±Ò") == 0)	pc.gold -= 200;
+		if (strcmp(msg,"æˆç«‹èŠå¤©å®¤æ‰£é™¤ï¼’ï¼ï¼çŸ³å¸") == 0)	pc.gold -= 200;
 #ifdef _FONT_SIZE
 #ifdef _MESSAGE_FRONT_
 		StockChatBufferLineExt( msg-2, color, fontsize );
@@ -3081,7 +3081,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 #endif
 #endif
 #else
-	#ifdef _TELLCHANNEL		// (²»¿É¿ª) ROG ADD ÃÜÓïÆµµÀ
+	#ifdef _TELLCHANNEL		// (ä¸å¯å¼€) ROG ADD å¯†è¯­é¢‘é“
 		char tellName[128] = { "" };
 		char tmpMsg[STR_BUFFER_SIZE + 32];
 		char TK[4];
@@ -3091,10 +3091,10 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 			else if (strcmp(TK,"TE") == 0) InitSelectChar( msg, 1);
 		}
 		else{
-			char temp[] = "¸æËßÄã£º";
+			char temp[] = "å‘Šè¯‰ä½ ï¼š";
 			char *found;
 
-			if (strcmp( msg, "³ÉÁ¢ÁÄÌìÊÒ¿Û³ı£²£°£°Ê¯±Ò") == 0)	pc.gold -= 200;
+			if (strcmp( msg, "æˆç«‹èŠå¤©å®¤æ‰£é™¤ï¼’ï¼ï¼çŸ³å¸") == 0)	pc.gold -= 200;
 
 			if ( found = strstr( msg, temp )){
 				strncpy_s(tellName, msg, strlen(msg) - strlen(found));
@@ -3115,7 +3115,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 #endif
 		if ( index >= 0 ){
 			if ( pc.ptAct != NULL && pc.id == index ){
-				// 1000??¥ø¤úû¨
+				// 1000??î¾î¸î•
 				setPcFukidashi( 1000 );
 			}
 			else
@@ -3123,7 +3123,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 				ptAct = getCharObjAct( index );
 				if ( ptAct != NULL )
 				{
-					// 1000??¥ø¤úû¨
+					// 1000??î¾î¸î•
 					setCharFukidashi( ptAct, 1000 );
 				}
 			}
@@ -3135,17 +3135,17 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 
 
 
-// ıø????şÎ ///////////////////////////////////////////////////////////
-// ?şÎ???????????????
+// î‘¡????î’• ///////////////////////////////////////////////////////////
+// ?î’•???????????????
 void createNewCharStart(void)
 {
 	newCharStatus = 0;
 
-	// ????¨ò¢V?£t??¤e???????????
+	// ????îŸ•î”¼?î–º??î˜‹???????????
 	if (bNewServer){
 #ifdef _MORECHARACTERS_
-		extern int ¶àÈËÎïµ±Ç°Ò³Êı;
-		lssproto_CreateNewChar_send(sockfd, selectPcNo+¶àÈËÎïµ±Ç°Ò³Êı*2, newCharacterName,
+		extern int å¤šäººç‰©å½“å‰é¡µæ•°;
+		lssproto_CreateNewChar_send(sockfd, selectPcNo+å¤šäººç‰©å½“å‰é¡µæ•°*2, newCharacterName,
 			newCharacterGraNo, newCharacterFaceGraNo,
 			newCharacterVit, newCharacterStr, newCharacterTgh, newCharacterDex,
 			newCharacterEarth, newCharacterWater, newCharacterFire, newCharacterWind,
@@ -3182,8 +3182,8 @@ void createNewCharStart(void)
 }
 
 
-// ıø???¥K???¢r?
-//   ??£k£º 0 ... ûõıï¢r? / 1 ... ûõıï?? / -1 ... ?????? / -2 ... ?????????
+// î‘¡???î™‘???î•˜?
+//   ??î–±ï¼š 0 ... î¢î‘˜î•˜? / 1 ... î¢î‘˜?? / -1 ... ?????? / -2 ... ?????????
 int createNewCharProc(void)
 {
 	if ( netproc_sending == NETPROC_RECEIVED )
@@ -3204,7 +3204,7 @@ int createNewCharProc(void)
 	return 0;
 }
 
-char ´´½¨ÈËÎïÄÚÈİÌáÊ¾[512];
+char åˆ›å»ºäººç‰©å†…å®¹æç¤º[512];
 void lssproto_CreateNewChar_recv( int fd, char *result, char *data ) 
 {
 	if ( netproc_sending == NETPROC_SENDING )
@@ -3215,7 +3215,7 @@ void lssproto_CreateNewChar_recv( int fd, char *result, char *data )
 		{
 			newCharStatus = 1;
 		}else{
-			sprintf(´´½¨ÈËÎïÄÚÈİÌáÊ¾,data);
+			sprintf(åˆ›å»ºäººç‰©å†…å®¹æç¤º,data);
 		}
     }
 }
@@ -3228,7 +3228,7 @@ void lssproto_CreateNewChar_recv( int fd, char *result, char *data )
 
 
 // ????? /////////////////////////////////////////////////////////////
-// ?????§k??ıï
+// ?????îœ±??î‘˜
 void delCharStart(void)
 {
 	charDelStatus = 0;
@@ -3242,8 +3242,8 @@ void delCharStart(void)
 }
 
 
-// ?????¢r?
-//   ??£k£º 0 ... ??¢r? / 1 ... ???? / -1 ... ?????? / -2 ... ?????????
+// ?????î•˜?
+//   ??î–±ï¼š 0 ... ??î•˜? / 1 ... ???? / -1 ... ?????? / -2 ... ?????????
 int delCharProc(void)
 {
 	if ( netproc_sending == NETPROC_RECEIVED )
@@ -3265,7 +3265,7 @@ int delCharProc(void)
 }
 
 
-// ???????ûõıï
+// ???????î¢î‘˜
 void lssproto_CharDelete_recv( int fd, char *result, char *data )
 {
 	if ( netproc_sending == NETPROC_SENDING )
@@ -3278,22 +3278,22 @@ void lssproto_CharDelete_recv( int fd, char *result, char *data )
     }
 }
 
-// ?????ûõıï /////////////////////////////////////////////////////////
+// ?????î¢î‘˜ /////////////////////////////////////////////////////////
 void lssproto_PR_recv( int fd, int request, int result )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
 	if ( request == 1 && result == 1 )
 	{
-		// £M????????¦V????¤G??
+		// î–“????????îš¼????î—­??
 		setPcParty();
 	}
 	else
 	if ( request == 0 && result == 1 )
 	{
-		// ????????¢??
+		// ????????î•¦??
 		//delPcParty();
 		//delPcLeader();
 		partyModeFlag = 0;
@@ -3314,10 +3314,10 @@ void lssproto_PR_recv( int fd, int request, int result )
 
 
 
-// EV???????ıï??ûõıï¢r? /////////////////////////////////////////
+// EV???????î‘˜??î¢î‘˜î•˜? /////////////////////////////////////////
 void lssproto_EV_recv( int fd, int seqno, int result )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3326,10 +3326,10 @@ void lssproto_EV_recv( int fd, int seqno, int result )
 		eventWarpSendFlag = 0;
 		if ( result == 0 )
 		{
-			// ???ûº¦??????ş?¤úû¨???
+			// ???î§î›²??????î¡¡?î¸î•???
 			redrawMap();
 			floorChangeFlag = FALSE;
-			// ?şÉ¤†??????????
+			// ?î’î˜«??????????
 			warpEffectStart = TRUE;
 			warpEffectOk = TRUE;
 		}
@@ -3349,10 +3349,10 @@ void lssproto_EV_recv( int fd, int seqno, int result )
 }
 
 
-// ??OK?¡P¥f¥N?úÓ?OK????? £Ï£Ë?ıÖ¢tûõıï ////////////////////////
+// ??OK?î“–î™¬î™”?îŒ¢?OK????? ï¼¯ï¼«?î¿î•šî¢î‘˜ ////////////////////////
 void lssproto_FS_recv( int fd, int flg )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3361,7 +3361,7 @@ void lssproto_FS_recv( int fd, int flg )
 
 
 
-// ????????¥›?ûõıï ///////////////////////////////////////////////
+// ????????îš ?î¢î‘˜ ///////////////////////////////////////////////
 void lssproto_AB_recv( int fd, char *data )
 {
 	int i;
@@ -3370,11 +3370,11 @@ void lssproto_AB_recv( int fd, char *data )
 	char name[256];
 	int flag;
 	int useFlag;
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 	char planetid[8];
 	int j ;
 #endif
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3397,9 +3397,9 @@ void lssproto_AB_recv( int fd, char *data )
 			{
 				memset( &MailHistory[i], 0, sizeof( MailHistory[0] ) ) ;
 				SaveMailHistory( i );
-				// şt¥‚????
+				// î ¹îš‡????
 				mailLamp = CheckMailNoReadFlag();
-				// ûê????ı¤?
+				// î—????î?
 				DeathLetterAction();
 			}
 			addressBook[i].useFlag = 0;
@@ -3432,7 +3432,7 @@ void lssproto_AB_recv( int fd, char *data )
 		addressBook[i].onlineFlag = (short)getIntegerToken(data, '|', no+5 );
 		addressBook[i].graNo = getIntegerToken(data, '|', no+6 );
 		addressBook[i].transmigration = getIntegerToken(data, '|', no+7 );
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 		for ( j = 0 ; j < MAX_GMSV ; j ++ ) {
 			if ( gmsv[j].used == '1' ) {
 				getStringToken( gmsv[j].ipaddr, '.', 4, sizeof( planetid ) -1, planetid );
@@ -3447,18 +3447,18 @@ void lssproto_AB_recv( int fd, char *data )
 }
 
 
-// ????????¥›?ûõıï?£O¢l?////////////////////////////////////////
+// ????????îš ?î¢î‘˜?î–•î•’?////////////////////////////////////////
 void lssproto_ABI_recv( int fd, int num, char* data )
 {
 	char name[256];
 	int nameLen;
 	int useFlag;
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 	char planetid[8];
 	int j ;
 #endif
 
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3477,9 +3477,9 @@ void lssproto_ABI_recv( int fd, int num, char* data )
 		{
 			memset( &MailHistory[num], 0, sizeof( MailHistory[0] ) ) ;
 			SaveMailHistory( num );
-			// şt¥‚????
+			// î ¹îš‡????
 			mailLamp = CheckMailNoReadFlag();
-			// ûê????ı¤?
+			// î—????î?
 			DeathLetterAction();
 		}
 		addressBook[num].useFlag = useFlag;
@@ -3508,7 +3508,7 @@ void lssproto_ABI_recv( int fd, int num, char* data )
 	addressBook[num].onlineFlag = (short)getIntegerToken(data, '|', 5 );
 	addressBook[num].graNo = getIntegerToken(data, '|', 6 );
 	addressBook[num].transmigration = getIntegerToken(data, '|', 7 );
-#ifdef _MAILSHOWPLANET				// (¿É¿ª·Å) Syu ADD ÏÔÊ¾ÃûÆ¬ĞÇÇò
+#ifdef _MAILSHOWPLANET				// (å¯å¼€æ”¾) Syu ADD æ˜¾ç¤ºåç‰‡æ˜Ÿçƒ
 	if ( addressBook[num].onlineFlag == 0 ) 
 		sprintf_s( addressBook[num].planetname , " ");
 	for ( j = 0 ; j < MAX_GMSV ; j ++ ) {
@@ -3526,19 +3526,19 @@ void lssproto_ABI_recv( int fd, int num, char* data )
 }
 
 
-// ¡P¥f???????ûõıï /////////////////////////////////////////////////
+// î“–î™¬???????î¢î‘˜ /////////////////////////////////////////////////
 void lssproto_RS_recv( int fd, char *data )
 {
 	int i;
 	char token[2048];
 	char item[2048];
 
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
 	battleResultMsg.useFlag = 1;
-	//cary È·¶¨ À¸Î» Êı
+	//cary ç¡®å®š æ ä½ æ•°
 	int cols = RESULT_CHR_EXP;
 	getStringToken(data, ',', RESULT_CHR_EXP+1, sizeof( token ) - 1, token );
 	if ( token[0] == 0){
@@ -3579,10 +3579,10 @@ void lssproto_RS_recv( int fd, char *data )
 }
 
 
-// ???????????ûõıï /////////////////////////////////////////////////
+// ???????????î¢î‘˜ /////////////////////////////////////////////////
 void lssproto_RD_recv( int fd, char *data )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3593,10 +3593,10 @@ void lssproto_RD_recv( int fd, char *data )
 }
 
 
-// ?????£t¨Á?ûõıï ///////////////////////////////////////////////////
+// ?????î–ºîŸ‰?î¢î‘˜ ///////////////////////////////////////////////////
 void lssproto_SI_recv( int fd, int from, int to )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -3604,7 +3604,7 @@ void lssproto_SI_recv( int fd, int from, int to )
 }
 
 
-// ????ıÑ©ûõıï ///////////////////////////////////////////////////////
+// ????îºîŸ«î¢î‘˜ ///////////////////////////////////////////////////////
 void lssproto_I_recv( int fd, char *data )
 {
 	int i, j;
@@ -3612,8 +3612,8 @@ void lssproto_I_recv( int fd, char *data )
 	char name[256];
 	char name2[256];
 	char memo[256];
-	//char *data = "9|ÎÚÁ¦Ë¹Ì¹µÄÈâ||0|ÄÍ¾ÃÁ¦10Ç°áá»Ø¸´|24002|0|1|0|7|²»»áËğ»µ|1|Èâ|20||10|ÎÚÁ¦Ë¹Ì¹µÄÈâ||0|ÄÍ¾ÃÁ¦10Ç°áá»Ø¸´|24002|0|1|0|7|²»»áËğ»µ|1|Èâ|20|";
-	if ( logOutFlag )//ÈËÎïÎ´µÇÂ½Ôò²»½ÓÊÕÕâ¸ö·â°ü
+	//char *data = "9|ä¹ŒåŠ›æ–¯å¦çš„è‚‰||0|è€ä¹…åŠ›10å‰å¾Œå›å¤|24002|0|1|0|7|ä¸ä¼šæŸå|1|è‚‰|20||10|ä¹ŒåŠ›æ–¯å¦çš„è‚‰||0|è€ä¹…åŠ›10å‰å¾Œå›å¤|24002|0|1|0|7|ä¸ä¼šæŸå|1|è‚‰|20|";
+	if ( logOutFlag )//äººç‰©æœªç™»é™†åˆ™ä¸æ¥æ”¶è¿™ä¸ªå°åŒ…
 		return;
 
 	for ( j = 0; ; j++ ){
@@ -3647,8 +3647,8 @@ void lssproto_I_recv( int fd, char *data )
 #endif
 #endif//_PET_ITEM
 #endif//_ITEM_JIGSAW
-		i = getIntegerToken(data, '|', no+1 );//µÀ¾ßÎ»
-		if ( getStringToken(data, '|', no+2, sizeof(name) - 1 , name ) == 1 )//µÀ¾ßÃû
+		i = getIntegerToken(data, '|', no+1 );//é“å…·ä½
+		if ( getStringToken(data, '|', no+2, sizeof(name) - 1 , name ) == 1 )//é“å…·å
 			break;
 		makeStringFromEscaped(name);
 		if ( strlen(name) == 0 ){
@@ -3659,20 +3659,20 @@ void lssproto_I_recv( int fd, char *data )
 		if ( strlen(name) <= ITEM_NAME_LEN ){
 			strcpy( pc.item[i].name, name );
 		}
-		getStringToken(data, '|', no+3, sizeof( name2 ) - 1, name2 );//µÚ¶ş¸öµÀ¾ßÃû
+		getStringToken(data, '|', no+3, sizeof( name2 ) - 1, name2 );//ç¬¬äºŒä¸ªé“å…·å
 		makeStringFromEscaped( name2 );
 		if ( strlen( name2 ) <= ITEM_NAME2_LEN ){
 			strcpy( pc.item[i].name2, name2 );
 		}
-		pc.item[i].color = getIntegerToken(data, '|', no+4 );//ÑÕÉ«
+		pc.item[i].color = getIntegerToken(data, '|', no+4 );//é¢œè‰²
 		if ( pc.item[i].color < 0 )
 			pc.item[i].color = 0;
-		getStringToken(data, '|', no+5, sizeof( memo ) - 1, memo );//µÀ¾ß½éÉÜ
+		getStringToken(data, '|', no+5, sizeof( memo ) - 1, memo );//é“å…·ä»‹ç»
 		makeStringFromEscaped( memo );
 		if ( strlen( memo ) <= ITEM_MEMO_LEN ){
 			strcpy( pc.item[i].memo, memo );
 		}
-		pc.item[i].graNo = getIntegerToken(data, '|', no+6 );//µÀ¾ßĞÎÏñ
+		pc.item[i].graNo = getIntegerToken(data, '|', no+6 );//é“å…·å½¢åƒ
 		pc.item[i].field = getIntegerToken(data, '|', no+7 );//
 		pc.item[i].target = getIntegerToken(data, '|', no+8 );
 		if ( pc.item[i].target >= 100 ){
@@ -3681,11 +3681,11 @@ void lssproto_I_recv( int fd, char *data )
 		}else{
 			pc.item[i].deadTargetFlag = 0;
 		}
-		pc.item[i].level = getIntegerToken(data, '|', no+9 );//µÈ¼¶
+		pc.item[i].level = getIntegerToken(data, '|', no+9 );//ç­‰çº§
 		pc.item[i].sendFlag = getIntegerToken(data, '|', no+10 );
 
 		{
-			// ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+			// æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 			char damage[256];
 			getStringToken(data, '|', no+11, sizeof( damage ) - 1, damage );
 			makeStringFromEscaped( damage );
@@ -3719,7 +3719,7 @@ void lssproto_I_recv( int fd, char *data )
 		}
 #else
 #ifdef _MAGIC_ITEM_
-		pc.item[i].µÀ¾ßÀàĞÍ = getIntegerToken(data, '|', no + 14);
+		pc.item[i].é“å…·ç±»å‹ = getIntegerToken(data, '|', no + 14);
 #endif
 #endif
 		/*
@@ -3747,11 +3747,11 @@ void lssproto_I_recv( int fd, char *data )
 
 void lssproto_WN_recv( int fd,int windowtype,int buttontype,int seqno,int objindex,char* data )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
-	if( strstr(data,"·ñÔò¼Ò×åÔÚÆßÌìÖ®ºó»áÏûÊ§à¡£¡") ){	
+	if( strstr(data,"å¦åˆ™å®¶æ—åœ¨ä¸ƒå¤©ä¹‹åä¼šæ¶ˆå¤±å”·ï¼") ){	
 		if( TimeGetTime() - MsgCooltime > 300000 )
 			MsgCooltime = TimeGetTime();  
 		else
@@ -3762,19 +3762,19 @@ void lssproto_WN_recv( int fd,int windowtype,int buttontype,int seqno,int objind
 }
 
 
-// ???????üÒ ///////////////////////////////////////////////////////
+// ???????î ///////////////////////////////////////////////////////
 void lssproto_PME_recv( int fd, int objindex,
 	int graphicsno, int x, int y, int dir, int flg, int no, char *cdata )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
-	// ¡P¥f??ş†???
+	// î“–î™¬??î¡Š???
 	if ( encountNowFlag )
 		return;
 
-	// ?ıï?üÒ
+	// ?î‘˜?î
 	if ( flg == 0 )
 	{
 		switch ( no )
@@ -3788,7 +3788,7 @@ void lssproto_PME_recv( int fd, int objindex,
 		}
 	}
 	else
-	// ûõıï?üÒ
+	// î¢î‘˜?î
 	{
 		char smalltoken[2048];
 		int id;
@@ -3830,7 +3830,7 @@ void lssproto_PME_recv( int fd, int objindex,
 		getStringToken( cdata, '|', ps++, sizeof(smalltoken) - 1, smalltoken);
 		height = atoi(smalltoken);
 
-		// ???ıÑ©??????????
+		// ???îºîŸ«??????????
 		if ( setReturnPetObj( id, graNo, x, y, dir, name, freeName,
 			level, nameColor, walkable, height, charType ) )
 		{
@@ -3850,10 +3850,10 @@ void lssproto_PME_recv( int fd, int objindex,
 
 char *pCommand = NULL;
 DWORD dwDiceTimer;
-// ?????????ûõıï¢r? /////////////////////////////////////////////
+// ?????????î¢î‘˜î•˜? /////////////////////////////////////////////
 void lssproto_EF_recv( int fd, int effect, int level, char *option )
 {
-	// ¡u????????û¢??
+	// î“»????????î??
 	if ( effect == 0 )
 	{
 		mapEffectRainLevel = 0;
@@ -3870,7 +3870,7 @@ void lssproto_EF_recv( int fd, int effect, int level, char *option )
 	{
 		mapEffectRainLevel = level;
 	}
-	// ¡D??????
+	// î“Š??????
 	if ( effect & 2 )
 	{
 		mapEffectSnowLevel = level;
@@ -3885,7 +3885,7 @@ void lssproto_EF_recv( int fd, int effect, int level, char *option )
 #endif
 // Terry add 2002/01/14
 #ifdef __EDEN_DICE
-	// ÷»×Ó
+	// éª°å­
 	if (effect == 10) 
 	{
 		pCommand = (char*)MALLOC(strlen(option)+1);
@@ -3904,7 +3904,7 @@ void lssproto_EF_recv( int fd, int effect, int level, char *option )
 }
 
 
-// ¥Ÿ? ///////////////////////////////////////////////////////////////////
+// îš¤? ///////////////////////////////////////////////////////////////////
 void lssproto_IS_recv( int fd, char* cdata )
 {
 }
@@ -4105,11 +4105,11 @@ void lssproto_SPET_recv( int fd, int standbypet, int result )
 
 void lssproto_SKUP_recv( int fd,int point )
 {
-	// ????????????ûõıï
+	// ????????????î¢î‘˜
 	StatusUpPoint = point;
 }
 
-// ?????????????ûõ?ûè??
+// ?????????????î¢?î•??
 void lssproto_MSG_recv( int fd,int aindex,char* text ,int color)
 {
 	char moji[ 256 ];
@@ -4118,46 +4118,46 @@ void lssproto_MSG_recv( int fd,int aindex,char* text ,int color)
 	// ???????????
 	mailLamp = TRUE;
 	
-	// ?ıø??§k???ıø
+	// ?î‘¡??îœ±???î‘¡
 	MailHistory[ aindex ].newHistoryNo--;
 	// ????????
 	if ( MailHistory[ aindex ].newHistoryNo <= -1 ) MailHistory[ aindex ].newHistoryNo = MAIL_MAX_HISTORY - 1;
 	
-	// ¦T??ûè?üÒ?
+	// îšº??î•?î?
 	getStringToken( text, '|', 1, sizeof( MailHistory[ aindex ].dateStr[ MailHistory[ aindex ].newHistoryNo ] ) - 1, 
 					MailHistory[ aindex ].dateStr[ MailHistory[ aindex ].newHistoryNo ] );
-	// §óı°?ûè?üÒ?
+	// î°î™?î•?î?
 	getStringToken( text, '|', 2, sizeof( MailHistory[ aindex ].str[ MailHistory[ aindex ].newHistoryNo ] ) - 1, 
 					MailHistory[ aindex ].str[ MailHistory[ aindex ].newHistoryNo ] );
 	// ????????
 	makeStringFromEscaped( MailHistory[ aindex ].str[ MailHistory[ aindex ].newHistoryNo ] );
 	
-	// ??????????§k?ûè?üÒ?
+	// ??????????îœ±?î•?î?
 	noReadFlag = getIntegerToken( text, '|', 3 );
 	// ????????
 	if ( noReadFlag != -1 ){
-		// ??????????§k???
+		// ??????????îœ±???
 		MailHistory[ aindex ].noReadFlag[ MailHistory[ aindex ].newHistoryNo ] = noReadFlag;
-		// ????????ûè?üÒ?
+		// ????????î•?î?
 		MailHistory[ aindex ].petLevel[ MailHistory[ aindex ].newHistoryNo ] = getIntegerToken( text, '|', 4 );
-		// ????ş¡q?ûè?üÒ?
+		// ????î¡“î“·?î•?î?
 		getStringToken( text, '|', 5, sizeof( MailHistory[ aindex ].petName[ MailHistory[ aindex ].newHistoryNo ] ), 
 						MailHistory[ aindex ].petName[ MailHistory[ aindex ].newHistoryNo ] );
-		// ????ş¡q?????????
+		// ????î¡“î“·?????????
 		makeStringFromEscaped( MailHistory[ aindex ].petName[ MailHistory[ aindex ].newHistoryNo ] );
-		// ???????????§k??ûè?üÒ?
+		// ???????????îœ±??î•?î?
 		MailHistory[ aindex ].itemGraNo[ MailHistory[ aindex ].newHistoryNo ] = getIntegerToken( text, '|', 6 );
-		// ????¥ˆ????????şÎ
-		sprintf_s( moji,"ÊÕµ½%sËÍÀ´µÄ³èÎïÓÊ¼ş£¡", addressBook[ aindex ].name );
+		// ????îš????????î’•
+		sprintf_s( moji,"æ”¶åˆ°%sé€æ¥çš„å® ç‰©é‚®ä»¶ï¼", addressBook[ aindex ].name );
 	}
-	// ?¤G?????
+	// ?î—­?????
 	else{	
 		MailHistory[ aindex ].noReadFlag[ MailHistory[ aindex ].newHistoryNo ] = TRUE;
-		// ????¥ˆ????????şÎ
-		sprintf_s( moji,"ÊÕµ½%sËÍÀ´µÄÓÊ¼ş£¡", addressBook[ aindex ].name );
+		// ????îš????????î’•
+		sprintf_s( moji,"æ”¶åˆ°%sé€æ¥çš„é‚®ä»¶ï¼", addressBook[ aindex ].name );
 	}
 	
-	// ????§ó??????????????
+	// ????î°??????????????
 	StockChatBufferLine( moji, FONT_PAL_WHITE );
 	
 	// ????????
@@ -4166,17 +4166,17 @@ void lssproto_MSG_recv( int fd,int aindex,char* text ,int color)
 		mailHistoryWndPageNo++;
 		// ????????
 		if ( mailHistoryWndPageNo >= MAIL_MAX_HISTORY ) mailHistoryWndPageNo = 0;
-		// ûê?????????úÇ
+		// î—?????????îŒ–
 	//	DeathLetterAction();
 	}
-	// ûõıï?
+	// î¢î‘˜?
 	play_se( 101, 320, 240 );
-	// ???????¨ò¢V
+	// ???????îŸ•î”¼
 	SaveMailHistory( aindex );
 }
 
 
-// ??????úé?ü¬????ûõıï
+// ??????îŒ¸?î·????î¢î‘˜
 void lssproto_PS_recv( int fd,int result,int havepetindex,int havepetskill,int toindex )
 {
 	char moji[ 256 ];
@@ -4184,21 +4184,21 @@ void lssproto_PS_recv( int fd,int result,int havepetindex,int havepetskill,int t
 	// ???????
 	ItemMixRecvFlag = FALSE;
 	
-	// ûº¦???
+	// î§î›²???
 	if ( result == 0 ){
-		//???????¤úû¨
-		sprintf_s( moji,"Ê§°Ü£¡");
-		// ????§ó??????????????
+		//???????î¸î•
+		sprintf_s( moji,"å¤±è´¥ï¼");
+		// ????î°??????????????
 		StockChatBufferLine( moji, FONT_PAL_WHITE );
 	}
 	
 }
 
 
-// ???????§D??ûõıï
+// ???????îœŠ??î¢î‘˜
 void lssproto_SE_recv( int fd, int x, int y, int senumber, int sw )
 {
-	// ????????????????ıÑ©?ş†???
+	// ????????????????îºîŸ«?î¡Š???
 	if ( logOutFlag )
 		return;
 
@@ -4208,11 +4208,11 @@ void lssproto_SE_recv( int fd, int x, int y, int senumber, int sw )
 	}
 	else
 	{
-		// ??û¢??¢¬????£Y????
+		// ??î??î§????î–Ÿ????
 	}
 }
 
-// ¡P¥fü¬?£š¡q?????¤õ????ûõıï
+// î“–î™¬î·?î—Ÿî“·?????î³????î¢î‘˜
 void lssproto_XYD_recv( int fd, int x, int y, int dir )
 {
 	updateMapArea();
@@ -4228,9 +4228,9 @@ void lssproto_WO_recv( int fd, int effect )
 	// ???????
 	if ( effect == 0 )
 	{
-		// ¤šşØ????????
+		// î˜¿î’Ÿ????????
 		transmigrationEffectFlag = 1;
-		// ¤šşØ?????????¨Á????
+		// î˜¿î’Ÿ?????????îŸ‰????
 		transEffectPaletteStatus = 1;
 		// ????????
 		palNo = 15;
@@ -4238,13 +4238,13 @@ void lssproto_WO_recv( int fd, int effect )
 	}
 }
 
-// ?????üÒ? /////////////////////////////////////////////////////////
+// ?????î? /////////////////////////////////////////////////////////
 void lssproto_Echo_recv( int fd, char *test )
 {
 #if 1
 #ifdef _STONDEBUG__MSG
 
-	// ???¦T??ûè¥x
+	// ???îšº??î•î™¾
 	time( &serverAliveLongTime );
 	localtime_s(&serverAliveTime, &serverAliveLongTime );
 
@@ -4260,7 +4260,7 @@ void lssproto_NU_recv( int fd, int AddCount)
 }
 
 
-// ???ûõıï??
+// ???î¢î‘˜??
 void lssproto_PlayerNumGet_recv( int fd, int logincount, int player )
 {
 }
@@ -4274,7 +4274,7 @@ void lssproto_ProcGet_recv( int fd, char* data )
 
 
 /*
-   ?????ıÑ©??????
+   ?????îºîŸ«??????
 
 */
 void lssproto_R_recv( int fd, char* data ) 
@@ -4287,7 +4287,7 @@ void lssproto_D_recv( int fd,int category,int dx,int dy,char* data )
 }
 
 /*
-	???§d????????????????????
+	???îœª????????????????????
 */
 void lssproto_ACI_recv( int fd, char* data )
 {
@@ -4314,12 +4314,12 @@ void lssproto_FM_recv( int fd, char* data )
 
 	if ( strcmp(FMType1,"S") ==0 )
 	{
-		if ( strcmp(FMType2,"F") ==0) // ¼Ò×åÁĞ±í
+		if ( strcmp(FMType2,"F") ==0) // å®¶æ—åˆ—è¡¨
 		{
 			initFamilyList(data );
 
 		}
-		if ( strcmp(FMType2,"D") ==0) // ¼Ò×åÏêÏ¸
+		if ( strcmp(FMType2,"D") ==0) // å®¶æ—è¯¦ç»†
 		{
 			initFamilyDetail(data );
 
@@ -4328,14 +4328,14 @@ void lssproto_FM_recv( int fd, char* data )
 	}
 	else if ( strcmp(FMType1,"C") ==0 )
 	{
-		if ( strcmp(FMType2,"J") ==0) // ¼ÓÈëÆµµÀ
+		if ( strcmp(FMType2,"J") ==0) // åŠ å…¥é¢‘é“
 		{
 			getStringToken(data, '|', 3, sizeof( FMType3 ) - 1, FMType3 );
 			pc.channel = atoi( FMType3 );
 			if ( pc.channel != -1 )
 				pc.quickChannel = pc.channel;
 		}
-		if ( strcmp(FMType2,"L") ==0) // ÆµµÀÁĞ±í
+		if ( strcmp(FMType2,"L") ==0) // é¢‘é“åˆ—è¡¨
 		{
 			initJoinChannel2WN(data );
 
@@ -4374,7 +4374,7 @@ void lssproto_FM_recv( int fd, char* data )
 		}
 
 	}
-	else if ( strcmp(FMType1,"L") ==0 )	// ×å³¤¹¦ÄÜ
+	else if ( strcmp(FMType1,"L") ==0 )	// æ—é•¿åŠŸèƒ½
 	{
 		if ( strcmp(FMType2,"CHANGE") ==0)
 		{
@@ -4562,7 +4562,7 @@ void lssproto_setdelaytimes( int delays)
 }
 #endif
 
-#ifdef _MAGIC_NOCAST//³ÁÄ¬
+#ifdef _MAGIC_NOCAST//æ²‰é»˜
 void lssproto_NC_recv( int fd, int flg )
 {  
 	if (flg==1 )
@@ -4572,27 +4572,27 @@ void lssproto_NC_recv( int fd, int flg )
 }
 #endif
 #ifdef _CHANNEL_MODIFY
-// ´¢´æ¶Ô»°ÄÚÈİ
+// å‚¨å­˜å¯¹è¯å†…å®¹
 FILE *pSaveChatDataFile[6]={NULL,NULL,NULL,NULL,NULL,NULL};
 void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile){
 	static char szFileName[256];
 	static struct tm nowTime;
 	static time_t longTime;
 	static unsigned short Channel[] = {
-		PC_ETCFLAG_CHAT_MODE	//¶ÓÎéÆµµÀ¿ª¹Ø
-		,PC_ETCFLAG_CHAT_TELL	//ÃÜÓïÆµµÀ¿ª¹Ø
-		,PC_ETCFLAG_CHAT_FM		//¼Ò×åÆµµÀ¿ª¹Ø
+		PC_ETCFLAG_CHAT_MODE	//é˜Ÿä¼é¢‘é“å¼€å…³
+		,PC_ETCFLAG_CHAT_TELL	//å¯†è¯­é¢‘é“å¼€å…³
+		,PC_ETCFLAG_CHAT_FM		//å®¶æ—é¢‘é“å¼€å…³
 #ifdef _CHAR_PROFESSION
-		,PC_ETCFLAG_CHAT_OCC	//Ö°ÒµÆµµÀ¿ª¹Ø
+		,PC_ETCFLAG_CHAT_OCC	//èŒä¸šé¢‘é“å¼€å…³
 #endif
 #ifdef _CHATROOMPROTOCOL
-		,PC_ETCFLAG_CHAT_CHAT	//ÁÄÌìÊÒ¿ª¹Ø
+		,PC_ETCFLAG_CHAT_CHAT	//èŠå¤©å®¤å¼€å…³
 #endif
 #ifdef _CHANNEL_WORLD
-		,PC_ETCFLAG_CHAT_WORLD	//ÊÀ½çÆµµÀ¿ª¹Ø
+		,PC_ETCFLAG_CHAT_WORLD	//ä¸–ç•Œé¢‘é“å¼€å…³
 #endif
 #ifdef _CHANNEL_ALL_SERV
-		,PC_ETCFLAG_ALL_SERV	//ĞÇÇòÆµµÀ¿ª¹Ø
+		,PC_ETCFLAG_ALL_SERV	//æ˜Ÿçƒé¢‘é“å¼€å…³
 #endif
 	};
 	char ChannelType[] = {'T','M','F',
@@ -4608,7 +4608,7 @@ void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile){
 #endif
 	};
 
-	// ´¢´æ¶Ô»°ÄÚÈİÑ¡Ïî¿ªÆô
+	// å‚¨å­˜å¯¹è¯å†…å®¹é€‰é¡¹å¼€å¯
 	if ((pc.etcFlag & PC_ETCFLAG_CHAT_SAVE) && !bCloseFile){
 		time(&longTime);
 		localtime_s(&nowTime,&longTime);
@@ -4656,26 +4656,26 @@ void lssproto_STREET_VENDOR_recv(int fd,char *data)
 
 	getStringToken(data,'|',1,sizeof(szMessage) - 1,szMessage);
 	switch (szMessage[0]){
-		// ¿ªĞÂ°ÚÌ¯½éÃæ
+		// å¼€æ–°æ‘†æ‘Šä»‹é¢
 		case 'O':
 			sStreetVendorBtn = 1;
 			pc.iOnStreetVendor = 1;
 			break;
-		// Éè¶¨°ÚÌ¯ÄÚÈİ
+		// è®¾å®šæ‘†æ‘Šå†…å®¹
 		case 'S':
 			sStreetVendorBtn = 3;
 			StreetVendorWndfunc(false,data);
 			break;
-		// serverËÍÀ´µÄÂô·½··ÂôÄÚÈİ
+		// serveré€æ¥çš„å–æ–¹è´©å–å†…å®¹
 		case 'B':
 			sStreetVendorBuyBtn = 1;
 			StreetVendorBuyWndfunc(data);
 			break;
-		// server ËÍÀ´¹Ø±ÕÊÓ´°
+		// server é€æ¥å…³é—­è§†çª—
 		case 'C':
 			sStreetVendorBuyBtn = 0;
 			break;
-		// server ËÍÀ´µÄµ¥±Ê··ÂôÎïÏêÏ¸×ÊÁÏ
+		// server é€æ¥çš„å•ç¬”è´©å–ç‰©è¯¦ç»†èµ„æ–™
 		case 'D':
 			StreetVendorBuyWndfunc(data);
 			break;
@@ -4684,10 +4684,10 @@ void lssproto_STREET_VENDOR_recv(int fd,char *data)
 #endif
 
 
-#ifdef _STONDEBUG_ // ÊÖ¶¯ËÍ³ö·â°ü¹¦ÄÜ Robin
+#ifdef _STONDEBUG_ // æ‰‹åŠ¨é€å‡ºå°åŒ…åŠŸèƒ½ Robin
 /* 
-	(·â°ü±àºÅ)`d`(ÊıÖµ×ÊÁÏ)`s`(×Ö´®×ÊÁÏ)`......
-	Àı: 35`d`100`d`100`s`P|Hellp~~`d`1`d`1
+	(å°åŒ…ç¼–å·)`d`(æ•°å€¼èµ„æ–™)`s`(å­—ä¸²èµ„æ–™)`......
+	ä¾‹: 35`d`100`d`100`s`P|Hellp~~`d`1`d`1
 */
 void sendDataToServer( char* data)
 {
@@ -4701,12 +4701,12 @@ void sendDataToServer( char* data)
 	int datakind;
 	int i =1;
 
-	strcat_s( showbuf, "ÊÖ¶¯ËÍ³ö ");
+	strcat_s( showbuf, "æ‰‹åŠ¨é€å‡º ");
 
 	getStringToken(data, '`', i++, sizeof(token), token );
 	if ( token[0] == NULL )	return;
 	datakind = atoi( token);
-	sprintf_s( showsubbuf, "·â°ü=%d ", datakind);
+	sprintf_s( showsubbuf, "å°åŒ…=%d ", datakind);
 	strcat_s( showbuf, showsubbuf);
 
 	while(1) {
@@ -4718,12 +4718,12 @@ void sendDataToServer( char* data)
 
 		if ( !strcmp( token2, "d") ) {
 			checksum += util_mkint( sendbuf, atoi(token3));
-			sprintf_s( showsubbuf, "Êı=%d ", atoi(token3));
+			sprintf_s( showsubbuf, "æ•°=%d ", atoi(token3));
 			strcat_s( showbuf, showsubbuf);
 		}
 		else if ( !strcmp( token2, "s") ) {
 			checksum += util_mkstring( sendbuf, token3);
-			sprintf_s( showsubbuf, "×Ö=%s ", token3);
+			sprintf_s( showsubbuf, "å­—=%s ", token3);
 			strcat_s( showbuf, showsubbuf);
 		}
 		else {
@@ -4740,18 +4740,18 @@ void sendDataToServer( char* data)
 }
 #endif
 #ifdef _FAMILYBADGE_
-extern int »ÕÕÂÊı¾İ[];
-extern int »ÕÕÂ¸öÊı;
-int »ÕÕÂ¼Û¸ñ;
+extern int å¾½ç« æ•°æ®[];
+extern int å¾½ç« ä¸ªæ•°;
+int å¾½ç« ä»·æ ¼;
 void lssproto_FamilyBadge_recv(char *data)
 {
-	»ÕÕÂ¸öÊı=0;
+	å¾½ç« ä¸ªæ•°=0;
 	int  i=2;
-	»ÕÕÂ¼Û¸ñ = getIntegerToken(data,'|',1);
+	å¾½ç« ä»·æ ¼ = getIntegerToken(data,'|',1);
 	for(i;i<201;i++){
-		»ÕÕÂÊı¾İ[i-2] = getIntegerToken(data,'|',i);
-		if(»ÕÕÂÊı¾İ[i-2]==-1) break;
-		»ÕÕÂ¸öÊı++;
+		å¾½ç« æ•°æ®[i-2] = getIntegerToken(data,'|',i);
+		if(å¾½ç« æ•°æ®[i-2]==-1) break;
+		å¾½ç« ä¸ªæ•°++;
 	}
 }
 #endif
@@ -4759,10 +4759,10 @@ void lssproto_FamilyBadge_recv(char *data)
 
 #ifdef _JOBDAILY
 extern JOBDAILY jobdaily[MAXMISSION];
-extern int JobdailyGetMax;  //ÊÇ·ñÓĞ½ÓÊÕµ½×ÊÁÏ
+extern int JobdailyGetMax;  //æ˜¯å¦æœ‰æ¥æ”¶åˆ°èµ„æ–™
 void lssproto_JOBDAILY_recv(int fd,char *data)
 {
-	//½â¶Á×ÊÁÏ
+	//è§£è¯»èµ„æ–™
 	int  i=1,j=1;
 	char getdata[250];
 	char perdata[200];
@@ -4778,7 +4778,7 @@ void lssproto_JOBDAILY_recv(int fd,char *data)
 			case 1: jobdaily[i-1].JobId = atoi(perdata);break;
 			case 2: strcpy(jobdaily[i-1].explain,perdata); break;
 			case 3: strcpy(jobdaily[i-1].state,perdata); break;
-			default: StockChatBufferLine("Ã¿±Ê×ÊÁÏÄÚ²ÎÊıÓĞ´íÎó",FONT_PAL_RED); break;
+			default: StockChatBufferLine("æ¯ç¬”èµ„æ–™å†…å‚æ•°æœ‰é”™è¯¯",FONT_PAL_RED); break;
 			}
 			perdata[0] = '\0';
 			j++;
@@ -4803,19 +4803,19 @@ void lssproto_TEACHER_SYSTEM_recv(int fd,char *data)
 
 	getStringToken(data,'|',1,sizeof(szMessage) - 1,szMessage);
 	switch (szMessage[0]){
-		// ÏÔÊ¾ËµÃ÷
+		// æ˜¾ç¤ºè¯´æ˜
 		case 'M':sTeacherSystemBtn = 1;break;
-		// Ñ¯ÎÊÊÇ·ñÒª¶Ô·½µ±ÄãµÄµ¼Ê¦
+		// è¯¢é—®æ˜¯å¦è¦å¯¹æ–¹å½“ä½ çš„å¯¼å¸ˆ
 		case 'C':
 			sTeacherSystemBtn = 2;
 			TeacherSystemWndfunc(0,data);
 			break;
-		// ³¬¹ıÒ»ÈË,Ñ¯ÎÊÒªÕÒË­µ±µ¼Ê¦
+		// è¶…è¿‡ä¸€äºº,è¯¢é—®è¦æ‰¾è°å½“å¯¼å¸ˆ
 		case 'A':
 			sTeacherSystemBtn = 3;
 			TeacherSystemWndfunc(1,data);
 			break;
-		// ÏÔÊ¾µ¼Ê¦×ÊÁÏ
+		// æ˜¾ç¤ºå¯¼å¸ˆèµ„æ–™
 		case 'V':
 			sTeacherSystemBtn = 4;
 			TeacherSystemWndfunc(2,data);
@@ -4878,7 +4878,7 @@ void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum)
 #endif
 
 #ifdef _MOVE_SCREEN
-// client ÒÆ¶¯Ó«Ä»
+// client ç§»åŠ¨è§å¹•
 void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY)
 {
 	pc.bMoveScreenMode = bMoveScreenMode;
@@ -4910,58 +4910,58 @@ void lssproto_TheaterData_recv(int fd, char *pData)
 		pc.iTheaterMode = iData;
 		if (iData == 0)
 		{
-			pc.bCanUseMouse = FALSE;		// ±íÑİÍê±Ï,¿ÉÒÔÕı³£Ê¹ÓÃ»¬ÊóÒÆ¶¯
+			pc.bCanUseMouse = FALSE;		// è¡¨æ¼”å®Œæ¯•,å¯ä»¥æ­£å¸¸ä½¿ç”¨æ»‘é¼ ç§»åŠ¨
 			pc.iSceneryNumber = -1;
 		}
 		else
 		{
-			pc.bCanUseMouse = TRUE;	// ±íÑİÖĞ
+			pc.bCanUseMouse = TRUE;	// è¡¨æ¼”ä¸­
 			pc.iSceneryNumber = 26558;
 		}
 		break;
-	case E_DATA_TYPE_MOVE:		// ÒÆ¶¯
+	case E_DATA_TYPE_MOVE:		// ç§»åŠ¨
 		camMapToGamen((float)(HIWORD(iData) * GRID_SIZE), float(LOWORD(iData) * GRID_SIZE), &fX, &fY);
 		MouseNowPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
 		MouseCrickLeftDownPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
 		MouseCrickLeftUpPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
-		pc.bCanUseMouse = FALSE;			// ÉèÎª FALSE,²»È»ÈËÎï²»ÄÜÒÆ¶¯
+		pc.bCanUseMouse = FALSE;			// è®¾ä¸º FALSE,ä¸ç„¶äººç‰©ä¸èƒ½ç§»åŠ¨
 		mouse.level = DISP_PRIO_TILE;
 		closeCharActionAnimeChange();
 		break;
-	case E_DATA_TYPE_DIR:		// ·½Ïò
+	case E_DATA_TYPE_DIR:		// æ–¹å‘
 		setPcDir(iData);
 		szMessage[0] = cnvServDir(iData, 1 );
 		szMessage[1] = '\0';
 		walkSendForServer(nowGx, nowGy, szMessage);
 		break;
-	case E_DATA_TYPE_SCENERY:	// ²¼¾°
+	case E_DATA_TYPE_SCENERY:	// å¸ƒæ™¯
 		pc.iSceneryNumber = iData;
 		break;
-	case E_DATA_TYPE_BGM:		// ±³¾°ÒôÀÖ
+	case E_DATA_TYPE_BGM:		// èƒŒæ™¯éŸ³ä¹
 		play_bgm(iData);
 		break;
-	case E_THEATER_SEND_DATA_DISPLAY_SCORE:		// ÏÔÊ¾·ÖÊı
+	case E_THEATER_SEND_DATA_DISPLAY_SCORE:		// æ˜¾ç¤ºåˆ†æ•°
 		pc.iTheaterMode |= 0x00000004;
-		pc.iTheaterMode |= iData << 16;			// iData ÊÇ·ÖÊıÖµ
+		pc.iTheaterMode |= iData << 16;			// iData æ˜¯åˆ†æ•°å€¼
 		break;
-	case E_DATA_TYPE_NPC:						// ²úÉú»òÊÇÏûÊ§»ò¸ü¸ÄÁÙÊ±NPC
-		// µ± iType Îª E_DATA_TYPE_NPC Ê±È¡³öÀ´µÄ iData ÊÇ NPC ±àºÅ
+	case E_DATA_TYPE_NPC:						// äº§ç”Ÿæˆ–æ˜¯æ¶ˆå¤±æˆ–æ›´æ”¹ä¸´æ—¶NPC
+		// å½“ iType ä¸º E_DATA_TYPE_NPC æ—¶å–å‡ºæ¥çš„ iData æ˜¯ NPC ç¼–å·
 		if (iData >= 0 && iData < 5)
 		{
 			int iSprNum, iGX, iGY, iAction, iDir;
 
-			getStringToken(pData, '|', 3, sizeof(szMessage) - 1, szMessage);	// È¡³öÖ¸Áî
+			getStringToken(pData, '|', 3, sizeof(szMessage) - 1, szMessage);	// å–å‡ºæŒ‡ä»¤
 			if (atoi(szMessage) == 1)
 			{
-				getStringToken(pData, '|', 4, sizeof(szMessage) - 1, szMessage);	// È¡³öÍ¼ºÅ
+				getStringToken(pData, '|', 4, sizeof(szMessage) - 1, szMessage);	// å–å‡ºå›¾å·
 				iSprNum = atoi(szMessage);
-				getStringToken(pData, '|', 5, sizeof(szMessage) - 1, szMessage);	// È¡³ö×ù±ê
+				getStringToken(pData, '|', 5, sizeof(szMessage) - 1, szMessage);	// å–å‡ºåº§æ ‡
 				iGX = atoi(szMessage);
-				getStringToken(pData, '|', 6, sizeof(szMessage) - 1, szMessage);	// È¡³ö×ù±ê
+				getStringToken(pData, '|', 6, sizeof(szMessage) - 1, szMessage);	// å–å‡ºåº§æ ‡
 				iGY = atoi(szMessage);
-				getStringToken(pData, '|', 7, sizeof(szMessage) - 1, szMessage);	// È¡³ö¶¯×÷
+				getStringToken(pData, '|', 7, sizeof(szMessage) - 1, szMessage);	// å–å‡ºåŠ¨ä½œ
 				iAction = atoi(szMessage);
-				getStringToken(pData, '|', 8, sizeof(szMessage) - 1, szMessage);	// È¡³ö·½Ïò
+				getStringToken(pData, '|', 8, sizeof(szMessage) - 1, szMessage);	// å–å‡ºæ–¹å‘
 				iDir = atoi(szMessage);
 				camMapToGamen((float)iGX * GRID_SIZE, (float)iGY * GRID_SIZE, &fX, &fY);
 				if (pc.pActNPC[iData] == NULL)
@@ -5042,7 +5042,7 @@ void lssproto_MagiccardAction_recv(int fd, char *data)
 	getStringToken(data, '|', 4, sizeof( token ) - 1, token );
 	dir = (atoi( token )+3)%8;
 	getStringToken(data, '|', 5, sizeof( token ) - 1, token );
-	actionNum = atoi( token );	//Í¼ºÅ
+	actionNum = atoi( token );	//å›¾å·
 	getStringToken(data, '|', 6, sizeof( token ) - 1, token );
 	action = atoi( token );
 	getStringToken(data, '|', 7, sizeof( token ) - 1, token );
@@ -5070,13 +5070,13 @@ void lssproto_DancemanOption_recv( int fd , int option )
 {
 	switch( option )
 	{
-	case 0:	//¹Ø±ÕÊÓ´°
+	case 0:	//å…³é—­è§†çª—
 		wnCloseFlag = 1;
 		break;
-	case 1: //¿ªÆô¶¯Ò»¶¯Ä£Ê½
+	case 1: //å¼€å¯åŠ¨ä¸€åŠ¨æ¨¡å¼
 		pc.iDanceMode = 1;
 		break;
-	case 2: //¹Ø±Õ¶¯Ò»¶¯Ä£Ê½
+	case 2: //å…³é—­åŠ¨ä¸€åŠ¨æ¨¡å¼
 		pc.iDanceMode = 0;
 		break;
 	}
@@ -5097,14 +5097,14 @@ void lssproto_hundredkill_recv( int fd, int flag ){
 
 void lssproto_DENGON_recv(char *data, int colors, int nums)
 {
-	extern int ¹«¸æÊıÁ¿;
-	extern char ¹«¸æÄÚÈİ[512];
-	extern int ¹«¸æÑÕÉ«;
-	extern int ¹«¸æÊ±¼ä;
-	¹«¸æÊ±¼ä=0;
-	sprintf(¹«¸æÄÚÈİ, "%s", data);
-	¹«¸æÑÕÉ« = colors;
-	¹«¸æÊıÁ¿ = nums;
+	extern int å…¬å‘Šæ•°é‡;
+	extern char å…¬å‘Šå†…å®¹[512];
+	extern int å…¬å‘Šé¢œè‰²;
+	extern int å…¬å‘Šæ—¶é—´;
+	å…¬å‘Šæ—¶é—´=0;
+	sprintf(å…¬å‘Šå†…å®¹, "%s", data);
+	å…¬å‘Šé¢œè‰² = colors;
+	å…¬å‘Šæ•°é‡ = nums;
 }
 #endif
 
@@ -5113,7 +5113,7 @@ void lssproto_DENGON_recv(char *data, int colors, int nums)
 
 void lssproto_PetSkins_recv(char *data)
 {
-	char *str = "³èÎïÀ¸Î»ÖÃ|µ±Ç°Ê¹ÓÃÆ¤·ôÍ¼ºÅ|×ÜÆ¤·ôÊı|Æ¤·ôÍ¼ºÅ|ËµÃ÷|Æ¤·ôÍ¼ºÅ|ËµÃ÷|...";
+	char *str = "å® ç‰©æ ä½ç½®|å½“å‰ä½¿ç”¨çš®è‚¤å›¾å·|æ€»çš®è‚¤æ•°|çš®è‚¤å›¾å·|è¯´æ˜|çš®è‚¤å›¾å·|è¯´æ˜|...";
 }
 
 #endif

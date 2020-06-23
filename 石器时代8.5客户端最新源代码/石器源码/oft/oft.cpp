@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	oft.c				*/
 /************************/
 
@@ -41,8 +41,8 @@ static ACTION *Light1;
 extern BOOL g_bUseAlpha;
 #endif
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
-//×ö¶îÍâ´¦Àí
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
+//åšé¢å¤–å¤„ç†
 int ShooterNum = -1;
 /*
 int nuty[20] = { 384 , 408 , 360 , 432 , 336 , 312 , 360 , 264 , 408 , 216 , 150 , 174 ,
@@ -50,7 +50,7 @@ int nuty[20] = { 384 , 408 , 360 , 432 , 336 , 312 , 360 , 264 , 408 , 216 , 150
 */
 #endif
 
-#ifdef _MAGIC_NOCAST//³ÁÄ¬
+#ifdef _MAGIC_NOCAST//æ²‰é»˜
 extern BOOL NoCastFlag;
 #endif
 //ACTION *set_bg( void );
@@ -71,36 +71,36 @@ static int get_num(void);
 #define SCREEN_OUT			106
 #define ATTACK_MAGIC_CASE	200
 #define TOCALL_MAGIC_CASE	210
-//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 #define PROSKILL			230
 int AttPreMagicNum = -1;
 int AttNextMagicNum = -1;
-short NoMiss = -1; //¶îÍâ´¦ÀíË«ÖØ¹¥»÷
+short NoMiss = -1; //é¢å¤–å¤„ç†åŒé‡æ”»å‡»
 short StarLoop = 0;
 //#endif
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯å¼€) ROG ADD æœ±é›€æŠ€èƒ½_ç«çº¿çŒæ€
 #define FIRE_HUNTER_SKILL   240
 #endif
-#ifdef _WAVETRACK					// (²»¿É¿ª) Syu ADD Òô²¨¹ìµÀ
-int BeAttNum = -1 ; //±»¹¥»÷ÕßµÄÎ»ÖÃ±àºÅ
+#ifdef _WAVETRACK					// (ä¸å¯å¼€) Syu ADD éŸ³æ³¢è½¨é“
+int BeAttNum = -1 ; //è¢«æ”»å‡»è€…çš„ä½ç½®ç¼–å·
 #endif
 
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯å¼€) ROG ADD æœ±é›€æŠ€èƒ½_ç«çº¿çŒæ€
 BOOL FireSkillEnd = FALSE;
 BOOL bFireInit = FALSE;
 int tempPosH = 0;
 int tempPosV = 0;
-int  iBeAttNum = -1;                     //±»¹¥»÷Õß±àºÅ
+int  iBeAttNum = -1;                     //è¢«æ”»å‡»è€…ç¼–å·
 int counter;
 int tarpos = -1;
 int tarMgiDem = 0;
 #endif
 
-/* ?????¨Á? ****************************************************/
+/* ?????îŸ‰? ****************************************************/
 //????????
 char att_select_flg;
 
-/* ??????¨Á? ****************************************************/
+/* ??????îŸ‰? ****************************************************/
 static ACTION *p_kanji;
 static char kanji_buf[4][128];
 static ACTION *p_master;
@@ -147,163 +147,163 @@ static int monster_place_no[20] = { 2, 1, 3, 0, 4, 7, 6, 8, 5, 9, 12, 11, 13, 10
 #ifdef __ATTACK_MAGIC
 
 // Global vars
-int			g_iRunEarthQuake = 0;		// µØÕğµÄ×´¿ö: 0 --> Ã»µØÕğ , 1 --> ³õÊ¼»¯µØÕğ , 2 --> µØÕğÖĞ
-int			g_iCurRunEarthQuake = 0;		// Ä¿Ç°µØÕğµÄÎ»ÖÃÏß
-int			g_iNumRunEarthQuake;			// µØÕğµÄ×Ü´ÎÊı
+int			g_iRunEarthQuake = 0;		// åœ°éœ‡çš„çŠ¶å†µ: 0 --> æ²¡åœ°éœ‡ , 1 --> åˆå§‹åŒ–åœ°éœ‡ , 2 --> åœ°éœ‡ä¸­
+int			g_iCurRunEarthQuake = 0;		// ç›®å‰åœ°éœ‡çš„ä½ç½®çº¿
+int			g_iNumRunEarthQuake;			// åœ°éœ‡çš„æ€»æ¬¡æ•°
 
 
 
-#define		ATTACK_MAGIC_ID		12345678	// ¹¥»÷Ä§·¨µÄÊ¶±ğ´úÂë
-#define		MAX_NUM_ATTACKED	16			// ×î´ó±»¹¥»÷ÕßµÄÊıÄ¿
+#define		ATTACK_MAGIC_ID		12345678	// æ”»å‡»é­”æ³•çš„è¯†åˆ«ä»£ç 
+#define		MAX_NUM_ATTACKED	16			// æœ€å¤§è¢«æ”»å‡»è€…çš„æ•°ç›®
 
 
 
-// Î»ÖÃ¶¨Òå
+// ä½ç½®å®šä¹‰
 struct POS
 {
-	WORD	x;							// XÖáµÄÎ»ÖÃ
-	WORD	y;							// YÖáµÄÎ»ÖÃ
+	WORD	x;							// Xè½´çš„ä½ç½®
+	WORD	y;							// Yè½´çš„ä½ç½®
 };
 
 
 
-// BJ | ¹¥»÷ÕßµÄ±àºÅ | 12345678 | ¹¥»÷ÕßÔÚÊ©´ËÖäÊõºóµÄÊ£ÓàMP | Ç°ÖÃ¶¯»­µÄ¶¯»­±àºÅ | ¹¥»÷ÖäÊõµÄ¶¯»­±àºÅ | 
-// ºóÖÃ¶¯»­µÄ¶¯»­±àºÅ | ÖäÊõµÄ·½Ê½ | ÖäÊõµÄÊ±¼ä²î | ÏÔÊ¾ÖäÊõµÄÎ»ÖÃµÄ·½Ê½( ¾ø¶Ô»ò¾ÓÖĞ ) | 
-// Î»ÖÃ( ÖäÊõµĞ·½£¬¾ø¶ÔÏÔÊ¾Î»ÖÃ·½Ê½ ) | Î»ÖÃ( Ç°ÖÃ¶¯»­£¬Ïà¶ÔÎ»ÖÃ·½Ê½ ) | Î»ÖÃ( ºóÖÃ¶¯»­£¬Ïà¶ÔÎ»ÖÃ·½Ê½ ) |
-// Ç°ÖÃ¶¯»­ÏÔÊ¾ÔÚÈËÎïµÄÇ°Ãæ»òºó·½ | ÖäÊõ¶¯»­ÏÔÊ¾ÔÚÈËÎïµÄÇ°Ãæ»òºó·½ | ºóÖÃ¶¯»­ÏÔÊ¾ÔÚÈËÎïµÄÇ°Ãæ»òºó·½ | 
-// Õğ¶¯»­Ãæ | Õğ¶¯µÄÆğÊ¼Ê±¼ä | Õğ¶¯µÄ½áÊøÊ±¼ä | ¹¥»÷µÄ¶ÔÏóX1 | ¹¥»÷µÄ¶ÔÏóX2 | ...¹¥»÷µÄ¶ÔÏóXn|FF
-// 12345678:		±íÊ¾Îª¹¥»÷ĞÔµÄÄ§·¨£¬·ñÔò±ãÎªË¯ÃßÖäÊõ
+// BJ | æ”»å‡»è€…çš„ç¼–å· | 12345678 | æ”»å‡»è€…åœ¨æ–½æ­¤å’’æœ¯åçš„å‰©ä½™MP | å‰ç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å· | æ”»å‡»å’’æœ¯çš„åŠ¨ç”»ç¼–å· | 
+// åç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å· | å’’æœ¯çš„æ–¹å¼ | å’’æœ¯çš„æ—¶é—´å·® | æ˜¾ç¤ºå’’æœ¯çš„ä½ç½®çš„æ–¹å¼( ç»å¯¹æˆ–å±…ä¸­ ) | 
+// ä½ç½®( å’’æœ¯æ•Œæ–¹ï¼Œç»å¯¹æ˜¾ç¤ºä½ç½®æ–¹å¼ ) | ä½ç½®( å‰ç½®åŠ¨ç”»ï¼Œç›¸å¯¹ä½ç½®æ–¹å¼ ) | ä½ç½®( åç½®åŠ¨ç”»ï¼Œç›¸å¯¹ä½ç½®æ–¹å¼ ) |
+// å‰ç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨äººç‰©çš„å‰é¢æˆ–åæ–¹ | å’’æœ¯åŠ¨ç”»æ˜¾ç¤ºåœ¨äººç‰©çš„å‰é¢æˆ–åæ–¹ | åç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨äººç‰©çš„å‰é¢æˆ–åæ–¹ | 
+// éœ‡åŠ¨ç”»é¢ | éœ‡åŠ¨çš„èµ·å§‹æ—¶é—´ | éœ‡åŠ¨çš„ç»“æŸæ—¶é—´ | æ”»å‡»çš„å¯¹è±¡X1 | æ”»å‡»çš„å¯¹è±¡X2 | ...æ”»å‡»çš„å¯¹è±¡Xn|FF
+// 12345678:		è¡¨ç¤ºä¸ºæ”»å‡»æ€§çš„é­”æ³•ï¼Œå¦åˆ™ä¾¿ä¸ºç¡çœ å’’æœ¯
 struct ATTACK_MAGIC
 {
-	DWORD	dwCurFrame1;						// Ä¿Ç°ÒÑ²¥·Å¹ıµÄFramesÏà¶ÔÓÚÉĞÎ´²¥·Å¹ıÇ°ÖÃÖäÊõÇ°
-	DWORD	dwCurFrame2;						// Ä¿Ç°ÒÑ²¥·Å¹ıµÄFramesÏà¶ÔÓÚÒÑ¾­²¥·ÅÍêÇ°ÖÃÖäÊõºó
-	DWORD	dwEQuake;							// ÊÇ·ñ»áÕğ¶¯»­Ãæ
-	DWORD	dwEQuakeSTime;						// µØÕğµÄ¿ªÊ¼Ê±¼ä
-	DWORD	dwEQuakeETime;						// µØÕğµÄ½áÊøÊ±¼ä
-	DWORD	dwEQuakeSFrame;						// ²¥·ÅµØÕğµÄ¿ªÊ¼Frame£¬0XFFFFFFFF±íÊ¾Ã»ÓĞµØÕğµÄÌØĞ§
-	DWORD	dwEQuakeEFrame;						// ²¥·ÅµØÕğµÄ½áÊøFrame£¬0XFFFFFFFF±íÊ¾Ã»ÓĞµØÕğµÄÌØĞ§
-	int		iPreMgcNum;							// Ç°ÖÃ¶¯»­µÄ¶¯»­±àºÅ
-	int		iCurMgcNum;							// ÖäÊõ¶¯»­µÄ¶¯»­±àºÅ
-	int		iPostMgcNum;						// ºóÖÃ¶¯»­µÄ¶¯»­±àºÅ
-	WORD	wRunPreMgc;							// ÊÇ·ñÒÑ¾­Ö´ĞĞÁËÇ°ÖÃÖäÊõ
-	WORD	wAttackType;						// ÖäÊõµÄ·½Ê½: ¸öÌå( µ¥ )£¬ÕûÅÅ( ÂÖÁ÷¹¥»÷ )£¬ÕûÅÅ( Í¬Ê±¹¥»÷ )£¬È«Ìå( ÂÖÁ÷¹¥»÷ )£¬È«Ìå( Í¬Ê±¹¥»÷ )
-	WORD	wAttackTimeSlice;					// ÖäÊõµÄÊ±¼ä²î£¬ÒÔºÁÃëÎªµ¥Î»
-	WORD	wShowType;							// ÏÔÊ¾ÖäÊõµÄÎ»ÖÃµÄ·½Ê½£¬¾ø¶Ô¼°¾ÓÖĞÁ½ÖÖ
-	WORD	wScreenX;							// ÖäÊõÏÔÊ¾Î»ÖÃµÄXÖá£¬ÔÚ¾ø¶ÔÏÔÊ¾·½Ê½Ê±
-	WORD	wScreenY;							// ÖäÊõÏÔÊ¾Î»ÖÃµÄYÖá£¬ÔÚ¾ø¶ÔÏÔÊ¾·½Ê½Ê±
-	WORD	wPreMgcX;							// Ç°ÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPreMgcY;							// Ç°ÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPostMgcX;							// ºóÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPostMgcY;							// ºóÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPreMgcOnChar;						// Ç°ÖÃ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wCurMgcOnChar;						// ÖäÊõ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wPostMgcOnChar;						// ºóÖÃ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// ²¥·Å¹¥»÷¶¯»­ÔÚµĞÎïÊ±µÄFrame Count
-	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// ±»¹¥»÷ÕßµÄË÷ÒıºÅÕóÁĞ£¬0 - 19: ÆäÖĞÒ»Î» , 20: Ç°ÅÅ , 21: ºóÅÅ  , 22: È«ÌåµĞ·½
-	POS		posAttacked[MAX_NUM_ATTACKED];		// ±»¹¥»÷ÕßµÄ±»¹¥»÷Î»ÖÃ
-	WORD	wNumAttacks;						// ¹¥»÷µÄ×Ü´ÎÊı
-	WORD	wNumAttackeds;						// ¹¥»÷²¥·ÅÍê±ÏµÄ´ÎÊı
-	WORD	wCurAttackNum;						// Ä¿Ç°¹¥»÷µÄË÷ÒıºÅ
+	DWORD	dwCurFrame1;						// ç›®å‰å·²æ’­æ”¾è¿‡çš„Framesç›¸å¯¹äºå°šæœªæ’­æ”¾è¿‡å‰ç½®å’’æœ¯å‰
+	DWORD	dwCurFrame2;						// ç›®å‰å·²æ’­æ”¾è¿‡çš„Framesç›¸å¯¹äºå·²ç»æ’­æ”¾å®Œå‰ç½®å’’æœ¯å
+	DWORD	dwEQuake;							// æ˜¯å¦ä¼šéœ‡åŠ¨ç”»é¢
+	DWORD	dwEQuakeSTime;						// åœ°éœ‡çš„å¼€å§‹æ—¶é—´
+	DWORD	dwEQuakeETime;						// åœ°éœ‡çš„ç»“æŸæ—¶é—´
+	DWORD	dwEQuakeSFrame;						// æ’­æ”¾åœ°éœ‡çš„å¼€å§‹Frameï¼Œ0XFFFFFFFFè¡¨ç¤ºæ²¡æœ‰åœ°éœ‡çš„ç‰¹æ•ˆ
+	DWORD	dwEQuakeEFrame;						// æ’­æ”¾åœ°éœ‡çš„ç»“æŸFrameï¼Œ0XFFFFFFFFè¡¨ç¤ºæ²¡æœ‰åœ°éœ‡çš„ç‰¹æ•ˆ
+	int		iPreMgcNum;							// å‰ç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	int		iCurMgcNum;							// å’’æœ¯åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	int		iPostMgcNum;						// åç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	WORD	wRunPreMgc;							// æ˜¯å¦å·²ç»æ‰§è¡Œäº†å‰ç½®å’’æœ¯
+	WORD	wAttackType;						// å’’æœ¯çš„æ–¹å¼: ä¸ªä½“( å• )ï¼Œæ•´æ’( è½®æµæ”»å‡» )ï¼Œæ•´æ’( åŒæ—¶æ”»å‡» )ï¼Œå…¨ä½“( è½®æµæ”»å‡» )ï¼Œå…¨ä½“( åŒæ—¶æ”»å‡» )
+	WORD	wAttackTimeSlice;					// å’’æœ¯çš„æ—¶é—´å·®ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
+	WORD	wShowType;							// æ˜¾ç¤ºå’’æœ¯çš„ä½ç½®çš„æ–¹å¼ï¼Œç»å¯¹åŠå±…ä¸­ä¸¤ç§
+	WORD	wScreenX;							// å’’æœ¯æ˜¾ç¤ºä½ç½®çš„Xè½´ï¼Œåœ¨ç»å¯¹æ˜¾ç¤ºæ–¹å¼æ—¶
+	WORD	wScreenY;							// å’’æœ¯æ˜¾ç¤ºä½ç½®çš„Yè½´ï¼Œåœ¨ç»å¯¹æ˜¾ç¤ºæ–¹å¼æ—¶
+	WORD	wPreMgcX;							// å‰ç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPreMgcY;							// å‰ç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPostMgcX;							// åç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPostMgcY;							// åç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPreMgcOnChar;						// å‰ç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wCurMgcOnChar;						// å’’æœ¯åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wPostMgcOnChar;						// åç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// æ’­æ”¾æ”»å‡»åŠ¨ç”»åœ¨æ•Œç‰©æ—¶çš„Frame Count
+	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// è¢«æ”»å‡»è€…çš„ç´¢å¼•å·é˜µåˆ—ï¼Œ0 - 19: å…¶ä¸­ä¸€ä½ , 20: å‰æ’ , 21: åæ’  , 22: å…¨ä½“æ•Œæ–¹
+	POS		posAttacked[MAX_NUM_ATTACKED];		// è¢«æ”»å‡»è€…çš„è¢«æ”»å‡»ä½ç½®
+	WORD	wNumAttacks;						// æ”»å‡»çš„æ€»æ¬¡æ•°
+	WORD	wNumAttackeds;						// æ”»å‡»æ’­æ”¾å®Œæ¯•çš„æ¬¡æ•°
+	WORD	wCurAttackNum;						// ç›®å‰æ”»å‡»çš„ç´¢å¼•å·
 };
 
 
 
-static ATTACK_MAGIC	AttMgc;						// ¹¥»÷ÖäÊõµÄ±äÊı
-static BOOL			bRunAttMgc = FALSE;			// ÊÇ·ñÒÑ³õÊ¼»¯ÁËÒ»¸ö¹¥»÷ÖäÊõ
-static int			AttackedInfo[4 * 10];		// Ê®¸öÈËµÄ±»¹¥»÷µÄ×ÊÑ¶£¬Ã¿¸öÈËµÄÀ¸Î»×ÊÑ¶( µ¼»ğÏßÈËÎïË÷Òı|±»µã×ÅµÄÈËÎïË÷Òı|ÈË¿ÛµÄÑª|³èÎï¿ÛµÄÑª )
-static int			iAttackedNum;				// ±»¹¥»÷µÄ×ÜÊıÄ¿
-static int			iCurAttackedFinishNum;		// ±»Íê³ÉµÄµ¼»ğÏß
+static ATTACK_MAGIC	AttMgc;						// æ”»å‡»å’’æœ¯çš„å˜æ•°
+static BOOL			bRunAttMgc = FALSE;			// æ˜¯å¦å·²åˆå§‹åŒ–äº†ä¸€ä¸ªæ”»å‡»å’’æœ¯
+static int			AttackedInfo[4 * 10];		// åä¸ªäººçš„è¢«æ”»å‡»çš„èµ„è®¯ï¼Œæ¯ä¸ªäººçš„æ ä½èµ„è®¯( å¯¼ç«çº¿äººç‰©ç´¢å¼•|è¢«ç‚¹ç€çš„äººç‰©ç´¢å¼•|äººæ‰£çš„è¡€|å® ç‰©æ‰£çš„è¡€ )
+static int			iAttackedNum;				// è¢«æ”»å‡»çš„æ€»æ•°ç›®
+static int			iCurAttackedFinishNum;		// è¢«å®Œæˆçš„å¯¼ç«çº¿
 
 
 
-static BOOL	BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker);	// ¹¥»÷ĞÔÖäÊõµÄ×ÊÁÏ½¨Á¢
-static BOOL RunTimeMagic();													// ¹¥»÷ĞÔÖäÊõµÄ¼à¿Øº¯Ê½
+static BOOL	BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker);	// æ”»å‡»æ€§å’’æœ¯çš„èµ„æ–™å»ºç«‹
+static BOOL RunTimeMagic();													// æ”»å‡»æ€§å’’æœ¯çš„ç›‘æ§å‡½å¼
 
 #endif
 
 
 #ifdef __TOCALL_MAGIC
 // kjl 02/06/24
-#define TOCALL_MAGIC_ID		5711438			// ÕÙ»½ÊõÊ¶±ğ´úÂë
+#define TOCALL_MAGIC_ID		5711438			// å¬å”¤æœ¯è¯†åˆ«ä»£ç 
 
 struct TOCALL_MAGIC
 {
-	DWORD	dwCurFrame1;						// Ä¿Ç°ÒÑ²¥·Å¹ıµÄFramesÏà¶ÔÓÚÉĞÎ´²¥·Å¹ıÇ°ÖÃÖäÊõÇ°
-	DWORD	dwCurFrame2;						// Ä¿Ç°ÒÑ²¥·Å¹ıµÄFramesÏà¶ÔÓÚÒÑ¾­²¥·ÅÍêÇ°ÖÃÖäÊõºó
-	DWORD	dwEQuake;							// ÊÇ·ñ»áÕğ¶¯»­Ãæ
-	DWORD	dwEQuakeSTime;						// µØÕğµÄ¿ªÊ¼Ê±¼ä
-	DWORD	dwEQuakeETime;						// µØÕğµÄ½áÊøÊ±¼ä
-	DWORD	dwEQuakeSFrame;						// ²¥·ÅµØÕğµÄ¿ªÊ¼Frame£¬0XFFFFFFFF±íÊ¾Ã»ÓĞµØÕğµÄÌØĞ§
-	DWORD	dwEQuakeEFrame;						// ²¥·ÅµØÕğµÄ½áÊøFrame£¬0XFFFFFFFF±íÊ¾Ã»ÓĞµØÕğµÄÌØĞ§
-	int		iPreMgcNum;							// Ç°ÖÃ¶¯»­µÄ¶¯»­±àºÅ
-	int		iCurMgcNum;							// ÖäÊõ¶¯»­µÄ¶¯»­±àºÅ
-	int		iPostMgcNum;						// ºóÖÃ¶¯»­µÄ¶¯»­±àºÅ
-	WORD	wRunPreMgc;							// ÊÇ·ñÒÑ¾­Ö´ĞĞÁËÇ°ÖÃÖäÊõ
-	WORD	wAttackType;						// ÖäÊõµÄ·½Ê½: ¸öÌå( µ¥ )£¬ÕûÅÅ( ÂÖÁ÷¹¥»÷ )£¬ÕûÅÅ( Í¬Ê±¹¥»÷ )£¬È«Ìå( ÂÖÁ÷¹¥»÷ )£¬È«Ìå( Í¬Ê±¹¥»÷ )
-	WORD	wAttackTimeSlice;					// ÖäÊõµÄÊ±¼ä²î£¬ÒÔºÁÃëÎªµ¥Î»
-	WORD	wShowType;							// ÏÔÊ¾ÖäÊõµÄÎ»ÖÃµÄ·½Ê½£¬¾ø¶Ô¼°¾ÓÖĞÁ½ÖÖ
-	WORD	wScreenX;							// ÖäÊõÏÔÊ¾Î»ÖÃµÄXÖá£¬ÔÚ¾ø¶ÔÏÔÊ¾·½Ê½Ê±
-	WORD	wScreenY;							// ÖäÊõÏÔÊ¾Î»ÖÃµÄYÖá£¬ÔÚ¾ø¶ÔÏÔÊ¾·½Ê½Ê±
-	WORD	wPreMgcX;							// Ç°ÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPreMgcY;							// Ç°ÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPostMgcX;							// ºóÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPostMgcY;							// ºóÖÃ¶¯»­µÄÏà¶ÔÎ»ÖÃ
-	WORD	wPreMgcOnChar;						// Ç°ÖÃ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wCurMgcOnChar;						// ÖäÊõ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wPostMgcOnChar;						// ºóÖÃ¶¯»­ÏÔÊ¾ÔÚµØ°åÉÏ£¬»òÈËÎïÉÏ
-	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// ²¥·Å¹¥»÷¶¯»­ÔÚµĞÎïÊ±µÄFrame Count
-	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// ±»¹¥»÷ÕßµÄË÷ÒıºÅÕóÁĞ£¬0 - 19: ÆäÖĞÒ»Î» , 20: Ç°ÅÅ , 21: ºóÅÅ  , 22: È«ÌåµĞ·½
-	POS		posAttacked[MAX_NUM_ATTACKED];		// ±»¹¥»÷ÕßµÄ±»¹¥»÷Î»ÖÃ
-	WORD	wNumAttacks;						// ¹¥»÷µÄ×Ü´ÎÊı
-	WORD	wNumAttackeds;						// ¹¥»÷²¥·ÅÍê±ÏµÄ´ÎÊı
-	WORD	wCurAttackNum;						// Ä¿Ç°¹¥»÷µÄË÷ÒıºÅ
-	WORD	wIsPostDisappear;					// ¹¥»÷ÍêÖ÷ÌåÊÇ·ñÂíÉÏÏûÊ§
-	WORD	wToCallMagicNo;						// ÕÙ»½Êõ±àºÅ
+	DWORD	dwCurFrame1;						// ç›®å‰å·²æ’­æ”¾è¿‡çš„Framesç›¸å¯¹äºå°šæœªæ’­æ”¾è¿‡å‰ç½®å’’æœ¯å‰
+	DWORD	dwCurFrame2;						// ç›®å‰å·²æ’­æ”¾è¿‡çš„Framesç›¸å¯¹äºå·²ç»æ’­æ”¾å®Œå‰ç½®å’’æœ¯å
+	DWORD	dwEQuake;							// æ˜¯å¦ä¼šéœ‡åŠ¨ç”»é¢
+	DWORD	dwEQuakeSTime;						// åœ°éœ‡çš„å¼€å§‹æ—¶é—´
+	DWORD	dwEQuakeETime;						// åœ°éœ‡çš„ç»“æŸæ—¶é—´
+	DWORD	dwEQuakeSFrame;						// æ’­æ”¾åœ°éœ‡çš„å¼€å§‹Frameï¼Œ0XFFFFFFFFè¡¨ç¤ºæ²¡æœ‰åœ°éœ‡çš„ç‰¹æ•ˆ
+	DWORD	dwEQuakeEFrame;						// æ’­æ”¾åœ°éœ‡çš„ç»“æŸFrameï¼Œ0XFFFFFFFFè¡¨ç¤ºæ²¡æœ‰åœ°éœ‡çš„ç‰¹æ•ˆ
+	int		iPreMgcNum;							// å‰ç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	int		iCurMgcNum;							// å’’æœ¯åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	int		iPostMgcNum;						// åç½®åŠ¨ç”»çš„åŠ¨ç”»ç¼–å·
+	WORD	wRunPreMgc;							// æ˜¯å¦å·²ç»æ‰§è¡Œäº†å‰ç½®å’’æœ¯
+	WORD	wAttackType;						// å’’æœ¯çš„æ–¹å¼: ä¸ªä½“( å• )ï¼Œæ•´æ’( è½®æµæ”»å‡» )ï¼Œæ•´æ’( åŒæ—¶æ”»å‡» )ï¼Œå…¨ä½“( è½®æµæ”»å‡» )ï¼Œå…¨ä½“( åŒæ—¶æ”»å‡» )
+	WORD	wAttackTimeSlice;					// å’’æœ¯çš„æ—¶é—´å·®ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
+	WORD	wShowType;							// æ˜¾ç¤ºå’’æœ¯çš„ä½ç½®çš„æ–¹å¼ï¼Œç»å¯¹åŠå±…ä¸­ä¸¤ç§
+	WORD	wScreenX;							// å’’æœ¯æ˜¾ç¤ºä½ç½®çš„Xè½´ï¼Œåœ¨ç»å¯¹æ˜¾ç¤ºæ–¹å¼æ—¶
+	WORD	wScreenY;							// å’’æœ¯æ˜¾ç¤ºä½ç½®çš„Yè½´ï¼Œåœ¨ç»å¯¹æ˜¾ç¤ºæ–¹å¼æ—¶
+	WORD	wPreMgcX;							// å‰ç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPreMgcY;							// å‰ç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPostMgcX;							// åç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPostMgcY;							// åç½®åŠ¨ç”»çš„ç›¸å¯¹ä½ç½®
+	WORD	wPreMgcOnChar;						// å‰ç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wCurMgcOnChar;						// å’’æœ¯åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wPostMgcOnChar;						// åç½®åŠ¨ç”»æ˜¾ç¤ºåœ¨åœ°æ¿ä¸Šï¼Œæˆ–äººç‰©ä¸Š
+	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// æ’­æ”¾æ”»å‡»åŠ¨ç”»åœ¨æ•Œç‰©æ—¶çš„Frame Count
+	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// è¢«æ”»å‡»è€…çš„ç´¢å¼•å·é˜µåˆ—ï¼Œ0 - 19: å…¶ä¸­ä¸€ä½ , 20: å‰æ’ , 21: åæ’  , 22: å…¨ä½“æ•Œæ–¹
+	POS		posAttacked[MAX_NUM_ATTACKED];		// è¢«æ”»å‡»è€…çš„è¢«æ”»å‡»ä½ç½®
+	WORD	wNumAttacks;						// æ”»å‡»çš„æ€»æ¬¡æ•°
+	WORD	wNumAttackeds;						// æ”»å‡»æ’­æ”¾å®Œæ¯•çš„æ¬¡æ•°
+	WORD	wCurAttackNum;						// ç›®å‰æ”»å‡»çš„ç´¢å¼•å·
+	WORD	wIsPostDisappear;					// æ”»å‡»å®Œä¸»ä½“æ˜¯å¦é©¬ä¸Šæ¶ˆå¤±
+	WORD	wToCallMagicNo;						// å¬å”¤æœ¯ç¼–å·
 };
 
-static TOCALL_MAGIC	ToCallMgc;						// ¹¥»÷ÖäÊõµÄ±äÊı
-static BOOL			bRunToCallMgc = FALSE;			// ÊÇ·ñÒÑ³õÊ¼»¯ÁËÒ»¸ö¹¥»÷ÖäÊõ
+static TOCALL_MAGIC	ToCallMgc;						// æ”»å‡»å’’æœ¯çš„å˜æ•°
+static BOOL			bRunToCallMgc = FALSE;			// æ˜¯å¦å·²åˆå§‹åŒ–äº†ä¸€ä¸ªæ”»å‡»å’’æœ¯
 
-static BOOL	BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker);	// ÕÙ»½ÖäÊõµÄ×ÊÁÏ½¨Á¢
-//static BOOL RunTimeMagic();													// ¹¥»÷ĞÔÖäÊõµÄ¼à¿Øº¯Ê½
+static BOOL	BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker);	// å¬å”¤å’’æœ¯çš„èµ„æ–™å»ºç«‹
+//static BOOL RunTimeMagic();													// æ”»å‡»æ€§å’’æœ¯çš„ç›‘æ§å‡½å¼
 
 #endif
 
 #ifdef _PROFESSION_ADDSKILL
-static int bRunBoundaryMgc_l = 0, bRunBoundaryMgc_r = 0;			// ÌØĞ§×´Ì¬
+static int bRunBoundaryMgc_l = 0, bRunBoundaryMgc_r = 0;			// ç‰¹æ•ˆçŠ¶æ€
 ACTION *boundary_2,*boundary_mark[2];
-static BOOL	BuildBoundaryMagicData( int state );	// ÌØĞ§µÄ×ÊÁÏ½¨Á¢
+static BOOL	BuildBoundaryMagicData( int state );	// ç‰¹æ•ˆçš„èµ„æ–™å»ºç«‹
 static void RunTimeMagicBoundary(int state);
 #endif
 
-//´¦ÀíÓÅÏÈË³Ğò
+//å¤„ç†ä¼˜å…ˆé¡ºåº
 enum {
-	T_PRIO_TOP,						/* ??¡I 	*/
-	T_PRIO_JIKI = 20,				/* û«? 	*/
-	T_PRIO_JIKI_MISSILE,			/* û«?£d 	*/
-	T_PRIO_MONSTER = 30,			/* ¤„ 		*/
+	T_PRIO_TOP,						/* ??î“ 	*/
+	T_PRIO_JIKI = 20,				/* î˜? 	*/
+	T_PRIO_JIKI_MISSILE,			/* î˜?î–ª 	*/
+	T_PRIO_MONSTER = 30,			/* î˜© 		*/
 	T_PRIO_UFO = 60,				/* ??? 	*/
-	T_PRIO_MONSTER_MISSILE = 70,	/* ¤„£d 	*/
+	T_PRIO_MONSTER_MISSILE = 70,	/* î˜©î–ª 	*/
 	T_PRIO_MISSILE,					/* ????	*/
-	T_PRIO_MAGIC_EFFECT,			/* ?©œ??	*/
+	T_PRIO_MAGIC_EFFECT,			/* ?îŸ¹??	*/
 	T_PRIO_HIT_MARK,				/* ??????	*/
-	T_PRIO_DAMAGE_NUM,				/* ????£k */
+	T_PRIO_DAMAGE_NUM,				/* ????î–± */
 	T_PRIO_MASTER = 100,			/* ???? */
 	T_PRIO_BOW,						/* ? 	*/
-	T_PRIO_BTM 						/* ??§ 	*/
+	T_PRIO_BTM 						/* ??î“ 	*/
 };
 
 enum {
 	D_PRIO_MASTER = 80,					/* ???? */
-	D_PRIO_MONSTER_MISSILE,			/* ¤„£d 	*/
+	D_PRIO_MONSTER_MISSILE,			/* î˜©î–ª 	*/
 	D_PRIO_UFO,						/* ??? 	*/
-	D_PRIO_MONSTER,					/* ¤„ 		*/
-	D_PRIO_JIKI_MISSILE,			/* û«?£d 	*/
-	D_PRIO_JIKI,					/* û«? 	*/
+	D_PRIO_MONSTER,					/* î˜© 		*/
+	D_PRIO_JIKI_MISSILE,			/* î˜?î–ª 	*/
+	D_PRIO_JIKI,					/* î˜? 	*/
 	D_PRIO_MISSILE,					/* ????	*/
-	D_PRIO_MAGIC_EFFECT,			/* ?©œ??	*/
+	D_PRIO_MAGIC_EFFECT,			/* ?îŸ¹??	*/
 	D_PRIO_HIT_MARK,				/* ??????	*/
-	D_PRIO_DAMAGE_NUM,				/* ????£k */
+	D_PRIO_DAMAGE_NUM,				/* ????î–± */
 };
 
 #ifdef _ATTACK_EFFECT
@@ -317,14 +317,14 @@ void SetDisplayAttackEffect(ACTION *a0, int iEffectNumber)
 {
 	ACTION *a1, *a2;
 
-	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));	// ½¨Á¢ĞÂµÄ ACTION (¹¥»÷Ê±ÌØĞ§)
+	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));	// å»ºç«‹æ–°çš„ ACTION (æ”»å‡»æ—¶ç‰¹æ•ˆ)
 	if (a2 == NULL)
 		return;
 	ATR_NAME(a2) = DisplayAttackEffect;
 	ATR_CHR_NO(a2) = iEffectNumber;
-	a1 = ATR_BODY_WORK(0, a0);							// È¡³ö±»¹¥»÷·½
-	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;			// ÏÔÊ¾ÔÚ±»¹¥»÷·½Í¼µÄÉÏ²ã
-	ATR_H_POS(a2) = ATR_H_POS(a1);						// ÏÔÊ¾ÔÚ±»¹¥»÷·½µÄÎ»ÖÃÉÏ
+	a1 = ATR_BODY_WORK(0, a0);							// å–å‡ºè¢«æ”»å‡»æ–¹
+	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;			// æ˜¾ç¤ºåœ¨è¢«æ”»å‡»æ–¹å›¾çš„ä¸Šå±‚
+	ATR_H_POS(a2) = ATR_H_POS(a1);						// æ˜¾ç¤ºåœ¨è¢«æ”»å‡»æ–¹çš„ä½ç½®ä¸Š
 	ATR_V_POS(a2) = ATR_V_POS(a1);
 }
 #endif
@@ -332,19 +332,19 @@ void SetDisplayAttackEffect(ACTION *a0, int iEffectNumber)
 void kakushi_command(void)
 {
 	//??????
-	if (LowResoCmdFlag)		// ??¥T¨Á????????
+	if (LowResoCmdFlag)		// ??î™šîŸ‰????????
 		return;
-	//¦V?şÎ???
+	//îš¼?î’•???
 	if ((joy_con[0] & JOY_LEFT) && (joy_con[0] & JOY_RIGHT))
 	{
-		LowResoCmdFlag = 1;		// ??¥T¨Á??????????
+		LowResoCmdFlag = 1;		// ??î™šîŸ‰??????????
 		//???????
 		play_se(211, 320, 240);
 	}
 }
 
 #define DAMAGE_SPD	24
-//±»¹¥»÷Ê±µÄÏÔÊ¾´¦Àí
+//è¢«æ”»å‡»æ—¶çš„æ˜¾ç¤ºå¤„ç†
 void damage_num(ACTION *a0)
 {
 	int d0, d1, dx, d2 = 0;
@@ -355,12 +355,12 @@ void damage_num(ACTION *a0)
 	char szMojHp[256];
 
 	d0 = 0; dx = 0;
-	if (slow_flg)		//¼ÙÈçÔÚslow×´Ì¬
+	if (slow_flg)		//å‡å¦‚åœ¨slowçŠ¶æ€
 	{
-		if (s_timer & 3)		//²»ÒÆ¶¯
+		if (s_timer & 3)		//ä¸ç§»åŠ¨
 			d0 = 1;
 	}
-	if (d0 == 0)		//ÒÆ¶¯Çé¿öÏÂ
+	if (d0 == 0)		//ç§»åŠ¨æƒ…å†µä¸‹
 	{
 		switch (ATR_INT_WORK1(a0))
 		{
@@ -400,8 +400,8 @@ void damage_num(ACTION *a0)
 		switch (ATR_VCT_NO(a0))
 		{
 		case 0:
-			ATR_SPD(a0) -= 2;		//©˜?¤š??????
-			if (ATR_SPD(a0))		//©˜?¤š??????
+			ATR_SPD(a0) -= 2;		//îŸµ?î˜¿??????
+			if (ATR_SPD(a0))		//îŸµ?î˜¿??????
 				break;
 			ATR_CRS(a0) = 16;
 			ATR_VCT_NO(a0) = 1;
@@ -409,7 +409,7 @@ void damage_num(ACTION *a0)
 
 		case 1:
 			ATR_SPD(a0) += 2;
-			if (ATR_SPD(a0) >= DAMAGE_SPD)		//ü¬???
+			if (ATR_SPD(a0) >= DAMAGE_SPD)		//î·???
 			{
 				ATR_STIMER(a0) = 60;
 				ATR_VCT_NO(a0) = 2;
@@ -417,42 +417,42 @@ void damage_num(ACTION *a0)
 			break;
 
 		case 2:
-			ATR_SPD(a0) = 0;		//?¥h¤_û¢
-			if (--ATR_STIMER(a0))		//ü¬???
+			ATR_SPD(a0) = 0;		//?î™®î˜…î
+			if (--ATR_STIMER(a0))		//î·???
 				break;
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 	}
 
 	switch (ATR_INT_WORK1(a0))
 	{
-	case 0:		//Miss´¦Àí
+	case 0:		//Misså¤„ç†
 		sprintf_s(szMoji, "Miss");
-		d1 = 0;		//°×É«Set
+		d1 = 0;		//ç™½è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_MISS;
 		break;
-	case 1:		//·´»÷´¦Àí
+	case 1:		//åå‡»å¤„ç†
 		sprintf_s(szMoji, "Counter");
-		d1 = 1;		//Ë®É«Set
+		d1 = 1;		//æ°´è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_COUNTER;
 		break;
-	case 3:		//·ÀÓù´¦Àí
+	case 3:		//é˜²å¾¡å¤„ç†
 		sprintf_s(szMoji, "Guard");
-		d1 = 3;		//ÇàÉ«Set
+		d1 = 3;		//é’è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GUARD;
 		break;
-	case 5:		//²¶×½´¦Àí
+	case 5:		//æ•æ‰å¤„ç†
 		sprintf_s(szMoji, "Capture");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_CAPTURE;
 		break;
 
-	case 6:		//ÊÜÉË´¦Àí
+	case 6:		//å—ä¼¤å¤„ç†
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
 		//andy_mp
@@ -460,178 +460,178 @@ void damage_num(ACTION *a0)
 			sprintf_s(szMojMp, "%d", ATR_MPDAMAGE(a0));
 		if (ATR_ADDHPFLG(a0) == 1)
 			sprintf_s(szMojHp, "%d", ATR_ADDHP(a0));
-		d1 = 6;		//ºìÉ«Set
+		d1 = 6;		//çº¢è‰²Set
 		break;
-	case 7:		//²¶×½³É¹¦´¦Àí
+	case 7:		//æ•æ‰æˆåŠŸå¤„ç†
 		sprintf_s(szMoji, "Success");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GET;
 		break;
-	case 8:		//²¶×½Ê§°Ü´¦Àí
+	case 8:		//æ•æ‰å¤±è´¥å¤„ç†
 		sprintf_s(szMoji, "Fail");
-		d1 = 6;		//ºìÉ«Set
+		d1 = 6;		//çº¢è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_FAIL;
 		break;
-	case 9:		//ÌÓÅÜ´¦Àí
+	case 9:		//é€ƒè·‘å¤„ç†
 		sprintf_s(szMoji, "Escape");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_ESCAPE;
 		break;
-	case 10:		//ÊÕ»Ø³èÎï´¦Àí
+	case 10:		//æ”¶å›å® ç‰©å¤„ç†
 		sprintf_s(szMoji, "Come!");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_COME_ON;
 		break;
-	case 11:		//·Å³ö³èÎï´¦Àí
+	case 11:		//æ”¾å‡ºå® ç‰©å¤„ç†
 		sprintf_s(szMoji, "Go!");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GO;
 		break;
-	case 12:		//ÆÆ³ı·ÀÓù´¦Àí
+	case 12:		//ç ´é™¤é˜²å¾¡å¤„ç†
 		sprintf_s(szMoji, "Guard break");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GUARD_BREAK;
 		break;
-	case 13:		//ş«¢„???
+	case 13:		//î‘²î•©???
 		sprintf_s(szMoji, "Danger");
-		d1 = 6;		//şöıè???
+		d1 = 6;		//î’½î‘‘???
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_DANGER;
 		break;
-	case 14:		//»Ø¸´
+	case 14:		//å›å¤
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		break;
-	case 15:		//MP»Ø¸´
+	case 15:		//MPå›å¤
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
-		d1 = 4;		//»ÆÉ«Set
+		d1 = 4;		//é»„è‰²Set
 		break;
-	case 16:		//MPÏÂ½µ
+	case 16:		//MPä¸‹é™
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
-		d1 = 3;		//ÇàÉ«Set
+		d1 = 3;		//é’è‰²Set
 		break;
-	case 17:		//³èÎïÌÓÅÜ
+	case 17:		//å® ç‰©é€ƒè·‘
 		sprintf_s(szMoji, "Leave");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_LEAVE;
 		break;
-	case 18:		//³èÎïNONO
+	case 18:		//å® ç‰©NONO
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_NO;
 		break;
 	case 19:		//CRUSH
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_CRUSH;
 		break;
 	case 20:		//?????????
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_CAPTURE_UP;
 		break;
 
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)
 	case 22:
 		sprintf_s(szMoji, "Roar");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_ROAR;
 		break;
 #endif
 
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 	case 23:
 		sprintf_s(szMoji, "SelfExplode");
-		d1 = 5;		//ÂÌÉ«Set
+		d1 = 5;		//ç»¿è‰²Set
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = SPR_selfexplod; //¶¯»­
+		ATR_CHR_NO(a0) = SPR_selfexplod; //åŠ¨ç”»
 		break;
 #endif
 
 #ifdef _ATTDOUBLE_ATTACK	//	andy_add
 	case 25:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_land_att;
 		break;
 	case 26:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_water_att;
 		break;
 	case 27:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_fire_att;
 		break;
 	case 28:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_wind_att;
 		break;
 #endif
 	case 29:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_tooth;
 		break;
 	case 30:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_mic_def;
 		break;
 	case 31:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ironwall;
 		break;
 
-	case 32:	//ÊôĞÔ×ª»»
+	case 32:	//å±æ€§è½¬æ¢
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ch_earth;
 		break;
 	case 33:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ch_water;
 		break;
 	case 34:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ch_fire;
 		break;
 	case 35:
 		sprintf_s(szMoji, "No");
-		d1 = 2;		//×ÏÉ«Set
+		d1 = 2;		//ç´«è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ch_wind;
 		break;
-	case 36:	//andy_add »ØºÏ²¹Ñª
+	case 36:	//andy_add å›åˆè¡¥è¡€
 		memset(szMoji, 0, sizeof(szMoji));
 		memset(szMojiP, 0, sizeof(szMojiP));
 		if (ATR_INT_WORK0(a0) != 0)
@@ -646,22 +646,22 @@ void damage_num(ACTION *a0)
 		break;
 	case 37:
 		memset(szMoji, 0, sizeof(szMoji));
-		sprintf_s(szMoji, "»Ø±Ü %s", (ATR_INT_WORK0(a0) > 0) ? "ÉÏÉı" : "ÏÂ½µ");
+		sprintf_s(szMoji, "å›é¿ %s", (ATR_INT_WORK0(a0) > 0) ? "ä¸Šå‡" : "ä¸‹é™");
 		d1 = FONT_PAL_GREEN;
 		break;
 	case 38:
 		memset(szMoji, 0, sizeof(szMoji));
-		sprintf_s(szMoji, "¹¥ %s%d£¥", (ATR_INT_WORK0(a0) > 0) ? "ÉÏÉı" : "ÏÂ½µ", ATR_INT_WORK0(a0));
+		sprintf_s(szMoji, "æ”» %s%dï¼…", (ATR_INT_WORK0(a0) > 0) ? "ä¸Šå‡" : "ä¸‹é™", ATR_INT_WORK0(a0));
 		d1 = FONT_PAL_GREEN;
 		break;
 	case 39:
 		memset(szMoji, 0, sizeof(szMoji));
-		sprintf_s(szMoji, "·À %s%d£¥", (ATR_INT_WORK0(a0) > 0) ? "ÉÏÉı" : "ÏÂ½µ", ATR_INT_WORK0(a0));
+		sprintf_s(szMoji, "é˜² %s%dï¼…", (ATR_INT_WORK0(a0) > 0) ? "ä¸Šå‡" : "ä¸‹é™", ATR_INT_WORK0(a0));
 		d1 = FONT_PAL_GREEN;
 		break;
 	case 40:
 		memset(szMoji, 0, sizeof(szMoji));
-		sprintf_s(szMoji, "Ãô %s%d£¥", (ATR_INT_WORK0(a0) > 0) ? "ÉÏÉı" : "ÏÂ½µ", ATR_INT_WORK0(a0));
+		sprintf_s(szMoji, "æ• %s%dï¼…", (ATR_INT_WORK0(a0) > 0) ? "ä¸Šå‡" : "ä¸‹é™", ATR_INT_WORK0(a0));
 		d1 = FONT_PAL_GREEN;
 		break;
 #ifdef _SYUTEST
@@ -669,16 +669,16 @@ void damage_num(ACTION *a0)
 		sprintf_s(szMoji, "LightTake");
 		d1 = 5;		
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = SPR_lightget;//¶¯»­
+		ATR_CHR_NO(a0) = SPR_lightget;//åŠ¨ç”»
 		break;
 #endif
-		//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	case 41:
 		sprintf_s(szMoji, "LightTake");
 		d1 = 5;
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = AttNextMagicNum;//¶¯»­
-#ifdef _WAVETRACK					// (²»¿É¿ª) Syu ADD Òô²¨¹ìµÀ
+		ATR_CHR_NO(a0) = AttNextMagicNum;//åŠ¨ç”»
+#ifdef _WAVETRACK					// (ä¸å¯å¼€) Syu ADD éŸ³æ³¢è½¨é“
 		if (AttNextMagicNum == 101703 && BeAttNum >= 15 && BeAttNum <= 19)
 		{
 			if (BeAttNum == 15)
@@ -746,32 +746,32 @@ void damage_num(ACTION *a0)
 		//#endif
 
 #ifdef _EQUIT_ARRANGE
-	case 42:		//µ²¸ñ´¦Àí
+	case 42:		//æŒ¡æ ¼å¤„ç†
 		sprintf_s(szMoji, "Guard");
-		d1 = 3;		//ÇàÉ«Set
+		d1 = 3;		//é’è‰²Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GUARD;
 		break;
 #endif
 
-#ifdef _SKILL_ADDBARRIER		// Change ³è¼¼:ÎªÄ§ÕÏÔö¼ÓÒì³£¿¹ĞÔ¹¦ÄÜ
+#ifdef _SKILL_ADDBARRIER		// Change å® æŠ€:ä¸ºé­”éšœå¢åŠ å¼‚å¸¸æŠ—æ€§åŠŸèƒ½
 	case 43:
 		memset(szMoji, 0, sizeof(szMoji));
 		if (ATR_INT_WORK0(a0) == 0)
-			sprintf_s(szMoji, "Òì³£¿¹ĞÔ»Ø¸´");
+			sprintf_s(szMoji, "å¼‚å¸¸æŠ—æ€§å›å¤");
 		else
-			sprintf_s(szMoji, "Òì³£¿¹ĞÔ %s%d£¥", (ATR_INT_WORK0(a0) > 0) ? "ÉÏÉı":"ÏÂ½µ", ATR_INT_WORK0(a0));
+			sprintf_s(szMoji, "å¼‚å¸¸æŠ—æ€§ %s%dï¼…", (ATR_INT_WORK0(a0) > 0) ? "ä¸Šå‡":"ä¸‹é™", ATR_INT_WORK0(a0));
 		d1 = FONT_PAL_GREEN;
 		break;
 #endif
 #ifdef _PETSKILL_PEEL
 	case 44:
 	{
-			   char *tempstr[] = { "Í·²¿", "îø²¿", "ÓÒÊÖ", "×óÊÎÆ·", "ÓÒÊÎÆ·", "Ñü´ø", "×óÊÖ", "Ğ¬×Ó", "ÊÖÌ×"};
+			   char *tempstr[] = { "å¤´éƒ¨", "é“ éƒ¨", "å³æ‰‹", "å·¦é¥°å“", "å³é¥°å“", "è…°å¸¦", "å·¦æ‰‹", "é‹å­", "æ‰‹å¥—"};
 			   memset(szMoji, 0, sizeof(szMoji));
 			   if (ATR_INT_WORK0(a0) > 8)
 				   break;
-			   sprintf_s(szMoji, "Ğ¶ÏÂ %s ×°±¸", tempstr[ATR_INT_WORK0(a0)]);
+			   sprintf_s(szMoji, "å¸ä¸‹ %s è£…å¤‡", tempstr[ATR_INT_WORK0(a0)]);
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -779,7 +779,7 @@ void damage_num(ACTION *a0)
 #ifdef _PETSKILL_JUSTICE
 	case 45:
 	{
-			   sprintf_s(szMoji, "ÉóÅĞ %d »ØºÏ", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "å®¡åˆ¤ %d å›åˆ", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -787,13 +787,13 @@ void damage_num(ACTION *a0)
 #ifdef _PETSKILL_ADDATTCRAZED
 	case 46:
 	{
-			   sprintf_s(szMoji, "Ãô½İ»Ø±ÜÏÂ½µ", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "æ•æ·å›é¿ä¸‹é™", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
 	case 47:
 	{
-			   sprintf_s(szMoji, "Ãô½İ»Ø±Ü»Ø¸´", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "æ•æ·å›é¿å›å¤", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -804,65 +804,65 @@ void damage_num(ACTION *a0)
 			   d1 = FONT_PAL_GREEN;
 			   switch(ATR_INT_WORK0(a0)){
 			   case 0:
-				   sprintf_s(szMoji, "ºğ!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å¼!", ATR_INT_WORK0(a0));
 				   break;
 			   case 1:
-				   sprintf_s(szMoji, "ÊÜµ½ÌôĞÆ!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å—åˆ°æŒ‘è¡…!", ATR_INT_WORK0(a0));
 				   break;
 			   case 2:
-				   sprintf_s(szMoji, "±»ğ¤Òºğ¤×¡!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "è¢«é»æ¶²é»ä½!", ATR_INT_WORK0(a0));
 				   break;
 			   case 3:
-				   sprintf_s(szMoji, "¹¥»÷´ÎÊı¼õÉÙ!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "æ”»å‡»æ¬¡æ•°å‡å°‘!", ATR_INT_WORK0(a0));
 				   break;
 			   case 4:
-				   sprintf_s(szMoji, "ÎüÊÕ¹âÖ®¾«Áé", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å¸æ”¶å…‰ä¹‹ç²¾çµ", ATR_INT_WORK0(a0));
 				   break;
 			   case 5:
-				   sprintf_s(szMoji, "ÎüÊÕ¾µÖ®¾«Áé", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å¸æ”¶é•œä¹‹ç²¾çµ", ATR_INT_WORK0(a0));
 				   break;
 			   case 6:
-				   sprintf_s(szMoji, "ÎüÊÕÊØÖ®¾«Áé", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å¸æ”¶å®ˆä¹‹ç²¾çµ", ATR_INT_WORK0(a0));
 				   break;
 			   case 7:
-				   sprintf_s(szMoji, "¹âÖ®¾«ÁéÊ§Ğ§", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å…‰ä¹‹ç²¾çµå¤±æ•ˆ", ATR_INT_WORK0(a0));
 				   break;
 			   case 8:
-				   sprintf_s(szMoji, "¾µÖ®¾«ÁéÊ§Ğ§", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "é•œä¹‹ç²¾çµå¤±æ•ˆ", ATR_INT_WORK0(a0));
 				   break;
 			   case 9:
-				   sprintf_s(szMoji, "ÊØÖ®¾«ÁéÊ§Ğ§", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "å®ˆä¹‹ç²¾çµå¤±æ•ˆ", ATR_INT_WORK0(a0));
 				   break;
 			   case 10:
-				   sprintf_s(szMoji, "½â³ığ¤ÒºĞ§¹û!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "è§£é™¤é»æ¶²æ•ˆæœ!", ATR_INT_WORK0(a0));
 				   break;
 #ifdef _PRO3_ADDSKILL
 			   case 11:
-				   sprintf_s(szMoji, "½â³ıÁÑ¹Ç¶Ï½î!");
+				   sprintf_s(szMoji, "è§£é™¤è£‚éª¨æ–­ç­‹!");
 				   break;
 			   case 12:
-				   sprintf_s(szMoji, "ÖĞÁË¶¾ËØÖ®Íø!");
+				   sprintf_s(szMoji, "ä¸­äº†æ¯’ç´ ä¹‹ç½‘!");
 				   break;
 			   case 13:
-				   sprintf_s(szMoji, "¶¾ËØÖ®Íø½â³ı!");
+				   sprintf_s(szMoji, "æ¯’ç´ ä¹‹ç½‘è§£é™¤!");
 				   break;
 			   case 14:
-				   sprintf_s(szMoji, "¸§Î¿ĞÄÁé½â³ı!");
+				   sprintf_s(szMoji, "æŠšæ…°å¿ƒçµè§£é™¤!");
 				   break;
 			   case 15:
-				   sprintf_s(szMoji, "·âÓ¡éœÁé·¨Êõ!");
+				   sprintf_s(szMoji, "å°å°é—‡çµæ³•æœ¯!");
 				   break;
 			   case 16:
-				   sprintf_s(szMoji, "»Ø¸´éœÁé·¨Êõ!");
+				   sprintf_s(szMoji, "å›å¤é—‡çµæ³•æœ¯!");
 				   break;
 			   case 17:
-				   sprintf_s(szMoji, "ÖĞÁË¶ñÄ§×çÖä!");
+				   sprintf_s(szMoji, "ä¸­äº†æ¶é­”è¯…å’’!");
 				   break;
 			   case 18:
-				   sprintf_s(szMoji, "½â³ı¶ñÄ§×çÖä!");
+				   sprintf_s(szMoji, "è§£é™¤æ¶é­”è¯…å’’!");
 				   break;
 			   case 19:
-				   sprintf_s(szMoji, "ÊÜµ½ÁË¾ªÏÅ!");
+				   sprintf_s(szMoji, "å—åˆ°äº†æƒŠå“!");
 				   break;
 #endif
 			   }
@@ -870,34 +870,34 @@ void damage_num(ACTION *a0)
 	}
 #endif
 #ifdef _PRO3_ADDSKILL
-	case 49: //¸§Î¿ĞÄÁé
+	case 49: //æŠšæ…°å¿ƒçµ
 	{
-				 sprintf_s(szMoji, "ÖÒ³Ï¶È %d ", ATR_INT_WORK0(a0));
+				 sprintf_s(szMoji, "å¿ è¯šåº¦ %d ", ATR_INT_WORK0(a0));
 				 d1 = FONT_PAL_GREEN;
 	}
 		break;
-	case 50: //éœÁé·âÓ¡
+	case 50: //é—‡çµå°å°
 	{
-				 char *tempstr[] = { "", "»ğÉ½Èª", "ÕëÕëÏà¶Ô", "ÊÀ½çÄ©ÈÕ", "±ù±¬Êõ", "¸½ÉíÊõ", "ÕÙÀ×Êõ", "±©·çÓê", "µçÁ÷Êõ", "»ğĞÇÇò",
-					 "ÊÈÑª¹Æ", "ÊÈÑª³ÉĞÔ", "±ù¼ıÊõ", "»ğÁúÇ¹", "±ù¾µÊõ", "»ğ¸½Ìå", "À×¸½Ìå", "±ù¸½Ìå", "»ğÊìÁ·¶È", "À×ÊìÁ·¶È", "±ùÊìÁ·¶È", 
-					 "ÒÆĞÎ»»Î»", "±©»÷", "Á¬»·¹¥»÷", "Ë«ÖØ¹¥»÷", "»Ø±Ü", "Ç¹ÊìÁ·¶È", "¸«ÊìÁ·¶È", "¹÷ÊìÁ·¶È", "¹­ÊìÁ·¶È",
-					 "¾«Í¨»ØÁ¦ïÚ", "¾«Í¨Í¶ÖÀÊ¯", "¾«Í¨Í¶ÖÀ¸«", "×´Ì¬»Ø¸´", "ÉáÒÑÎªÓÑ", "¼¤»¯¹¥»÷", "ÄÜÁ¿¾Û¼¯", "×¨×¢Õ½¶·", 
-					 "¶Ü»÷", "¹á´©¹¥»÷", "±ôËÀ¹¥»÷", "»ØĞı¹¥»÷", "»ìÂÒ¹¥»÷", "¶şµ¶Á÷", "×·Ñ°µĞ×Ù", "»Ø±ÜÕ½¶·", "Ê÷¸ù²øÈÆ", 
-					 "ÏİÚå", "ÌìÂŞµØÍø", "Ê¬ÌåÂÓ¶á", "¶¾ËØÎäÆ÷", "Èõµã¹¥»÷", "Ìô²¦", "¸ñµµ", "×ùÆï¹¥»÷", "¼Ó¹¤", "Ñ±·ş³èÎï", "¼¤Å­³èÎï", 
-					 "×Ô¸ø×Ô×ã", "À×¿¹ĞÔ", "»ğ¿¹ĞÔ", "±ù¿¹ĞÔ", "ÒÅÍü", "×ÔÎÒÇ¿»¯", "ÆøÁ¦³äÅæ", "¸ºÖØÔö¼Ó", "×ÔÈ»ÍşÄÜ", "ºÅÕÙ×ÔÈ»", 
-					 "µØ½á½ç", "Ë®½á½ç", "»ğ½á½ç", "·ç½á½ç", "ÆÆ³ı½á½ç", "ÓÕµĞ", "Ò°ĞÔÕ÷·ş", 
-					 "ËÄ·½·ÀÓù", "ÁÑ¹Ç¶Ï½î", "Õ½ÀÇÅ­ºğ", "¶·Æøµ¼Òı", 
-					 "Ä§Á¦ÖäÓ¡", "¶ñÄ§×çÖä", "ÉñÁéÖ®´Í", "¶àÖØ±ù¼ı", 
-					 "¶àÖØ±ù¼ı", "¶¾ËØÖ®Íø", "¸§Î¿ĞÄÁé", 
-					 "Õ½³¡¼±¾È", "ÖÆÒ©Ñ§" };
+				 char *tempstr[] = { "", "ç«å±±æ³‰", "é’ˆé’ˆç›¸å¯¹", "ä¸–ç•Œæœ«æ—¥", "å†°çˆ†æœ¯", "é™„èº«æœ¯", "å¬é›·æœ¯", "æš´é£é›¨", "ç”µæµæœ¯", "ç«æ˜Ÿçƒ",
+					 "å—œè¡€è›Š", "å—œè¡€æˆæ€§", "å†°ç®­æœ¯", "ç«é¾™æª", "å†°é•œæœ¯", "ç«é™„ä½“", "é›·é™„ä½“", "å†°é™„ä½“", "ç«ç†Ÿç»ƒåº¦", "é›·ç†Ÿç»ƒåº¦", "å†°ç†Ÿç»ƒåº¦", 
+					 "ç§»å½¢æ¢ä½", "æš´å‡»", "è¿ç¯æ”»å‡»", "åŒé‡æ”»å‡»", "å›é¿", "æªç†Ÿç»ƒåº¦", "æ–§ç†Ÿç»ƒåº¦", "æ£ç†Ÿç»ƒåº¦", "å¼“ç†Ÿç»ƒåº¦",
+					 "ç²¾é€šå›åŠ›é•–", "ç²¾é€šæŠ•æ·çŸ³", "ç²¾é€šæŠ•æ·æ–§", "çŠ¶æ€å›å¤", "èˆå·²ä¸ºå‹", "æ¿€åŒ–æ”»å‡»", "èƒ½é‡èšé›†", "ä¸“æ³¨æˆ˜æ–—", 
+					 "ç›¾å‡»", "è´¯ç©¿æ”»å‡»", "æ¿’æ­»æ”»å‡»", "å›æ—‹æ”»å‡»", "æ··ä¹±æ”»å‡»", "äºŒåˆ€æµ", "è¿½å¯»æ•Œè¸ª", "å›é¿æˆ˜æ–—", "æ ‘æ ¹ç¼ ç»•", 
+					 "é™·é˜±", "å¤©ç½—åœ°ç½‘", "å°¸ä½“æ å¤º", "æ¯’ç´ æ­¦å™¨", "å¼±ç‚¹æ”»å‡»", "æŒ‘æ‹¨", "æ ¼æ¡£", "åº§éª‘æ”»å‡»", "åŠ å·¥", "é©¯æœå® ç‰©", "æ¿€æ€’å® ç‰©", 
+					 "è‡ªç»™è‡ªè¶³", "é›·æŠ—æ€§", "ç«æŠ—æ€§", "å†°æŠ—æ€§", "é—å¿˜", "è‡ªæˆ‘å¼ºåŒ–", "æ°”åŠ›å……æ²›", "è´Ÿé‡å¢åŠ ", "è‡ªç„¶å¨èƒ½", "å·å¬è‡ªç„¶", 
+					 "åœ°ç»“ç•Œ", "æ°´ç»“ç•Œ", "ç«ç»“ç•Œ", "é£ç»“ç•Œ", "ç ´é™¤ç»“ç•Œ", "è¯±æ•Œ", "é‡æ€§å¾æœ", 
+					 "å››æ–¹é˜²å¾¡", "è£‚éª¨æ–­ç­‹", "æˆ˜ç‹¼æ€’å¼", "æ–—æ°”å¯¼å¼•", 
+					 "é­”åŠ›å’’å°", "æ¶é­”è¯…å’’", "ç¥çµä¹‹èµ", "å¤šé‡å†°ç®­", 
+					 "å¤šé‡å†°ç®­", "æ¯’ç´ ä¹‹ç½‘", "æŠšæ…°å¿ƒçµ", 
+					 "æˆ˜åœºæ€¥æ•‘", "åˆ¶è¯å­¦" };
 				 memset(szMoji, 0, sizeof(szMoji));
-				 sprintf_s(szMoji, "%s ±»·âÓ¡", tempstr[ATR_INT_WORK0(a0)]);
+				 sprintf_s(szMoji, "%s è¢«å°å°", tempstr[ATR_INT_WORK0(a0)]);
 				 d1 = FONT_PAL_GREEN;
 	}
 		break;
 	case 51:
 	{
-			   sprintf_s(szMoji, "¹¥ÏÂ½µ%d", ATR_INT_WORK0(a0) );
+			   sprintf_s(szMoji, "æ”»ä¸‹é™%d", ATR_INT_WORK0(a0) );
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -906,7 +906,7 @@ void damage_num(ACTION *a0)
 
 	switch (ATR_INT_WORK1(a0))
 	{
-	case 36:	//andy_add »ØºÏ²¹Ñª
+	case 36:	//andy_add å›åˆè¡¥è¡€
 		if (ATR_RIDE_FLAG(a0) == 1)
 			StockFontBuffer(ATR_H_POS(a0) - 20, ATR_V_POS(a0) + 32, FONT_PRIO_BACK, d1, szMojiP, 0);
 	case 37:
@@ -943,7 +943,7 @@ void damage_num(ACTION *a0)
 	case 15:
 	case 16:
 		//andy_mp
-		if (ATR_ADDHPFLG(a0) == 1)//ÊÈÑª¼¼
+		if (ATR_ADDHPFLG(a0) == 1)//å—œè¡€æŠ€
 		{
 			StockFontBuffer(ATR_H_POS(a0) - d0, ATR_V_POS(a0), FONT_PRIO_BACK, FONT_PAL_GREEN, szMojHp, 0);
 			break;
@@ -951,7 +951,7 @@ void damage_num(ACTION *a0)
 		d0 = GetStrWidth(szMoji) >> 1;
 		StockFontBuffer(ATR_H_POS(a0) - d0, ATR_V_POS(a0), FONT_PRIO_BACK, d1, szMoji, 0);
 
-		if (ATR_MPDAMAGE(a0) != 0 || ATR_MPDFLG(a0) == 1)//ÉËº¦
+		if (ATR_MPDAMAGE(a0) != 0 || ATR_MPDFLG(a0) == 1)//ä¼¤å®³
 			StockFontBuffer(ATR_H_POS(a0) - d0, ATR_V_POS(a0) + 12, FONT_PRIO_BACK, FONT_PAL_YELLOW, szMojMp, 0);
 		if (ATR_RIDE_FLAG(a0) == 1)
 		{
@@ -964,35 +964,35 @@ void damage_num(ACTION *a0)
 	}
 }
 
-//ÉËº¦ÖµÉè¶¨´¦Àí
+//ä¼¤å®³å€¼è®¾å®šå¤„ç†
 void set_damage_num(ACTION *a0, int color, int v_pos)
 {
 	ACTION *a1;
 	a1 = GetAction(T_PRIO_DAMAGE_NUM, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return;
-	/* ûÂ??? */
-#ifdef _WAVETRACK					// (²»¿É¿ª) Syu ADD Òô²¨¹ìµÀ
+	/* î¯??? */
+#ifdef _WAVETRACK					// (ä¸å¯å¼€) Syu ADD éŸ³æ³¢è½¨é“
 	BeAttNum = a0->hitDispNo ; 
 #endif
 	ATR_NAME(a1) = damage_num;
-	//±íÊ¾ÓÅÏÈ¶È
+	//è¡¨ç¤ºä¼˜å…ˆåº¦
 	ATR_DISP_PRIO(a1) = D_PRIO_DAMAGE_NUM;
-	/* ???£t */
+	/* ???î–º */
 	ATR_H_POS(a1) = ATR_H_POS(a0);
 	ATR_V_POS(a1) = ATR_V_POS(a0) + v_pos;
 	ATR_SPD(a1) = DAMAGE_SPD;
 	ATR_ATTRIB(a1) = ACT_ATR_HIDE;
-	//Syu mark ÏÂÃæÕâĞĞ¸úÑÕÉ«¸ù±¾Ã»¹ØÏµ£¬ÊÇdamage_numµÄ´úÂë£¬damage_numµÄswitch²Å»á¾ö¶¨É«Âë
-	ATR_INT_WORK1(a1) = color;		//ÎÄ×ÖÑÕÉ«Éè¶¨
+	//Syu mark ä¸‹é¢è¿™è¡Œè·Ÿé¢œè‰²æ ¹æœ¬æ²¡å…³ç³»ï¼Œæ˜¯damage_numçš„ä»£ç ï¼Œdamage_numçš„switchæ‰ä¼šå†³å®šè‰²ç 
+	ATR_INT_WORK1(a1) = color;		//æ–‡å­—é¢œè‰²è®¾å®š
 	if (ATR_ADDHPFLG(a0) == 1)
 	{
 		ATR_ADDHP(a1) = ATR_ADDHP(a0);
 		ATR_ADDHPFLG(a1) = ATR_ADDHPFLG(a0);
 	}
 	int dddd = ATR_DAMAGE(a0);
-	ATR_INT_WORK0(a1) = ATR_DAMAGE(a0);		//ÉËº¦Éè¶¨
-	ATR_INT_WORKp(a1) = ATR_PET_DAMAGE(a0);		//ÉËº¦Éè¶¨
+	ATR_INT_WORK0(a1) = ATR_DAMAGE(a0);		//ä¼¤å®³è®¾å®š
+	ATR_INT_WORKp(a1) = ATR_PET_DAMAGE(a0);		//ä¼¤å®³è®¾å®š
 	ATR_RIDE_FLAG(a1) = ATR_RIDE(a0);
 	//andy_mp
 	ATR_MPDAMAGE(a1) = ATR_MPDAMAGE(a0);
@@ -1033,7 +1033,7 @@ void set_damage_num(ACTION *a0, int color, int v_pos)
 	case 19:
 		break;
 	default:
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 		if (ATR_SELFEXPLODE(a0) == 1)
 			ATR_V_POS(a1) = ATR_V_POS(a0) - SpriteInfo[a0->bmpNo].height / 2 + 20;
 		else
@@ -1048,7 +1048,7 @@ void set_damage_num(ACTION *a0, int color, int v_pos)
 #endif
 	}
 #ifdef _PETSKILL_LER
-	// À×¶û·ÀÓùÊ±µÄ·À»¤¶Ü
+	// é›·å°”é˜²å¾¡æ—¶çš„é˜²æŠ¤ç›¾
 	if (color == 3 && ATR_CHR_NO(a0) == 101815)
 	{
 		ACTION *a2;
@@ -1072,96 +1072,96 @@ void set_damage_num(ACTION *a0, int color, int v_pos)
 #endif
 }
 
-/* ??????şØ?? *******************************************************************/
+/* ??????î’Ÿ?? *******************************************************************/
 #if 0
-??§Š?
-?????	¡‰ûê
-?????	¤Y
+??î?
+?????	î”î—
+?????	î—¿
 ?????  ?
-?????	?şS
+?????	?î ˜
 ?????	?
 ?????	?
 ?????	??????
-?????	ûöüÓ
+?????	î£î
 
-??§Š???
-?????	¡‰ûê
-?????	¤Y
+??î???
+?????	î”î—
+?????	î—¿
 ?????  ?
-?????	?şS
+?????	?î ˜
 ?????	?
 ?????	?
 ?????	??????
-?????	ûöüÓ
+?????	î£î
 #endif
 void play_damage(int no, int x)
 {
-	//??§Š???§Æ????
+	//??î???î¤????
 	if (no >= 10100)
 		no -= 100;
-	//Ğ§¹ûÒô·ÖÀà
+	//æ•ˆæœéŸ³åˆ†ç±»
 	switch (no)
 	{
-	case 10000:		//¿ÕÊÖ
+	case 10000:		//ç©ºæ‰‹
 		no = 250;
 		break;
-	case 10001:		//×¦
+	case 10001:		//çˆª
 		no = 254;
 		break;
-	case 10002:		//¸«
+	case 10002:		//æ–§
 		no = 251;
 		break;
-	case 10003:		//¹÷°ô
+	case 10003:		//æ£æ£’
 		no = 251;
 		break;
-	case 10004:		//Ç¹
+	case 10004:		//æª
 		no = 252;
 		break;
-	case 10005:		//¹­
+	case 10005:		//å¼“
 		no = -1;
 		break;
-	case 10006:		//Í¶ÖÀ¸«
+	case 10006:		//æŠ•æ·æ–§
 		no = -1;
 		break;
-	case 10007:		//ÖäÊõ
+	case 10007:		//å’’æœ¯
 		no = 254;
 		break;
 	default:
 		no = 250;
 	}
-	//???ş•????
+	//???î¡™????
 	if (no != -1)
 		play_se(no, x, 240);
 }
 
-/* ??¤úû¨?? *******************************************************************/
+/* ??î¸î•?? *******************************************************************/
 void disp_kanji(ACTION *a0)
 {
 	int d1, d7;
 
 	ACTION *a1;
 	a1 = ATR_BODY_WORK(0, a0);		//?????
-	if (!--ATR_INT_WORK0(a0))		//¤úû¨??şú???
+	if (!--ATR_INT_WORK0(a0))		//î¸î•??î“???
 	{
-		DeathAction(a1);		//????úÇ
-		DeathAction(a0);		//ü¬?
+		DeathAction(a1);		//????îŒ–
+		DeathAction(a0);		//î·?
 		p_kanji = NULL;
-		ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+		ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 	}
 	else
 	{
-		if (ATR_LIFE(a1))		//¤úû¨????
+		if (ATR_LIFE(a1))		//î¸î•????
 		{
 			for (d1 = 4 + 13, d7 = 0; d7 < 4; d1 += 18, d7++)
 			{
-				if (kanji_buf[d7][0])		//§ó??????
+				if (kanji_buf[d7][0])		//î°??????
 					StockFontBuffer(640 - 4 + -64 * 4 + 24, d1, FONT_PRIO_FRONT, FONT_PAL_WHITE, kanji_buf[d7], 0);
 			}
 		}
 	}
 }
 
-/* ?©œ???? *******************************************************************/
+/* ?îŸ¹???? *******************************************************************/
 void magic_effect(ACTION *a0)
 {
 	ACTION *a1;
@@ -1169,34 +1169,34 @@ void magic_effect(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬???
+		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·???
 		{
 			ATR_VCT_NO(a0)++;
 			ATR_CHR_ACT(a0)++;
 		}
 		break;
 	case 1:
-		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬???
+		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·???
 		{
 			ATR_VCT_NO(a0)++;
 			ATR_CHR_ACT(a0)++;
 		}
 		break;
 	case 2:
-		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬???
+		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·???
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		break;
 	}
-	a1 = ATR_BODY_WORK(0, a0);		//?¤õ¨ùşÕ
+	a1 = ATR_BODY_WORK(0, a0);		//?î³îŸœî’œ
 	ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
 	ATR_H_POS(a0) = ATR_H_POS(a1);
 	ATR_V_POS(a0) = ATR_V_POS(a1);
 }
 
-//HIT_MARK´¦Àí ( ±ØÉ± )
+//HIT_MARKå¤„ç† ( å¿…æ€ )
 void hit_mark_critical(ACTION *a0)
 {
 	if (ATR_STIMER(a0) == ATR_FIRST_FLG(a0) >> 1)		//?????
@@ -1208,14 +1208,14 @@ void hit_mark_critical(ACTION *a0)
 	}
 	else
 	{
-		DeathAction(a0);		//ÖÕÁË
+		DeathAction(a0);		//ç»ˆäº†
 		return;
 	}
 }
-//HIT_MARK´¦Àí
+//HIT_MARKå¤„ç†
 void hit_mark(ACTION *a0)
 {
-	//¶ÔÏóËÀÍöATR_KAISHINÎªTRUE
+	//å¯¹è±¡æ­»äº¡ATR_KAISHINä¸ºTRUE
 	if (ATR_KAISHIN(a0))
 	{
 		if (ATR_STIMER(a0) == ATR_FIRST_FLG(a0) * 1 / 3)		//?????
@@ -1234,7 +1234,7 @@ void hit_mark(ACTION *a0)
 		pattern(a0, 0, 0);
 	else
 	{
-		DeathAction(a0);		//ÖÕÁË
+		DeathAction(a0);		//ç»ˆäº†
 		return;
 	}
 }
@@ -1244,38 +1244,38 @@ void set_hit_mark(ACTION *a0)
 	ACTION *a1, *a2;
 	int d0;
 
-	//±ØÉ±Ê±²úÉúÎå¿ÅĞÇĞÇ£¬²»¹ÜÊÇ²»ÊÇ±ØÉ±¶¼ÏÈ×ö£¬²»ÊÇ²Åbreak
+	//å¿…æ€æ—¶äº§ç”Ÿäº”é¢—æ˜Ÿæ˜Ÿï¼Œä¸ç®¡æ˜¯ä¸æ˜¯å¿…æ€éƒ½å…ˆåšï¼Œä¸æ˜¯æ‰break
 	for (d0 = 5; d0 > 0; d0--)
 	{
-		//Éè¶¨HIT_MARK
+		//è®¾å®šHIT_MARK
 		a1 = GetAction(T_PRIO_HIT_MARK, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return;
-		/* ûÂ??? */
+		/* î¯??? */
 		ATR_NAME(a1) = hit_mark;
-		//±íÊ¾ÓÅÏÈ¶È
+		//è¡¨ç¤ºä¼˜å…ˆåº¦
 		ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-		//¼ÙÉè±»¹¥»÷¶ÔÏó·ÀÓùÓÃÇàÉ«Í¼
+		//å‡è®¾è¢«æ”»å‡»å¯¹è±¡é˜²å¾¡ç”¨é’è‰²å›¾
 		if (ATR_ATTACK_KIND(0, a0) & ATT_GUARD)
-			//Éè¶¨Í¼ºÅ
-			ATR_CHR_NO(a1) = CG_HIT_MARK_12;		//ÇàÉ«
+			//è®¾å®šå›¾å·
+			ATR_CHR_NO(a1) = CG_HIT_MARK_12;		//é’è‰²
 		else
-			//Éè¶¨Í¼ºÅ
-			ATR_CHR_NO(a1) = CG_HIT_MARK_22;		//ºìÉ«
-		//³õÆÚÎ»ÖÃÅäÖÃ
+			//è®¾å®šå›¾å·
+			ATR_CHR_NO(a1) = CG_HIT_MARK_22;		//çº¢è‰²
+		//åˆæœŸä½ç½®é…ç½®
 		a2 = ATR_BODY_WORK(0, a0);
 		ATR_H_POS(a1) = ATR_H_POS(a2);
 		ATR_V_POS(a1) = ATR_V_POS(a2) - 32;
 		ATR_SPD(a1) = Rnd(4, 7);
 		ATR_CRS(a1) = d0 * 6;
 		if (ATR_HIT_STOP(a0) == HIT_STOP_TIM)		//??????????
-			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//±íÊ¾Ê±¼äÉè¶¨
+			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//è¡¨ç¤ºæ—¶é—´è®¾å®š
 		else
 		{
-			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//±íÊ¾Ê±¼äÉè¶¨
+			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//è¡¨ç¤ºæ—¶é—´è®¾å®š
 			ATR_KAISHIN(a1) = 1;
 		}
-		//±ØÉ±Ê±´¦ÀíÏÂÒ»¿ÅĞÇĞÇ£¬·Ç±ØÉ±Ìø³ö
+		//å¿…æ€æ—¶å¤„ç†ä¸‹ä¸€é¢—æ˜Ÿæ˜Ÿï¼Œéå¿…æ€è·³å‡º
 		if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
 		{
 			ATR_NAME(a1) = hit_mark_critical;
@@ -1287,15 +1287,15 @@ void set_hit_mark(ACTION *a0)
 	}
 }
 
-/* ş\?ûöüÓ???¤úû¨?? *******************************************************************/
+/* î ¡?î£î???î¸î•?? *******************************************************************/
 void disp_guard_mark(ACTION *a0)
 {
 	ACTION *a1;
 	a1 = ATR_BODY_WORK(0, a0);
 	ATR_H_POS(a0) = ATR_H_POS(a1);
 	ATR_V_POS(a0) = ATR_V_POS(a1) - 32;
-	if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬???
-		DeathAction(a0);		//ü¬?
+	if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·???
+		DeathAction(a0);		//î·?
 }
 
 void set_guard_mark(ACTION *a0)
@@ -1311,9 +1311,9 @@ void set_guard_mark(ACTION *a0)
 		ATR_CHR_NO(a1) = SPR_mirror;
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)
 		ATR_CHR_NO(a1) = SPR_barrior;
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_TRAP)
-	{		//ÏİÚå
+	{		//é™·é˜±
 		if ( a0->hitDispNo >= 10 && a0->hitDispNo <= 19 )
 			ATR_CHR_NO(a1) = 101630;
 		else if ( a0->hitDispNo >= 0 && a0->hitDispNo <= 9 )
@@ -1329,11 +1329,11 @@ void set_guard_mark(ACTION *a0)
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_ACUPUNCTURE)
-		//Ä¿Ç°²»ÏÔÊ¾Ğ§¹ûÍ¼
+		//ç›®å‰ä¸æ˜¾ç¤ºæ•ˆæœå›¾
 #ifdef _FIX_ACUPUNCTURE
 		ATR_DAMAGE(a0) = ATR_ATTACK_POW(1, a0);
 #else
-		ATR_DAMAGE(a0) = ATR_ATTACK_POW(0, a0)*2;//Éè¶¨ÉËº¦Öµ
+		ATR_DAMAGE(a0) = ATR_ATTACK_POW(0, a0)*2;//è®¾å®šä¼¤å®³å€¼
 #endif
 #endif
 #ifdef _PET_ITEM
@@ -1354,16 +1354,16 @@ void set_jujutsu_hit_mark(ACTION *a0)
 	a1 = GetAction(T_PRIO_HIT_MARK, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return;
-	/* ûÂ??? */
+	/* î¯??? */
 	ATR_NAME(a1) = hit_mark;
-	/* ¤úû¨?¡I¥T */
+	/* î¸î•?î“î™š */
 	ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-	/* ?????§k? */
-	ATR_CHR_NO(a1) = CG_HIT_MARK_32;		//?ıè
-	/* ???£t */
+	/* ?????îœ±? */
+	ATR_CHR_NO(a1) = CG_HIT_MARK_32;		//?î‘‘
+	/* ???î–º */
 	ATR_H_POS(a1) = ATR_H_POS(a0);
 	ATR_V_POS(a1) = ATR_V_POS(a0) - 32;
-	ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = HIT_STOP_TIM;		//¤úû¨?????
+	ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = HIT_STOP_TIM;		//î¸î•?????
 }
 
 static int piyo_loop_v_tbl[] = {
@@ -1379,19 +1379,19 @@ static int piyo_loop_h_tbl[] = {
 	-9, -11, -14, -16, -17, -19, -20, -21, -22, -23, -23,
 };
 
-//??????????  ?????¤š??  ??????????
+//??????????  ?????î˜¿??  ??????????
 void piyo_loop(ACTION *a0)
 {
 	ACTION *a1;
 	int d0;
 
-	a1 = ATR_BODY_WORK(0, a0);		//şo¢l??????
-	if (ATR_NAME(a1) == NULL || ATR_LIFE(a1) != 0)		//????ü¬???
+	a1 = ATR_BODY_WORK(0, a0);		//î ´î•’??????
+	if (ATR_NAME(a1) == NULL || ATR_LIFE(a1) != 0)		//????î·???
 	{
-		DeathAction(a0);		//ü¬?
+		DeathAction(a0);		//î·?
 		return;
 	}
-	/* ¤úû¨?¡I¥T */
+	/* î¸î•?î“î™š */
 	ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
 	d0 = piyo_loop_h_tbl[ATR_STIMER(a0)];
 	ATR_H_POS(a0) = ATR_H_POS(a1) + d0 + ATR_INT_WORK0(a0);
@@ -1416,13 +1416,13 @@ void set_piyo_loop(ACTION *a0)
 		a1 = GetAction(T_PRIO_HIT_MARK, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return;
-		/* ûÂ??? */
+		/* î¯??? */
 		ATR_NAME(a1) = piyo_loop;
 		ATR_CHR_NO(a1) = SPR_star;
-		/* ???£t */
+		/* ???î–º */
 		ATR_BODY_WORK(0, a1) = a0;
 		ATR_STIMER(a1) = d7 * (60 / PIYOPIYO_CNT);
-		//ş¢?ıÆ??¥h
+		//î‘©?î¯??î™®
 #ifndef __CARYTEST
 		ATR_INT_WORK0(a1) = a0->anim_x + SpriteInfo[ATR_PAT_NO(a0)].width / 2;
 #else
@@ -1432,35 +1432,35 @@ void set_piyo_loop(ACTION *a0)
 	}
 }
 
-/* ?şƒ?? *******************************************************************/
+/* ?î¡‡?? *******************************************************************/
 void katino(ACTION *a0)
 {
 	ACTION *a1;
 
-	a1 = ATR_BODY_WORK(0, a0);		//ûõûöüÓûÔ??????????
-	if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) == VCT_NO_DIE + 2 || ATR_LIFE(a1) == 0)		//ü¬???
+	a1 = ATR_BODY_WORK(0, a0);		//î¢î£îî??????????
+	if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) == VCT_NO_DIE + 2 || ATR_LIFE(a1) == 0)		//î·???
 	{
-		ATR_JUJUTSU_WORK(a1) = NULL;		//ü¬?
-		DeathAction(a0);		//ü¬?
+		ATR_JUJUTSU_WORK(a1) = NULL;		//î·?
+		DeathAction(a0);		//î·?
 		return;
 	}
 	ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
 	ATR_H_POS(a0) = ATR_H_POS(a1);
-#ifdef _FIXSTATUS					// (²»¿É¿ª) Syu ADD ĞŞÕıÕ½¶·×´Ì¬ÏÔÊ¾·½Ê½
-	if (ATR_CHR_NO(a0) == SPR_shock)			//Âé±Ô
+#ifdef _FIXSTATUS					// (ä¸å¯å¼€) Syu ADD ä¿®æ­£æˆ˜æ–—çŠ¶æ€æ˜¾ç¤ºæ–¹å¼
+	if (ATR_CHR_NO(a0) == SPR_shock)			//éº»ç—¹
 		ATR_V_POS(a0) = ATR_V_POS(a1);
-	else if (ATR_CHR_NO(a0) == 35120)		//Ê÷¸ù²øÈÆ
+	else if (ATR_CHR_NO(a0) == 35120)		//æ ‘æ ¹ç¼ ç»•
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 101702)	//¶¾SarsÂûÑÓ
+	else if (ATR_CHR_NO(a0) == 101702)	//æ¯’Sarsè”“å»¶
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 27692)		//±ù¼ıÊõ¡¢±ù±¬Êõ
+	else if (ATR_CHR_NO(a0) == 27692)		//å†°ç®­æœ¯ã€å†°çˆ†æœ¯
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 35110)		//ÌìÂŞµØÍø
+	else if (ATR_CHR_NO(a0) == 35110)		//å¤©ç½—åœ°ç½‘
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 26517)		//ÒÅÍü
+	else if (ATR_CHR_NO(a0) == 26517)		//é—å¿˜
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
 	else if (ATR_CHR_NO(a0) == CG_HIT_MARK_00)
-	{	//ÔÎÑ£
+	{	//æ™•çœ©
 		StarLoop++; 
 		if (StarLoop <= 20 && StarLoop > 0) 
 			ATR_V_POS(a0) = ATR_V_POS(a1) - 46;
@@ -1480,9 +1480,9 @@ void katino(ACTION *a0)
 			StarLoop = 0 ; 
 	}
 #ifdef _PETSKILL_LER
-	// À×¶û±äÉíÊ±µÄÎí¶¯»­µÄÎ»ÖÃ²»¶¯
+	// é›·å°”å˜èº«æ—¶çš„é›¾åŠ¨ç”»çš„ä½ç½®ä¸åŠ¨
 	else if (ATR_CHR_NO(a0) == 101810 || ATR_CHR_NO(a0) == 101811 || ATR_CHR_NO(a0) == 101863 || ATR_CHR_NO(a0) == 101864);
-	// À×¶û·ÀÓùÊ±µÄ·À»¤¶Ü¶¯»­Î»ÖÃÒª±ä
+	// é›·å°”é˜²å¾¡æ—¶çš„é˜²æŠ¤ç›¾åŠ¨ç”»ä½ç½®è¦å˜
 	else if (ATR_CHR_NO(a0) == 101805 || ATR_CHR_NO(a0) == 101858)
 	{
 		ATR_H_POS(a0) = ATR_H_POS(a1) + 10;
@@ -1498,11 +1498,11 @@ void katino(ACTION *a0)
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 64;
 #endif
 #ifdef _PETSKILL_LER
-	// µ±¶¯»­ÎªÎí»ò·À»¤¶ÜÊ±
+	// å½“åŠ¨ç”»ä¸ºé›¾æˆ–é˜²æŠ¤ç›¾æ—¶
 	if (ATR_CHR_NO(a0) == 101810 || ATR_CHR_NO(a0) == 101811 || ATR_CHR_NO(a0) == 101805 ||
 		ATR_CHR_NO(a0) == 101863 || ATR_CHR_NO(a0) == 101864 || ATR_CHR_NO(a0) == 101858)
 	{
-		// ¶¯»­²¥·ÅÍêÁË,Çå³ı¶¯»­
+		// åŠ¨ç”»æ’­æ”¾å®Œäº†,æ¸…é™¤åŠ¨ç”»
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
 			ATR_JUJUTSU_WORK(a1) = NULL;
@@ -1515,7 +1515,7 @@ void katino(ACTION *a0)
 			int i;
 			for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 			{
-				// ÕÒ³öÀ×¶ûÔÚÄÇÒ»±ß
+				// æ‰¾å‡ºé›·å°”åœ¨é‚£ä¸€è¾¹
 				if (ATR_CHR_NO(p_party[i]) == ATR_CHR_NO(a1))
 					break;
 			}
@@ -1528,7 +1528,7 @@ void katino(ACTION *a0)
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);		//???
 }
 
-//²úÉú³ÖĞøĞÔÈËÎï×´Ì¬¶¯»­
+//äº§ç”ŸæŒç»­æ€§äººç‰©çŠ¶æ€åŠ¨ç”»
 void set_single_jujutsu(int d0, ACTION *a1)
 {
 	if (ATR_LIFE(a1) == 0)		//??????
@@ -1539,20 +1539,20 @@ void set_single_jujutsu(int d0, ACTION *a1)
 	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 	if (a2 == NULL)
 		return;
-	/* ûÂ??? */
+	/* î¯??? */
 	ATR_NAME(a2) = katino;
 	ATR_BODY_WORK(0, a2) = a1;
 	ATR_JUJUTSU_WORK(a1) = a2;
-	/* ¤úû¨?¡I¥T */
+	/* î¸î•?î“î™š */
 	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;
-	/* ???£t */
+	/* ???î–º */
 	ATR_H_POS(a2) = ATR_H_POS(a1);
 	ATR_V_POS(a2) = ATR_V_POS(a1) - 64;
 	ATR_STIMER(a2) = d0;
-	/* ?????§k? */
+	/* ?????îœ±? */
 	switch (d0)
 	{
-		//  "¥€", 
+		//  "îš…", 
 	case 1:
 		ATR_CHR_NO(a2) = SPR_poison;
 		break;
@@ -1561,11 +1561,11 @@ void set_single_jujutsu(int d0, ACTION *a1)
 		ATR_CHR_NO(a2) = SPR_shock;
 		break;
 
-		//  "şƒ?", 
+		//  "î¡‡?", 
 	case 3:
 		ATR_CHR_NO(a2) = SPR_sleep;
 		break;
-		//  "şğ?", 
+		//  "î’·?", 
 	case 4:
 		ATR_CHR_NO(a2) = SPR_stone;
 		break;
@@ -1577,78 +1577,78 @@ void set_single_jujutsu(int d0, ACTION *a1)
 	case 6:
 		ATR_CHR_NO(a2) = SPR_conf;
 		break;
-#ifdef _MAGIC_WEAKEN  //ĞéÈõ
+#ifdef _MAGIC_WEAKEN  //è™šå¼±
 	case 7:
 		ATR_CHR_NO(a2) = SPR_weaken;
 		break;
 #endif
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //å‰§æ¯’
 	case 8:
 		ATR_CHR_NO(a2) = SPR_deeppoison;
 		break;
 #endif
 #ifdef _MAGIC_BARRIER
 	case 9:
-		ATR_CHR_NO(a2) = SPR_barrier; //Ä§ÕÏ 
+		ATR_CHR_NO(a2) = SPR_barrier; //é­”éšœ 
 		break;
 #endif
 #ifdef _MAGIC_NOCAST
 	case 10:
-		ATR_CHR_NO(a2) = SPR_nocast; //³ÁÄ¬ 
+		ATR_CHR_NO(a2) = SPR_nocast; //æ²‰é»˜ 
 		break;
 #endif
 
-#ifdef _SARS						// WON ADD ¶¾É·ÂûÑÓ
+#ifdef _SARS						// WON ADD æ¯’ç…è”“å»¶
 	case 11:
-		ATR_CHR_NO(a2) = 101702; //¶¾É·ÂûÑÓ
+		ATR_CHR_NO(a2) = 101702; //æ¯’ç…è”“å»¶
 		break;
 #endif
 
 #ifdef _CHAR_PROFESSION						// WON ADD
 	case 12:
-		ATR_CHR_NO(a2) = CG_HIT_MARK_00; //ÔÎÑ£
+		ATR_CHR_NO(a2) = CG_HIT_MARK_00; //æ™•çœ©
 		break;
 	case 13:
-		ATR_CHR_NO(a2) = 35120; //Ê÷¸ù²øÈÆ
+		ATR_CHR_NO(a2) = 35120; //æ ‘æ ¹ç¼ ç»•
 		break;
 	case 14:
-		ATR_CHR_NO(a2) = 35110; //ÌìÂŞµØÍø
+		ATR_CHR_NO(a2) = 35110; //å¤©ç½—åœ°ç½‘
 		break;
 	case 15:
-		ATR_CHR_NO(a2) = 27692;	//±ù±¬Êõ
+		ATR_CHR_NO(a2) = 27692;	//å†°çˆ†æœ¯
 		break;
 	case 16: 
-		ATR_CHR_NO(a2) = 26517; //ÒÅÍü
+		ATR_CHR_NO(a2) = 26517; //é—å¿˜
 		break;
 	case 17:
-		ATR_CHR_NO(a2) = 27692;	//±ù¼ı
+		ATR_CHR_NO(a2) = 27692;	//å†°ç®­
 		break;	
 	case 18:
-		ATR_CHR_NO(a2) = 27012; //ÊÈÑª¹Æ
+		ATR_CHR_NO(a2) = 27012; //å—œè¡€è›Š
 		break;	
 	case 19:
-		ATR_CHR_NO(a2) = 27012; //Ò»Õë¼ûÑª
+		ATR_CHR_NO(a2) = 27012; //ä¸€é’ˆè§è¡€
 		break;
 	case 20:
-		ATR_CHR_NO(a2) = SPR_conf; //Ìô²¦
+		ATR_CHR_NO(a2) = SPR_conf; //æŒ‘æ‹¨
 		break;
 	case 21:
-		ATR_CHR_NO(a2) = 0; //»ğ¸½Ìå
+		ATR_CHR_NO(a2) = 0; //ç«é™„ä½“
 		break;
 	case 22:
-		ATR_CHR_NO(a2) = 0; //±ù¸½Ìå
+		ATR_CHR_NO(a2) = 0; //å†°é™„ä½“
 		break;
 	case 23:
-		ATR_CHR_NO(a2) = 100551;   //À×¸½Ìå
+		ATR_CHR_NO(a2) = 100551;   //é›·é™„ä½“
 		break;
 #ifdef _PROFESSION_ADDSKILL
 	case 32:
-		ATR_CHR_NO(a2) = SPR_barrier; // Ë®¸½Ìå
+		ATR_CHR_NO(a2) = SPR_barrier; // æ°´é™„ä½“
 		break;
 	case 33:
-		ATR_CHR_NO(a2) = SPR_shock; //¿Ö¾å
+		ATR_CHR_NO(a2) = SPR_shock; //ææƒ§
 		//case 24:
-		//	ATR_CHR_NO(a2) = 0; // »ğ±ùÀ×¸½Ìå
+		//	ATR_CHR_NO(a2) = 0; // ç«å†°é›·é™„ä½“
 		break;
 #endif
 #endif
@@ -1656,11 +1656,11 @@ void set_single_jujutsu(int d0, ACTION *a1)
 	case 34:
 		if (ATR_CHR_NO(a1) == 101814)
 		{
-			// µÚÒ»¶Î±äÉí
+			// ç¬¬ä¸€æ®µå˜èº«
 			if (g_bUseAlpha)
-				ATR_CHR_NO(a2) = 101810; // Îí¶¯»­1
+				ATR_CHR_NO(a2) = 101810; // é›¾åŠ¨ç”»1
 			else
-				ATR_CHR_NO(a2) = 101863;	// Îí¶¯»­1
+				ATR_CHR_NO(a2) = 101863;	// é›¾åŠ¨ç”»1
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 			if (ATR_CHR_ACT_OLD(a1) != ANIM_DEAD)
 			{
@@ -1670,11 +1670,11 @@ void set_single_jujutsu(int d0, ACTION *a1)
 		}
 		else if (ATR_CHR_NO(a1) == 101815)
 		{
-			// µÚ¶ş¶Î±äÉí
+			// ç¬¬äºŒæ®µå˜èº«
 			if (g_bUseAlpha)
-				ATR_CHR_NO(a2) = 101811;	// Îí¶¯»­2
+				ATR_CHR_NO(a2) = 101811;	// é›¾åŠ¨ç”»2
 			else 
-				ATR_CHR_NO(a2) = 101864; // Îí¶¯»­2
+				ATR_CHR_NO(a2) = 101864; // é›¾åŠ¨ç”»2
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 			if (ATR_CHR_ACT_OLD(a1) != ANIM_DEAD)
 			{
@@ -1686,7 +1686,7 @@ void set_single_jujutsu(int d0, ACTION *a1)
 #endif
 #ifdef _PRO_KILLME
 	case 35:
-		ATR_CHR_NO(a2) = 101292; // Å­
+		ATR_CHR_NO(a2) = 101292; // æ€’
 		break;
 #endif
 #ifdef _PRO_ABSOLUTE_DEFENSE 
@@ -1696,28 +1696,28 @@ void set_single_jujutsu(int d0, ACTION *a1)
 #endif
 #ifdef _PRO3_ADDSKILL
 	case 37:
-		ATR_CHR_NO(a2) = 102044;//37 ¶ñÄ§×çÖä
+		ATR_CHR_NO(a2) = 102044;//37 æ¶é­”è¯…å’’
 		break;
 	case 38:
-		ATR_CHR_NO(a2) = 102046;//38 ¶¾ËØÖ®Íø
+		ATR_CHR_NO(a2) = 102046;//38 æ¯’ç´ ä¹‹ç½‘
 		break;
 	case 39:
-		ATR_CHR_NO(a2) = 101296;//39 ¸§Î¿ĞÄÁé
+		ATR_CHR_NO(a2) = 101296;//39 æŠšæ…°å¿ƒçµ
 		break;
 #endif
 	}
 }
 
-/* ¢NşÍ§T¤š¤úû¨?? *******************************************************************/
+/* î”´î’”îœšî˜¿î¸î•?? *******************************************************************/
 void attrib_reverse(ACTION *a0)
 {
 	ACTION *a1;
 
-	a1 = ATR_BODY_WORK(0, a0);		//ûõ§T¤šûÔ??????????
-	if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) == VCT_NO_DIE + 2)		//ü¬???
+	a1 = ATR_BODY_WORK(0, a0);		//î¢îœšî˜¿î??????????
+	if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) == VCT_NO_DIE + 2)		//î·???
 	{
-		ATR_ATTRIB_WORK(a1) = NULL;		//ü¬?
-		DeathAction(a0);		//ü¬?
+		ATR_ATTRIB_WORK(a1) = NULL;		//î·?
+		DeathAction(a0);		//î·?
 		return;
 	}
 	ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
@@ -1727,7 +1727,7 @@ void attrib_reverse(ACTION *a0)
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);		//???
 }
 
-/* ¢NşÍ§T¤š????? *******************************************************************/
+/* î”´î’”îœšî˜¿????? *******************************************************************/
 void set_attrib_reverse(ACTION *a1)
 {
 	ACTION *a2;
@@ -1735,15 +1735,15 @@ void set_attrib_reverse(ACTION *a1)
 	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 	if (a2 == NULL)
 		return;
-	/* ûÂ??? */
+	/* î¯??? */
 	ATR_NAME(a2) = attrib_reverse;
 	ATR_BODY_WORK(0, a2) = a1;
 	ATR_ATTRIB_WORK(a1) = a2;
-	/* ¤úû¨?¡I¥T */
+	/* î¸î•?î“î™š */
 	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;
-	/* ?????§k? */
+	/* ?????îœ±? */
 	ATR_CHR_NO(a2) = CG_ATR_ICON_EARTH_BATTLE;
-	/* ???£t */
+	/* ???î–º */
 	ATR_H_POS(a2) = ATR_H_POS(a1);
 	ATR_V_POS(a2) = ATR_V_POS(a1) - 64;
 }
@@ -1751,10 +1751,10 @@ void set_attrib_reverse(ACTION *a1)
 
 //int boomerang_pos_tbl[]= {0x320,	0x140,	0x2EE,	0xDC,	0x186,  0x6A,	0x214,	0xAA};
 //int boomerang_pos_tbl2[]={0x2EE,	0x118,	0x2BC,	0xB4,   0x154,	0x32,	0x1BE,	0x64};
-////¶ãƒOƒ‹[ƒv‚ÌŒã—ñ
+////åµå¿‹åƒŒå„–ä¹•åƒ¾åºå±»æ¥
 //int boomerang_pos_tbl3a[]={0x104,	0x1A4,     0x64,	0x14A,	-0x60,	0xA0,	-0x92,	0x104};
 //int boomerang_pos_tbl4a[]={0x154,	0x1C2,     0xB4,	0x190,	-0x92,	0xC8,	-0xC4,	0x12C};
-////¶ãƒOƒ‹[ƒv‚Ì‘O—ñ
+////åµå¿‹åƒŒå„–ä¹•åƒ¾åºæ…œæ¥
 //int boomerang_pos_tbl3b[]={0xC4,	0x1A4,	0x44,	0x16A,	-0x60,	0xA0,	-0x92,	0x104};
 //int boomerang_pos_tbl4b[]={0x154,	0x1C2,	0xB4,	0x1D0,	-0x92,	0xC8,	-0xC4,	0x12C};
 
@@ -1762,19 +1762,19 @@ void set_attrib_reverse(ACTION *a1)
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
 int boomerang_pos_tbl[] = { 0x320, 0x140, 0x2EE, 0xDC, 0x186, 0x6A, 0x214, 0xAA };
 int boomerang_pos_tbl2[] = { 0x2EE, 0x118, 0x2BC, 0xB4, 0x154, 0x32, 0x1BE, 0x64 };
-//×óÉÏ½ÇÎ»ÖÃË÷ÒıĞ¡ÓÚ15Ê±   xiezi
+//å·¦ä¸Šè§’ä½ç½®ç´¢å¼•å°äº15æ—¶   xiezi
 int boomerang_pos_tbl3a[] = { 0x104 + 160, 0x1A4 + 120, 0x64 + 160, 0x14A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4a[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x190 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
-//×óÉÏ½ÇÎ»ÖÃË÷Òı´óÓÚµÈÓÚ15Ê±	xiezi
+//å·¦ä¸Šè§’ä½ç½®ç´¢å¼•å¤§äºç­‰äº15æ—¶	xiezi
 int boomerang_pos_tbl3b[] = { 0xC4 + 160, 0x1A4 + 120, 0x44 + 160, 0x16A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4b[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x1D0 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
 #else
 int boomerang_pos_tbl[] = { 0x320, 0x140, 0x2EE, 0xDC, 0x186, 0x6A, 0x214, 0xAA };
 int boomerang_pos_tbl2[] = { 0x2EE, 0x118, 0x2BC, 0xB4, 0x154, 0x32, 0x1BE, 0x64 };
-//×óÉÏ½ÇÎ»ÖÃË÷ÒıĞ¡ÓÚ15Ê±   xiezi
+//å·¦ä¸Šè§’ä½ç½®ç´¢å¼•å°äº15æ—¶   xiezi
 int boomerang_pos_tbl3a[] = { 0x104 + 160, 0x1A4 + 120, 0x64 + 160, 0x14A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4a[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x190 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
-//×óÉÏ½ÇÎ»ÖÃË÷Òı´óÓÚµÈÓÚ15Ê±	xiezi
+//å·¦ä¸Šè§’ä½ç½®ç´¢å¼•å¤§äºç­‰äº15æ—¶	xiezi
 int boomerang_pos_tbl3b[] = { 0xC4 + 160, 0x1A4 + 120, 0x44 + 160, 0x16A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4b[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x1D0 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
 #endif
@@ -1801,7 +1801,7 @@ void boomerang(ACTION *a0)
 		}
 		else
 		{
-			if (ATR_PLACE_NO(a0) >= 15)//ÕâÀïÒ²ÊÇ£¿
+			if (ATR_PLACE_NO(a0) >= 15)//è¿™é‡Œä¹Ÿæ˜¯ï¼Ÿ
 			{
 				d0 = boomerang_pos_tbl3b[ATR_LONG_WORK(0, a0) * 2];
 				d1 = boomerang_pos_tbl3b[ATR_LONG_WORK(0, a0) * 2 + 1];
@@ -1874,10 +1874,10 @@ void boomerang(ACTION *a0)
 				if (BattleCmd[command_point] == 'p')
 					ATR_ATTACK_PET_POW(0, a0) = get_num();
 
-				//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+				//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+					ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 				ATR_VCT_NO(a0) = 2;
@@ -1897,7 +1897,7 @@ void boomerang(ACTION *a0)
 		dy = (float)(d1 - ATR_V_POS(a0));
 		d0 = (int)sqrt((double)(dx * dx + dy * dy));
 
-		if (d0 > 1000) //µ±»ØĞıïÚ¾àÀë´óÓÚ1000Ê±£¬Ö±½Ó½áÊø¶¯»­
+		if (d0 > 1000) //å½“å›æ—‹é•–è·ç¦»å¤§äº1000æ—¶ï¼Œç›´æ¥ç»“æŸåŠ¨ç”»
 		{
 			ATR_COUNTER_FLG(a0) = 1;
 			ATR_LONG_WORK(2, a0) = 0;
@@ -1961,7 +1961,7 @@ void boomerang(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			////////////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -1977,7 +1977,7 @@ void boomerang(ACTION *a0)
 				////////////////////////////////////
 #else
 			////////////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -2101,10 +2101,10 @@ void boomerang(ACTION *a0)
 				if (BattleCmd[command_point] == 'p')
 					ATR_ATTACK_PET_POW(0, a0) = get_num();
 
-				//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+				//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+					ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 			}
 		}
@@ -2115,38 +2115,38 @@ void boomerang(ACTION *a0)
 
 
 static char stick_ang_tbl[] = { 8, 10, 12, 14, 0, 2, 4, 6 };
-/* ?úê???? *******************************************************************/
+/* ?îŒ¹???? *******************************************************************/
 void stick_bow(ACTION *a0)
 {
 	ACTION *a1, *a2;
 	int d0, d1;
 
-	a1 = ATR_BODY_WORK(0, a0);		//şo¢l??????
-	if (ATR_NAME(a1) == NULL)		//ı¤ş˜ü¬???
+	a1 = ATR_BODY_WORK(0, a0);		//î ´î•’??????
+	if (ATR_NAME(a1) == NULL)		//îî¡œî·???
 	{
-		DeathAction(a0);		//ü¬?
-		ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???ıï
+		DeathAction(a0);		//î·?
+		ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???î‘˜
 		return;
 	}
 
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		if (ATR_VCT_NO(a1) == 1)
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
-		a2 = ATR_BODY_WORK(0, a0);		//¤„???????
+		a2 = ATR_BODY_WORK(0, a0);		//î˜©???????
 		d0 = ATR_H_POS(a2);
 		d1 = ATR_V_POS(a2);
 		radar(a1, &d0, &d1);	//????
 		ATR_STIMER(a0)++;
-		if (ATR_CRS(a0) == 0)		//ıÆüù??
+		if (ATR_CRS(a0) == 0)		//î¯î„??
 		{
-			if (ATR_SPD(a0) == 0)		//???úğ??
+			if (ATR_SPD(a0) == 0)		//???îŒ¿??
 				ATR_CRS(a0) = 16;
 			else
 				ATR_SPD(a0) -= 1;
@@ -2160,24 +2160,24 @@ void stick_bow(ACTION *a0)
 	case 1:
 	case 2:
 	case 3:
-		a1 = ATR_BODY_WORK(0, a0);		//úê???????
+		a1 = ATR_BODY_WORK(0, a0);		//îŒ¹???????
 #if 0
-		if (ATR_VCT_NO(a0) == 2)		//?©û?¥h??
+		if (ATR_VCT_NO(a0) == 2)		//?î Œ?î™®??
 		{
-			if (ATR_VCT_NO(a1) >= VCT_NO_DIE + 1)		//¥X?úğ????
+			if (ATR_VCT_NO(a1) >= VCT_NO_DIE + 1)		//î™?îŒ¿????
 			{
-				DeathAction(a0);		//ü¬?
+				DeathAction(a0);		//î·?
 				return;
 			}
 		}
 		else
 		{
-			if (ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//¢r???????
+			if (ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//î•˜???????
 			{
-				if (ATR_VCT_NO(a1) == 0)		//¢r???
+				if (ATR_VCT_NO(a1) == 0)		//î•˜???
 				{
-					DeathAction(a0);		//ü¬?
-					ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???ıï
+					DeathAction(a0);		//î·?
+					ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???î‘˜
 					return;
 				}
 				else
@@ -2188,28 +2188,28 @@ void stick_bow(ACTION *a0)
 			}
 		}
 #else
-		if (ATR_VCT_NO(a0) == 2)		//?©û?¥h??
+		if (ATR_VCT_NO(a0) == 2)		//?î Œ?î™®??
 		{
-			if (ATR_VCT_NO(a1) >= VCT_NO_DIE + 1)		//¥X?úğ????
+			if (ATR_VCT_NO(a1) >= VCT_NO_DIE + 1)		//î™?îŒ¿????
 			{
-				DeathAction(a0);		//ü¬?
+				DeathAction(a0);		//î·?
 				return;
 			}
 		}
 		else if (ATR_VCT_NO(a0) == 3)
 		{
-			if (ATR_VCT_NO(ATR_BODY_WORK(1, a0)) == 0)		//??ü¬???
+			if (ATR_VCT_NO(ATR_BODY_WORK(1, a0)) == 0)		//??î·???
 			{
-				DeathAction(a0);		//ü¬?
+				DeathAction(a0);		//î·?
 				return;
 			}
 		}
 		else
 		{
-			if (ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//¢r???????
+			if (ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//î•˜???????
 			{
-				ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???ıï
-				if (ATR_VCT_NO(a1) == 0)		//¢r???
+				ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???î‘˜
+				if (ATR_VCT_NO(a1) == 0)		//î•˜???
 				{
 					ATR_VCT_NO(a0) = 3;
 					return;
@@ -2226,21 +2226,21 @@ void stick_bow(ACTION *a0)
 		ATR_V_POS(a0) = ATR_V_POS(a1) + ATR_INT_WORK1(a0);
 		ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a1) + 4) & 7;		//?????
 		ATR_CHR_NO(a0) = CG_ARROW_00 + stick_ang_tbl[ATR_CHR_ANG(a0)];		//
-		ATR_H_MINI(a0) = 0;		//?¤õ¨ùşÕ
+		ATR_H_MINI(a0) = 0;		//?î³îŸœî’œ
 		ATR_V_MINI(a0) = 0;
 		ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a1)];
 		gemini(a0);
 		gemini(a0);
 		if (ATR_CHR_ANG(a1) == 3 || ATR_CHR_ANG(a1) == 4 || ATR_CHR_ANG(a1) == 5)		//??????
-			ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1);		//¤úû¨?¡I???
+			ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1);		//î¸î•?î“???
 		else
-			ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;		//¤úû¨?¡I???
+			ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;		//î¸î•?î“???
 		break;
 	}
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 void shoot(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -2341,7 +2341,7 @@ void shoot(ACTION *a0)
 }
 #endif
 
-/* ??¥h?? *******************************************************************/
+/* ??î™®?? *******************************************************************/
 void bow(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -2350,7 +2350,7 @@ void bow(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -2358,18 +2358,18 @@ void bow(ACTION *a0)
 		//???????
 		if (!--ATR_GROUP_FLG(a0))
 		{
-			a2 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			if (ATR_LIFE(a2) <= 0)		//??????
 			{
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 				break;
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			///////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -2385,7 +2385,7 @@ void bow(ACTION *a0)
 				///////////////////////////////
 #else
 			///////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -2398,10 +2398,10 @@ void bow(ACTION *a0)
 			{
 				ATR_HIT_STOP(a0) = 32;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 				ATR_VCT_NO(a1) = 16;		//????
-				ATR_CRS(a1) = ATR_CRS(a0);		//¤„?????????????
+				ATR_CRS(a1) = ATR_CRS(a0);		//î˜©?????????????
 				ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
 				ATR_STIMER(a1) = 0;
 				ATR_FIRST_FLG(a1) = 0;		//??????????
@@ -2412,18 +2412,18 @@ void bow(ACTION *a0)
 			{
 				if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))		//????
 				{
-					a2 = ATR_BODY_WORK(0, a0);		//¤„????????
-					set_damage_num(a2, 0, -64);		//??¤úû¨
+					a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
+					set_damage_num(a2, 0, -64);		//??î¸î•
 					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 					ATR_VCT_NO(a0) = 1;		//????????
-					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 					pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 					break;
 				}
 			}
-			//?ûê????????
+			//?î—????????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-				//?????¤úû¨
+				//?????î¸î•
 				set_damage_num(a1, 19, -112);
 			//?????????
 			ATR_AKO_FLG(a1) = 0;
@@ -2432,38 +2432,38 @@ void bow(ACTION *a0)
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//??????
 				ATR_AKO_FLG(a1) = 2;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//?????
-				ATR_LIFE(a1) = 0;		//?©û????
+				ATR_LIFE(a1) = 0;		//?î Œ????
 			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?ûı?????
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?îª?????
 			{
 				if (!ATR_COMBO(a1))			//????????
 				{
-					//??£k¤úû¨
+					//??î–±î¸î•
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 					set_damage_num(a1, 14, -64);
-					ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-					ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+					ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+					ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 				}
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)		//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//?????ıï
-			//?ıõ?????
+				ATR_VCT_NO(a1) = 10;		//?????î‘˜
+			//?î‘?????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
-				ATR_KAISHIN(a1) = 1;		//?ıõ??????
+				ATR_KAISHIN(a1) = 1;		//?î‘??????
 			else
-				ATR_KAISHIN(a1) = 0;		//¤GıĞ?????
+				ATR_KAISHIN(a1) = 0;		//î—­î¹?????
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 			//?????
@@ -2471,58 +2471,58 @@ void bow(ACTION *a0)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
-			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?©û????
+			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?î Œ????
 			{
 				//????????
 				if (ATR_COMBO(a1) == 0)
-					ATR_KAISHIN(a1) = 1;		//?ıõ??????
+					ATR_KAISHIN(a1) = 1;		//?î‘??????
 			}
-			if (ATR_KAISHIN(a1))		//?ıõ?????
+			if (ATR_KAISHIN(a1))		//?î‘?????
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//??????????
 			else
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
-			//???????????ûı??
+			//???????????îª??
 			if (ATR_DAMAGE(a1) || (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) || (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
 				{
 					//????????
 					if (ATR_COMBO(a1) == 0)
-						set_damage_num(a0, 1, -64 + 16);	//?????¤úû¨
+						set_damage_num(a0, 1, -64 + 16);	//?????î¸î•
 				}
 				//???
 				play_se(12, ATR_H_POS(a0), ATR_V_POS(a0));
 				//?????????
 				set_hit_mark(a0);
 			}
-			ATR_STIMER(a0) = ATR_HIT_STOP(a0) + 64;		//ü¬??ıï?????
-			ATR_INT_WORK0(a0) = Rnd(0, 8) - 4;		//??¤õ?????
-			ATR_INT_WORK1(a0) = Rnd(0, 8) - 4 - 28;		//??¤õ?????!!!
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+			ATR_STIMER(a0) = ATR_HIT_STOP(a0) + 64;		//î·??î‘˜?????
+			ATR_INT_WORK0(a0) = Rnd(0, 8) - 4;		//??î³?????
+			ATR_INT_WORK1(a0) = Rnd(0, 8) - 4 - 28;		//??î³?????!!!
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 			if (ShooterNum == 101578)
-				ATR_NAME(a0) = shoot;		//úê?????
+				ATR_NAME(a0) = shoot;		//îŒ¹?????
 			else
-				ATR_NAME(a0) = stick_bow;		//úê?????
+				ATR_NAME(a0) = stick_bow;		//îŒ¹?????
 #else
-			ATR_NAME(a0) = stick_bow;		//úê?????
+			ATR_NAME(a0) = stick_bow;		//îŒ¹?????
 #endif
 			ATR_VCT_NO(a0) = 1;				//
-			ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+			ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 			ATR_V_POS(a0) -= 28;		//!!!
 			ATR_CHR_ACT(a0) = 0;
-			p_missile[0] = NULL;		//???????úÇ
-			ATR_SPD(a0) = 40;		//?¤õ¨ùşÕ
+			p_missile[0] = NULL;		//???????îŒ–
+			ATR_SPD(a0) = 40;		//?î³îŸœî’œ
 			//???
 		}
 		else
 		{
-			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 1:
@@ -2540,8 +2540,8 @@ void bow(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???ıï
-		DeathAction(a0);		//ü¬?
+		ATR_STIMER(ATR_BODY_WORK(1, a0))++;		//???î‘˜
+		DeathAction(a0);		//î·?
 		break;
 	}
 }
@@ -2555,21 +2555,21 @@ void axe(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		if (ATR_VCT_NO(a1) == 1)
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
-		a2 = ATR_BODY_WORK(0, a0);		//¤„???????
+		a2 = ATR_BODY_WORK(0, a0);		//î˜©???????
 		d0 = ATR_H_POS(a2);
 		d1 = ATR_V_POS(a2);
 		radar(a1, &d0, &d1);	//????
 		ATR_STIMER(a0)++;
-		if (ATR_CRS(a0) == 0)		//ıÆüù??
+		if (ATR_CRS(a0) == 0)		//î¯î„??
 		{
-			if (ATR_SPD(a0) == 0)		//???úğ??
+			if (ATR_SPD(a0) == 0)		//???îŒ¿??
 				ATR_CRS(a0) = 16;
 			else
 				ATR_SPD(a0) -= 1;
@@ -2586,16 +2586,16 @@ void axe(ACTION *a0)
 		ATR_VCT_NO(a0)++;
 		break;
 	case 3:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		if (ATR_VCT_NO(a1) == 1)
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
-		if (ATR_CRS(a0) == 0)		//ıÆüù??
+		if (ATR_CRS(a0) == 0)		//î¯î„??
 		{
-			if (ATR_SPD(a0) == 0)		//???úğ??
+			if (ATR_SPD(a0) == 0)		//???îŒ¿??
 				ATR_CRS(a0) = 16;
 			else
 				ATR_SPD(a0) -= 2;
@@ -2607,16 +2607,16 @@ void axe(ACTION *a0)
 		ATR_V_POS(a0) += ATR_INT_WORK3(a1);
 		break;
 	case 4:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		ATR_H_POS(a0) = ATR_H_POS(a1);
 		ATR_V_POS(a0) = ATR_V_POS(a1);
-		ATR_CHR_ACT(a0) = 1;		//úê?????????
+		ATR_CHR_ACT(a0) = 1;		//îŒ¹?????????
 		break;
 	}
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯å¼€) ROG ADD æœ±é›€æŠ€èƒ½_ç«çº¿çŒæ€
 void fireHunter(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -2624,18 +2624,18 @@ void fireHunter(ACTION *a0)
 	int j = 0;
 	int d0, d1;
 
-	a1 = ATR_BODY_WORK(0, a0);		//µĞÈËµÄÎ»Ö·
+	a1 = ATR_BODY_WORK(0, a0);		//æ•Œäººçš„ä½å€
 
 	switch (ATR_VCT_NO(a0))
 	{
-	case 0:								//·¢Éä»ğÑæ
+	case 0:								//å‘å°„ç«ç„°
 		if (bFireInit)
 		{
 			int EnemyPos[4][2] = {{403 , 422}, {223 , 388},{7  , 198},{19  , 318},};
 			int refPos, difPosH, difPosV;
 			int interval = 0;
-			int difPos_v = 0;   //»ğÏßÁÔÉ±Î»Ö·ĞŞÕı
-			int difPos_h = 0;   //»ğÏßÁÔÉ±Î»Ö·ĞŞÕı
+			int difPos_v = 0;   //ç«çº¿çŒæ€ä½å€ä¿®æ­£
+			int difPos_h = 0;   //ç«çº¿çŒæ€ä½å€ä¿®æ­£
 			int j = 1;
 
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0);
@@ -2645,7 +2645,7 @@ void fireHunter(ACTION *a0)
 				p_missile[i] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 				ATR_INT_WORK2(p_missile[i]) = ATR_H_POS(a0);
 				ATR_INT_WORK3(p_missile[i]) = ATR_V_POS(a0);
-				ATR_CHR_NO(p_missile[i]) = 101734;	 //Í¼ºÅ
+				ATR_CHR_NO(p_missile[i]) = 101734;	 //å›¾å·
 				ATR_CHR_ANG(p_missile[i]) = ATR_CHR_ANG(a0);
 				ATR_CRS(p_missile[i]) = ATR_CRS(a0);
 				ATR_SPD(p_missile[i]) = 60;
@@ -2679,7 +2679,7 @@ void fireHunter(ACTION *a0)
 				p_missile[i + 7] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 				ATR_H_POS(p_missile[i + 7]) = EnemyPos[refPos][0] + difPosH * i;
 				ATR_V_POS(p_missile[i + 7]) = EnemyPos[refPos][1] - difPosV * i;
-				ATR_CHR_NO(p_missile[i + 7]) = 101735;	 //Í¼ºÅ
+				ATR_CHR_NO(p_missile[i + 7]) = 101735;	 //å›¾å·
 			}
 			ATR_STIMER(a0) = 80;
 
@@ -2691,17 +2691,17 @@ void fireHunter(ACTION *a0)
 			{
 				d0 = ATR_H_POS(a1);
 				d1 = ATR_V_POS(a1);
-				radar(a0, &d0, &d1);	//À×´ï(¼ÆËãÂ·Ïß)
-				ATR_CRS(a0) = d0;		//¶¯»­Â·Ïß
+				radar(a0, &d0, &d1);	//é›·è¾¾(è®¡ç®—è·¯çº¿)
+				ATR_CRS(a0) = d0;		//åŠ¨ç”»è·¯çº¿
 				gemini(a0);
 				if (i == interval * j)
 				{
-					switch (iBeAttNum)		//»ğÏßÁÔÉ±Î»Ö·ĞŞÕı
+					switch (iBeAttNum)		//ç«çº¿çŒæ€ä½å€ä¿®æ­£
 					{
 					case 10:
 					case 12:
-						difPos_v += 7;  //³¤¶È
-						difPos_h += 2;	//½Ç¶È
+						difPos_v += 7;  //é•¿åº¦
+						difPos_h += 2;	//è§’åº¦
 						break;
 					case 14:
 						difPos_v += 10;
@@ -2740,8 +2740,8 @@ void fireHunter(ACTION *a0)
 					}
 					if (iBeAttNum < 10)
 					{
-						//difPos_h -= 10;//½Ç¶È
-						difPos_v += 10;  //³¤¶È
+						//difPos_h -= 10;//è§’åº¦
+						difPos_v += 10;  //é•¿åº¦
 					}
 					ATR_V_POS(p_missile[j+1]) = ATR_V_POS(a0) - difPos_v;
 					ATR_H_POS(p_missile[j+1]) = ATR_H_POS(a0) + difPos_h;
@@ -2753,12 +2753,12 @@ void fireHunter(ACTION *a0)
 			ATR_H_POS(a0) += difPos_h;
 			bFireInit = FALSE;
 		}
-		//×¼±¸ÃüÖĞ
+		//å‡†å¤‡å‘½ä¸­
 		if (!FireSkillEnd)
 		{
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -2774,18 +2774,18 @@ void fireHunter(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
 #endif
 				/////////////////////////////
 #endif
-				set_guard_mark(a0);		//·ÀÓùÖä
-			ATR_COMBO(a1) = 0;   //×é¶Ó
-			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)  //ÉÁ±Ü
+				set_guard_mark(a0);		//é˜²å¾¡å’’
+			ATR_COMBO(a1) = 0;   //ç»„é˜Ÿ
+			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)  //é—ªé¿
 			{
-				for (i = 0; i < ATR_BODY_CNT(a0); i++) //´¦ÀíÈ«²¿¶ÓÓÑ
+				for (i = 0; i < ATR_BODY_CNT(a0); i++) //å¤„ç†å…¨éƒ¨é˜Ÿå‹
 				{
 					if ((i + 2) != tarpos)
 					{
@@ -2793,16 +2793,16 @@ void fireHunter(ACTION *a0)
 						ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 						j = ATR_DAMAGE(a2);
 						ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-						ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+						ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 						ATR_STIMER(a2) = 0;
 						ATR_FIRST_FLG(a2) = 0;		
 					}
 				}
-				ATR_HIT_STOP(a0) = 32;				//¹¥»÷Í£Ö¹
-				ATR_VCT_NO(a0) = 1;					//Í£Ö¹
+				ATR_HIT_STOP(a0) = 32;				//æ”»å‡»åœæ­¢
+				ATR_VCT_NO(a0) = 1;					//åœæ­¢
 				gemini(a0);
-				ATR_VCT_NO(a1) = 16;		//ÉÁ±Ü¶¯×÷
-				ATR_CRS(a1) = ATR_CRS(a0);		//Â·¾¶
+				ATR_VCT_NO(a1) = 16;		//é—ªé¿åŠ¨ä½œ
+				ATR_CRS(a1) = ATR_CRS(a0);		//è·¯å¾„
 				ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);
 				ATR_STIMER(a1) = 0;
 				ATR_FIRST_FLG(a1) = 0;		
@@ -2812,11 +2812,11 @@ void fireHunter(ACTION *a0)
 			{
 				if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))		//????
 				{
-					//ÉËº¦
+					//ä¼¤å®³
 					set_damage_num(a1, 0, -64);
-					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//¹¥»÷Í£Ö¹
-					ATR_VCT_NO(a0) = 1;		//¹¥»÷Í£Ö¹
-					for (i = 0; i < ATR_BODY_CNT(a0); i++) //´¦ÀíÈ«²¿¶ÓÓÑ
+					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//æ”»å‡»åœæ­¢
+					ATR_VCT_NO(a0) = 1;		//æ”»å‡»åœæ­¢
+					for (i = 0; i < ATR_BODY_CNT(a0); i++) //å¤„ç†å…¨éƒ¨é˜Ÿå‹
 					{
 						if ((i + 2) != tarpos)
 						{
@@ -2824,7 +2824,7 @@ void fireHunter(ACTION *a0)
 							ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 							j = ATR_DAMAGE(a2);
 							ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-							ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+							ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 							ATR_STIMER(a2) = 0;
 							ATR_FIRST_FLG(a2) = 0;		
 						}
@@ -2832,32 +2832,32 @@ void fireHunter(ACTION *a0)
 					break;
 				}
 			}
-			//Ñ¹Ëé
+			//å‹ç¢
 			if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-				//Ñ¹Ëé
+				//å‹ç¢
 				set_damage_num(a1, 19, -112);
-			//Éè¶¨KO
+			//è®¾å®šKO
 			ATR_AKO_FLG(a1) = 0;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO1)		//KO1
 				ATR_AKO_FLG(a1) = 1;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//KO2
 				ATR_AKO_FLG(a1) = 2;
-			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//ËÀÍö
-				ATR_LIFE(a1) = 0;		//Éè¶¨ËÀÍö
-			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//Éè¶¨ÉËº¦½Ç¶È
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//Èç¹ûÊÇÎüÊÕ
+			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//æ­»äº¡
+				ATR_LIFE(a1) = 0;		//è®¾å®šæ­»äº¡
+			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//è®¾å®šä¼¤å®³è§’åº¦
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//å¦‚æœæ˜¯å¸æ”¶
 			{
-				if (!ATR_COMBO(a1))		//×é¶Ó
+				if (!ATR_COMBO(a1))		//ç»„é˜Ÿ
 				{
-					//??£k¤úû¨
+					//??î–±î¸î•
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 					set_damage_num(a1, 14, -64);
 					ATR_ATTACK_POW(0, a0) = 0;		
 					ATR_ATTACK_PET_POW(0, a0) = 0;		
@@ -2865,52 +2865,52 @@ void fireHunter(ACTION *a0)
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)			//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
-			/*			//»áĞÄÒ»»÷
+				ATR_VCT_NO(a1) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
+			/*			//ä¼šå¿ƒä¸€å‡»
 						if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY){
-						ATR_KAISHIN(a1) = 1;		//»áĞÄÒ»»÷
+						ATR_KAISHIN(a1) = 1;		//ä¼šå¿ƒä¸€å‡»
 						} else {
-						ATR_KAISHIN(a1) = 0;		//Í¨³£¹¥»÷
+						ATR_KAISHIN(a1) = 0;		//é€šå¸¸æ”»å‡»
 						}*/
-			ATR_KAISHIN(a1) = 0;		//Í¨³£¹¥»÷
+			ATR_KAISHIN(a1) = 0;		//é€šå¸¸æ”»å‡»
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
-			//·ÀÎÀ
+			//é˜²å«
 			if (ATR_ATTACK_KIND(0, a0) & ATT_GUARD)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
-			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//ËÀÍö
+			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//æ­»äº¡
 			{
-				ATR_LONG_WORK(1, a0) = 1;		//ËÀÍöÉè¶¨
-				//×é¶Ó
+				ATR_LONG_WORK(1, a0) = 1;		//æ­»äº¡è®¾å®š
+				//ç»„é˜Ÿ
 				if (ATR_COMBO(a1) == 0)
-					ATR_KAISHIN(a1) = 1;		//Éè¶¨»áĞÄÒ»»÷
+					ATR_KAISHIN(a1) = 1;		//è®¾å®šä¼šå¿ƒä¸€å‡»
 			}
-			if (ATR_KAISHIN(a1))		//Éè¶¨»áĞÄÒ»»÷
-				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//Éè¶¨¹¥»÷Í£Ö¹Ê±¼ä
+			if (ATR_KAISHIN(a1))		//è®¾å®šä¼šå¿ƒä¸€å‡»
+				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//è®¾å®šæ”»å‡»åœæ­¢æ—¶é—´
 			else
-				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//Éè¶¨¹¥»÷Í£Ö¹Ê±¼ä
+				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//è®¾å®šæ”»å‡»åœæ­¢æ—¶é—´
 			if (ATR_DAMAGE(a1) || (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) || (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
 				{
-					//ÊÇ·ñ×é¶Ó
+					//æ˜¯å¦ç»„é˜Ÿ
 					if (ATR_COMBO(a1) == 0)
-						set_damage_num(a0, 1, -64 + 16);	//ÉËº¦±íÊ¾
+						set_damage_num(a0, 1, -64 + 16);	//ä¼¤å®³è¡¨ç¤º
 				}
 				//???
 				play_se(252, ATR_H_POS(a0), ATR_V_POS(a0));
-				//±ØÉ±ĞÇĞÇ
+				//å¿…æ€æ˜Ÿæ˜Ÿ
 				set_hit_mark(a0);
 			}
-			ATR_HIT_STOP(a0) /= 4;		//???????üî???
+			ATR_HIT_STOP(a0) /= 4;		//???????î¹???
 			ATR_VCT_NO(a0) = 3;				//
-			for (i = 0; i < ATR_BODY_CNT(a0); i++) //´¦ÀíÈ«²¿¶ÓÓÑ
+			for (i = 0; i < ATR_BODY_CNT(a0); i++) //å¤„ç†å…¨éƒ¨é˜Ÿå‹
 			{
 				if ((i + 2) != tarpos)
 				{
@@ -2918,7 +2918,7 @@ void fireHunter(ACTION *a0)
 					ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 					j = ATR_DAMAGE(a2);
 					ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-					ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+					ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 					ATR_STIMER(a2) = 0;
 					ATR_FIRST_FLG(a2) = 0;
 				}
@@ -2991,10 +2991,10 @@ void fireHunter(ACTION *a0)
 		}
 		break;
 	case 1:
-		if (--ATR_HIT_STOP(a0))		//¹¥»÷Í£Ö¹ÖĞ
+		if (--ATR_HIT_STOP(a0))		//æ”»å‡»åœæ­¢ä¸­
 			break;
-		ATR_CHR_ACT(a0) = 0;		//ÒÆ¶¯
-		//ÉÁ±Ü
+		ATR_CHR_ACT(a0) = 0;		//ç§»åŠ¨
+		//é—ªé¿
 		if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			ATR_STIMER(a0) = 32;
 		else
@@ -3004,7 +3004,7 @@ void fireHunter(ACTION *a0)
 			a2 = ATR_BODY_WORK(tarpos, a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(tarpos, a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(tarpos, a0);
-			ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+			ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;
 			tarpos = -1;
@@ -3017,19 +3017,19 @@ void fireHunter(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//µ½´ï
+		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//åˆ°è¾¾
 		p_missile[0] = NULL;
-		DeathAction(a0);		//ü¬?
+		DeathAction(a0);		//î·?
 		break;
 	case 3:
-		if (--ATR_HIT_STOP(a0))		//¹¥»÷Í£Ö¹ÖĞ
+		if (--ATR_HIT_STOP(a0))		//æ”»å‡»åœæ­¢ä¸­
 			break;
 		/*	if ( tarMgiDem )
 			{
 			a2 = ATR_BODY_WORK(2 ,a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(2 ,a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(2 ,a0);
-			ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+			ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;		
 			int k = ATR_DAMAGE(a2);
@@ -3041,7 +3041,7 @@ void fireHunter(ACTION *a0)
 			a2 = ATR_BODY_WORK(tarpos, a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(tarpos, a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(tarpos, a0);
-			ATR_VCT_NO(a2) = 10;		//ËÍ³öÉËº¦Ñ¶Ï¢
+			ATR_VCT_NO(a2) = 10;		//é€å‡ºä¼¤å®³è®¯æ¯
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;
 			tarpos = -1;
@@ -3051,15 +3051,15 @@ void fireHunter(ACTION *a0)
 		ATR_VCT_NO(a0)++;
 		break;
 	case 4:
-		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
-		if (!--ATR_GROUP_FLG(a0))		//ü¬???
+		if (!--ATR_GROUP_FLG(a0))		//î·???
 		{
-			if (ATR_LONG_WORK(1, a0))		//¤„???????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
+			if (ATR_LONG_WORK(1, a0))		//î˜©???????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
 			ATR_VCT_NO(a0)++;
 		}
 		break;
@@ -3074,13 +3074,13 @@ void fireHunter(ACTION *a0)
 			ATR_STIMER(a0)--;
 			break;
 		}
-		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
-		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//¢r???????
+		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
+		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//î•˜???????
 		{
-			if (!ATR_LONG_WORK(1, a0))		//¤„?şØ?????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-			DeathAction(a0);		//ü¬?
+			if (!ATR_LONG_WORK(1, a0))		//î˜©?î’Ÿ?????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+			DeathAction(a0);		//î·?
 			p_missile[0] = NULL;	//
 			p_missile[1] = NULL;	//
 		}
@@ -3104,7 +3104,7 @@ void fireHunter(ACTION *a0)
 		}
 		if (counter == 5)
 		{
-			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
 			FireSkillEnd = FALSE;
 			ATR_VCT_NO(a0) = 0;		
 		}
@@ -3122,7 +3122,7 @@ void axe_shadow(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -3130,17 +3130,17 @@ void axe_shadow(ACTION *a0)
 		//???????
 		if (!--ATR_GROUP_FLG(a0))
 		{
-			a2 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			if (ATR_LIFE(a2) <= 0)		//??????
 			{
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 				break;
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -3156,49 +3156,49 @@ void axe_shadow(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
 #endif
 				/////////////////////////////
 #endif
-				set_guard_mark(a0);		//ş\?ûöüÓ¤úû¨?
+				set_guard_mark(a0);		//î ¡?î£îî¸î•?
 			//?????????
 			ATR_COMBO(a1) = 0;
-			//?ûê??????
+			//?î—??????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			{
 				ATR_HIT_STOP(a0) = 32;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
-				ATR_CHR_ACT(a0) = 1;		//úê?????????
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
+				ATR_CHR_ACT(a0) = 1;		//îŒ¹?????????
 				gemini(a0);
 				ATR_VCT_NO(a1) = 16;		//????
-				ATR_CRS(a1) = ATR_CRS(a0);		//¤„?????????????
+				ATR_CRS(a1) = ATR_CRS(a0);		//î˜©?????????????
 				ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
 				ATR_STIMER(a1) = 0;
 				ATR_FIRST_FLG(a1) = 0;		//??????????
 				break;
 			}
-			//??????ûı??????
+			//??????îª??????
 			if (!((ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) | (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)))
 			{
 				if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))		//????
 				{
-					a2 = ATR_BODY_WORK(0, a0);		//¤„????????
-					//??¤úû¨
+					a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
+					//??î¸î•
 					set_damage_num(a2, 0, -64);
 					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 					ATR_VCT_NO(a0) = 1;		//????????
-					ATR_CHR_ACT(a0) = 1;		//úê?????????
-					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+					ATR_CHR_ACT(a0) = 1;		//îŒ¹?????????
+					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 					break;
 				}
 			}
-			//?ûê????????
+			//?î—????????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-				set_damage_num(a1, 19, -112);	//?????¤úû¨
+				set_damage_num(a1, 19, -112);	//?????î¸î•
 			//?????????
 			ATR_AKO_FLG(a1) = 0;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO1)		//??????
@@ -3206,38 +3206,38 @@ void axe_shadow(ACTION *a0)
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//??????
 				ATR_AKO_FLG(a1) = 2;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//?????
-				ATR_LIFE(a1) = 0;		//?©û????
+				ATR_LIFE(a1) = 0;		//?î Œ????
 			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?ûı?????
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?îª?????
 			{
 				if (!ATR_COMBO(a1))		//????????
 				{
-					//??£k¤úû¨
+					//??î–±î¸î•
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 					set_damage_num(a1, 14, -64);
-					ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????ş†?
+					ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????î¡Š?
 				}
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)		//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//?????ıï
-			//?ıõ?????
+				ATR_VCT_NO(a1) = 10;		//?????î‘˜
+			//?î‘?????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
-				ATR_KAISHIN(a1) = 1;		//?ıõ??????
+				ATR_KAISHIN(a1) = 1;		//?î‘??????
 			else
-				ATR_KAISHIN(a1) = 0;		//¤GıĞ?????
+				ATR_KAISHIN(a1) = 0;		//î—­î¹?????
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 			//?????
@@ -3245,42 +3245,42 @@ void axe_shadow(ACTION *a0)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
-			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?©û????
+			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?î Œ????
 			{
-				ATR_LONG_WORK(1, a0) = 1;		//?©û??????
+				ATR_LONG_WORK(1, a0) = 1;		//?î Œ??????
 				//????????
 				if (ATR_COMBO(a1) == 0)
-					ATR_KAISHIN(a1) = 1;		//?ıõ??????
+					ATR_KAISHIN(a1) = 1;		//?î‘??????
 			}
-			if (ATR_KAISHIN(a1))		//?ıõ?????
+			if (ATR_KAISHIN(a1))		//?î‘?????
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//??????????
 			else
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
-			//???????????ûı??
+			//???????????îª??
 			if (ATR_DAMAGE(a1) || (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) || (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
 				{
 					//????????
 					if (ATR_COMBO(a1) == 0)
-						set_damage_num(a0, 1, -64 + 16);//?????¤úû¨
+						set_damage_num(a0, 1, -64 + 16);//?????î¸î•
 				}
 				//???
 				play_se(252, ATR_H_POS(a0), ATR_V_POS(a0));
 				//?????????
 				set_hit_mark(a0);
 			}
-			ATR_HIT_STOP(a0) /= 4;		//???????üî???
+			ATR_HIT_STOP(a0) /= 4;		//???????î¹???
 			ATR_VCT_NO(a0) = 3;				//????????
 			a1 = ATR_BODY_WORK(2, a0);		//???????
 			ATR_VCT_NO(a1) = 1;				//????????
-			ATR_CHR_ACT(a1) = 1;		//úê?????????
+			ATR_CHR_ACT(a1) = 1;		//îŒ¹?????????
 		}
 		else
 		{
-			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
 		}
@@ -3288,7 +3288,7 @@ void axe_shadow(ACTION *a0)
 	case 1:
 		if (--ATR_HIT_STOP(a0))		//??????????
 			break;
-		ATR_CHR_ACT(a0) = 0;		//?¥h???????
+		ATR_CHR_ACT(a0) = 0;		//?î™®???????
 		//???????
 		if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			ATR_STIMER(a0) = 32;
@@ -3301,33 +3301,33 @@ void axe_shadow(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-		DeathAction(a0);		//ü¬?
+		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+		DeathAction(a0);		//î·?
 		break;
 	case 3:
 		if (--ATR_HIT_STOP(a0))		//??????????
 			break;
 		a1 = ATR_BODY_WORK(2, a0);		//???????
-		ATR_CHR_ACT(a1) = 0;		//?¥h???????
-		//?????????¥h??
+		ATR_CHR_ACT(a1) = 0;		//?î™®???????
+		//?????????î™®??
 		ATR_GROUP_FLG(a0) = 35;
 		ATR_SPD(a0) = 16;
 		a1 = ATR_BODY_WORK(2, a0);		//???????
-		ATR_VCT_NO(a1) = 2;				//?¥h??
+		ATR_VCT_NO(a1) = 2;				//?î™®??
 		ATR_SPD(a1) = 32;
 		ATR_CRS(a1) = 0;
 		ATR_VCT_NO(a0)++;
 		break;
 	case 4:
-		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
-		if (!--ATR_GROUP_FLG(a0))		//ü¬???
+		if (!--ATR_GROUP_FLG(a0))		//î·???
 		{
-			if (ATR_LONG_WORK(1, a0))		//¤„???????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
+			if (ATR_LONG_WORK(1, a0))		//î˜©???????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
 			ATR_VCT_NO(a0)++;
 		}
 		break;
@@ -3345,24 +3345,24 @@ void axe_shadow(ACTION *a0)
 			ATR_STIMER(a0)--;
 			break;
 		}
-		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
+		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
 		a1 = ATR_BODY_WORK(2, a0);		//???????
-		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//¤úû¨??
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
-		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//¢r???????
+		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//î¸î•??
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
+		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//î•˜???????
 		{
-			if (!ATR_LONG_WORK(1, a0))		//¤„?şØ?????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-			DeathAction(a0);		//ü¬?
+			if (!ATR_LONG_WORK(1, a0))		//î˜©?î’Ÿ?????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+			DeathAction(a0);		//î·?
 			p_missile[0] = NULL;	//
 			a1 = ATR_BODY_WORK(2, a0);		//???????
-			DeathAction(a1);		//ü¬?
+			DeathAction(a1);		//î·?
 		}
 	}
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-/* şğ???? *******************************************************************/
+/* î’·???? *******************************************************************/
 void stone(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -3371,21 +3371,21 @@ void stone(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		if (ATR_VCT_NO(a1) == 1)
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
-		a2 = ATR_BODY_WORK(0, a0);		//¤„???????
+		a2 = ATR_BODY_WORK(0, a0);		//î˜©???????
 		d0 = ATR_H_POS(a2);
 		d1 = ATR_V_POS(a2);
 		radar(a1, &d0, &d1);	//????
 		ATR_STIMER(a0)++;
-		if (ATR_CRS(a0) == 0)		//ıÆüù??
+		if (ATR_CRS(a0) == 0)		//î¯î„??
 		{
-			if (ATR_SPD(a0) == 0)		//???úğ??
+			if (ATR_SPD(a0) == 0)		//???îŒ¿??
 				ATR_CRS(a0) = 16;
 			else
 				ATR_SPD(a0) -= 1;
@@ -3402,10 +3402,10 @@ void stone(ACTION *a0)
 		ATR_VCT_NO(a0)++;
 		break;
 	case 3:
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		if (ATR_VCT_NO(a1) == 1)
 		{
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
@@ -3421,9 +3421,9 @@ void stone(ACTION *a0)
 		{
 			//????
 			if (!--ATR_LONG_WORK(1, a0))
-				ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
+				ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
 		}
-		a1 = ATR_BODY_WORK(1, a0);		//?¥s???????
+		a1 = ATR_BODY_WORK(1, a0);		//?î™¹???????
 		ATR_H_POS(a0) = ATR_H_POS(a1);
 		ATR_V_POS(a0) = ATR_V_POS(a1);
 		break;
@@ -3431,7 +3431,7 @@ void stone(ACTION *a0)
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-/* şğ????? *******************************************************************/
+/* î’·????? *******************************************************************/
 void stone_shadow(ACTION *a0)
 {
 	ACTION *a1, *a2, *a3;
@@ -3440,7 +3440,7 @@ void stone_shadow(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -3448,18 +3448,18 @@ void stone_shadow(ACTION *a0)
 		//???????
 		if (!--ATR_GROUP_FLG(a0))
 		{
-			a2 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			if (ATR_LIFE(a2) <= 0)		//??????
 			{
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 				break;
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -3475,49 +3475,49 @@ void stone_shadow(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
 #endif
 				/////////////////////////////
 #endif
-				set_guard_mark(a0);		//ş\?ûöüÓ¤úû¨?
+				set_guard_mark(a0);		//î ¡?î£îî¸î•?
 			//?????????
 			ATR_COMBO(a1) = 0;
-			//?ûê??????
+			//?î—??????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			{
 				ATR_HIT_STOP(a0) = 32;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
-				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+				ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 				gemini(a0);
 				ATR_VCT_NO(a1) = 16;		//????
-				ATR_CRS(a1) = ATR_CRS(a0);		//¤„?????????????
+				ATR_CRS(a1) = ATR_CRS(a0);		//î˜©?????????????
 				ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
 				ATR_STIMER(a1) = 0;
 				ATR_FIRST_FLG(a1) = 0;		//??????????
 				break;
 			}
-			//??????ûı??????
+			//??????îª??????
 			if (!((ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) | (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)))
 			{
 				if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))		//????
 				{
-					a2 = ATR_BODY_WORK(0, a0);		//¤„????????
-					//??¤úû¨
+					a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
+					//??î¸î•
 					set_damage_num(a2, 0, -64);
 					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 					ATR_VCT_NO(a0) = 1;		//????????
-					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????¨Á?
+					ATR_CHR_NO(a0) = ATR_LONG_WORK(0, a0);		//?????îŸ‰?
 					pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 					break;
 				}
 			}
-			//?ûê????????
+			//?î—????????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-				set_damage_num(a1, 19, -112);//?????¤úû¨
+				set_damage_num(a1, 19, -112);//?????î¸î•
 			//?????????
 			ATR_AKO_FLG(a1) = 0;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO1)		//??????
@@ -3525,38 +3525,38 @@ void stone_shadow(ACTION *a0)
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//??????
 				ATR_AKO_FLG(a1) = 2;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//?????
-				ATR_LIFE(a1) = 0;		//?©û????
+				ATR_LIFE(a1) = 0;		//?î Œ????
 			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?ûı?????
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?îª?????
 			{
 				if (!ATR_COMBO(a1))		//????????
 				{
-					//??£k¤úû¨
+					//??î–±î¸î•
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 					set_damage_num(a1, 14, -64);
-					ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????ş†?
+					ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????î¡Š?
 				}
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)		//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//?????ıï
-			//?ıõ?????
+				ATR_VCT_NO(a1) = 10;		//?????î‘˜
+			//?î‘?????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
-				ATR_KAISHIN(a1) = 1;		//?ıõ??????
+				ATR_KAISHIN(a1) = 1;		//?î‘??????
 			else
-				ATR_KAISHIN(a1) = 0;		//¤GıĞ?????
+				ATR_KAISHIN(a1) = 0;		//î—­î¹?????
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 			//?????
@@ -3564,25 +3564,25 @@ void stone_shadow(ACTION *a0)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
-			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?©û????
+			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?î Œ????
 			{
-				ATR_LONG_WORK(1, a0) = 1;		//?©û??????
+				ATR_LONG_WORK(1, a0) = 1;		//?î Œ??????
 				//????????
 				if (ATR_COMBO(a1) == 0)
-					ATR_KAISHIN(a1) = 1;		//?ıõ??????
+					ATR_KAISHIN(a1) = 1;		//?î‘??????
 			}
-			if (ATR_KAISHIN(a1))		//?ıõ?????
+			if (ATR_KAISHIN(a1))		//?î‘?????
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//??????????
 			else
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
-			//???????????ûı??
+			//???????????îª??
 			if (ATR_DAMAGE(a1) || (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) || (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
 				{
 					//????????
 					if (ATR_COMBO(a1) == 0)
-						set_damage_num(a0, 1, -64 + 16);		//?????¤úû¨
+						set_damage_num(a0, 1, -64 + 16);		//?????î¸î•
 				}
 				//???
 				play_se(252, ATR_H_POS(a0), ATR_V_POS(a0));
@@ -3590,18 +3590,18 @@ void stone_shadow(ACTION *a0)
 				set_hit_mark(a0);
 			}
 			ATR_VCT_NO(a0) = 3;				//????????
-			a1 = ATR_BODY_WORK(2, a0);		//şğ??????
+			a1 = ATR_BODY_WORK(2, a0);		//î’·??????
 			ATR_VCT_NO(a1) = 1;				//????????
 		}
 		else
 		{
-			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 1:
@@ -3619,49 +3619,49 @@ void stone_shadow(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-		DeathAction(a0);		//ü¬?
+		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+		DeathAction(a0);		//î·?
 		break;
 	case 3:
-		a1 = ATR_BODY_WORK(2, a0);		//şğ??????
-		ATR_CHR_NO(a1) = SPR_isiware;		//şğ?????
-		if (pattern(a1, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬???
+		a1 = ATR_BODY_WORK(2, a0);		//î’·??????
+		ATR_CHR_NO(a1) = SPR_isiware;		//î’·?????
+		if (pattern(a1, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·???
 			goto stone_shadow_100;
-		if (!pattern(a1, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???ü¬??????
+		if (!pattern(a1, ANM_NOMAL_SPD, ANM_NO_LOOP))	//???î·??????
 			break;
 	stone_shadow_100:
-		//?????????¥h??
+		//?????????î™®??
 		ATR_GROUP_FLG(a0) = 10;
 		ATR_SPD(a0) = 6;
 		ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 		d0 = ATR_CRS(a0);
 		if (d0 >= 4 && d0 < BATTLKPKPLYAERNUM)
-			ATR_CHR_NO(a1) = 25784;		//şğ¦„¨Â??¨Á?
+			ATR_CHR_NO(a1) = 25784;		//î’·î›©îŸŠ??îŸ‰?
 		else
-			ATR_CHR_NO(a1) = 25783;		//şğ¦„¨Â??¨Á?
+			ATR_CHR_NO(a1) = 25783;		//î’·î›©îŸŠ??îŸ‰?
 		ATR_CRS(a0) -= 8;
 		ATR_CRS(a0) &= 31;
-		a1 = ATR_BODY_WORK(2, a0);		//şğ??????
-		ATR_VCT_NO(a1) = 2;				//?¥h??
+		a1 = ATR_BODY_WORK(2, a0);		//î’·??????
+		ATR_VCT_NO(a1) = 2;				//?î™®??
 		ATR_SPD(a1) = 0;
 		ATR_CRS(a1) = 16;
 		ATR_LONG_WORK(1, a1) = 30;
 		ATR_VCT_NO(a0)++;
-		//şğ?????
+		//î’·?????
 		a3 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 		//?????
 		a2 = GetAction(T_PRIO_BOW - 1, sizeof(ATR_EQU));
 		ATR_NAME(a2) = ATR_NAME(a0);
 		ATR_VCT_NO(a2) = ATR_VCT_NO(a0);
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a0);
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a2) = ATR_CHR_NO(a0);
-		/* ???£t */
+		/* ???î–º */
 		ATR_CHR_ANG(a2) = ATR_CHR_ANG(a0);
-		ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a0);		//¤„????
-		ATR_BODY_WORK(1, a2) = ATR_BODY_WORK(1, a0);		//§DûÍ?????
-		ATR_BODY_WORK(2, a2) = a3;		//şğ??????
+		ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a0);		//î˜©????
+		ATR_BODY_WORK(1, a2) = ATR_BODY_WORK(1, a0);		//îœŠîº?????
+		ATR_BODY_WORK(2, a2) = a3;		//î’·??????
 		ATR_ATTACK_POW(0, a2) = ATR_ATTACK_POW(0, a0);		//???
 		ATR_ATTACK_PET_POW(0, a2) = ATR_ATTACK_PET_POW(0, a0);		//???
 		ATR_ATTACK_KIND(0, a2) = ATR_ATTACK_KIND(0, a0);		//?????
@@ -3674,14 +3674,14 @@ void stone_shadow(ACTION *a0)
 		pattern(a2, ANM_NOMAL_SPD, ANM_LOOP);
 		p_missile[1] = a1;
 		p_missile[2] = NULL;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		if (d0 >= 4 && d0 < BATTLKPKPLYAERNUM)
-			ATR_CHR_NO(a3) = 25783;		//şğ¦„¨Â??¨Á?
+			ATR_CHR_NO(a3) = 25783;		//î’·î›©îŸŠ??îŸ‰?
 		else
-			ATR_CHR_NO(a3) = 25784;		//şğ¦„¨Â??¨Á?
+			ATR_CHR_NO(a3) = 25784;		//î’·î›©îŸŠ??îŸ‰?
 		ATR_NAME(a3) = ATR_NAME(a1);
 		ATR_VCT_NO(a3) = ATR_VCT_NO(a1);
-		ATR_BODY_WORK(1, a3) = a2;		//?¥s???????
+		ATR_BODY_WORK(1, a3) = a2;		//?î™¹???????
 		ATR_VCT_NO(a3) = ATR_VCT_NO(a1);
 		ATR_DISP_PRIO(a3) = ATR_DISP_PRIO(a1);
 		ATR_SPD(a3) = ATR_SPD(a1);
@@ -3691,12 +3691,12 @@ void stone_shadow(ACTION *a0)
 		ATR_LONG_WORK(1, a3) = 30;
 		break;
 	case 4:
-		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+		ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 		ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
-		if (!--ATR_GROUP_FLG(a0))		//ü¬???
+		if (!--ATR_GROUP_FLG(a0))		//î·???
 		{
 			//????
 			ATR_LONG_WORK(2, a0) = 60;
@@ -3705,23 +3705,23 @@ void stone_shadow(ACTION *a0)
 		}
 		break;
 	case 5:
-		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
-		a1 = ATR_BODY_WORK(2, a0);		//şğ??????
+		ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
+		a1 = ATR_BODY_WORK(2, a0);		//î’·??????
 		ATR_VCT_NO(a1) = 4;
 		//???
 		ATR_VCT_NO(a0)++;
 		break;
 	case 6:
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
-		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//¢r???????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
+		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)		//î•˜???????
 		{
-			if (!ATR_LONG_WORK(1, a0))		//¤„?şØ?????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-			DeathAction(a0);		//ü¬?
+			if (!ATR_LONG_WORK(1, a0))		//î˜©?î’Ÿ?????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+			DeathAction(a0);		//î·?
 			p_missile[0] = NULL;	//
 			p_missile[1] = NULL;	//
-			a1 = ATR_BODY_WORK(2, a0);		//şğ??????
-			DeathAction(a1);		//ü¬?
+			a1 = ATR_BODY_WORK(2, a0);		//î’·??????
+			DeathAction(a1);		//î·?
 		}
 	case 7:
 		if (ATR_LONG_WORK(3, a0))
@@ -3729,21 +3729,21 @@ void stone_shadow(ACTION *a0)
 			ATR_LONG_WORK(3, a0) = 0;
 			//???
 			play_se(251, ATR_H_POS(a0), ATR_V_POS(a0));
-			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
-			a1 = ATR_BODY_WORK(2, a0);		//şğ??????
+			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
+			a1 = ATR_BODY_WORK(2, a0);		//î’·??????
 			ATR_VCT_NO(a1) = 4;
 		}
-		if (!--ATR_LONG_WORK(2, a0))		//ü¬???
+		if (!--ATR_LONG_WORK(2, a0))		//î·???
 		{
-			if (ATR_LONG_WORK(1, a0))		//¤„???????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
+			if (ATR_LONG_WORK(1, a0))		//î˜©???????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
 			ATR_VCT_NO(a0) = 5;
 		}
 	}
 }
 
 //Terry add 2001/12/31
-/* ±ŞÅÚÓ°×Ó´¦Àí *******************************************************************/
+/* é­ç‚®å½±å­å¤„ç† *******************************************************************/
 #ifdef _ITEM_FIRECREAKER
 void firecracker_shadow(ACTION *a0)
 {
@@ -3753,47 +3753,47 @@ void firecracker_shadow(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//µĞÈËµÄÎ»Ö·
+		a1 = ATR_BODY_WORK(0, a0);		//æ•Œäººçš„ä½å€
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
-		radar(a0, &d0, &d1);	//À×´ï(¼ÆËãÂ·Ïß)
-		ATR_CRS(a0) = d0;		//¶¯»­Â·Ïß
-		//×¼±¸ÃüÖĞ
+		radar(a0, &d0, &d1);	//é›·è¾¾(è®¡ç®—è·¯çº¿)
+		ATR_CRS(a0) = d0;		//åŠ¨ç”»è·¯çº¿
+		//å‡†å¤‡å‘½ä¸­
 		if (!--ATR_GROUP_FLG(a0))
 		{
 			ATR_VCT_NO(a0) = 1;				//????????
-			a1 = ATR_BODY_WORK(2, a0);		//şğ??????
+			a1 = ATR_BODY_WORK(2, a0);		//î’·??????
 			ATR_VCT_NO(a1) = 1;				//????????
-			ATR_STIMER(ATR_BODY_WORK(1, a0)) = 0;		//???ıï
-			ATR_ATTRIB(a0) = ACT_ATR_HIDE;	//Ó°×Ó½áÊø
-			ATR_CHR_NO(a1) = 101121;		//±ŞÅÚÕ¨¿ª
+			ATR_STIMER(ATR_BODY_WORK(1, a0)) = 0;		//???î‘˜
+			ATR_ATTRIB(a0) = ACT_ATR_HIDE;	//å½±å­ç»“æŸ
+			ATR_CHR_NO(a1) = 101121;		//é­ç‚®ç‚¸å¼€
 			ATR_H_POS(a1) += 50;
 		}
 		else
 		{
-			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?¥h??úÜ
+			ATR_INT_WORK2(a0) = ATR_H_POS(a0);		//?î™®??îŒ«
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0);		//
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0) - ATR_INT_WORK2(a0);
 			ATR_INT_WORK3(a0) = ATR_V_POS(a0) - ATR_INT_WORK3(a0);
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		}
 		break;
 	case 1:
-		a1 = ATR_BODY_WORK(2, a0);		//±ŞÅÚÎ»Ö·
-		if (!pattern(a1, 36, ANM_NO_LOOP))	//¶¯»­Î´²¥Íê
+		a1 = ATR_BODY_WORK(2, a0);		//é­ç‚®ä½å€
+		if (!pattern(a1, 36, ANM_NO_LOOP))	//åŠ¨ç”»æœªæ’­å®Œ
 			break;
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)
-		{		//¢r???????
-			if (!ATR_LONG_WORK(1, a0))			//¤„?şØ?????
-				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???ıï
-			DeathAction(a0);		//ü¬?
+		{		//î•˜???????
+			if (!ATR_LONG_WORK(1, a0))			//î˜©?î’Ÿ?????
+				ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//???î‘˜
+			DeathAction(a0);		//î·?
 			p_missile[0] = NULL;	//
 			p_missile[1] = NULL;	//
-			a1 = ATR_BODY_WORK(2, a0);		//şğ??????
-			DeathAction(a1);		//ü¬?
+			a1 = ATR_BODY_WORK(2, a0);		//î’·??????
+			DeathAction(a1);		//î·?
 		}
 		break;
 	}
@@ -3810,7 +3810,7 @@ void missile(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -3818,7 +3818,7 @@ void missile(ACTION *a0)
 		//???????
 		if (d1 <= 32)
 		{
-			a2 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			if (ATR_LIFE(a2) <= 0)		//??????
 			{
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
@@ -3828,40 +3828,40 @@ void missile(ACTION *a0)
 			//????
 			if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))
 			{
-				a2 = ATR_BODY_WORK(0, a0);		//¤„????????
-				//??¤úû¨
+				a2 = ATR_BODY_WORK(0, a0);		//î˜©????????
+				//??î¸î•
 				set_damage_num(a2, 0, -64);
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 				ATR_VCT_NO(a0) = 1;		//????????
 				break;
 			}
-			ATR_CRS(a1) = d0;		//¤„?????????????
+			ATR_CRS(a1) = d0;		//î˜©?????????????
 			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?ûı?????
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//?îª?????
 			{
 				if (!ATR_COMBO(a1))		//????????
 				{
-					//??£k¤úû¨
+					//??î–±î¸î•
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 					set_damage_num(a1, 14, -64);
-					ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????ş†?
+					ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+					ATR_ATTACK_PET_POW(0, a0) = 0;		//pet????î¡Š?
 				}
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)		//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//?????ıï
+				ATR_VCT_NO(a1) = 10;		//?????î‘˜
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);		//
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);		//
 			//?????
@@ -3869,34 +3869,34 @@ void missile(ACTION *a0)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
-			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?©û????
+			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//?î Œ????
 			{
-				ATR_KAISHIN(a1) = 1;		//?ıõ??????
+				ATR_KAISHIN(a1) = 1;		//?î‘??????
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//??????????
 			}
 			else
 			{
-				ATR_KAISHIN(a1) = 0;		//¤GıĞ?????
+				ATR_KAISHIN(a1) = 0;		//î—­î¹?????
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 			}
 			ATR_VCT_NO(a0) = 1;		//????????
 			//???
 			play_se(103, 320, 240);
-			//?©œ?????
+			//?îŸ¹?????
 			a1 = GetAction(T_PRIO_MAGIC_EFFECT, sizeof(ATR_EQU));
 			if (a1 == NULL)
 				return;
-			/* ûÂ??? */
+			/* î¯??? */
 			ATR_NAME(a1) = magic_effect;
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a1) = D_PRIO_MAGIC_EFFECT;
 			ATR_CHR_NO(a1) = 36009;
-			/* ???£t */
+			/* ???î–º */
 			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);
 		}
 		else
-			gemini(a0);		//?¥h
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			gemini(a0);		//?î™®
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 1:
@@ -3910,8 +3910,8 @@ void missile(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_DAMAGE(p_master)++;		//???ıï
-		DeathAction(a0);		//ü¬?
+		ATR_DAMAGE(p_master)++;		//???î‘˜
+		DeathAction(a0);		//î·?
 		break;
 	}
 }
@@ -3925,33 +3925,33 @@ void amelioration(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		if (ATR_INT_WORK0(a0) == 0)		//şş?¨ë?¡q??
+		if (ATR_INT_WORK0(a0) == 0)		//î“…?îŸ?î“·??
 		{
 			d0 = 310;
 			d1 = 222;
 			radar(a0, &d0, &d1);	//????
 			ATR_CRS(a0) = d0;		//??????
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 			if (d1 <= (ATR_SPD(a0) >> 2))		//????
-				ATR_INT_WORK0(a0) = 1;		//şş?¨ë????
+				ATR_INT_WORK0(a0) = 1;		//î“…?îŸ????
 		}
 		else
 		{
-			a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			d0 = ATR_H_POS(a1);
 			d1 = ATR_V_POS(a1);
 			radar2(a0, d0, d1, 1);	//????
-			if (ATR_INT_WORK1(a0) == 0)		//??¨Á??????
+			if (ATR_INT_WORK1(a0) == 0)		//??îŸ‰??????
 				ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
 			d0 = ATR_H_POS(a1);
 			d1 = ATR_V_POS(a1);
 			radar(a0, &d0, &d1);	//????
 			if (d0 == ATR_CRS(a0))		//??????
-				ATR_INT_WORK1(a0) = 1;		//?????¨Á???
+				ATR_INT_WORK1(a0) = 1;		//?????îŸ‰???
 			//???????
 			if (d1 <= 32)
 			{
-				a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+				a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 				if (ATR_LIFE(a1) <= 0)		//??????
 				{
 					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
@@ -3959,29 +3959,29 @@ void amelioration(ACTION *a0)
 					break;
 				}
 				ATR_COUNTER(a1) = NULL;		//????????
-				ATR_VCT_NO(a1) = 15;		//???ıï
+				ATR_VCT_NO(a1) = 15;		//???î‘˜
 				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
-				ATR_KAISHIN(a1) = 0;		//?ıõ??????
+				ATR_KAISHIN(a1) = 0;		//?î‘??????
 				ATR_VCT_NO(a0) = 1;		//????????
 				//???
 				play_se(100, 320, 240);
-				//?©œ?????
+				//?îŸ¹?????
 				a1 = GetAction(T_PRIO_MAGIC_EFFECT, sizeof(ATR_EQU));
 				if (a1 == NULL)
 					return;
-				/* ûÂ??? */
+				/* î¯??? */
 				ATR_NAME(a1) = magic_effect;
-				/* ¤úû¨?¡I¥T */
+				/* î¸î•?î“î™š */
 				ATR_DISP_PRIO(a1) = D_PRIO_MAGIC_EFFECT;
-				/* ?????§k? */
+				/* ?????îœ±? */
 				ATR_CHR_NO(a1) = 36009;
-				/* ???£t */
+				/* ???î–º */
 				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);
 			}
 			else
-				gemini(a0);		//?¥h
+				gemini(a0);		//?î™®
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 1:
@@ -3995,13 +3995,13 @@ void amelioration(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_DAMAGE(p_master)++;		//???ıï
-		DeathAction(a0);		//ü¬?
+		ATR_DAMAGE(p_master)++;		//???î‘˜
+		DeathAction(a0);		//î·?
 		break;
 	}
 }
 
-// ???§{??? //////////////////////////////////////////////////////////////
+// ???î??? //////////////////////////////////////////////////////////////
 typedef int CMPFUNC(const void*, const void*);
 int sort_chr(SORT_CHR_EQU *a0, SORT_CHR_EQU *a1)
 {
@@ -4025,7 +4025,7 @@ void set_raster_pos(ACTION *a1)
 #ifdef __ATTACK_MAGIC
 	int value = 0;
 
-	// Èç¹ûÕıÔÚµØÕğÖĞ»òÌØÊâµÄµØÍ¼±àºÅÊ±
+	// å¦‚æœæ­£åœ¨åœ°éœ‡ä¸­æˆ–ç‰¹æ®Šçš„åœ°å›¾ç¼–å·æ—¶
 	if ((g_iRunEarthQuake < 2) && (BattleMapNo < 148 || BattleMapNo > 150))
 		return;
 	if (2 == g_iRunEarthQuake)
@@ -4055,7 +4055,7 @@ void set_raster_pos(ACTION *a1)
 }
 
 /*-------------------------------------------
-	??ş­?£k¥‚?????
+	??î‘´?î–±îš‡?????
 	--------------------------------------------*/
 static int get_num(void)
 {
@@ -4078,8 +4078,8 @@ static int get_num(void)
 		d1 = d0 - '0';
 	while (1)
 	{
-		d0 = BattleCmd[command_point++];		//?§ó????ûè?üÒ?
-		if (d0 == NULL)		//ü¬???
+		d0 = BattleCmd[command_point++];		//?î°????î•?î?
+		if (d0 == NULL)		//î·???
 		{
 			command_point--;
 			break;
@@ -4087,7 +4087,7 @@ static int get_num(void)
 		if (d0 < '0' || d0 > '9')		//??????
 		{
 			if (d0 < 'A' || d0 > 'F')		//????????
-				break;						//ü¬?
+				break;						//î·?
 		}
 		d1 = d1 << 4;		//???????
 		if (d0 >= 'A')		//?????
@@ -4113,8 +4113,8 @@ static int get_mpnum(char code)
 
 	while (1)
 	{
-		d0 = BattleCmd[num++];		//?§ó?ûè?üÒ?
-		if (d0 == NULL)		//ü¬???
+		d0 = BattleCmd[num++];		//?î°?î•?î?
+		if (d0 == NULL)		//î·???
 			return -1;
 		if (d0 >= '0' && d0 <= '9')		//???
 			break;						//??????
@@ -4128,8 +4128,8 @@ static int get_mpnum(char code)
 
 	while (1)
 	{
-		d0 = BattleCmd[num++];		//?§ó????ûè?üÒ?
-		if (d0 == NULL)		//ü¬???
+		d0 = BattleCmd[num++];		//?î°????î•?î?
+		if (d0 == NULL)		//î·???
 		{
 			command_point--;
 			break;
@@ -4137,7 +4137,7 @@ static int get_mpnum(char code)
 		if (d0 < '0' || d0 > '9')		//??????
 		{
 			if (d0 < 'A' || d0 > 'F')		//????????
-				break;						//ü¬?
+				break;						//î·?
 		}
 		d1 = d1 << 4;		//???????
 		if (d0 >= 'A')		//?????
@@ -4148,7 +4148,7 @@ static int get_mpnum(char code)
 	return d1;
 }
 /*-------------------------------------------
-	????¥‚?????
+	????îš‡?????
 	--------------------------------------------*/
 static char get_command(void)
 {
@@ -4176,13 +4176,13 @@ static char get_char()
 {
 	char d0;
 
-	d0 = BattleCmd[command_point++];		//?ûè?üÒ?
-	if (d0 == NULL)		//???ü¬???
-		return -1;		//ü¬?
+	d0 = BattleCmd[command_point++];		//?î•?î?
+	if (d0 == NULL)		//???î·???
+		return -1;		//î·?
 	return d0;
 }
 
-/* ş¡q¥‚??? *******************************************************************/
+/* î¡“î“·îš‡??? *******************************************************************/
 void get_name(ACTION *a1)
 {
 	char d0;
@@ -4191,10 +4191,10 @@ void get_name(ACTION *a1)
 	a2 = ATR_HANDLE(a1);
 	while (1)
 	{
-		d0 = BattleCmd[command_point++];		//?§ó?ûè?üÒ?
-		if (d0 == NULL)		//ü¬???
+		d0 = BattleCmd[command_point++];		//?î°?î•?î?
+		if (d0 == NULL)		//î·???
 			break;
-		//?şú???
+		//?î“???
 		if (d0 == '|')
 			break;
 		if (IsDBCSLeadByte(d0))
@@ -4205,25 +4205,25 @@ void get_name(ACTION *a1)
 		else
 			*a2++ = d0;
 	}
-	//ü¬????
+	//î·????
 	*a2 = 0;
 	makeStringFromEscaped(ATR_HANDLE(a1));
 }
 
 /*-------------------------------------------
-	?????¥‚?????
+	?????îš‡?????
 	--------------------------------------------*/
 static int get_next_flg(void)
 {
 	int d0, d1;
 
-	d1 = command_point;		//?????????¢~§ˆ
-	d0 = get_num();		//¤„ûè?üÒ?
-	if (d0 == -1)		//ü¬???
+	d1 = command_point;		//?????????î•¤î
+	d0 = get_num();		//î˜©î•?î?
+	if (d0 == -1)		//î·???
 		goto get_next_flg_500;
-	if (d0 == 255)		//ü¬???
+	if (d0 == 255)		//î·???
 		goto get_next_flg_500;
-	d0 = get_num();		//???ûè?üÒ?
+	d0 = get_num();		//???î•?î?
 	goto get_next_flg_700;
 get_next_flg_500:
 	d0 = 0;
@@ -4234,25 +4234,25 @@ get_next_flg_700:
 }
 
 /*-------------------------------------------
-	??ş°?ûè?üÒ???
+	??î‘·?î•?î???
 	--------------------------------------------*/
 static int get_body_cnt(void)
 {
 	int d0, d1, d2 = 0;
 
-	d1 = command_point;		//?????????¢~§ˆ
+	d1 = command_point;		//?????????î•¤î
 	while (1)
 	{
-		d0 = get_num();		//¤„ûè?üÒ?
-		if (d0 == -1)		//ü¬???
+		d0 = get_num();		//î˜©î•?î?
+		if (d0 == -1)		//î·???
 			break;
-		if (d0 == 255)		//ü¬???
+		if (d0 == 255)		//î·???
 			break;
 		get_num();		//???????
 		get_num();		//????????
 		if (BattleCmd[command_point] == 'p')
 			get_num();		//pet????????
-		d2++;		//ş°??úÜ
+		d2++;		//î‘·??îŒ«
 	}
 	command_point = d1;		//???????????
 
@@ -4260,14 +4260,14 @@ static int get_body_cnt(void)
 }
 
 /*-------------------------------------------
-	???¤õûè?üÒ???
+	???î³î•?î???
 	--------------------------------------------*/
 static ACTION *get_body_target(void)
 {
 	int d0, d1;
 
-	d1 = command_point;		//?????????¢~§ˆ
-	d0 = get_num();		//¤„ûè?üÒ?
+	d1 = command_point;		//?????????î•¤î
+	d0 = get_num();		//î˜©î•?î?
 	command_point = d1;		//???????????
 	if (d0 == -1)
 		return 0;
@@ -4275,18 +4275,18 @@ static ACTION *get_body_target(void)
 		return p_party[d0];
 }
 
-//È«ÃğÈ·ÈÏ´¦Àí
+//å…¨ç­ç¡®è®¤å¤„ç†
 int check_all_dead(void)
 {
 	int d0, d7;
 
-	d0 = 10;		//¼ì²éÈËÊıÉè¶¨
+	d0 = 10;		//æ£€æŸ¥äººæ•°è®¾å®š
 	for (d7 = 0; d7 < 5; d7++)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)		//????????????
 		{
 			if (ATR_PET_OK(p_party[d7]))
-				d0 = 5;		//¼ì²éÈËÊıÉè¶¨
+				d0 = 5;		//æ£€æŸ¥äººæ•°è®¾å®š
 			break;
 		}
 	}
@@ -4294,10 +4294,10 @@ int check_all_dead(void)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)
 		{
-			if (ATR_LIFE(p_party[d7]) > 0)		//¼ÙÈçÓĞÒ»¸öÈËÊÇ»î×ÅµÄ
+			if (ATR_LIFE(p_party[d7]) > 0)		//å‡å¦‚æœ‰ä¸€ä¸ªäººæ˜¯æ´»ç€çš„
 				break;
 #ifdef _PETSKILL_LER
-			// À×¶ûµÚÒ»¶Î¼°µÚ¶ş¶ÎËÀÍöÊ±²»ÄÜËãÈ«Ãğ,ÒòÎª»á±äÉí
+			// é›·å°”ç¬¬ä¸€æ®µåŠç¬¬äºŒæ®µæ­»äº¡æ—¶ä¸èƒ½ç®—å…¨ç­,å› ä¸ºä¼šå˜èº«
 			else if (ATR_CHR_NO(p_party[d7]) == 101813 || ATR_CHR_NO(p_party[d7]) == 101814)
 				break;
 #endif
@@ -4306,22 +4306,22 @@ int check_all_dead(void)
 				break;
 #endif
 #ifdef _HUNDRED_KILL
-			//´ú±í°ÙÈËnpc»¹Ã»ÕæÕıËÀµô
+			//ä»£è¡¨ç™¾äººnpcè¿˜æ²¡çœŸæ­£æ­»æ‰
 			if( BattleHundredFlag == TRUE ) 
 				break;
 #endif
 		}
 	}
-	if (d7 == d0)		//È«Ãğ
+	if (d7 == d0)		//å…¨ç­
 		return 1;
-	d0 = 20;		//¼ì²éÈËÊıÉè¶¨
+	d0 = 20;		//æ£€æŸ¥äººæ•°è®¾å®š
 
 	for (d7 = 10; d7 < 15; d7++)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)		//????????????
 		{
 			if (ATR_PET_OK(p_party[d7]))
-				d0 = 15;		//¼ì²éÈËÊıÉè¶¨
+				d0 = 15;		//æ£€æŸ¥äººæ•°è®¾å®š
 			break;
 		}
 	}
@@ -4329,10 +4329,10 @@ int check_all_dead(void)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)
 		{
-			if (ATR_LIFE(p_party[d7]) > 0)		//¼ÙÈçÓĞÒ»¸öÈËÊÇ»î×ÅµÄ
+			if (ATR_LIFE(p_party[d7]) > 0)		//å‡å¦‚æœ‰ä¸€ä¸ªäººæ˜¯æ´»ç€çš„
 				break;
 #ifdef _PETSKILL_LER
-			// À×¶ûµÚÒ»¶Î¼°µÚ¶ş¶ÎËÀÍöÊ±²»ÄÜËãÈ«Ãğ,ÒòÎª»á±äÉí
+			// é›·å°”ç¬¬ä¸€æ®µåŠç¬¬äºŒæ®µæ­»äº¡æ—¶ä¸èƒ½ç®—å…¨ç­,å› ä¸ºä¼šå˜èº«
 			else if (ATR_CHR_NO(p_party[d7]) == 101813 || ATR_CHR_NO(p_party[d7]) == 101814)
 				break;
 #endif
@@ -4341,18 +4341,18 @@ int check_all_dead(void)
 				break;
 #endif
 #ifdef _HUNDRED_KILL
-			//´ú±í°ÙÈËnpc»¹Ã»ÕæÕıËÀµô
+			//ä»£è¡¨ç™¾äººnpcè¿˜æ²¡çœŸæ­£æ­»æ‰
 			if( BattleHundredFlag == TRUE ) 
 				break;
 #endif
 		}
 	}
-	if (d7 == d0)		//È«Ãğ return 1
+	if (d7 == d0)		//å…¨ç­ return 1
 		return 1;
-	return 0;		//»¹ÓĞÈË»î×Å return 0 
+	return 0;		//è¿˜æœ‰äººæ´»ç€ return 0 
 }
 
-//ÊôĞÔ±íÊ¾´¦Àí
+//å±æ€§è¡¨ç¤ºå¤„ç†
 void disp_attrib(ACTION *a0)
 {
 	ACTION *a1;
@@ -4360,26 +4360,26 @@ void disp_attrib(ACTION *a0)
 	a1 = p_attrib;
 	switch (ATR_ATTRIB(a0))
 	{
-		//ÎŞÊôĞÔ
+		//æ— å±æ€§
 	case 0:
-		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//²»±íÊ¾
+		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//ä¸è¡¨ç¤º
 		break;
-		//µØÊôĞÔ
+		//åœ°å±æ€§
 	case 1:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_EARTH_BATTLE;
 		break;
-		//Ë®ÊôĞÔ
+		//æ°´å±æ€§
 	case 2:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_WATER_BATTLE;
 		break;
-		//»ğÊôĞÔ
+		//ç«å±æ€§
 	case 3:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_FIRE_BATTLE;
 		break;
-		//·çÊôĞÔ
+		//é£å±æ€§
 	case 4:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_WIND_BATTLE;
@@ -4388,7 +4388,7 @@ void disp_attrib(ACTION *a0)
 	pattern(a1, ANM_NOMAL_SPD, ANM_NO_LOOP);
 }
 
-/* ????§ó?¥‚??? *******************************************************************/
+/* ????î°?îš‡??? *******************************************************************/
 void get_command_asc(void)
 {
 	char d0, d1 = 0;
@@ -4398,8 +4398,8 @@ void get_command_asc(void)
 	a2 = kanji_buf[d1];
 	while (1)
 	{
-		d0 = BattleCmd[command_point++];		//?§ó?ûè?üÒ?
-		if (d0 == NULL)		//ü¬???
+		d0 = BattleCmd[command_point++];		//?î°?î•?î?
+		if (d0 == NULL)		//î·???
 		{
 			command_point--;
 			break;
@@ -4407,7 +4407,7 @@ void get_command_asc(void)
 		//????
 		if (d0 == '\t')
 		{
-			//ü¬????
+			//î·????
 			*a2 = 0;
 			d1++;
 			if (d1 == 4)		//?????
@@ -4415,7 +4415,7 @@ void get_command_asc(void)
 			a2 = kanji_buf[d1];
 			continue;
 		}
-		//?şú???
+		//?î“???
 		if (d0 == '|')
 			break;
 		if (IsDBCSLeadByte(d0))
@@ -4426,12 +4426,12 @@ void get_command_asc(void)
 		else
 			*a2++ = d0;
 	}
-	//ü¬????
+	//î·????
 	*a2 = 0;
 }
 
 #ifdef __TOCALL_MAGIC
-// ÕÙ»½ÖäÊõµÄ×ÊÁÏ½¨Á¢
+// å¬å”¤å’’æœ¯çš„èµ„æ–™å»ºç«‹
 BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 {
 	int	i, idx = 0, midx, midy, count = 0;
@@ -4450,7 +4450,7 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 	//	ToCallMgc.iPreMgcNum			= get_num();
 	//	ToCallMgc.iCurMgcNum			= get_num();
 	ToCallMgc.iPreMgcNum = get_num();
-#ifdef _PETSKILL_LER			// À×¶û¼¼ÄÜ
+#ifdef _PETSKILL_LER			// é›·å°”æŠ€èƒ½
 	if (ToCallMgc.iPreMgcNum == 101808 || ToCallMgc.iPreMgcNum == 101809)
 	{
 		if (!g_bUseAlpha)
@@ -4465,7 +4465,7 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 			ToCallMgc.iCurMgcNum += 55;
 	}
 #endif
-#ifdef _PETSKILL_LER			// À×¶û¼¼ÄÜ
+#ifdef _PETSKILL_LER			// é›·å°”æŠ€èƒ½
 	if (ToCallMgc.iCurMgcNum == 101798)
 	{
 		if (!g_bUseAlpha)
@@ -4527,29 +4527,29 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 	ToCallMgc.dwEQuakeSFrame = ToCallMgc.dwEQuakeSTime >> 4;
 	ToCallMgc.dwEQuakeEFrame = ToCallMgc.dwEQuakeETime >> 4;
 
-	// ÊÇ·ñÓĞÇ°ÖÃÖäÊõ
+	// æ˜¯å¦æœ‰å‰ç½®å’’æœ¯
 	(0XFFFFFFFF == ToCallMgc.iPreMgcNum) ? ToCallMgc.wRunPreMgc = TRUE : ToCallMgc.wRunPreMgc = FALSE;
 
-	// ¾ø¶ÔÎ»ÖÃÏÔÊ¾·¨
+	// ç»å¯¹ä½ç½®æ˜¾ç¤ºæ³•
 	if (1 == ToCallMgc.wShowType)
 	{
 		ToCallMgc.wNumAttacks = 1;
 		ToCallMgc.wCurAttackNum = 0;
 		ToCallMgc.posAttacked[0].x = ToCallMgc.wScreenX;
 		ToCallMgc.posAttacked[0].y = ToCallMgc.wScreenY;
-		ToCallMgc.wAttackedIndex[0] = 20;		// È«²¿ÈËÔ±½ÔÍ¬Ê±³ÊÊÜÉË×´Ì¬
+		ToCallMgc.wAttackedIndex[0] = 20;		// å…¨éƒ¨äººå‘˜çš†åŒæ—¶å‘ˆå—ä¼¤çŠ¶æ€
 		ToCallMgc.wMgcFrameCount[0] = 0;
 
-		// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+		// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 		for (i = 0; i < idx; i++)
 			ToCallMgc.wAttackedIndex[i + 1] = charidx[i];
 
 		ToCallMgc.wAttackedIndex[i + 1] = 0XFF;
 	}
-	// ¾ÓÖĞÎ»ÖÃÏÔÊ¾·¨
+	// å±…ä¸­ä½ç½®æ˜¾ç¤ºæ³•
 	else
 	{
-		// ÖäÊõµÄ·½Ê½ÎªÈ«ÌåÍ¬Ê±¹¥»÷
+		// å’’æœ¯çš„æ–¹å¼ä¸ºå…¨ä½“åŒæ—¶æ”»å‡»
 		if (2 == ToCallMgc.wAttackType || 4 == ToCallMgc.wAttackType)
 		{
 			midx = 0;
@@ -4566,18 +4566,18 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 			ToCallMgc.wCurAttackNum = 0;
 			ToCallMgc.posAttacked[0].x = midx + ToCallMgc.wScreenX;
 			ToCallMgc.posAttacked[0].y = midy + ToCallMgc.wScreenY;
-			ToCallMgc.wAttackedIndex[0] = 20;		// È«²¿ÈËÔ±½ÔÍ¬Ê±³ÊÊÜÉË×´Ì¬
+			ToCallMgc.wAttackedIndex[0] = 20;		// å…¨éƒ¨äººå‘˜çš†åŒæ—¶å‘ˆå—ä¼¤çŠ¶æ€
 			ToCallMgc.wMgcFrameCount[0] = 0;
 
-			// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+			// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 			for (i = 0; i < idx; i++)
 				ToCallMgc.wAttackedIndex[i + 1] = charidx[i];
 			ToCallMgc.wAttackedIndex[i + 1] = 0XFF;
 		}
-		// µ¥¶À¹¥»÷
+		// å•ç‹¬æ”»å‡»
 		else
 		{
-			// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+			// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 			for (i = 0; i < idx; i++)
 			{
 				ToCallMgc.wNumAttacks++;
@@ -4597,28 +4597,28 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 }
 
 
-// ¶¯Ì¬²úÉúĞÂµÄÄ§·¨
+// åŠ¨æ€äº§ç”Ÿæ–°çš„é­”æ³•
 BOOL RunTimeMagicToCall()
 {
-	// ¿ªÊ¼µØÕğ
+	// å¼€å§‹åœ°éœ‡
 	if (ToCallMgc.dwEQuakeSFrame == ToCallMgc.dwCurFrame1)
 	{
 		g_iRunEarthQuake = 1;
 		g_iNumRunEarthQuake = ToCallMgc.dwEQuakeEFrame - ToCallMgc.dwEQuakeSFrame;
 	}
 
-	// ½áÊøµØÕğ
+	// ç»“æŸåœ°éœ‡
 	if (ToCallMgc.dwEQuakeEFrame == ToCallMgc.dwCurFrame1)
 		g_iRunEarthQuake = 3;
 
 	ToCallMgc.dwCurFrame1++;
-	// Ç°ÖÃÄ§·¨ÊÇ·ñÒÑ¾­²¥ÍêÁË
+	// å‰ç½®é­”æ³•æ˜¯å¦å·²ç»æ’­å®Œäº†
 	if (FALSE == ToCallMgc.wRunPreMgc)
 		return TRUE;
 
 	if (ToCallMgc.wToCallMagicNo != 2)
 	{
-		// ÊÇ·ñÈÔÓĞÉĞÎ´²¥·ÅµÄÖäÊõ
+		// æ˜¯å¦ä»æœ‰å°šæœªæ’­æ”¾çš„å’’æœ¯
 		if (ToCallMgc.wCurAttackNum < ToCallMgc.wNumAttacks)
 		{
 			while (1)
@@ -4629,7 +4629,7 @@ BOOL RunTimeMagicToCall()
 
 					a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 					ATR_NAME(a0) = monster;
-					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// ÖäÊõµÄÖ´ĞĞ
+					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// å’’æœ¯çš„æ‰§è¡Œ
 					ATR_DISP_PRIO(a0) = (1 == ToCallMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 					ATR_CHR_NO(a0) = ToCallMgc.iCurMgcNum;
 					ATR_LONG_WORK(0, a0) = ToCallMgc.wAttackedIndex[ToCallMgc.wCurAttackNum];
@@ -4655,7 +4655,7 @@ BOOL RunTimeMagicToCall()
 	}
 	else
 	{
-		// ÊÇ·ñÈÔÓĞÉĞÎ´²¥·ÅµÄÖäÊõ
+		// æ˜¯å¦ä»æœ‰å°šæœªæ’­æ”¾çš„å’’æœ¯
 		if (ToCallMgc.wCurAttackNum < ToCallMgc.wNumAttacks)
 		{
 			while (1)
@@ -4666,18 +4666,18 @@ BOOL RunTimeMagicToCall()
 
 					a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 					ATR_NAME(a0) = monster;
-					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// ÖäÊõµÄÖ´ĞĞ
+					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// å’’æœ¯çš„æ‰§è¡Œ
 					ATR_DISP_PRIO(a0) = (1 == ToCallMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 					ATR_CHR_NO(a0) = ToCallMgc.iCurMgcNum;
 #ifdef _PROFESSION_ADDSKILL
 					if (g_bUseAlpha)
 					{
-						if (ToCallMgc.iCurMgcNum == 101770 || ToCallMgc.iCurMgcNum == 101771)//ÎªÁËÈÃÆÆ³ı½á½çÍ¼µµÏÔÊ¾ÓÚÆäËü½á½çÖ®ÉÏ
+						if (ToCallMgc.iCurMgcNum == 101770 || ToCallMgc.iCurMgcNum == 101771)//ä¸ºäº†è®©ç ´é™¤ç»“ç•Œå›¾æ¡£æ˜¾ç¤ºäºå…¶å®ƒç»“ç•Œä¹‹ä¸Š
 							ATR_DISP_PRIO(a0)	= DISP_PRIO_TILE + ToCallMgc.wCurMgcOnChar;
 					}
 					else
 					{
-						if (ToCallMgc.iCurMgcNum == 101825 || ToCallMgc.iCurMgcNum == 101826)//ÎªÁËÈÃÆÆ³ı½á½çÍ¼µµÏÔÊ¾ÓÚÆäËü½á½çÖ®ÉÏ
+						if (ToCallMgc.iCurMgcNum == 101825 || ToCallMgc.iCurMgcNum == 101826)//ä¸ºäº†è®©ç ´é™¤ç»“ç•Œå›¾æ¡£æ˜¾ç¤ºäºå…¶å®ƒç»“ç•Œä¹‹ä¸Š
 							ATR_DISP_PRIO(a0)	= DISP_PRIO_TILE + ToCallMgc.wCurMgcOnChar;
 					}
 #endif
@@ -4710,7 +4710,7 @@ BOOL BuildBoundaryMagicData(int state)
 		stateno[0] = 101844, stateno[1] = 101832, stateno[2] = 101838, stateno[3] = 101850,
 			stateno[4] = 101841, stateno[5] = 101829, stateno[6] = 101835, stateno[7] = 101847;
 	}
-	if (state == 0)//×óÇå³ı
+	if (state == 0)//å·¦æ¸…é™¤
 	{
 		if (boundary_mark[0])
 		{
@@ -4719,7 +4719,7 @@ BOOL BuildBoundaryMagicData(int state)
 		}
 		bRunBoundaryMgc_l = 0;    
 	}
-	if (state == 1)//ÓÒÇå³ı
+	if (state == 1)//å³æ¸…é™¤
 	{
 		if (boundary_mark[1])
 		{
@@ -4728,7 +4728,7 @@ BOOL BuildBoundaryMagicData(int state)
 		}
 		bRunBoundaryMgc_r = 0;
 	}
-	if (state == stateno[0] //×óµØ
+	if (state == stateno[0] //å·¦åœ°
 		|| state == stateno[1]
 		|| state == stateno[2]
 		|| state == stateno[3])
@@ -4746,12 +4746,12 @@ BOOL BuildBoundaryMagicData(int state)
 				boundary_mark[0] = MakeAnimDisp(320, 240, state + 2, 0);
 				boundary_mark[0]->actNo = 0;
 				boundary_mark[0]->anim_ang = 3;
-				boundary_mark[0]->dispPrio = DISP_PRIO_TILE + 1;//Í¼²ã
+				boundary_mark[0]->dispPrio = DISP_PRIO_TILE + 1;//å›¾å±‚
 			}
 		}
 	}
 
-	if (state == stateno[4] //ÓÒµØ
+	if (state == stateno[4] //å³åœ°
 		|| state == stateno[5]
 		|| state == stateno[6]
 		|| state == stateno[7])
@@ -4769,7 +4769,7 @@ BOOL BuildBoundaryMagicData(int state)
 				boundary_mark[1] = MakeAnimDisp(320, 240, state + 2, 0);
 				boundary_mark[1]->actNo = 0;
 				boundary_mark[1]->anim_ang = 3;
-				boundary_mark[1]->dispPrio = DISP_PRIO_TILE + 1;//Í¼²ã
+				boundary_mark[1]->dispPrio = DISP_PRIO_TILE + 1;//å›¾å±‚
 			}
 		}
 	}
@@ -4793,10 +4793,10 @@ void RunTimeMagicBoundary(int state)
 		boundary_2 = MakeAnimDisp(320, 240, mark, 0);
 		boundary_2->actNo = 0;
 		boundary_2->anim_ang = 3;
-		boundary_2->dispPrio = DISP_PRIO_TILE + 1;//Í¼²ã
+		boundary_2->dispPrio = DISP_PRIO_TILE + 1;//å›¾å±‚
 	}
 
-	/*if ( boundary_r->anim_cnt == 10 ){//²¦·Åµ½×îºóÒ»ÕÅ
+	/*if ( boundary_r->anim_cnt == 10 ){//æ‹¨æ”¾åˆ°æœ€åä¸€å¼ 
 			DeathAction(boundary_r);
 			boundary_r = NULL;
 			bRunBoundaryMgc = FALSE;
@@ -4805,7 +4805,7 @@ void RunTimeMagicBoundary(int state)
 #endif
 
 #ifdef __ATTACK_MAGIC
-// ÅÅĞòÏÔÊ¾µÄÇ°ºóÎ»ÖÃ
+// æ’åºæ˜¾ç¤ºçš„å‰åä½ç½®
 static int SortIdx(const void *pElement1, const void *pElement2)
 {
 	int	nth1 = *((int*)pElement1);
@@ -4819,7 +4819,7 @@ static int SortIdx(const void *pElement1, const void *pElement2)
 	return 0;
 }
 
-// ¹¥»÷ĞÔÖäÊõµÄ×ÊÁÏ½¨Á¢
+// æ”»å‡»æ€§å’’æœ¯çš„èµ„æ–™å»ºç«‹
 BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 {
 	int	i, idx = 0, midx, midy, count = 0;
@@ -4875,29 +4875,29 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 	AttMgc.dwEQuakeSFrame = AttMgc.dwEQuakeSTime >> 4;
 	AttMgc.dwEQuakeEFrame = AttMgc.dwEQuakeETime >> 4;
 
-	// ÊÇ·ñÓĞÇ°ÖÃÖäÊõ
+	// æ˜¯å¦æœ‰å‰ç½®å’’æœ¯
 	(0XFFFFFFFF == AttMgc.iPreMgcNum) ? AttMgc.wRunPreMgc = TRUE : AttMgc.wRunPreMgc = FALSE;
 
-	// ¾ø¶ÔÎ»ÖÃÏÔÊ¾·¨
+	// ç»å¯¹ä½ç½®æ˜¾ç¤ºæ³•
 	if (1 == AttMgc.wShowType)
 	{
 		AttMgc.wNumAttacks = 1;
 		AttMgc.wCurAttackNum = 0;
 		AttMgc.posAttacked[0].x = AttMgc.wScreenX;
 		AttMgc.posAttacked[0].y = AttMgc.wScreenY;
-		AttMgc.wAttackedIndex[0] = 20;		// È«²¿ÈËÔ±½ÔÍ¬Ê±³ÊÊÜÉË×´Ì¬
+		AttMgc.wAttackedIndex[0] = 20;		// å…¨éƒ¨äººå‘˜çš†åŒæ—¶å‘ˆå—ä¼¤çŠ¶æ€
 		AttMgc.wMgcFrameCount[0] = 0;
 
-		// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+		// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 		for (i = 0; i < idx; i++)
 			AttMgc.wAttackedIndex[i + 1] = charidx[i];
 
 		AttMgc.wAttackedIndex[i + 1] = 0XFF;
 	}
-	// ¾ÓÖĞÎ»ÖÃÏÔÊ¾·¨
+	// å±…ä¸­ä½ç½®æ˜¾ç¤ºæ³•
 	else
 	{
-		// ÖäÊõµÄ·½Ê½ÎªÈ«ÌåÍ¬Ê±¹¥»÷
+		// å’’æœ¯çš„æ–¹å¼ä¸ºå…¨ä½“åŒæ—¶æ”»å‡»
 		if (2 == AttMgc.wAttackType || 4 == AttMgc.wAttackType)
 		{
 			midx = 0;
@@ -4913,18 +4913,18 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 			AttMgc.wCurAttackNum = 0;
 			AttMgc.posAttacked[0].x = midx + AttMgc.wScreenX;
 			AttMgc.posAttacked[0].y = midy + AttMgc.wScreenY;
-			AttMgc.wAttackedIndex[0] = 20;		// È«²¿ÈËÔ±½ÔÍ¬Ê±³ÊÊÜÉË×´Ì¬
+			AttMgc.wAttackedIndex[0] = 20;		// å…¨éƒ¨äººå‘˜çš†åŒæ—¶å‘ˆå—ä¼¤çŠ¶æ€
 			AttMgc.wMgcFrameCount[0] = 0;
-			// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+			// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 			for (i = 0; i < idx; i++)
 				AttMgc.wAttackedIndex[i + 1] = charidx[i];
 
 			AttMgc.wAttackedIndex[i + 1] = 0XFF;
 		}
-		// µ¥¶À¹¥»÷
+		// å•ç‹¬æ”»å‡»
 		else
 		{
-			// ±»¹¥»÷µÄµĞÈËË÷ÒıºÅ
+			// è¢«æ”»å‡»çš„æ•Œäººç´¢å¼•å·
 			for (i = 0; i < idx; i++)
 			{
 				AttMgc.wNumAttacks++;
@@ -4944,23 +4944,23 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 	return TRUE;
 }
 
-// ¶¯Ì¬²úÉúĞÂµÄÄ§·¨
+// åŠ¨æ€äº§ç”Ÿæ–°çš„é­”æ³•
 BOOL RunTimeMagic()
 {
-	// ¿ªÊ¼µØÕğ
+	// å¼€å§‹åœ°éœ‡
 	if (AttMgc.dwEQuakeSFrame == AttMgc.dwCurFrame1)
 	{
 		g_iRunEarthQuake = 1;
 		g_iNumRunEarthQuake = AttMgc.dwEQuakeEFrame - AttMgc.dwEQuakeSFrame;
 	}
-	// ½áÊøµØÕğ
+	// ç»“æŸåœ°éœ‡
 	if (AttMgc.dwEQuakeEFrame == AttMgc.dwCurFrame1)
 		g_iRunEarthQuake = 3;
 	AttMgc.dwCurFrame1++;
-	// Ç°ÖÃÄ§·¨ÊÇ·ñÒÑ¾­²¥ÍêÁË
+	// å‰ç½®é­”æ³•æ˜¯å¦å·²ç»æ’­å®Œäº†
 	if (FALSE == AttMgc.wRunPreMgc)
 		return TRUE;
-	// ÊÇ·ñÈÔÓĞÉĞÎ´²¥·ÅµÄÖäÊõ
+	// æ˜¯å¦ä»æœ‰å°šæœªæ’­æ”¾çš„å’’æœ¯
 	if (AttMgc.wCurAttackNum < AttMgc.wNumAttacks)
 	{
 		while (1)
@@ -4971,7 +4971,7 @@ BOOL RunTimeMagic()
 
 				a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				ATR_NAME(a0) = monster;
-				ATR_VCT_NO(a0) = ATTACK_MAGIC_CASE + 2;		// ÖäÊõµÄÖ´ĞĞ
+				ATR_VCT_NO(a0) = ATTACK_MAGIC_CASE + 2;		// å’’æœ¯çš„æ‰§è¡Œ
 				ATR_DISP_PRIO(a0) = (1 == AttMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 				ATR_CHR_NO(a0) = AttMgc.iCurMgcNum;
 				ATR_LONG_WORK(0, a0) = AttMgc.wAttackedIndex[AttMgc.wCurAttackNum];
@@ -4989,7 +4989,7 @@ BOOL RunTimeMagic()
 }
 #endif
 
-//ÈËÎïĞĞ¶¯´¦Àí
+//äººç‰©è¡ŒåŠ¨å¤„ç†
 void master(ACTION *a0)
 {
 	ACTION *a1, *a2, *a3;
@@ -5000,29 +5000,29 @@ void master(ACTION *a0)
 	int sav_command_point, castflg = 0;
 	int petfall_flg = 0;
 
-	//ÊôĞÔ±íÊ¾
+	//å±æ€§è¡¨ç¤º
 	disp_attrib(a0);
-	if (ATR_VCT_NO(a0) == 0)	// ÃüÁîÈ·ÈÏ
+	if (ATR_VCT_NO(a0) == 0)	// å‘½ä»¤ç¡®è®¤
 	{
-		if (BattleCmd[0] == NULL)		//Õ½¶·ÃüÁîÈ·ÈÏ
+		if (BattleCmd[0] == NULL)		//æˆ˜æ–—å‘½ä»¤ç¡®è®¤
 			goto master_500;
 	}
 	switch (ATR_VCT_NO(a0))
 	{
-	case 0:		//????§D?
-		sav_command_point = command_point;		//?????şï?????¢~§ˆ
-		command_no = get_command();		//????ûè?üÒ?
-		if (command_no == -1)		//ü¬???
+	case 0:		//????îœŠ?
+		sav_command_point = command_point;		//?????î’¶?????î•¤î
+		command_no = get_command();		//????î•?î?
+		if (command_no == -1)		//î·???
 		{
-			ATR_VCT_NO(a0) = 4;		//???ü¬?¢r??
-			command_point = 0;		//?????şï????????
+			ATR_VCT_NO(a0) = 4;		//???î·?î•˜??
+			command_point = 0;		//?????î’¶????????
 			break;
 		}
-		if (command_no == ATT_KANJI)		//§ó??¤úû¨??
+		if (command_no == ATT_KANJI)		//î°??î¸î•??
 		{
-			if (p_kanji != NULL)		//¤úû¨???
+			if (p_kanji != NULL)		//î¸î•???
 			{
-				a1 = ATR_BODY_WORK(0, p_kanji);		//??????úÇ
+				a1 = ATR_BODY_WORK(0, p_kanji);		//??????îŒ–
 				DeathAction(a1);					//
 			}
 			else
@@ -5031,27 +5031,27 @@ void master(ACTION *a0)
 				if (p_kanji == NULL)
 					return;
 			}
-			//ÖĞÎÄBOX×ö³É
+			//ä¸­æ–‡BOXåšæˆ
 			a1 = MakeWindowDisp(640 - 4 - 64 * 4, 4, 4, 2, 0, 2);
-			//¼ÇÒäÌå²»×ã²úÉúÊ§°Ü
+			//è®°å¿†ä½“ä¸è¶³äº§ç”Ÿå¤±è´¥
 			if (a1 == NULL)
 				return;
-			ATR_BODY_WORK(0, p_kanji) = a1;		//?????¨ò¢V
+			ATR_BODY_WORK(0, p_kanji) = a1;		//?????îŸ•î”¼
 			ATR_NAME(p_kanji) = disp_kanji;		//??????
-			ATR_ATTRIB(p_kanji) = ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(p_kanji) = ACT_ATR_HIDE;		//î¸î•??
 			// ????????
 			play_se(202, 320, 240);
 			command_point++;		//??????????
-			//????§ó?¥‚????
+			//????î°?îš‡????
 			get_command_asc();
-			d0 = 60;		//¤úû¨???úÜ
+			d0 = 60;		//î¸î•???îŒ«
 			for (d7 = 0; d7 < 4; d7++)
 			{
-				if (kanji_buf[d7][0])		//§ó??????
-					d0 += 60;		//¤úû¨???úÜ
+				if (kanji_buf[d7][0])		//î°??????
+					d0 += 60;		//î¸î•???îŒ«
 			}
 			ATR_INT_WORK0(p_kanji) = d0;
-			ATR_VCT_NO(a0) = 1;		//????¢r?
+			ATR_VCT_NO(a0) = 1;		//????î•˜?
 			ATR_BODY_CNT(a0) = 1;
 			ATR_DAMAGE(a0) = 0;
 			ATR_PET_DAMAGE(a0) = 0;
@@ -5073,9 +5073,9 @@ void master(ACTION *a0)
 				who = get_num();
 				if (who == 255)
 					break;
-				effect = get_num();			//ÌØĞ§µÄ±àºÅ
-				effect_anim = get_num();	//ÌØĞ§µÄ¶¯»­
-				param = get_num();			//²ÎÊı
+				effect = get_num();			//ç‰¹æ•ˆçš„ç¼–å·
+				effect_anim = get_num();	//ç‰¹æ•ˆçš„åŠ¨ç”»
+				param = get_num();			//å‚æ•°
 				target = NULL;
 				if (who < BATTLKPKPLYAERNUM)
 					target = p_party[who];
@@ -5091,7 +5091,7 @@ void master(ACTION *a0)
 			break;
 		}
 #ifdef _PETSKILL_BATTLE_MODEL
-		if (command_no == ATT_BATTLE_MODEL)			// ³èÎï¼¼ÄÜÕ½¶·Ä£×é
+		if (command_no == ATT_BATTLE_MODEL)			// å® ç‰©æŠ€èƒ½æˆ˜æ–—æ¨¡ç»„
 		{
 			ATR_VCT_NO(a0) = 1;
 			ATR_PET_DAMAGE(a0) = 0;
@@ -5113,21 +5113,21 @@ void master(ACTION *a0)
 				memset(p_missile, 0, sizeof(p_missile));
 			}
 			d7 = 0;
-			// ÏÈÈ¡³ö¹¥»÷µÄ³èÎï±àºÅ
+			// å…ˆå–å‡ºæ”»å‡»çš„å® ç‰©ç¼–å·
 			d0 = get_num();
 			a3 = p_party[d0];
-			// ÅĞ¶Ï¹¥»÷·½ÊÇ×óÉÏ»¹ÓÒÏÂÀ´¾ö¶¨³õÊ¼Î»ÖÃ
+			// åˆ¤æ–­æ”»å‡»æ–¹æ˜¯å·¦ä¸Šè¿˜å³ä¸‹æ¥å†³å®šåˆå§‹ä½ç½®
 			if (ATR_GROUP_FLG(a3) == 0)
 			{
-				d2 = 3;	// ÓÒÏÂ
+				d2 = 3;	// å³ä¸‹
 				d0 = 0;
 			}
 			else
 			{
-				d2 = 7; // ×óÉÏ
+				d2 = 7; // å·¦ä¸Š
 				d0 = 10;
 			}
-			// È¡³öÄ¿±ê¹¥»÷Îï¼ş±àºÅ
+			// å–å‡ºç›®æ ‡æ”»å‡»ç‰©ä»¶ç¼–å·
 			a1 = NULL;
 			while ((d6 = get_num()) != 255)
 			{
@@ -5135,41 +5135,41 @@ void master(ACTION *a0)
 				if (ATR_VCT_NO(a1) != 55)
 					ATR_FIRST_FLG(a1) = 0;
 				ATR_ATTACK_KIND(2, a1) = 0;
-				d3 = get_num();			// È¡³ö¹¥»÷Îï¼ş±àºÅ
-				// ÅĞ¶Ï p_missile[d3] ÓĞÃ»ÓĞÔÚÊ¹ÓÃ
-				// ÓĞÊ¹ÓÃ,±íÊ¾Õâ¸ö¹¥»÷Îï¼şÒª¹¥»÷¸´ÊıÄ¿±ê
+				d3 = get_num();			// å–å‡ºæ”»å‡»ç‰©ä»¶ç¼–å·
+				// åˆ¤æ–­ p_missile[d3] æœ‰æ²¡æœ‰åœ¨ä½¿ç”¨
+				// æœ‰ä½¿ç”¨,è¡¨ç¤ºè¿™ä¸ªæ”»å‡»ç‰©ä»¶è¦æ”»å‡»å¤æ•°ç›®æ ‡
 				if (p_missile[d3] != NULL)
 				{
 					a2 = p_missile[d3];
-					ATR_BODY_WORK(ATR_INT_WORK1(a2), a2) = a1;				// ±»¹¥·½
-					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;				// ´ËÄ¿±êÊÇ±» ATT_BATTLE_MODEL ĞÍÌ¬¹¥»÷
-					ATR_ATTACK_KIND(ATR_INT_WORK1(a2), a2) = get_num();		// ¹¥»÷ÖÖÀà
-					ATR_ATTACK_POW(ATR_INT_WORK1(a2), a2) = get_num();		// ¹¥»÷Á¦
-					ATR_ATTACK_PET_POW(ATR_INT_WORK1(a2), a2) = get_num();	// pet¹¥»÷Á¦
-					ATR_CHR_NO(a2) = get_num();																	// ¹¥»÷Îï¼şÍ¼ºÅ
-					// Èç¹ûÓĞÖÒÈ®Ğ§¹û,¼ÇÂ¼Ê¹ÓÃÖÒÈ®µÄÄ¿±ê
+					ATR_BODY_WORK(ATR_INT_WORK1(a2), a2) = a1;				// è¢«æ”»æ–¹
+					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;				// æ­¤ç›®æ ‡æ˜¯è¢« ATT_BATTLE_MODEL å‹æ€æ”»å‡»
+					ATR_ATTACK_KIND(ATR_INT_WORK1(a2), a2) = get_num();		// æ”»å‡»ç§ç±»
+					ATR_ATTACK_POW(ATR_INT_WORK1(a2), a2) = get_num();		// æ”»å‡»åŠ›
+					ATR_ATTACK_PET_POW(ATR_INT_WORK1(a2), a2) = get_num();	// petæ”»å‡»åŠ›
+					ATR_CHR_NO(a2) = get_num();																	// æ”»å‡»ç‰©ä»¶å›¾å·
+					// å¦‚æœæœ‰å¿ çŠ¬æ•ˆæœ,è®°å½•ä½¿ç”¨å¿ çŠ¬çš„ç›®æ ‡
 					if (BattleCmd[command_point] == 'g')
 						ATR_LONG_WORK(ATR_INT_WORK1(a2), a2) = get_num();
 					ATR_INT_WORK1(a2)++;
-					// ¼ÇÂ¼Ä¿±êÓĞ±»´Ë¹¥»÷Îï¼ş¹¥»÷
+					// è®°å½•ç›®æ ‡æœ‰è¢«æ­¤æ”»å‡»ç‰©ä»¶æ”»å‡»
 					if (ATR_LONG_WORK(0, a1) == 0)
 					{
-						ATR_LONG_WORK(0, a1) = 1;		// ATR_LONG_WORK À¸Î» : Î»Ö· 0 : ÊÇÉè¶¨Ä¿±êÊÇ·ñ±»¹¥»÷¹ı,ËùÒÔ¶¼»áÉè¶¨Îª1
-						ATR_LONG_WORK(d3, a1) = d7 + 1; //						Î»Ö· d3: d3 ÊÇ¹¥»÷Îï¼şµÄ±àºÅ,¶ø d3 µÄÎ»Ö·ÊÇÓÃÀ´
-						//								 ¼ÍÂ¼¹¥»÷Îï¼şÔÚµÚ d7 + 1 µÄ»ØºÏ¹¥»÷Ä¿±ê
+						ATR_LONG_WORK(0, a1) = 1;		// ATR_LONG_WORK æ ä½ : ä½å€ 0 : æ˜¯è®¾å®šç›®æ ‡æ˜¯å¦è¢«æ”»å‡»è¿‡,æ‰€ä»¥éƒ½ä¼šè®¾å®šä¸º1
+						ATR_LONG_WORK(d3, a1) = d7 + 1; //						ä½å€ d3: d3 æ˜¯æ”»å‡»ç‰©ä»¶çš„ç¼–å·,è€Œ d3 çš„ä½å€æ˜¯ç”¨æ¥
+						//								 çºªå½•æ”»å‡»ç‰©ä»¶åœ¨ç¬¬ d7 + 1 çš„å›åˆæ”»å‡»ç›®æ ‡
 					}
 					else
-						ATR_LONG_WORK(d3, a1) = d7 + 1;	// µ± ATR_LONG_WORK À¸Î» 0 ²»Îª 0 Ê±,±íÊ¾Õâ¸öÄ¿±êÒÑ±»±ğµÄ¹¥»÷Îï¼ş¹¥»÷,
-					// ËùÒÔÖ±½ÓÔÚ d3 µÄÎ»Ö·¼ÇÂ¼ÒªÔÚ d7 + 1 µÄ»ØºÏ¹¥»÷Ä¿±ê
+						ATR_LONG_WORK(d3, a1) = d7 + 1;	// å½“ ATR_LONG_WORK æ ä½ 0 ä¸ä¸º 0 æ—¶,è¡¨ç¤ºè¿™ä¸ªç›®æ ‡å·²è¢«åˆ«çš„æ”»å‡»ç‰©ä»¶æ”»å‡»,
+					// æ‰€ä»¥ç›´æ¥åœ¨ d3 çš„ä½å€è®°å½•è¦åœ¨ d7 + 1 çš„å›åˆæ”»å‡»ç›®æ ‡
 				}
-				// Ã»Ê¹ÓÃ¹ı
+				// æ²¡ä½¿ç”¨è¿‡
 				else
 				{
 					p_missile[d3] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 					if (p_missile[d3] == NULL)
-						break;	// ²»Ì«¿ÉÄÜ
+						break;	// ä¸å¤ªå¯èƒ½
 					a2 = p_missile[d3];
-					// ³õÊ¼»¯
+					// åˆå§‹åŒ–
 					ATR_NAME(a2) = monster;
 					ATR_CHR_ANG(a2) = d2;
 					ATR_H_POS(a2) = monster_start_pos[monster_place_no[d3 + d0] * 2];
@@ -5178,50 +5178,50 @@ void master(ACTION *a0)
 					ATR_CHR_ACT(a2) = ANIM_STAND;
 					ATR_GROUP_FLG(a2) = ATR_GROUP_FLG(a3);
 					a2->hitDispNo = a3->hitDispNo;
-					ATR_VCT_NO(a2) = 1;							// Ç°½ø
-					ATR_BODY_WORK(0, a2) = a1;					// ±»¹¥»÷Ä¿±ê
-					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;	// ´ËÄ¿±êÊÇ±» ATT_BATTLE_MODEL ĞÍÌ¬¹¥»÷
-					// ¼ÇÂ¼Ä¿±êÓĞ±»´Ë¹¥»÷Îï¼ş¹¥»÷
+					ATR_VCT_NO(a2) = 1;							// å‰è¿›
+					ATR_BODY_WORK(0, a2) = a1;					// è¢«æ”»å‡»ç›®æ ‡
+					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;	// æ­¤ç›®æ ‡æ˜¯è¢« ATT_BATTLE_MODEL å‹æ€æ”»å‡»
+					// è®°å½•ç›®æ ‡æœ‰è¢«æ­¤æ”»å‡»ç‰©ä»¶æ”»å‡»
 					if (ATR_LONG_WORK(0, a1) == 0)
 					{
-						ATR_LONG_WORK(0, a1) = 1;			// ATR_LONG_WORK À¸Î» : Î»Ö· 0 : ÊÇÉè¶¨Ä¿±êÊÇ·ñ±»¹¥»÷¹ı,ËùÒÔ¶¼»áÉè¶¨Îª1
-						ATR_LONG_WORK(d3, a1) = d7 + 1;		//						Î»Ö· d3: d3 ÊÇ¹¥»÷Îï¼şµÄ±àºÅ,¶ø d3 µÄÎ»Ö·ÊÇÓÃÀ´
-						//								 ¼ÍÂ¼¹¥»÷Îï¼şÔÚµÚ d7 + 1 µÄ»ØºÏ¹¥»÷Ä¿±ê
+						ATR_LONG_WORK(0, a1) = 1;			// ATR_LONG_WORK æ ä½ : ä½å€ 0 : æ˜¯è®¾å®šç›®æ ‡æ˜¯å¦è¢«æ”»å‡»è¿‡,æ‰€ä»¥éƒ½ä¼šè®¾å®šä¸º1
+						ATR_LONG_WORK(d3, a1) = d7 + 1;		//						ä½å€ d3: d3 æ˜¯æ”»å‡»ç‰©ä»¶çš„ç¼–å·,è€Œ d3 çš„ä½å€æ˜¯ç”¨æ¥
+						//								 çºªå½•æ”»å‡»ç‰©ä»¶åœ¨ç¬¬ d7 + 1 çš„å›åˆæ”»å‡»ç›®æ ‡
 					}
 					else
-						ATR_LONG_WORK(d3, a1) = d7 + 1;		// µ± ATR_LONG_WORK À¸Î» 0 ²»Îª 0 Ê±,±íÊ¾Õâ¸öÄ¿±êÒÑ±»±ğµÄ¹¥»÷Îï¼ş¹¥»÷,
-					// ËùÒÔÖ±½ÓÔÚ d3 µÄÎ»Ö·¼ÇÂ¼ÒªÔÚ d7 + 1 µÄ»ØºÏ¹¥»÷Ä¿±ê
-					ATR_ATTACK_KIND(0, a2) = get_num();		// ¹¥»÷ÖÖÀà
-					ATR_ATTACK_POW(0, a2) = get_num();		// ¹¥»÷Á¦
-					ATR_ATTACK_PET_POW(0, a2) = get_num();	// pet¹¥»÷Á¦
-					ATR_CHR_NO(a2) = get_num();				// ¹¥»÷Îï¼şÍ¼ºÅ
-					ATR_PLACE_NO(a2) = d3;					// ¼ÇÂ¼¹¥»÷Îï¼ş±àºÅ
-					ATR_INT_WORK0(a2) = ATT_BATTLE_MODEL;	// Éè¶¨´Ë action ÊÇ ATT_BATTLE_MODEL ÔÚÊ¹ÓÃ,ÒÔ·½±ãÖ®ºó´¦ÀíµÄ±æÊ¶,Ê¹ÓÃ work0 ¼ÇÂ¼
-					ATR_INT_WORK1(a2) = 1;					// Éè¶¨´Ë¹¥»÷Îï¼şÄ¿Ç°¹¥»÷Ä¿±êÊıÁ¿,Ê¹ÓÃ work1¼ÇÂ¼
-					ATR_INT_WORK2(a2) = 0;					// ×÷ÎªÊÇ·ñµÚÒ»´ÎÖ´ĞĞÀë¿ª¶¯»­Æì±ê
-					ATR_INT_WORK3(a2) = 0;					// ×÷ÎªÈôÓĞÖÒÈ®Ôò¼ì²é¹ıºó²»ÔÙ¼ì²éÖÒÈ®µÄÆì±ê
-					// Èç¹ûÓĞÖÒÈ®Ğ§¹û,¼ÇÂ¼Ê¹ÓÃÖÒÈ®µÄÄ¿±ê
+						ATR_LONG_WORK(d3, a1) = d7 + 1;		// å½“ ATR_LONG_WORK æ ä½ 0 ä¸ä¸º 0 æ—¶,è¡¨ç¤ºè¿™ä¸ªç›®æ ‡å·²è¢«åˆ«çš„æ”»å‡»ç‰©ä»¶æ”»å‡»,
+					// æ‰€ä»¥ç›´æ¥åœ¨ d3 çš„ä½å€è®°å½•è¦åœ¨ d7 + 1 çš„å›åˆæ”»å‡»ç›®æ ‡
+					ATR_ATTACK_KIND(0, a2) = get_num();		// æ”»å‡»ç§ç±»
+					ATR_ATTACK_POW(0, a2) = get_num();		// æ”»å‡»åŠ›
+					ATR_ATTACK_PET_POW(0, a2) = get_num();	// petæ”»å‡»åŠ›
+					ATR_CHR_NO(a2) = get_num();				// æ”»å‡»ç‰©ä»¶å›¾å·
+					ATR_PLACE_NO(a2) = d3;					// è®°å½•æ”»å‡»ç‰©ä»¶ç¼–å·
+					ATR_INT_WORK0(a2) = ATT_BATTLE_MODEL;	// è®¾å®šæ­¤ action æ˜¯ ATT_BATTLE_MODEL åœ¨ä½¿ç”¨,ä»¥æ–¹ä¾¿ä¹‹åå¤„ç†çš„è¾¨è¯†,ä½¿ç”¨ work0 è®°å½•
+					ATR_INT_WORK1(a2) = 1;					// è®¾å®šæ­¤æ”»å‡»ç‰©ä»¶ç›®å‰æ”»å‡»ç›®æ ‡æ•°é‡,ä½¿ç”¨ work1è®°å½•
+					ATR_INT_WORK2(a2) = 0;					// ä½œä¸ºæ˜¯å¦ç¬¬ä¸€æ¬¡æ‰§è¡Œç¦»å¼€åŠ¨ç”»æ——æ ‡
+					ATR_INT_WORK3(a2) = 0;					// ä½œä¸ºè‹¥æœ‰å¿ çŠ¬åˆ™æ£€æŸ¥è¿‡åä¸å†æ£€æŸ¥å¿ çŠ¬çš„æ——æ ‡
+					// å¦‚æœæœ‰å¿ çŠ¬æ•ˆæœ,è®°å½•ä½¿ç”¨å¿ çŠ¬çš„ç›®æ ‡
 					if (BattleCmd[command_point] == 'g')
 						ATR_LONG_WORK(0, a2) = get_num();
-					ATR_SPD(a2) = 32;						// ÒÆ¶¯ËÙ¶È
+					ATR_SPD(a2) = 32;						// ç§»åŠ¨é€Ÿåº¦
 				}
 				d7++;
 			}
 			ATR_COUNTER(a0) = a1;
-			ATR_DAMAGE(a0) = -d7;	// ÉèÎª¸ºÊı,ÈÃÕı³£Ê±ºòµÄ ATR_DAMAGE(p_master) ²»»áµÈÓÚ ATR_BODY_CNT(p_master)
-			ATR_INT_WORK1(a0) = 0;	// È·ÈÏ p_missile ÊÇ·ñ¶¼±»Çå¿Õ
-			ATR_INT_WORK2(a0) = 1;	// ¹¥»÷Îï¼ş¹¥»÷Ê±µÄË³Ğò,ÏÈ´Ó ATR_LONG_WORK Îª 1 µÄÏÈÖ´ĞĞ
-			ATR_BODY_CNT(a0) = d7;	// ¹¥»÷×Ü´ÎÊı,Ã¿Íê³ÉÒ»´Î¶¯×÷ ATR_DAMAGE(p_master) ¶¼»áµİÔö,Ö±µ½ ATR_DAMAGE(p_master) ==  ATR_BODY_CNT(p_master)
-			// p_master ²Å»áÈ¥¼ÌĞø´¦ÀíÏÂÒ»±Ê BattleCmd ÀïµÄ×ÊÁÏ (ÕâÀïµÄ a0 ¾ÍÊÇ p_master)
+			ATR_DAMAGE(a0) = -d7;	// è®¾ä¸ºè´Ÿæ•°,è®©æ­£å¸¸æ—¶å€™çš„ ATR_DAMAGE(p_master) ä¸ä¼šç­‰äº ATR_BODY_CNT(p_master)
+			ATR_INT_WORK1(a0) = 0;	// ç¡®è®¤ p_missile æ˜¯å¦éƒ½è¢«æ¸…ç©º
+			ATR_INT_WORK2(a0) = 1;	// æ”»å‡»ç‰©ä»¶æ”»å‡»æ—¶çš„é¡ºåº,å…ˆä» ATR_LONG_WORK ä¸º 1 çš„å…ˆæ‰§è¡Œ
+			ATR_BODY_CNT(a0) = d7;	// æ”»å‡»æ€»æ¬¡æ•°,æ¯å®Œæˆä¸€æ¬¡åŠ¨ä½œ ATR_DAMAGE(p_master) éƒ½ä¼šé€’å¢,ç›´åˆ° ATR_DAMAGE(p_master) ==  ATR_BODY_CNT(p_master)
+			// p_master æ‰ä¼šå»ç»§ç»­å¤„ç†ä¸‹ä¸€ç¬” BattleCmd é‡Œçš„èµ„æ–™ (è¿™é‡Œçš„ a0 å°±æ˜¯ p_master)
 			break;
 		}
 #endif
-		d0 = get_num();		//?????§k?
-		if (d0 < 0 || d0 >= BATTLKPKPLYAERNUM)		//ş†????§k???
+		d0 = get_num();		//?????îœ±?
+		if (d0 < 0 || d0 >= BATTLKPKPLYAERNUM)		//î¡Š????îœ±???
 		{
-			if (command_no == ATT_VARIABLE)		//û«¡t¢NşÍ¨Á???
+			if (command_no == ATT_VARIABLE)		//î˜î“ºî”´î’”îŸ‰???
 			{
-				ATR_ATTRIB(p_master) = get_num();		//¢NşÍûè?üÒ?
+				ATR_ATTRIB(p_master) = get_num();		//î”´î’”î•?î?
 				break;
 			}
 			else
@@ -5238,30 +5238,30 @@ void master(ACTION *a0)
 #ifdef _STONDEBUG_
 			MessageBoxNew(hWnd, "ATR_NAME(a1) == NULL", "Error", MB_OK);
 #endif
-			command_no = get_command();		//????ûè?üÒ?
-			if (command_no == -1)		//ü¬???
+			command_no = get_command();		//????î•?î?
+			if (command_no == -1)		//î·???
 			{
-				ATR_VCT_NO(a0) = 4;		//???ü¬?¢r??
-				command_point = 0;		//?????şï????????
+				ATR_VCT_NO(a0) = 4;		//???î·?î•˜??
+				command_point = 0;		//?????î’¶????????
 				break;
 			}
-			command_point -= 2;		//?????????£š?
+			command_point -= 2;		//?????????î—Ÿ?
 			break;
 		}
 		if (command_no != ATT_MALFUNCTION)		//??????
 		{
 			if (ATR_LIFE(a1) <= 0)		//??????
-				ATR_VCT_NO(a1) = 0;		//¥`??
+				ATR_VCT_NO(a1) = 0;		//î™¦??
 		}
 		if (command_no != ATT_MALFUNCTION)		//??????
 		{
-			if (ATR_VCT_NO(a1) != 0)		//¢r?ıÖ¢t?			command_point = sav_command_point;		//????¢r?
+			if (ATR_VCT_NO(a1) != 0)		//î•˜?î¿î•š?			command_point = sav_command_point;		//????î•˜?
 				break;
 		}
-		ATR_VCT_NO(a0) = 1;		//şs©˜?¢~¢r??
+		ATR_VCT_NO(a0) = 1;		//î ¸îŸµ?î•¤î•˜??
 		ATR_DAMAGE(a0) = 0;
 		ATR_PET_DAMAGE(a0) = 0;
-		ATR_COUNTER(a0) = a1;		//?????¨ò¢V
+		ATR_COUNTER(a0) = a1;		//?????îŸ•î”¼
 		//?????????????
 		if (ATR_VCT_NO(a1) != 55)
 			ATR_FIRST_FLG(a1) = 0;		//????????
@@ -5288,7 +5288,7 @@ void master(ACTION *a0)
 		switch (command_no)
 		{
 			// BI jibun_5 teki_F flg_2 damage_1 teki_9 flg_2 damage_1 FF
-		case ATT_IN:		//??????????  Ô??ûşü¬?  ??????????
+		case ATT_IN:		//??????????  ä½‹??î«î·?  ??????????
 			if (ATR_GROUP_FLG(a1) == 0)		//????????
 			{
 				ATR_V_POS(a1) = 8;
@@ -5299,13 +5299,13 @@ void master(ACTION *a0)
 				ATR_V_POS(a1) = lpDraw->ySize - 8;
 				ATR_H_POS(a1) = lpDraw->xSize + SCREEN_OUT;
 			}
-		case ATT_HIT:		//====================Ö±½Ó¹¥»÷===============
-			ATR_VCT_NO(a1) = 1;							//Ç°½ø
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//±»¹¥·½
-			ATR_ATTACK_KIND(0, a1) = get_num();			//¹¥»÷ÖÖÀà
-			ATR_ATTACK_POW(0, a1) = get_num();			//¹¥»÷Á¦
+		case ATT_HIT:		//====================ç›´æ¥æ”»å‡»===============
+			ATR_VCT_NO(a1) = 1;							//å‰è¿›
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//è¢«æ”»æ–¹
+			ATR_ATTACK_KIND(0, a1) = get_num();			//æ”»å‡»ç§ç±»
+			ATR_ATTACK_POW(0, a1) = get_num();			//æ”»å‡»åŠ›
 			if (BattleCmd[command_point] == 'p')
-				ATR_ATTACK_PET_POW(0, a1) = get_num();	//pet¹¥»÷Á¦
+				ATR_ATTACK_PET_POW(0, a1) = get_num();	//petæ”»å‡»åŠ›
 #ifdef _STONDEBUG_
 			else
 				LogToBattleError( BattleCmd, __LINE__ );
@@ -5317,24 +5317,24 @@ void master(ACTION *a0)
 				ATR_BATTLEGRANO(a1) = get_num();
 #endif
 #ifdef _ATTACK_EFFECT
-			//ĞŞÕıÖÒÈ®  xiezi
+			//ä¿®æ­£å¿ çŠ¬  xiezi
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+				ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 			break;
 #ifdef _MAGIC_DEEPPOISION
-		case ATT_DEEPPOISION:	//¾ç¶¾
-			ATR_VCT_NO(a1) = 1;	//¹¥·½¶¯×÷
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];//¹¥·½±àºÅ		//¡‚?¤„???
-			ATR_ATTACK_KIND(0, a1) = get_num();		//ÎÒ·½·ÀÓùÖÖÀà??ûï????
-			ATR_ATTACK_POW(0, a1) = get_num();		//¹¥»÷Á¦??????
-			ATR_ATTACK_PET_POW(0, a1) = get_num();//Æï³èËğÉË
-			ATR_BODY_CNT(a0) = 1;//¹¥»÷´ÎÊı
+		case ATT_DEEPPOISION:	//å‰§æ¯’
+			ATR_VCT_NO(a1) = 1;	//æ”»æ–¹åŠ¨ä½œ
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];//æ”»æ–¹ç¼–å·		//î”‡?î˜©???
+			ATR_ATTACK_KIND(0, a1) = get_num();		//æˆ‘æ–¹é˜²å¾¡ç§ç±»??îœ????
+			ATR_ATTACK_POW(0, a1) = get_num();		//æ”»å‡»åŠ›??????
+			ATR_ATTACK_PET_POW(0, a1) = get_num();//éª‘å® æŸä¼¤
+			ATR_BODY_CNT(a0) = 1;//æ”»å‡»æ¬¡æ•°
 			ATR_DEEPPOISION(a1) = 1;
 			break;
 #endif
 			//andy_mp
-		case ATT_MPDAMAGE://MPÉËº¦
+		case ATT_MPDAMAGE://MPä¼¤å®³
 			ATR_VCT_NO(a1) = 1;
 			ATR_BODY_WORK(0, a1) = p_party[get_num()];
 			ATR_ATTACK_KIND(0, a1) = get_num();
@@ -5357,22 +5357,22 @@ void master(ACTION *a0)
 			ATR_ADDHPFLG(a1) = 1;
 			break;
 			//BF jibun_5
-		case ATT_FADE_OUT:		//??????????  Ô??ûş?úğ  ??????????
-			ATR_VCT_NO(a1) = 80;		//?¢~?
+		case ATT_FADE_OUT:		//??????????  ä½‹??î«?îŒ¿  ??????????
+			ATR_VCT_NO(a1) = 80;		//?î•¤?
 			//??????
 			ATR_ATTACK_KIND(2, a1) = 1;
 			ATR_BODY_CNT(a0) = 1;
 			break;
-			//BN|¨Á???ş°§k?|?????§k?|
-		case ATT_NEXT_EQUIP:		//??????????  ?§¨Á?  ??????????
-			ATR_VCT_NO(a1) = 82;		//?§¨Á?
+			//BN|îŸ‰???î‘·îœ±?|?????îœ±?|
+		case ATT_NEXT_EQUIP:		//??????????  ?î’îŸ‰?  ??????????
+			ATR_VCT_NO(a1) = 82;		//?î’îŸ‰?
 			ATR_BODY_CNT(a0) = 1;
 			break;
 			//BJ|Attacker's No( 0 - 19 )|Attacker's MP|Attacker's animation index|
 			//                                                Opposite's animation index|Opposite's index ...
-			//BJ|???ş°§k?|??|???ş°?????§k?|?????ş°?????§k?|?????ş°|?????ş°|FF
-		case ATT_JUJUTSU:		//??????????  ûöüÓ  ??????????
-			ATR_VCT_NO(a1) = 75;		//?şƒ?ûöüÓ¡u§a??
+			//BJ|???î‘·îœ±?|??|???î‘·?????îœ±?|?????î‘·?????îœ±?|?????î‘·|?????î‘·|FF
+		case ATT_JUJUTSU:		//??????????  î£î  ??????????
+			ATR_VCT_NO(a1) = 75;		//?î¡‡?î£îî“»îœ§??
 			ATR_MP(a1) = get_num();		//?????
 			ATR_BODY_CNT(a0) = 1;
 #ifdef __ATTACK_MAGIC
@@ -5381,7 +5381,7 @@ void master(ACTION *a0)
 #endif
 			break;
 		case ATT_TOCALL:
-			ATR_VCT_NO(a1) = 2;		//?şƒ?ûöüÓ¡u§a??
+			ATR_VCT_NO(a1) = 2;		//?î¡‡?î£îî“»îœ§??
 			ATR_MP(a1) = get_num();		//?????
 			ATR_BODY_CNT(a0) = 1;
 #ifdef __TOCALL_MAGIC
@@ -5389,35 +5389,35 @@ void master(ACTION *a0)
 				BuildToCallMagicData(a0, a1);
 #endif
 			break;
-		case ATT_MALFUNCTION:		//??????????  £O¢lûöüÓ  ??????????
-			d0 = get_num();		//ûöüÓ§k?ûè?üÒ?
+		case ATT_MALFUNCTION:		//??????????  î–•î•’î£î  ??????????
+			d0 = get_num();		//î£îîœ±?î•?î?
 			ATR_STATUS(a1) = d0;		//????????
 			switch (d0)
 			{
-				//ûè?ı¤?
+				//î•?î?
 			case 0:
 				ATR_VCT_NO(a0) = 0;		//????
 				a2 = ATR_JUJUTSU_WORK(a1);
 				ATR_JUJUTSU_WORK(a1) = NULL;
-				DeathAction(a2);		//ü¬?
+				DeathAction(a2);		//î·?
 				break;
 				//??
 			case 2:
-				//şØ?????
+				//î’Ÿ?????
 				if (ATR_LIFE(a1) > 0)
 				{
 					ATR_BODY_CNT(a0) = 1;
-					ATR_VCT_NO(a1) = 105;		//??¢r??
+					ATR_VCT_NO(a1) = 105;		//??î•˜??
 					ATR_STIMER(a1) = 60;
-					set_single_jujutsu(d0, a1);		//£O¢lûöüÓ???
+					set_single_jujutsu(d0, a1);		//î–•î•’î£î???
 				}
 				else
 					ATR_VCT_NO(a0) = 0;		//????
 				break;
-				//?şƒ
+				//?î¡‡
 			default:
 				ATR_VCT_NO(a0) = 0;		//????
-				set_single_jujutsu(d0, a1);		//£O¢lûöüÓ???
+				set_single_jujutsu(d0, a1);		//î–•î•’î£î???
 				break;
 			}
 			break;
@@ -5442,7 +5442,7 @@ void master(ACTION *a0)
 					break;
 					*/
 
-			// ???????ş°????????????£k
+			// ???????î‘·????????????î–±
 		case ATT_DAMAGE:
 			ATR_BODY_CNT(a0) = 1;
 			ATR_VCT_NO(a1) = 79;
@@ -5462,11 +5462,11 @@ void master(ACTION *a0)
 				case 0:		//?
 					set_damage_num(a1, 6, -64);
 					ATR_LIFE(a1) -= ATR_DAMAGE(a1);
-					set_jujutsu_hit_mark(a1);		//ûöüÓ??????¤úû¨
+					set_jujutsu_hit_mark(a1);		//î£î??????î¸î•
 					if (ATR_LIFE(a1) <= 0)		//??????
 					{
 						ATR_LIFE(a1) = 0;
-						slow_flg++;		//????úğ
+						slow_flg++;		//????îŒ¿
 					}
 					ATR_PET_LIFE(a1) -= ATR_PET_DAMAGE(a1);
 					set_jujutsu_hit_mark(a1);		//
@@ -5479,7 +5479,7 @@ void master(ACTION *a0)
 					if (ATR_PET_LIFE(a1) <= 0 && ATR_RIDE(a1))		//??????
 					{
 						ATR_PET_LIFE(a1) = 0;
-						//slow_flg++;		//????úğ
+						//slow_flg++;		//????îŒ¿
 						if (ATR_LIFE(a1) > 0)
 							petfallChangeGraph(a1);
 					}
@@ -5489,17 +5489,17 @@ void master(ACTION *a0)
 					ATR_VCT_NO(a1) = 78;		//???????
 					break;
 				case 1:		//?
-					//??£k¤úû¨
+					//??î–±î¸î•
 					set_damage_num(a1, 14, -64);
 					ATR_LIFE(a1) += ATR_DAMAGE(a1);
-					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+					if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+						ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 					ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
 					if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))
 						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);
 					play_se(102, ATR_H_POS(a1), 240);
 					break;
-					//andy_add	»ØºÏ²¹Ñª
+					//andy_add	å›åˆè¡¥è¡€
 				case 2:
 					if (BattleCmd[command_point] == 'm')
 						ATR_MPDAMAGE(a1) = get_num();
@@ -5529,26 +5529,26 @@ void master(ACTION *a0)
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 					ATR_VCT_NO(a1) = 78;
 					break;
-				case 4://¹¥
+				case 4://æ”»
 					set_damage_num(a1, 38, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 					ATR_VCT_NO(a1) = 78;
 					break;
-				case 5://·À
+				case 5://é˜²
 					set_damage_num(a1, 39, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 					ATR_VCT_NO(a1) = 78;
 					break;
-				case 6://Ãô
+				case 6://æ•
 					set_damage_num(a1, 40, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 					ATR_VCT_NO(a1) = 78;
 					break;
 #ifdef _SKILL_ADDBARRIER
-				case 7://¿¹ĞÔ
+				case 7://æŠ—æ€§
 					set_damage_num(a1, 43, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
@@ -5556,7 +5556,7 @@ void master(ACTION *a0)
 					break;
 #endif 
 #ifdef _PETSKILL_PEEL
-				case 8://±»Ğ¶ÏÂ×°±¸
+				case 8://è¢«å¸ä¸‹è£…å¤‡
 					set_damage_num(a1, 44, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
@@ -5616,18 +5616,18 @@ void master(ACTION *a0)
 				case 0:		//?
 					set_damage_num(a1, 16, -64);
 					ATR_MP(a1) -= ATR_DAMAGE(a1);		//??????
-					if (ATR_MP(a1) < 0)		//?şt???
+					if (ATR_MP(a1) < 0)		//?î ¹???
 						ATR_MP(a1) = 0;		//????
 					break;
 				case 1:		//?
 					set_damage_num(a1, 15, -64);
 					ATR_MP(a1) += ATR_DAMAGE(a1);		//?????
 
-#ifdef _FIXSHOWMPERR //Syu ADD ĞŞÕı²¹ÆøÊ±¶¯»­ÏÔÊ¾´íÎó
+#ifdef _FIXSHOWMPERR //Syu ADD ä¿®æ­£è¡¥æ°”æ—¶åŠ¨ç”»æ˜¾ç¤ºé”™è¯¯
 					if (ATR_MP(a1) > pc.maxMp)
 						ATR_MP(a1) = pc.maxMp;
 #else
-					if (ATR_MP(a1) > 100)		//????ıÆ??
+					if (ATR_MP(a1) > 100)		//????î¯??
 						ATR_MP(a1) = 100;		//??????
 #endif
 					//???
@@ -5650,116 +5650,116 @@ void master(ACTION *a0)
 				}
 				break;
 #ifdef _PETSKILL_LER
-			case 3:	// ÉÁ¿ª¹¥»÷
+			case 3:	// é—ªå¼€æ”»å‡»
 				set_damage_num(a1, 0, -64);
 				break;
 #endif
 			}
-			d6 = command_point;		//????????¢~§ˆ
-			d0 = get_command();		//??????ûè?üÒ?
+			d6 = command_point;		//????????î•¤î
+			d0 = get_command();		//??????î•?î?
 			if (d0 == ATT_DAMAGE)		//??????
 			{
 				a1 = p_party[d0 = get_num()];		//???????
-				d0 = get_num();		//?????ûè?üÒ?
-				if (d2 == d0)		//????¥i???
+				d0 = get_num();		//?????î•?î?
+				if (d2 == d0)		//????î™¯???
 				{
-					d1 = get_num();		//?????ûè?üÒ?
-					if (d3 == d1)		//????¥i???
+					d1 = get_num();		//?????î•?î?
+					if (d3 == d1)		//????î™¯???
 						goto att_damage_loop;
 				}
 			}
 			command_point = d6;		//??????????
 			break;
-			//BV|???ş°§k??????|¢NşÍ§k?
-		case ATT_VARIABLE:		//??????????  ?????¢NşÍ¨Á?  ??????????
+			//BV|???î‘·îœ±??????|î”´î’”îœ±?
+		case ATT_VARIABLE:		//??????????  ?????î”´î’”îŸ‰?  ??????????
 			ATR_BODY_CNT(a0) = 1;
-			ATR_VCT_NO(a1) = 85;		//?????¢NşÍ¨Á??
+			ATR_VCT_NO(a1) = 85;		//?????î”´î’”îŸ‰??
 			break;
-			//BR|????ş°|????????
-		case ATT_REVERSE:		//??????????  ¢NşÍ§T¤š  ??????????
+			//BR|????î‘·|????????
+		case ATT_REVERSE:		//??????????  î”´î’”îœšî˜¿  ??????????
 			ATR_VCT_NO(a0) = 0;		//????
-			d0 = get_num();		//?????????ûè?üÒ?
+			d0 = get_num();		//?????????î•?î?
 			switch (d0)
 			{
 				//???
 			case 0:
 				a2 = ATR_ATTRIB_WORK(a1);
 				ATR_ATTRIB_WORK(a1) = NULL;
-				DeathAction(a2);		//ü¬?
+				DeathAction(a2);		//î·?
 				break;
 				//??
 			default:
-				set_attrib_reverse(a1);		//¢NşÍ§T¤š???
+				set_attrib_reverse(a1);		//î”´î’”îœšî˜¿???
 				break;
 			}
 			break;
-			//BL|????ş°|??
-		case ATT_LIFE:		//??????????  şØ?¨ë?  ??????????
+			//BL|????î‘·|??
+		case ATT_LIFE:		//??????????  î’Ÿ?îŸ?  ??????????
 			ATR_VCT_NO(a0) = 0;		//????
-			ATR_DAMAGE(a1) = get_num();		//??ûè?üÒ?
-			//??£k¤úû¨
+			ATR_DAMAGE(a1) = get_num();		//??î•?î?
+			//??î–±î¸î•
 			ATR_LIFE(a1) = ATR_DAMAGE(a1);
-			if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-				ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
-			ATR_VCT_NO(a1) = 0;		//¤_û¢?
-			ATR_CHR_ACT(a1) = ANIM_STAND;		//¤_û¢???????
+			if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+				ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
+			ATR_VCT_NO(a1) = 0;		//î˜…î?
+			ATR_CHR_ACT(a1) = ANIM_STAND;		//î˜…î???????
 			pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 			break;
-			//BQ|????ş°
-		case ATT_QUIT:		//??????????  ???¥`??  ??????????
+			//BQ|????î‘·
+		case ATT_QUIT:		//??????????  ???î™¦??  ??????????
 			ATR_BODY_CNT(a0) = 1;
-			ATR_VCT_NO(a1) = 87;		//???¥`??¡q?
+			ATR_VCT_NO(a1) = 87;		//???î™¦??î“·?
 			break;
-			//BX|????ş°
-		case ATT_NIX:		//??????????  ????§r  ??????????
+			//BX|????î‘·
+		case ATT_NIX:		//??????????  ????îœ¸  ??????????
 			ATR_BODY_CNT(a0) = 1;
-			ATR_VCT_NO(a1) = 90;		//????§r
+			ATR_VCT_NO(a1) = 90;		//????îœ¸
 			break;
-			//B!|??????????????şÎ????
-		case ATT_COMPANIONS:	//??????????  ¥s????  ??????????
+			//B!|??????????????î’•????
+		case ATT_COMPANIONS:	//??????????  î™¹????  ??????????
 			ATR_BODY_CNT(a0) = 1;
-			ATR_VCT_NO(a1) = 95;		//¥s?????úğ?
+			ATR_VCT_NO(a1) = 95;		//î™¹?????îŒ¿?
 			break;
-			//B#|??ş°?????ş°?şÎ????
+			//B#|??î‘·?????î‘·?î’•????
 		case ATT_STEAL:	//??????????  ????  ??????????
 			ATR_BODY_CNT(a0) = 1;
 			ATR_VCT_NO(a1) = 100;		//??????
 			break;
-			//B%|????ş°????§k?
+			//B%|????î‘·????îœ±?
 		case ATT_TALK:	//??????????  ????  ??????????
 			ATR_BODY_CNT(a0) = 1;
 			ATR_VCT_NO(a1) = 110;		//?????
 			ATR_STIMER(a1) = 60;
-			d0 = get_num();		//???§k?ûè?üÒ?
-			//?????????¤úû¨
+			d0 = get_num();		//???îœ±?î•?î?
+			//?????????î¸î•
 			set_damage_num(a1, 20, -64);
 			break;
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯å¼€) ROG ADD æœ±é›€æŠ€èƒ½_ç«çº¿çŒæ€
 		case ATT_FIRESKILL:
-			ATR_VCT_NO(a1) = FIRE_HUNTER_SKILL;		//»ğÏßÁÔÉ±
+			ATR_VCT_NO(a1) = FIRE_HUNTER_SKILL;		//ç«çº¿çŒæ€
 			ATR_FIRST_FLG(a1) = 0;
 			iBeAttNum = get_num();
-			ATR_BODY_WORK(0, a1) = p_party[iBeAttNum];		//µĞÈËÎ»Ö·
-			ATR_ATTACK_KIND(0, a1) = get_num();				//¹¥»÷ÖÖÀà
-			ATR_ATTACK_POW(0, a1) = get_num();				//¹¥»÷Á¦
+			ATR_BODY_WORK(0, a1) = p_party[iBeAttNum];		//æ•Œäººä½å€
+			ATR_ATTACK_KIND(0, a1) = get_num();				//æ”»å‡»ç§ç±»
+			ATR_ATTACK_POW(0, a1) = get_num();				//æ”»å‡»åŠ›
 			//			if ( BattleCmd[command_point] == 'p' )	{
-			ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet¹¥»÷Á¦??
+			ATR_ATTACK_PET_POW(0, a1) = get_num();		//petæ”»å‡»åŠ›??
 			//			}
-			d0 = get_num();							//ÈËÊı
-			ATR_BODY_CNT(a1) = d0;					//¶àÈË¹¥»÷
+			d0 = get_num();							//äººæ•°
+			ATR_BODY_CNT(a1) = d0;					//å¤šäººæ”»å‡»
 			for (d7 = 2; d7 < d0 + 2; d7++)
 			{
 				int x = get_num();
 
-				if (x == iBeAttNum)               //±»¹¥»÷Ä¿±êµÄÄ§·¨ÉËº¦
+				if (x == iBeAttNum)               //è¢«æ”»å‡»ç›®æ ‡çš„é­”æ³•ä¼¤å®³
 				{
 					tarMgiDem = 1;
 					tarpos = d7;//ATR_BODY_CNT(a1)--;
 				}
-				ATR_BODY_WORK(d7 ,a1) = p_party[x];		//µĞÈËÎ»Ö·
-				ATR_ATTACK_KIND(d7 ,a1) = get_num();		//¹¥»÷ÖÖÀà
-				ATR_ATTACK_POW(d7 ,a1) = get_num();				//¹¥»÷Á¦
-				ATR_ATTACK_PET_POW(d7 ,a1) = get_num();		//pet¹¥»÷Á¦
+				ATR_BODY_WORK(d7 ,a1) = p_party[x];		//æ•Œäººä½å€
+				ATR_ATTACK_KIND(d7 ,a1) = get_num();		//æ”»å‡»ç§ç±»
+				ATR_ATTACK_POW(d7 ,a1) = get_num();				//æ”»å‡»åŠ›
+				ATR_ATTACK_PET_POW(d7 ,a1) = get_num();		//petæ”»å‡»åŠ›
 				//}
 			}
 			break;
@@ -5769,10 +5769,10 @@ void master(ACTION *a0)
 			ATR_VCT_NO(a0) = 0;
 			ATR_CHR_ACT(a0) = ANIM_STAND;
 			ATR_FIRST_FLG(a0) = 0;	
-			ATR_VCT_NO(a1) = 0;		//¤_û¢?
-			ATR_CHR_ACT(a1) = ANIM_STAND;		//¤_û¢???????
+			ATR_VCT_NO(a1) = 0;		//î˜…î?
+			ATR_CHR_ACT(a1) = ANIM_STAND;		//î˜…î???????
 			ATR_FIRST_FLG(a1) = 0;
-			d0 = get_num();		//?????????ûè?üÒ?
+			d0 = get_num();		//?????????î•?î?
 			BuildBoundaryMagicData( d0 );
 			d0 = get_num();
 			break;
@@ -5782,39 +5782,39 @@ void master(ACTION *a0)
 			ATR_VCT_NO(a0) = 0;
 			ATR_CHR_ACT(a0) = ANIM_STAND;
 			ATR_FIRST_FLG(a0) = 0;	
-			ATR_VCT_NO(a1) = 0;		//¤_û¢?
-			ATR_CHR_ACT(a1) = ANIM_STAND;		//¤_û¢???????
+			ATR_VCT_NO(a1) = 0;		//î˜…î?
+			ATR_CHR_ACT(a1) = ANIM_STAND;		//î˜…î???????
 			ATR_FIRST_FLG(a1) = 0;
-			d0 = get_num(); //ÉÏÂíÍ¼ºÅ
+			d0 = get_num(); //ä¸Šé©¬å›¾å·
 			petrideChangeGraph(a1,d0);
 			d0 = get_num();
 			break;
 #endif
 		case ATT_BOW:		//??????????  ???  ??????????
 			ATR_VCT_NO(a1) = 30;		//????
-			ATR_LONG_WORK(0, a1) = get_num();		//§Ä§k????
+			ATR_LONG_WORK(0, a1) = get_num();		//î¢îœ±????
 			if (ATR_LONG_WORK(0, a1) == 0)		//???
 			{
 				ATR_VCT_NO(a1) = 32;		//????
-				ATR_STIMER(a1) = 0;		//?¥ˆ???????
+				ATR_STIMER(a1) = 0;		//?îš???????
 				ATR_DAMAGE(a1) = 1;		//
 				ATR_PET_DAMAGE(a1) = 1;
 			}
 			ATR_FIRST_FLG(a1) = 0;		//
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];		//¡‚?¤„???
-			ATR_ATTACK_KIND(0, a1) = get_num();		//??ûï????
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];		//î”‡?î˜©???
+			ATR_ATTACK_KIND(0, a1) = get_num();		//??îœ????
 			ATR_ATTACK_POW(0, a1) = get_num();		//??????
 			if (BattleCmd[command_point] == 'p')
 				ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
 
-			//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+			//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+				ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 			ATR_BODY_CNT(a0) = 1;
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 			(ATR_CHR_NO(a1) == 101578) ? ShooterNum = 101578 : ShooterNum = -1;
 #endif
 			break;
@@ -5823,12 +5823,12 @@ void master(ACTION *a0)
 			ATR_FIRST_FLG(a1) = 0;		//
 			ATR_BODY_CNT(a0) = 1;
 			break;
-		case ATT_FIRE:		//??????????  ?©œ???  ??????????
-			d0 = get_body_cnt();		//??ş°?ûè?üÒ?
-			if (d0 != 1)		//¢]§D????
+		case ATT_FIRE:		//??????????  ?îŸ¹???  ??????????
+			d0 = get_body_cnt();		//??î‘·?î•?î?
+			if (d0 != 1)		//î•ƒîœŠ????
 			{
-				ATR_VCT_NO(a1) = 20;		//???©œ?
-				ATR_BODY_CNT(a0) = d0;		//??§D??
+				ATR_VCT_NO(a1) = 20;		//???îŸ¹?
+				ATR_BODY_CNT(a0) = d0;		//??îœŠ??
 				ATR_BODY_CNT(a1) = d0;		//
 				if (ATR_GROUP_FLG(a1) == 0)
 					ATR_CHR_ANG(a1) = 3;
@@ -5843,46 +5843,46 @@ void master(ACTION *a0)
 
 			}
 			else
-			{	//?§D????
-				ATR_VCT_NO(a1) = 20;		//???©œ?
-				ATR_BODY_CNT(a0) = 1;		//?§D??
+			{	//?îœŠ????
+				ATR_VCT_NO(a1) = 20;		//???îŸ¹?
+				ATR_BODY_CNT(a0) = 1;		//?îœŠ??
 				ATR_BODY_CNT(a1) = 1;		//
-				a2 = ATR_BODY_WORK(0, a1) = p_party[get_num()];		//¡‚?¤„
+				a2 = ATR_BODY_WORK(0, a1) = p_party[get_num()];		//î”‡?î˜©
 			}
 			break;
-		case ATT_SYNCHRONOUS:		//??????????  ¥i???  ??????????
-			a3 = a2 = a1;		//¡‚?¤„¢~§ˆ
+		case ATT_SYNCHRONOUS:		//??????????  î™¯???  ??????????
+			a3 = a2 = a1;		//î”‡?î˜©î•¤î
 			d1 = 0;		//????????
 			d2 = 0;
-			d7 = 0;		//??ûÔ????
+			d7 = 0;		//??î????
 			while (1)
 			{
 				d0 = get_num();		//???????
-				if (d0 == 255)		//ü¬???
+				if (d0 == 255)		//î·???
 					break;
 				a1 = p_party[d0];		//???????
 				if (ATR_NAME(a1) == NULL)		//????????
 				{
 #ifdef _STONDEBUG_
-					MessageBoxNew(hWnd, "Ã»ÓĞºÏÌå¹¥»÷µÄÃû×Ö½ô¼±Á¬ÂçÈÕ±¾£¡", "Error", MB_OK);
+					MessageBoxNew(hWnd, "æ²¡æœ‰åˆä½“æ”»å‡»çš„åå­—ç´§æ€¥è¿ç»œæ—¥æœ¬ï¼", "Error", MB_OK);
 #endif
-					get_num();		//??ûï????
+					get_num();		//??îœ????
 					get_num();		//??????
-					get_num();		//????úÜ
+					get_num();		//????îŒ«
 					if (BattleCmd[command_point] == 'p')
-						get_num();		//pet????úÜ
+						get_num();		//pet????îŒ«
 
 					continue;
 				}
-				if (d7 == 0)		//?ş°????ûÔ??
-					ATR_COUNTER(a0) = a1;		//?????¨Á?
-				ATR_VCT_NO(a1) = 1;		//¡qş­?
-				ATR_BODY_WORK(0, a1) = a3;		//¡‚?¤„
-				ATR_BODY_WORK(1, a2) = a1;		//¡q????ûÔ?????ûÔ???
+				if (d7 == 0)		//?î‘·????î??
+					ATR_COUNTER(a0) = a1;		//?????îŸ‰?
+				ATR_VCT_NO(a1) = 1;		//î“·î‘´?
+				ATR_BODY_WORK(0, a1) = a3;		//î”‡?î˜©
+				ATR_BODY_WORK(1, a2) = a1;		//î“·????î?????î???
 				ATR_ATTACK_KIND(0, a1) = get_num();
 #ifdef _PETSKILL_ACUPUNCTURE
 				///////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX+ATT_ABSORPTION+ATT_BALLIA+ATT_TRAP+ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					+ ATT_ATTACKBACK
@@ -5898,7 +5898,7 @@ void master(ACTION *a0)
 					///////////////////////
 #else
 				///////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX+ATT_ABSORPTION+ATT_BALLIA+ATT_TRAP)
 #else
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX + ATT_ABSORPTION + ATT_BALLIA)
@@ -5909,30 +5909,30 @@ void master(ACTION *a0)
 					ATR_ATTACK_POW(0, a1) = get_num();		//??????
 					if (BattleCmd[command_point] == 'p')
 						ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
-					//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+					//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+						ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 				}
 				else
 				{
-					d1 += ATR_ATTACK_POW(0, a1) = get_num();		//????úÜ
+					d1 += ATR_ATTACK_POW(0, a1) = get_num();		//????îŒ«
 					if (BattleCmd[command_point] == 'p')
-						d2 += ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet????úÜ
+						d2 += ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet????îŒ«
 					else
 						LogToBattleError(BattleCmd, __LINE__);
 
-					//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+					//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+						ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 				}
 				ATR_FIRST_FLG(a1) = 0;		//??????
 				ATR_SYNC_FLG(a1) = 1;		//
-				a2 = a1;		//¡q????ûÔ
-				d7++;		//??ûÔ??úÜ
+				a2 = a1;		//î“·????î
+				d7++;		//??î??îŒ«
 			}
 			ATR_SYNC_FLG(a1) = 2;		//?????
 			if (d1)		//???????
@@ -5942,17 +5942,17 @@ void master(ACTION *a0)
 			ATR_LONG_WORK(0, a3) = d7;		//??????
 			ATR_BODY_CNT(a0) = d7;
 			break;
-		case 2:		//??????????  ???©œ?  ??????????
-			d0 = get_num();		//??ş°?ûè?üÒ?
-			if (d0 != 1)		//??§D????
+		case 2:		//??????????  ???îŸ¹?  ??????????
+			d0 = get_num();		//??î‘·?î•?î?
+			if (d0 != 1)		//??îœŠ????
 			{
-				ATR_VCT_NO(a1) = 25;		//???©œ?
-				ATR_BODY_CNT(a0) = d0;		//??§D??
+				ATR_VCT_NO(a1) = 25;		//???îŸ¹?
+				ATR_BODY_CNT(a0) = d0;		//??îœŠ??
 				ATR_BODY_CNT(a1) = d0;		//
 				for (d7 = 0; d7 < d0; d7++)
 				{
-					ATR_BODY_WORK(d7, a1) = p_party[get_num()];		//¡‚?¤„
-					ATR_ATTACK_KIND(d7, a1) = get_num();		//??ûï????
+					ATR_BODY_WORK(d7, a1) = p_party[get_num()];		//î”‡?î˜©
+					ATR_ATTACK_KIND(d7, a1) = get_num();		//??îœ????
 				}
 				d0 = 320;
 				d1 = 240;
@@ -5962,11 +5962,11 @@ void master(ACTION *a0)
 			}
 			else
 			{
-				ATR_VCT_NO(a1) = 25;		//???©œ?
-				ATR_BODY_CNT(a0) = 1;		//?§D??
+				ATR_VCT_NO(a1) = 25;		//???îŸ¹?
+				ATR_BODY_CNT(a0) = 1;		//?îœŠ??
 				ATR_BODY_CNT(a1) = 1;		//
-				ATR_BODY_WORK(0, a1) = p_party[get_num()];		//¡‚?¤„
-				ATR_ATTACK_KIND(0, a1) = get_num();		//??ûï????
+				ATR_BODY_WORK(0, a1) = p_party[get_num()];		//î”‡?î˜©
+				ATR_ATTACK_KIND(0, a1) = get_num();		//??îœ????
 				d0 = 320;
 				d1 = 240;
 				radar(a1, &d0, &d1);	//????
@@ -5975,58 +5975,58 @@ void master(ACTION *a0)
 			}
 			break;
 		case 3:		//??????????  ????  ??????????
-			d0 = get_num();		//??ş°?ûè?üÒ?
-			ATR_VCT_NO(a1) = 30;		//???©œ?
-			ATR_BODY_CNT(a0) = d0;		//?§D??
+			d0 = get_num();		//??î‘·?î•?î?
+			ATR_VCT_NO(a1) = 30;		//???îŸ¹?
+			ATR_BODY_CNT(a0) = d0;		//?îœŠ??
 			ATR_BODY_CNT(a1) = d0;		//
 			for (d7 = 0; d7 < d0; d7++)
 			{
-				ATR_BODY_WORK(d7, a1) = p_party[get_num()];		//¡‚?¤„
-				ATR_ATTACK_KIND(d7, a1) = get_num();		//??ûï????
+				ATR_BODY_WORK(d7, a1) = p_party[get_num()];		//î”‡?î˜©
+				ATR_ATTACK_KIND(d7, a1) = get_num();		//??îœ????
 			}
 			break;
-		case ATT_TAKE:		//??????????  ¨ö?  ??????????
-			ATR_VCT_NO(a1) = 35;		//¨ö??úğ
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];		//¡‚?¤„???
-			ATR_ATTACK_KIND(0, a1) = get_num();		//şÎ?ûº¦???
+		case ATT_TAKE:		//??????????  îŸ™?  ??????????
+			ATR_VCT_NO(a1) = 35;		//îŸ™??îŒ¿
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];		//î”‡?î˜©???
+			ATR_ATTACK_KIND(0, a1) = get_num();		//î’•?î§î›²???
 			ATR_BODY_CNT(a0) = 1;
 			break;
-		case ATT_ESCAPE:		//??????????  ¡P¥f£DüÒ  ??????????
-			ATR_BODY_CNT(a0) = 1;		//£DüÒûÔş°????
-			d1 = ATR_ATTACK_KIND(0, a1) = get_num();		//şÎ?ûº¦???
-			ATR_VCT_NO(a1) = 52;		//£DüÒ?
-			if (BattleMyNo == ATR_PLACE_NO(a1))		//û«§Æ??
+		case ATT_ESCAPE:		//??????????  î“–î™¬î–Šî  ??????????
+			ATR_BODY_CNT(a0) = 1;		//î–Šîîî‘·????
+			d1 = ATR_ATTACK_KIND(0, a1) = get_num();		//î’•?î§î›²???
+			ATR_VCT_NO(a1) = 52;		//î–Šî?
+			if (BattleMyNo == ATR_PLACE_NO(a1))		//î˜î¤??
 				d0 = 1;
 			else
 				d0 = 0;
-			//ACTION_INF¡@¤eûÔ??????
+			//ACTION_INFî“†î˜‹î??????
 			ATR_GUARD_FLG(a1) = 0;
-			//???üÒ?¦V?£Ï£Ë??
+			//???î?îš¼?ï¼¯ï¼«??
 			if (ATR_PET_OK(a1))
 			{
-				a2 = p_party[ATR_PLACE_NO(a1) + 5];		//???üÒ???
+				a2 = p_party[ATR_PLACE_NO(a1) + 5];		//???î???
 				//??????????????????
 				if (ATR_NAME(a2) != NULL && ATR_AKO_FLG(a2) == 0)
 				{
 					//?????
 					if (ATR_ATTACK_KIND(2, a2) == 1)
 					{
-						ATR_ATTRIB(a2) |= ACT_ATR_HIDE;		//¤úû¨??
-						//????úÇ
+						ATR_ATTRIB(a2) |= ACT_ATR_HIDE;		//î¸î•??
+						//????îŒ–
 						ATR_NAME(a2) = NULL;
 						ATR_VCT_NO(a2) = VCT_NO_APPEAR;
 					}
 					else
 					{
-						//ACTION_INF¡@¤eûÔ??????
+						//ACTION_INFî“†î˜‹î??????
 						ATR_GUARD_FLG(a2) = 0;
-						ATR_BODY_CNT(a0)++;		//£DüÒûÔş°??úÜ
-						if (d0 == 1)		//??ûç?£DüÒ??
+						ATR_BODY_CNT(a0)++;		//î–Šîîî‘·??îŒ«
+						if (d0 == 1)		//??î”?î–Šî??
 							d0 = 2;
 					}
 				}
 			}
-			//ACTION_INF¡@¤eûÔ¡@¤e
+			//ACTION_INFî“†î˜‹îî“†î˜‹
 			switch (d0)
 			{
 			case 1:
@@ -6038,37 +6038,37 @@ void master(ACTION *a0)
 				break;
 			}
 			break;
-		case ATT_SELECT:		//??????????  ???¡k¢‘  ??????????
+		case ATT_SELECT:		//??????????  ???î“±î•¶  ??????????
 			ATR_BODY_CNT(a0) = 1;
 			d0 = ATR_PLACE_NO(a1) + 5;		//?????????
 			a2 = p_party[ATR_PLACE_NO(a1) + 5];		//?????????
-			ATR_BODY_WORK(0, a2) = a1;		//??ûç??????
+			ATR_BODY_WORK(0, a2) = a1;		//??î”??????
 			ATR_FIRST_FLG(a2) = 0;		//??????
 			if (get_num() == 0)		//????
 				ATR_VCT_NO(a2) = 60;		//?????
 			else
-			{	//üÒ???
-				ATR_NAME(a2) = monster;		//???üÒ?
+			{	//î???
+				ATR_NAME(a2) = monster;		//???î?
 				ATR_VCT_NO(a2) = 62;		//
-				if (BattleMyNo == ATR_PLACE_NO(a1))		//û«§Æ??
+				if (BattleMyNo == ATR_PLACE_NO(a1))		//î˜î¤??
 					att_select_flg = TRUE;
 			}
 			break;
-			//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		case ATT_PROSKILL:
-			ATR_VCT_NO(a1) = PROSKILL;					//ÓÂÊ¿Ö°Òµ¼¼ÄÜ
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//È¡³ö±»¹¥»÷¶ÔÏóNo
-			ATR_ATTACK_KIND(0, a1) = get_num();			//¹¥»÷ÖÖÀà
-			ATR_ATTACK_POW(0, a1) = get_num();			//¹¥»÷Á¦
+			ATR_VCT_NO(a1) = PROSKILL;					//å‹‡å£«èŒä¸šæŠ€èƒ½
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//å–å‡ºè¢«æ”»å‡»å¯¹è±¡No
+			ATR_ATTACK_KIND(0, a1) = get_num();			//æ”»å‡»ç§ç±»
+			ATR_ATTACK_POW(0, a1) = get_num();			//æ”»å‡»åŠ›
 			if (BattleCmd[command_point] == 'p')
 				ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
 			else
 				LogToBattleError(BattleCmd, __LINE__);
 
-			//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+			//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+				ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 			ATR_WARRIOR_EFFECT(a1) = get_num();
@@ -6084,7 +6084,7 @@ void master(ACTION *a0)
 			//#endif
 		default:	//???????
 			action_inf = -1;
-			//?????şï????????
+			//?????î’¶????????
 #ifdef _STONDEBUG_
 			{
 				char errbuf[256];
@@ -6110,7 +6110,7 @@ void master(ACTION *a0)
 			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a1) & 0x0000ffff;
 		}
 #endif
-	case 1:		//şs©˜?¢~¢r?
+	case 1:		//î ¸îŸµ?î•¤î•˜?
 #ifdef __ATTACK_MAGIC
 		if (TRUE == bRunAttMgc)
 			RunTimeMagic();
@@ -6123,78 +6123,78 @@ void master(ACTION *a0)
 		//		RunTimeMagicBoundary();
 #endif
 		if (ATR_DAMAGE(a0) == ATR_BODY_CNT(a0))
-		{	//?¢~ü¬???
+		{	//?î•¤î·???
 			for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 			{
 				if (ATR_NAME(p_party[d7]) != NULL)
 				{
-					//?ş°??¢r???????
+					//?î‘·??î•˜???????
 					if (ATR_LIFE(p_party[d7]) > 0 && ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) < VCT_NO_DIE)
 						break;
 				}
 			}
-			if (d7 == BATTLKPKPLYAERNUM)		//ü¬???
-				ATR_VCT_NO(a0) = 0;		//şs©˜?¥h?
+			if (d7 == BATTLKPKPLYAERNUM)		//î·???
+				ATR_VCT_NO(a0) = 0;		//î ¸îŸµ?î™®?
 		}
 		break;
-	case 2:		//¡uş˜
+	case 2:		//î“»î¡œ
 		for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 		{
 			if (ATR_NAME(p_party[d7]) != NULL)
 			{
-				//ü¬??????
+				//î·??????
 				if (ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) != VCT_NO_DIE + 2)
 					break;
 			}
 		}
 		if (d7 == BATTLKPKPLYAERNUM)
-		{	//ü¬???
+		{	//î·???
 			action_inf = 2;
-			command_point = 0;		//?????şï????????
+			command_point = 0;		//?????î’¶????????
 		}
 		break;
-	case 3:		//¥KıÍ¢r?
+	case 3:		//î™‘î¶î•˜?
 		for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 		{
 			if (ATR_NAME(p_party[d7]) != NULL)
 			{
-				if (ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) != VCT_NO_DIE + 2)		//?ş°??¢r???????
+				if (ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) != VCT_NO_DIE + 2)		//?î‘·??î•˜???????
 					break;
 			}
 		}
 		if (d7 == BATTLKPKPLYAERNUM)
 		{
 			ATR_VCT_NO(a0) = 0;
-			action_inf = 3;		//¥KıÍ?üÒü¬?
-			if (BattleBpFlag & BATTLE_BP_JOIN)// úÓ¡P??
+			action_inf = 3;		//î™‘î¶?îî·?
+			if (BattleBpFlag & BATTLE_BP_JOIN)// îŒ¢î“–??
 			{
-				//¡uş˜??
+				//î“»î¡œ??
 				if (check_all_dead())
 					action_inf = 2;
 			}
 		}
 		break;
-	case 4:		//???ü¬?¢r?
+	case 4:		//???î·?î•˜?
 		for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 		{
 			if (ATR_NAME(p_party[d7]) != NULL)
 			{
-				//¡uş˜??
+				//î“»î¡œ??
 				if (check_all_dead())
 				{
-					//?ş°??¢r???????
+					//?î‘·??î•˜???????
 					if (ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) != VCT_NO_DIE + 2)
 						break;
 				}
 				else
 				{
-					//û«§Æ?????????????
+					//î˜î¤?????????????
 					if (BattleMyNo == d7)
 					{
 						if (ATR_VCT_NO(p_party[d7]) == 55)
 							break;
 					}
-					//?ş°??¢r???????
+					//?î‘·??î•˜???????
 					if (ATR_LIFE(p_party[d7]) > 0 && ATR_VCT_NO(p_party[d7]) != 0 && ATR_VCT_NO(p_party[d7]) != VCT_NO_DIE + 2)
 						break;
 				}
@@ -6203,10 +6203,10 @@ void master(ACTION *a0)
 		if (d7 == BATTLKPKPLYAERNUM)
 		{
 			ATR_VCT_NO(a0) = 0;
-			//şt¡@¤e??
+			//î ¹î“†î˜‹??
 			if (!action_inf)
-				action_inf = 1;		//???ü¬?
-			//¡uş˜??
+				action_inf = 1;		//???î·?
+			//î“»î¡œ??
 			if (check_all_dead())
 				action_inf = 2;
 		}
@@ -6234,7 +6234,7 @@ master_500:
 		if (g_iRunEarthQuake == 3)
 			g_iRunEarthQuake = 0;
 	}
-	//??????¤úû¨???
+	//??????î¸î•???
 	d6 = 0;
 	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 	{
@@ -6242,54 +6242,54 @@ master_500:
 		if (ATR_NAME(a1) == NULL)		//???
 			continue;
 		sort_chr_buf[d6].work = a1;		//???????
-		sort_chr_buf[d6++].v_pos = ATR_V_POS(a1);		//??¤õ???
+		sort_chr_buf[d6++].v_pos = ATR_V_POS(a1);		//??î³???
 	}
 	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 	{
-		if ((a1 = p_missile[d7]) == NULL)		//ü¬???
+		if ((a1 = p_missile[d7]) == NULL)		//î·???
 			continue;
 		sort_chr_buf[d6].work = a1;		//???????
-		sort_chr_buf[d6++].v_pos = ATR_V_POS(a1);		//??¤õ???
+		sort_chr_buf[d6++].v_pos = ATR_V_POS(a1);		//??î³???
 	}
 	//???????
 	qsort(sort_chr_buf,			// ????
-		d6,						// §{?????
+		d6,						// î?????
 		sizeof(SORT_CHR_EQU),	// ???
-		(CMPFUNC*)sort_chr		// §{?????????
+		(CMPFUNC*)sort_chr		// î?????????
 		);
-	d0 = 30;		//¤úû¨?¡I???
+	d0 = 30;		//î¸î•?î“???
 	for (d7 = 0; d7 < d6; d7++)
 		ATR_DISP_PRIO(sort_chr_buf[d7].work) = d0++;
 }
 
-//³èÎïĞĞ¶¯´¦Àí
+//å® ç‰©è¡ŒåŠ¨å¤„ç†
 void monster(ACTION *a0)
 {
 	int d0, d1, d6, d7, sav_command_point, idx;
 	ACTION *a1, *a2, *a3;
 	static ACTION *a0tmp[10];
-	static int a0mark[10];				// 0:ÒÑ½«action release 1:Î´
+	static int a0mark[10];				// 0:å·²å°†action release 1:æœª
 	static int a0tmpcount;
 
 	switch (ATR_VCT_NO(a0))
 	{
-	case 0:		//´ı»ú
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+	case 0:		//å¾…æœº
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		if (ATR_VCT_NO(p_master) == 1)
 		{
-			a1 = ATR_COUNTER(p_master);		//??ûÔ???????
+			a1 = ATR_COUNTER(p_master);		//??î???????
 			if (a1 != NULL && ATR_GROUP_FLG(a0) != ATR_GROUP_FLG(a1) && ATR_NAME(a1) != NULL)
 			{
-				//?ş¥›??
+				//?î¡¡îš ??
 				if (ATR_H_POS(a1) < lpDraw->xSize && ATR_H_POS(a1) > 64 && ATR_V_POS(a1) < lpDraw->ySize && ATR_V_POS(a1) > 0 - 64)
 				{
-					if (ATR_STATUS(a1) <= JUJUTSU_1)		//??????şÕıĞ?¥€??
+					if (ATR_STATUS(a1) <= JUJUTSU_1)		//??????î’œî¹?îš…??
 					{
-						a1 = ATR_COUNTER(p_master);		//¤„????????
-						d0 = ATR_H_POS(a1);				//¤„?©˜??
+						a1 = ATR_COUNTER(p_master);		//î˜©????????
+						d0 = ATR_H_POS(a1);				//î˜©?îŸµ??
 						d1 = ATR_V_POS(a1);
 						radar2(a0, d0, d1, 2);	//????
-						//??¨Á??????
+						//??îŸ‰??????
 						d0 = ATR_CRS(a0) - ATR_CRS_OLD(a0);
 						if (d0 < 0)
 							d0 = 0 - d0;
@@ -6302,11 +6302,11 @@ void monster(ACTION *a0)
 				}
 			}
 		}
-		//şƒ???şğ???????
+		//î¡‡???î’·???????
 		d0 = ATR_STATUS(a0);
 		if (ATR_STATUS(a0) != 3 && ATR_STATUS(a0) != 4)
 		{
-			//?¡P??????¤e????
+			//?î“–??????î˜‹????
 			if (BattleMyNo >= 20 || (ATR_ATTRIB(a0) & ACT_ATR_BTL_CMD_END)
 #ifdef _PETSKILL_BATTLE_MODEL
 				|| ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL
@@ -6314,38 +6314,38 @@ void monster(ACTION *a0)
 				){
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 			}
-			//ÕâÀï½«Í¼Æ¬ÖØĞÂ¼ÓÔØºÍäÖÈ¾ wxy
+			//è¿™é‡Œå°†å›¾ç‰‡é‡æ–°åŠ è½½å’Œæ¸²æŸ“ wxy
 			//pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		}
 #ifdef _PETSKILL_BATTLE_MODEL
-		// ¼ì²é»»ÎÒ¹¥»÷ÁËÃ»
+		// æ£€æŸ¥æ¢æˆ‘æ”»å‡»äº†æ²¡
 		if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 		{
-			a1 = ATR_BODY_WORK(0, a0);	// È¡³ö±»¹¥»÷Ä¿±ê
-			// ÕÕÏÈºóË³ĞòÖ´ĞĞ
+			a1 = ATR_BODY_WORK(0, a0);	// å–å‡ºè¢«æ”»å‡»ç›®æ ‡
+			// ç…§å…ˆåé¡ºåºæ‰§è¡Œ
 			if (ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) == ATR_INT_WORK2(p_master))
 			{
-				// µ±Ä¿±ê»Øµ½´ı»úÊ±ÔÙ¹¥»÷
+				// å½“ç›®æ ‡å›åˆ°å¾…æœºæ—¶å†æ”»å‡»
 				if (ATR_VCT_NO(a1) == 0)
-					ATR_VCT_NO(a0) = 2; // ¿ªÊ¼¹¥»÷
-				// µ±Ä¿±êÀë¿ªÕ½³¡»òËÀÍöÊ±½áÊø¹¥»÷
+					ATR_VCT_NO(a0) = 2; // å¼€å§‹æ”»å‡»
+				// å½“ç›®æ ‡ç¦»å¼€æˆ˜åœºæˆ–æ­»äº¡æ—¶ç»“æŸæ”»å‡»
 				if (ATR_VCT_NO(a1) == VCT_NO_APPEAR || ATR_LIFE(a1) <= 0)
 				{
-					ATR_VCT_NO(a0) = 3; // ½áÊø¹¥»÷
-					ATR_BODY_WORK(0, a0) = NULL;	// Çå¿Õ
+					ATR_VCT_NO(a0) = 3; // ç»“æŸæ”»å‡»
+					ATR_BODY_WORK(0, a0) = NULL;	// æ¸…ç©º
 				}
 			}
 		}
 #endif
 		break;
-	case 1:		//Ç°½ø
-		ATR_SPD(a0) = 32;		//ÒÆ¶¯ËÙ¶È
-		a1 = ATR_BODY_WORK(0, a0);		//µĞ·½µÄÎ»ÖÃ
+	case 1:		//å‰è¿›
+		ATR_SPD(a0) = 32;		//ç§»åŠ¨é€Ÿåº¦
+		a1 = ATR_BODY_WORK(0, a0);		//æ•Œæ–¹çš„ä½ç½®
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		//??¨Á??????
+		//??îŸ‰??????
 		d0 = ATR_CRS(a0) - ATR_CRS_OLD(a0);
 		if (d0 < 0)
 			d0 = 0 - d0;
@@ -6355,7 +6355,7 @@ void monster(ACTION *a0)
 			ATR_CRS_OLD(a0) = ATR_CRS(a0);
 		}
 		if (d1 <= 32 * 2)
-		{	//µ½´ï
+		{	//åˆ°è¾¾
 #ifdef _PIRATE_ANM			
 			if (ATR_CHR_NO(a0) == 101491)
 				ATR_CHR_NO(a0) = 101490;
@@ -6364,31 +6364,31 @@ void monster(ACTION *a0)
 			ATR_HIT_STOP(a0) = 0;		//??????????
 #ifdef _PETSKILL_BATTLE_MODEL
 			if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
-				ATR_VCT_NO(a0) = 0; // µ½´ïÖ®ºóÏÈ´ı»ú
+				ATR_VCT_NO(a0) = 0; // åˆ°è¾¾ä¹‹åå…ˆå¾…æœº
 			else
 #endif
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)
-				{	//ş«¢„??????
-					ATR_VCT_NO(a0) = 65;		//ş«¢„??????¢r?
-					ATR_BODY_WORK(1, a0) = ATR_BODY_WORK(0, a0);		//¤„????¢~§ˆ
-					a1 = ATR_BODY_WORK(0, a0);	//??ûç???ûÔ???
+				{	//î‘²î•©??????
+					ATR_VCT_NO(a0) = 65;		//î‘²î•©??????î•˜?
+					ATR_BODY_WORK(1, a0) = ATR_BODY_WORK(0, a0);		//î˜©????î•¤î
+					a1 = ATR_BODY_WORK(0, a0);	//??î”???î???
 					ATR_BODY_WORK(1, a1) = a0;	//
-					a1 = p_party[get_num()];	//ş«¢„??????????
+					a1 = p_party[get_num()];	//î‘²î•©??????????
 #ifdef _ATTACK_EFFECT
-					//ĞŞÕıÖÒÈ®  xiezi
+					//ä¿®æ­£å¿ çŠ¬  xiezi
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+						ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
-					ATR_VCT_NO(a1) = 69;		//??????¤úû¨?
+					ATR_VCT_NO(a1) = 69;		//??????î¸î•?
 					ATR_FIRST_FLG(a1) = 0;		//
-					ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//?¥h¡I??????
+					ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//?î™®î“??????
 				}
-				else if (ATR_SYNC_FLG(a0))		//¥i?????
+				else if (ATR_SYNC_FLG(a0))		//î™¯?????
 				{
-					ATR_VCT_NO(a0) = 19;		//¥i???¢r??
-					a1 = ATR_BODY_WORK(0, a0);		//??ûÔûè?üÒ?
-					ATR_LONG_WORK(0, a1)--;		//???ıï
+					ATR_VCT_NO(a0) = 19;		//î™¯???î•˜??
+					a1 = ATR_BODY_WORK(0, a0);		//??îî•?î?
+					ATR_LONG_WORK(0, a1)--;		//???î‘˜
 				}
 				else	//andy_bug
 					ATR_VCT_NO(a0) = 2;		//???
@@ -6397,13 +6397,13 @@ void monster(ACTION *a0)
 		else
 		{
 #ifndef _PIRATE_ANM			
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 #else
 			if (ATR_CHR_NO(a0) != 101490)
-				gemini(a0);		//?¥h
+				gemini(a0);		//?î™®
 #endif
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 #ifndef _PIRATE_ANM
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	
@@ -6421,7 +6421,7 @@ void monster(ACTION *a0)
 		}
 #endif
 		break;
-	case 2:		//¹¥»÷
+	case 2:		//æ”»å‡»
 		if (ATR_HIT_STOP(a0))			//??????????
 		{
 			if (--ATR_HIT_STOP(a0))		//??????????
@@ -6431,14 +6431,14 @@ void monster(ACTION *a0)
 #ifdef _PETSKILL_BATTLE_MODEL
 		if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL && ATR_FIRST_FLG(a0) == 0 && ATR_INT_WORK3(a0) == 0)
 		{
-			if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)			// ÖÒÈ®
+			if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)			// å¿ çŠ¬
 			{
-				ATR_VCT_NO(a0) = 65;							// ¹¥»÷Îï¼şÏÈ½øĞĞµÈ´ı
-				ATR_BODY_WORK(1, a1) = a0;						// °Ñ¹¥»÷Îï¼ş¼ÇÂ¼µ½Ö÷ÈËÉíÉÏ,Ö®ºó»áÓÃµ½
-				a1 = p_party[ATR_LONG_WORK(0, a0)];				// È¡³ö³èÎïµÄ action
-				ATR_VCT_NO(a1) = 69;							// ÏÔÊ¾ damage µÄ×Ö
+				ATR_VCT_NO(a0) = 65;							// æ”»å‡»ç‰©ä»¶å…ˆè¿›è¡Œç­‰å¾…
+				ATR_BODY_WORK(1, a1) = a0;						// æŠŠæ”»å‡»ç‰©ä»¶è®°å½•åˆ°ä¸»äººèº«ä¸Š,ä¹‹åä¼šç”¨åˆ°
+				a1 = p_party[ATR_LONG_WORK(0, a0)];				// å–å‡ºå® ç‰©çš„ action
+				ATR_VCT_NO(a1) = 69;							// æ˜¾ç¤º damage çš„å­—
 				ATR_FIRST_FLG(a1) = 0;
-				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);	// ³èÎïµÄÇ°½øÄ¿±êÊÇÖ÷ÈË
+				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);	// å® ç‰©çš„å‰è¿›ç›®æ ‡æ˜¯ä¸»äºº
 				ATR_INT_WORK3(a0) = 1;
 				break;
 			}
@@ -6448,16 +6448,16 @@ void monster(ACTION *a0)
 		if (ATR_FIRST_FLG(a0) == 0)			//???????
 		{
 			ATR_HIT(a0) = 0;				//?????????
-			ATR_HIT_TIMING(a0) = 0;			//???ü¬???????
+			ATR_HIT_TIMING(a0) = 0;			//???î·???????
 
-			d0 = ATR_H_POS(a1);				//¤„?©˜??
+			d0 = ATR_H_POS(a1);				//î˜©?îŸµ??
 			d1 = ATR_V_POS(a1);
 			radar(a0, &d0, &d1);	//????
-			ATR_CRS_OLD(a0) = ATR_CRS(a0) = d0;		//???¨ò¢V
+			ATR_CRS_OLD(a0) = ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
 			//??????????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_G_CRASH)
-				//????????¤úû¨
+				//????????î¸î•
 				set_damage_num(a0, 12, -64 + 16);
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_TOOEH)
 				set_damage_num(a0, 29, -64 + 16);
@@ -6502,21 +6502,21 @@ void monster(ACTION *a0)
 				}
 			}
 #endif
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_ATTROAR)
 			{
 				set_damage_num(a0, 22, -64 + 16);
 				ATR_ROAR(a1) = 2;
 			}
 #endif
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_ATTSELFEXPLODE)
 			{
 				ATR_SELFEXPLODE(a0) = 1;
 				set_damage_num(a0, 23, -64 + 16);
 			}
 #endif
-#ifdef _PETSKILL_EXPLODE //±¬µ¯
+#ifdef _PETSKILL_EXPLODE //çˆ†å¼¹
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_EXPLODE)
 			{
 				//ATR_SELFEXPLODE(a0) = 1;
@@ -6531,16 +6531,16 @@ void monster(ACTION *a0)
 				{
 					if (ATR_RIDE(a1) == 1)
 					{
-						//set_damage_num(a0, 12, -64+16); //ÂäÂíÊõÔİ²»ÉèÍ¼
+						//set_damage_num(a0, 12, -64+16); //è½é©¬æœ¯æš‚ä¸è®¾å›¾
 						ATR_PETFALL(a1) = 1;
 					}
 				}
 			}
-			//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTPREPROSKILL)
 				set_damage_num(a1, 41, -64 + 25);
 			//#endif
-			//¥i????ş«¢„????
+			//î™¯????î‘²î•©????
 			if (ATR_SYNC_FLG(a0))
 				d0 = 0;
 			else
@@ -6550,7 +6550,7 @@ void monster(ACTION *a0)
 					d0 = 0;
 				else
 #endif
-					d0 = get_next_flg();		//?????¥‚?????
+					d0 = get_next_flg();		//?????îš‡?????
 			}
 			if (d0 & ATT_COUNTER)			//??????????
 			{
@@ -6564,47 +6564,47 @@ void monster(ACTION *a0)
 				ATR_COUNTER_FLG(a1) = 0;
 				ATR_STIMER(a0) = 20;
 			}
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		//ATT_AKO1				
 #ifdef _PETSKILL_ANTINTER
-		if (ATR_VCT_NO(a1) >= VCT_NO_DIE && (ATR_ATTACK_KIND(0, a1) & (1 << 28)))		//¤„?©û??
+		if (ATR_VCT_NO(a1) >= VCT_NO_DIE && (ATR_ATTACK_KIND(0, a1) & (1 << 28)))		//î˜©?î Œ??
 #else
-		if (ATR_VCT_NO(a1) >= VCT_NO_DIE)		//¤„?©û??
+		if (ATR_VCT_NO(a1) >= VCT_NO_DIE)		//î˜©?î Œ??
 #endif
 		{
 			if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER && ATR_COUNTER(p_master) != a0)		//???????
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 			else
 			{
 				ATR_VCT_NO(a0) = 3;
 				ATR_STIMER(a0) = 20;
 #ifdef _PETSKILL_BATTLE_MODEL
-				// ¹¥»÷Íê±Ï
+				// æ”»å‡»å®Œæ¯•
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 					ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) = 0;
 #endif
 			}
 			break;
 		}
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 		if (ATR_SELFEXPLODE(a0) == 1)
 		{
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_CHR_ACT(a0) = ANIM_ATTACK;
 		}
 		else
 #endif
 			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
+		{	//?????î·???
 			if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER && ATR_COUNTER(p_master) != a0)		//???????
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 			else
 			{
 				ATR_VCT_NO(a0) = 3;
 #ifdef _PETSKILL_BATTLE_MODEL
-				// ¹¥»÷Íê±Ï
+				// æ”»å‡»å®Œæ¯•
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 					ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) = 0;
 #endif
@@ -6615,7 +6615,7 @@ void monster(ACTION *a0)
 		if (ATR_HIT(a0))
 		{
 #ifdef _ATTACK_EFFECT
-			if (ATR_LONG_WORK(0, a0) > 0)	// ·ÅÌØĞ§
+			if (ATR_LONG_WORK(0, a0) > 0)	// æ”¾ç‰¹æ•ˆ
 			{
 				SetDisplayAttackEffect(a0, ATR_LONG_WORK(0, a0));
 				ATR_LONG_WORK(0, a0) = 0;
@@ -6635,7 +6635,7 @@ void monster(ACTION *a0)
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
 			//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6651,7 +6651,7 @@ void monster(ACTION *a0)
 				//////////////////////
 #else
 			//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -6671,13 +6671,13 @@ void monster(ACTION *a0)
 					if (ATR_INT_WORK0(a0) != ATT_BATTLE_MODEL)
 #endif
 					{
-						ATR_VCT_NO(a1) = 10; //Éè¶¨×Ô¼ºÊÜÉË
+						ATR_VCT_NO(a1) = 10; //è®¾å®šè‡ªå·±å—ä¼¤
 						ATR_DAMAGE(a1) = ATR_DAMAGE(a0);//ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0)*2;
 						//ATR_ATTACK_KIND(0, a1) &= ATT_AKO2;
 						if ((float)ATR_DAMAGE(a1) >= (float)(ATR_MAX_LIFE(a1) * 1.2 + 20.0))
 						{
 							ATR_LIFE(a1) = 0;
-							ATR_AKO_FLG(a1) = 2; //´ò·É
+							ATR_AKO_FLG(a1) = 2; //æ‰“é£
 						}
 						a1 = ATR_BODY_WORK(0, a0) = a0;
 					}
@@ -6692,7 +6692,7 @@ void monster(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			///////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6708,7 +6708,7 @@ void monster(ACTION *a0)
 				///////////////////
 #else
 			///////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 			if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX)
@@ -6717,30 +6717,30 @@ void monster(ACTION *a0)
 #endif
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
-				// ¼ì²éÊÇ²»ÊÇ¹¥»÷Îï¼ş
+				// æ£€æŸ¥æ˜¯ä¸æ˜¯æ”»å‡»ç‰©ä»¶
 				if (ATR_INT_WORK0(a0) != ATT_BATTLE_MODEL)
 #endif
 					a1 = ATR_BODY_WORK(0, a0) = a0;
 			}
 			else
-				a1 = ATR_BODY_WORK(0, a0);		//¤„????????xxx
+				a1 = ATR_BODY_WORK(0, a0);		//î˜©????????xxx
 			//?????????
 			ATR_COMBO(a1) = 0;
-			//?ûê??????
+			//?î—??????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			{
 				//???????????
 				if (ATR_HIT_TIMING(a0) == 0)
 				{
-					ATR_HIT_TIMING(a0) = 1;		//???ü¬???????
+					ATR_HIT_TIMING(a0) = 1;		//???î·???????
 					ATR_VCT_NO(a1) = 16;		//????
-					ATR_CRS(a1) = ATR_CRS(a0);		//¤„?????????????
+					ATR_CRS(a1) = ATR_CRS(a0);		//î˜©?????????????
 					ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//
 					ATR_STIMER(a1) = 0;
 					ATR_FIRST_FLG(a1) = 1;		//?????????
 					ATR_BODY_WORK(0, a1) = a0;	//
 					if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
-						//?????¤úû¨
+						//?????î¸î•
 						set_damage_num(a0, 1, -64 + 16);
 				}
 				ATR_HIT(a0) = 0;
@@ -6751,9 +6751,9 @@ void monster(ACTION *a0)
 			//????????
 			if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 			{
-				//?ûê????????
+				//?î—????????
 				if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-					//?????¤úû¨
+					//?????î¸î•
 					set_damage_num(a1, 19, -112);
 			}
 			//?????????//knock out
@@ -6762,12 +6762,12 @@ void monster(ACTION *a0)
 				ATR_AKO_FLG(a1) = 1;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//??????
 				ATR_AKO_FLG(a1) = 2;
-			//Á¬»÷ ?????
+			//è¿å‡» ?????
 			if (ATR_HIT(a0) >= 10100)
 			{
 #ifdef _PETSKILL_ACUPUNCTURE
 				///////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					| ATT_ATTACKBACK
@@ -6783,7 +6783,7 @@ void monster(ACTION *a0)
 					///////////////////////
 #else
 				///////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 
@@ -6808,7 +6808,7 @@ void monster(ACTION *a0)
 			{
 #ifdef _PETSKILL_ACUPUNCTURE
 				//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (!(ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					| ATT_ATTACKBACK
@@ -6824,7 +6824,7 @@ void monster(ACTION *a0)
 					/////////////////////
 #else
 				//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (!(ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) ))
 #else
 				if (!(ATR_ATTACK_KIND(0, a0) & ATT_REFLEX))
@@ -6832,13 +6832,13 @@ void monster(ACTION *a0)
 					/////////////////////
 #endif
 					ATR_COMBO(a1) = 1;
-				a2 = ATR_BODY_WORK(1, a0);		//????ûÔûè?üÒ?
+				a2 = ATR_BODY_WORK(1, a0);		//????îî•?î?
 				ATR_VCT_NO(a2) = 2;		//???
-				ATR_COUNTER(p_master) = a2;		//?????¨Á?
+				ATR_COUNTER(p_master) = a2;		//?????îŸ‰?
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6854,7 +6854,7 @@ void monster(ACTION *a0)
 				////////////////////
 #else
 			/////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 			if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX)
@@ -6863,10 +6863,10 @@ void monster(ACTION *a0)
 #endif
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
-				// ¼ì²éÊÇ²»ÊÇ¹¥»÷Îï¼ş
+				// æ£€æŸ¥æ˜¯ä¸æ˜¯æ”»å‡»ç‰©ä»¶
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 				{
-					ATR_ATTACK_POW(0, a0) = 0;		// ÎŞÉËº¦
+					ATR_ATTACK_POW(0, a0) = 0;		// æ— ä¼¤å®³
 					ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);
 					ATR_ATTACK_KIND(0, a0) |= ATT_NOMISS;
 				}
@@ -6880,37 +6880,37 @@ void monster(ACTION *a0)
 				set_damage_num(a1, 30, -64);
 			if (ATR_ATTACK_KIND(0, a0) & BCF_SUPERWALL)
 				set_damage_num(a1, 31, -64);
-			//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTNEXTPROSKILL)
 				set_damage_num(a1, 41, -64 + 25);
 			//#endif
-			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)	//?ûı?????
+			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)	//?îª?????
 			{
-				if (ATR_SYNC_FLG(a0) == 0)		//¥i????????
+				if (ATR_SYNC_FLG(a0) == 0)		//î™¯????????
 				{
 					if (!ATR_COMBO(a1))			//????????
 					{
-						//??£k¤úû¨
+						//??î–±î¸î•
 #ifdef _SYUTEST
 						ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 						ATR_LIFE(a1) -= ATR_DAMAGE(a1);
 						if (Light1 == NULL)
 							Light1 = MakeAnimDisp(ATR_H_POS(a0), ATR_V_POS(a0), 101581, 0);
 						set_damage_num(a1, 41, -64 + 25);
-						// ²É¹âÊõÔ¤±¸
+						// é‡‡å…‰æœ¯é¢„å¤‡
 #else
 						ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 						ATR_LIFE(a1) += ATR_DAMAGE(a1);
-						if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-							ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+						if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+							ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 #endif
 						ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 						ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-						if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-							ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+						if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+							ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 						set_damage_num(a1, 14, -64);
-						ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-						ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+						ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+						ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 					}
 				}
 				else
@@ -6918,45 +6918,45 @@ void monster(ACTION *a0)
 					//????????
 					if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 					{
-						//??£k¤úû¨
+						//??î–±î¸î•
 						ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 #ifdef _SYUTEST
-						// ²É¹âÊõÔ¤±¸
+						// é‡‡å…‰æœ¯é¢„å¤‡
 #endif
 						ATR_LIFE(a1) += ATR_DAMAGE(a1);
-						if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-							ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
+						if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+							ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
 						ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 						ATR_PET_LIFE(a1) += ATR_PET_DAMAGE(a1);
-						if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?¢†£’???
-							ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?¢†???
+						if (ATR_PET_LIFE(a1) > ATR_PET_MAX_LIFE(a1))		//?î•«î——???
+							ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);		//?î•«???
 						set_damage_num(a1, 14, -64);
-						ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-						ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+						ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+						ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 					}
 				}
 			}
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)		//????????
 			{
-				ATR_ATTACK_POW(0, a0) = 0;		//????ş†?
-				ATR_ATTACK_PET_POW(0, a0) = 0;		//????ş†?
+				ATR_ATTACK_POW(0, a0) = 0;		//????î¡Š?
+				ATR_ATTACK_PET_POW(0, a0) = 0;		//????î¡Š?
 			}
 			else
 			{
-				ATR_VCT_NO(a1) = 10;		//?????ıï
+				ATR_VCT_NO(a1) = 10;		//?????î‘˜
 
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 				if (ATR_ATTACK_KIND(0, a0) & ATT_NOMISS)
 					NoMiss = 1 ; 
 				else
 					NoMiss = -1 ;
 #endif
 			}
-			//?ıõ?????
+			//?î‘?????
 			if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
-				ATR_KAISHIN(a1) = 1;		//?ıõ??????
+				ATR_KAISHIN(a1) = 1;		//?î‘??????
 			else
-				ATR_KAISHIN(a1) = 0;		//¤GıĞ?????
+				ATR_KAISHIN(a1) = 0;		//î—­î¹?????
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
 			//andy_mp
@@ -6989,54 +6989,54 @@ void monster(ACTION *a0)
 				{
 					//????????
 					if (ATR_COMBO(a1) == 0)
-						//?????¤úû¨
+						//?????î¸î•
 						set_damage_num(a0, 1, -64 + 16);
 				}
-				//ÊÜÉËĞ§¹ûÒô
+				//å—ä¼¤æ•ˆæœéŸ³
 				play_damage(ATR_HIT(a0), ATR_H_POS(a0));
-				//±ØÉ±ĞÇĞÇ
+				//å¿…æ€æ˜Ÿæ˜Ÿ
 				set_hit_mark(a0);
-				if (ATR_COMBO(a1))		//Ğ¡¶Ó
-					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//¶¯×÷Í£Ö¹
+				if (ATR_COMBO(a1))		//å°é˜Ÿ
+					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//åŠ¨ä½œåœæ­¢
 			}
-			ATR_HIT(a0) = 0;				//¹¥»÷Æì±êÇå³ı
+			ATR_HIT(a0) = 0;				//æ”»å‡»æ——æ ‡æ¸…é™¤
 			if (!(ATR_ATTACK_POW(0, a0) || ATR_ATTACK_PET_POW(0, a0)))		//????
 			{
-				ATR_HIT_STOP(a0) = 0;		//¶¯×÷Í£Ö¹
+				ATR_HIT_STOP(a0) = 0;		//åŠ¨ä½œåœæ­¢
 				play_se(8, ATR_H_POS(a0), ATR_V_POS(a0));
 			}
 		}
 		break;
 
-	case 3:		//¹¥»÷µÈ´ı
+	case 3:		//æ”»å‡»ç­‰å¾…
 #ifdef _PETSKILL_BATTLE_MODEL
-		// ¼ì²éÊÇ²»ÊÇ¹¥»÷Îï¼ş
+		// æ£€æŸ¥æ˜¯ä¸æ˜¯æ”»å‡»ç‰©ä»¶
 		if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 		{
-			// ¼ì²é´Ë¹¥»÷Îï¼ş»¹ÓĞÃ»ÓĞÄ¿±ê
+			// æ£€æŸ¥æ­¤æ”»å‡»ç‰©ä»¶è¿˜æœ‰æ²¡æœ‰ç›®æ ‡
 			if (ATR_INT_WORK1(a0) > 1)
 			{
-				// ÕÒ³öÏÂÒ»¸öÄ¿±ê
+				// æ‰¾å‡ºä¸‹ä¸€ä¸ªç›®æ ‡
 				for (d0 = 1; d0 < ATR_INT_WORK1(a0); d0++)
 				{
-					if (ATR_BODY_WORK(d0, a0) != NULL)	// ÕÒµ½Ä¿±ê
+					if (ATR_BODY_WORK(d0, a0) != NULL)	// æ‰¾åˆ°ç›®æ ‡
 					{
-						a1 = ATR_BODY_WORK(d0, a0);		// È¡³öÄ¿±ê
-						ATR_BODY_WORK(d0, a0) = NULL;	// Çå³ı
-						if (ATR_LIFE(a1) <= 0)			// ¼ì²éÄ¿±êÓĞÎŞËÀÍö
+						a1 = ATR_BODY_WORK(d0, a0);		// å–å‡ºç›®æ ‡
+						ATR_BODY_WORK(d0, a0) = NULL;	// æ¸…é™¤
+						if (ATR_LIFE(a1) <= 0)			// æ£€æŸ¥ç›®æ ‡æœ‰æ— æ­»äº¡
 							continue;
-						if (ATR_VCT_NO(a1) == VCT_NO_APPEAR)	// Ä¿±êÀë¿ªÕ½³¡
+						if (ATR_VCT_NO(a1) == VCT_NO_APPEAR)	// ç›®æ ‡ç¦»å¼€æˆ˜åœº
 							continue;
 						else
 						{
 							ATR_INT_WORK3(a0) = 0;
-							ATR_BODY_WORK(0, a0) = a1;								// ±»¹¥·½
-							ATR_ATTACK_KIND(0, a0) = ATR_ATTACK_KIND(d0, a0);		// ¹¥»÷ÖÖÀà
-							ATR_ATTACK_POW(0, a0) = ATR_ATTACK_POW(d0, a0);			// ¹¥»÷Á¦
-							ATR_ATTACK_PET_POW(0, a0) = ATR_ATTACK_PET_POW(d0, a0);	// pet¹¥»÷Á¦
-							ATR_LONG_WORK(0, a0) = ATR_LONG_WORK(d0, a0);			// Éè¶¨Ê¹ÓÃÖÒÈ®µÄÄ¿±ê
-							ATR_VCT_NO(a0) = 1;										// Ç°½øÏÂÒ»¸öÄ¿±ê
-							ATR_INT_WORK2(p_master)++;								// »»ÏÂÒ»¸ö¹¥»÷Îï¼ş¹¥»÷
+							ATR_BODY_WORK(0, a0) = a1;								// è¢«æ”»æ–¹
+							ATR_ATTACK_KIND(0, a0) = ATR_ATTACK_KIND(d0, a0);		// æ”»å‡»ç§ç±»
+							ATR_ATTACK_POW(0, a0) = ATR_ATTACK_POW(d0, a0);			// æ”»å‡»åŠ›
+							ATR_ATTACK_PET_POW(0, a0) = ATR_ATTACK_PET_POW(d0, a0);	// petæ”»å‡»åŠ›
+							ATR_LONG_WORK(0, a0) = ATR_LONG_WORK(d0, a0);			// è®¾å®šä½¿ç”¨å¿ çŠ¬çš„ç›®æ ‡
+							ATR_VCT_NO(a0) = 1;										// å‰è¿›ä¸‹ä¸€ä¸ªç›®æ ‡
+							ATR_INT_WORK2(p_master)++;								// æ¢ä¸‹ä¸€ä¸ªæ”»å‡»ç‰©ä»¶æ”»å‡»
 							ATR_INT_WORK1(a0)--;
 							break;
 						}
@@ -7045,14 +7045,14 @@ void monster(ACTION *a0)
 				if (d0 == ATR_INT_WORK1(a0))
 					ATR_INT_WORK1(a0) = 0;
 			}
-			// Ã»Ä¿±êÁË,Àë¿ª
+			// æ²¡ç›®æ ‡äº†,ç¦»å¼€
 			else
 			{
-				// Éè¶¨Àë¿ª
-				if (ATR_INT_WORK2(a0) == 0)	// µÚÒ»´ÎÖ´ĞĞ
+				// è®¾å®šç¦»å¼€
+				if (ATR_INT_WORK2(a0) == 0)	// ç¬¬ä¸€æ¬¡æ‰§è¡Œ
 				{
 					ATR_SPD(a0) = 16;
-					// Íù×óÉÏÀë¿ª
+					// å¾€å·¦ä¸Šç¦»å¼€
 					if (ATR_GROUP_FLG(a0) == 0)
 						ATR_CHR_ANG(a0) = 3;
 					else if (ATR_GROUP_FLG(a0) == 1)
@@ -7065,33 +7065,33 @@ void monster(ACTION *a0)
 #endif
 					ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 					ATR_INT_WORK2(a0) = 1;
-					ATR_INT_WORK2(p_master)++;	// »»ÏÂÒ»¸ö¹¥»÷Îï¼ş¹¥»÷
+					ATR_INT_WORK2(p_master)++;	// æ¢ä¸‹ä¸€ä¸ªæ”»å‡»ç‰©ä»¶æ”»å‡»
 				}
-				gemini(a0);		// ÒÆ¶¯
+				gemini(a0);		// ç§»åŠ¨
 				ATR_CHR_ACT(a0) = ANIM_WALK;
 				pattern(a0, 1, ANM_LOOP);
-				// ÒÆ¶¯³¬³öÓ«Ä»
+				// ç§»åŠ¨è¶…å‡ºè§å¹•
 				if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
 				{
 					DeathAction(a0);
 					p_missile[ATR_PLACE_NO(a0)] = NULL;
-					// ¼ì²éÊÇ·ñËùÓĞµÄ p_missile ¶¼Çå¿ÕÁË
+					// æ£€æŸ¥æ˜¯å¦æ‰€æœ‰çš„ p_missile éƒ½æ¸…ç©ºäº†
 					for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 					{
 						if (p_missile[d7] != NULL)
 							break;
 					}
 					if (d7 >= BATTLKPKPLYAERNUM)
-						ATR_INT_WORK1(p_master) = 1;	// ËùÓĞµÄ¹¥»÷Îï¼ş¶¼ĞĞ¶¯ÍêÁË
+						ATR_INT_WORK1(p_master) = 1;	// æ‰€æœ‰çš„æ”»å‡»ç‰©ä»¶éƒ½è¡ŒåŠ¨å®Œäº†
 				}
-				// ËùÓĞµÄ¹¥»÷Îï¼ş¶¼ĞĞ¶¯ÍêÁË
+				// æ‰€æœ‰çš„æ”»å‡»ç‰©ä»¶éƒ½è¡ŒåŠ¨å®Œäº†
 				if (ATR_INT_WORK1(p_master))
 				{
 					ATR_DAMAGE(p_master) = 0;
 					ATR_BODY_CNT(p_master) = 1;
-					if (ATR_BODY_WORK(0, a0) == NULL)	// Õâ¸öµ°µÄÄ¿±ê²»ÔÚ³¡ÉÏ»òÒÑËÀÍö
+					if (ATR_BODY_WORK(0, a0) == NULL)	// è¿™ä¸ªè›‹çš„ç›®æ ‡ä¸åœ¨åœºä¸Šæˆ–å·²æ­»äº¡
 						ATR_DAMAGE(p_master)++;
-					else // Èç¹û×îºóÒ»¸ö¹¥»÷Îï¼ş´òµÄÄ¿±êµÄ×´Ì¬ÊÇ´ı»ú»òËÀÍö
+					else // å¦‚æœæœ€åä¸€ä¸ªæ”»å‡»ç‰©ä»¶æ‰“çš„ç›®æ ‡çš„çŠ¶æ€æ˜¯å¾…æœºæˆ–æ­»äº¡
 					if (ATR_VCT_NO(ATR_BODY_WORK(0, a0)) == 0 || ATR_LIFE(ATR_BODY_WORK(0, a0)) <= 0)
 						ATR_DAMAGE(p_master)++;
 				}
@@ -7099,41 +7099,41 @@ void monster(ACTION *a0)
 			break;
 		}
 #endif
-		if (--ATR_STIMER(a0))		//??¢r???
+		if (--ATR_STIMER(a0))		//??î•˜???
 			break;
 		if (ATR_SYNC_FLG(a0))
-		{	//¥i?????
+		{	//î™¯?????
 			d0 = ATR_INT_WORK0(a0);
 			d1 = ATR_INT_WORK1(a0);
 			radar(a0, &d0, &d1);	//????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];
-			ATR_VCT_NO(a0) = 4;		//?¢~?
+			ATR_VCT_NO(a0) = 4;		//?î•¤?
 			ATR_SPD(a0) = 32;
 			break;
 		}
-		d0 = get_num();		//???¥hûè?üÒ?
+		d0 = get_num();		//???î™®î•?î?
 		if (d0 == 255)
-		{	//ü¬???
+		{	//î·???
 			d0 = ATR_INT_WORK0(a0);
 			d1 = ATR_INT_WORK1(a0);
 			radar(a0, &d0, &d1);	//????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 			if (ATR_SELFEXPLODE(a0) == 1)
 				ATR_VCT_NO(a0) = 114;
 			else
 #endif
-				ATR_VCT_NO(a0) = 4;		//?¢~?
+				ATR_VCT_NO(a0) = 4;		//?î•¤?
 			ATR_SPD(a0) = 32;
 			break;
 		}
-		if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)		//ş«¢„?????????
+		if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)		//î‘²î•©?????????
 			a2 = ATR_BODY_WORK(1, a0);
 		else
-			a2 = ATR_BODY_WORK(0, a0);		//??¤„¨ò¢V
-		a1 = ATR_BODY_WORK(0, a0) = p_party[d0];		//¡‚?¤„???
+			a2 = ATR_BODY_WORK(0, a0);		//??î˜©îŸ•î”¼
+		a1 = ATR_BODY_WORK(0, a0) = p_party[d0];		//î”‡?î˜©???
 
-		ATR_ATTACK_KIND(0, a0) = get_num();		//??ûï????
+		ATR_ATTACK_KIND(0, a0) = get_num();		//??îœ????
 		ATR_ATTACK_POW(0, a0) = get_num();		//??????
 #ifdef _PET_ITEM
 		if (ATR_ATTACK_KIND(0, a0) & ATT_ATTACKBACK)
@@ -7156,39 +7156,39 @@ void monster(ACTION *a0)
 
 #ifdef _ATTACK_EFFECT
 		if (BattleCmd[command_point] == 's')
-			ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+			ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
-		if (a1 == a2)		//??¥i?¤„??
-			ATR_VCT_NO(a0) = 5;		//¤e?£t¢r??
+		if (a1 == a2)		//??î™¯?î˜©??
+			ATR_VCT_NO(a0) = 5;		//î˜‹?î–ºî•˜??
 		else
-			ATR_VCT_NO(a0) = 1;		//?¥h?
+			ATR_VCT_NO(a0) = 1;		//?î™®?
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = d0;		//??????
 		ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
 		break;
-	case 5:		//¤e?£t¢r??
+	case 5:		//î˜‹?î–ºî•˜??
 		a1 = ATR_BODY_WORK(0, a0);
-		if (ATR_VCT_NO(a1) == 0)		//¤„?¤e?£t??????
-			ATR_VCT_NO(a0) = 1;		//?¥h?
+		if (ATR_VCT_NO(a1) == 0)		//î˜©?î˜‹?î–º??????
+			ATR_VCT_NO(a0) = 1;		//?î™®?
 		break;
-	case 4:		//ºóÍË
+	case 4:		//åé€€
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = d0;		//??????
 #ifndef _PIRATE_ANM			
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 #else
 		if (ATR_CHR_NO(a0) != 101490)
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 #endif			
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
-			if (ATR_DAMAGE(p_master) != ATR_BODY_CNT(p_master))		//???ıï???
-				ATR_DAMAGE(p_master)++;		//???ıï???
+			if (ATR_DAMAGE(p_master) != ATR_BODY_CNT(p_master))		//???î‘˜???
+				ATR_DAMAGE(p_master)++;		//???î‘˜???
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 3;
 			else if (ATR_GROUP_FLG(a0) == 1)
@@ -7200,15 +7200,15 @@ void monster(ACTION *a0)
 				ATR_CHR_ANG(a0) = 1;
 #endif//
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
 #ifdef _PIRATE_ANM			
 			if (ATR_CHR_NO(a0) == 101492)
 				ATR_CHR_NO(a0) = 101490;
 #endif
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 #ifndef _PIRATE_ANM
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	
@@ -7226,27 +7226,27 @@ void monster(ACTION *a0)
 		}
 #endif	
 		break;
-	case 6:		//ş«¢„?ş\?ûöüÓ
+	case 6:		//î‘²î•©?î ¡?î£î
 		if (--ATR_STIMER(a0))
 			break;
 		ATR_SPD(a0) = 10;
-		ATR_VCT_NO(a0) = 14;		//???????¢~?
-		ATR_FIRST_FLG(a0) = 0;		//?¢~?
+		ATR_VCT_NO(a0) = 14;		//???????î•¤?
+		ATR_FIRST_FLG(a0) = 0;		//?î•¤?
 		break;
-	case 10:		//±»¹¥»÷
-		if (!ATR_DAMAGE(a0) && ATR_LIFE(a0) > 0 && !ATR_PET_DAMAGE(a0))	//???şØ?????
+	case 10:		//è¢«æ”»å‡»
+		if (!ATR_DAMAGE(a0) && ATR_LIFE(a0) > 0 && !ATR_PET_DAMAGE(a0))	//???î’Ÿ?????
 		{
 			//????????
 			if (!ATR_COMBO(a0))
 			{
-				//??¤úû¨
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)//tuen "miss"  off
+				//??î¸î•
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)//tuen "miss"  off
 				if (ATR_ROAR(a0) == 2){
 					//	set_damage_num(a0, 18, -64);
 				}
 				else
 				{
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 					if (NoMiss == 1);//set_damage_num(a0, 1, -64);
 					else if (NoMiss == -1)
 						set_damage_num(a0, 0, -64);
@@ -7257,19 +7257,19 @@ void monster(ACTION *a0)
 #else
 				set_damage_num(a0, 0, -64);
 #endif
-				d0 = get_next_flg();		//?????¥‚?????
+				d0 = get_next_flg();		//?????îš‡?????
 				if (d0 & ATT_COUNTER)		//???????
 					ATR_VCT_NO(a0) = 11;		//?????
 				else
 				{
 					pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-					ATR_VCT_NO(a0) = 0;		//¢r??
+					ATR_VCT_NO(a0) = 0;		//î•˜??
 				}
 			}
 			else
 			{
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 			}
 			break;
 		}
@@ -7277,12 +7277,12 @@ void monster(ACTION *a0)
 		{	//?????
 			//????????
 			if (!ATR_COMBO(a0))
-				//???¤úû¨
+				//???î¸î•
 				set_damage_num(a0, 3, -64 + 16);
-			ATR_CHR_ACT(a0) = ANIM_GUARD;		//??????????//·À
+			ATR_CHR_ACT(a0) = ANIM_GUARD;		//??????????//é˜²
 		}
 		else
-			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//???????????//ÊÜÉË
+			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//???????????//å—ä¼¤
 		ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
 		//??????????????????
 		if (!ATR_COMBO(a0) || ATR_CHR_ACT_OLD(a0) != ANIM_DAMAGE)
@@ -7294,14 +7294,14 @@ void monster(ACTION *a0)
 			ATR_STIMER(a0) = 255;
 		else
 		{
-			if (ATR_KAISHIN(a0))		//?ıõ?????
+			if (ATR_KAISHIN(a0))		//?î‘?????
 				ATR_STIMER(a0) = HIT_STOP_TIM * 4;
 			else
 				ATR_STIMER(a0) = HIT_STOP_TIM;
 		}
 #ifdef _PETSKILL_ACUPUNCTURE
 		/////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 			| ATT_ATTACKBACK
@@ -7317,7 +7317,7 @@ void monster(ACTION *a0)
 			/////////////////////////
 #else
 		/////////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) && ATR_SYNC_FLG(a0) == 0)
 #else		
 		if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX && ATR_SYNC_FLG(a0) == 0)
@@ -7326,16 +7326,16 @@ void monster(ACTION *a0)
 #endif
 			ATR_STIMER(a0) = HIT_STOP_TIM * 4;//817333333
 		ATR_SPD(a0) = 16;
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //å‰§æ¯’
 		if ((ATR_DEEPPOISION(a0) == 1))
 			ATR_STIMER(a0) = 50;
 #endif
 		//????????
 		if (!ATR_COMBO(a0))
 		{
-			//????£k¤úû¨
+			//????î–±î¸î•
 			set_damage_num(a0, 6, -64);
-			ATR_LIFE(a0) -= ATR_DAMAGE(a0);		//?????úÜ
+			ATR_LIFE(a0) -= ATR_DAMAGE(a0);		//?????îŒ«
 			//andy_mp
 			ATR_MP(a0) -= ATR_MPDAMAGE(a0);
 			ATR_PET_LIFE(a0) -= ATR_PET_DAMAGE(a0);
@@ -7346,30 +7346,30 @@ void monster(ACTION *a0)
 					petfallChangeGraph(a0);
 			}
 			if (ATR_PET_LIFE(a0) <= 0 && ATR_RIDE(a0))
-			{	//?©û??????
+			{	//?î Œ??????
 				ATR_PET_LIFE(a0) = 0;
 				if (ATR_LIFE(a0) > 0)
 					petfallChangeGraph(a0);
 			}
 			if (ATR_LIFE(a0) <= 0 || (ATR_ATTACK_KIND(1, a0) & ATT_DEATH))
-			{	//?©û??????
+			{	//?î Œ??????
 				ATR_LIFE(a0) = 0;
-				slow_flg++;		//????úğ
+				slow_flg++;		//????îŒ¿
 				flash_vct_no = 1;		//?????????
 			}
 		}
 		break;
-	case 11:		//????¢r?
+	case 11:		//????î•˜?
 		if (ATR_DAMAGE(a0))
 		{	//???????
 			gemini(a0);		//??????
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;
-			if (--ATR_STIMER(a0))		//??¢r???
+			if (--ATR_STIMER(a0))		//??î•˜???
 				break;
 		}
 #ifdef _PETSKILL_ACUPUNCTURE
 		//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 			| ATT_ATTACKBACK
@@ -7385,7 +7385,7 @@ void monster(ACTION *a0)
 			//////////////////////
 #else
 		//////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) && ATR_SYNC_FLG(a0) == 0)
 #else		
 		if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX && ATR_SYNC_FLG(a0) == 0)
@@ -7393,13 +7393,13 @@ void monster(ACTION *a0)
 			//////////////////////
 #endif
 		{
-			sav_command_point = command_point;		//?????şï?????¢~§ˆ
+			sav_command_point = command_point;		//?????î’¶?????î•¤î
 			d0 = get_num();
-			command_point = sav_command_point;		//?????şï???????
+			command_point = sav_command_point;		//?????î’¶???????
 			if (d0 != 255)
-			{	//??û«§Æ??
-				a1 = ATR_BODY_WORK(0, a0) = p_party[get_num()];		//¡‚?¤„???
-				ATR_ATTACK_KIND(0, a0) = get_num();		//??ûï????
+			{	//??î˜î¤??
+				a1 = ATR_BODY_WORK(0, a0) = p_party[get_num()];		//î”‡?î˜©???
+				ATR_ATTACK_KIND(0, a0) = get_num();		//??îœ????
 				ATR_ATTACK_POW(0, a0) = get_num();		//??????
 #ifdef _PET_ITEM
 				if (ATR_ATTACK_KIND(0, a0) & ATT_ATTACKBACK)
@@ -7420,25 +7420,25 @@ void monster(ACTION *a0)
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//ĞŞÕıÕ½¶·ÌØĞ§  xiezi
+				//ä¿®æ­£æˆ˜æ–—ç‰¹æ•ˆ  xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+					ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 				ATR_HIT_STOP(a0) = 0;		//??????????
 				ATR_VCT_NO(a0) = 2;		//???
 				ATR_FIRST_FLG(a0) = 0;		//????????
 				ATR_CHR_ACT_OLD(a0) = -1;
-				if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)		//ş«¢„??????
-					ATR_VCT_NO(a0) = 1;		//¡qş­?
+				if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)		//î‘²î•©??????
+					ATR_VCT_NO(a0) = 1;		//î“·î‘´?
 				break;
 			}
 		}
 		if (ATR_COUNTER_FLG(a0))
 		{	//???????//counter
-			a1 = ATR_BODY_WORK(0, a0) = p_party[get_num()];		//¡‚?¤„???
-			ATR_ATTACK_KIND(0, a0) = get_num();		//??ûï????
+			a1 = ATR_BODY_WORK(0, a0) = p_party[get_num()];		//î”‡?î˜©???
+			ATR_ATTACK_KIND(0, a0) = get_num();		//??îœ????
 			ATR_ATTACK_POW(0, a0) = get_num();		//??????
 #ifdef _PET_ITEM
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTACKBACK)
@@ -7459,42 +7459,42 @@ void monster(ACTION *a0)
 			else
 				LogToBattleError(BattleCmd, __LINE__);
 
-			//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+			//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+				ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 			ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 			ATR_BODY_CNT(a0) = 1;			//
-			ATR_BODY_WORK(0, a0) = a1;		//¡‚?¤„
+			ATR_BODY_WORK(0, a0) = a1;		//î”‡?î˜©
 			ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//??????????
 			ATR_VCT_NO(a0) = 2;		//???
 			ATR_FIRST_FLG(a0) = 0;		//????????
-			//?????¤úû¨
+			//?????î¸î•
 			ATR_CHR_ACT_OLD(a0) = -1;
 			break;
 		}
-		if (ATR_LIFE(a0) <= 0)		//?©û??
+		if (ATR_LIFE(a0) <= 0)		//?î Œ??
 			slow_flg--;		//?????
-		//´ò·É ?????
+		//æ‰“é£ ?????
 		if (ATR_AKO_FLG(a0))
 		{
 			//????
 			ATR_FIRST_FLG(a0) = 0;
 			ATR_VCT_NO(a0) = 55;
-			//???üÒ?¦V?£Ï£Ë??
+			//???î?îš¼?ï¼¯ï¼«??
 			if (ATR_PET_OK(a0))
 			{
-				a1 = p_party[ATR_PLACE_NO(a0) + 5];		//???üÒ?????
+				a1 = p_party[ATR_PLACE_NO(a0) + 5];		//???î?????
 				if (ATR_NAME(a1) != NULL)
 				{
 					ATR_BODY_WORK(0, a0) = a1;		//?????????
-					if (ATR_LIFE(a1) > 0)		//???şØ?????
+					if (ATR_LIFE(a1) > 0)		//???î’Ÿ?????
 					{
 						ATR_VCT_NO(a1) = 56;		//????????
-						ATR_BODY_WORK(0, a1) = a0;		//??ûç??????
+						ATR_BODY_WORK(0, a1) = a0;		//??î”??????
 					}
 				}
 				else
@@ -7502,10 +7502,10 @@ void monster(ACTION *a0)
 			}
 			else
 				ATR_BODY_WORK(0, a0) = NULL;		//?????????
-			//û«§Æ??????
+			//î˜î¤??????
 			if (BattleMyNo + 5 == ATR_PLACE_NO(a0))
 			{
-				// ??????ü¬??????
+				// ??????î·??????
 				if (att_select_flg == TRUE)
 				{
 					//????
@@ -7514,7 +7514,7 @@ void monster(ACTION *a0)
 				}
 				else
 				{
-					// ¥i?????
+					// î™¯?????
 					if (battlePetNoBak2 == pc.battlePetNo)
 					{
 						//????
@@ -7528,11 +7528,11 @@ void monster(ACTION *a0)
 			}
 			break;
 		}
-		if (ATR_KAISHIN(a0))		//?ıõ?????
-			ATR_SPD(a0) = 35;//ºóÍË¾àÀë
+		if (ATR_KAISHIN(a0))		//?î‘?????
+			ATR_SPD(a0) = 35;//åé€€è·ç¦»
 		else
 			ATR_SPD(a0) = 28;
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //å‰§æ¯’
 		if (ATR_DEEPPOISION(a0) == 1)
 		{
 			ATR_SPD(a0) = 0;
@@ -7542,7 +7542,7 @@ void monster(ACTION *a0)
 		ATR_VCT_NO(a0) = 12;		//???????
 		break;
 	case 12:		//??????
-		//??şğ??
+		//??î’·??
 		if ((ATR_CHR_NO(a0) >= SPR_mwood1 && ATR_CHR_NO(a0) <= SPR_mstone3) ||
 			(ATR_CHR_NO(a0) == 15323) || (ATR_CHR_NO(a0) == 10812) || (ATR_CHR_NO(a0) == 15527) ||
 			(ATR_CHR_NO(a0) == 15543) || (ATR_CHR_NO(a0) == 15575) || (ATR_CHR_NO(a0) == 15607)
@@ -7550,7 +7550,7 @@ void monster(ACTION *a0)
 			ATR_SPD(a0) -= 2;
 		else
 		{
-			//ºóÍË¶¯»­
+			//åé€€åŠ¨ç”»
 			if (ATR_CHR_ACT(a0) == ANIM_DAMAGE && ATR_CHR_NO(a0) >= SPR_pet061 && ATR_CHR_NO(a0) <= SPR_pet064 || ATR_CHR_NO(a0) == SPR_pet065)
 			{
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
@@ -7560,26 +7560,26 @@ void monster(ACTION *a0)
 			else
 			{
 				pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP);
-				gemini(a0);		//?¥h
+				gemini(a0);		//?î™®
 				ATR_SPD(a0) -= 2;
 			}
 		}
-		if (ATR_SPD(a0) < 0)		//??????ü¬???
+		if (ATR_SPD(a0) < 0)		//??????î·???
 		{
 			ATR_SPD(a0) = 10;
-			ATR_VCT_NO(a0) = 13;		//??????¢r?
+			ATR_VCT_NO(a0) = 13;		//??????î•˜?
 			ATR_STIMER(a0) = 16;
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 			a1 = ATR_COUNTER(p_master);
 			if (a1->anim_chr_no_bak == 101578)
 				ATR_STIMER(a0) = 26;
 #endif
 		}
 		break;
-	case 13:		//??????¢r?
-		if (--ATR_STIMER(a0))		//??¢r???
+	case 13:		//??????î•˜?
+		if (--ATR_STIMER(a0))		//??î•˜???
 			break;
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 		a1 = ATR_COUNTER(p_master);
 		if (a1->anim_chr_no_bak == 101578)
 		{
@@ -7590,16 +7590,16 @@ void monster(ACTION *a0)
 			}
 		}
 #endif
-		if (ATR_LIFE(a0) > 0)			//şØ?????
+		if (ATR_LIFE(a0) > 0)			//î’Ÿ?????
 		{
-			if (ATR_COUNTER(p_master) == a0 || ATR_SYNC_FLG(a0) == 1)		//û«§Æ????¥i??????
+			if (ATR_COUNTER(p_master) == a0 || ATR_SYNC_FLG(a0) == 1)		//î˜î¤????î™¯??????
 			{
-				d0 = ATR_INT_WORK0(a0);		//ı÷???
+				d0 = ATR_INT_WORK0(a0);		//î‘ ???
 				d1 = ATR_INT_WORK1(a0);
 				radar(a0, &d0, &d1);	//????
 				ATR_CHR_ANG(a0) = crs_change_tbl[d0];
 				ATR_SPD(a0) = 32;
-				ATR_VCT_NO(a0) = 4;		//?¢~?
+				ATR_VCT_NO(a0) = 4;		//?î•¤?
 			}
 			else
 			{
@@ -7611,7 +7611,7 @@ void monster(ACTION *a0)
 		{
 #ifdef _PETSKILL_ACUPUNCTURE
 			////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_COUNTER(p_master) == a0 || ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -7639,7 +7639,7 @@ void monster(ACTION *a0)
 					////////////////////
 #else
 			////////////////////
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ATR_COUNTER(p_master) == a0 || ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP))
@@ -7650,25 +7650,25 @@ void monster(ACTION *a0)
 #endif
 					////////////////////
 #endif
-					ATR_DAMAGE(p_master)++;		//??ü¬?
+					ATR_DAMAGE(p_master)++;		//??î·?
 				else
 				{
 #ifdef _PETSKILL_BATTLE_MODEL
-					if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)	//ÎÒÊÇ²»ÊÇ±»¹¥»÷Îï¼ş¹¥»÷
+					if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)	//æˆ‘æ˜¯ä¸æ˜¯è¢«æ”»å‡»ç‰©ä»¶æ”»å‡»
 #endif
-						ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+						ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 				}
-				d0 = ATR_INT_WORK0(a0);		//ı÷???
+				d0 = ATR_INT_WORK0(a0);		//î‘ ???
 				d1 = ATR_INT_WORK1(a0);
 				radar(a0, &d0, &d1);	//????
 				ATR_CHR_ANG(a0) = crs_change_tbl[d0];
 			}
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //å‰§æ¯’
 			if (ATR_DEEPPOISION(a0) == 1)
 				ATR_VCT_NO(a0) = VCT_NO_DIE + 1;
 			else
 #endif
-				ATR_VCT_NO(a0) = VCT_NO_DIE;		//?©û?
+				ATR_VCT_NO(a0) = VCT_NO_DIE;		//?î Œ?
 		}
 		break;
 	case 14:		//????????
@@ -7681,36 +7681,36 @@ void monster(ACTION *a0)
 			ATR_FIRST_FLG(a0) = 1;
 		}
 		ATR_CRS(a0) = d0;		//??????
-		//??şğ??
+		//??î’·??
 		if ((ATR_CHR_NO(a0) >= SPR_mwood1 && ATR_CHR_NO(a0) <= SPR_mstone3) ||
 			(ATR_CHR_NO(a0) == 15323) || (ATR_CHR_NO(a0) == 10812) || (ATR_CHR_NO(a0) == 15527) ||
 			(ATR_CHR_NO(a0) == 15543) || (ATR_CHR_NO(a0) == 15575) || (ATR_CHR_NO(a0) == 15607)
 			)
 			d1 = ATR_SPD(a0) = 0;		//????
 		else
-			gemini(a0);		//?¥h
+			gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 			ATR_SPD(a0) = 32;
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 15:		//??
-		ATR_VCT_NO(a0) = 0;		//¢r??
-		//??£k¤úû¨
+		ATR_VCT_NO(a0) = 0;		//î•˜??
+		//??î–±î¸î•
 		ATR_DAMAGE(a0) = Rnd(1, 500);
 		ATR_PET_DAMAGE(a0) = Rnd(1, 500);
 		set_damage_num(a0, 5, -64);
-		ATR_LIFE(a0) += ATR_DAMAGE(a0);		//???úÜ
-		ATR_PET_LIFE(a0) += ATR_PET_DAMAGE(a0);		//???úÜ
+		ATR_LIFE(a0) += ATR_DAMAGE(a0);		//???îŒ«
+		ATR_PET_LIFE(a0) += ATR_PET_DAMAGE(a0);		//???îŒ«
 		break;
 	case 16:		//????
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		ATR_SPD(a0) = 16;
 		ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
 		gemini(a0);
@@ -7718,13 +7718,13 @@ void monster(ACTION *a0)
 		ATR_STIMER(a0)++;
 		if (ATR_STIMER(a0) == 20)
 		{
-			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;		//©˜?¤š?
+			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;		//îŸµ?î˜¿?
 			ATR_VCT_NO(a0)++;		//?????
 			ATR_STIMER(a0) = 0;
 		}
 		break;
 	case 17:		//????
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		ATR_STIMER(a0)++;
 		d0 = 0;
@@ -7735,21 +7735,21 @@ void monster(ACTION *a0)
 		}
 		else
 		{
-			a1 = ATR_BODY_WORK(0, a0);		//¤„?????
-			if (ATR_VCT_NO(a1) != 2)		//???????ü¬???
+			a1 = ATR_BODY_WORK(0, a0);		//î˜©?????
+			if (ATR_VCT_NO(a1) != 2)		//???????î·???
 				d0 = 1;
 		}
-		if (d0)		//???ü¬???
+		if (d0)		//???î·???
 		{
 			if (ATR_COUNTER(p_master) == a0)
-			{		//û«§Æ?????
-				sav_command_point = command_point;		//?????şï?????¢~§ˆ
+			{		//î˜î¤?????
+				sav_command_point = command_point;		//?????î’¶?????î•¤î
 				d0 = get_num();
-				command_point = sav_command_point;		//?????şï???????
-				if (d0 == 255)		//ü¬???
+				command_point = sav_command_point;		//?????î’¶???????
+				if (d0 == 255)		//î·???
 				{
-					ATR_STIMER(a0) = 1;		//?¢L
-					ATR_VCT_NO(a0) = 3;		//??¢r??
+					ATR_STIMER(a0) = 1;		//?î”²
+					ATR_VCT_NO(a0) = 3;		//??î•˜??
 					break;
 				}
 			}
@@ -7759,7 +7759,7 @@ void monster(ACTION *a0)
 		break;
 	case 18:		//????
 		gemini(a0);
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		ATR_STIMER(a0)++;
 		if (ATR_STIMER(a0) == 20)
@@ -7771,17 +7771,17 @@ void monster(ACTION *a0)
 			else
 #endif
 			if (ATR_COUNTER(p_master) == a0)
-			{	//û«§Æ?????
-				ATR_STIMER(a0) = 1;		//?¢L
-				ATR_VCT_NO(a0) = 3;		//??¢r??
+			{	//î˜î¤?????
+				ATR_STIMER(a0) = 1;		//?î”²
+				ATR_VCT_NO(a0) = 3;		//??î•˜??
 			}
 			else
 			{
 				if (ATR_COUNTER_FLG(a0))
 				{	//???????
 					ATR_VCT_NO(a0) = 2;		//???
-					ATR_BODY_WORK(0, a0) = p_party[get_num()];		//¡‚?¤„???
-					ATR_ATTACK_KIND(0, a0) = get_num();		//??ûï????
+					ATR_BODY_WORK(0, a0) = p_party[get_num()];		//î”‡?î˜©???
+					ATR_ATTACK_KIND(0, a0) = get_num();		//??îœ????
 					ATR_ATTACK_POW(0, a0) = get_num();		//??????
 #ifdef _PET_ITEM
 					if (ATR_ATTACK_KIND(0, a0) & ATT_ATTACKBACK)
@@ -7803,81 +7803,81 @@ void monster(ACTION *a0)
 						LogToBattleError(BattleCmd, __LINE__);
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+						ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 					ATR_FIRST_FLG(a0) = 0;		//????????
 				}
 				else
-					ATR_VCT_NO(a0) = 0;		//¢r??
+					ATR_VCT_NO(a0) = 0;		//î•˜??
 			}
 		}
 		break;
-	case 19:		//¥i???¢r?
-		a1 = ATR_BODY_WORK(0, a0);		//??ûÔûè?üÒ?
-		if (!ATR_LONG_WORK(0, a1))		//???úğ??
+	case 19:		//î™¯???î•˜?
+		a1 = ATR_BODY_WORK(0, a0);		//??îî•?î?
+		if (!ATR_LONG_WORK(0, a1))		//???îŒ¿??
 		{
-			if (ATR_BODY_WORK(1, a1) == a0)		//û«§Æ????§k??
+			if (ATR_BODY_WORK(1, a1) == a0)		//î˜î¤????îœ±??
 			{
 				ATR_VCT_NO(a0) = 2;		//???
 				break;
 			}
 		}
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 	case 20:		//??????
-		if (ATR_BODY_CNT(a0) == 1 && ATR_FIRST_FLG(a0) == 0)		//£O§D????????
+		if (ATR_BODY_CNT(a0) == 1 && ATR_FIRST_FLG(a0) == 0)		//î–•îœŠ????????
 		{
-			a2 = ATR_BODY_WORK(0, a0);		//¤„?©˜??
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©?îŸµ??
 			d0 = ATR_H_POS(a2);
 			d1 = ATR_V_POS(a2);
 			radar(a0, &d0, &d1);	//????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
+		{	//?????î·???
 			ATR_CHR_ACT_OLD(a0) = -1;
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 			break;
 		}
-		//????§DûÍ????
+		//????îœŠîº????
 		if (ATR_CHR_CNT(a0) == ATR_HIT_TIMING(a0) && ATR_CHR_TIM(a0) == 0)
 		{
-			if (ATR_BODY_CNT(a0) == 1)		//£O§D??
+			if (ATR_BODY_CNT(a0) == 1)		//î–•îœŠ??
 			{
 				//???????
 				a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				if (a1 == NULL)
 				{
-					ATR_DAMAGE(p_master) = 1;		//???ıï
-					ATR_VCT_NO(a0) = 0;		//¢r??
+					ATR_DAMAGE(p_master) = 1;		//???î‘˜
+					ATR_VCT_NO(a0) = 0;		//î•˜??
 					return;
 				}
-				/* ûÂ??? */
+				/* î¯??? */
 				ATR_NAME(a1) = missile;
-				/* ¤úû¨?¡I¥T */
+				/* î¸î•?î“î™š */
 				ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
-				/* ?????§k? */
+				/* ?????îœ±? */
 				if (ATR_CHR_NO(a0) >= 31027)		//??????
 					ATR_CHR_NO(a1) = 32053;
 				else
 					ATR_CHR_NO(a1) = 32055;
-				ATR_ATTACK_KIND(0, a1) = get_num();		//??ûï????
+				ATR_ATTACK_KIND(0, a1) = get_num();		//??îœ????
 				ATR_ATTACK_POW(0, a1) = get_num();		//??????
 				if (BattleCmd[command_point] == 'p')
 					ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//ĞŞÕıÕ½¶·ÌØĞ§   xiezi
+				//ä¿®æ­£æˆ˜æ–—ç‰¹æ•ˆ   xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+					ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
-				/* ???£t */
+				/* ???î–º */
 				ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);
 				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);
 				ATR_H_POS(a1) = ATR_H_POS(a0);
@@ -7899,32 +7899,32 @@ void monster(ACTION *a0)
 					a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 					if (a1 == NULL)
 					{
-						ATR_DAMAGE(p_master) = ATR_BODY_CNT(a0);		//???ıï
-						ATR_VCT_NO(a0) = 0;		//¢r??
+						ATR_DAMAGE(p_master) = ATR_BODY_CNT(a0);		//???î‘˜
+						ATR_VCT_NO(a0) = 0;		//î•˜??
 						return;
 					}
-					/* ûÂ??? */
+					/* î¯??? */
 					ATR_NAME(a1) = missile;
-					/* ¤úû¨?¡I¥T */
+					/* î¸î•?î“î™š */
 					ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
-					/* ?????§k? */
+					/* ?????îœ±? */
 					if (ATR_CHR_NO(a0) >= 31027)		//??????
 						ATR_CHR_NO(a1) = 32053;
 					else
 						ATR_CHR_NO(a1) = 32055;
-					/* ???£t */
-					a2 = ATR_BODY_WORK(0, a1) = p_party[get_num()];		//¡‚?¤„
-					ATR_ATTACK_KIND(0, a1) = get_num();		//??ûï????
+					/* ???î–º */
+					a2 = ATR_BODY_WORK(0, a1) = p_party[get_num()];		//î”‡?î˜©
+					ATR_ATTACK_KIND(0, a1) = get_num();		//??îœ????
 					ATR_ATTACK_POW(0, a1) = get_num();		//??????
 					if (BattleCmd[command_point] == 'p')
 						ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
 					else
 						LogToBattleError(BattleCmd, __LINE__);
 
-					//ĞŞÕıÕ½¶·ÌØĞ§   xiezi
+					//ä¿®æ­£æˆ˜æ–—ç‰¹æ•ˆ   xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+						ATR_LONG_WORK(0, a1) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 					ATR_H_POS(a1) = ATR_H_POS(a0);
@@ -7933,7 +7933,7 @@ void monster(ACTION *a0)
 					d1 = ATR_V_POS(a2);
 					radar(a1, &d0, &d1);
 					ATR_CHR_ANG(a1) = crs_change_tbl[d0];		/* ????? */
-					ATR_SPD(a1) = 32;		//§DûÍ?£t???
+					ATR_SPD(a1) = 32;		//îœŠîº?î–º???
 					ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];
 					gemini(a1);
 					gemini(a1);
@@ -7946,7 +7946,7 @@ void monster(ACTION *a0)
 			}
 		}
 		break;
-	case 25:		//??£d
+	case 25:		//??î–ª
 		if (ATR_GROUP_FLG(a0) == 0)
 			ATR_CHR_ANG(a0) = 3;
 		else if (ATR_GROUP_FLG(a0) == 1)
@@ -7960,30 +7960,30 @@ void monster(ACTION *a0)
 		ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
 		ATR_HIT(a0) = 0;		//?????????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
+		{	//?????î·???
 			ATR_CHR_ACT_OLD(a0) = -1;
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 			break;
 		}
 		//???????
 		if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 		{
-			//???©œ?üÒ¤úû¨
+			//???îŸ¹?îî¸î•
 			a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 			if (a1 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			/* ûÂ??? */
+			/* î¯??? */
 			ATR_NAME(a1) = monster;
 			ATR_VCT_NO(a1) = 26;
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-			/* ?????§k? */
+			/* ?????îœ±? */
 			ATR_CHR_NO(a1) = SPR_effect01;
-			/* ???£t */
+			/* ???î–º */
 			LoadBmp(ATR_PAT_NO(a0));
 #ifndef __CARYTEST
 			ATR_V_POS(a1) = ATR_V_POS(a0) + a0->anim_y + SpriteInfo[ATR_PAT_NO(a0)].height / 2;
@@ -7993,32 +7993,32 @@ void monster(ACTION *a0)
 			ATR_H_POS(a1) = ATR_H_POS(a0);
 		}
 		break;
-	case 26:		//???©œ?üÒ¤úû¨
+	case 26:		//???îŸ¹?îî¸î•
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//???ü¬???
-			//??????¤úû¨
+		{	//???î·???
+			//??????î¸î•
 			while (1)
 			{
 				int dx;
 
-				d0 = get_num();		//??ûÔ??ûè?üÒ?
-				if (d0 == 255)		//ü¬???
+				d0 = get_num();		//??î??î•?î?
+				if (d0 == 255)		//î·???
 					break;
-				a2 = p_party[d0];		//??ûÔ??????????
-				d0 = get_num();		//??????ûè?üÒ?
+				a2 = p_party[d0];		//??î??????????
+				d0 = get_num();		//??????î•?î?
 				if (BattleCmd[command_point] == 'p')
-					dx = get_num();		//pet??????ûè?üÒ?
+					dx = get_num();		//pet??????î•?î?
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//???????üÒ¤úû¨
+				//???????îî¸î•
 				a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				if (a1 == NULL)
 				{
-					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 					break;
 				}
-				/* ûÂ??? */
+				/* î¯??? */
 				ATR_NAME(a1) = monster;
 				ATR_VCT_NO(a1) = 27;
 				ATR_BODY_WORK(0, a1) = a2;
@@ -8027,13 +8027,13 @@ void monster(ACTION *a0)
 					ATR_INT_WORKp(a1) = dx;		//pet?????
 				else
 					LogToBattleError(BattleCmd, __LINE__);
-				/* ¤úû¨?¡I¥T */
+				/* î¸î•?î“î™š */
 				ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-				/* ?????§k? */
+				/* ?????îœ±? */
 				d0 = get_num();
 				d0 = 0;
 				ATR_CHR_NO(a1) = SPR_heal + d0;
-				/* ???£t */
+				/* ???î–º */
 				LoadBmp(ATR_PAT_NO(a2));
 				ATR_H_POS(a1) = ATR_H_POS(a2);
 #ifndef __CARYTEST
@@ -8042,20 +8042,20 @@ void monster(ACTION *a0)
 				ATR_V_POS(a1) = ATR_V_POS(a2) + a2->anim_y + g_lpRealAdrn[ATR_PAT_NO(a2)].height / 2;
 #endif
 			}
-			DeathAction(a0);		//ü¬?
+			DeathAction(a0);		//î·?
 			return;
 		}
 		break;
-	case 27:		//??????¤úû¨
+	case 27:		//??????î¸î•
 		if (ATR_HIT_STOP(a0))
 		{
 			ATR_HIT_STOP(a0)--;
 			break;
 		}
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//???ü¬???
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			DeathAction(a0);		//ü¬?
+		{	//???î·???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			DeathAction(a0);		//î·?
 			return;
 		}
 		if (ATR_CHR_CNT(a0) == 9 && ATR_CHR_TIM(a0) == 0)
@@ -8064,143 +8064,143 @@ void monster(ACTION *a0)
 			ATR_DAMAGE(a2) = ATR_INT_WORK0(a0);		//?????
 			ATR_LIFE(a2) += ATR_DAMAGE(a2);		//
 			ATR_HIT_STOP(a0) = 40;
-			//??£k¤úû¨
-			if (ATR_LIFE(a2) > ATR_MAX_LIFE(a2))		//?¢†£’???
-				ATR_LIFE(a2) = ATR_MAX_LIFE(a2);		//?¢†???
+			//??î–±î¸î•
+			if (ATR_LIFE(a2) > ATR_MAX_LIFE(a2))		//?î•«î——???
+				ATR_LIFE(a2) = ATR_MAX_LIFE(a2);		//?î•«???
 			ATR_PET_DAMAGE(a2) = ATR_INT_WORKp(a0);		//?????
 			ATR_PET_LIFE(a2) += ATR_PET_DAMAGE(a2);		//
-			//??£k¤úû¨
-			if (ATR_PET_LIFE(a2) > ATR_PET_MAX_LIFE(a2))		//?¢†£’???
-				ATR_PET_LIFE(a2) = ATR_PET_MAX_LIFE(a2);		//?¢†???
+			//??î–±î¸î•
+			if (ATR_PET_LIFE(a2) > ATR_PET_MAX_LIFE(a2))		//?î•«î——???
+				ATR_PET_LIFE(a2) = ATR_PET_MAX_LIFE(a2);		//?î•«???
 			set_damage_num(a2, 14, -64);
 		}
 		break;
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯å¼€) ROG ADD æœ±é›€æŠ€èƒ½_ç«çº¿çŒæ€
 	case FIRE_HUNTER_SKILL:
 		if (ATR_FIRST_FLG(a0) == 0)
-		{	//×î³õµÄÒ»»ØºÏ
-			a2 = ATR_BODY_WORK(0, a0);		//µĞÈËÎ»Ö·
+		{	//æœ€åˆçš„ä¸€å›åˆ
+			a2 = ATR_BODY_WORK(0, a0);		//æ•Œäººä½å€
 			d0 = ATR_H_POS(a2);
 			d1 = ATR_V_POS(a2);
-			radar(a0, &d0, &d1);	//À×´ï
-			ATR_CRS(a0) = d0;		//Â·Ïß´¢´æ
-			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		//·½Ïò
-			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//¹¥»÷¶¯×÷
+			radar(a0, &d0, &d1);	//é›·è¾¾
+			ATR_CRS(a0) = d0;		//è·¯çº¿å‚¨å­˜
+			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		//æ–¹å‘
+			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//æ”»å‡»åŠ¨ä½œ
 		}
-		ATR_HIT(a0) = 30;		//¹¥»÷Çå³ı
+		ATR_HIT(a0) = 30;		//æ”»å‡»æ¸…é™¤
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//¹¥»÷¶¯»­ÖÕÁË
+		{	//æ”»å‡»åŠ¨ç”»ç»ˆäº†
 			ATR_CHR_ACT_OLD(a0) = -1;
-			//Change fix Ô­±¾Îª 31 ¸Ä³É FIRE_HUNTER_SKILL+1
-			ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1;	//¹¥»÷ÖÕÁË´ı»ú
-			ATR_FIRST_FLG(a0) = 0;		//Éè¶¨Îª×î³õÒ»»ØºÏ
+			//Change fix åŸæœ¬ä¸º 31 æ”¹æˆ FIRE_HUNTER_SKILL+1
+			ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1;	//æ”»å‡»ç»ˆäº†å¾…æœº
+			ATR_FIRST_FLG(a0) = 0;		//è®¾å®šä¸ºæœ€åˆä¸€å›åˆ
 			break;
 		}
 		if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 		{
-			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));		//»ğÑæ
+			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));		//ç«ç„°
 			if (a1 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//µ½´ïµÄÑ¶Ï¢
-				ATR_VCT_NO(a0) = 0;		//´ı»ú
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//åˆ°è¾¾çš„è®¯æ¯
+				ATR_VCT_NO(a0) = 0;		//å¾…æœº
 				return;
 			}
-			ATR_STIMER(a0) = 0;		//?¥ˆ???????
-			ATR_NAME(a1) = fireHunter;   //»ğÑæµÄfunction
-			ATR_CHR_NO(a1) = 101734;	 //Í¼ºÅ
-			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;  //ÓÅÏÈ¶È
-			/*³õÊ¼Î»ÖÃ*/
-			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//·½Ïò
-			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);				//µĞÈËÎ»Ö·
-			ATR_BODY_WORK(1, a1) = a0;								//·¢Éä»ğÑæµÄ³è
+			ATR_STIMER(a0) = 0;		//?îš???????
+			ATR_NAME(a1) = fireHunter;   //ç«ç„°çš„function
+			ATR_CHR_NO(a1) = 101734;	 //å›¾å·
+			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;  //ä¼˜å…ˆåº¦
+			/*åˆå§‹ä½ç½®*/
+			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//æ–¹å‘
+			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);				//æ•Œäººä½å€
+			ATR_BODY_WORK(1, a1) = a0;								//å‘å°„ç«ç„°çš„å® 
 			for (int i = 2; i < ATR_BODY_CNT(a0) + 2; i++)
 			{
-				ATR_BODY_WORK(i, a1) = ATR_BODY_WORK(i, a0);			//µĞÈËÎ»Ö·
-				ATR_ATTACK_POW(i, a1) = ATR_ATTACK_POW(i, a0);			//¹¥»÷Á¦
-				ATR_ATTACK_PET_POW(i, a1) = ATR_ATTACK_PET_POW(i, a0);	//³èÎï¹¥»÷Á¦
+				ATR_BODY_WORK(i, a1) = ATR_BODY_WORK(i, a0);			//æ•Œäººä½å€
+				ATR_ATTACK_POW(i, a1) = ATR_ATTACK_POW(i, a0);			//æ”»å‡»åŠ›
+				ATR_ATTACK_PET_POW(i, a1) = ATR_ATTACK_PET_POW(i, a0);	//å® ç‰©æ”»å‡»åŠ›
 			}
-			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);			//¹¥»÷Á¦
-			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);	//³èÎï¹¥»÷Á¦
-			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);			//¹¥»÷ÖÖÀà
-			ATR_SPD(a1) = 60;										//ËÙ¶È	
+			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);			//æ”»å‡»åŠ›
+			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);	//å® ç‰©æ”»å‡»åŠ›
+			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);			//æ”»å‡»ç§ç±»
+			ATR_SPD(a1) = 60;										//é€Ÿåº¦	
 			ATR_H_POS(a1) = ATR_H_POS(a0) ;								
 			ATR_V_POS(a1) = ATR_V_POS(a0) - 50;
-			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//Â·¾¶
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//µĞÈË¹¥»÷Â·ÏßÉè¶¨
-			ATR_BODY_CNT(a1) = ATR_BODY_CNT(a0);									//µ½´ïÆì±ê
+			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//è·¯å¾„
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//æ•Œäººæ”»å‡»è·¯çº¿è®¾å®š
+			ATR_BODY_CNT(a1) = ATR_BODY_CNT(a0);									//åˆ°è¾¾æ——æ ‡
 			bFireInit = TRUE;
 			FireSkillEnd = TRUE;
 			p_missile[0] = a1;
 			p_missile[1] = NULL;
-			d6 = 0;		//¼ÆËãµ½´ïÊ±¼ä
+			d6 = 0;		//è®¡ç®—åˆ°è¾¾æ—¶é—´
 			while (1)
 			{
 				d0 = ATR_H_POS(ATR_BODY_WORK(0, a1));
 				d1 = ATR_V_POS(ATR_BODY_WORK(0, a1));
-				radar(a1, &d0, &d1);	//À×´ï
-				//µ½´ï
+				radar(a1, &d0, &d1);	//é›·è¾¾
+				//åˆ°è¾¾
 				if (d1 <= 10)
 					break;
 				ATR_CRS(a1) = d0;
 				gemini(a1);
 				d6++;
 			}
-			if (!(ATR_GROUP_FLG(a1) = d6))		//µ½´ïÊ±¼ä´¢´æ
+			if (!(ATR_GROUP_FLG(a1) = d6))		//åˆ°è¾¾æ—¶é—´å‚¨å­˜
 				ATR_GROUP_FLG(a1) = 1;
 			ATR_H_POS(a1) = ATR_H_POS(a0) ;								
 			ATR_V_POS(a1) = ATR_V_POS(a0) - 30;
-			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//·½Ïò
-			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//Â·¾¶
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//µĞÈË¹¥»÷Â·ÏßÉè¶¨
+			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//æ–¹å‘
+			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//è·¯å¾„
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//æ•Œäººæ”»å‡»è·¯çº¿è®¾å®š
 		}
 		break;
-		//Change fix µĞ·½Ë¯ÃßºóÔÙ»ğÏß,»áÅÜÈ¥ 31 (ATR_VCT_NO(a0) = 31;),½á¹û»áÉä¼ı³öÈ¥,¸ÄÎª ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1; ¸Ä³ÉÕâÒ»¶Î
+		//Change fix æ•Œæ–¹ç¡çœ åå†ç«çº¿,ä¼šè·‘å» 31 (ATR_VCT_NO(a0) = 31;),ç»“æœä¼šå°„ç®­å‡ºå»,æ”¹ä¸º ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1; æ”¹æˆè¿™ä¸€æ®µ
 	case FIRE_HUNTER_SKILL + 1:
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		if (!ATR_STIMER(a0))		//?¥ˆ??????
+		if (!ATR_STIMER(a0))		//?îš??????
 			break;
-		ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-		ATR_VCT_NO(a0) = 0;		//¢r??
+		ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+		ATR_VCT_NO(a0) = 0;		//î•˜??
 		break;
 #endif
 	case 30:		//?????
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			a2 = ATR_BODY_WORK(0, a0);		//¤„?©˜??
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©?îŸµ??
 			d0 = ATR_H_POS(a2);
 			d1 = ATR_V_POS(a2);
 			radar(a0, &d0, &d1);	//????
-			ATR_CRS(a0) = d0;		//???¨ò¢V
+			ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
 			if (ATR_LONG_WORK(0, a0) == 0)		//?????
 				ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
 			else
 				ATR_CHR_ACT(a0) = ANIM_THROW;		//?????????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		ATR_HIT(a0) = 0;		//?????????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
+		{	//?????î·???
 			ATR_CHR_ACT_OLD(a0) = -1;
-			ATR_VCT_NO(a0) = 31;		//???ü¬?¢r??
+			ATR_VCT_NO(a0) = 31;		//???î·?î•˜??
 			ATR_FIRST_FLG(a0) = 0;		//????????
 			break;
 		}
 		//???????
-		//?§DûÍ????
+		//?îœŠîº????
 		if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 		{
 			//??????
 			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 			if (a1 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			ATR_STIMER(a0) = 0;		//?¥ˆ???????
-			/* ûÂ??? */
+			ATR_STIMER(a0) = 0;		//?îš???????
+			/* î¯??? */
 			switch (ATR_LONG_WORK(0, a0))
 			{
 			case 0:		//?
@@ -8211,13 +8211,13 @@ void monster(ACTION *a0)
 				ATR_NAME(a1) = axe_shadow;
 				ATR_CHR_NO(a1) = SPR_onokage;
 				break;
-			case 2:		//şğ??
+			case 2:		//î’·??
 				ATR_NAME(a1) = stone_shadow;
 				ATR_CHR_NO(a1) = 25786;
 				break;
 				//Terry add 2001/12/28
 #ifdef _ITEM_FIRECREAKER
-			case 3:		//±ŞÅÚ
+			case 3:		//é­ç‚®
 				ATR_NAME(a1) = firecracker_shadow;
 				ATR_CHR_NO(a1) = 25786;
 				break;
@@ -8226,12 +8226,12 @@ void monster(ACTION *a0)
 			default:
 				ATR_NAME(a1) = bow;
 			}
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
-			/* ???£t */
+			/* ???î–º */
 			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);
-			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//¤„?????
-			ATR_BODY_WORK(1, a1) = a0;		//§DûÍ?????
+			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//î˜©?????
+			ATR_BODY_WORK(1, a1) = a0;		//îœŠîº?????
 			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);		//???
 			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);		//???
 			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);		//?????
@@ -8243,18 +8243,18 @@ void monster(ACTION *a0)
 			gemini(a1);
 			gemini(a1);
 			ATR_BODY_CNT(a1) = 0;
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a0);		//¤„?????????????
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a0);		//î˜©?????????????
 			p_missile[0] = a1;
 			p_missile[1] = NULL;
 			//????
 			a2 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 			if (a2 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			/* ûÂ??? */
+			/* î¯??? */
 			switch (ATR_LONG_WORK(0, a0))
 			{
 			case 0:		//?
@@ -8265,13 +8265,13 @@ void monster(ACTION *a0)
 				ATR_NAME(a2) = axe;
 				ATR_CHR_NO(a2) = SPR_ono;
 				break;
-			case 2:		//şğ??
+			case 2:		//î’·??
 				ATR_NAME(a2) = stone;
 				ATR_CHR_NO(a2) = 25785;
 				break;
 				//Terry add 2001/12/28
 #ifdef _ITEM_FIRECREAKER
-			case 3:		//±ŞÅÚ
+			case 3:		//é­ç‚®
 				ATR_NAME(a2) = stone;
 				ATR_CHR_NO(a2) = 24350;
 				break;
@@ -8280,19 +8280,19 @@ void monster(ACTION *a0)
 			default:
 				ATR_NAME(a2) = stick_bow;
 			}
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a2) = D_PRIO_MISSILE;
 			//?????????
 			ATR_LONG_WORK(0, a1) = ATR_CHR_NO(a2);
 			ATR_BODY_WORK(2, a1) = a2;
-			/* ???£t */
+			/* ???î–º */
 			ATR_CHR_ANG(a2) = ATR_CHR_ANG(a1);
-			a3 = ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a1);		//¤„?????
-			ATR_BODY_WORK(1, a2) = a1;		//?¥s?????
+			a3 = ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a1);		//î˜©?????
+			ATR_BODY_WORK(1, a2) = a1;		//?î™¹?????
 			ATR_H_POS(a2) = ATR_H_POS(a1);
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 
-			d6 = 0;		//¥ˆ????úÜ
+			d6 = 0;		//îš????îŒ«
 			ATR_SPD(a2) = 32;
 			while (1){
 				d0 = ATR_H_POS(a3);
@@ -8306,8 +8306,8 @@ void monster(ACTION *a0)
 				gemini(a2);
 				d6++;
 			}
-			ATR_INT_WORK0(a2) = d1;		//¤„?????¨ò¢V
-			if (!(ATR_GROUP_FLG(a1) = d6)){		//???????¨ò¢V
+			ATR_INT_WORK0(a2) = d1;		//î˜©?????îŸ•î”¼
+			if (!(ATR_GROUP_FLG(a1) = d6)){		//???????îŸ•î”¼
 				ATR_GROUP_FLG(a1) = 1;
 			}
 			d6 = d6 >> 1;
@@ -8315,27 +8315,27 @@ void monster(ACTION *a0)
 			ATR_CRS(a2) = 0;		//
 			ATR_H_MINI(a2) = 0;		//
 			ATR_V_MINI(a2) = 0;		//
-			ATR_H_POS(a2) = ATR_H_POS(a1);		//?¤õ¨ùşÕ
+			ATR_H_POS(a2) = ATR_H_POS(a1);		//?î³îŸœî’œ
 			ATR_V_POS(a2) = ATR_V_POS(a1) - 28;		//
 		}
 		break;
 
-	case 31:		//?????ü¬?¢r?
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+	case 31:		//?????î·?î•˜?
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		if (!ATR_STIMER(a0)){		//?¥ˆ??????
+		if (!ATR_STIMER(a0)){		//?îš??????
 			break;
 		}
-		d0 = get_num();		//???¥hûè?üÒ?
-		if (d0 == 255){		//ü¬???
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//¢r??
+		d0 = get_num();		//???î™®î•?î?
+		if (d0 == 255){		//î·???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 		}
 		else {
-			ATR_VCT_NO(a0) = 30;		//???§D
+			ATR_VCT_NO(a0) = 30;		//???îœŠ
 			ATR_FIRST_FLG(a0) = 0;		//
-			ATR_BODY_WORK(0, a0) = p_party[d0];		//¡‚?¤„???
-			ATR_ATTACK_KIND(0, a0) = get_num();		//??ûï????
+			ATR_BODY_WORK(0, a0) = p_party[d0];		//î”‡?î˜©???
+			ATR_ATTACK_KIND(0, a0) = get_num();		//??îœ????
 			ATR_ATTACK_POW(0, a0) = get_num();		//??????
 #ifdef _PET_ITEM
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTACKBACK)
@@ -8356,23 +8356,23 @@ void monster(ACTION *a0)
 			else
 				LogToBattleError(BattleCmd, __LINE__);
 
-			//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+			//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+				ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 
 		}
 		break;
 
-	case 32:		//¹­¹¥»÷
-		// a2ÎªÖ÷¡¢a1ÎªÓ°
+	case 32:		//å¼“æ”»å‡»
+		// a2ä¸ºä¸»ã€a1ä¸ºå½±
 		if (ATR_FIRST_FLG(a0) == 0){		//???????
-			a2 = ATR_BODY_WORK(0, a0);		//¤„?©˜??
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©?îŸµ??
 			d0 = ATR_H_POS(a2);
 			d1 = ATR_V_POS(a2);
 			radar(a0, &d0, &d1);	//????
-			ATR_CRS(a0) = d0;		//???¨ò¢V
+			ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
 			if (ATR_LONG_WORK(0, a0) == 0){		//?????
 				ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
@@ -8380,42 +8380,42 @@ void monster(ACTION *a0)
 			else {
 				ATR_CHR_ACT(a0) = ANIM_THROW;		//?????????
 			}
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 		else if (ShooterNum == 101578) {
-			a2 = ATR_BODY_WORK(0, a0);		//¤„?©˜??
-			//²»¶¨µã	
+			a2 = ATR_BODY_WORK(0, a0);		//î˜©?îŸµ??
+			//ä¸å®šç‚¹	
 			//d0 = /*ATR_H_POS(a2) =*/ nutx[ a2->hitDispNo ] ;
 			//d1 = /*ATR_V_POS(a2) =*/ nuty[ a2->hitDispNo ] ;
-			//¶¨µã
+			//å®šç‚¹
 			d0 = ATR_H_POS(a2) = ATR_INT_WORK0(a2);
 			d1 = ATR_V_POS(a2) = ATR_INT_WORK1(a2);
 
 			radar(a0, &d0, &d1);	//????
-			//			ATR_CRS(a0) = d0;		//???¨ò¢V
+			//			ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			//			ATR_CHR_ANG(a0) = crs_change_tbl[ d0 ];		/* ????? */
 		}
 #endif
 
 
 		ATR_HIT(a0) = 0;		//?????????
-		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP)){	//?????ü¬???
-			ATR_VCT_NO(a0) = 33;		//???ü¬?¢r??
+		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP)){	//?????î·???
+			ATR_VCT_NO(a0) = 33;		//???î·?î•˜??
 			break;
 		}
 		//???????
-		//?§DûÍ????
+		//?îœŠîº????
 		if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100){
 			//??????
 			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 			if (a1 == NULL){
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			/* ûÂ??? */
+			/* î¯??? */
 			switch (ATR_LONG_WORK(0, a0)){
 			case 0:		//?
 				ATR_NAME(a1) = bow;
@@ -8423,16 +8423,16 @@ void monster(ACTION *a0)
 			case 1:		//???
 				ATR_NAME(a1) = axe_shadow;
 				break;
-			case 2:		//şğ??
+			case 2:		//î’·??
 				ATR_NAME(a1) = stone_shadow;
 				break;
 			default:
 				ATR_NAME(a1) = bow;
 			}
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
-			/* ?????§k? */
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+			/* ?????îœ±? */
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 			if (ShooterNum == 101578)
 				ATR_CHR_NO(a1) = 27001;
 			else
@@ -8440,10 +8440,10 @@ void monster(ACTION *a0)
 #else
 			ATR_CHR_NO(a1) = CG_ARROW_00 + ATR_CRS(a0) / 2 + 20;
 #endif
-			/* ???£t */
+			/* ???î–º */
 			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);
-			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//¤„?????
-			ATR_BODY_WORK(1, a1) = a0;		//§DûÍ?????
+			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);		//î˜©?????
+			ATR_BODY_WORK(1, a1) = a0;		//îœŠîº?????
 			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);		//???
 			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);		//???
 			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);		//?????
@@ -8455,18 +8455,18 @@ void monster(ACTION *a0)
 			gemini(a1);
 			gemini(a1);
 			ATR_BODY_CNT(a1) = 0;
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a0);		//¤„?????????????
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a0);		//î˜©?????????????
 			p_missile[0] = a1;
 			p_missile[1] = NULL;
 
 			//????
 			a2 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 			if (a2 == NULL){
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			/* ûÂ??? */
+			/* î¯??? */
 			switch (ATR_LONG_WORK(0, a0)){
 			case 0:		//?
 				ATR_NAME(a2) = stick_bow;
@@ -8474,17 +8474,17 @@ void monster(ACTION *a0)
 			case 1:		//???
 				ATR_NAME(a2) = axe;
 				break;
-			case 2:		//şğ??
+			case 2:		//î’·??
 				ATR_NAME(a2) = stone;
 				break;
 			default:
 				ATR_NAME(a2) = stick_bow;
 			}
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a2) = D_PRIO_MISSILE;
-			/* ?????§k? */
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
-			//¹­µÄ²¿·Ö
+			/* ?????îœ±? */
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
+			//å¼“çš„éƒ¨åˆ†
 			if (ShooterNum == 101578)
 				ATR_CHR_NO(a2) = 26995;
 			else
@@ -8495,15 +8495,15 @@ void monster(ACTION *a0)
 			//?????????
 			ATR_LONG_WORK(0, a1) = ATR_CHR_NO(a2);
 			ATR_BODY_WORK(2, a1) = a2;
-			/* ???£t */
+			/* ???î–º */
 			ATR_CHR_ANG(a2) = ATR_CHR_ANG(a1);
-			a3 = ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a1);		//¤„?????
-			ATR_BODY_WORK(1, a2) = a1;		//?¥s?????
+			a3 = ATR_BODY_WORK(0, a2) = ATR_BODY_WORK(0, a1);		//î˜©?????
+			ATR_BODY_WORK(1, a2) = a1;		//?î™¹?????
 			ATR_H_POS(a2) = ATR_H_POS(a1);
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 
 
-			d6 = 0;		//¥ˆ????úÜ
+			d6 = 0;		//îš????îŒ«
 			ATR_SPD(a2) = 32;
 			while (1)
 			{
@@ -8517,54 +8517,54 @@ void monster(ACTION *a0)
 				gemini(a2);
 				d6++;
 			}
-			ATR_INT_WORK0(a2) = d1;		//¤„?????¨ò¢V
-			if (!(ATR_GROUP_FLG(a1) = d6))		//???????¨ò¢V
+			ATR_INT_WORK0(a2) = d1;		//î˜©?????îŸ•î”¼
+			if (!(ATR_GROUP_FLG(a1) = d6))		//???????îŸ•î”¼
 				ATR_GROUP_FLG(a1) = 1;
 			d6 = d6 >> 1;
 			ATR_SPD(a2) = d6;		//
 			ATR_CRS(a2) = 0;		//
 			ATR_H_MINI(a2) = 0;		//
 			ATR_V_MINI(a2) = 0;		//
-			ATR_H_POS(a2) = ATR_H_POS(a1);		//?¤õ¨ùşÕ
+			ATR_H_POS(a2) = ATR_H_POS(a1);		//?î³îŸœî’œ
 			ATR_V_POS(a2) = ATR_V_POS(a1) - 28;		//
 
-			d0 = get_num();		//???¥hûè?üÒ?
+			d0 = get_num();		//???î™®î•?î?
 			if (d0 != 255)
-			{	//ü¬??????
-				if (ATR_CHR_CNT(a0) >= 3)		//???§D
+			{	//î·??????
+				if (ATR_CHR_CNT(a0) >= 3)		//???îœŠ
 					ATR_CHR_CNT(a0) -= 3;
 				else
-					ATR_CHR_ACT_OLD(a0) = -1;		//???§D
+					ATR_CHR_ACT_OLD(a0) = -1;		//???îœŠ
 				ATR_DAMAGE(a0)++;
 				ATR_FIRST_FLG(a0) = 0;
-				ATR_BODY_WORK(0, a0) = p_party[d0];		//¹¥»÷¶ÔÏóÉè¶¨
-				ATR_ATTACK_KIND(0, a0) = get_num();		//¹¥»÷ÖÖÀàÉè¶¨
-				ATR_ATTACK_POW(0, a0) = get_num();		//¹¥»÷Á¦Éè¶¨
+				ATR_BODY_WORK(0, a0) = p_party[d0];		//æ”»å‡»å¯¹è±¡è®¾å®š
+				ATR_ATTACK_KIND(0, a0) = get_num();		//æ”»å‡»ç§ç±»è®¾å®š
+				ATR_ATTACK_POW(0, a0) = get_num();		//æ”»å‡»åŠ›è®¾å®š
 				if (BattleCmd[command_point] == 'p')
-					ATR_ATTACK_PET_POW(0, a0) = get_num();		//³èÎï¹¥»÷Á¦Éè¶¨
+					ATR_ATTACK_PET_POW(0, a0) = get_num();		//å® ç‰©æ”»å‡»åŠ›è®¾å®š
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//ĞŞÕı¼¼ÄÜÌØĞ§ xiezi
+				//ä¿®æ­£æŠ€èƒ½ç‰¹æ•ˆ xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// ¼ÇÂ¼ÌØĞ§±àºÅ
+					ATR_LONG_WORK(0, a0) = get_num();	// è®°å½•ç‰¹æ•ˆç¼–å·
 #endif
 			}
 		}
 		break;
-	case 33:		//¹­¹¥»÷½áÊøµÈ´ı
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+	case 33:		//å¼“æ”»å‡»ç»“æŸç­‰å¾…
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		if (ATR_STIMER(a0) == ATR_DAMAGE(a0))
-		{	//?¥ˆ????
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//´ı»ú
+		{	//?îš????
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//å¾…æœº
 		}
 		break;
-	case 35:		//²¶»ñÒÆ¶¯
-		ATR_SPD(a0) = 32;		//ËÙ¶È
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+	case 35:		//æ•è·ç§»åŠ¨
+		ATR_SPD(a0) = 32;		//é€Ÿåº¦
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -8572,35 +8572,35 @@ void monster(ACTION *a0)
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		if (d1 <= 32 * 2)
 		{	//????
-			ATR_VCT_NO(a0)++;		//?¨ò?úğ?
+			ATR_VCT_NO(a0)++;		//?îŸ•?îŒ¿?
 			ATR_FIRST_FLG(a0) = 0;		//????????
 		}
 		else
-			gemini(a0);		//?¥h
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			gemini(a0);		//?î™®
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 36:		//¨ö??úğ
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+	case 36:		//îŸ™??îŒ¿
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_HIT(a0) = 0;				//?????????
-			d0 = ATR_H_POS(a1);				//¤„?©˜??
+			d0 = ATR_H_POS(a1);				//î˜©?îŸµ??
 			d1 = ATR_V_POS(a1);
 			radar(a0, &d0, &d1);	//????
-			ATR_CRS(a0) = d0;		//???¨ò¢V
+			ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		/* ????? */
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
-			ATR_VCT_NO(a0)++;		//????¢r??
+		{	//?????î·???
+			ATR_VCT_NO(a0)++;		//????î•˜??
 			ATR_FIRST_FLG(a0) = 0;		//????????
 			ATR_STIMER(a0) = 60;
 			break;
@@ -8610,19 +8610,19 @@ void monster(ACTION *a0)
 		{
 			//?????
 			play_damage(ATR_HIT(a0), ATR_H_POS(a0));
-			//?¨ò¤úû¨
+			//?îŸ•î¸î•
 			set_damage_num(a0, 5, -64);
-			//??????¤š?
+			//??????î˜¿?
 			ATR_VCT_NO(a1) = 45;
-			//??ûç???????
+			//??î”???????
 			ATR_BODY_WORK(0, a1) = a0;
-			//?¥h¢L¥T
+			//?î™®î”²î™š
 			ATR_SPD(a1) = ATR_SPD(a0) = 8;
 			//?????????
 			ATR_HIT(a0) = 0;
 		}
 		break;
-	case 37:		//????¢r?
+	case 37:		//????î•˜?
 		if (ATR_STIMER(a0))
 		{
 			ATR_STIMER(a0)--;
@@ -8635,11 +8635,11 @@ void monster(ACTION *a0)
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
@@ -8654,104 +8654,104 @@ void monster(ACTION *a0)
 				ATR_CHR_ANG(a0) = 1;
 #endif
 			ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+			a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 			if (ATR_ATTACK_KIND(0, a0) == 0)
-			{	//ûº¦??
+			{	//î§î›²??
 				if (ATR_VCT_NO(a1) == 45)
-				{	//?????£DüÒ??
-					ATR_VCT_NO(a0) = 40;		//ûº¦????????
+				{	//?????î–Šî??
+					ATR_VCT_NO(a0) = 40;		//î§î›²????????
 					ATR_DAMAGE(a0) = 0;		//?????
 				}
 				else
-					ATR_VCT_NO(a0) = 42;		//ûº¦?
+					ATR_VCT_NO(a0) = 42;		//î§î›²?
 			}
 			else
 			{
-				ATR_VCT_NO(a0) = 44;		//şÎ??
-				//şÎ?¤úû¨
+				ATR_VCT_NO(a0) = 44;		//î’•??
+				//î’•?î¸î•
 				set_damage_num(a0, 7, -64);
 				ATR_STIMER(a0) = 255;
-				ATR_DAMAGE(a0) = t_music_bgm_no;		//???§k?¢~§ˆ
+				ATR_DAMAGE(a0) = t_music_bgm_no;		//???îœ±?î•¤î
 				play_bgm(0);		//???????????
 			}
 		}
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		if (ATR_ATTACK_KIND(0, a0) == 0 && ATR_VCT_NO(a1) == 45)
-		{	//ûº¦??
+		{	//î§î›²??
 			if (!Rnd(0, 100))
-			{	//¥`??????
-				ATR_VCT_NO(a0) = 40;		//ûº¦????????
+			{	//î™¦??????
+				ATR_VCT_NO(a0) = 40;		//î§î›²????????
 				ATR_DAMAGE(a0) = 1;		//?????
 			}
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		if (ATR_SPD(a0) == 32)		//??????
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 40:		//ûº¦???????
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
-		ATR_VCT_NO(a1)++;		//?????£DüÒ
+	case 40:		//î§î›²???????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
+		ATR_VCT_NO(a1)++;		//?????î–Šî
 		ATR_FIRST_FLG(a1) = 0;		//????????
-		//ûº¦¤úû¨
+		//î§î›²î¸î•
 		set_damage_num(a0, 8, -64);
 		ATR_STIMER(a0) = 100;		//????????
 		if (ATR_DAMAGE(a0) == 1)		//????
-			ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + 4) & 7;		//©˜?¤š?
-		ATR_VCT_NO(a0)++;		//ûº¦?????
+			ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + 4) & 7;		//îŸµ?î˜¿?
+		ATR_VCT_NO(a0)++;		//î§î›²?????
 		break;
-	case 41:		//ûº¦????
+	case 41:		//î§î›²????
 		if (!--ATR_STIMER(a0))
 		{
 			if (ATR_DAMAGE(a0) == 1)
 			{		//????
 				ATR_VCT_NO(a0) = 38;		//????
-				ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + 4) & 7;		//©˜?¤š?
+				ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + 4) & 7;		//îŸµ?î˜¿?
 				ATR_SPD(a0) = 32;		//?????
 			}
 			else
-				ATR_VCT_NO(a0)++;		//ûº¦?
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+				ATR_VCT_NO(a0)++;		//î§î›²?
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		}
 		else
-			ATR_CHR_ACT(a0) = ANIM_ANGRY;		//âº????????
+			ATR_CHR_ACT(a0) = ANIM_ANGRY;		//å¤‚????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 42:		//Ê§°Ü
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//Í£Ö¹¶¯×÷
+	case 42:		//å¤±è´¥
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//åœæ­¢åŠ¨ä½œ
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		a1 = ATR_BODY_WORK(0, a0);		//È¡³öµĞ·½Ö¸±ê
+		a1 = ATR_BODY_WORK(0, a0);		//å–å‡ºæ•Œæ–¹æŒ‡æ ‡
 		if (ATR_VCT_NO(a1) == 0)
-		{	//?????¥`?şú????
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//¢r??
+		{	//?????î™¦?î“????
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 		}
 		break;
-	case 44:		//³É¹¦
+	case 44:		//æˆåŠŸ
 		if (!--ATR_STIMER(a0))
-		{	//Ê±¼äµ½
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//´ı»ú
+		{	//æ—¶é—´åˆ°
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//å¾…æœº
 			play_bgm(ATR_DAMAGE(a0));		//?????
 		}
 		ATR_CHR_ACT(a0) = ANIM_HAPPY;		//???????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 45:		//??????¤š
-		a1 = ATR_BODY_WORK(0, a0);		//??ûç????????
+	case 45:		//??????î˜¿
+		a1 = ATR_BODY_WORK(0, a0);		//??î”????????
 		if (ATR_VCT_NO(a1) == 38)
-		{	//??ûç?????
-			d0 = ATR_H_POS(a1);				//¤„?©˜??
+		{	//??î”?????
+			d0 = ATR_H_POS(a1);				//î˜©?îŸµ??
 			d1 = ATR_V_POS(a1);
 			radar(a0, &d0, &d1);	//????
-			ATR_CRS(a0) = d0;		//???¨ò¢V
+			ATR_CRS(a0) = d0;		//???îŸ•î”¼
 			gemini(a0);
 		}
 		if (ATR_VCT_NO(a1) == 0)
-		{	//??ûç?????
-			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//¤úû¨??
+		{	//??î”?????
+			ATR_ATTRIB(a0) = ACT_ATR_HIDE;		//î¸î•??
 			ATR_NAME(a0) = NULL;
 			return;
 		}
@@ -8765,15 +8765,15 @@ void monster(ACTION *a0)
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
 		ATR_SPD(a0) = 16;
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (ATR_FIRST_FLG(a0) == 0)
 		{		//???????
 			ATR_CHR_ANG(a0) = crs_change_tbl[d0];
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
-			a1 = ATR_BODY_WORK(0, a0);		//??ûç????????
+			a1 = ATR_BODY_WORK(0, a0);		//??î”????????
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 3;
 			else if (ATR_GROUP_FLG(a0) == 1)
@@ -8785,21 +8785,21 @@ void monster(ACTION *a0)
 				ATR_CHR_ANG(a0) = 1;
 #endif
 			ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 50:		//¡P¥f£DüÒşÎ?
+	case 50:		//î“–î™¬î–Šîî’•?
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_SPD(a0) = 16;
 			if (ATR_LIFE(a0) <= 0)
 			{	//??????
 				if (ATR_GROUP_FLG(a0) == 0)		//????????
-					//©˜????
+					//îŸµ????
 					ATR_CRS(a0) = crs_change_tbl2[7];
 				else
 					ATR_CRS(a0) = crs_change_tbl2[3];
@@ -8818,46 +8818,46 @@ void monster(ACTION *a0)
 #endif
 				ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 			}
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (ATR_LIFE(a0) > 0)
-		{		//şØ?????
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		{		//î’Ÿ?????
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 			pattern(a0, 1, ANM_LOOP);
 		}
 		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
+		{	//?î¡¡???
 			ATR_NAME(a0) = NULL;
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
-			ATR_DAMAGE(p_master)++;		//£DüÒ?ıï
+			ATR_DAMAGE(p_master)++;		//î–Šî?î‘˜
 			if (ATR_DAMAGE(p_master) == ATR_BODY_CNT(p_master) && ATR_GUARD_FLG(a0) == 1)
-			{	//ACTION_INF¡@¤e??
+			{	//ACTION_INFî“†î˜‹??
 				action_inf = 2;
-				command_point = 0;		//?????şï????????
+				command_point = 0;		//?????î’¶????????
 			}
 		}
 		break;
-	case 52:		//Õ½¶·ÌÓÅÜÊ§°Ü(¶¯»­¼ÓËÙ)
+	case 52:		//æˆ˜æ–—é€ƒè·‘å¤±è´¥(åŠ¨ç”»åŠ é€Ÿ)
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			if (ATR_LIFE(a0) <= 0)
 			{	//??????
-				//???üÒ?¦V?£Ï£Ë??
+				//???î?îš¼?ï¼¯ï¼«??
 				if (ATR_PET_OK(a0))
 				{
-					a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???üÒ?????
+					a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???î?????
 					if (ATR_NAME(a2) != NULL)
 					{
-						ATR_VCT_NO(a2) = 50;		//????¥`??
+						ATR_VCT_NO(a2) = 50;		//????î™¦??
 						ATR_FIRST_FLG(a2) = 0;		//????????
 					}
 				}
-				ATR_VCT_NO(a0) = 50;		//ÌÓÅÜ³É¹¦
+				ATR_VCT_NO(a0) = 50;		//é€ƒè·‘æˆåŠŸ
 				break;
 			}
-			//ÏÔÊ¾ÌÓÅÜ
+			//æ˜¾ç¤ºé€ƒè·‘
 			set_damage_num(a0, 9, -64);
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 7;
@@ -8871,30 +8871,30 @@ void monster(ACTION *a0)
 #endif
 			ATR_STIMER(a0) = 12;		//???????
 			ATR_COUNTER_FLG(a0) = 0;		//
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		pattern(a0, ATR_STIMER(a0), ANM_LOOP);
-		//???????¢L¥T¨Á???
+		//???????î”²î™šîŸ‰???
 		ATR_COUNTER_FLG(a0) = (ATR_COUNTER_FLG(a0) + 1) & 7;
 		if (!ATR_COUNTER_FLG(a0))
 		{
 			ATR_STIMER(a0)--;
 			if (ATR_STIMER(a0) == 1)
-			{	//????¢L??
-				if (ATR_ATTACK_KIND(0, a0) == 0)		//£DüÒûº¦??
-					ATR_VCT_NO(a0)++;		//£DüÒûº¦?
+			{	//????î”²??
+				if (ATR_ATTACK_KIND(0, a0) == 0)		//î–Šîî§î›²??
+					ATR_VCT_NO(a0)++;		//î–Šîî§î›²?
 				else
 				{
-					ATR_VCT_NO(a0) = 50;		//£DüÒşÎ??
+					ATR_VCT_NO(a0) = 50;		//î–Šîî’•??
 					ATR_FIRST_FLG(a0) = 0;		//????????
-					//???üÒ?¦V?£Ï£Ë??
+					//???î?îš¼?ï¼¯ï¼«??
 					if (ATR_PET_OK(a0))
 					{
-						a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???üÒ?????
+						a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???î?????
 						if (ATR_NAME(a2) != NULL)
 						{
-							ATR_VCT_NO(a2) = 50;		//????¥`??
+							ATR_VCT_NO(a2) = 50;		//????î™¦??
 							ATR_FIRST_FLG(a2) = 0;		//????????
 						}
 					}
@@ -8902,9 +8902,9 @@ void monster(ACTION *a0)
 			}
 		}
 		break;
-	case 53:		//Õ½¶·ÌÓÅÜÊ§°Ü(¶¯»­¼õËÙ)
+	case 53:		//æˆ˜æ–—é€ƒè·‘å¤±è´¥(åŠ¨ç”»å‡é€Ÿ)
 		pattern(a0, ATR_STIMER(a0), ANM_LOOP);
-		//???????¢L¥T¨Á???
+		//???????î”²î™šîŸ‰???
 		ATR_COUNTER_FLG(a0) = (ATR_COUNTER_FLG(a0) + 1) & 7;
 		if (!ATR_COUNTER_FLG(a0))
 		{
@@ -8913,23 +8913,23 @@ void monster(ACTION *a0)
 			{	//????????
 				ATR_STIMER(a0) = 60;
 				ATR_VCT_NO(a0)++;
-				//ÏÔÊ¾Ê§°Ü
+				//æ˜¾ç¤ºå¤±è´¥
 				set_damage_num(a0, 8, -64);
 			}
 		}
 		break;
-	case 54:		//¡P¥f£DüÒûº¦??????
+	case 54:		//î“–î™¬î–Šîî§î›²??????
 		ATR_CHR_ACT(a0) = ANIM_SAD;		//???????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP);
 		if (!--ATR_STIMER(a0))
-		{	//???ü¬???
-			ATR_DAMAGE(p_master)++;		//£DüÒûº¦?ıï
-			//???üÒ?¦V?£Ï£Ë??
+		{	//???î·???
+			ATR_DAMAGE(p_master)++;		//î–Šîî§î›²?î‘˜
+			//???î?îš¼?ï¼¯ï¼«??
 			if (ATR_PET_OK(a0))
 			{
-				a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???üÒ?????
+				a2 = p_party[ATR_PLACE_NO(a0) + 5];		//???î?????
 				if (ATR_NAME(a2) != NULL)		//
-					ATR_DAMAGE(p_master)++;		//???£DüÒûº¦?ıï
+					ATR_DAMAGE(p_master)++;		//???î–Šîî§î›²?î‘˜
 			}
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 3;
@@ -8941,30 +8941,30 @@ void monster(ACTION *a0)
 			else if (ATR_GROUP_FLG(a0) == 3)	
 				ATR_CHR_ANG(a0) = 1;
 #endif
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 		}
 		break;
-	case 55:		//´ò·É
+	case 55:		//æ‰“é£
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			ATR_SPD(a0) = 63;		//?¥h¢L¥T???
+			ATR_SPD(a0) = 63;		//?î™®î”²î™š???
 			if (ATR_AKO_FLG(a0) == 2)		//??????
-				ATR_LONG_WORK(0, a0) = 0;		//£“?¨ë??????
+				ATR_LONG_WORK(0, a0) = 0;		//î—˜?îŸ??????
 			else
 			{
-				ATR_LONG_WORK(0, a0) = 3;		//£“?¨ë??????
-				//´ò·ÉµÄÉùÒô
+				ATR_LONG_WORK(0, a0) = 3;		//î—˜?îŸ??????
+				//æ‰“é£çš„å£°éŸ³
 				play_se(11, ATR_H_POS(a0), ATR_V_POS(a0));
 			}
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		gemini(a0);
 		if (ATR_LONG_WORK(0, a0) < 3)
-		{	//£“?¨ë???
+		{	//î—˜?îŸ???
 			if (ATR_CRS(a0) < 8 || ATR_CRS(a0) > 24)
 			{
 				if (ATR_V_POS(a0) <= 0)
-				{		//ıÆ£Z?
+				{		//î¯î– ?
 					d0 = 0;
 					goto monster_case55_100;		//??????
 				}
@@ -8972,7 +8972,7 @@ void monster(ACTION *a0)
 			if (ATR_CRS(a0) < 16 && ATR_CRS(a0) > 0)
 			{
 				if (ATR_H_POS(a0) >= lpDraw->xSize)
-				{		//?£Z?
+				{		//?î– ?
 					d0 = 1;
 					goto monster_case55_100;		//??????
 				}
@@ -8980,7 +8980,7 @@ void monster(ACTION *a0)
 			if (ATR_CRS(a0) > 8 && ATR_CRS(a0) < 24)
 			{
 				if (ATR_V_POS(a0) >= lpDraw->ySize)
-				{		//?£Z?
+				{		//?î– ?
 					d0 = 2;
 					goto monster_case55_100;		//??????
 				}
@@ -8988,7 +8988,7 @@ void monster(ACTION *a0)
 			if (ATR_CRS(a0) > 16)
 			{
 				if (ATR_H_POS(a0) <= 0)
-				{		//?£Z?
+				{		//?î– ?
 					d0 = 3;
 					goto monster_case55_100;		//??????
 				}
@@ -8997,9 +8997,9 @@ void monster(ACTION *a0)
 
 		monster_case55_100:
 			d1 = ATR_CRS(a0);
-			d1 = ATR_CRS(a0) = crs_bound_tbl[d0][ATR_CRS(a0)];		//£“?¨ë?
+			d1 = ATR_CRS(a0) = crs_bound_tbl[d0][ATR_CRS(a0)];		//î—˜?îŸ?
 			ATR_LONG_WORK(0, a0)++;
-			//£“?¨ë??
+			//î—˜?îŸ??
 			play_se(66, ATR_H_POS(a0), ATR_V_POS(a0));
 
 		monster_case55_200:
@@ -9008,47 +9008,47 @@ void monster(ACTION *a0)
 		else
 		{
 			if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT || ATR_V_POS(a0) > lpDraw->ySize + SCREEN_OUT || ATR_V_POS(a0) < 0 - SCREEN_OUT)
-			{		//?ş???
+			{		//?î¡¡???
 				ATR_NAME(a0) = NULL;
-				ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+				ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 				ATR_VCT_NO(a0) = VCT_NO_APPEAR;
 				if (BattleMyNo == ATR_PLACE_NO(a0))
-				{	//û«§Æ??
-					action_inf = 2;		////ACTION_INF¡@¤e
-					command_point = 0;		//?????şï????????
+				{	//î˜î¤??
+					action_inf = 2;		////ACTION_INFî“†î˜‹
+					command_point = 0;		//?????î’¶????????
 					break;
 				}
-				//???üÒ?????
+				//???î?????
 				a1 = ATR_BODY_WORK(0, a0);
 				if (a1 != NULL)
 				{
 					//?????
 					if (ATR_ATTACK_KIND(2, a1) == 1)
 					{
-						//????úÇ
-						ATR_ATTRIB(a1) |= ACT_ATR_HIDE;		//¤úû¨??
+						//????îŒ–
+						ATR_ATTRIB(a1) |= ACT_ATR_HIDE;		//î¸î•??
 						ATR_NAME(a1) = NULL;
 						ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-						if (ATR_COUNTER(p_master) == a0)		//û«§Æ?????
+						if (ATR_COUNTER(p_master) == a0)		//î˜î¤?????
 #ifdef _PETSKILL_BATTLE_MODEL
 						if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)
 #endif
-							ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+							ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 					}
 					else
 					{
-						ATR_VCT_NO(a1) = 57;		//???¥`??
+						ATR_VCT_NO(a1) = 57;		//???î™¦??
 						ATR_FIRST_FLG(a1) = 0;
 					}
 				}
 				else
 				{
-					if (ATR_COUNTER(p_master) == a0)		//û«§Æ?????
+					if (ATR_COUNTER(p_master) == a0)		//î˜î¤?????
 					{
 #ifdef _PETSKILL_BATTLE_MODEL
 						if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)
 #endif
-							ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+							ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 					}
 				}
 				break;
@@ -9057,22 +9057,22 @@ void monster(ACTION *a0)
 		if (ATR_AKO_FLG(a0) == 2)
 		{	//??????
 			if (ATR_LONG_WORK(0, a0) & 1)
-				ATR_CHR_ANG(a0)--;		//??¤š
+				ATR_CHR_ANG(a0)--;		//??î˜¿
 			else
-				ATR_CHR_ANG(a0)++;		//??¤š
-			ATR_CHR_ANG(a0) &= 7;		//?¤š
+				ATR_CHR_ANG(a0)++;		//??î˜¿
+			ATR_CHR_ANG(a0) &= 7;		//?î˜¿
 			pattern(a0, 1, ANM_NO_LOOP);
 		}
 		break;
 	case 56:		//?????????
-		a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
-		//?ş¥›??
+		a1 = ATR_BODY_WORK(0, a0);		//??î”??????
+		//?î¡¡îš ??
 		if (ATR_H_POS(a1) < lpDraw->xSize && ATR_H_POS(a1) > 64 && ATR_V_POS(a1) < lpDraw->ySize && ATR_V_POS(a1) > 0 - 64)
 		{
-			d0 = ATR_H_POS(a1);				//??ûç?©˜??
+			d0 = ATR_H_POS(a1);				//??î”?îŸµ??
 			d1 = ATR_V_POS(a1);
 			radar2(a0, d0, d1, 2);	//????
-			//??¨Á??????
+			//??îŸ‰??????
 			d0 = ATR_CRS(a0) - ATR_CRS_OLD(a0);
 			if (d0 < 0)
 				d0 = 0 - d0;
@@ -9084,14 +9084,14 @@ void monster(ACTION *a0)
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 57:		//?©û??????
+	case 57:		//?î Œ??????
 		if (ATR_FIRST_FLG(a0) == 0)		//???????
 		{
 			ATR_SPD(a0) = 16;
 			if (ATR_LIFE(a0) <= 0)
 			{		//??????
 				if (ATR_GROUP_FLG(a0) == 0)		//????????
-					//©˜????
+					//îŸµ????
 					ATR_CRS(a0) = crs_change_tbl2[7];
 				else
 					ATR_CRS(a0) = crs_change_tbl2[3];
@@ -9110,45 +9110,45 @@ void monster(ACTION *a0)
 #endif
 				ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 			}
-			//????????????¦V??
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			//????????????îš¼??
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		gemini(a0);		//?¥h
-		//????????????¦V??
-		if (ATR_LIFE(a0) > 0)		//şØ?????
+		gemini(a0);		//?î™®
+		//????????????îš¼??
+		if (ATR_LIFE(a0) > 0)		//î’Ÿ?????
 		{
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 			pattern(a0, 1, ANM_LOOP);
 		}
-		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)		//?ş???
+		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)		//?î¡¡???
 		{
 			ATR_NAME(a0) = NULL;
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
 			//??????????????????????????????????????????????
 			if (check_all_dead())
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
-			if (ATR_COUNTER(p_master) == ATR_BODY_WORK(0, a0))		//û«§Æ???ûç?????
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
+			if (ATR_COUNTER(p_master) == ATR_BODY_WORK(0, a0))		//î˜î¤???î”?????
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
 				if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)
 #endif
-					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 			}
-			if (ATR_COUNTER(p_master) == a0)		//û«§Æ?????
+			if (ATR_COUNTER(p_master) == a0)		//î˜î¤?????
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
 				if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)
 #endif
-					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 			}
 		}
 		break;
 	case 60:		//?????
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
-			set_damage_num(a1, 10, -64);		//??¤úû¨
+			a1 = ATR_BODY_WORK(0, a0);		//??î”??????
+			set_damage_num(a1, 10, -64);		//??î¸î•
 			ATR_STIMER(a0) = 40;
 			play_se(216, ATR_H_POS(a0), 240);		//??????
 			if (ATR_GROUP_FLG(a1) == 0)
@@ -9162,7 +9162,7 @@ void monster(ACTION *a0)
 				ATR_CHR_ANG(a1) = 1;
 #endif
 			ATR_CRS_OLD(a1) = ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		//????
 		if (!--ATR_STIMER(a0))
@@ -9174,42 +9174,42 @@ void monster(ACTION *a0)
 		break;
 
 	case 61:		//?????
-		a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
+		a1 = ATR_BODY_WORK(0, a0);		//??î”??????
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_SPD(a0) = 12;
 			if (ATR_LIFE(a0) > 0)
-			{	//şØ?????
+			{	//î’Ÿ?????
 				d0 = ATR_INT_WORK0(a1);
 				d1 = ATR_INT_WORK1(a1);
 				radar(a0, &d0, &d1);	//????
 				ATR_CRS(a0) = d0;		//??????
 				ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
-				ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+				ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 			}
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		d0 = ATR_INT_WORK0(a1);
 		d1 = ATR_INT_WORK1(a1);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
-			//???ı¤?
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			//???î?
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_NAME(a0) = NULL;
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·?
 			break;
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 62:		//???üÒ?
+	case 62:		//???î?
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
-			set_damage_num(a1, 11, -64);		//??¤úû¨
+			a1 = ATR_BODY_WORK(0, a0);		//??î”??????
+			set_damage_num(a1, 11, -64);		//??î¸î•
 			if (ATR_GROUP_FLG(a1) == 0)
 				ATR_CHR_ANG(a1) = 3;
 			else if (ATR_GROUP_FLG(a1) == 1)
@@ -9222,22 +9222,22 @@ void monster(ACTION *a0)
 #endif
 			ATR_CRS_OLD(a1) = ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];
 			ATR_STIMER(a0) = 40;
-			//???§k?¥‚???
+			//???îœ±?îš‡???
 			ATR_CHR_NO(a0) = get_num();
-			//???¥‚???
+			//???îš‡???
 			ATR_LEVEL(a0) = get_num();
-			//??¥‚???
+			//??îš‡???
 			ATR_LIFE(a0) = get_num();
-			//ş¡q¥‚???
+			//î¡“î“·îš‡???
 			get_name(a0);
-			//?¢†??¥‚???
+			//?î•«??îš‡???
 			ATR_MAX_LIFE(a0) = get_num();
-			//??ûç??????
+			//??î”??????
 			a1 = ATR_BODY_WORK(0, a0);
-			//?¤õ???
+			//?î³???
 			ATR_H_POS(a0) = ATR_H_POS(a1);
 			ATR_V_POS(a0) = ATR_V_POS(a1) - 1;
-			//¤úû¨??
+			//î¸î•??
 			ATR_ATTRIB(a0) &= ~ACT_ATR_HIDE;
 			ATR_SPD(a0) = 12;
 			d0 = ATR_INT_WORK0(a0);
@@ -9245,13 +9245,13 @@ void monster(ACTION *a0)
 			radar(a0, &d0, &d1);	//????
 			ATR_CRS(a0) = d0;		//??????
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
-			ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+			ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 			ATR_CHR_ACT_OLD(a0) = -1;
 			ATR_AKO_FLG(a0) = 0;		//?????????
 			ATR_ATTACK_KIND(2, a0) = 0;
-			ATR_STATUS(a0) = 0;		//??????ıĞ???
+			ATR_STATUS(a0) = 0;		//??????î¹???
 			play_se(216, ATR_H_POS(a0), 240);		//??????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		//????
 		if (!--ATR_STIMER(a0))
@@ -9261,113 +9261,113 @@ void monster(ACTION *a0)
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 63:		//???üÒ?
+	case 63:		//???î?
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{		//????
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			ATR_VCT_NO(a0) = 0;		//¢r??
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??ü¬????
+			ATR_VCT_NO(a0) = 0;		//î•˜??
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??î·????
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 64:		//ş«¢„????ü¬?¢r?
-		a1 = ATR_BODY_WORK(1, a0);		//??ûÔ???
-		//??ûÔ???ü¬?????
+	case 64:		//î‘²î•©????î·?î•˜?
+		a1 = ATR_BODY_WORK(1, a0);		//??î???
+		//??î???î·?????
 		if (ATR_VCT_NO(a1) != 2)
 		{
-			ATR_VCT_NO(a0) = 13;		//??????¢r?
+			ATR_VCT_NO(a0) = 13;		//??????î•˜?
 			ATR_STIMER(a0) = 30;
 		}
 		break;
-	case 65:		//ş«¢„????
+	case 65:		//î‘²î•©????
 		break;
-	case 66:		//ş«¢„???¥h
-		a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
+	case 66:		//î‘²î•©???î™®
+		a1 = ATR_BODY_WORK(0, a0);		//??î”??????
 		if (ATR_FIRST_FLG(a0) == 0)		//???????
 		{
 			ATR_SPD(a0) = 28;
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		d0 = ATR_INT_WORK0(a1);
 		d1 = ATR_INT_WORK1(a1);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 1))		//????
 		{
-			//??ûç¥†?§Š??
+			//??î”îš‹?î??
 			ATR_VCT_NO(a1) = 67;
-			ATR_CRS(a1) = ATR_CRS(a0);		//??§Š?©˜????
+			ATR_CRS(a1) = ATR_CRS(a0);		//??î?îŸµ????
 			ATR_SPD(a1) = 40;
 			ATR_STIMER(a1) = 8;
-			//??ûÔ¨Á?
+			//??îîŸ‰?
 #ifdef _PETSKILL_BATTLE_MODEL
-			// ÈôÊÇ±»¹¥»÷Îï¼ş¹¥»÷
+			// è‹¥æ˜¯è¢«æ”»å‡»ç‰©ä»¶æ”»å‡»
 			if (ATR_BATTLE_MODEL(a1) == ATT_BATTLE_MODEL)
-				a1 = ATR_BODY_WORK(1, a1);	// ´Ó ATR_BODY_WORK(1,a1) È¡³ö¹¥»÷Îï¼şµÄ action
+				a1 = ATR_BODY_WORK(1, a1);	// ä» ATR_BODY_WORK(1,a1) å–å‡ºæ”»å‡»ç‰©ä»¶çš„ action
 			else 
 #endif
 				a1 = ATR_COUNTER(p_master);
-			ATR_BODY_WORK(0, a1) = a0;		//¤„????¨Á?
-			//???????¤_û¢
+			ATR_BODY_WORK(0, a1) = a0;		//î˜©????îŸ‰?
+			//???????î˜…î
 			ATR_VCT_NO(a0) = 65;
 			//????
 			play_se(5, ATR_H_POS(a0), 240);
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 67:		//¥†?§Š?????
+	case 67:		//îš‹?î?????
 		gemini(a0);		//??????
 		ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;
-		if (--ATR_STIMER(a0))		//??¢r???
+		if (--ATR_STIMER(a0))		//??î•˜???
 			break;
 		ATR_VCT_NO(a0) = 68;
 		//????
 #ifdef _PETSKILL_BATTLE_MODEL
-		// ÈôÊÇ±»¹¥»÷Îï¼ş¹¥»÷
+		// è‹¥æ˜¯è¢«æ”»å‡»ç‰©ä»¶æ”»å‡»
 		if (ATR_BATTLE_MODEL(a0) == ATT_BATTLE_MODEL)
-			a1 = ATR_BODY_WORK(1, a0);	// ´Ó ATR_BODY_WORK(1, a0) È¡³ö¹¥»÷Îï¼şµÄ action
+			a1 = ATR_BODY_WORK(1, a0);	// ä» ATR_BODY_WORK(1, a0) å–å‡ºæ”»å‡»ç‰©ä»¶çš„ action
 		else 
 #endif
-			a1 = ATR_COUNTER(p_master);		//??ûÔ???????
+			a1 = ATR_COUNTER(p_master);		//??î???????
 		ATR_VCT_NO(a1) = 2;
 		break;
-	case 68:		//¥†?§Š?????
-		gemini(a0);		//?¥h
+	case 68:		//îš‹?î?????
+		gemini(a0);		//?î™®
 		ATR_SPD(a0) -= 2;
-		if (ATR_SPD(a0) < 0)		//??????ü¬???
+		if (ATR_SPD(a0) < 0)		//??????î·???
 		{
 			ATR_SPD(a0) = 10;
-			ATR_VCT_NO(a0) = 64;		//ş«¢„????ü¬?¢r??
+			ATR_VCT_NO(a0) = 64;		//î‘²î•©????î·?î•˜??
 		}
 		break;
-	case 69:		//??????¤úû¨
+	case 69:		//??????î¸î•
 		if (ATR_FIRST_FLG(a0) == 0)
 		{		//???????
-			a1 = ATR_BODY_WORK(0, a0);		//??ûç??????
+			a1 = ATR_BODY_WORK(0, a0);		//??î”??????
 			d0 = ATR_INT_WORK0(a1);
 			d1 = ATR_INT_WORK1(a1);
 			radar(a0, &d0, &d1);	//????
 			ATR_CRS(a0) = d0;		//??????
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-			//??¤úû¨
+			//??î¸î•
 			set_damage_num(a0, 13, -64);
 			ATR_STIMER(a0) = 35;
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		if (--ATR_STIMER(a0))		//??¢r???
+		if (--ATR_STIMER(a0))		//??î•˜???
 			break;
-		ATR_VCT_NO(a0) = 66;		//ş«¢„??¥h?
+		ATR_VCT_NO(a0) = 66;		//î‘²î•©??î™®?
 		ATR_FIRST_FLG(a0) = 0;		//??????
 		break;
 	case 70:		//???????
@@ -9375,8 +9375,8 @@ void monster(ACTION *a0)
 		{
 			int d2;
 
-			d1 = command_point;		//?????????¢~§ˆ
-			d0 = get_num();		//¤„ûè?üÒ?
+			d1 = command_point;		//?????????î•¤î
+			d0 = get_num();		//î˜©î•?î?
 			command_point = d1;		//???????????
 			d0 /= 5;
 			if (ATR_GROUP_FLG(a0) == 0)		//????????
@@ -9386,7 +9386,7 @@ void monster(ACTION *a0)
 			}
 			else
 			{
-				//?ıÆ?????¡q???
+				//?î¯?????î“·???
 				if (ATR_PLACE_NO(a0) >= 15)
 				{
 					d1 = boomerang_pos_tbl3b[d0 * 2];
@@ -9410,44 +9410,44 @@ void monster(ACTION *a0)
 				ATR_CHR_ACT(a0) = ANIM_THROW;		//?????????
 #endif
 
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		ATR_HIT(a0) = 0;		//?????????
-		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//?????ü¬???
+		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))	//?????î·???
 		{
 			ATR_CHR_ACT_OLD(a0) = -1;
 			ATR_VCT_NO(a0) = 71;		//?????????
 			break;
 		}
 		//???????
-		//?????§DûÍ????
+		//?????îœŠîº????
 		if(ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
 		{
 			//????????
 			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 			if (a1 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-				ATR_VCT_NO(a0) = 0;		//¢r??
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+				ATR_VCT_NO(a0) = 0;		//î•˜??
 				return;
 			}
-			//??????©˜???
+			//??????îŸµ???
 			ATR_BODY_WORK(0, a0) = a1;		//?????????
-			/* ûÂ??? */
+			/* î¯??? */
 			ATR_NAME(a1) = boomerang;
-			/* ¤úû¨?¡I¥T */
+			/* î¸î•?î“î™š */
 			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
-			/* ?????§k? */
+			/* ?????îœ±? */
 			ATR_CHR_NO(a1) = SPR_boomerang;//SPR_ono;//
-			/* ???£t */
+			/* ???î–º */
 			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);
-			ATR_BODY_WORK(1, a1) = a0;		//§DûÍ?????
-			d1 = command_point;		//?????????¢~§ˆ
-			d0 = get_num();		//¤„ûè?üÒ?
+			ATR_BODY_WORK(1, a1) = a0;		//îœŠîº?????
+			d1 = command_point;		//?????????î•¤î
+			d0 = get_num();		//î˜©î•?î?
 			command_point = d1;		//???????????
-			//?§k????
+			//?îœ±????
 			ATR_LONG_WORK(0, a1) = d0 / 5;
-			//?¤š?¥T???
+			//?î˜¿?î™š???
 			if (ATR_GROUP_FLG(a0) == 0)
 			{
 				if (ATR_LONG_WORK(0, a1) <= 1)
@@ -9476,14 +9476,14 @@ void monster(ACTION *a0)
 		}
 		break;
 	case 71:		//????????
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 		a1 = ATR_BODY_WORK(0, a0);		//????????????
 
-		//?ş¥›??
-		d0 = ATR_H_POS(a1);				//¤„?©˜??
+		//?î¡¡îš ??
+		d0 = ATR_H_POS(a1);				//î˜©?îŸµ??
 		d1 = ATR_V_POS(a1);
 		radar2(a0, d0, d1, 2);	//????
-		//??¨Á??????
+		//??îŸ‰??????
 		d0 = ATR_CRS(a0) - ATR_CRS_OLD(a0);
 		if (d0 < 0)
 			d0 = 0 - d0;
@@ -9494,20 +9494,20 @@ void monster(ACTION *a0)
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 72:		//??????ûõ?ûè?
-		ATR_CHR_ACT(a0) = ANIM_HAND;		//ûõ?ûè????????
+	case 72:		//??????î¢?î•?
+		ATR_CHR_ACT(a0) = ANIM_HAND;		//î¢?î•????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		ATR_VCT_NO(a0) = 73;		//??????ûõ?ûè???
+		ATR_VCT_NO(a0) = 73;		//??????î¢?î•???
 		ATR_STIMER(a0) = 16;
 		break;
-	case 73:		//??????ûõ?ûè??
-		if (!(--ATR_STIMER(a0)))		//ü¬???
+	case 73:		//??????î¢?î•??
+		if (!(--ATR_STIMER(a0)))		//î·???
 		{
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
 		}
 		break;
-	case 75:		//?şƒûöüÓ
+	case 75:		//?î¡‡î£î
 		if (ATR_GROUP_FLG(a0) == 0)
 			ATR_CHR_ANG(a0) = 3;
 		else if (ATR_GROUP_FLG(a0) == 1)
@@ -9519,20 +9519,20 @@ void monster(ACTION *a0)
 			ATR_CHR_ANG(a0) = 1;
 #endif
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-		//ûöüÓ?????üÒ¤úû¨
+		//î£î?????îî¸î•
 		a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 		if (a1 == NULL)
 		{
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 			return;
 		}
-		/* ûÂ??? */
+		/* î¯??? */
 		ATR_NAME(a1) = monster;
 		ATR_VCT_NO(a1) = 76;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = get_num();		//?????????
 #ifdef _VARY_WOLF
 		if (ATR_CHR_NO(a1) == 101120)
@@ -9546,9 +9546,9 @@ void monster(ACTION *a0)
 				ATR_CHR_NO(a1) += 53;
 		}
 #endif
-		/* ???£t */
+		/* ???î–º */
 		LoadBmp(ATR_PAT_NO(a0));
-		//??¤õ?????
+		//??î³?????
 #ifndef __CARYTEST
 		ATR_INT_WORK0(a1) = a0->anim_y + SpriteInfo[ATR_PAT_NO(a0)].height / 2;
 #else
@@ -9558,25 +9558,25 @@ void monster(ACTION *a0)
 		ATR_BODY_WORK(0, a1) = a0;
 		ATR_V_POS(a1) = ATR_V_POS(a0) + ATR_INT_WORK0(a1);
 		ATR_H_POS(a1) = ATR_H_POS(a0);
-		//¢r??
+		//î•˜??
 		ATR_VCT_NO(a0) = 0;
 		ATR_CHR_ACT_OLD(a0) = -1;
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 		break;
-	case 76:		//?şƒ?üÒ¤úû¨
-		//¤úû¨?£t
+	case 76:		//?î¡‡?îî¸î•
+		//î¸î•?î–º
 		a1 = ATR_BODY_WORK(0, a0);
 		ATR_V_POS(a0) = ATR_V_POS(a1) + ATR_INT_WORK0(a0);
-		//?ıè??¤š??????
+		//?î‘‘??î˜¿??????
 		if (ATR_CHR_NO(a0) == SPR_effect01)
 			d0 = pattern(a0, 5, ANM_NO_LOOP);
 		else
 			d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP);
 		if (d0)
-		{	//???ü¬???
-			DeathAction(a0);		//ü¬?
+		{	//???î·???
+			DeathAction(a0);		//î·?
 			d0 = get_num();		//?????????
-			d6 = 0;		//ş°?????????
+			d6 = 0;		//î‘·?????????
 #ifdef _VARY_WOLF
 			if (d0 >= 101429 && d0 <= 101436)
 				a1->anim_chr_no = 0;
@@ -9592,32 +9592,32 @@ void monster(ACTION *a0)
 #endif
 			while (1)
 			{
-				d1 = get_num();		//ûõûöüÓûÔ§k?ûè?üÒ?
+				d1 = get_num();		//î¢î£îîîœ±?î•?î?
 				if (d1 == 255)
-				{	//ü¬???
-					if (d6 == 0)		//?ş°??
-						ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+				{	//î·???
+					if (d6 == 0)		//?î‘·??
+						ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 					break;
 				}
 				a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				if (a1 == NULL)
 				{
-					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+					ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 					return;
 				}
-				//¤„??ûöüÓ?????üÒ¤úû¨
+				//î˜©??î£î?????îî¸î•
 				if (d1 < 0 || d1 >= BATTLKPKPLYAERNUM)
 				{
 					return;
 				}
-				a2 = p_party[d1];		//ûõûöüÓûÔ??????????
+				a2 = p_party[d1];		//î¢î£îî??????????
 				ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
 				ATR_NAME(a1) = monster;
 				ATR_VCT_NO(a1) = 77;
 				ATR_CHR_NO(a1) = d0;		//??????
-				/* ???£t */
+				/* ???î–º */
 				LoadBmp(ATR_PAT_NO(a2));
-				//??¤õ?????
+				//??î³?????
 #ifndef __CARYTEST
 				ATR_INT_WORK0(a1) = a2->anim_y + SpriteInfo[ATR_PAT_NO(a2)].height / 2;
 #else
@@ -9627,31 +9627,31 @@ void monster(ACTION *a0)
 				ATR_BODY_WORK(0, a1) = a2;
 				ATR_V_POS(a1) = ATR_V_POS(a2) + ATR_INT_WORK0(a1);
 				ATR_H_POS(a1) = ATR_H_POS(a2);
-				d6++;		//ş°???????ıø
+				d6++;		//î‘·???????î‘¡
 			}
 			return;
 		}
 		break;
-	case 77:		//?şƒ?üÒ¤úû¨
-		//¤úû¨?£t
+	case 77:		//?î¡‡?îî¸î•
+		//î¸î•?î–º
 		a1 = ATR_BODY_WORK(0, a0);
 		ATR_V_POS(a0) = ATR_V_POS(a1) + ATR_INT_WORK0(a0);
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//???ü¬???
-			DeathAction(a0);		//ü¬?
+		{	//???î·???
+			DeathAction(a0);		//î·?
 #ifdef _VARY_WOLF
 			if (a0->anim_chr_no_bak >= 101429 && a0->anim_chr_no_bak <= 101436)
 				a1->anim_chr_no = 101428;
 #endif
 #ifdef _PETSKILL_EVOLUTION
-			if ( a0->anim_chr_no_bak==101863 ){ //Åöµ½ÑÌÎíÍ¼°¸¾ÍÖ±½Ó±äÉí
+			if ( a0->anim_chr_no_bak==101863 ){ //ç¢°åˆ°çƒŸé›¾å›¾æ¡ˆå°±ç›´æ¥å˜èº«
 				if( a1->anim_chr_no == 102009 )
 					a1->anim_chr_no = 102011;
 				else if( a1->anim_chr_no == 102010 )
 					a1->anim_chr_no = 102012;
 			}
 #endif
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 			return;
 		}
 		break;
@@ -9662,24 +9662,24 @@ void monster(ACTION *a0)
 			ATR_FIRST_FLG(a0) = 0;
 			if (ATR_LIFE(a0) <= 0)
 			{	//??????
-				ATR_VCT_NO(a0) = VCT_NO_DIE + 1;		//?©û?
+				ATR_VCT_NO(a0) = VCT_NO_DIE + 1;		//?î Œ?
 				slow_flg--;		//?????
 			}
 			else
 				ATR_VCT_NO(a0) = 0;
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 		}
 		break;
-	case 79:		//?¥ø¢r?
+	case 79:		//?î¾î•˜?
 		ATR_LONG_WORK(0, a0)++;
 		if (ATR_LONG_WORK(0, a0) == 60)
 		{
 			ATR_VCT_NO(a0) = 0;
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 		break;
-	case 80:		//Ô??ûş
+	case 80:		//ä½‹??î«
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			if (ATR_GROUP_FLG(a0) == 0)
@@ -9694,18 +9694,18 @@ void monster(ACTION *a0)
 #endif
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 			ATR_SPD(a0) = 32;
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+		{	//?î¡¡???
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 		break;
-	case 82:		//??¨Á?
+	case 82:		//??îŸ‰?
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			if (ATR_GROUP_FLG(a0) == 0)
@@ -9723,10 +9723,10 @@ void monster(ACTION *a0)
 			ATR_CHR_ACT_OLD(a0) = -1;
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 			ATR_STIMER(a0) = 60;
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		if (!--ATR_STIMER(a0))
-		{	//ü¬???
+		{	//î·???
 			ATR_CHR_NO(a0) = get_num();
 			ATR_CHR_ACT_OLD(a0) = -1;
 			if (ATR_GROUP_FLG(a0) == 0)
@@ -9744,10 +9744,10 @@ void monster(ACTION *a0)
 			ATR_CHR_ACT_OLD(a0) = -1;
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 			ATR_VCT_NO(a0) = 0;
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 		}
 		break;
-	case 85:		//?????¢NşÍ¨Á?
+	case 85:		//?????î”´î’”îŸ‰?
 		if (ATR_GROUP_FLG(a0) == 0)
 			ATR_CHR_ANG(a0) = 3;
 		else if (ATR_GROUP_FLG(a0) == 1)
@@ -9759,24 +9759,24 @@ void monster(ACTION *a0)
 			ATR_CHR_ANG(a0) = 1;
 #endif
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
-		//ûöüÓ?????üÒ¤úû¨
+		//î£î?????îî¸î•
 		a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 		if (a1 == NULL)
 		{
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
-			ATR_VCT_NO(a0) = 0;		//¢r??
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
+			ATR_VCT_NO(a0) = 0;		//î•˜??
 			return;
 		}
-		/* ûÂ??? */
+		/* î¯??? */
 		ATR_NAME(a1) = monster;
 		ATR_VCT_NO(a1) = 86;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = SPR_effect01;
-		/* ???£t */
+		/* ???î–º */
 		LoadBmp(ATR_PAT_NO(a0));
-		//??¤õ?????
+		//??î³?????
 #ifndef __CARYTEST
 		ATR_INT_WORK0(a1) = a0->anim_y + SpriteInfo[ATR_PAT_NO(a0)].height / 2;
 #else
@@ -9786,40 +9786,40 @@ void monster(ACTION *a0)
 		ATR_BODY_WORK(0, a1) = a0;
 		ATR_V_POS(a1) = ATR_V_POS(a0) + ATR_INT_WORK0(a1);
 		ATR_H_POS(a1) = ATR_H_POS(a0);
-		//¢r??
+		//î•˜??
 		ATR_VCT_NO(a0) = 0;
 		ATR_CHR_ACT_OLD(a0) = -1;
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);	//???
 		break;
-	case 86:		//?????¢NşÍ¨Á??üÒ¤úû¨
-		//?ıè??¤š??????
+	case 86:		//?????î”´î’”îŸ‰??îî¸î•
+		//?î‘‘??î˜¿??????
 		if (ATR_CHR_NO(a0) == SPR_effect01)
 			d0 = pattern(a0, 5, ANM_NO_LOOP);
 		else
 			d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP);
 		if (d0)
-		{	//???ü¬???
-			//¢NşÍ¨Á?
-			ATR_ATTRIB(p_master) = get_num();		//¢NşÍûè?üÒ?
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï
-			DeathAction(a0);		//ü¬?
+		{	//???î·???
+			//î”´î’”îŸ‰?
+			ATR_ATTRIB(p_master) = get_num();		//î”´î’”î•?î?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜
+			DeathAction(a0);		//î·?
 			return;
 		}
 		break;
-	case 87:		//???¥`??¡q
-		ATR_SPD(a0) = 32;		//?¥h¢L¥Tspeed
-		a1 = p_party[ATR_PLACE_NO(a0) - 5];		//¡‚?¤„???//µĞ·½
+	case 87:		//???î™¦??î“·
+		ATR_SPD(a0) = 32;		//?î™®î”²î™šspeed
+		a1 = p_party[ATR_PLACE_NO(a0) - 5];		//î”‡?î˜©???//æ•Œæ–¹
 		d0 = ATR_H_POS(a1);//y
 		d1 = ATR_V_POS(a1);//x
 		radar(a0, &d0, &d1);	//????//d0:course1  d1:distance
 		ATR_CRS(a0) = d0;		//??????
-		//??¨Á??????
+		//??îŸ‰??????
 		d0 = ATR_CRS(a0) - ATR_CRS_OLD(a0);
 		if (d0 < 0)
 			d0 = 0 - d0;
 		if (d0 >= 2)
 		{
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)//ĞŞÕıÌÓÅÜ·½Ïò
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)//ä¿®æ­£é€ƒè·‘æ–¹å‘
 #else
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
 			ATR_CRS_OLD(a0) = ATR_CRS(a0);
@@ -9828,37 +9828,37 @@ void monster(ACTION *a0)
 		if (d1 <= 32 * 2)
 		{	//????
 			ATR_FIRST_FLG(a0) = 0;		//????????
-			ATR_VCT_NO(a0) = 88;		//???¥`???
+			ATR_VCT_NO(a0) = 88;		//???î™¦???
 		}
 		else
-			gemini(a0);		//?¥h
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+			gemini(a0);		//?î™®
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 88:		//???¥`??
+	case 88:		//???î™¦??
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_STIMER(a0) = 40;
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)//ĞŞÕıÌÓÅÜ·½Ïò
-			//?¥h¢L¥T???
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)//ä¿®æ­£é€ƒè·‘æ–¹å‘
+			//?î™®î”²î™š???
 			ATR_SPD(a0) = 60;
-			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//¤_û¢???????
+			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//î˜…î???????
 #else
-			//?¥h¢L¥T???
+			//?î™®î”²î™š???
 			ATR_SPD(a0) = 40;
-			ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+			ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 #endif
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		//?¥h?úğ??
+		//?î™®?îŒ¿??
 		if (!ATR_STIMER(a0)--)
 		{
-			ATR_VCT_NO(a0) = 89;		//???¥`????
+			ATR_VCT_NO(a0) = 89;		//???î™¦????
 			ATR_STIMER(a0) = 40;
-			//???¥`?¤úû¨
+			//???î™¦?î¸î•
 			set_damage_num(a0, 17, -64);
-#ifdef _SKILL_ROAR  //³è¼¼:´óºğ(¿ËÄêÊŞ)ĞŞÕıÌÓÅÜ·½Ïò
+#ifdef _SKILL_ROAR  //å® æŠ€:å¤§å¼(å…‹å¹´å…½)ä¿®æ­£é€ƒè·‘æ–¹å‘
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 7;
 			else if (ATR_GROUP_FLG(a0) == 1)
@@ -9881,12 +9881,12 @@ void monster(ACTION *a0)
 				ATR_CHR_ANG(a0) = 1;
 #endif
 #endif
-			//©˜????
+			//îŸµ????
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (crs_change_tbl2[ATR_CHR_ANG(a0)]) & 31;
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 89:		//???¥`???
+	case 89:		//???î™¦???
 		if (ATR_STIMER(a0))
 		{
 			ATR_STIMER(a0)--;
@@ -9894,15 +9894,15 @@ void monster(ACTION *a0)
 		}
 		gemini(a0);
 		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
+		{	//?î¡¡???
 			ATR_NAME(a0) = NULL;
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
-			ATR_DAMAGE(p_master)++;		//£DüÒ?ıï
-			//û«§Æ??????
+			ATR_DAMAGE(p_master)++;		//î–Šî?î‘˜
+			//î˜î¤??????
 			if (BattleMyNo + 5 == ATR_PLACE_NO(a0))
 			{
-				// ??????ü¬??????
+				// ??????î·??????
 				if (att_select_flg == TRUE)
 				{
 					//????
@@ -9911,7 +9911,7 @@ void monster(ACTION *a0)
 				}
 				else
 				{
-					// ¥i?????
+					// î™¯?????
 					if (battlePetNoBak2 == pc.battlePetNo)
 					{
 						//????
@@ -9924,45 +9924,45 @@ void monster(ACTION *a0)
 				}
 			}
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, 1, ANM_LOOP);
 		break;
-	case 90:		//????§r
+	case 90:		//????îœ¸
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			//????§r¤úû¨
+			//????îœ¸î¸î•
 			set_damage_num(a0, 18, -64);
 			ATR_STIMER(a0) = 0;		//????????
-			ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		//©˜?ûè?üÒ?
+		//îŸµ?î•?î?
 		d0 = pet_nix_tbl[ATR_STIMER(a0)++];
 		if (d0 == -2)
-		{	//ü¬???
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
-			ATR_DAMAGE(p_master)++;		//£DüÒ?ıï
+		{	//î·???
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
+			ATR_DAMAGE(p_master)++;		//î–Šî?î‘˜
 			break;
 		}
-		ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + d0) & 7;		//??¨Á?
+		ATR_CHR_ANG(a0) = (ATR_CHR_ANG(a0) + d0) & 7;		//??îŸ‰?
 		pattern(a0, 1, ANM_LOOP);
 		break;
-	case 95:		//¥s?????úğ
+	case 95:		//î™¹?????îŒ¿
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			ATR_LONG_WORK(0, a0) = get_num();		//¡‚?¤„???
-			ATR_LONG_WORK(1, a0) = get_num();		//şÎ???????
-			a1 = ATR_BODY_WORK(0, a0) = p_party[ATR_LONG_WORK(0, a0)];		//¡‚?¤„???
+			ATR_LONG_WORK(0, a0) = get_num();		//î”‡?î˜©???
+			ATR_LONG_WORK(1, a0) = get_num();		//î’•???????
+			a1 = ATR_BODY_WORK(0, a0) = p_party[ATR_LONG_WORK(0, a0)];		//î”‡?î˜©???
 			d0 = ATR_INT_WORK0(a1);
 			d1 = ATR_INT_WORK1(a1);
 			radar(a0, &d0, &d1);	//????
 			ATR_CRS(a0) = d0;		//??????
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
-			ATR_SPD(a0) = 32;		//?¥h¢L¥T
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
+			ATR_SPD(a0) = 32;		//?î™®î”²î™š
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -9970,10 +9970,10 @@ void monster(ACTION *a0)
 		gemini(a0);
 		if (d1 <= 32 * 2)
 		{	//????
-			ATR_VCT_NO(a0) = 96;		//¥s????şÎ??
+			ATR_VCT_NO(a0) = 96;		//î™¹????î’•??
 			if (ATR_LONG_WORK(1, a0))
-			{	//şÎ???
-				a1 = ATR_BODY_WORK(0, a0);		//¤„????????¤_û¢
+			{	//î’•???
+				a1 = ATR_BODY_WORK(0, a0);		//î˜©????????î˜…î
 				ATR_VCT_NO(a1) = 98;			//
 				ATR_SPD(a1) = ATR_SPD(a0);
 				ATR_CRS(a1) = ATR_CRS(a0);
@@ -9982,21 +9982,21 @@ void monster(ACTION *a0)
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 96:		//¥s????şÎ?
+	case 96:		//î™¹????î’•?
 		gemini(a0);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT		//?ş???
+		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT		//?î¡¡???
 			|| ATR_V_POS(a0) > lpDraw->ySize + SCREEN_OUT || ATR_V_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
+		{	//?î¡¡???
 			ATR_NAME(a0) = NULL;
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï
-			//û«§Æ??????
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜
+			//î˜î¤??????
 			if (BattleMyNo + 5 == ATR_PLACE_NO(a0))
 			{
-				// ??????ü¬??????
+				// ??????î·??????
 				if (att_select_flg == TRUE)
 				{
 					//????
@@ -10005,7 +10005,7 @@ void monster(ACTION *a0)
 				}
 				else
 				{
-					// ¥i?????
+					// î™¯?????
 					if (battlePetNoBak2 == pc.battlePetNo)
 					{
 						//????
@@ -10018,15 +10018,15 @@ void monster(ACTION *a0)
 				}
 			}
 			if (ATR_LONG_WORK(1, a0))
-			{	//şÎ???
-				a1 = ATR_BODY_WORK(0, a0);		//¤„?????
+			{	//î’•???
+				a1 = ATR_BODY_WORK(0, a0);		//î˜©?????
 				ATR_NAME(a1) = NULL;
-				ATR_ATTRIB(a1) |= ACT_ATR_HIDE;		//¤úû¨??
+				ATR_ATTRIB(a1) |= ACT_ATR_HIDE;		//î¸î•??
 				ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-				//û«§Æ??????
+				//î˜î¤??????
 				if (BattleMyNo + 5 == ATR_LONG_WORK(0, a0))
 				{
-					// ??????ü¬??????
+					// ??????î·??????
 					if (att_select_flg == TRUE)
 					{
 						//????
@@ -10035,7 +10035,7 @@ void monster(ACTION *a0)
 					}
 					else
 					{
-						// ¥i?????
+						// î™¯?????
 						if (battlePetNoBak2 == pc.battlePetNo)
 						{
 							//????
@@ -10050,25 +10050,25 @@ void monster(ACTION *a0)
 			}
 		}
 		break;
-	case 98:		//¥s????¤„????????¤_û¢
+	case 98:		//î™¹????î˜©????????î˜…î
 		gemini(a0);
 		break;
-	case 100:		//?????úğ
+	case 100:		//?????îŒ¿
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			ATR_LONG_WORK(0, a0) = get_num();		//¡‚?¤„???
-			ATR_LONG_WORK(1, a0) = get_num();		//şÎ???????
-			a1 = ATR_BODY_WORK(0, a0) = p_party[ATR_LONG_WORK(0, a0)];		//¡‚?¤„???
+			ATR_LONG_WORK(0, a0) = get_num();		//î”‡?î˜©???
+			ATR_LONG_WORK(1, a0) = get_num();		//î’•???????
+			a1 = ATR_BODY_WORK(0, a0) = p_party[ATR_LONG_WORK(0, a0)];		//î”‡?î˜©???
 			d0 = ATR_INT_WORK0(a1);
 			d1 = ATR_INT_WORK1(a1);
 			radar(a0, &d0, &d1);	//????
 			ATR_CRS(a0) = d0;		//??????
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
-			ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
-			ATR_SPD(a0) = 32;		//?¥h¢L¥T
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
+			ATR_SPD(a0) = 32;		//?î™®î”²î™š
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
-		a1 = ATR_BODY_WORK(0, a0);		//¤„????????
+		a1 = ATR_BODY_WORK(0, a0);		//î˜©????????
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -10086,33 +10086,33 @@ void monster(ACTION *a0)
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//?????????
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//?????ü¬???
+		{	//?????î·???
 			ATR_CHR_ACT_OLD(a0) = -1;
-			ATR_VCT_NO(a0) = 102;		//????¢r??
+			ATR_VCT_NO(a0) = 102;		//????î•˜??
 			ATR_FIRST_FLG(a0) = 0;		//???????
 		}
 		break;
-	case 102:		//????¢r?
+	case 102:		//????î•˜?
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
-			ATR_STIMER(a0) = 30;		//¼?????
-			if (ATR_LONG_WORK(1, a0))		//şÎ???
-				//şÎ?¤úû¨
+			ATR_STIMER(a0) = 30;		//ä¼¡?????
+			if (ATR_LONG_WORK(1, a0))		//î’•???
+				//î’•?î¸î•
 				set_damage_num(a0, 7, -64);
 			else
-				//ûº¦¤úû¨
+				//î§î›²î¸î•
 				set_damage_num(a0, 8, -64);
-			ATR_FIRST_FLG(a0) = 1;		//?????ü¬?
+			ATR_FIRST_FLG(a0) = 1;		//?????î·?
 		}
 		ATR_STIMER(a0)--;
 		if (ATR_STIMER(a0) == 0)
-		{	//ü¬???
+		{	//î·???
 			if (ATR_LONG_WORK(1, a0))
-			{	//şÎ???
-				ATR_VCT_NO(a0) = 103;		//¥`??úğ??
+			{	//î’•???
+				ATR_VCT_NO(a0) = 103;		//î™¦??îŒ¿??
 				if (ATR_GROUP_FLG(a0) == 0)
 					ATR_CHR_ANG(a0) = 7;
 				else if (ATR_GROUP_FLG(a0) == 1)
@@ -10123,73 +10123,73 @@ void monster(ACTION *a0)
 				else if (ATR_GROUP_FLG(a0) == 3)	
 					ATR_CHR_ANG(a0) = 5;
 #endif
-				//©˜????
+				//îŸµ????
 				ATR_CRS_OLD(a0) = ATR_CRS(a0) = (crs_change_tbl2[ATR_CHR_ANG(a0)]) & 31;
 				a1 = ATR_BODY_WORK(0, a0);		//?????????
 				ATR_VCT_NO(a1) = 104;
 			}
 			else
 			{
-				d0 = ATR_INT_WORK0(a0);		//ı÷???
+				d0 = ATR_INT_WORK0(a0);		//î‘ ???
 				d1 = ATR_INT_WORK1(a0);
 				radar(a0, &d0, &d1);	//????
 				ATR_CHR_ANG(a0) = crs_change_tbl[d0];
 				ATR_SPD(a0) = 32;
-				ATR_VCT_NO(a0) = 4;		//?¢~?
+				ATR_VCT_NO(a0) = 4;		//?î•¤?
 			}
 		}
 		break;
-	case 103:		//¥`??úğ?
+	case 103:		//î™¦??îŒ¿?
 		gemini(a0);
 		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
+		{	//?î¡¡???
 			ATR_NAME(a0) = NULL;
-			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+			ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 			ATR_VCT_NO(a0) = VCT_NO_APPEAR;
-			ATR_DAMAGE(p_master)++;		//£DüÒ?ıï
-			a1 = ATR_BODY_WORK(0, a0);		//?????¤_û¢?
+			ATR_DAMAGE(p_master)++;		//î–Šî?î‘˜
+			a1 = ATR_BODY_WORK(0, a0);		//?????î˜…î?
 			ATR_VCT_NO(a1) = 0;
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, 1, ANM_LOOP);
 		break;
-	case 104:		//¥`?????
-		ATR_CHR_ACT(a0) = ANIM_ANGRY;		//âº????????
+	case 104:		//î™¦?????
+		ATR_CHR_ACT(a0) = ANIM_ANGRY;		//å¤‚????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 105:		//??¢r?
+	case 105:		//??î•˜?
 		if (!--ATR_STIMER(a0))
 		{
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
 		}
 		break;
 	case 110:		//????
 		if (!--ATR_STIMER(a0))
 		{
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
 		}
 		break;
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
-	case 114:		//×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
+	case 114:		//è‡ªçˆ†
 		ATR_SPD(a0) = 63;
-		ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//¤úû¨??
+		ATR_ATTRIB(a0) |= ACT_ATR_HIDE;		//î¸î•??
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
-		{	//?ş???
-			ATR_VCT_NO(a0) = 0;		//¤_û¢?
-			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???ıï???
+		{	//?î¡¡???
+			ATR_VCT_NO(a0) = 0;		//î˜…î?
+			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???î‘˜???
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
 #endif
 		//249:
-	case VCT_NO_APPEAR:		//¥KıÍ
+	case VCT_NO_APPEAR:		//î™‘î¶
 		if (ATR_GROUP_FLG(a0) == 0)
 			ATR_CHR_ANG(a0) = 3;
 		else if (ATR_GROUP_FLG(a0) == 1)
@@ -10200,52 +10200,52 @@ void monster(ACTION *a0)
 		else if (ATR_GROUP_FLG(a0) == 3)	
 			ATR_CHR_ANG(a0) = 1;
 #endif
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		ATR_SPD(a0) = 12;
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 2) || ATR_CHR_NO(a0) == 101490)
 		{	//????
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			ATR_VCT_NO(a0) = 0;		//¢r??
-			ATR_CHR_ACT(a0) = ANIM_STAND;		//¤_û¢???????
+			ATR_VCT_NO(a0) = 0;		//î•˜??
+			ATR_CHR_ACT(a0) = ANIM_STAND;		//î˜…î???????
 			ATR_SPD(a0) = 32;
 			ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 		}
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case VCT_NO_DIE:		//?©û
+	case VCT_NO_DIE:		//?î Œ
 		ATR_SPD(a0) = 4;
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
 		ATR_CRS(a0) = d0;		//??????
-		gemini(a0);		//?¥h
+		gemini(a0);		//?î™®
 		if (d1 <= (ATR_SPD(a0) >> 2))
 		{	//????
-			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?¤õ¨ùşÕ
+			ATR_H_POS(a0) = ATR_INT_WORK0(a0);		//?î³îŸœî’œ
 			ATR_V_POS(a0) = ATR_INT_WORK1(a0);
-			ATR_VCT_NO(a0) = VCT_NO_DIE + 1;		//?©û????
+			ATR_VCT_NO(a0) = VCT_NO_DIE + 1;		//?î Œ????
 		}
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		if (s_timer & 1)
 			pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case VCT_NO_DIE + 1:		//?©û
-		ATR_CHR_ACT(a0) = ANIM_DEAD;		//?©û???????
+	case VCT_NO_DIE + 1:		//?î Œ
+		ATR_CHR_ACT(a0) = ANIM_DEAD;		//?î Œ???????
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//???ü¬???
+		{	//???î·???
 #ifdef __NEW_BATTLE_EFFECT
 			int effect = ATR_EFFECT_FLAG(a0);
 			int effect_anim = ATR_EFFECT_ANIM(a0);
 
 			switch (effect)
 			{
-			case 1:	//ÌæÉíÍŞÍŞ
+			case 1:	//æ›¿èº«å¨ƒå¨ƒ
 				a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				if (a1 == NULL)
 				{
@@ -10254,14 +10254,14 @@ void monster(ACTION *a0)
 					ATR_EFFECT_PARAM(a0) = 0;
 					return;
 				}
-				//¤„??ûöüÓ?????üÒ¤úû¨
+				//î˜©??î£î?????îî¸î•
 				ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
 				ATR_NAME(a1) = monster;
 				ATR_VCT_NO(a1) = VCT_NO_EFFECT;
 				ATR_CHR_NO(a1) = effect_anim;		//??????
-				/* ???£t */
+				/* ???î–º */
 				LoadBmp(ATR_PAT_NO(a0));
-				//??¤õ?????
+				//??î³?????
 #ifndef __CARYTEST
 				ATR_INT_WORK0(a1) = a0->anim_y + SpriteInfo[ATR_PAT_NO(a0)].height / 2;
 #else
@@ -10274,14 +10274,14 @@ void monster(ACTION *a0)
 				break;
 			}
 #endif
-			ATR_VCT_NO(a0) = VCT_NO_DIE + 2;		//?©û?
-			//????¤úû¨
+			ATR_VCT_NO(a0) = VCT_NO_DIE + 2;		//?î Œ?
+			//????î¸î•
 			set_piyo_loop(a0);
 			//?????
 			play_se(6, ATR_H_POS(a0), 240);
 		}
 		break;
-	case VCT_NO_DIE + 2:		//?©û
+	case VCT_NO_DIE + 2:		//?î Œ
 		break;
 #ifdef __NEW_BATTLE_EFFECT
 		//	case VCT_NO_PAUSE:
@@ -10293,21 +10293,21 @@ void monster(ACTION *a0)
 
 						  switch (effect)
 						  {
-						  case 1:			//ÌæÉíÍŞÍŞ
+						  case 1:			//æ›¿èº«å¨ƒå¨ƒ
 							  ATR_V_POS(a0) = ATR_V_POS(a1) + ATR_INT_WORK0(a0);
 							  if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-							  {	//???ü¬???
-								  //??£k¤úû¨
+							  {	//???î·???
+								  //??î–±î¸î•
 								  ATR_LIFE(a1) = ATR_EFFECT_PARAM(a1);
-								  if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?¢†£’???
-									  ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?¢†???
-								  ATR_VCT_NO(a1) = 0;		//¤_û¢?
-								  ATR_CHR_ACT(a1) = ANIM_STAND;		//¤_û¢???????
+								  if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//?î•«î——???
+									  ATR_LIFE(a1) = ATR_MAX_LIFE(a1);		//?î•«???
+								  ATR_VCT_NO(a1) = 0;		//î˜…î?
+								  ATR_CHR_ACT(a1) = ANIM_STAND;		//î˜…î???????
 								  pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 								  ATR_EFFECT_FLAG(a1) = 0;
 								  ATR_EFFECT_ANIM(a1) = 0;
 								  ATR_EFFECT_PARAM(a1) = 0;
-								  DeathAction(a0);		//ü¬?
+								  DeathAction(a0);		//î·?
 								  ATR_DAMAGE(p_master)++;
 							  }
 							  return;
@@ -10315,7 +10315,7 @@ void monster(ACTION *a0)
 							  ATR_EFFECT_FLAG(a1) = 0;
 							  ATR_EFFECT_ANIM(a1) = 0;
 							  ATR_EFFECT_PARAM(a1) = 0;
-							  DeathAction(a0);		//ü¬?
+							  DeathAction(a0);		//î·?
 							  ATR_DAMAGE(p_master)++;
 							  break;
 						  }
@@ -10323,9 +10323,9 @@ void monster(ACTION *a0)
 		break;
 #endif
 #ifdef __ATTACK_MAGIC
-		// ²úÉúÇ°ÖÃ¶¯»­
+		// äº§ç”Ÿå‰ç½®åŠ¨ç”»
 	case ATTACK_MAGIC_CASE:
-		// ÊÇ·ñÔÚÓÒÏÂ·½
+		// æ˜¯å¦åœ¨å³ä¸‹æ–¹
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 		if (0XFFFFFFFF != AttMgc.iPreMgcNum)
@@ -10337,8 +10337,8 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 1;		// Ç°ÖÃ¶¯»­
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 1;		// å‰ç½®åŠ¨ç”»
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (AttMgc.iPreMgcNum == 101120)
 				ATR_DISP_PRIO(a1)	= (1 == AttMgc.wPreMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 			else 
@@ -10355,7 +10355,7 @@ void monster(ACTION *a0)
 		ATR_CHR_ACT_OLD(a0) = -1;
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-		// Ö´ĞĞÇ°ÖÃ¶¯»­
+		// æ‰§è¡Œå‰ç½®åŠ¨ç”»
 	case ATTACK_MAGIC_CASE + 1:
 		a1 = ATR_BODY_WORK(0, a0);
 		ATR_H_POS(a0) = ATR_H_POS(a1) + AttMgc.wPreMgcX;
@@ -10367,24 +10367,24 @@ void monster(ACTION *a0)
 			//ToCallMgc.wRunPreMgc = TRUE;
 		}
 		break;
-		// Ö´ĞĞÄ¿Ç°µÄÖäÊõ
+		// æ‰§è¡Œç›®å‰çš„å’’æœ¯
 	case ATTACK_MAGIC_CASE + 2:
 	{
 								  idx = ATR_LONG_WORK(0, a0);
 
-								  // ²¥·ÅµÄÊÇÏà¶ÔÓÚÈËÎïµÄÎ»ÖÃ
+								  // æ’­æ”¾çš„æ˜¯ç›¸å¯¹äºäººç‰©çš„ä½ç½®
 								  if (20 != idx)
 								  {
 									  a1 = p_party[idx];
 									  ATR_H_POS(a0) = ATR_H_POS(a1) + AttMgc.posAttacked[0].x;
 									  ATR_V_POS(a0) = ATR_V_POS(a1) + AttMgc.posAttacked[0].y;
 								  }
-								  // ²¥·Å¾ø¶Ô×ù±êµÄÖäÊõ
+								  // æ’­æ”¾ç»å¯¹åº§æ ‡çš„å’’æœ¯
 								  else
 								  {
 									  int value = 0;
 
-									  // Ä¿Ç°ÕıÔÚµØÕğÖĞ
+									  // ç›®å‰æ­£åœ¨åœ°éœ‡ä¸­
 									  if (2 == g_iRunEarthQuake)
 										  value = piyo_tbl[(piyo_point + g_iCurRunEarthQuake) & 63] + 12;
 
@@ -10394,14 +10394,14 @@ void monster(ACTION *a0)
 								  if (d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 								  {
 									  DeathAction(a0);
-									  // Èç¹ûÃ»ÓĞºóÖÃ¶¯»­
+									  // å¦‚æœæ²¡æœ‰åç½®åŠ¨ç”»
 									  if (0XFFFFFFFF == AttMgc.iPostMgcNum)
 									  {
 										  AttMgc.wNumAttackeds++;
 										  if (20 == idx)
 										  {
-											  // wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-											  // wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+											  // wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+											  // wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 											  int i = 0, j, charahurt, pethurt;
 
 											  while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10511,14 +10511,14 @@ void monster(ACTION *a0)
 											  }
 										  }
 									  }
-									  // ÓµÓĞºóÖÃ¶¯»­
+									  // æ‹¥æœ‰åç½®åŠ¨ç”»
 									  else
 									  {
-										  // Õë¶ÔËùÓĞµÄµĞÈËÊ©ºóÖÃ¶¯»­
+										  // é’ˆå¯¹æ‰€æœ‰çš„æ•Œäººæ–½åç½®åŠ¨ç”»
 										  if (20 == idx) // idx = wAttackedIndex[0]
 										  {
-											  // wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-											  // wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+											  // wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+											  // wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 											  int i = 0;
 
 											  while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10526,7 +10526,7 @@ void monster(ACTION *a0)
 												  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 												  ATR_NAME(a1) = monster;
-												  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// ºóÖÃ¶¯»­
+												  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// åç½®åŠ¨ç”»
 												  ATR_DISP_PRIO(a1) = (1 == AttMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 												  ATR_CHR_NO(a1) = AttMgc.iPostMgcNum;
 												  ATR_LONG_WORK(0, a1) = AttMgc.wAttackedIndex[i];
@@ -10534,13 +10534,13 @@ void monster(ACTION *a0)
 												  ATR_V_POS(a1) = ATR_V_POS(p_party[AttMgc.wAttackedIndex[i]]) + AttMgc.wPostMgcY;
 											  }
 										  }
-										  // Õë¶ÔÄ³Ò»¸öµĞÈËÊ©ºóÖÃ¶¯»­
+										  // é’ˆå¯¹æŸä¸€ä¸ªæ•Œäººæ–½åç½®åŠ¨ç”»
 										  else
 										  {
 											  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 											  ATR_NAME(a1) = monster;
-											  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// ºóÖÃ¶¯»­
+											  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// åç½®åŠ¨ç”»
 											  ATR_DISP_PRIO(a1) = (1 == AttMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 											  ATR_CHR_NO(a1) = AttMgc.iPostMgcNum;
 											  ATR_LONG_WORK(0, a1) = idx;
@@ -10550,7 +10550,7 @@ void monster(ACTION *a0)
 									  }
 								  }
 
-								  // ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+								  // å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 								  if (AttMgc.wNumAttackeds == AttMgc.wNumAttacks && 0 == iAttackedNum)
 								  {
 									  ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10559,7 +10559,7 @@ void monster(ACTION *a0)
 								  }
 								  break;
 	}
-		// Ö´ĞĞºóÖÃ¶¯»­
+		// æ‰§è¡Œåç½®åŠ¨ç”»
 	case ATTACK_MAGIC_CASE + 3:
 		idx = ATR_LONG_WORK(0, a0);
 		a1 = p_party[idx];
@@ -10572,8 +10572,8 @@ void monster(ACTION *a0)
 			AttMgc.wNumAttackeds++;
 			if (20 == idx)
 			{
-				// wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-				// wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+				// wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+				// wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 				int i = 0, j, charahurt, pethurt;
 
 				while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10665,7 +10665,7 @@ void monster(ACTION *a0)
 				}
 			}
 		}
-		// ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+		// å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 		if (AttMgc.wNumAttackeds == AttMgc.wNumAttacks && 0 == iAttackedNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10673,7 +10673,7 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		// ´øÈËÎïÊÜÉËµÄÍ¼
+		// å¸¦äººç‰©å—ä¼¤çš„å›¾
 	case ATTACK_MAGIC_CASE + 4:
 		if (ATR_FIRST_FLG(a0) > 40)
 			ATR_FIRST_FLG(a0) = 0;
@@ -10697,7 +10697,7 @@ void monster(ACTION *a0)
 			gemini(a0);
 			++iCurAttackedFinishNum;
 		}
-		// ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+		// å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10719,9 +10719,9 @@ void monster(ACTION *a0)
 		break;
 #endif
 #ifdef __TOCALL_MAGIC
-		// ²úÉúÇ°ÖÃ¶¯»­
+		// äº§ç”Ÿå‰ç½®åŠ¨ç”»
 	case TOCALL_MAGIC_CASE:
-		// ÊÇ·ñÔÚÓÒÏÂ·½
+		// æ˜¯å¦åœ¨å³ä¸‹æ–¹
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
 
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
@@ -10735,8 +10735,8 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 1;		// Ç°ÖÃ¶¯»­
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+			ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 1;		// å‰ç½®åŠ¨ç”»
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 			if (ToCallMgc.iPreMgcNum == 101120)
 				ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPreMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 			else 
@@ -10751,13 +10751,13 @@ void monster(ACTION *a0)
 		}
 		ATR_VCT_NO(a0) = 0;
 		ATR_CHR_ACT_OLD(a0) = -1;
-#ifdef _PETSKILL_LER			// À×¶û¼¼ÄÜ
+#ifdef _PETSKILL_LER			// é›·å°”æŠ€èƒ½
 		if (ATR_CHR_NO(a0) == 101815)
 			ATR_CHR_NO(a0) = ATR_CHR_NO(a0) * -1;
 #endif
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-		// Ö´ĞĞÇ°ÖÃ¶¯»­
+		// æ‰§è¡Œå‰ç½®åŠ¨ç”»
 	case TOCALL_MAGIC_CASE + 1:
 
 		a1 = ATR_BODY_WORK(0, a0);
@@ -10768,7 +10768,7 @@ void monster(ACTION *a0)
 		{
 			DeathAction(a0);
 			ToCallMgc.wRunPreMgc = TRUE;
-#ifdef _PETSKILL_LER			// À×¶û¼¼ÄÜ
+#ifdef _PETSKILL_LER			// é›·å°”æŠ€èƒ½
 			if (ATR_CHR_NO_OLD(a1) < 0)
 			{
 				int side;
@@ -10779,12 +10779,12 @@ void monster(ACTION *a0)
 					int i;
 					for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 					{
-						// ÏÈÕÒµ½À×¶ûÎ»ÖÃ
+						// å…ˆæ‰¾åˆ°é›·å°”ä½ç½®
 						if (ATR_CHR_NO(p_party[i]) == ATR_CHR_NO(a1))
 							break;
 					}
 					side = i = (i < 10 ? 0:10);
-					// À×¶û²àµÄÈËÈ«¶¼ÏûÊ§
+					// é›·å°”ä¾§çš„äººå…¨éƒ½æ¶ˆå¤±
 					for (; i < side + 10; i++)
 						ATR_H_POS(p_party[i]) += -lpDraw->xSize;
 				}
@@ -10792,14 +10792,14 @@ void monster(ACTION *a0)
 #endif
 		}
 		break;
-		// Ö´ĞĞÄ¿Ç°µÄÖäÊõ
+		// æ‰§è¡Œç›®å‰çš„å’’æœ¯
 	case TOCALL_MAGIC_CASE + 2:
 	{
 								  idx = ATR_LONG_WORK(0, a0);
 #ifdef _PROFESSION_ADDSKILL
 								  RunTimeMagicBoundary(ATR_CHR_NO(a0));
 #endif
-								  // ²¥·ÅµÄÊÇÏà¶ÔÓÚÈËÎïµÄÎ»ÖÃ
+								  // æ’­æ”¾çš„æ˜¯ç›¸å¯¹äºäººç‰©çš„ä½ç½®
 								  if (20 != idx)
 								  {
 									  a1 = p_party[idx];
@@ -10814,19 +10814,19 @@ void monster(ACTION *a0)
 										  ATR_V_POS(a0) = ATR_V_POS(a1) + ToCallMgc.posAttacked[0].y;
 									  }
 								  }
-								  // ²¥·Å¾ø¶Ô×ù±êµÄÖäÊõ
+								  // æ’­æ”¾ç»å¯¹åº§æ ‡çš„å’’æœ¯
 								  else
 								  {
 									  int value = 0;
 
-									  // Ä¿Ç°ÕıÔÚµØÕğÖĞ
+									  // ç›®å‰æ­£åœ¨åœ°éœ‡ä¸­
 									  if (2 == g_iRunEarthQuake)
 										  value = piyo_tbl[(piyo_point + g_iCurRunEarthQuake) & 63] + 12;
 									  ATR_V_POS(a0) = ToCallMgc.posAttacked[0].y + value;
 								  }
 								  if (d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 								  {
-#ifdef _PETSKILL_LER			// À×¶û¼¼ÄÜ
+#ifdef _PETSKILL_LER			// é›·å°”æŠ€èƒ½
 									  int side;
 
 									  if (ATR_CHR_NO(a0) == 101798 || ATR_CHR_NO(a0) == 101800 || ATR_CHR_NO(a0) == 101853 || ATR_CHR_NO(a0) == 101854)
@@ -10834,17 +10834,17 @@ void monster(ACTION *a0)
 										  int i;
 										  for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 										  {
-											  // ÏÈÕÒµ½À×¶ûÎ»ÖÃ
+											  // å…ˆæ‰¾åˆ°é›·å°”ä½ç½®
 											  if (ATR_CHR_NO(p_party[i]) == 101815)
 												  break;
 										  }
 										  side = i = (i < 10 ? 0:10);
-										  // À×¶û²àµÄÈË³öÏÖ
+										  // é›·å°”ä¾§çš„äººå‡ºç°
 										  for (; i < side + 10; i++)
 											  ATR_H_POS(p_party[i]) += lpDraw->xSize;
 									  }
 #endif
-									  // Terry add fix ĞŞÕıÕÙÀ×¶¯»­
+									  // Terry add fix ä¿®æ­£å¬é›·åŠ¨ç”»
 									  if (ToCallMgc.wCurAttackNum == 101628)
 										  DeathAction(a0);
 									  else
@@ -10866,14 +10866,14 @@ void monster(ACTION *a0)
 										  }
 #endif
 									  }
-									  // Èç¹ûÃ»ÓĞºóÖÃ¶¯»­
+									  // å¦‚æœæ²¡æœ‰åç½®åŠ¨ç”»
 									  if (0XFFFFFFFF == ToCallMgc.iPostMgcNum)
 									  {
 										  ToCallMgc.wNumAttackeds++;
 										  if (20 == idx)
 										  {
-											  // wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-											  // wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+											  // wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+											  // wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 											  int i = 0, j, charahurt, pethurt;
 
 											  while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -10888,16 +10888,16 @@ void monster(ACTION *a0)
 														  ATR_LONG_WORK(0, a1) = 0;
 														  ATR_DAMAGE(a1) = charahurt;
 														  ATR_PET_DAMAGE(a1) = pethurt;
-														  if (charahurt == 0)//ÉËº¦ÖµÎª0 
+														  if (charahurt == 0)//ä¼¤å®³å€¼ä¸º0 
 														  {
-#ifdef _BATTLESKILL				// (¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
-															  if (a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650) //±ù±¬ÊõµÚÒ»ÏÂMiss²»Ğã
+#ifdef _BATTLESKILL				// (å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
+															  if (a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650) //å†°çˆ†æœ¯ç¬¬ä¸€ä¸‹Missä¸ç§€
 																  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 5;
 															  else
 															  {
 																  set_damage_num(a1, 0, -64);
 																  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 5;
-																  if ( ToCallMgc.iCurMgcNum == 101676 //¹á´©¹¥»÷µÄÉËº¦ÈôÎª0,±»´òµÄÈËÒªÓĞÉÁ±ÜµÄ¶¯×÷
+																  if ( ToCallMgc.iCurMgcNum == 101676 //è´¯ç©¿æ”»å‡»çš„ä¼¤å®³è‹¥ä¸º0,è¢«æ‰“çš„äººè¦æœ‰é—ªé¿çš„åŠ¨ä½œ
 																	  || ToCallMgc.iCurMgcNum == 101675
 																	  || ToCallMgc.iCurMgcNum == 101674
 																	  || ToCallMgc.iCurMgcNum == 101673
@@ -10908,7 +10908,7 @@ void monster(ACTION *a0)
 																	  || ToCallMgc.iCurMgcNum == 101662
 																	  || ToCallMgc.iCurMgcNum == 101661
 																	  || ToCallMgc.iCurMgcNum == 101656)
-																  {	//»ØĞı¹¥»÷
+																  {	//å›æ—‹æ”»å‡»
 																	  ATR_STIMER(a1) = 0;
 																	  ATR_FIRST_FLG(a1) = 0;		//?????????
 																	  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 6;
@@ -10971,8 +10971,8 @@ void monster(ACTION *a0)
 													  ATR_PET_DAMAGE(a1) = pethurt;
 													  if (charahurt == 0)
 													  {
-														  //#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
-														  //								if ( a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650 ) //±ù±¬ÊõµÚÒ»ÏÂMiss²»Ğã
+														  //#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
+														  //								if ( a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650 ) //å†°çˆ†æœ¯ç¬¬ä¸€ä¸‹Missä¸ç§€
 														  //									ATR_VCT_NO(a1)		= TOCALL_MAGIC_CASE + 5;
 														  //								else {
 														  //									set_damage_num( a1 , 0 , -64 );
@@ -11018,14 +11018,14 @@ void monster(ACTION *a0)
 											  }
 										  }
 									  }
-									  // ÓµÓĞºóÖÃ¶¯»­
+									  // æ‹¥æœ‰åç½®åŠ¨ç”»
 									  else
 									  {
-										  // Õë¶ÔËùÓĞµÄµĞÈËÊ©ºóÖÃ¶¯»­
+										  // é’ˆå¯¹æ‰€æœ‰çš„æ•Œäººæ–½åç½®åŠ¨ç”»
 										  if (20 == idx) // idx = wAttackedIndex[0]
 										  {
-											  // wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-											  // wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+											  // wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+											  // wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 											  int i = 0;
 
 											  while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -11033,7 +11033,7 @@ void monster(ACTION *a0)
 												  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 												  ATR_NAME(a1) = monster;
-												  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// ºóÖÃ¶¯»­
+												  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// åç½®åŠ¨ç”»
 												  ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 												  ATR_CHR_NO(a1) = ToCallMgc.iPostMgcNum;
 												  ATR_LONG_WORK(0, a1) = ToCallMgc.wAttackedIndex[i];
@@ -11041,13 +11041,13 @@ void monster(ACTION *a0)
 												  ATR_V_POS(a1) = ATR_V_POS(p_party[ToCallMgc.wAttackedIndex[i]]) + ToCallMgc.wPostMgcY;
 											  }
 										  }
-										  // Õë¶ÔÄ³Ò»¸öµĞÈËÊ©ºóÖÃ¶¯»­
+										  // é’ˆå¯¹æŸä¸€ä¸ªæ•Œäººæ–½åç½®åŠ¨ç”»
 										  else
 										  {
 											  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 											  ATR_NAME(a1) = monster;
-											  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// ºóÖÃ¶¯»­
+											  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// åç½®åŠ¨ç”»
 											  ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 											  ATR_CHR_NO(a1) = ToCallMgc.iPostMgcNum;
 											  ATR_LONG_WORK(0, a1) = idx;
@@ -11057,7 +11057,7 @@ void monster(ACTION *a0)
 									  }
 								  }
 
-								  // ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+								  // å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 								  if (ToCallMgc.wNumAttackeds == ToCallMgc.wNumAttacks && 0 == iAttackedNum)
 								  {
 									  ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -11067,7 +11067,7 @@ void monster(ACTION *a0)
 
 								  break;
 	}
-		// Ö´ĞĞºóÖÃ¶¯»­
+		// æ‰§è¡Œåç½®åŠ¨ç”»
 	case TOCALL_MAGIC_CASE + 3:
 
 		idx = ATR_LONG_WORK(0, a0);
@@ -11082,8 +11082,8 @@ void monster(ACTION *a0)
 
 			if (20 == idx)
 			{
-				// wAttackedIndex[0] ·ÅÖÃ  20 -- ´ú±íÈ«Ìå¹¥»÷
-				// wAttackedIndex[n] ·ÅÖÃ0XFF -- ´ú±í½áÊø
+				// wAttackedIndex[0] æ”¾ç½®  20 -- ä»£è¡¨å…¨ä½“æ”»å‡»
+				// wAttackedIndex[n] æ”¾ç½®0XFF -- ä»£è¡¨ç»“æŸ
 				int i = 0, j, charahurt, pethurt;
 
 				while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -11179,7 +11179,7 @@ void monster(ACTION *a0)
 
 		}
 
-		// ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+		// å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 		if (ToCallMgc.wNumAttackeds == ToCallMgc.wNumAttacks && 0 == iAttackedNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -11187,7 +11187,7 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		// ´øÈËÎïÊÜÉËµÄÍ¼
+		// å¸¦äººç‰©å—ä¼¤çš„å›¾
 	case TOCALL_MAGIC_CASE + 4:
 		if (ATR_FIRST_FLG(a0) > 40)
 			ATR_FIRST_FLG(a0) = 0;
@@ -11197,7 +11197,7 @@ void monster(ACTION *a0)
 			ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;
 			gemini(a0);
 		}
-		if (40 == ATR_FIRST_FLG(a0))		// ´ú±í»áÕñ¶¯40´Î
+		if (40 == ATR_FIRST_FLG(a0))		// ä»£è¡¨ä¼šæŒ¯åŠ¨40æ¬¡
 		{
 			if (ATR_LIFE(a0) <= 0)
 			{
@@ -11214,7 +11214,7 @@ void monster(ACTION *a0)
 			gemini(a0);
 			++iCurAttackedFinishNum;
 		}
-		// ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+		// å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			for (int i = 0; i < 10; i++)
@@ -11255,9 +11255,9 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		//ÈËÎïÉÁ±Ü
+		//äººç‰©é—ªé¿
 	case TOCALL_MAGIC_CASE + 6:
-		ATR_CHR_ACT(a0) = ANIM_WALK;		//?¥h???????
+		ATR_CHR_ACT(a0) = ANIM_WALK;		//?î™®???????
 		ATR_SPD(a0) = 16;
 		ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
 		if (ATR_GROUP_FLG(a0) == 1)
@@ -11269,12 +11269,12 @@ void monster(ACTION *a0)
 		ATR_STIMER(a0)++;
 		if (ATR_STIMER(a0) == 20)
 		{
-			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;//©˜?¤š?
+			ATR_CRS_OLD(a0) = ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;//îŸµ?î˜¿?
 			ATR_VCT_NO(a0) = 17;		//?????
 			ATR_STIMER(a0) = 0;
 			++iCurAttackedFinishNum;
 		}
-		// ¼º¾­²¥·ÅËùÓĞµÄ¶¯»­ÁË
+		// å·±ç»æ’­æ”¾æ‰€æœ‰çš„åŠ¨ç”»äº†
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			for (int i = 0; i < 10; i++)
@@ -11292,9 +11292,9 @@ void monster(ACTION *a0)
 		}
 		break;
 #endif
-		//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+		//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	case PROSKILL:
-		// ÊÇ·ñÔÚÓÒÏÂ·½
+		// æ˜¯å¦åœ¨å³ä¸‹æ–¹
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
 
 		ATR_CRS_OLD(a0) = ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
@@ -11313,7 +11313,7 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = PROSKILL + 1;		// Ç°ÖÃ¶¯»­
+			ATR_VCT_NO(a1) = PROSKILL + 1;		// å‰ç½®åŠ¨ç”»
 			ATR_CHR_NO(a1) = AttPreMagicNum;
 			ATR_DISP_PRIO(a1) = ATR_DISP_PRIO(a0) + 1;
 			ATR_BODY_WORK(0, a1) = a0;
@@ -11346,7 +11346,7 @@ void monster(ACTION *a0)
 	if (Light1 != NULL)
 	{
 		if (Light1->anim_cnt == 5)
-		{	//²¦·Åµ½×îºóÒ»ÕÅ
+		{	//æ‹¨æ”¾åˆ°æœ€åä¸€å¼ 
 			DeathAction(Light1);
 			Light1 = NULL;
 		}
@@ -11361,247 +11361,247 @@ ACTION *oft_test(void)
 	ACTION *a1;
 
 	p_kanji = NULL;
-	for (d7 = 0; d7 < BATTLKPKPLYAERNUM + 1; d7++)		//Çå³ı
+	for (d7 = 0; d7 < BATTLKPKPLYAERNUM + 1; d7++)		//æ¸…é™¤
 		p_missile[d7] = NULL;
-	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)		//Çå³ı
+	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)		//æ¸…é™¤
 		p_party[d7] = NULL;
 
-	// ²úÉú master action list /* ?????????????¥K? */
+	// äº§ç”Ÿ master action list /* ?????????????î™‘? */
 	a1 = GetAction(T_PRIO_MASTER, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return NULL;
-	//ÒªÖ´ĞĞµÄFunc
+	//è¦æ‰§è¡Œçš„Func
 	ATR_NAME(a1) = master;
-	//³ö³¡ÏÈ¸øÓèµÈ´ı
+	//å‡ºåœºå…ˆç»™äºˆç­‰å¾…
 	ATR_VCT_NO(a1) = 3;
-	//±íÊ¾ÓÅÏÈË³Ğò
+	//è¡¨ç¤ºä¼˜å…ˆé¡ºåº
 	ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-	// sprite ±àºÅ/* ?????§k? */
+	// sprite ç¼–å·/* ?????îœ±? */
 	ATR_CHR_NO(a1) = 31027;
-	ATR_CHR_ANG(a1) = 3;		//×óÉÏ
-	//³õÆÚÎ»ÖÃ
+	ATR_CHR_ANG(a1) = 3;		//å·¦ä¸Š
+	//åˆæœŸä½ç½®
 	ATR_H_POS(a1) = 320;
 	ATR_V_POS(a1) = 240;
-	// ¹¥»÷ÖÖÀà
-	ATR_CHR_ACT(a1) = ANIM_ATTACK;		// ÒÆ¶¯¶¯»­
-	// ¼ÇÂ¼ a1 ÓÚ p_master/* ???????¨ò¢V */
+	// æ”»å‡»ç§ç±»
+	ATR_CHR_ACT(a1) = ANIM_ATTACK;		// ç§»åŠ¨åŠ¨ç”»
+	// è®°å½• a1 äº p_master/* ???????îŸ•î”¼ */
 	p_master = a1;
-	// ²úÉú field ÔÚ×óÏÂµÄ action list/* ?????¢NşÍ???????????¥K? */
+	// äº§ç”Ÿ field åœ¨å·¦ä¸‹çš„ action list/* ?????î”´î’”???????????î™‘? */
 	a1 = GetAction(T_PRIO_MASTER, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return NULL;
-	ATR_ATTRIB(a1) = ACT_ATR_HIDE;	// ²»ÏÔÊ¾	//¤úû¨??
-	//±íÊ¾ÓÅÏÈË³Ğò
+	ATR_ATTRIB(a1) = ACT_ATR_HIDE;	// ä¸æ˜¾ç¤º	//î¸î•??
+	//è¡¨ç¤ºä¼˜å…ˆé¡ºåº
 	ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-	//³õÆÚÎ»ÖÃ
+	//åˆæœŸä½ç½®
 	ATR_H_POS(a1) = lpDraw->xSize - 32;
 	ATR_V_POS(a1) = lpDraw->ySize - 64;
-	// ¼ÇÂ¼ a1 ÓÚ p_attrib/* ???????¨ò¢V */
+	// è®°å½• a1 äº p_attrib/* ???????îŸ•î”¼ */
 	p_attrib = a1;
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 416 + 5 + DISPLACEMENT_X;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 #else
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 416 + 32 + 5 + DISPLACEMENT_X;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 #endif
-	// Ô¤ÉèÎªÍ¼ºÅÎª SPR_021em
+	// é¢„è®¾ä¸ºå›¾å·ä¸º SPR_021em
 	d2 = SPR_021em;		/*?????*/
 
-	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ĞŞ¸Ä
+	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ä¿®æ”¹
 	for (d7 = 0; d7 < MAX_BATTLE_ROW_CHARS; d7++)
-	{	//ÎÒ·½ÈËÎï
-		// ²úÉúÎÒ·½µÄ monster action list /* ??????????????¥K? */
+	{	//æˆ‘æ–¹äººç‰©
+		// äº§ç”Ÿæˆ‘æ–¹çš„ monster action list /* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
-		//ÒªÖ´ĞĞµÄFunc /* ûÂ??? */
+		//è¦æ‰§è¡Œçš„Func /* î¯??? */
 		ATR_NAME(a1) = NULL;
-		// ¶¯×÷ÎªµÇ³¡
+		// åŠ¨ä½œä¸ºç™»åœº
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ÏÔÊ¾³öÏà¹ØÑ¶Ï¢ // ??????¤úû¨????
+		// æ˜¾ç¤ºå‡ºç›¸å…³è®¯æ¯ // ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ¿ÉÒÔ±»µãÑ¡ // ???§R¤e??
+		// å¯ä»¥è¢«ç‚¹é€‰ // ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		// sprite ±àºÅ /* ?????§k? */
+		// sprite ç¼–å· /* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
-		ATR_CHR_ANG(a1) = 3;		//×óÉÏ
+		ATR_CHR_ANG(a1) = 3;		//å·¦ä¸Š
 		ATR_HIT_TIMING(a1) = 5;
-		// ³õÆÚÎ»ÖÃ /* ???£t */
+		// åˆæœŸä½ç½® /* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) += 300;
 		ATR_V_POS(a1) += 300;
-		// Ò»¿ªÊ¼ÔÚ»­ÃæÍâµÄÎ»ÖÃ
+		// ä¸€å¼€å§‹åœ¨ç”»é¢å¤–çš„ä½ç½®
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//ÒÆ¶¯ËÙ¶È
-		ATR_GROUP_FLG(a1) = 0;		// ÓÒÏÂ group set //?????????
-		ATR_PLACE_NO(a1) = d7;		// ¼ÇÂ¼¿ªÊ¼Î»ÖÃ //ıÍ?§k?¨ò¢V
-		// ¼ÇÂ¼ a1 ÓÚ ¶ÓÎéÁĞ±íÖĞ/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//ç§»åŠ¨é€Ÿåº¦
+		ATR_GROUP_FLG(a1) = 0;		// å³ä¸‹ group set //?????????
+		ATR_PLACE_NO(a1) = d7;		// è®°å½•å¼€å§‹ä½ç½® //î¶?îœ±?îŸ•î”¼
+		// è®°å½• a1 äº é˜Ÿä¼åˆ—è¡¨ä¸­/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 += 32;
 		d1 -= 24;
 	}
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 320 - 64 + 5 + DISPLACEMENT_X;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 432 - 24 + DISPLACEMENT_Y;
 #else
-	d0 = 320 - 32 + 5 + DISPLACEMENT_X;		//??¤õ
-	d1 = 432 - 24 + DISPLACEMENT_Y;		//??¤õ
+	d0 = 320 - 32 + 5 + DISPLACEMENT_X;		//??î³
+	d1 = 432 - 24 + DISPLACEMENT_Y;		//??î³
 #endif
 	d2 = SPR_pet001;		/*???*/
 
-	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ĞŞ¸Ä
+	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ä¿®æ”¹
 	for (; d7 < 2 * MAX_BATTLE_ROW_CHARS; d7++)
-	{	//ÎÒ·½³èÎï
-		/* ??????????????¥K? */
+	{	//æˆ‘æ–¹å® ç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
-		ATR_CHR_ANG(a1) = 3;		//?ıÆ
+		ATR_CHR_ANG(a1) = 3;		//?î¯
 		ATR_HIT_TIMING(a1) = 3 + 2;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) += 300;
 		ATR_V_POS(a1) += 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
 		ATR_GROUP_FLG(a1) = 0;		//?????????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 += 32 * 2;
 		d1 -= 24 * 2;
 	}
-	/* ü¬???? */
+	/* î·???? */
 	p_party[d7] = NULL;
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 64 - 32 + 5;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 192 + 30;
 #else
-	d0 = 64 - 32 + 5;		//??¤õ
-	d1 = 192 - 24 + 30;		//??¤õ
+	d0 = 64 - 32 + 5;		//??î³
+	d1 = 192 - 24 + 30;		//??î³
 #endif
 	d2 = SPR_021em;		/*?????*/
 
-	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ĞŞ¸Ä
+	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ä¿®æ”¹
 	for (; d7 < 3 * MAX_BATTLE_ROW_CHARS; d7++)
-	{	//µĞ·½ÈËÎï
-		/* ??????????????¥K? */
+	{	//æ•Œæ–¹äººç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 7;		//??
 		ATR_HIT_TIMING(a1) = 5;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) -= 300;
 		ATR_V_POS(a1) -= 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 1;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 1;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 += 32;
 		d1 -= 24;
 	}
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 32 + 32 + 5;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 264 + 48 + 10;
 #else
-	d0 = 32 + 32 + 5;		//??¤õ
-	d1 = 264 + 24 + 10;	//??¤õ
+	d0 = 32 + 32 + 5;		//??î³
+	d1 = 264 + 24 + 10;	//??î³
 #endif
 	d2 = SPR_pet001;		/*???*/
 
-	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ĞŞ¸Ä
+	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  ä¿®æ”¹
 	for (; d7 < 4 *	MAX_BATTLE_ROW_CHARS; d7++)
-	{	//µĞ·½³èÎï
-		/* ??????????????¥K? */
+	{	//æ•Œæ–¹å® ç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 7;		//??
 		ATR_HIT_TIMING(a1) = 3 + 2;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) -= 300;
 		ATR_V_POS(a1) -= 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 1;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 1;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 += 32 * 2;
 		d1 -= 24 * 2;
 	}
@@ -11611,168 +11611,168 @@ ACTION *oft_test(void)
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 	d2 = SPR_021em;		/*?????*/
 	for (d7 = 20; d7 < 25; d7++)
-	{	//µĞ·½ÈËÎï
-		/* ??????????????¥K? */
+	{	//æ•Œæ–¹äººç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 5;		//??
 		ATR_HIT_TIMING(a1) = 5;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) -= 300;
 		ATR_V_POS(a1) += 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 2;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 2;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 -= 32;
 		d1 -= 24;
 	}
-	d0 = 288 + 32 + 5;		//??¤õ
-	d1 = 432 - 24 + DISPLACEMENT_Y;		//??¤õ
+	d0 = 288 + 32 + 5;		//??î³
+	d1 = 432 - 24 + DISPLACEMENT_Y;		//??î³
 	d2 = SPR_pet001;		/*???*/
 	for (d7 = 25; d7 < 30; d7++)
-	{	//µĞ·½³èÎï
-		/* ??????????????¥K? */
+	{	//æ•Œæ–¹å® ç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 5;		//??
 		ATR_HIT_TIMING(a1) = 3 + 2;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) -= 300;
 		ATR_V_POS(a1) += 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 2;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 2;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 -= 32 * 2;
 		d1 -= 24 * 2;
 	}
 
-	//X×ù±ê
+	//Xåº§æ ‡
 	d0 = 608 - 32 + 5 + DISPLACEMENT_X;
-	//Y×ù±ê
+	//Yåº§æ ‡
 	d1 = 190 - 24 + 30;
 	d2 = SPR_021em;		/*?????*/
 	for (d7 = 30; d7 < 35; d7++)
-	{	//×óÉÏ½ÇµĞ·½ÈËÎï
-		/* ??????????????¥K? */
+	{	//å·¦ä¸Šè§’æ•Œæ–¹äººç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 1;		//??
 		ATR_HIT_TIMING(a1) = 5;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) += 300;
 		ATR_V_POS(a1) -= 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 3;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 3;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 -= 32;
 		d1 -= 24;
 	}
-	d0 = 608 - 32 + 5 + DISPLACEMENT_X;		//??¤õ
-	d1 = 236 + 24 + 30;		//??¤õ
+	d0 = 608 - 32 + 5 + DISPLACEMENT_X;		//??î³
+	d1 = 236 + 24 + 30;		//??î³
 	d2 = SPR_pet001;		/*???*/
 	for (d7 = 35; d7 < 40; d7++)
-	{	//×óÉÏ½ÇµĞ·½³èÎï
-		/* ??????????????¥K? */
+	{	//å·¦ä¸Šè§’æ•Œæ–¹å® ç‰©
+		/* ??????????????î™‘? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
 		ATR_NAME(a1) = NULL;
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-		/* ¤úû¨?¡I¥T */
+		/* î¸î•?î“î™š */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// ??????¤úû¨????
+		// ??????î¸î•????
 		a1->atr |= ACT_ATR_INFO;
-		// ???§R¤e??
+		// ???îœ˜î˜‹??
 		a1->atr |= ACT_ATR_HIT;
-		/* ?????§k? */
+		/* ?????îœ±? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 1;		//??
 		ATR_HIT_TIMING(a1) = 3 + 2;
-		/* ???£t */
+		/* ???î–º */
 		monster_place_pos[id_no] = ATR_H_POS(a1) = ATR_INT_WORK0(a1) = d0;
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) += 300;
 		ATR_V_POS(a1) -= 300;
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
-		/* ???ûï? */
-		ATR_CHR_ACT(a1) = ANIM_STAND;		//?¥h???????
-		ATR_SPD(a1) = 32;		//?¥h¢L¥T
-		ATR_GROUP_FLG(a1) = 3;		//?ıÆ???????
-		ATR_PLACE_NO(a1) = d7;		//ıÍ?§k?¨ò¢V
-		/* ???????¨ò¢V */
+		/* ???îœ? */
+		ATR_CHR_ACT(a1) = ANIM_STAND;		//?î™®???????
+		ATR_SPD(a1) = 32;		//?î™®î”²î™š
+		ATR_GROUP_FLG(a1) = 3;		//?î¯???????
+		ATR_PLACE_NO(a1) = d7;		//î¶?îœ±?îŸ•î”¼
+		/* ???????îŸ•î”¼ */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
-		/* ?¤õ?ıø */
+		/* ?î³?î‘¡ */
 		d0 -= 32 * 2;
 		d1 -= 24 * 2;
 	}
 
 #endif
-	// ³õÆÚÎ»ÖÃÔÙÅäÖÃ //???£t?¦”£t
+	// åˆæœŸä½ç½®å†é…ç½® //???î–º?î›¹î–º
 	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 	{
 		a1 = p_party[d7];
@@ -11781,21 +11781,21 @@ ACTION *oft_test(void)
 		ATR_INT_WORK0(a1) = monster_place_pos[monster_place_no[d7] * 2];
 		ATR_INT_WORK1(a1) = monster_place_pos[monster_place_no[d7] * 2 + 1];
 	}
-	command_point = 0;		// clear command point //?????şï????????
+	command_point = 0;		// clear command point //?????î’¶????????
 	return a1;
 }
 
 static int bc_pointer;
-/* ????¥‚??? *******************************************************************/
+/* ????îš‡??? *******************************************************************/
 int get_bc_num(void)
 {
 	int d0, d1;
 
 	while (1)
 	{
-		d0 = BattleStatus[bc_pointer++];		//?§ó?ûè?üÒ?
+		d0 = BattleStatus[bc_pointer++];		//?î°?î•?î?
 		if (d0 == NULL)
-		{	//ü¬???
+		{	//î·???
 			bc_pointer--;
 			return -1;
 		}
@@ -11811,16 +11811,16 @@ int get_bc_num(void)
 
 	while (1)
 	{
-		d0 = BattleStatus[bc_pointer++];		//?§ó????ûè?üÒ?
+		d0 = BattleStatus[bc_pointer++];		//?î°????î•?î?
 		if (d0 == NULL)
-		{	//ü¬???
+		{	//î·???
 			bc_pointer--;
 			break;
 		}
 		if (d0 < '0' || d0 > '9')
 		{	//??????
 			if (d0 < 'A' || d0 > 'F')		//????????
-				break;						//ü¬?
+				break;						//î·?
 		}
 		d1 = d1 << 4;		//???????
 		if (d0 >= 'A')		//?????
@@ -11831,7 +11831,7 @@ int get_bc_num(void)
 	return d1;
 }
 
-/* ??§ó?¥‚??? *******************************************************************/
+/* ??î°?îš‡??? *******************************************************************/
 void get_bc_asc(ACTION *a1, int flg)
 {
 	char d0;
@@ -11843,13 +11843,13 @@ void get_bc_asc(ACTION *a1, int flg)
 		a2 = ATR_TITLE(a1);
 	while (1)
 	{
-		d0 = BattleStatus[bc_pointer++];		//?§ó?ûè?üÒ?
+		d0 = BattleStatus[bc_pointer++];		//?î°?î•?î?
 		if (d0 == NULL)
-		{	//ü¬???
+		{	//î·???
 			bc_pointer--;
 			break;
 		}
-		//?şú???
+		//?î“???
 		if (d0 == '|')
 			break;
 		if (IsDBCSLeadByte(d0))
@@ -11860,7 +11860,7 @@ void get_bc_asc(ACTION *a1, int flg)
 		else
 			*a2++ = d0;
 	}
-	//ü¬????
+	//î·????
 	*a2 = 0;
 	if (flg == 0)
 		makeStringFromEscaped(ATR_HANDLE(a1));
@@ -11869,7 +11869,7 @@ void get_bc_asc(ACTION *a1, int flg)
 }
 
 // Robin 0728
-/* ??§ó?¥‚??? for Ride Pet*******************************************************************/
+/* ??î°?îš‡??? for Ride Pet*******************************************************************/
 void get_bc_asc_ridepet(ACTION *a1)
 {
 	char d0;
@@ -11878,13 +11878,13 @@ void get_bc_asc_ridepet(ACTION *a1)
 	a2 = ATR_PETNAME(a1);
 	while (1)
 	{
-		d0 = BattleStatus[bc_pointer++];		//?§ó?ûè?üÒ?
+		d0 = BattleStatus[bc_pointer++];		//?î°?î•?î?
 		if (d0 == NULL)
-		{	//ü¬???
+		{	//î·???
 			bc_pointer--;
 			break;
 		}
-		//?şú???
+		//?î“???
 		if (d0 == '|')
 			break;
 		if (IsDBCSLeadByte(d0))
@@ -11895,13 +11895,13 @@ void get_bc_asc_ridepet(ACTION *a1)
 		else
 			*a2++ = d0;
 	}
-	//ü¬????
+	//î·????
 	*a2 = 0;
 	makeStringFromEscaped(ATR_PETNAME(a1));
 }
 
-//ÈËÎïÊÇ·ñÓĞ×´Ì¬ÔÚÉíÉÏÈ·ÈÏ
-//ÌîÈëp_partyÄÚËùÓĞµÄÖµ¼°ËùÓĞµÄ³õÊ¼»¯
+//äººç‰©æ˜¯å¦æœ‰çŠ¶æ€åœ¨èº«ä¸Šç¡®è®¤
+//å¡«å…¥p_partyå†…æ‰€æœ‰çš„å€¼åŠæ‰€æœ‰çš„åˆå§‹åŒ–
 void set_bc(void)
 {
 	ACTION *a1;
@@ -11909,42 +11909,42 @@ void set_bc(void)
 
 	//????????
 	bc_pointer = 3;
-	//?????¢NşÍ
+	//?????î”´î’”
 	ATR_ATTRIB(p_master) = get_bc_num();
-	//¡P¥f????????
+	//î“–î™¬????????
 	while (BattleStatus[bc_pointer] != NULL)
 	{
-		//??§k?¥‚???
+		//??îœ±?îš‡???
 		d2 = get_bc_num();
 #ifdef _STONDEBUG_
 		if (d2 >= BATTLKPKPLYAERNUM)
-			MessageBoxNew(hWnd, "³õÊ¼»¯Ê§°Ü,³¬¹ıÉè¶¨ÊıÁ¿", "Error", MB_OK);
+			MessageBoxNew(hWnd, "åˆå§‹åŒ–å¤±è´¥,è¶…è¿‡è®¾å®šæ•°é‡", "Error", MB_OK);
 #endif
 		//?????????????
 		a1 = p_party[d2];
-		/* ûÂ??? */
+		/* î¯??? */
 		ATR_NAME(a1) = monster;
-		//ş¡q¥‚???
+		//î¡“î“·îš‡???
 		get_bc_asc(a1, 0);
-		//ı¯?¥‚???
+		//î˜?îš‡???
 		get_bc_asc(a1, 1);
-		//???§k?¥‚???
+		//???îœ±?îš‡???
 		ATR_CHR_NO(a1) = get_bc_num();
-		//???¥‚???
+		//???îš‡???
 		ATR_LEVEL(a1) = get_bc_num();
-		//??¥‚???
+		//??îš‡???
 		ATR_LIFE(a1) = get_bc_num();
 
 #ifdef _SFUMATO
 		ATR_SFUMATO(a1) = 0xff0000;	
 #endif
 
-		//?¢†??¥‚???
+		//?î•«??îš‡???
 		ATR_MAX_LIFE(a1) = get_bc_num();
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 		ATR_MAX_MANA(a1) = pc.maxMp ;
 #endif
-		//???¥‚???
+		//???îš‡???
 		d0 = get_bc_num();
 		// Robin 0728 ridePet
 		if (bNewServer)
@@ -11965,21 +11965,21 @@ void set_bc(void)
 			ATR_PET_LIFE(a1) = 0;
 			ATR_PET_MAX_LIFE(a1) = 0;
 		}
-		//ıø???
+		//î‘¡???
 		if (d0 & BC_FRESH)
 		{
-			//??şğ??
+			//??î’·??
 			if ((ATR_CHR_NO(a1) >= SPR_mwood1 && ATR_CHR_NO(a1) <= SPR_mstone3) ||
 				(ATR_CHR_NO(a1) == 15323) || (ATR_CHR_NO(a1) == 10812) || (ATR_CHR_NO(a1) == 15527) ||
 				(ATR_CHR_NO(a1) == 15543) || (ATR_CHR_NO(a1) == 15575) || (ATR_CHR_NO(a1) == 15607))
 			{
-				ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;		//¤úû¨??
-				//¢r??
+				ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;		//î¸î•??
+				//î•˜??
 				ATR_VCT_NO(a1) = 0;
 				ATR_CHR_ACT(a1) = ANIM_STAND;
 				ATR_H_POS(a1) = ATR_INT_WORK0(a1) = monster_place_pos[monster_place_no[d2] * 2];
 				ATR_V_POS(a1) = ATR_INT_WORK1(a1) = monster_place_pos[monster_place_no[d2] * 2 + 1];
-				//???¤úû¨
+				//???î¸î•
 				if (ATR_GROUP_FLG(a1) == 0)
 					ATR_CHR_ANG(a1) = 3;
 				else if (ATR_GROUP_FLG(a1) == 1)
@@ -11997,12 +11997,12 @@ void set_bc(void)
 			}
 			else
 			{
-				//¥KıÍ?
+				//î™‘î¶?
 				ATR_VCT_NO(a1) = VCT_NO_APPEAR;
-				ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;		//¤úû¨??
-				//¥KıÍ¢r?
+				ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;		//î¸î•??
+				//î™‘î¶î•˜?
 				ATR_VCT_NO(p_master) = 3;
-				/* ?¤õ??? */
+				/* ?î³??? */
 				ATR_H_POS(a1) = monster_start_pos[monster_place_no[d2] * 2];
 				ATR_V_POS(a1) = monster_start_pos[monster_place_no[d2] * 2 + 1];
 				ATR_INT_WORK0(a1) = monster_place_pos[monster_place_no[d2] * 2];
@@ -12015,7 +12015,7 @@ void set_bc(void)
 		else
 		{
 			if (ATR_LIFE(a1) > 0)
-			{	//şØ?????
+			{	//î’Ÿ?????
 				if (d0 & BC_FADE_OUT)
 				{	// ??s???
 					ATR_ATTRIB(a1) |= ACT_ATR_TRAVEL;
@@ -12040,12 +12040,12 @@ void set_bc(void)
 					//????????????
 					set_raster_pos(a1);
 				}
-				//¢r??
+				//î•˜??
 				ATR_VCT_NO(a1) = 0;
 				ATR_CHR_ACT(a1) = ANIM_STAND;
 				if (BattleBpFlag & BATTLE_BP_JOIN)
-				{	// úÓ¡P??
-					//???¤úû¨
+				{	// îŒ¢î“–??
+					//???î¸î•
 					if (ATR_GROUP_FLG(a1) == 0)
 						ATR_CHR_ANG(a1) = 3;
 					else if (ATR_GROUP_FLG(a1) == 1)
@@ -12063,12 +12063,12 @@ void set_bc(void)
 				}
 			}
 		}
-		//?©û??
+		//?î Œ??
 		if (d0 & BC_DEATH)
 		{
 			if (ATR_VCT_NO(a1) == VCT_NO_APPEAR)
-			{	//?©û??????
-				//?©û???
+			{	//?î Œ??????
+				//?î Œ???
 				ATR_VCT_NO(a1) = VCT_NO_DIE + 2;
 				ATR_H_POS(a1) = ATR_INT_WORK0(a1) = monster_place_pos[monster_place_no[d2] * 2];
 				ATR_V_POS(a1) = ATR_INT_WORK1(a1) = monster_place_pos[monster_place_no[d2] * 2 + 1];
@@ -12076,7 +12076,7 @@ void set_bc(void)
 				set_raster_pos(a1);
 				//????
 				ATR_LIFE(a1) = 0;
-				//?©û???????
+				//?î Œ???????
 				if (ATR_GROUP_FLG(a1) == 0)
 					ATR_CHR_ANG(a1) = 3;
 				else if (ATR_GROUP_FLG(a1) == 1)
@@ -12088,129 +12088,129 @@ void set_bc(void)
 					ATR_CHR_ANG(a1) = 1;
 #endif
 				ATR_CRS_OLD(a1) = ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];
-				ATR_CHR_ACT(a1) = ANIM_DEAD;		//?©û???????
+				ATR_CHR_ACT(a1) = ANIM_DEAD;		//?î Œ???????
 				ATR_CHR_ACT_OLD(a1) = -1;
 				while (1)
 				{
-					if (pattern(a1, 1, ANM_NO_LOOP))	//???ü¬???
+					if (pattern(a1, 1, ANM_NO_LOOP))	//???î·???
 						break;
 				}
-				//????¤úû¨
+				//????î¸î•
 				LoadBmp(ATR_PAT_NO(a1));
 #ifndef _PETSKILL_ANTINTER
 				set_piyo_loop(a1);
 #endif			
-				//?©û¢r?`
+				//?î Œî•˜?`
 				ATR_VCT_NO(p_master) = 3;
 			}
 		}
-		//???üÒ?¦V?£Ï£Ë??
+		//???î?îš¼?ï¼¯ï¼«??
 		if (d0 & BC_PET_OK)
 			ATR_PET_OK(a1) = 1;
-		//??????ıĞ????????
+		//??????î¹????????
 		if (ATR_JUJUTSU_WORK(a1) == NULL)
 		{
 			d3 = 0;
-			if (d0 & BC_BIT3)		//  "¥€"??
+			if (d0 & BC_BIT3)		//  "îš…"??
 				d3 = 1;
 			else if (d0 & BC_BIT4)		//  "??"??
 				d3 = 2;
-			else if (d0 & BC_BIT5)		//  "şƒ?"??
+			else if (d0 & BC_BIT5)		//  "î¡‡?"??
 				d3 = 3;
-			else if (d0 & BC_BIT6)		//  "şğ?"??
+			else if (d0 & BC_BIT6)		//  "î’·?"??
 				d3 = 4;
-			else if (d0 & BC_BIT7)		//  "??¦ş?"??
+			else if (d0 & BC_BIT7)		//  "??îŸ?"??
 				d3 = 5;
 			else if (d0 & BC_BIT8)		//  "??"??
 				d3 = 6;
 #ifdef _MAGIC_WEAKEN
-			if (d0 & BC_WEAKEN)    //ĞéÈõ
+			if (d0 & BC_WEAKEN)    //è™šå¼±
 				d3 = 7;
 #endif
 #ifdef _MAGIC_DEEPPOISION
-			if (d0 & BC_DEEPPOISON)  //¾ç¶¾
+			if (d0 & BC_DEEPPOISON)  //å‰§æ¯’
 				d3 = 8;
 #endif
 #ifdef _MAGIC_BARRIER
-			if (d0 & BC_BARRIER)  //Ä§ÕÏ
+			if (d0 & BC_BARRIER)  //é­”éšœ
 				d3 = 9;
 #endif
 #ifdef _MAGIC_NOCAST
-			if (d0 & BC_NOCAST)   //³ÁÄ¬
+			if (d0 & BC_NOCAST)   //æ²‰é»˜
 				d3 = 10;
 #endif
-#ifdef _SARS						// WON ADD ¶¾É·ÂûÑÓ
-			if (d0 & BC_SARS)		// ¶¾É·ÂûÑÓ
+#ifdef _SARS						// WON ADD æ¯’ç…è”“å»¶
+			if (d0 & BC_SARS)		// æ¯’ç…è”“å»¶
 				d3 = 11;
 #endif
-#ifdef _CHAR_PROFESSION						// WON ADD	ÔÎÑ£
-			if (d0 & BC_DIZZY)		// ÔÎÑ£
+#ifdef _CHAR_PROFESSION						// WON ADD	æ™•çœ©
+			if (d0 & BC_DIZZY)		// æ™•çœ©
 				d3 = 12;
-			if (d0 & BC_ENTWINE)	// Ê÷¸ù²øÈÆ
+			if (d0 & BC_ENTWINE)	// æ ‘æ ¹ç¼ ç»•
 				d3 = 13;
-			if (d0 & BC_DRAGNET)	// ÌìÂŞµØÍø
+			if (d0 & BC_DRAGNET)	// å¤©ç½—åœ°ç½‘
 				d3 = 14;
-			if (d0 & BC_ICECRACK)	// ±ù±¬Êõ
+			if (d0 & BC_ICECRACK)	// å†°çˆ†æœ¯
 				d3 = 15;
-			if (d0 & BC_OBLIVION)	// ÒÅÍü
+			if (d0 & BC_OBLIVION)	// é—å¿˜
 				d3 = 16;
-			if (d0 & BC_ICEARROW)	// ±ù¼ı
+			if (d0 & BC_ICEARROW)	// å†°ç®­
 				d3 = 17;
-			if (d0 & BC_BLOODWORMS)// ÊÈÑª¹Æ
+			if (d0 & BC_BLOODWORMS)// å—œè¡€è›Š
 				d3 = 18;
-			if (d0 & BC_SIGN)		// Ò»Õë¼ûÑª
+			if (d0 & BC_SIGN)		// ä¸€é’ˆè§è¡€
 				d3 = 19;
-			if (d0 & BC_CRAZY)		// Ìô²¦
+			if (d0 & BC_CRAZY)		// æŒ‘æ‹¨
 				d3 = 20;
-			if (d0 & BC_F_ENCLOSE)		// »ğ¸½Ìå
+			if (d0 & BC_F_ENCLOSE)		// ç«é™„ä½“
 				d3 = 21;
-			if (d0 & BC_I_ENCLOSE)		// ±ù¸½Ìå
+			if (d0 & BC_I_ENCLOSE)		// å†°é™„ä½“
 				d3 = 22;
-			if (d0 & BC_T_ENCLOSE)		// À×¸½Ìå
+			if (d0 & BC_T_ENCLOSE)		// é›·é™„ä½“
 				d3 = 23;
 #ifdef _PROFESSION_ADDSKILL
 			if (d0 & BC_WATER)
-				d3 = 32;		// Ë®¸½Ìå
+				d3 = 32;		// æ°´é™„ä½“
 			if (d0 & BC_WATER)
-				d3 = 33;		// ¿Ö¾å
-			//if (d0 & BC_F_I_T_ENCLOSE)  // »ğ±ùÀ×¸½Ìå
+				d3 = 33;		// ææƒ§
+			//if (d0 & BC_F_I_T_ENCLOSE)  // ç«å†°é›·é™„ä½“
 			//    d3 = 24;
 #endif
 #ifdef _PETSKILL_LER
 			if (d0 & BC_CHANGE)
-				d3 = 34; // À×¶û±äÉí
+				d3 = 34; // é›·å°”å˜èº«
 #endif
 #ifdef _PRO_KILLME
 			if (d0 & BC_ANGER)
-				d3 = 35; // Å­
+				d3 = 35; // æ€’
 #endif
 
 #endif
 #ifdef _PETSKILL_LER
 			if (d0 & BC_CHANGE)
-				d3 = 34; // À×¶û±äÉí
+				d3 = 34; // é›·å°”å˜èº«
 #endif
 			if (d3)
-			{	//?ıĞ?????
-				set_single_jujutsu(d3, a1);		//£O¢lûöüÓ???
+			{	//?î¹?????
+				set_single_jujutsu(d3, a1);		//î–•î•’î£î???
 				ATR_STATUS(a1) = d3;		//????????
 			}
 			else
-				ATR_STATUS(a1) = 0;		//?????şÕıĞ
+				ATR_STATUS(a1) = 0;		//?????î’œî¹
 		}
-		//¢NşÍ§T¤š????????
+		//î”´î’”îœšî˜¿????????
 		if (ATR_ATTRIB_WORK(a1) == NULL)
 		{
-			if (d0 & BC_REVERSE)		//§T¤š??
-				set_attrib_reverse(a1);		//¢NşÍ§T¤š???
+			if (d0 & BC_REVERSE)		//îœšî˜¿??
+				set_attrib_reverse(a1);		//î”´î’”îœšî˜¿???
 		}
 	}
-	//¥KıÍ¢r??????
+	//î™‘î¶î•˜??????
 	if (ATR_VCT_NO(p_master) != 3)
-		action_inf = 3;		//¥KıÍ?üÒü¬?
+		action_inf = 3;		//î™‘î¶?îî·?
 }
 
-// ??????¤ş?? ????? ?************************************/
+// ??????î¼?? ????? ?************************************/
 void disp_shild(void)
 {
 	char box[] = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,
@@ -12231,21 +12231,21 @@ void disp_shild(void)
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	};
 
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
 	char d6, d7;
-	char *psource;		// ¤š?¡I?????
+	char *psource;		// î˜¿?î“?????
 
 	ZeroMemory(&ddsd, sizeof(DDSURFACEDESC));
 	ddsd.dwSize = sizeof(DDSURFACEDESC);
 
-	// ?????????????????( ¥i?? ddsd ?ıÑ©?¦V????? )
+	// ?????????????????( î™¯?? ddsd ?îºîŸ«?îš¼????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "SurfaceµÄlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„lockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return;
 	}
 
-	psource = box;		// ¤š???????
+	psource = box;		// î˜¿???????
 	_asm{
 		//		push	eax
 		//		push	ebx
@@ -12254,7 +12254,7 @@ void disp_shild(void)
 		//		push	esi
 		//		push	edi
 
-		mov		edx, [ddsd.lpSurface]		//¡I¥d????
+		mov		edx, [ddsd.lpSurface]		//î“î™ª????
 			add		edx, 640 - 24						//
 
 			mov		ebx, [ddsd.lPitch]		//?????????
@@ -12266,7 +12266,7 @@ void disp_shild(void)
 		disp_shild_100 :
 		mov		al, 30				//????????
 			mov[d7], al			//
-			mov		edi, edx		//¤úû¨?úğ????
+			mov		edi, edx		//î¸î•?îŒ¿????
 
 		disp_shild_200 :
 		mov		cl, 16		//?????????
@@ -12312,7 +12312,7 @@ void disp_shild(void)
 	if (lpDraw->lpBACKBUFFER->Unlock(NULL) != DD_OK)
 	{
 		extern int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
-		MessageBoxNew(hWnd, "SurfaceµÄUnlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Surfaceçš„Unlockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return;
 	}
 

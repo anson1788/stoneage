@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	font.h				*/
 /************************/
 #ifndef _FONT_H_
@@ -12,15 +12,15 @@
 #define FONT_SIZE2 19
 #endif
 extern int FontZenkauWidth;
-// §S?§ó??????????
+// îœ™?î°??????????
 extern int FontHankakuWidth;
 
-/* ????¤úû¨?¡I??  fontPrio ?£k ****************************************/
+/* ????î¸î•?î“??  fontPrio ?î–± ****************************************/
 enum{
-	FONT_PRIO_BACK, 		/* ???¤úû¨ 	*/
-	FONT_PRIO_FRONT			/* ¡q?¤úû¨ 	*/
+	FONT_PRIO_BACK, 		/* ???î¸î• 	*/
+	FONT_PRIO_FRONT			/* î“·?î¸î• 	*/
 
-#ifdef _TRADETALKWND				// (²»¿É¿ª) Syu ADD ½»Ò×ĞÂÔö¶Ô»°¿ò¼Ü
+#ifdef _TRADETALKWND				// (ä¸å¯å¼€) Syu ADD äº¤æ˜“æ–°å¢å¯¹è¯æ¡†æ¶
 	, FONT_PRIO_AFRONT
 #endif
 #ifdef _CHANNEL_MODIFY
@@ -28,13 +28,13 @@ enum{
 #endif
 };
 
-// ??????????¢B¢l
+// ??????????î”¨î•’
 typedef struct{
-	short x, y;			// ¤úû¨?¤õ
-	char color;			// ¤úû¨ıè
-	char str[ 256 ]; 	// §ó??
-	UCHAR	fontPrio; 	// ¤úû¨??¡I??
-	BOOL hitFlag;		// ???§R¤e??????  ??£º?  ???£º?
+	short x, y;			// î¸î•?î³
+	char color;			// î¸î•î‘‘
+	char str[ 256 ]; 	// î°??
+	UCHAR	fontPrio; 	// î¸î•??î“??
+	BOOL hitFlag;		// ???îœ˜î˜‹??????  ??ï¼š?  ???ï¼š?
 #ifdef _FONT_SIZE
 	int size;
 #endif
@@ -47,10 +47,10 @@ extern FONT_BUFFER FontBuffer[];
 extern int FontCnt;
 void FontPrint( char *moji, int x, int y, int dispPrio );
 
-// ??????¤úû¨?? ///////////////////////////////////////////////////////
+// ??????î¸î•?? ///////////////////////////////////////////////////////
 void FontPrintDec( char *moji, int x, int y, int dispPrio );
 
-/* ????ıÑ©????????? *********************************************/
+/* ????îºîŸ«????????? *********************************************/
 int StockFontBuffer( int x, int y, char fontPrio, int color, char *str, BOOL hitFlag );
 #ifdef _MO_CHAT_EXPRESSION
 void NewStockFontBuffer(CHAT_BUFFER *chatbuffer,int x, unsigned char color,char *str, int size);

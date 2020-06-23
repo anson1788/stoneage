@@ -1,4 +1,4 @@
-#ifndef _SAVEDATA_H_
+ï»¿#ifndef _SAVEDATA_H_
 #define _SAVEDATA_H_
 
 BOOL saveUserSetting( void );
@@ -24,7 +24,7 @@ extern int sCharSide;
 
 
 // ????????
-#define SAVE_ERRMSG_loadNowState	"¶ÁÈ¡´¢´æµµ°¸Ê§°Ü¡£(code = %d)"
+#define SAVE_ERRMSG_loadNowState	"é»ïŸ«æ£æ¹”ç´«å¶å›®å•–ï¹(code = %d)"
 
 
 

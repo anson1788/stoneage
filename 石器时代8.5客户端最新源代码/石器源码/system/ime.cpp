@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	ime.cpp				*/
 /************************/
 #include "../systeminc/version.h"
@@ -23,19 +23,19 @@ void ShowBottomLineString(int iColor,LPSTR lpstr)
 	}
 }
 
-// Terry add 2003/12/16 for ½»Ò×ÊÓ´°¿ªÆôÊ±,ÏÔÊ¾ÎïÆ·ËµÃ÷²»ÏÔÊ¾ÊäÈë·¨
+// Terry add 2003/12/16 for äº¤æ˜“è§†çª—å¼€å¯æ—¶,æ˜¾ç¤ºç‰©å“è¯´æ˜ä¸æ˜¾ç¤ºè¾“å…¥æ³•
 extern BOOL bShowItemExplain;
 #ifdef _MO_SHOW_FPS
 extern int framesToShow;
 extern int skipFramesToShow;
 #endif
 // end
-//	ÊäÈë·¨µÄ´¦Àí
+//	è¾“å…¥æ³•çš„å¤„ç†
 void ImeProc()
 {
-	// ÏÔÊ¾ÊäÈë·¨µÄÃû³Æ
-// Terry fix 2003/12/16 for ½»Ò×ÊÓ´°¿ªÆôÊ±,ÏÔÊ¾ÎïÆ·ËµÃ÷²»ÏÔÊ¾ÊäÈë·¨
-	//if( TaskBarFlag == FALSE ){ ÕâĞĞ¸Ä³ÉÏÂÒ»ĞĞ
+	// æ˜¾ç¤ºè¾“å…¥æ³•çš„åç§°
+// Terry fix 2003/12/16 for äº¤æ˜“è§†çª—å¼€å¯æ—¶,æ˜¾ç¤ºç‰©å“è¯´æ˜ä¸æ˜¾ç¤ºè¾“å…¥æ³•
+	//if( TaskBarFlag == FALSE ){ è¿™è¡Œæ”¹æˆä¸‹ä¸€è¡Œ
 	if(TaskBarFlag == FALSE && bShowItemExplain == FALSE){
 // end
 		LPSTR lpstr=GetImeString();
@@ -54,17 +54,17 @@ void ImeProc()
 		if( 1!=dwInfo){
 			if( lpstr1){
 				char* BIG5ToGB2312(const char* szBIG5String);
-				extern int ±àÂë;
-				extern int ·±Ìå¿ª¹Ø;
-				if(·±Ìå¿ª¹Ø){
-					char ·±Ìå[1024]={0};
-					LCMapString(0x804,0x4000000,lpstr1, strlen(lpstr1),·±Ìå,1024);
-					if(±àÂë==950)
-						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)·±Ìå),0);
+				extern int ç¼–ç ;
+				extern int ç¹ä½“å¼€å…³;
+				if(ç¹ä½“å¼€å…³){
+					char ç¹ä½“[1024]={0};
+					LCMapString(0x804,0x4000000,lpstr1, strlen(lpstr1),ç¹ä½“,1024);
+					if(ç¼–ç ==950)
+						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)ç¹ä½“),0);
 					else
-						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,·±Ìå,0);
+						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,ç¹ä½“,0);
 				}else{
-					if(±àÂë==950)
+					if(ç¼–ç ==950)
 						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)lpstr1),0);
 					else
 						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,lpstr1,0);
@@ -82,16 +82,16 @@ void ImeProc()
 				wsprintf( tmp, " %d", dwPingTime);
 			StockFontBuffer( 605 + DISPLACEMENT_X, 460 + DISPLACEMENT_Y , FONT_PRIO_FRONT, FONT_PAL_WHITE, tmp, 0 );
 #ifndef _REMAKE_20
-			lpstr = "Íæ¼ÒÄ£Ê½";
+			lpstr = "ç©å®¶æ¨¡å¼";
 			switch( AI){
 			case AI_ATTACK:
-				lpstr = "Ç¿ÖÆ¹¥»÷";
+				lpstr = "å¼ºåˆ¶æ”»å‡»";
 				break;
 			case AI_GUARD:
-				lpstr = "Ç¿ÖÆ·ÀÓù";
+				lpstr = "å¼ºåˆ¶é˜²å¾¡";
 				break;
 			case AI_SELECT:
-				lpstr = "£Á£ÉÄ£Ê½";
+				lpstr = "ï¼¡ï¼©æ¨¡å¼";
 				break;
 			}
 			StockFontBuffer( 540 + DISPLACEMENT_X, 460 + DISPLACEMENT_Y , FONT_PRIO_FRONT, FONT_PAL_WHITE, lpstr, 0 );
@@ -100,41 +100,41 @@ void ImeProc()
 			int FontColor = 0 ;
 			switch(TalkMode){
 			case 0:
-				lpstr1 = "Ò»°ãÆµµÀ";
+				lpstr1 = "ä¸€èˆ¬é¢‘é“";
 				break;
 			case 1:
 				FontColor = FONT_PAL_GREEN;
-				lpstr1 = "ÃÜÓïÆµµÀ";
+				lpstr1 = "å¯†è¯­é¢‘é“";
 				break;
 			case 2:
 				FontColor = FONT_PAL_AQUA;
-				lpstr1 = "¶ÓÎéÆµµÀ";
+				lpstr1 = "é˜Ÿä¼é¢‘é“";
 				break;
 			case 3:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "¼Ò×åÆµµÀ";
+				lpstr1 = "å®¶æ—é¢‘é“";
 				break;
 #ifdef _CHAR_PROFESSION
 			case 4:
 				FontColor = FONT_PAL_BLUE2;
-				lpstr1 = "Ö°ÒµÆµµÀ";
+				lpstr1 = "èŒä¸šé¢‘é“";
 				break;
 #else
 			case 4:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "ÁÄÌìÊÒÆµµÀ";
+				lpstr1 = "èŠå¤©å®¤é¢‘é“";
 				break;
 #endif
 #ifdef _CHANNEL_WORLD  
 			case 5:
 				FontColor = FONT_PAL_YELLOW;
-				lpstr1 = "ÊÀ½çÆµµÀ";
+				lpstr1 = "ä¸–ç•Œé¢‘é“";
 				break;
 #endif
 #ifdef _CHANNEL_ALL_SERV
 			case 6:
 				FontColor = FONT_PAL_GREEN2;
-				lpstr1 = "ĞÇÇòÆµµÀ";
+				lpstr1 = "æ˜Ÿçƒé¢‘é“";
 				break;
 #endif
 			}
@@ -144,28 +144,28 @@ void ImeProc()
 			int FontColor = 0 ;
 			switch(TalkMode){
 			case 0:
-				lpstr1 = "Ò»°ãÄ£Ê½";
+				lpstr1 = "ä¸€èˆ¬æ¨¡å¼";
 				break;
 			case 1:
 				FontColor = FONT_PAL_GREEN;
-				lpstr1 = "ÃÜÓïÄ£Ê½";
+				lpstr1 = "å¯†è¯­æ¨¡å¼";
 				break;
 	#ifdef _FRIENDCHANNEL
 			case 2:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "ÆµµÀÄ£Ê½";
+				lpstr1 = "é¢‘é“æ¨¡å¼";
 				break;
 	#endif
 #ifdef _CHANNEL_WORLD
 			case 6:
 				FontColor = FONT_PAL_BLUE;
-				lpstr1 = "ÊÀ½çÄ£Ê½";
+				lpstr1 = "ä¸–ç•Œæ¨¡å¼";
 				break;
 #endif
 #ifdef _CHANNEL_ALL_SERV
 			case 7:
 				FontColor = FONT_PAL_BLUE;
-				lpstr1 = "ĞÇÇòÄ£Ê½";
+				lpstr1 = "æ˜Ÿçƒæ¨¡å¼";
 				break;
 #endif
 			}
@@ -174,12 +174,12 @@ void ImeProc()
 #endif
 #ifdef _MO_SHOW_FPS
 			
-			wsprintf(tmp, "µ±Ç°FPS:%3dÖ¡/Ãë , ÌøÖ¡Êı: %dÖ¡/Ãë", framesToShow, skipFramesToShow);
+			wsprintf(tmp, "å½“å‰FPS:%3då¸§/ç§’ , è·³å¸§æ•°: %då¸§/ç§’", framesToShow, skipFramesToShow);
 			StockFontBuffer( 270, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, tmp, 0 );
 #endif
 		}
 	}
-// Terry add 2003/12/16 for ½»Ò×ÊÓ´°¿ªÆôÊ±,ÏÔÊ¾ÎïÆ·ËµÃ÷²»ÏÔÊ¾ÊäÈë·¨
+// Terry add 2003/12/16 for äº¤æ˜“è§†çª—å¼€å¯æ—¶,æ˜¾ç¤ºç‰©å“è¯´æ˜ä¸æ˜¾ç¤ºè¾“å…¥æ³•
 	bShowItemExplain = FALSE;
 // end
 }

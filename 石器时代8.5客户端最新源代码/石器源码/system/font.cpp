@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 
 #define ASCII(a) a-'A'+10
@@ -29,7 +29,7 @@ char* sunday( char* str,  char* subStr)
 	}
 	for(i=0;i<subLen;i++)
 	{
-		next[ (unsigned char)subStr[i] ] = subLen-i;//¼ÆËã×Ó´®ÖÐµÄ×Ö·ûµ½×Ö·û´®½áÎ²µÄ\0Ö®¼äµÄ¾àÀë
+		next[ (unsigned char)subStr[i] ] = subLen-i;//è®¡ç®—å­ä¸²ä¸­çš„å­—ç¬¦åˆ°å­—ç¬¦ä¸²ç»“å°¾çš„\0ä¹‹é—´çš„è·ç¦»
 	}
 	pos=0;
 	while(pos<=(strLen-subLen))
@@ -40,12 +40,12 @@ char* sunday( char* str,  char* subStr)
 			
 			if(str[i] != subStr[j])
 			{
-				pos += next[ (unsigned char)str[pos+subLen] ];//ÏòºóÒÆ¶¯
+				pos += next[ (unsigned char)str[pos+subLen] ];//å‘åŽç§»åŠ¨
 				break;
 			}
 			
 		}
-		if(j==subLen)//ÕÒµ½×Ö´®£¬·µ»Ø
+		if(j==subLen)//æ‰¾åˆ°å­—ä¸²ï¼Œè¿”å›ž
 		{
 			return str+pos;
 		}
@@ -63,18 +63,18 @@ int StockFontBufferExt( int x, int y, char fontPrio, int color, char *str, BOOL 
 	FontBuffer[ FontCnt ].fontPrio = fontPrio;
 	FontBuffer[ FontCnt ].color = color;
 	FontBuffer[ FontCnt ].hitFlag = hitFlag;
-	extern int ±àÂë;
-	extern int ·±Ìå¿ª¹Ø;
-	if(·±Ìå¿ª¹Ø){
-		char ·±Ìå[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),·±Ìå,1024);
-		if(±àÂë==950){
+	extern int ç¼–ç ;
+	extern int ç¹ä½“å¼€å…³;
+	if(ç¹ä½“å¼€å…³){
+		char ç¹ä½“[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),ç¹ä½“,1024);
+		if(ç¼–ç ==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
-			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)·±Ìå) );
+			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)ç¹ä½“) );
 		}else
-			strcpy( FontBuffer[ FontCnt ].str, ·±Ìå );
+			strcpy( FontBuffer[ FontCnt ].str, ç¹ä½“ );
 	}else{
-		if(±àÂë==950){
+		if(ç¼–ç ==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
 			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)str) );
 		}else
@@ -97,12 +97,12 @@ int StockFontBuffer( int x, int y, char fontPrio, int color, char *str, BOOL hit
 	FontBuffer[ FontCnt ].fontPrio = fontPrio;
 	FontBuffer[ FontCnt ].color = color;
 	FontBuffer[ FontCnt ].hitFlag = hitFlag;
-	extern int ±àÂë;
-	extern int ·±Ìå¿ª¹Ø;
-	if(·±Ìå¿ª¹Ø){
-		char ·±Ìå[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),·±Ìå,1024);
-		strcpy( FontBuffer[ FontCnt ].str, ·±Ìå );
+	extern int ç¼–ç ;
+	extern int ç¹ä½“å¼€å…³;
+	if(ç¹ä½“å¼€å…³){
+		char ç¹ä½“[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),ç¹ä½“,1024);
+		strcpy( FontBuffer[ FontCnt ].str, ç¹ä½“ );
 	}else{
 		strcpy( FontBuffer[ FontCnt ].str, str );
 	}
@@ -117,9 +117,9 @@ void CreatFontHdc()
 	FontSizeHdc = CreateCompatibleDC(hScrDC);
 	if(FontSizeHdc){
 #ifdef _NEWFONT_
-		extern int ±àÂë;
+		extern int ç¼–ç ;
 		char strfame[128];
-		if(±àÂë==950){
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -127,23 +127,23 @@ void CreatFontHdc()
 		HFONT font=CreateFont(FONT_SIZE1,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 #else
-				extern int ±àÂë;
+				extern int ç¼–ç ;
 		char strfame[128];
 		HFONT font;
-		if(±àÂë==950){
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			font=CreateFont(FONT_SIZE2,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 		}else{
 			font=CreateFont(FONT_SIZE1,0,0,0,400,FALSE,FALSE,FALSE,134,
-			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"ËÎÌå");
+			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"å®‹ä½“");
 		}
 
 
 #endif
 		SelectObject(FontSizeHdc, font);
 	}else{
-		MessageBoxNew(NULL,"´´½¨HDC´íÎó£¡","£Ó£ô£ï£î£å£Á£ç£å",NULL);
+		MessageBoxNew(NULL,"åˆ›å»ºHDCé”™è¯¯ï¼","ï¼³ï½”ï½ï½Žï½…ï¼¡ï½‡ï½…",NULL);
 		exit(0);
 	}
 }
@@ -160,7 +160,7 @@ void delFontBuffer(CHAT_BUFFER *chatbuffer)
 {
 
 	CHAT_BUFFER *pHAIH = chatbuffer->NextChatBuffer;
-	while(pHAIH)	//Èç¹ûÁ´ÖÐ»¹´æÔÚ½áµã
+	while(pHAIH)	//å¦‚æžœé“¾ä¸­è¿˜å­˜åœ¨ç»“ç‚¹
 	{
 		CHAT_BUFFER* pTemp;
 		pTemp = pHAIH;
@@ -233,7 +233,7 @@ void NewStockFontBuffer(CHAT_BUFFER *chatbuffer,int x,unsigned char color,char *
 
 void StockFontBuffer2( STR_BUFFER *strBuffer )
 {
-	int lineDist = 0; //ÐÐ¾à
+	int lineDist = 0; //è¡Œè·
 	int splitPoint = 0;
 	int bakSplitPoint,cursor;
 	BOOL SetCursor=FALSE;
@@ -242,16 +242,16 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 		strBuffer->hitFontNo = -2;
 		return;
 	}
-	//ÐèÒª·ÖÐÐÊ±
+	//éœ€è¦åˆ†è¡Œæ—¶
 	if( strBuffer->lineLen != 0 ){
 		cursor=strBuffer->cursor;
 		while( strlen( strBuffer->buffer + splitPoint ) >= strBuffer->lineLen ){
 			bakSplitPoint=splitPoint;
-			//copyÒ»ÐÐµÄ×Ö´®
+			//copyä¸€è¡Œçš„å­—ä¸²
 			strncpy_s( splitStr, strBuffer->buffer + splitPoint, strBuffer->lineLen );
 			*( splitStr + strBuffer->lineLen ) = NULL;
 			if( GetStrLastByte( splitStr ) == 3 ){
-				//·Ö¸îµ½ÖÐDBCSÊ±£¬ÍË»ØÒ»¸öbyte
+				//åˆ†å‰²åˆ°ä¸­DBCSæ—¶ï¼Œé€€å›žä¸€ä¸ªbyte
 				splitPoint = strBuffer->lineLen - 1 + splitPoint;
 				*( splitStr + strBuffer->lineLen - 1 ) = NULL; 
 			}else
@@ -278,8 +278,8 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 #ifdef _FONT_SIZE
 		FontBuffer[ FontCnt ].size = 0;
 #endif
-//¶¨ÒåHook_typeÓÃÀ´´¦ÀíÐÇºÅ²úÉú
-#ifdef _SAHOOK //Syu ADD Hook³ÌÊ½
+//å®šä¹‰Hook_typeç”¨æ¥å¤„ç†æ˜Ÿå·äº§ç”Ÿ
+#ifdef _SAHOOK //Syu ADD Hookç¨‹å¼
 		if( strBuffer->filterFlag == HOOK_TYPE){
 			extern int HOOK_PASSWD_NUM;
 			for(int i = 0 ; i < HOOK_PASSWD_NUM ; i++)
@@ -296,8 +296,8 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 				FontBuffer[ FontCnt ].str[ i ] = '*';
 			FontBuffer[ FontCnt ].str[ i ] = NULL;
 		}else{
-			extern int ±àÂë;
-			if(±àÂë==950){
+			extern int ç¼–ç ;
+			if(ç¼–ç ==950){
 				extern char* GB2312ToBIG5(const char* szBIG5String);
 				strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)strBuffer->buffer));
 			}else
@@ -329,18 +329,18 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 //ONLINEGM USE
 int StockFontBuffer3( STR_BUFFER *strBuffer )
 {
-	int lineDist = 0; //ÐÐ¾à
+	int lineDist = 0; //è¡Œè·
 	int splitPoint = 0;
 	int bakSplitPoint,cursor;
 	BOOL SetCursor=FALSE;
 	char splitStr[ 256 ];
 	
 	cursor=strBuffer->cursor;
-	//ÐèÒª·ÖÐÐÊ±
+	//éœ€è¦åˆ†è¡Œæ—¶
 	while( strlen( strBuffer->buffer + splitPoint ) >= (unsigned)strBuffer->lineLen-1 ){
 		bakSplitPoint=splitPoint;
-		strcpy( splitStr , strBuffer->buffer + splitPoint );  //Ò»¸ö×Ö
-		*( splitStr + strBuffer->lineLen ) = NULL;  //Ö¸Ïò×îºó
+		strcpy( splitStr , strBuffer->buffer + splitPoint );  //ä¸€ä¸ªå­—
+		*( splitStr + strBuffer->lineLen ) = NULL;  //æŒ‡å‘æœ€åŽ
 		splitPoint = strBuffer->lineLen + splitPoint;
 		StockFontBuffer( strBuffer->x, strBuffer->y , strBuffer->fontPrio, 0 , splitStr, 0 );
 
@@ -352,7 +352,7 @@ int StockFontBuffer3( STR_BUFFER *strBuffer )
 		lineDist += strBuffer->lineDist;	
 		return 1;
 	}
-	if(!SetCursor){  // ÓÎ±ê²»Ðè»»ÐÐ
+	if(!SetCursor){  // æ¸¸æ ‡ä¸éœ€æ¢è¡Œ
 		strBuffer->imeX = strBuffer->x + (strBuffer->cursor-splitPoint)*(FONT_SIZE>>1);
 		strBuffer->imeY = strBuffer->y + lineDist;
 	}
@@ -363,7 +363,7 @@ int StockFontBuffer3( STR_BUFFER *strBuffer )
 
 void StockFontBufferFamily( STR_BUFFER *strBuffer )
 {
-	int lineDist = 0; //ÐÐ¾à
+	int lineDist = 0; //è¡Œè·
 	int splitPoint = 0;
 	int bakSplitPoint,cursor;
 	BOOL SetCursor=FALSE;
@@ -372,22 +372,22 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 		strBuffer->hitFontNo = -2;
 		return;
 	}
-	int ÐÐ×ÖÊý;
+	int è¡Œå­—æ•°;
 	if( strBuffer->lineLen != 0 ){
 		cursor=strBuffer->cursor;
-		if(lineDist) ÐÐ×ÖÊý = strBuffer->lineLen;
-		else ÐÐ×ÖÊý = 38;
-		while( strlen( strBuffer->buffer + splitPoint ) >=ÐÐ×ÖÊý ){
+		if(lineDist) è¡Œå­—æ•° = strBuffer->lineLen;
+		else è¡Œå­—æ•° = 38;
+		while( strlen( strBuffer->buffer + splitPoint ) >=è¡Œå­—æ•° ){
 			bakSplitPoint=splitPoint;
-			//copyÒ»ÐÐµÄ×Ö´®
-			strncpy_s( splitStr, strBuffer->buffer + splitPoint, ÐÐ×ÖÊý );
-			*( splitStr +ÐÐ×ÖÊý ) = NULL;
+			//copyä¸€è¡Œçš„å­—ä¸²
+			strncpy_s( splitStr, strBuffer->buffer + splitPoint, è¡Œå­—æ•° );
+			*( splitStr +è¡Œå­—æ•° ) = NULL;
 			if( GetStrLastByte( splitStr ) == 3 ){
-				//·Ö¸îµ½ÖÐDBCSÊ±£¬ÍË»ØÒ»¸öbyte
-				splitPoint = ÐÐ×ÖÊý - 1 + splitPoint;
-				*( splitStr + ÐÐ×ÖÊý - 1 ) = NULL; 
+				//åˆ†å‰²åˆ°ä¸­DBCSæ—¶ï¼Œé€€å›žä¸€ä¸ªbyte
+				splitPoint = è¡Œå­—æ•° - 1 + splitPoint;
+				*( splitStr + è¡Œå­—æ•° - 1 ) = NULL; 
 			}else
-				splitPoint =ÐÐ×ÖÊý + splitPoint;
+				splitPoint =è¡Œå­—æ•° + splitPoint;
 			if(lineDist)
 				StockFontBuffer( strBuffer->x-60, strBuffer->y + lineDist, strBuffer->fontPrio, 0, splitStr, 0 );
 			else
@@ -401,8 +401,8 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 				SetCursor=TRUE;
 			}
 			lineDist += strBuffer->lineDist;
-			if(lineDist) ÐÐ×ÖÊý = strBuffer->lineLen;
-			else ÐÐ×ÖÊý = 38;
+			if(lineDist) è¡Œå­—æ•° = strBuffer->lineLen;
+			else è¡Œå­—æ•° = 38;
 		}
 		if(!SetCursor){
 			if(lineDist)
@@ -424,8 +424,8 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 #ifdef _FONT_SIZE
 		FontBuffer[ FontCnt ].size = 0;
 #endif
-		//¶¨ÒåHook_typeÓÃÀ´´¦ÀíÐÇºÅ²úÉú
-#ifdef _SAHOOK //Syu ADD Hook³ÌÊ½
+		//å®šä¹‰Hook_typeç”¨æ¥å¤„ç†æ˜Ÿå·äº§ç”Ÿ
+#ifdef _SAHOOK //Syu ADD Hookç¨‹å¼
 		if( strBuffer->filterFlag == HOOK_TYPE){
 			extern int HOOK_PASSWD_NUM;
 			for(int i = 0 ; i < HOOK_PASSWD_NUM ; i++)
@@ -442,8 +442,8 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 				FontBuffer[ FontCnt ].str[ i ] = '*';
 			FontBuffer[ FontCnt ].str[ i ] = NULL;
 		}else {
-		extern int ±àÂë;
-		if(±àÂë==950){
+		extern int ç¼–ç ;
+		if(ç¼–ç ==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
 			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)strBuffer->buffer) );
 		}else

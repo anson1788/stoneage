@@ -1,7 +1,7 @@
-#ifndef _SPRITE_H_
+ï»¿#ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-//??????ûï????¤e??????
+//??????îŽœ????î˜‹??????
 #define mxSPRITE	40000
 
 #define maxBUFFER	1024*1024*6
@@ -19,48 +19,48 @@ typedef float  F4;
 typedef double F8;
 
 typedef enum {
-	ANIM_ATTACK, //¹¥»÷
-	ANIM_DAMAGE, //ÊÜÉË
-	ANIM_DEAD,  //ËÀÍö
-	ANIM_STAND, //Õ¾Á¢
-	ANIM_WALK, //ÐÐ×ß
-	ANIM_SIT, //×øÏÂ
-	ANIM_HAND, //»ÓÊÖ
-	ANIM_HAPPY, //¸ßÐË
-	ANIM_ANGRY, //ÉúÆø
-	ANIM_SAD, //ÉËÐÄ
-	ANIM_GUARD, //·ÀÊØ
-	ANIM_NOD, //µãÍ·
-	ANIM_THROW, //Í¶ÖÀ
+	ANIM_ATTACK, //æ”»å‡»
+	ANIM_DAMAGE, //å—ä¼¤
+	ANIM_DEAD,  //æ­»äº¡
+	ANIM_STAND, //ç«™ç«‹
+	ANIM_WALK, //è¡Œèµ°
+	ANIM_SIT, //åä¸‹
+	ANIM_HAND, //æŒ¥æ‰‹
+	ANIM_HAPPY, //é«˜å…´
+	ANIM_ANGRY, //ç”Ÿæ°”
+	ANIM_SAD, //ä¼¤å¿ƒ
+	ANIM_GUARD, //é˜²å®ˆ
+	ANIM_NOD, //ç‚¹å¤´
+	ANIM_THROW, //æŠ•æŽ·
 	ANIM_LIST_
 } ANIM_LIST;
 
 
-// 1?????ýÑ©
+// 1?????îºîŸ«
 typedef struct
 {
-	U4 BmpNo;				//AdrnÍ¼Æ¬±àºÅ
-	S2 PosX,PosY;			//Í¼Æ¬ÏÔÊ¾Ê±µÄx£¬yÆ«ÒÆ
-	U2 SoundNo;				// Ð¡ÓÚ10000´ú±íÒôÐ§±àºÅ,±íÊ¾Òª·ÅÒôÐ§;´óÓÚµÈÓÚ10000Ð¡ÓÚ10100´ú±íÒªÏÔÊ¾ÉËº¦Ð§¹û,Êý×Ö»òÆäËûÐ§¹û
-							// ´óÓÚµÈÓÚ10100´ú±íÁ¬»÷????§k?
-} FRAMELIST;//Ò»Ö¡¶¯×÷µÄ¾ßÌåÐÅÏ¢
+	U4 BmpNo;				//Adrnå›¾ç‰‡ç¼–å·
+	S2 PosX,PosY;			//å›¾ç‰‡æ˜¾ç¤ºæ—¶çš„xï¼Œyåç§»
+	U2 SoundNo;				// å°äºŽ10000ä»£è¡¨éŸ³æ•ˆç¼–å·,è¡¨ç¤ºè¦æ”¾éŸ³æ•ˆ;å¤§äºŽç­‰äºŽ10000å°äºŽ10100ä»£è¡¨è¦æ˜¾ç¤ºä¼¤å®³æ•ˆæžœ,æ•°å­—æˆ–å…¶ä»–æ•ˆæžœ
+							// å¤§äºŽç­‰äºŽ10100ä»£è¡¨è¿žå‡»????îœ±?
+} FRAMELIST;//ä¸€å¸§åŠ¨ä½œçš„å…·ä½“ä¿¡æ¯
 
 typedef struct
 {
-	U2 dir;	// ¶¯×÷·½Ïò(0-8)
-	U2 no;	// ¶¯×÷µÄ·ÖÀà¼ûºóÃæµÄANIM_LISTµÄ¶¨Òå
-	U4 dtAnim;	// ´Î¶¯×÷Ñ­»·µÄºÄÊ±
-	U4 frameCnt; // FRAMELISTµÄÊýÁ¿
+	U2 dir;	// åŠ¨ä½œæ–¹å‘(0-8)
+	U2 no;	// åŠ¨ä½œçš„åˆ†ç±»è§åŽé¢çš„ANIM_LISTçš„å®šä¹‰
+	U4 dtAnim;	// æ¬¡åŠ¨ä½œå¾ªçŽ¯çš„è€—æ—¶
+	U4 frameCnt; // FRAMELISTçš„æ•°é‡
 	FRAMELIST *ptFramelist;	
 } ANIMLIST;
 
 
-// SPR??£týÑ©
+// SPR??î–ºîºîŸ«
 typedef struct
 {
-	U4 sprNo;	// SprÐòºÅ
-	U4 offset;	// Ö¸Ã÷ÔÚspr.binÖÐµÄµØÖ·
-	U2 animSize;	// ½ÅÉ«ÓÐ¶àÉÙ¸öÍêÕûµÄ¶¯×÷
+	U4 sprNo;	// Språºå·
+	U4 offset;	// æŒ‡æ˜Žåœ¨spr.binä¸­çš„åœ°å€
+	U2 animSize;	// è„šè‰²æœ‰å¤šå°‘ä¸ªå®Œæ•´çš„åŠ¨ä½œ
 } SPRADRN;
 
 
@@ -85,10 +85,10 @@ typedef struct {
 
 typedef struct
 {
-	U2 dir;		// ¶¯×÷·½Ïò(0-8)
-	U2 no;		// ¶¯×÷µÄ·ÖÀà¼ûºóÃæµÄANIM_LISTµÄ¶¨Òå
-	U4 dtAnim;	// Ò»´Î¶¯×÷Ñ­»·µÄºÄÊ±
-	U4 frameCnt;	// ¶¯×÷èåµÄÊýÁ¿
+	U2 dir;		// åŠ¨ä½œæ–¹å‘(0-8)
+	U2 no;		// åŠ¨ä½œçš„åˆ†ç±»è§åŽé¢çš„ANIM_LISTçš„å®šä¹‰
+	U4 dtAnim;	// ä¸€æ¬¡åŠ¨ä½œå¾ªçŽ¯çš„è€—æ—¶
+	U4 frameCnt;	// åŠ¨ä½œæ¡¢çš„æ•°é‡
 } ANIM_HEADER;
 
 

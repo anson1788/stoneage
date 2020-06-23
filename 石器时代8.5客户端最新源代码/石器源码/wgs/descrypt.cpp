@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ecb_crypt, cbc_crypt, des_setparity - DES encryption/decryption routine
  *
  *	Written by Koichiro Mori (kmori@lsi-j.co.jp)

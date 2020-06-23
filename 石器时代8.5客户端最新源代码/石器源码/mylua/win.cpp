@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "winlua.h"
 #include "../systeminc/character.h"
@@ -124,7 +124,7 @@ static int SaInitStrBuffer(lua_State *L)
 	const int len = luaL_checkint(L, 3);
 	const int color = luaL_checkint(L, 4);
 	const int prio = luaL_checkint(L, 5);
-	//³õÊ¼»¯ÊäÈëÐÅÏ¢
+	//åˆå§‹åŒ–è¾“å…¥ä¿¡æ¯
 	windows.input.buffer[0] = '\0';
 	windows.input.cnt = 0;
 	windows.input.cursor=0;
@@ -141,7 +141,7 @@ static int SaInitNewStrBuffer(lua_State *L)
 	const int color = luaL_checkint(L, 4);
 	const int prio = luaL_checkint(L, 5);
 	const char *str = luaL_checklstring(L, 6, &l);
-	//³õÊ¼»¯ÊäÈëÐÅÏ¢
+	//åˆå§‹åŒ–è¾“å…¥ä¿¡æ¯
 	int slen = strlen((char *)str);
 	if(slen > 0){
 		strcpy(windows.input.buffer, str);

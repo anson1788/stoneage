@@ -1,5 +1,5 @@
-/*
-	menu.cpp µµ°¸Ì«´óÁË,ĞÂ¹¦ÄÜĞ´ÔÚÕâ
+ï»¿/*
+	menu.cpp æ¡£æ¡ˆå¤ªå¤§äº†,æ–°åŠŸèƒ½å†™åœ¨è¿™
 	*/
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
@@ -30,22 +30,22 @@ void ShowItemup(int value, int x, int y)
 {
 	char itemup_msg[256]="";
 	int sx=-50,sy=-20;
-	int s = ((((value)&0xff000000)>>24)&0x000000ff);//¹¥
-	int t = ((((value)&0x00ff0000)>>16)&0x000000ff);//·À
-	int d = ((((value)&0x0000ff00)>>8 )&0x000000ff);//Ãô
-	int h = ((value)&0x000000ff);//±£Áô
+	int s = ((((value)&0xff000000)>>24)&0x000000ff);//æ”»
+	int t = ((((value)&0x00ff0000)>>16)&0x000000ff);//é˜²
+	int d = ((((value)&0x0000ff00)>>8 )&0x000000ff);//æ•
+	int h = ((value)&0x000000ff);//ä¿ç•™
 	if( s > 0 ){
-		sprintf_s( itemup_msg, "¹¥Ôö¼Ó %d", s); 
+		sprintf_s( itemup_msg, "æ”»å¢åŠ  %d", s); 
 		StockFontBuffer( x+sx , y+sy, FONT_PRIO_FRONT, FONT_PAL_WHITE, itemup_msg, 0 );
 		sy-=20;
 	}
 	if( t > 0 ){
-		sprintf_s( itemup_msg, "·ÀÔö¼Ó %d", t); 
+		sprintf_s( itemup_msg, "é˜²å¢åŠ  %d", t); 
 		StockFontBuffer( x+sx , y+sy, FONT_PRIO_FRONT, FONT_PAL_WHITE, itemup_msg, 0 );
 		sy-=20;	
 	}
 	if( d > 0 ){
-		sprintf_s( itemup_msg, "ÃôÔö¼Ó %d", d); 
+		sprintf_s( itemup_msg, "æ•å¢åŠ  %d", d); 
 		StockFontBuffer( x+sx , y+sy, FONT_PRIO_FRONT, FONT_PAL_WHITE, itemup_msg, 0 );
 		sy-=20;
 	}
@@ -67,17 +67,17 @@ void ShowCounttime(int sectime, int x, int y)
 		day = sectime / 86400;
 		hour = (sectime / 3600) - (day * 24);
 		min = (sectime / 60) - (day * 1440) - (hour * 60);
-		sprintf_s( buf, "Ô¼%dÌì%dÊ±%d·Ö", day, hour, min); 
+		sprintf_s( buf, "çº¦%då¤©%dæ—¶%dåˆ†", day, hour, min); 
 	}
 	else if( sectime > 3600 ){
 		hour = sectime/3600;
 		min  = (sectime/60)-(hour*60);
-		sprintf_s( buf,"Ô¼%dÊ±%d·Ö",hour,min); 
+		sprintf_s( buf,"çº¦%dæ—¶%dåˆ†",hour,min); 
 	}else if(sectime > 60 ){
 		min  = sectime/60;
-		sprintf_s( buf,"  Ô¼%d·Ö",min); 
+		sprintf_s( buf,"  çº¦%dåˆ†",min); 
 	}else{
-		sprintf_s( buf,"  Ô¼1·Ö"); 
+		sprintf_s( buf,"  çº¦1åˆ†"); 
 	}
 	//StockFontBuffer( x-20 , y-20, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf , 0 );	
 	StockFontBuffer(x + 30 , y + 10, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf , 0);
@@ -135,7 +135,7 @@ void petSkinProc()
 
 	if (HitDispNo == btnShowSkinWin){
 		extern void ShowBottomLineString(int iColor, LPSTR lpstr);
-		ShowBottomLineString(FONT_PAL_WHITE, "¸ü»»³èÎïÆ¤·ô¡£");
+		ShowBottomLineString(FONT_PAL_WHITE, "æ›´æ¢å® ç‰©çš®è‚¤ã€‚");
 		if (mouse.onceState & MOUSE_LEFT_CRICK){
 
 			if (btnShowSkinWinState){
@@ -152,28 +152,28 @@ void petSkinProc()
 
 	if (btnShowSkinWinState)
 	{
-		//ÉÏÒ»¸öÆ¤·ô
+		//ä¸Šä¸€ä¸ªçš®è‚¤
 		if (HitDispNo == btnPrev){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				btnPrevState = TRUE;
 			}
 		}
 
-		//ÏÂÒ»¸öÆ¤·ô
+		//ä¸‹ä¸€ä¸ªçš®è‚¤
 		if (HitDispNo == btnNext){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				btnNextState = TRUE;
 			}
 		}
 
-		//Éè¶¨Æ¤·ô
+		//è®¾å®šçš®è‚¤
 		if (HitDispNo == btnSkinSet){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 
 			}
 		}
 
-		//¹Ø±ÕÔ¤ÀÀ
+		//å…³é—­é¢„è§ˆ
 		if (HitDispNo == btnExit){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				initPetSkinWin();
@@ -202,27 +202,27 @@ void CloseMagicItemWin()
 	DeathAction(pActMenuWnd2);
 
 	pActMenuWnd2 = NULL;
-							// ????úÇ
+							// ????îŒ–
 	DeathAction(pActPet2);
 	pActPet2 = NULL;
 	extern int ItemMixPetNo,itemNo;
-							// ?şÎ???§k????
+							// ?î’•???îœ±????
 	ItemMixPetNo = -1;
-							// ?????????¨–??
+							// ?????????î¼??
 	MenuToggleFlag ^= JOY_CTRL_I;
-	// ????????????????¨–??
+	// ????????????????î¼??
 	if (MenuToggleFlag & JOY_CTRL_S){
 
 		MenuToggleFlag ^= JOY_CTRL_S;	// CTRL + S ??
-								// ??????????úÇ
+								// ??????????îŒ–
 		extern void DeathMenuAction(void);
 		DeathMenuAction();
 	}
-							// ?????¨–???
+							// ?????î¼???
 	play_se(203, 320, 240);
 
 	itemNo = -1;
-#ifdef _MONEYINPUT //Syu ADD ÊÖ¶¯ÊäÈë½ğÇ®Á¿
+#ifdef _MONEYINPUT //Syu ADD æ‰‹åŠ¨è¾“å…¥é‡‘é’±é‡
 	extern bool Moneyflag  ;
 	GetKeyInputFocus(&MyChatBuffer);
 	Moneyflag = false;

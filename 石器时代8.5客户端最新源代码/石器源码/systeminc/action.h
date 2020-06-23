@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	action.h			*/
 /************************/
 #ifndef _ACTION_H_
@@ -6,75 +6,75 @@
 
 #include "version.h"
 #include "../newproto/autil.h"
-//´¦ÀíÓÅÏÈË³Ðò
+//å¤„ç†ä¼˜å…ˆé¡ºåº
 enum{
-	PRIO_TOP,			//×îÓÅÏÈ
+	PRIO_TOP,			//æœ€ä¼˜å…ˆ
 
-	PRIO_CHR,			//Í¬Char
+	PRIO_CHR,			//åŒChar
 
 	PRIO_BG,			/* ?? 	*/
-	PRIO_JIKI,			/* û«? 	*/
-	PRIO_ENEMY,			/* ¤„ 		*/
-	PRIO_ENEMY_TAMA,	/* ¤„£d 	*/
-	PRIO_JIKI_TAMA,		/* û«?£d 	*/
+	PRIO_JIKI,			/* î˜? 	*/
+	PRIO_ENEMY,			/* î˜© 		*/
+	PRIO_ENEMY_TAMA,	/* î˜©î–ª 	*/
+	PRIO_JIKI_TAMA,		/* î˜?î–ª 	*/
 	PRIO_ITEM,			/* ????	*/
 	PRIO_BOSS,			/* ??		*/
 	PRIO_GAME_OVER,		/* GAME OVER */
-	PRIO_BTM = 255		/* ??§Ž 	*/
+	PRIO_BTM = 255		/* ??î“ 	*/
 };
 
-//Action×´Ì¬
+//ActionçŠ¶æ€
 enum{
-	ACT_STATE_ACT = 0,	//Í¨³£×´Ì¬
-	ACT_STATE_DEAD		//ËÀÍö×´Ì¬
+	ACT_STATE_ACT = 0,	//é€šå¸¸çŠ¶æ€
+	ACT_STATE_DEAD		//æ­»äº¡çŠ¶æ€
 };
-//ÊôÐÔ
-#define ACT_ATR_HIDE 			( 1 <<  1 )	// ²»ÏÔÊ¾/* §‰¤úû¨ */
-#define ACT_ATR_HIT 			( 1 <<  2 )	// ¿ÉÒÔ±»µãÑ¡/* ???§R¤e?? */
-#define ACT_ATR_HIT_BOX 		( 1 <<  3 )	// ¿ÉÒÔ±»µãÑ¡µÄÍâ¿ò/* ???§R¤e + ????¤úû¨ */
-#define ACT_ATR_INFO 			( 1 <<  4 )	// ÏÔÊ¾³öÏà¹ØÑ¶Ï¢/* ??????¤úû¨ */
-#define ACT_ATR_HIDE2 			( 1 <<  5 )	// ²»ÏÔÊ¾ + ¿ÉÒÔ±»µãÑ¡/* §‰¤úû¨+???§R¤e?? */
-#define ACT_ATR_BTL_CMD_END 	( 1 <<  6 )	// Õ½¶·Ö¸ÁîÊäÈëÍê³ÉÆì±ê,Î´Íê³ÉÊäÈëµÄÍæ¼Ò»á¶¯,Íê³ÉÔò²»»á¶¯/* ¡P¥f????¦V?ü¬???? */
-#define ACT_ATR_TYPE_PC 		( 1 <<  7 )	// Íæ¼Ò/* ?? */
-#define ACT_ATR_TYPE_OTHER_PC 	( 1 <<  8 )	// ±ðµÄÍæ¼Ò/* ¢\??? */
+//å±žæ€§
+#define ACT_ATR_HIDE 			( 1 <<  1 )	// ä¸æ˜¾ç¤º/* îŽî¸î• */
+#define ACT_ATR_HIT 			( 1 <<  2 )	// å¯ä»¥è¢«ç‚¹é€‰/* ???îœ˜î˜‹?? */
+#define ACT_ATR_HIT_BOX 		( 1 <<  3 )	// å¯ä»¥è¢«ç‚¹é€‰çš„å¤–æ¡†/* ???îœ˜î˜‹ + ????î¸î• */
+#define ACT_ATR_INFO 			( 1 <<  4 )	// æ˜¾ç¤ºå‡ºç›¸å…³è®¯æ¯/* ??????î¸î• */
+#define ACT_ATR_HIDE2 			( 1 <<  5 )	// ä¸æ˜¾ç¤º + å¯ä»¥è¢«ç‚¹é€‰/* îŽî¸î•+???îœ˜î˜‹?? */
+#define ACT_ATR_BTL_CMD_END 	( 1 <<  6 )	// æˆ˜æ–—æŒ‡ä»¤è¾“å…¥å®Œæˆæ——æ ‡,æœªå®Œæˆè¾“å…¥çš„çŽ©å®¶ä¼šåŠ¨,å®Œæˆåˆ™ä¸ä¼šåŠ¨/* î“–î™¬????îš¼?îŽ·???? */
+#define ACT_ATR_TYPE_PC 		( 1 <<  7 )	// çŽ©å®¶/* ?? */
+#define ACT_ATR_TYPE_OTHER_PC 	( 1 <<  8 )	// åˆ«çš„çŽ©å®¶/* î•‚??? */
 #define ACT_ATR_TYPE_PET 		( 1 <<  9 )	/* ??? */
 #define ACT_ATR_TYPE_ITEM 		( 1 << 10 )	/* ???? */
 #define ACT_ATR_TYPE_GOLD 		( 1 << 11 )	/* ?? */
-#define ACT_ATR_TYPE_OTHER 		( 1 << 12 )	/* ??¢\????¼?þ°??§Y? */
-#define ACT_ATR_HIT_BOX_ALL1 	( 1 << 13 )	// ¿ÉÒÔ±»µãÑ¡ + Íâ¿òÏÔÊ¾1
-#define ACT_ATR_HIT_BOX_ALL2 	( 1 << 14 )	// ¿ÉÒÔ±»µãÑ¡ + Íâ¿òÏÔÊ¾2
-#define ACT_ATR_HIT_BOX_ALL3 	( 1 << 15 )	// ¿ÉÒÔ±»µãÑ¡ + Íâ¿òÏÔÊ¾3
-#define ACT_ATR_HIT_BOX_ALL4 	( 1 << 16 )	// ¿ÉÒÔ±»µãÑ¡ + Íâ¿òÏÔÊ¾3
+#define ACT_ATR_TYPE_OTHER 		( 1 << 12 )	/* ??î•‚????ä¼¡?î‘·??îœŸ? */
+#define ACT_ATR_HIT_BOX_ALL1 	( 1 << 13 )	// å¯ä»¥è¢«ç‚¹é€‰ + å¤–æ¡†æ˜¾ç¤º1
+#define ACT_ATR_HIT_BOX_ALL2 	( 1 << 14 )	// å¯ä»¥è¢«ç‚¹é€‰ + å¤–æ¡†æ˜¾ç¤º2
+#define ACT_ATR_HIT_BOX_ALL3 	( 1 << 15 )	// å¯ä»¥è¢«ç‚¹é€‰ + å¤–æ¡†æ˜¾ç¤º3
+#define ACT_ATR_HIT_BOX_ALL4 	( 1 << 16 )	// å¯ä»¥è¢«ç‚¹é€‰ + å¤–æ¡†æ˜¾ç¤º3
 #define ACT_ATR_TRAVEL 			( 1 << 17 )	/* ??? */
 
-#define ACT_ATR_HIT_BOX_COL1	( 1 << 18 )	// ×óÉÏµÚÒ»ÁÐ
-#define ACT_ATR_HIT_BOX_COL2	( 1 << 19 ) // ×óÉÏµÚ¶þÁÐ
-#define ACT_ATR_HIT_BOX_COL3	( 1 << 20 ) // ÓÒÏÂµÚÒ»ÁÐ
-#define ACT_ATR_HIT_BOX_COL4	( 1 << 21 ) // ÓÒÏÂµÚ¶þÁÐ
-#define ACT_ATR_HIT_BOX_COL5	( 1 << 22 )	// ×óÉÏµÚÒ»ÁÐ
-#define ACT_ATR_HIT_BOX_COL6	( 1 << 23 ) // ×óÉÏµÚ¶þÁÐ
-#define ACT_ATR_HIT_BOX_COL7	( 1 << 24 ) // ÓÒÏÂµÚÒ»ÁÐ
-#define ACT_ATR_HIT_BOX_COL8	( 1 << 25 ) // ÓÒÏÂµÚ¶þÁÐ
+#define ACT_ATR_HIT_BOX_COL1	( 1 << 18 )	// å·¦ä¸Šç¬¬ä¸€åˆ—
+#define ACT_ATR_HIT_BOX_COL2	( 1 << 19 ) // å·¦ä¸Šç¬¬äºŒåˆ—
+#define ACT_ATR_HIT_BOX_COL3	( 1 << 20 ) // å³ä¸‹ç¬¬ä¸€åˆ—
+#define ACT_ATR_HIT_BOX_COL4	( 1 << 21 ) // å³ä¸‹ç¬¬äºŒåˆ—
+#define ACT_ATR_HIT_BOX_COL5	( 1 << 22 )	// å·¦ä¸Šç¬¬ä¸€åˆ—
+#define ACT_ATR_HIT_BOX_COL6	( 1 << 23 ) // å·¦ä¸Šç¬¬äºŒåˆ—
+#define ACT_ATR_HIT_BOX_COL7	( 1 << 24 ) // å³ä¸‹ç¬¬ä¸€åˆ—
+#define ACT_ATR_HIT_BOX_COL8	( 1 << 25 ) // å³ä¸‹ç¬¬äºŒåˆ—
 
 
 
 
-/* ??????¢B¢l **********************************************************/
+/* ??????î”¨î•’ **********************************************************/
 struct action{
-	struct 	action *pPrev, *pNext;			//ÉÏÒ»¸ö¼°ÏÂÒ»¸öactionÖ¸±ê
-	void 	( *func )( struct action * );	//actionËùÖ´ÐÐµÄfunctionµÄÖ¸±ê
-	void 	*pYobi;							//±¸ÓÃµÄstructÖ¸±ê
-	void 	*pOther;						//ÆäËüÓÃÍ¾structÖ¸±ê
-	UCHAR 	prio;							//action´¦ÀíÊ±µÄÓÅÏÈË³Ðò
-	UCHAR 	dispPrio;						//ÐãÍ¼Ê±µÄÓÅÏÈË³Ðò	
-	int 	x, y;							//Í¼µÄ×ù±ê
-	int		hitDispNo;						//ÊÇ·ñÃüÖÐÄ¿±ê±àºÅ
-	BOOL	deathFlag;						//´ËactionÊÇ·ñËÀÍöÆì±ê	
-	int 	dx, dy;							//ÐãÍ¼×ù±êÎ»ÒÆÁ¿
-	int 	dir;							//·½Ïò
-	int 	delta;  						//ºÏ³ÉÏòÁ¿
+	struct 	action *pPrev, *pNext;			//ä¸Šä¸€ä¸ªåŠä¸‹ä¸€ä¸ªactionæŒ‡æ ‡
+	void 	( *func )( struct action * );	//actionæ‰€æ‰§è¡Œçš„functionçš„æŒ‡æ ‡
+	void 	*pYobi;							//å¤‡ç”¨çš„structæŒ‡æ ‡
+	void 	*pOther;						//å…¶å®ƒç”¨é€”structæŒ‡æ ‡
+	UCHAR 	prio;							//actionå¤„ç†æ—¶çš„ä¼˜å…ˆé¡ºåº
+	UCHAR 	dispPrio;						//ç§€å›¾æ—¶çš„ä¼˜å…ˆé¡ºåº	
+	int 	x, y;							//å›¾çš„åº§æ ‡
+	int		hitDispNo;						//æ˜¯å¦å‘½ä¸­ç›®æ ‡ç¼–å·
+	BOOL	deathFlag;						//æ­¤actionæ˜¯å¦æ­»äº¡æ——æ ‡	
+	int 	dx, dy;							//ç§€å›¾åº§æ ‡ä½ç§»é‡
+	int 	dir;							//æ–¹å‘
+	int 	delta;  						//åˆæˆå‘é‡
 	
-	char 	name[ 29 ];						//Ãû×Ö
+	char 	name[ 29 ];						//åå­—
 	char 	freeName[ 33 ];					//free name
 	int 	hp;		
 #ifdef _PET_ITEM
@@ -85,50 +85,50 @@ struct action{
 	int 	maxMp;						
 	int 	level;						
 	int 	status;						
-	int 	itemNameColor;					/* ?????þ¡q?ýè */
-	int		charNameColor;					// ??????¤úû¨??????þ¡q?ýè
+	int 	itemNameColor;					/* ?????î¡“î“·?î‘‘ */
+	int		charNameColor;					// ??????î¸î•??????î¡“î“·?î‘‘
 	
-	int		bmpNo;							//Í¼ºÅ
-	int		bmpNo_bak;							//±¸·ÝÍ¼ºÅ
-	int		atr;							//ÊôÐÔ
-	int		state;							//×´Ì¬
-	int		actNo;							//ÐÐ¶¯±àºÅ
+	int		bmpNo;							//å›¾å·
+	int		bmpNo_bak;							//å¤‡ä»½å›¾å·
+	int		atr;							//å±žæ€§
+	int		state;							//çŠ¶æ€
+	int		actNo;							//è¡ŒåŠ¨ç¼–å·
 	int		damage;						
 
-	int		gx, gy;							//ÔÚÄ¿Ç°µÄµØÍ¼ÉÏµÄ×ù±ê
-	int		nextGx, nextGy;					//ÏÂÒ»¸ö×ù±ê
-	int		bufGx[10], bufGy[10];			//´ÓÄ¿Ç°×ù±êµ½ÏÂÒ»¸ö×ù±êÖ®¼ä×ù±êµÄbuffer
-	short	bufCount;						//Éè¶¨Ä¿Ç°Òª×ßµ½ÄÇÒ»¸ö×ù±ê
-	short	walkFlag;						// ¨÷????????????þú?¢v?????????
-	float	mx, my;							//µØÍ¼×ù±ê
-	float	vx, vy;							// ?¥h?§Æ
+	int		gx, gy;							//åœ¨ç›®å‰çš„åœ°å›¾ä¸Šçš„åº§æ ‡
+	int		nextGx, nextGy;					//ä¸‹ä¸€ä¸ªåº§æ ‡
+	int		bufGx[10], bufGy[10];			//ä»Žç›®å‰åº§æ ‡åˆ°ä¸‹ä¸€ä¸ªåº§æ ‡ä¹‹é—´åº§æ ‡çš„buffer
+	short	bufCount;						//è®¾å®šç›®å‰è¦èµ°åˆ°é‚£ä¸€ä¸ªåº§æ ‡
+	short	walkFlag;						// îŸš????????????î“?î•œ?????????
+	float	mx, my;							//åœ°å›¾åº§æ ‡
+	float	vx, vy;							// ?î™®?îž¤
 
-//ÊôÐÔ
-	short 	earth;							// Ô ¢NþÍ
-	short 	water;							// ? ¢NþÍ
-	short 	fire;							// ? ¢NþÍ
-	short 	wind;							// ? ¢NþÍ
-//raderÊ¹ÓÃ
-	int		dirCnt;							// ©˜?¨Á??????
-//geminiÊ¹ÓÃ
-	int		spd;							//ÒÆ¶¯µÄËÙ¶È(0~63)( ?????? )
-	int		crs;							//·½Ïò(0~31)(ÕýÉÏ·½Îª0,Ë³Ê±ÖÓ·½Ïò) ©˜?( ???? )( ýÆ?????? )
-	int		h_mini;							// üí?¤œ?
-	int		v_mini;							// üí?¤œüÆ
-//patternÊ¹ÓÃ
-	int		anim_chr_no;					//ÈËÎïµÄ±àºÅ(anim_tbl.hµÄ±àºÅ)
-	int		anim_chr_no_bak;				//ÉÏÒ»´ÎµÄÈËÎï±àºÅ
-	int		anim_no;						//ÈËÎïµÄ¶¯×÷±àºÅ
-	int		anim_no_bak;					//ÉÏÒ»´ÎµÄÈËÎï±àºÅ
-	int		anim_ang;						//¶¯×÷µÄ·½Ïò(0~7)(ÏÂ0)
-	int		anim_ang_bak;					//ÉÏÒ»´ÎµÄ·½Ïò
-	int		anim_cnt;						//µÚ¼¸ÕÅframe
-	int		anim_frame_cnt;					//ÕâÕÅframeÍ£ÁôÊ±¼ä
-	int		anim_x;							//X×ù±ê(Sprbin+Adrnbin)
-	int		anim_y;							//Y×ù±ê(Sprbin+Adrnbin)
-	int		anim_hit;						// ???§R¤e
+//å±žæ€§
+	short 	earth;							// ä½‹ î”´î’”
+	short 	water;							// ? î”´î’”
+	short 	fire;							// ? î”´î’”
+	short 	wind;							// ? î”´î’”
+//raderä½¿ç”¨
+	int		dirCnt;							// îŸµ?îŸ‰??????
+//geminiä½¿ç”¨
+	int		spd;							//ç§»åŠ¨çš„é€Ÿåº¦(0~63)( ?????? )
+	int		crs;							//æ–¹å‘(0~31)(æ­£ä¸Šæ–¹ä¸º0,é¡ºæ—¶é’Ÿæ–¹å‘) îŸµ?( ???? )( î¯?????? )
+	int		h_mini;							// î¸?î™?
+	int		v_mini;							// î¸?î™î‘
+//patternä½¿ç”¨
+	int		anim_chr_no;					//äººç‰©çš„ç¼–å·(anim_tbl.hçš„ç¼–å·)
+	int		anim_chr_no_bak;				//ä¸Šä¸€æ¬¡çš„äººç‰©ç¼–å·
+	int		anim_no;						//äººç‰©çš„åŠ¨ä½œç¼–å·
+	int		anim_no_bak;					//ä¸Šä¸€æ¬¡çš„äººç‰©ç¼–å·
+	int		anim_ang;						//åŠ¨ä½œçš„æ–¹å‘(0~7)(ä¸‹0)
+	int		anim_ang_bak;					//ä¸Šä¸€æ¬¡çš„æ–¹å‘
+	int		anim_cnt;						//ç¬¬å‡ å¼ frame
+	int		anim_frame_cnt;					//è¿™å¼ frameåœç•™æ—¶é—´
+	int		anim_x;							//Xåº§æ ‡(Sprbin+Adrnbin)
+	int		anim_y;							//Yåº§æ ‡(Sprbin+Adrnbin)
+	int		anim_hit;						// ???îœ˜î˜‹
 	// shan add +1
-	char    fmname[33];			            // ¼Ò×åÃû³Æ
+	char    fmname[33];			            // å®¶æ—åç§°
 	// Robin 0728 ride Pet
 	int		onRide;
 	char	petName[16+1];
@@ -160,22 +160,22 @@ struct action{
 #endif
 
 #ifdef _SKILL_ROAR  
-	int		petRoar;		//´óºð(¿ËÄêÊÞ)
+	int		petRoar;		//å¤§å¼(å…‹å¹´å…½)
 #endif 
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 	int		petSelfExplode;		
 #endif 
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //å‰§æ¯’
 	int		petDeepPoision;		 
 #endif 
 
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 	int		profession_class;
 #endif
-//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+//#ifdef _BATTLESKILL				// (ä¸å¯å¼€) Syu ADD æˆ˜æ–—æŠ€èƒ½ä»‹é¢
 	int		warrioreffect; 
 //#endif
-#ifdef _GM_IDENTIFY		// Rog ADD GMÊ¶±ð
+#ifdef _GM_IDENTIFY		// Rog ADD GMè¯†åˆ«
 	char gm_name[33];
 #endif
 #ifdef _STREET_VENDOR
@@ -189,11 +189,11 @@ struct action{
 	int saveride;
 #endif
 #ifdef _MOUSE_DBL_CLICK
-	int index;	// ½û¶Ï!! ServerÖÐµÄcharaindex
+	int index;	// ç¦æ–­!! Serverä¸­çš„charaindex
 #endif
 
 #ifdef _SFUMATO
-	int sfumato;		// ¶þ´ÎäÖÈ¾Í¼²ãÉ«²Ê
+	int sfumato;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
 #endif
 };
 
@@ -203,7 +203,7 @@ typedef struct action ACTION;
 extern ACTION *pActTop;
 extern ACTION *pActBtm;
 
-/* û«?????? */
+/* î˜?????? */
 extern ACTION *pJiki;
 
 #ifdef _STONDEBUG_		
@@ -211,7 +211,7 @@ extern ACTION *pJiki;
 extern int ActCnt;
 #endif
 
-/* ?????????¥K? *****************************************************/
+/* ?????????î™‘? *****************************************************/
 ACTION *GetAction( UCHAR prio, UINT yobiSize );
 
 /* ??????????? *****************************************************/
@@ -220,16 +220,16 @@ void InitAction( void );
 /* ????????? *********************************************************/
 void RunAction( void );
 
-/* ???????????úÇ?§************************************************/
+/* ???????????îŒ–?î’************************************************/
 void DeathAction( ACTION *pAct );
 
-/* ¡u??????úÇ?§ *******************************************************/
+/* î“»??????îŒ–?î’ *******************************************************/
 void DeathAllAction( void );
 
-/* ???????????¡u?úÇ ***********************************************/
+/* ???????????î“»?îŒ– ***********************************************/
 void ClearAction( ACTION *pAct );
 
-/* ?????ü¬??? *********************************************************/
+/* ?????îŽ·??? *********************************************************/
 void EndAction( void );
 
 #endif

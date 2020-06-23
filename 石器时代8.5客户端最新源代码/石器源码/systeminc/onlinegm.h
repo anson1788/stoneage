@@ -1,40 +1,40 @@
-
+ï»¿
 #ifndef _ONLINEGM_
 #define _ONLINEGM_
 
-#define ONLINEGM_BACKGROUND		OLD_GRAPHICS_START+821  //±³¾°Í¼
-#define ONLINEGM_YES_OR_NO      35322                   //Ð¡³¤·½Ê¯°å±³¾°Í¼ 26195ÓÐÎÊÌâµÄÍ¼
-#define ONLINEGM_CHECK_U		OLD_GRAPHICS_START+820	//²éÑ¯(µ¯Æð)
-#define ONLINEGM_CHECK_D		35319					//²éÑ¯(°´ÏÂ)		
-#define ONLINEGM_DELETE_U		OLD_GRAPHICS_START+819	//É¾³ý(µ¯Æð)
-#define ONLINEGM_DELETE_D		35321					//É¾³ý(°´ÏÂ)
-#define ONLINEGM_ENTER_U		26099					//´«ËÍ(µ¯Æð)
-#define ONLINEGM_ENTER_D		35320//´«ËÍ(°´ÏÂ)
-#define	ONLINEGM_CLEAR_U		26298					//Çå³ý(µ¯Æð)
-#define ONLINEGM_CLEAR_D		26299					//Çå³ý(°´ÏÂ)
-#define ONLINEGM_HELP_U			OLD_GRAPHICS_START+818	//×¢ÒâÊÂÏî(µ¯Æð)
-#define ONLINEGM_HELP_D			35318					//×¢ÒâÊÂÏî(°´ÏÂ)
-#define ONLINEGM_QUIT			26042					    //¹Ø±Õ
-#define ONLINEGM_UP_U			26064					//ÉÏ¾í(µ¯Æð)
-#define ONLINEGM_UP_D			26065					//ÉÏ¾í(°´ÏÂ)
-#define ONLINEGM_DOWN_U			26066					//ÏÂ¾í(µ¯Æð)
-#define ONLINEGM_DOWN_D			26067					//ÏÂ¾í(°´ÏÂ)
-#define ONLINEGM_SURE_D			26288					//È·¶¨(°´ÏÂ)(»ÆÉ«µÄ)
-#define ONLINEGM_SURE_U			26289					//È·¶¨(µ¯Æð)(»ÆÉ«µÄ)
-#define ONLINEGM_CHANCEL        26291					//È¡Ïû
+#define ONLINEGM_BACKGROUND		OLD_GRAPHICS_START+821  //èƒŒæ™¯å›¾
+#define ONLINEGM_YES_OR_NO      35322                   //å°é•¿æ–¹çŸ³æ¿èƒŒæ™¯å›¾ 26195æœ‰é—®é¢˜çš„å›¾
+#define ONLINEGM_CHECK_U		OLD_GRAPHICS_START+820	//æŸ¥è¯¢(å¼¹èµ·)
+#define ONLINEGM_CHECK_D		35319					//æŸ¥è¯¢(æŒ‰ä¸‹)		
+#define ONLINEGM_DELETE_U		OLD_GRAPHICS_START+819	//åˆ é™¤(å¼¹èµ·)
+#define ONLINEGM_DELETE_D		35321					//åˆ é™¤(æŒ‰ä¸‹)
+#define ONLINEGM_ENTER_U		26099					//ä¼ é€(å¼¹èµ·)
+#define ONLINEGM_ENTER_D		35320//ä¼ é€(æŒ‰ä¸‹)
+#define	ONLINEGM_CLEAR_U		26298					//æ¸…é™¤(å¼¹èµ·)
+#define ONLINEGM_CLEAR_D		26299					//æ¸…é™¤(æŒ‰ä¸‹)
+#define ONLINEGM_HELP_U			OLD_GRAPHICS_START+818	//æ³¨æ„äº‹é¡¹(å¼¹èµ·)
+#define ONLINEGM_HELP_D			35318					//æ³¨æ„äº‹é¡¹(æŒ‰ä¸‹)
+#define ONLINEGM_QUIT			26042					    //å…³é—­
+#define ONLINEGM_UP_U			26064					//ä¸Šå·(å¼¹èµ·)
+#define ONLINEGM_UP_D			26065					//ä¸Šå·(æŒ‰ä¸‹)
+#define ONLINEGM_DOWN_U			26066					//ä¸‹å·(å¼¹èµ·)
+#define ONLINEGM_DOWN_D			26067					//ä¸‹å·(æŒ‰ä¸‹)
+#define ONLINEGM_SURE_D			26288					//ç¡®å®š(æŒ‰ä¸‹)(é»„è‰²çš„)
+#define ONLINEGM_SURE_U			26289					//ç¡®å®š(å¼¹èµ·)(é»„è‰²çš„)
+#define ONLINEGM_CHANCEL        26291					//å–æ¶ˆ
 
 
-#define DEF_UPDOWN_TOTAL        22						// ÉÏÏÂ¾í×ÜÊý     
-#define DEF_BUTTON_TOTAL        28                      // ÏßÉÏ»Ø±¨ÏµÍ³°´Å¥×ÜÊý
-#define DEF_CLASS_TOTAL         2                       // ÎÊÌâÀà±ð×ÜÊý
-#define DEF_C1_TOTAL			14						// Àà±ðÒ»Ï¸Ïî×ÜÊý
-#define DEF_C2_TOTAL			11 						// Àà±ð¶þÏ¸Ïî×ÜÊý
+#define DEF_UPDOWN_TOTAL        22						// ä¸Šä¸‹å·æ€»æ•°     
+#define DEF_BUTTON_TOTAL        28                      // çº¿ä¸Šå›žæŠ¥ç³»ç»ŸæŒ‰é’®æ€»æ•°
+#define DEF_CLASS_TOTAL         2                       // é—®é¢˜ç±»åˆ«æ€»æ•°
+#define DEF_C1_TOTAL			14						// ç±»åˆ«ä¸€ç»†é¡¹æ€»æ•°
+#define DEF_C2_TOTAL			11 						// ç±»åˆ«äºŒç»†é¡¹æ€»æ•°
 
-#define DEF_MAX_ADD_VALUE     20   //Ä¿Ç°Éè¶¨Íæ¼Ò×î¶àÁô20±Ê
+#define DEF_MAX_ADD_VALUE     20   //ç›®å‰è®¾å®šçŽ©å®¶æœ€å¤šç•™20ç¬”
 
-#define MAX_INPUT_LINE 		30 			// ÎÊÌâÊäÈëÐÐÊýÏÞÖÆ
+#define MAX_INPUT_LINE 		30 			// é—®é¢˜è¾“å…¥è¡Œæ•°é™åˆ¶
 
-#define DEF_INPUT_LINE 		4 			// ÎÊÌâÊýÈëÏÔÊ¾ÐÐÊý chatÊÇ20
+#define DEF_INPUT_LINE 		4 			// é—®é¢˜æ•°å…¥æ˜¾ç¤ºè¡Œæ•° chatæ˜¯20
 
 #define MAX_INPUT_HISTORY 	20			// ???????????
 

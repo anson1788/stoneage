@@ -1,4 +1,4 @@
-#define UNPACK2	0
+ï»¿#define UNPACK2	0
 #define WIN32_LEAN_AND_MEAN
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned char autoMapColorTbl[MAX_GRAPHICS];	// ???????þÎ??????ýè????
+unsigned char autoMapColorTbl[MAX_GRAPHICS];	// ???????î’•??????î‘‘????
 
 #ifdef _STONDEBUG_
 extern int g_iMallocCount;
@@ -75,10 +75,10 @@ int writeAutoMapColor( char *wFName, char *addrbinfilename )
 	unsigned short autoMapColorVersion = 4;	
 	char *tmpStr;
 
-	// adrn.bin??????§k?????
+	// adrn.bin??????îœ±?????
 	tmpStr = strstr( addrbinfilename, "adrn" );
 	if( tmpStr == NULL )
-		return 0;	// §ó??þ†????ü¬??
+		return 0;	// îž°??î¡Š????îŽ·??
 	if( tmpStr[4] == '.' )
 		adrnNo = 0;	// ?????????
 	else{
@@ -87,7 +87,7 @@ int writeAutoMapColor( char *wFName, char *addrbinfilename )
 		if( adrnNo < 0 )
 			return 0;
 	}
-	// adrn.bin??þÎ¦T????
+	// adrn.bin??î’•îšº????
 	if( (rfp = fopen( addrbinfilename, "rb" )) == NULL )
 		return 0;
 	rfh = _fileno( rfp );
@@ -117,10 +117,10 @@ int readAutoMapColor( char *wFName, char *addrbinfilename )
 	unsigned int adrnTime, rAdrnTime;
 	unsigned short autoMapColorVersion = 4, rAutoMapColorVersion;
 	char *tmpStr;
-	// adrn.bin??????§k?ûè¥x
+	// adrn.bin??????îœ±?îŽ•î™¾
 	tmpStr = strstr( addrbinfilename, "adrn" );
 	if( tmpStr == NULL )
-		return 0;	// §ó??þ†????ü¬??
+		return 0;	// îž°??î¡Š????îŽ·??
 	if( tmpStr[4] == '.' )
 		adrnNo = 0;	// ?????????
 	else{
@@ -129,7 +129,7 @@ int readAutoMapColor( char *wFName, char *addrbinfilename )
 		if( adrnNo < 0 )
 			return 0;
 	}
-	// adrn.bin??þÎ¦Tûè¥x
+	// adrn.bin??î’•îšºîŽ•î™¾
 	if( (rfp = fopen( addrbinfilename, "rb" )) == NULL )
 		return 0;
 	rfh = _fileno( rfp );
@@ -150,7 +150,7 @@ int readAutoMapColor( char *wFName, char *addrbinfilename )
 		fclose( rfp );
 		return 0;
 	}
-	// adrn.bin?????¥‚???
+	// adrn.bin?????îš‡???
 	if( fread( &rAdrnNo, sizeof( rAdrnNo ), 1, rfp ) != 1 ){
 		fclose( rfp );
 		return 0;
@@ -159,7 +159,7 @@ int readAutoMapColor( char *wFName, char *addrbinfilename )
 		fclose( rfp );
 		return 0;
 	}
-	// adrn.bin??¥‚???
+	// adrn.bin??îš‡???
 	if( fread( &rAdrnTime, sizeof( rAdrnTime ), 1, rfp ) != 1 ){
 		fclose( rfp );
 		return 0;
@@ -206,7 +206,7 @@ BOOL initRealbinFileOpen(char *realbinfilename, char *addrbinfilename)
 				adrnbuff[tmpadrnbuff.bitmapno].attr.hit =
 					300 + (adrnbuff[tmpadrnbuff.bitmapno].attr.hit % 100);
 			}
-			if( tmpadrnbuff.attr.bmpnumber<=33 && tmpadrnbuff.bitmapno>230000){//·À¶ÂÄ§·¨Í¼ºÅ¸²¸ÇÉùÒôµÄbug
+			if( tmpadrnbuff.attr.bmpnumber<=33 && tmpadrnbuff.bitmapno>230000){//é˜²å µé­”æ³•å›¾å·è¦†ç›–å£°éŸ³çš„bug
 				continue;
 			}
 			bitmapnumbertable[tmpadrnbuff.attr.bmpnumber] = tmpadrnbuff.bitmapno;
@@ -295,7 +295,7 @@ BOOL realGetHitFlag(U4 GraphicNo , S2 *Hit)
 		return FALSE;
 	}
 
-	if ((GraphicNo >= 369715 && GraphicNo <= 369847) || GraphicNo == 369941)//Ç¿ÖÆµØ±í¿É×ß
+	if ((GraphicNo >= 369715 && GraphicNo <= 369847) || GraphicNo == 369941)//å¼ºåˆ¶åœ°è¡¨å¯èµ°
 		*Hit = 1;
 	else if (GraphicNo >= 369641 && GraphicNo <= 369654)
 		*Hit = 1;
@@ -419,7 +419,7 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	DWORD dwReadByte;
 
 	ZeroMemory(adrntruebuff,sizeof(adrntruebuff));
-	// ¿ªµµ
+	// å¼€æ¡£
 	hAdrntrueFile = CreateFile(szAdrnTruebinFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hAdrntrueFile == INVALID_HANDLE_VALUE) return -1;
 	hRealtrueFile = CreateFile(szRealTrueBinFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -429,11 +429,11 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	}
 	
 	while(1){
-		// °Ñµµ°¸ÄÚµÄ×ÊÁÏ¶ÁÈë
+		// æŠŠæ¡£æ¡ˆå†…çš„èµ„æ–™è¯»å…¥
 		bReadReturn = ReadFile(hAdrntrueFile,&Addr,sizeof(AddressBin_s),&dwReadByte,NULL);
-		// ×ÊÁÏ¶ÁÍêÁË
+		// èµ„æ–™è¯»å®Œäº†
 		if(bReadReturn && dwReadByte == 0) break;
-		// ´íÎó
+		// é”™è¯¯
 		if(dwReadByte == 0) break;
 		memcpy(&adrntruebuff[Addr.bitmapno],&Addr,sizeof(AddressBin_s));
 	}
@@ -441,7 +441,7 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	return 0;
 }
 
-// ´«ÈëµÄBmpNo Öµ±ØÐëÊÇ¼õÈ¥ OLD_GRAPHICS_START ºóµÄÖµ,²ÅÄÜÔÚÈ«²ÊµÄÍ¼µµÀïÕÒµ½Í¼
+// ä¼ å…¥çš„BmpNo å€¼å¿…é¡»æ˜¯å‡åŽ» OLD_GRAPHICS_START åŽçš„å€¼,æ‰èƒ½åœ¨å…¨å½©çš„å›¾æ¡£é‡Œæ‰¾åˆ°å›¾
 BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **AlphaData,BOOL *useAlpha)
 {
 	BOOL bRet = TRUE,bReadReturn;
@@ -452,7 +452,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 
 	if(BmpNo > MAX_GRAPHICS_24) return FALSE;
 	pAddr = &adrntruebuff[BmpNo];
-	// ÒÆµ½Òª¶ÁÈ¡µÄÍ¼µµ×ÊÁÏÎ»ÖÃÉÏ
+	// ç§»åˆ°è¦è¯»å–çš„å›¾æ¡£èµ„æ–™ä½ç½®ä¸Š
 	SetFilePointer(hRealtrueFile,pAddr->adder,NULL,FILE_BEGIN);
 	pBmpData = (unsigned char*)MALLOC(pAddr->size);
 #ifdef _STONDEBUG_
@@ -461,13 +461,13 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 	if(pBmpData == NULL) return FALSE;
 	else{
 		memset(g_rgbPal,0,sizeof(g_rgbPal));
-		// ÏÈ¶ÁÈëÉ«ÅÌ×ÊÁÏ
+		// å…ˆè¯»å…¥è‰²ç›˜èµ„æ–™
 		bReadReturn = ReadFile(hRealtrueFile,g_rgbPal,pAddr->palSize+sizeof(RGBQUAD),&dwReadByte,NULL);
-		// ¶ÁµµÊ§°Ü
+		// è¯»æ¡£å¤±è´¥
 		if(bReadReturn && dwReadByte == 0) bRet = FALSE;
-		// °ÑÍ¼µµ×ÊÁÏ¶ÁÈë
+		// æŠŠå›¾æ¡£èµ„æ–™è¯»å…¥
 		bReadReturn = ReadFile(hRealtrueFile,pBmpData,pAddr->size,&dwReadByte,NULL);
-		// ¶ÁµµÊ§°Ü
+		// è¯»æ¡£å¤±è´¥
 		if(bReadReturn && dwReadByte == 0) bRet = FALSE;
 		else{
 			*BmpData = g_realgetimagebuf2;
@@ -477,7 +477,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 #ifdef _STONDEBUG_
 		g_iMallocCount--;
 #endif
-		// °Ñalpha×ÊÁÏ¶ÁÈë
+		// æŠŠalphaèµ„æ–™è¯»å…¥
 		*useAlpha = FALSE;
 		if(pAddr->alpha_size > 0){
 			pBmpData = (unsigned char*)MALLOC(pAddr->alpha_size);
@@ -486,7 +486,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 #endif
 			if(pBmpData == NULL) return FALSE;
 			bReadReturn = ReadFile(hRealtrueFile,pBmpData,pAddr->alpha_size,&dwReadByte,NULL);
-			// ¶ÁµµÊ§°Ü
+			// è¯»æ¡£å¤±è´¥
 			if(bReadReturn && dwReadByte == 0) bRet = FALSE;
 			else{
 				*AlphaData = g_realgetimagebuf;

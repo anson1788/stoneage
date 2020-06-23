@@ -1,4 +1,4 @@
-#if 0
+﻿#if 0
 "BJ|a0|m58|e188F8|e188FD|rA|rB|rF|r10|FF|BH|aF|r5|f2|d74|FF|BH|a10|r5|f20|d0|FF|BH|a5|rA|f202|dB6|gF|FF|BJ|aB|m46|e188F8|e188FE|rA|rB|rF|r10|FF|BR|A|1|BR|B|1|BR|F|1|BR|10|1|BV|A|2|",
 "BJ|a0|m4C|e188F8|e188FD|rA|rB|rF|r10|FF|BH|aF|r5|f2|d129|FF|BH|a5|rA|f20|d0|FF|BH|a10|r0|f2|dD7|FF|BH|aB|r0|f20|d0|r0|f20|d0|FF|BJ|aA|m4A|e188F8|e18902|rF|FF|",
 "BJ|a0|m40|e188F8|e188FD|rA|rB|rF|r10|FF|BM|B|1|BH|aF|r5|f2|d5C|FF|BH|a5|rB|fA|d22|FF|BH|a10|r0|f20|d0|FF|BD|rB|0|0|3A|bg|b|BJ|aA|m36|e188F8|e18902|rA|FF|",

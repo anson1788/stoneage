@@ -1,4 +1,4 @@
-// Arminius' protocol utilities ver 0.1
+Ôªø// Arminius' protocol utilities ver 0.1
 //
 // Any questions and bugs, mailto: arminius@mail.hwaei.com.tw
 
@@ -194,7 +194,7 @@ void util_DiscardMessage(void)
 */
 }
 #ifdef _NEWNET_
-extern long TEAº”√‹(long* v, long n, long* k);
+extern long TEAÊ®ìË∫á(long* v, long n, long* k);
 void stringtohexstr(char* dst, char* src,int len)
 {
 	int i;
@@ -212,9 +212,9 @@ void util_EncodeMessageTea(char *t2,char *t1)
 	int len = strlen(t1);
 	len = len%4?len/4+1:len/4;
 #ifdef _VMP_
-	TEAº”√‹((long*)t1,len,(long *)VMProtectDecryptStringA(DENGLUKEY1));
+	TEAÊ®ìË∫á((long*)t1,len,(long *)VMProtectDecryptStringA(DENGLUKEY1));
 #else
-	TEAº”√‹((long*)t1,len,(long *)DENGLUKEY1);
+	TEAÊ®ìË∫á((long*)t1,len,(long *)DENGLUKEY1);
 #endif
 	stringtohexstr(t2,t1,len*4);
 #ifdef _VMP_

@@ -1,5 +1,5 @@
-/*
-	SDL äÖÈ¾ÒıÇæ   
+ï»¿/*
+	SDL é¦ºï ˆç«˜ï“   
 				create by xiezi
 				date   2015/8/16 
 */

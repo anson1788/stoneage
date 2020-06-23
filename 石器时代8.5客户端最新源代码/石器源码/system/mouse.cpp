@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	mouse.c				*/
 /************************/
 #include "../systeminc/version.h"
@@ -12,7 +12,7 @@
 #include "../systeminc/map.h"
 #include "../systeminc/login.h"
 
-// ???????§R¤e???
+// ???????åˆªå‰???
 #define MOUSE_HIT_SIZE_X 48
 #define MOUSE_HIT_SIZE_Y 48
 
@@ -21,30 +21,30 @@
 
 // Robin
 
-// ????¢B¢l
+// ????ï¹¨â–
 MOUSE mouse;
-// ????????????????§k????????
+// ????????????????å»????????
 int	HitFontNo;
-// ????????????¤úû¨§k???????
+// ????????????ç‰™îƒ£å»???????
 int HitDispNo;
-// ??????§ó??
+// ??????æ›´??
 char OneLineInfoStr[ 256 ];
 
 int oneLineInfoFlag = 1;
-// ¤úû¨?????ıè
+// ç‰™îƒ£?????î‰
 int BoxColor;
 extern int transmigrationEffectFlag;
 
-// ???ıÑ©???? ////////////////////////////////////////////////////////
+// ???î‰†????? ////////////////////////////////////////////////////////
 void MouseInit( void )
 {
 	memset( &mouse, 0, sizeof( MOUSE ) );
-	mouse.itemNo = -1; // ????§k????
+	mouse.itemNo = -1; // ????å»????
 
 
 }
 
-// ????????£t????? //////////////////////////////////////////////
+// ????????ã„…????? //////////////////////////////////////////////
 void MouseNowPoint( int x, int y )
 {
 	if(ResoMode == 1){
@@ -54,7 +54,7 @@ void MouseNowPoint( int x, int y )
 		if(x > lpDraw->xSize)x = lpDraw->xSize;
 		if(y > lpDraw->ySize)y = lpDraw->ySize;
 	}
-	// ?¤õ????
+	// ?ç«????
 	//???????????????
 	if(ResoMode == 1){
 		mouse.nowPoint.x = x * 2;
@@ -65,29 +65,29 @@ void MouseNowPoint( int x, int y )
 	}
 }
 
-// ????????????????????£t????? //////////////////////
+// ????????????????????ã„…????? //////////////////////
 void MouseCrickLeftDownPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.state |= MOUSE_LEFT_CRICK;
 	mouse.onceState |= MOUSE_LEFT_CRICK;
 	mouse.autoState |= MOUSE_LEFT_CRICK;
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickLeftDownPoint.x = x;
 	mouse.crickLeftDownPoint.y = y;
-	// ????????????????¡@¤e??¡q?§
+	// ????????????????ã€€å‰??ã€ˆ??
 	mouse.beforeLeftPushTime = TimeGetTime();
 	mouse.leftPushTime = 0;
 }
 
-// ???????????????????£t????? ////////////////////////
+// ???????????????????ã„…????? ////////////////////////
 void MouseCrickLeftUpPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.state &= (~MOUSE_LEFT_CRICK);
 	mouse.onceState |= MOUSE_LEFT_CRICK_UP;
 	mouse.autoState &= (~MOUSE_LEFT_CRICK);
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickLeftUpPoint.x = x;
 	mouse.crickLeftUpPoint.y = y;
 	// ????????????????
@@ -95,46 +95,46 @@ void MouseCrickLeftUpPoint( int x, int y )
 	mouse.leftPushTime = 0;
 }
 
-// ??????????????????£t????? //////////////////////////
+// ??????????????????ã„…????? //////////////////////////
 void MouseDblCrickLeftUpPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	//mouse.onceState |= ( MOUSE_LEFT_DBL_CRICK | MOUSE_LEFT_CRICK );
 	mouse.state |= MOUSE_LEFT_CRICK;
 	mouse.onceState |= MOUSE_LEFT_DBL_CRICK;
 	mouse.onceState |= MOUSE_LEFT_CRICK;
 	mouse.autoState |= MOUSE_LEFT_CRICK;
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickLeftDownPoint.x = x;
 	mouse.crickLeftDownPoint.y = y;
-	// ????????????????¡@¤e??¡q?§
+	// ????????????????ã€€å‰??ã€ˆ??
 	mouse.beforeLeftPushTime = TimeGetTime();
 	mouse.leftPushTime = 0;
 }
 
-// ???????????????????£t????? ////////////////////////
+// ???????????????????ã„…????? ////////////////////////
 void MouseCrickRightDownPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.state |= MOUSE_RIGHT_CRICK;
 	mouse.onceState |= MOUSE_RIGHT_CRICK;
 	mouse.autoState |= MOUSE_RIGHT_CRICK;
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickRightDownPoint.x = x;
 	mouse.crickRightDownPoint.y = y;
-	// ????????????????¡@¤e??¡q?§
+	// ????????????????ã€€å‰??ã€ˆ??
 	mouse.beforeRightPushTime = TimeGetTime();
 	mouse.rightPushTime = 0;
 }
 
-// ???????????????????£t????? ////////////////////////
+// ???????????????????ã„…????? ////////////////////////
 void MouseCrickRightUpPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.state &= (~MOUSE_RIGHT_CRICK);
 	mouse.onceState |= MOUSE_RIGHT_CRICK_UP;
 	mouse.autoState &= (~MOUSE_RIGHT_CRICK);
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickRightUpPoint.x = x;
 	mouse.crickRightUpPoint.y = y;
 	// ????????????????
@@ -142,18 +142,18 @@ void MouseCrickRightUpPoint( int x, int y )
 	mouse.rightPushTime = 0;
 }
 
-// ??????????????????£t????? //////////////////////////
+// ??????????????????ã„…????? //////////////////////////
 void MouseDblCrickRightUpPoint( int x, int y )
 {
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.state |= MOUSE_RIGHT_CRICK;
 	mouse.onceState |= MOUSE_RIGHT_DBL_CRICK;
 	mouse.onceState |= MOUSE_RIGHT_CRICK;
 	mouse.autoState |= MOUSE_RIGHT_CRICK;
-	// ?¤õ????
+	// ?ç«????
 	mouse.crickRightDownPoint.x = x;
 	mouse.crickRightDownPoint.y = y;
-	// ????????????????¡@¤e??¡q?§
+	// ????????????????ã€€å‰??ã€ˆ??
 	mouse.beforeRightPushTime = TimeGetTime();
 	mouse.rightPushTime = 0;
 }
@@ -164,7 +164,7 @@ void MouseProc( void )
 	static UINT leftPushTimeBak;
 	static UINT rightPushTimeBak;
 	
-	// ıÖ¢t????
+	// î‰‹â”¤????
 	mouse.onceState = MOUSE_NO_CRICK;
 	// ???????????????????
 	if( mouse.beforeLeftPushTime > 0 )
@@ -178,14 +178,14 @@ void MouseProc( void )
 	}
 	// ?????????
 	// ????????????
-	// ???¥ø??????úğ
+	// ???ä¼??????î‚
 	if( mouse.leftPushTime > 500 ){
 		// ???????
 		if( leftPushTimeBak == 0 ){
 			mouse.autoState |= MOUSE_LEFT_CRICK; // ?????
 			leftPushTimeBak = mouse.leftPushTime;	// ?????
 		}else
-		// ????????¨ë?
+		// ????????åˆº?
 		if( mouse.leftPushTime - leftPushTimeBak >= MOUSE_AUTO_REPEATE_TIME ){
 			mouse.autoState |= MOUSE_LEFT_CRICK; // ?????
 			leftPushTimeBak = mouse.leftPushTime;	// ?????
@@ -198,14 +198,14 @@ void MouseProc( void )
 	}
 	
 	// ????????????
-	// ???¥ø??????úğ
+	// ???ä¼??????î‚
 	if( mouse.rightPushTime > 500 ){
 		// ???????
 		if( rightPushTimeBak == 0 ){
 			mouse.autoState |= MOUSE_RIGHT_CRICK; // ?????
 			rightPushTimeBak = mouse.rightPushTime;	// ?????
 		}else
-		// ????????¨ë?
+		// ????????åˆº?
 		if( mouse.rightPushTime - rightPushTimeBak >= MOUSE_AUTO_REPEATE_TIME ){
 			mouse.autoState |= MOUSE_RIGHT_CRICK; // ?????
 			rightPushTimeBak = mouse.rightPushTime;	// ?????
@@ -227,7 +227,7 @@ void MouseProc( void )
 	//if( 0 <= mouse.nowPoint.x && mouse.nowPoint.x < 640 &&
 	//	0 <= mouse.nowPoint.y && mouse.nowPoint.y < 480 ){
 	
-	// ?¤ˆ???????
+	// ?????????
 	if( MouseCursorFlag == FALSE ){
 		if( mouse.flag == FALSE ){
 			StockDispBuffer( mouse.nowPoint.x + 16, mouse.nowPoint.y + 16, DISP_PRIO_MOUSE, CG_MOUSE_CURSOR, 0 );
@@ -235,13 +235,13 @@ void MouseProc( void )
 	}
 		
 }
-// ????¡k¢‘???? *********************************************************/
+// ????ï¸»????? *********************************************************/
 void CheckGroupSelect( int no )
 {
 	int i;
 	DISP_INFO 	*pDispInfo;
 	DISP_SORT 	*pDispSort;
-	/* ???¤úû¨?????????¤úû¨??¡I?????©˜??? */
+	/* ???ç‰™îƒ£?????????ç‰™îƒ£??ï¼????????? */
 	for( i = 0 ; i < DispBuffer.DispCnt ; i++ ){
 	
 		pDispInfo = DispBuffer.DispInfo + i;
@@ -249,9 +249,9 @@ void CheckGroupSelect( int no )
 		
 		// ??????????
 		if( pDispInfo->hitFlag == no ){
-			// ??????ıÆ????
+			// ??????îˆ»????
 			if( pDispSort->dispPrio >= DISP_PRIO_MENU ){
-				// ????¤úû¨????????????
+				// ????ç‰™îƒ£????????????
 #ifndef __CARYTEST
 				StockBoxDispBuffer( pDispInfo->x - 2, pDispInfo->y - 2, 
 									pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width + 2, 
@@ -264,7 +264,7 @@ void CheckGroupSelect( int no )
 									DISP_PRIO_BOX2, BoxColor, 0 );
 #endif
 			}else{
-				// ????¤úû¨????????????
+				// ????ç‰™îƒ£????????????
 #ifndef __CARYTEST
 				StockBoxDispBuffer( pDispInfo->x - 2, pDispInfo->y - 2, 
 									pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width + 2, 
@@ -283,7 +283,7 @@ void CheckGroupSelect( int no )
 }
 
 #if 1
-// ¤úû¨????????????
+// ç‰™îƒ£????????????
 UCHAR BoxColorTbl[] = { 	
 						//255, 255, 255, 255, 255,
 						//8,8,8,8,8,
@@ -314,19 +314,19 @@ UCHAR BoxColorTbl[] = {
 					};
 #endif
 
-/* ???????????§R¤e **************************************************/
+/* ???????????åˆªå‰ **************************************************/
 void HitMouseCursor( void )
 {	
 	int i;					// ???????
-	int strWidth;			// §ó???????
-	int hitFlag = FALSE;	// ???§R¤e???
+	int strWidth;			// æ›´???????
+	int hitFlag = FALSE;	// ???åˆªå‰???
 	static int cnt = 0;		// ?????
-	int itemNameColor = FONT_PAL_WHITE;	// ?????ıè
+	int itemNameColor = FONT_PAL_WHITE;	// ?????î‰
 	
 	DISP_SORT 	*pDispSort = DispBuffer.DispSort + DispBuffer.DispCnt - 1;
 	DISP_INFO 	*pDispInfo;
 	
-	// ¤úû¨?????ıè¨Á?
+	// ç‰™îƒ£?????î‰é˜ª?
 	if( !transmigrationEffectFlag )
 		oneLineInfoFlag = 1;
 	else
@@ -335,22 +335,22 @@ void HitMouseCursor( void )
 	if( cnt >= sizeof( BoxColorTbl ) - 1 ) cnt = 0;
 	else cnt++;
 	
-	// ¤úû¨?????ıè¡@¤e
+	// ç‰™îƒ£?????î‰ã€€å‰
 	BoxColor = BoxColorTbl[ cnt ];
 #ifdef _ITEM_PATH
 	ITEMPATHFLAG = FALSE;
 #endif
-	/* ????¤úû¨?????????????????????????¥i??*/
+	/* ????ç‰™îƒ£?????????????????????????å¯??*/
 	for( i = 0 ; i < FontCnt ; i++ ){
 	
-		// ???§R¤e??????
+		// ???åˆªå‰??????
 		if( FontBuffer[ i ].hitFlag == 0 ) continue;
 		
-		// §ó????????????£??
+		// æ›´???????????????
 
 		strWidth = GetStrWidth( FontBuffer[ i ].str );
 
-		// úî?????§R¤e
+		// î‚Œ?????åˆªå‰
 		if( mouse.nowPoint.x <= FontBuffer[ i ].x + strWidth + 2 &&
 			FontBuffer[ i ].x - 2 <= mouse.nowPoint.x &&
 
@@ -358,12 +358,12 @@ void HitMouseCursor( void )
 
 			FontBuffer[ i ].y - 2 <= mouse.nowPoint.y ){
 			
-			// ????¦”??§k?????
+			// ???????å»?????
 			HitFontNo = i;
 			
-			// ?????¤úû¨???
+			// ?????ç‰™îƒ£???
 			if( FontBuffer[ i ].hitFlag == 2 ){
-				// ????¤úû¨????????????
+				// ????ç‰™îƒ£????????????
 				StockBoxDispBuffer( FontBuffer[ i ].x - 3,
 #ifdef _NEWFONT_
 									FontBuffer[ i ].y - 2, 
@@ -389,23 +389,23 @@ void HitMouseCursor( void )
 				ShowBottomLineString(itemNameColor, OneLineInfoStr);
 				//the third StockFontBuffer( 8, 460, FONT_PRIO_FRONT, itemNameColor, OneLineInfoStr, 0 );
 			}
-			// §ó?????
+			// æ›´?????
 			OneLineInfoStr[ 0 ] = NULL;
-			return;		// ??????????????§R¤e????
+			return;		// ??????????????åˆªå‰????
 		}
 	}
-	// ????¦”??§k???????
+	// ???????å»???????
 	HitFontNo = -1;
 	
-	/* ???¤úû¨?????????¤úû¨??¡I?????©˜??? */
+	/* ???ç‰™îƒ£?????????ç‰™îƒ£??ï¼????????? */
 	for( i = DispBuffer.DispCnt - 1; i >= 0 ; i--, pDispSort-- ){
-		// ¤úû¨????¦V????????????
+		// ç‰™îƒ£????å‘????????????
 		pDispInfo = DispBuffer.DispInfo + pDispSort->no;
 		
-		// ???§R¤e??????
+		// ???åˆªå‰??????
 		if( pDispInfo->hitFlag == 0 ) continue;
 		
-		// ?ûê???????????¢Q
+		// ?î„¥???????????ã
 		//if( SpriteInfo[ pDispInfo->bmpNo ].lpSurfaceInfo == NULL ) continue;
 		// ?????????????????????????
 		// ?????????
@@ -413,7 +413,7 @@ void HitMouseCursor( void )
 		
 		// ?????????
 		if( pDispInfo->pAct == NULL ){
-			// úî?????§R¤e
+			// î‚Œ?????åˆªå‰
 #ifndef __CARYTEST
 			if( mouse.nowPoint.x <= pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width &&
 				pDispInfo->x <= mouse.nowPoint.x &&
@@ -427,7 +427,7 @@ void HitMouseCursor( void )
 #endif				
 				hitFlag = TRUE;
 		}else{
-			// úî?????§R¤e????????
+			// î‚Œ?????åˆªå‰????????
 #ifndef __CARYTEST
 			if( mouse.nowPoint.x <= pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width * 0.5 + MOUSE_HIT_SIZE_X * 0.5 &&
 				pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width * 0.5 - MOUSE_HIT_SIZE_X * 0.5  <= mouse.nowPoint.x &&
@@ -455,21 +455,21 @@ void HitMouseCursor( void )
 					break;
 			}
 
-			// ×óÉÏµ½ÓÒÏÂ±àºÅÎª6 , 7 , 8 , 9
-			// µ±½öÄÜÑ¡Ôñµ¥ÅÅÇÒÄ¿Ç°ËùÑ¡ÔñµÄÔÚÎÒ·½µÄÎ»ÖÃ
+			// é…˜å¥»å–„è¡µç‹Ÿæ™¤ç˜å³ˆ6 , 7 , 8 , 9
+			// çµèººå¤”æå¯ç­‰é½¬ï¿é†´ïå€æå¯è…”å©“æ‰‚æºè…”å¼‡ç¦»
 			if( BattleMyNo >= 10 && ( 6 == pDispInfo->hitFlag || 7 == pDispInfo->hitFlag ) )
 			{
 				hitFlag = FALSE;
 				continue;
 			}
-			// µ±½öÄÜÑ¡Ôñµ¥ÅÅÇÒÄ¿Ç°ËùÑ¡ÔñµÄÔÚÎÒ·½µÄÎ»ÖÃ
+			// çµèººå¤”æå¯ç­‰é½¬ï¿é†´ïå€æå¯è…”å©“æ‰‚æºè…”å¼‡ç¦»
 			if( BattleMyNo < 10 && ( 8 == pDispInfo->hitFlag || 9 == pDispInfo->hitFlag ) )
 			{
 				hitFlag = FALSE;
 				continue;
 			}
 #ifdef _SKILL_ADDBARRIER
-			// Ö»ÄÜÑ¡ÎÒ·½
+			// ç¡å¤”ææ‰‚æº
 			if( BattleMyNo < 10 && ( 10 == pDispInfo->hitFlag || 11 == pDispInfo->hitFlag ) )
 			{
 				hitFlag = FALSE;
@@ -483,17 +483,17 @@ void HitMouseCursor( void )
 #endif
 		#endif
 
-			// §ó?¤úû¨????????
+			// æ›´?ç‰™îƒ£????????
 //			StockFontBuffer( pDispInfo->x, pDispInfo->y, FONT_PRIO_FRONT, 0, "Hit", 1 );
 			
-			// ????¦”??§k????
+			// ???????å»????
 			HitDispNo = pDispSort->no;
 			
-			// ?????¤úû¨???
+			// ?????ç‰™îƒ£???
 			if( pDispInfo->hitFlag >= 2 ){
-				// ??????ıÆ????
+				// ??????îˆ»????
 				if( pDispSort->dispPrio >= DISP_PRIO_YES_NO_WND ){
-					// ????¤úû¨????????????
+					// ????ç‰™îƒ£????????????
 #ifndef __CARYTEST
 					StockBoxDispBuffer( pDispInfo->x - 2, pDispInfo->y - 2, 
 										pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width + 2, 
@@ -507,9 +507,9 @@ void HitMouseCursor( void )
 										DISP_PRIO_BOX3, BoxColor, 0 );
 #endif
 				}else
-				// ??????ıÆ????
+				// ??????îˆ»????
 				if( pDispSort->dispPrio >= DISP_PRIO_MENU ){
-					// ????¤úû¨????????????
+					// ????ç‰™îƒ£????????????
 #ifndef __CARYTEST
 					StockBoxDispBuffer( pDispInfo->x - 2, pDispInfo->y - 2, 
 										pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width + 2, 
@@ -523,7 +523,7 @@ void HitMouseCursor( void )
 										DISP_PRIO_BOX2, BoxColor, 0 );
 #endif
 				}else{
-					// ????¤úû¨????????????
+					// ????ç‰™îƒ£????????????
 #ifndef __CARYTEST
 					StockBoxDispBuffer( pDispInfo->x - 2, pDispInfo->y - 2, 
 										pDispInfo->x + SpriteInfo[ pDispInfo->bmpNo ].width + 2, 
@@ -539,16 +539,16 @@ void HitMouseCursor( void )
 #endif
 				}
 				
-				// ????¡k¢‘?????¦ú?¡k¢‘? 
+				// ????ï¸»??????ä½ƒ?ï¸»?? 
 				if( pDispInfo->hitFlag >= 3 ) CheckGroupSelect( pDispInfo->hitFlag );
-				SortDispBuffer(); 	// ¤úû¨???????
+				SortDispBuffer(); 	// ç‰™îƒ£???????
 			}
 
 			// ?????????
 			if( TaskBarFlag == FALSE ){
 				// ?????????????
 				if( pDispInfo->pAct != NULL ){
-					// ??????¤úû¨????
+					// ??????ç‰™îƒ£????
 					if( pDispInfo->pAct->atr & ACT_ATR_INFO ){
 						if( ProcNo == PROC_GAME ){
 #ifdef _MOUSE_SHOW_INFO_FOR_HEAD
@@ -559,53 +559,53 @@ void HitMouseCursor( void )
 
 
 
-							// §ó???şÎ
-							//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%4d/%4d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-							// ??????¤úû¨????
+							// æ›´???î‹ 
+							//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%4d/%4d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+							// ??????ç‰™îƒ£????
 							// ???????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_PC ){
-								// ş¡q?ıè¡@¤e
+								// ?ã€ˆ?î‰ã€€å‰
 								itemNameColor = pDispInfo->pAct->itemNameColor;
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 									// shan add 
-									//sprintf_s( OneLineInfoStr,"%s [%s] Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
+									//sprintf_s( OneLineInfoStr,"%s [%s] Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 									if( pDispInfo->pAct->petName[ 0 ] != NULL )
 										if( pc.familyName[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s [%s] Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"{%s} %s [%s] Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d   %s  Lvã„©%d",
 												pc.familyName, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 										else
-											sprintf_s( OneLineInfoStr,"%s  [%s]  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"%s  [%s]  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d   %s  Lvã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 									else
 										if( pc.familyName[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s [%s] Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"{%s} %s [%s] Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pc.familyName, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 										else
-											sprintf_s( OneLineInfoStr,"%s  [%s]  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"%s  [%s]  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 								}else{
 									// shan add
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 									if( pDispInfo->pAct->petName[ 0 ] != NULL )
 										if( pc.familyName[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"{%s} %s Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d   %s  Lvã„©%d",
 												pc.familyName, pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d   %s  Lvã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 									else
 										if( pc.familyName[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"{%s} %s Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pc.familyName, pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pc.mp );
 								}
 							}else
-							// ¢\????????
+							// å…????????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_OTHER_PC ){
 #ifdef _MOUSE_DBL_CLICK
 								if( mouseDblRightOn ) {
@@ -613,49 +613,49 @@ void HitMouseCursor( void )
 									return;
 								}
 #endif
-								// ş¡q?ıè¡@¤e
+								// ?ã€ˆ?î‰ã€€å‰
 								itemNameColor = pDispInfo->pAct->itemNameColor;
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 									// shan add
-									//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+									//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 									if( pDispInfo->pAct->petName[ 0 ] != NULL )
 										if( pDispInfo->pAct->fmname[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s [%s]  Lv£º%d   %s  Lv£º%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
+											sprintf_s( OneLineInfoStr,"{%s} %s [%s]  Lvã„©%d   %s  Lvã„©%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 										else
-											sprintf_s( OneLineInfoStr,"%s  [%s]  Lv£º%d   %s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
+											sprintf_s( OneLineInfoStr,"%s  [%s]  Lvã„©%d   %s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 									else
 										if( pDispInfo->pAct->fmname[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s [%s]  Lv£º%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+											sprintf_s( OneLineInfoStr,"{%s} %s [%s]  Lvã„©%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 										else
-											sprintf_s( OneLineInfoStr,"%s  [%s]  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+											sprintf_s( OneLineInfoStr,"%s  [%s]  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 								}else{
 									// shan add
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 									if( pDispInfo->pAct->petName[ 0 ] != NULL )
 										if( pDispInfo->pAct->fmname[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s Lv£º%d  %s Lv£º%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
+											sprintf_s( OneLineInfoStr,"{%s} %s Lvã„©%d  %s Lvã„©%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d   %s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d   %s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 									else
 										if( pDispInfo->pAct->fmname[0] != NULL )
-											sprintf_s( OneLineInfoStr,"{%s} %s  Lv£º%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->level );
+											sprintf_s( OneLineInfoStr,"{%s} %s  Lvã„©%d", pDispInfo->pAct->fmname, pDispInfo->pAct->name, pDispInfo->pAct->level );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 								}
 							}else
 							// ?????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_PET ){
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 								}else{
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 								}
 							}else
 							// ??????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_ITEM ){
-								// ş¡q?ıè¡@¤e
+								// ?ã€ˆ?î‰ã€€å‰
 								itemNameColor = pDispInfo->pAct->itemNameColor;
 								sprintf_s( OneLineInfoStr,"%s", pDispInfo->pAct->name );
 #ifdef _ITEM_PATH
@@ -666,156 +666,156 @@ void HitMouseCursor( void )
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_GOLD ){
 								sprintf_s( OneLineInfoStr,"%s", pDispInfo->pAct->name );
 							}else
-							// ??¢\??????¼?ş°??§Y?
+							// ??å…??????î¼’?î‹‚??å³?
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_OTHER ){
 								sprintf_s( OneLineInfoStr,"%s", pDispInfo->pAct->name );
 							}
 						}else
-						// ¡P¥f??
+						// Â·å¯??
 						if( ProcNo == PROC_BATTLE ){
 							// ?????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_PET ){
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 								}else{
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 								}
 							}else
 							// ??????
 							if( pDispInfo->pAct->atr & ACT_ATR_TYPE_ITEM ){
-								// ş¡q?ıè¡@¤e
+								// ?ã€ˆ?î‰ã€€å‰
 								//itemNameColor = pDispInfo->pAct->itemNameColor;
 								sprintf_s( OneLineInfoStr,"%s", pDispInfo->pAct->name );
 							}else
-							// ?¡P?????????
+							// ?Â·?????????
 							if( BattleMyNo < BATTLKPKPLYAERNUM ){
-								// û«§Æ???????¤úû¨
+								// îƒ¦å¸Œ???????ç‰™îƒ£
 								if( ( (ATR_EQU *)pDispInfo->pAct->pYobi )->place_no == BattleMyNo ){
-									// ı¯????
+									// îˆ¤????
 									if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 										// Robin 0728 ride Pet
 										if( pDispInfo->pAct->onRide == 1 )
-											sprintf_s( OneLineInfoStr,"%s [%s] Lv£º%d ÄÍ£º%d£¯%d Æø£º%d  %s Lv£º%d ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s [%s] Lvã„©%d é¨µã„©%dã„%d ïœˆã„©%d  %s Lvã„©%d é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp, pDispInfo->pAct->petMaxHp );
 										else
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp );
 									}else{
 										// shan add
-										//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, BattleMyMp );
-										//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp );
+										//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, BattleMyMp );
+										//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp );
 										// Robin 0728
 										if( pDispInfo->pAct->onRide == 1 )
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d   %s  Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d   %s  Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp, pDispInfo->pAct->petMaxHp );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d  Æø£º%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d  ïœˆã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp, pDispInfo->pAct->mp );
 									}
 								}
 								else
-								// şs©˜????¤úû¨
+								// îŠ§?????ç‰™îƒ£
 								if( ( (ATR_EQU *)p_party[ BattleMyNo ]->pYobi )->group_flg == ( (ATR_EQU *)pDispInfo->pAct->pYobi )->group_flg ){
-									// §ó???şÎ
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%4d/%4d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-									// ı¯????
+									// æ›´???î‹ 
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%4d/%4d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									// îˆ¤????
 									if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 										// shan add
-										//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+										//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 										// Robin 0728
 										if( pDispInfo->pAct->onRide == 1 )
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d   %s Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d   %s Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp, pDispInfo->pAct->petMaxHp);
 										else
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 									}else{
 										// shan add
-										//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+										//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 										// Robin 0728
 										if( pDispInfo->pAct->onRide == 1 )
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d   %s Lv£º%d ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d   %s Lvã„©%d é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp, pDispInfo->pAct->petMaxHp );
 										else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 									}
-								}else{ // ¤„???
-									// ı¯????
+								}else{ // ????
+									// îˆ¤????
 									if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 										// shan add
-										//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+										//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 										// Robin
 										if( pDispInfo->pAct->onRide == 1 )
 #ifdef _STONDEBUG_
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d ÄÍ£º%d   %s  Lv£º%d ÄÍ£º%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d é¨µã„©%d   %s  Lvã„©%d é¨µã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp );
 #else
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d   %s  Lvã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 #endif
 										else
 #ifdef _STONDEBUG_
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 #else
-											sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 #endif
 									}else{
 										// shan add
-										//sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+										//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 										// Robin
 										if( pDispInfo->pAct->onRide == 1 )
 #ifdef _STONDEBUG_
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d ÄÍ£º%d  %s  Lv£º%d ÄÍ£º%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d é¨µã„©%d  %s  Lvã„©%d é¨µã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel, pDispInfo->pAct->petHp );
 #else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d   %s  Lv£º%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d   %s  Lvã„©%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level,
 												pDispInfo->pAct->petName, pDispInfo->pAct->petLevel );
 #endif
 										else
 #ifdef _STONDEBUG_
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d",
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d",
 												pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 #else
-											sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+											sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 #endif
 									}
 								}
-							}else{	// ?¡P?????
+							}else{	// ?Â·?????
 #ifdef _STONDEBUG_
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
 									// shan add
-									//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-									sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-									//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+									//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 								}else{
 									// shan add
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 								}
 #else
-								// ı¯????
+								// îˆ¤????
 								if( pDispInfo->pAct->freeName[ 0 ] != NULL ){
-									//sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									//sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 									// shan add
-									sprintf_s( OneLineInfoStr,"%s [%s]  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s [%s]  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->freeName, pDispInfo->pAct->level );
 								}else{
-									//sprintf_s( OneLineInfoStr,"%s  Lv£º%d  ÄÍ£º%d£¯%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
+									//sprintf_s( OneLineInfoStr,"%s  Lvã„©%d  é¨µã„©%dã„%d", pDispInfo->pAct->name, pDispInfo->pAct->level, pDispInfo->pAct->hp, pDispInfo->pAct->maxHp );
 									// shan add
-									sprintf_s( OneLineInfoStr,"%s  Lv£º%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
+									sprintf_s( OneLineInfoStr,"%s  Lvã„©%d", pDispInfo->pAct->name, pDispInfo->pAct->level );
 								}
 #endif
 							}
@@ -825,7 +825,7 @@ void HitMouseCursor( void )
 				if( oneLineInfoFlag)
 					ShowBottomLineString(itemNameColor, OneLineInfoStr);
 			}
-			// §ó?????
+			// æ›´?????
 			OneLineInfoStr[ 0 ] = NULL;
 			
 			// ??????
@@ -835,14 +835,14 @@ void HitMouseCursor( void )
 	}
 	// ??????
 	mouse.level = DISP_PRIO_TILE;
-	// ????¦”??§k???????
+	// ???????å»???????
 	HitDispNo = -1;
 	
 	// ?????????
 	if( TaskBarFlag == FALSE ){
 		ShowBottomLineString(itemNameColor, OneLineInfoStr);
 	}
-	// §ó?????
+	// æ›´?????
 	OneLineInfoStr[ 0 ] = NULL;
 	
 }

@@ -1,4 +1,4 @@
-/**** SYSTEM INCLUDE ****/
+ï»¿/**** SYSTEM INCLUDE ****/
 #include<stdlib.h>
 #include<stdio.h>
 #include<time.h>
@@ -11,32 +11,32 @@
 #include "../systeminc/map.h"
 #include "../systeminc/anim_tbl.h"
 
-#define PAL_CHANGE_INTERVAL_WIN		120		// ????¨Á??????????????
-#define PAL_CHANGE_INTERVAL_FULL	60		// ????¨Á????????????????
+#define PAL_CHANGE_INTERVAL_WIN		120		// ????îŸ‰??????????????
+#define PAL_CHANGE_INTERVAL_FULL	60		// ????îŸ‰????????????????
 int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
 #ifdef _NEW_COLOR_
 extern int NewColor16Flg;
 #endif
 //---------------------------------------------------------------------------//
-// ?????¨Á?¤e?                                                        //
+// ?????îŸ‰?î˜‹?                                                        //
 //---------------------------------------------------------------------------//
 DIRECT_DRAW	*lpDraw;		// DirectDraw??????????
 BOOL DDinitFlag = FALSE;	// DirectDraw??????
 
 HFONT hFont;				// ????????
 
-int displayBpp;			// ?şıè?
+int displayBpp;			// ?î¡¡î‘‘?
 
-int rBitLShift;				// ?????????£k
-int gBitLShift;				// ?????????£k
-int bBitLShift;				// ?????????£k
+int rBitLShift;				// ?????????î–±
+int gBitLShift;				// ?????????î–±
+int bBitLShift;				// ?????????î–±
 
-int rBitRShift;				// ?????????£k
-int gBitRShift;				// ?????????£k
-int bBitRShift;				// ?????????£k
+int rBitRShift;				// ?????????î–±
+int gBitRShift;				// ?????????î–±
+int bBitRShift;				// ?????????î–±
 
-PALETTEENTRY	Palette[256];	// ?????¢B¢l
-PALETTE_STATE 	PalState;		// ????ıÖ¢t?¢B¢l
+PALETTEENTRY	Palette[256];	// ?????î”¨î•’
+PALETTE_STATE 	PalState;		// ????î¿î•š?î”¨î•’
 BOOL 			PalChangeFlag;	// ???????????
 #ifdef _HI_COLOR_32
 unsigned int highColor32Palette[256];
@@ -51,7 +51,7 @@ BOOL g_bUseAlpha = FALSE;
 extern BOOL g_bUseAlpha = FALSE;
 #endif
 
-#ifdef _READ16BITBMPVARIABLES	//¹Ø _READ16BITBMP ºó»¹ĞëÒªµÄ²ÎÊı
+#ifdef _READ16BITBMPVARIABLES	//å…³ _READ16BITBMP åè¿˜é¡»è¦çš„å‚æ•°
 BOOL g_bUseAlpha = FALSE;
 #endif
 
@@ -71,7 +71,7 @@ char *palFileName[] = {
 };
 
 const int MAX_PAL = sizeof(palFileName) / sizeof(palFileName[0]);
-// ??£k????????????£??
+// ??î–±????????????î—•??
 int getBitCount(int bit)
 {
 	int i, j, k;
@@ -95,14 +95,14 @@ BOOL InitDirectDraw(void)
 	HANDLE hErrorLogFile;
 	HRESULT hResult;
 	char szErrMsg[256];
-	DDSCAPS ddscaps;		// ??????????¤e???¢B¢l
+	DDSCAPS ddscaps;		// ??????????î˜‹???î”¨î•’
 	if ((hResult = DirectDrawCreate(NULL, &lpDraw->lpDD, NULL)) != DD_OK){
 		hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 		sprintf_s(szErrMsg, "DirectDrawCreate error(1):error result (%x)", hResult);
 		WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
 		CloseHandle(hErrorLogFile);
 		if ((hResult = DirectDrawCreate((GUID *)DDCREATE_EMULATIONONLY, &lpDraw->lpDD, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "DirectDrawCreate Error", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "DirectDrawCreate Error", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "DirectDrawCreate error(2):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -111,7 +111,7 @@ BOOL InitDirectDraw(void)
 		}
 	}
 	if ((hResult = lpDraw->lpDD->QueryInterface(IID_IDirectDraw2, (LPVOID *)&lpDraw->lpDD2)) != DD_OK){
-		MessageBoxNew(hWnd, "QueryInterface Error", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "QueryInterface Error", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 		sprintf_s(szErrMsg, "QueryInterface error:error result (%x)", hResult);
 		WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -158,7 +158,7 @@ BOOL InitDirectDraw(void)
 		}
 #endif
 		if (lpDraw->lpDD2->SetCooperativeLevel(hWnd, DDSCL_NORMAL) != DD_OK){
-			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 
@@ -167,7 +167,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.dwFlags = DDSD_CAPS;
 		lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpFRONTBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "Ö÷»­Ãæ´¦ÀíÊ§°Ü¡£", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "ä¸»ç”»é¢å¤„ç†å¤±è´¥ã€‚", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create frontbuffer error(1):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -175,7 +175,7 @@ BOOL InitDirectDraw(void)
 			return FALSE;
 		}
 		if (lpDraw->lpDD2->CreateClipper(0, &lpDraw->lpCLIPPER, NULL) != DD_OK){
-			MessageBoxNew(hWnd, "clipper´¦ÀíÊ§°Ü¡£", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "clipperå¤„ç†å¤±è´¥ã€‚", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		lpDraw->lpCLIPPER->SetHWnd(0, hWnd);
@@ -187,7 +187,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.dwWidth = lpDraw->xSize;
 		lpDraw->ddsd.dwHeight = lpDraw->ySize;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpBACKBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "Ôİ´æÇø´¦ÀíÊ§°Ü", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "æš‚å­˜åŒºå¤„ç†å¤±è´¥", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create backbuffer error:error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -198,7 +198,7 @@ BOOL InitDirectDraw(void)
 		if(g_bUseAlpha){
 			lpDraw->ddsd.ddsCaps.dwCaps    = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY;
 			if((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd,&lpDraw->lpBACKBUFFERSYS,NULL)) != DD_OK){
-				MessageBoxNew(hWnd,"Ôİ´æÇø´¦ÀíÊ§°Ü(sys)","È·¶¨",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"æš‚å­˜åŒºå¤„ç†å¤±è´¥(sys)","ç¡®å®š",MB_OK | MB_ICONSTOP);
 				hErrorLogFile = CreateFile("ErrorLog.txt",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 				sprintf_s(szErrMsg,"Create backbuffer error:error result (%x)",hResult);
 				WriteFile(hErrorLogFile,szErrMsg,sizeof(szErrMsg),&dwWriteByte,NULL);
@@ -215,7 +215,7 @@ BOOL InitDirectDraw(void)
 #endif
 	{
 		if (lpDraw->lpDD2->SetCooperativeLevel(hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN | DDSCL_ALLOWMODEX) != DD_OK){
-			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		lpDraw->lpDD2->SetDisplayMode(lpDraw->xSize, lpDraw->ySize, displayBpp, 0, 0);
@@ -225,7 +225,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE | DDSCAPS_FLIP | DDSCAPS_COMPLEX;
 		lpDraw->ddsd.dwBackBufferCount = 1;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpFRONTBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "Ö÷»­Ãæ´¦ÀíÊ§°Ü¶ş¡£", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "ä¸»ç”»é¢å¤„ç†å¤±è´¥äºŒã€‚", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create frontbuffer error(2):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -244,7 +244,7 @@ BOOL InitDirectDraw(void)
 			lpDraw->ddsd.dwHeight          = lpDraw->ySize;
 			lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY;
 			if((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd,&lpDraw->lpBACKBUFFERSYS,NULL)) != DD_OK){
-				MessageBoxNew(hWnd,"Ôİ´æÇø´¦ÀíÊ§°Ü¶ş(sys)","È·¶¨",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"æš‚å­˜åŒºå¤„ç†å¤±è´¥äºŒ(sys)","ç¡®å®š",MB_OK | MB_ICONSTOP);
 				hErrorLogFile = CreateFile("ErrorLog.txt",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 				sprintf_s(szErrMsg,"Create backbuffer error:error result (%x)",hResult);
 				WriteFile(hErrorLogFile,szErrMsg,sizeof(szErrMsg),&dwWriteByte,NULL);
@@ -267,56 +267,56 @@ BOOL InitDirectDraw(void)
 		if (lpDraw->lpBACKBUFFER->GetPixelFormat(&ddPixelFormat) != DD_OK)
 			return FALSE;
 
-		rBitRShift = 8 - getBitCount(ddPixelFormat.dwRBitMask);	// ?????????£k
-		gBitRShift = 8 - getBitCount(ddPixelFormat.dwGBitMask);	// ?????????£k
-		bBitRShift = 8 - getBitCount(ddPixelFormat.dwBBitMask);	// ?????????£k
+		rBitRShift = 8 - getBitCount(ddPixelFormat.dwRBitMask);	// ?????????î–±
+		gBitRShift = 8 - getBitCount(ddPixelFormat.dwGBitMask);	// ?????????î–±
+		bBitRShift = 8 - getBitCount(ddPixelFormat.dwBBitMask);	// ?????????î–±
 
-		rBitLShift = getBitCount(ddPixelFormat.dwBBitMask) + getBitCount(ddPixelFormat.dwGBitMask);	// ?????????£k
-		gBitLShift = getBitCount(ddPixelFormat.dwBBitMask);							// ?????????£k
-		bBitLShift = 0;													// ?????????£k
+		rBitLShift = getBitCount(ddPixelFormat.dwBBitMask) + getBitCount(ddPixelFormat.dwGBitMask);	// ?????????î–±
+		gBitLShift = getBitCount(ddPixelFormat.dwBBitMask);							// ?????????î–±
+		bBitLShift = 0;													// ?????????î–±
 	}
 	else
 
 #endif
 #ifdef _HI_COLOR_16
-		// ???????????????ıÑ©?ûè¥x??
+		// ???????????????îºîŸ«?î•î™¾??
 	if (displayBpp == 16){
 		// ??????????NULL????
 		if (lpDraw->lpBACKBUFFER == NULL)
 			return FALSE;
 
-		DDPIXELFORMAT ddPixelFormat;	// ????ıÑ©?¢B¢l
-		// ?¢B¢l????
+		DDPIXELFORMAT ddPixelFormat;	// ????îºîŸ«?î”¨î•’
+		// ?î”¨î•’????
 		ZeroMemory(&ddPixelFormat, sizeof(DDPIXELFORMAT));
 		ddPixelFormat.dwSize = sizeof(DDPIXELFORMAT);
 
 		if (lpDraw->lpBACKBUFFER->GetPixelFormat(&ddPixelFormat) != DD_OK)
 			return FALSE;
 
-		rBitRShift = 8 - getBitCount(ddPixelFormat.dwRBitMask);	// ?????????£k
-		gBitRShift = 8 - getBitCount(ddPixelFormat.dwGBitMask);	// ?????????£k
-		bBitRShift = 8 - getBitCount(ddPixelFormat.dwBBitMask);	// ?????????£k
+		rBitRShift = 8 - getBitCount(ddPixelFormat.dwRBitMask);	// ?????????î–±
+		gBitRShift = 8 - getBitCount(ddPixelFormat.dwGBitMask);	// ?????????î–±
+		bBitRShift = 8 - getBitCount(ddPixelFormat.dwBBitMask);	// ?????????î–±
 
-		rBitLShift = getBitCount(ddPixelFormat.dwBBitMask) + getBitCount(ddPixelFormat.dwGBitMask);	// ?????????£k
-		gBitLShift = getBitCount(ddPixelFormat.dwBBitMask);							// ?????????£k
-		bBitLShift = 0;													// ?????????£k
+		rBitLShift = getBitCount(ddPixelFormat.dwBBitMask) + getBitCount(ddPixelFormat.dwGBitMask);	// ?????????î–±
+		gBitLShift = getBitCount(ddPixelFormat.dwBBitMask);							// ?????????î–±
+		bBitLShift = 0;													// ?????????î–±
 	}
 
 #endif
-	// ??????????şÎ
+	// ??????????î’•
 	if ((lpBattleSurface = CreateSurface(DEF_APPSIZEX, DEF_APPSIZEY, DEF_COLORKEY, DDSCAPS_VIDEOMEMORY)) == NULL){
 #ifdef _STONDEBUG_
-		MessageBoxNew( hWnd ,"½¨Á¢VideoRam BattleSurfaceÊ§°Ü£¡" ,"È·¶¨",MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd ,"å»ºç«‹VideoRam BattleSurfaceå¤±è´¥ï¼" ,"ç¡®å®š",MB_OK | MB_ICONSTOP );
 #endif
 		if ((lpBattleSurface = CreateSurface(DEF_APPSIZEX, DEF_APPSIZEY, DEF_COLORKEY, DDSCAPS_SYSTEMMEMORY)) == NULL){
-			MessageBoxNew(hWnd, "½¨Á¢BattleSurfaceÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "å»ºç«‹BattleSurfaceå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #ifdef _READ16BITBMP
 	if(g_bUseAlpha){
 		if((lpBattleSurfaceSys = CreateSurface(DEF_APPSIZEX,DEF_APPSIZEY,DEF_COLORKEY,DDSCAPS_SYSTEMMEMORY)) == NULL){
-			MessageBoxNew(hWnd,"½¨Á¢BattleSurface(sys)Ê§°Ü£¡","È·¶¨",MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd,"å»ºç«‹BattleSurface(sys)å¤±è´¥ï¼","ç¡®å®š",MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -340,19 +340,19 @@ BOOL InitPalette(void)
 	FILE *fp;
 
 	PALETTEENTRY pal[32] = {
-		// ?????ıè
+		// ?????î‘‘
 		{ 0x00, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 0:?
-		{ 0x80, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 1:??şö
+		{ 0x80, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 1:??î’½
 		{ 0x00, 0x80, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 2:???
 		{ 0x80, 0x80, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 3:???
-		{ 0x00, 0x00, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 4:??şä
+		{ 0x00, 0x00, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 4:??î’«
 		{ 0x80, 0x00, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 5:???
-		{ 0x00, 0x80, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 6:???ıè
+		{ 0x00, 0x80, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 6:???î‘‘
 		{ 0xc0, 0xc0, 0xc0, PC_NOCOLLAPSE | PC_RESERVED }, // 7:???
 		{ 0xc0, 0xdc, 0xc0, PC_NOCOLLAPSE | PC_RESERVED }, // 8:?
 		{ 0xa6, 0xca, 0xf0, PC_NOCOLLAPSE | PC_RESERVED }, // 9:?
 
-		//ĞÂÏµÍ³É«ÅÌ// ıø????????
+		//æ–°ç³»ç»Ÿè‰²ç›˜// î‘¡????????
 		{ 0xde, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xff, 0x5f, 0x00, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xff, 0xff, 0xa0, PC_NOCOLLAPSE | PC_RESERVED },
@@ -360,7 +360,7 @@ BOOL InitPalette(void)
 		{ 0x50, 0xd2, 0xff, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0x28, 0xe1, 0x28, PC_NOCOLLAPSE | PC_RESERVED },
 
-		//ĞÂÏµÍ³É«ÅÌ// ıø????????
+		//æ–°ç³»ç»Ÿè‰²ç›˜// î‘¡????????
 		{ 0xf5, 0xc3, 0x96, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xe1, 0xa0, 0x5f, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xc3, 0x7d, 0x46, PC_NOCOLLAPSE | PC_RESERVED },
@@ -368,21 +368,21 @@ BOOL InitPalette(void)
 		{ 0x46, 0x41, 0x37, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0x28, 0x23, 0x1e, PC_NOCOLLAPSE | PC_RESERVED },
 
-		// ?????ıè
+		// ?????î‘‘
 		{ 0xff, 0xfb, 0xf0, PC_NOCOLLAPSE | PC_RESERVED }, // 246:?
 		{ 0xa0, 0xa0, 0xa4, PC_NOCOLLAPSE | PC_RESERVED }, // 247:?
-		{ 0x80, 0x80, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 248:?ıè
-		{ 0xff, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 249:şö
+		{ 0x80, 0x80, 0x80, PC_NOCOLLAPSE | PC_RESERVED }, // 248:?î‘‘
+		{ 0xff, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 249:î’½
 		{ 0x00, 0xff, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 250:?
 		{ 0xff, 0xff, 0x00, PC_NOCOLLAPSE | PC_RESERVED }, // 251:?
-		{ 0x00, 0x00, 0xff, PC_NOCOLLAPSE | PC_RESERVED }, // 252:şä
+		{ 0x00, 0x00, 0xff, PC_NOCOLLAPSE | PC_RESERVED }, // 252:î’«
 		{ 0xff, 0x00, 0xff, PC_NOCOLLAPSE | PC_RESERVED }, // 253:?
-		{ 0x00, 0xff, 0xff, PC_NOCOLLAPSE | PC_RESERVED }, // 254:?ıè
+		{ 0x00, 0xff, 0xff, PC_NOCOLLAPSE | PC_RESERVED }, // 254:?î‘‘
 		{ 0xff, 0xff, 0xff, PC_NOCOLLAPSE | PC_RESERVED }  // 255:?
 	};
 
 
-	// ?????????¡@¤e
+	// ?????????î“†î˜‹
 	for (i = 0; i < 10; i++){
 		Palette[i].peBlue = pal[i].peBlue;
 		Palette[i].peGreen = pal[i].peGreen;
@@ -395,7 +395,7 @@ BOOL InitPalette(void)
 		Palette[i + 246].peFlags = PC_EXPLICIT;
 	}
 
-	// ıø?????????¡@¤e
+	// î‘¡?????????î“†î˜‹
 	for (i = 0; i < 6; i++){
 		Palette[i + 10].peBlue = pal[i + 10].peBlue;
 		Palette[i + 10].peGreen = pal[i + 10].peGreen;
@@ -408,17 +408,17 @@ BOOL InitPalette(void)
 		Palette[i + 240].peFlags = PC_NOCOLLAPSE | PC_RESERVED;
 	}
 
-	//Ö»ÓĞµÚÒ»´Î²Å×÷(Ã»ÓĞ³õÊ¼»¯Ê±)// ???????????§k?????
+	//åªæœ‰ç¬¬ä¸€æ¬¡æ‰ä½œ(æ²¡æœ‰åˆå§‹åŒ–æ—¶)// ???????????îœ±?????
 	if (PalState.flag == FALSE){
 		fp = fopen(palFileName[0], "rb");
 		if (fp == NULL){
-			MessageBoxNew(hWnd, "É«ÅÌµµ¶ÁÈ¡Ê§°Ü", "Error", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "è‰²ç›˜æ¡£è¯»å–å¤±è´¥", "Error", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		else{
-			//¿É×ÔÓÉÊ¹ÓÃµÄµ÷É«ÅÌÉè¶¨// û«??úé???????¡@¤e
+			//å¯è‡ªç”±ä½¿ç”¨çš„è°ƒè‰²ç›˜è®¾å®š// î˜??îŒ¸???????î“†î˜‹
 			for (i = 16; i < 240; i++){
-				//µµ°¸¶ÁÈë// ?????¥‚???
+				//æ¡£æ¡ˆè¯»å…¥// ?????îš‡???
 				Palette[i].peBlue = fgetc(fp);
 				Palette[i].peGreen = fgetc(fp);
 				Palette[i].peRed = fgetc(fp);
@@ -437,7 +437,7 @@ BOOL InitPalette(void)
 
 #if 0
 	else{
-		// û«??úé???????¡@¤e
+		// î˜??îŒ¸???????î“†î˜‹
 		for( i = 16; i < 240; i++ ){
 			// ??????????
 			if( WindowMode ){
@@ -450,7 +450,7 @@ BOOL InitPalette(void)
 #endif
 	lpDraw->lpDD2->CreatePalette(DDPCAPS_8BIT, Palette, &lpDraw->lpPALETTE, NULL);
 	if (lpDraw->lpPALETTE == NULL){
-		MessageBoxNew(hWnd, "µ÷É«ÅÌ´¦ÀíÊ§°Ü", "Error", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "è°ƒè‰²ç›˜å¤„ç†å¤±è´¥", "Error", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	// WON REM 
@@ -458,8 +458,8 @@ BOOL InitPalette(void)
 	//#ifdef _STONDEBUG_
 	if (displayBpp == 8){
 		if (lpDraw->lpFRONTBUFFER->SetPalette(lpDraw->lpPALETTE) != DD_OK){
-			MessageBoxNew(hWnd, "µ÷É«ÅÌ´¦ÀíÊ§°Ü", "Error", MB_OK);
-			MessageBoxNew(hWnd, "ÇëÊ¹ÓÃ£±£¶Î»Ôª¸ß²ÊÉ«»ò£³£²Î»Ôª¸ß²ÊÉ«Ä£Ê¾", "Error", MB_OK);
+			MessageBoxNew(hWnd, "è°ƒè‰²ç›˜å¤„ç†å¤±è´¥", "Error", MB_OK);
+			MessageBoxNew(hWnd, "è¯·ä½¿ç”¨ï¼‘ï¼–ä½å…ƒé«˜å½©è‰²æˆ–ï¼“ï¼’ä½å…ƒé«˜å½©è‰²æ¨¡ç¤º", "Error", MB_OK);
 			return FALSE;
 		}
 	}
@@ -467,13 +467,13 @@ BOOL InitPalette(void)
 	// Robin 05/02
 #ifdef SWITCH_MODE
 	if( lpDraw->lpFRONTBUFFER->SetPalette( lpDraw->lpPALETTE ) != DD_OK ){
-		if( MessageBoxNew(hWnd, "ÇëÊ¹ÓÃ£²£µ£¶É«µÄÏÔÊ¾Ä£Ê¾", "È·¶¨", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
+		if( MessageBoxNew(hWnd, "è¯·ä½¿ç”¨ï¼’ï¼•ï¼–è‰²çš„æ˜¾ç¤ºæ¨¡ç¤º", "ç¡®å®š", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
 			return FALSE;
 		return FALSE;
 	}
 #else
 	while( lpDraw->lpFRONTBUFFER->SetPalette( lpDraw->lpPALETTE ) != DD_OK ){
-		if( MessageBoxNew(hWnd, "ÇëÊ¹ÓÃ£²£µ£¶É«µÄÏÔÊ¾Ä£Ê¾", "È·¶¨", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
+		if( MessageBoxNew(hWnd, "è¯·ä½¿ç”¨ï¼’ï¼•ï¼–è‰²çš„æ˜¾ç¤ºæ¨¡ç¤º", "ç¡®å®š", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
 			return FALSE;
 	}
 #endif
@@ -493,7 +493,7 @@ BOOL InitPalette(void)
 	else
 #endif
 	if (displayBpp == 16){
-		// ????????¨Á??????şÎ
+		// ????????îŸ‰??????î’•
 		highColorPalette[0] = 0;
 		for (i = 1; i < 256; i++){
 			highColorPalette[i] =
@@ -514,9 +514,9 @@ void PaletteChange(int palNo, int time)
 	// ????????
 	if (palNo >= MAX_PAL)
 		return;
-	// ????§k?
+	// ????îœ±?
 	PalState.palNo = palNo;
-	// ????¨Á???
+	// ????îŸ‰???
 	PalState.time = time;
 	// ????????
 	if (PalState.time <= 0)
@@ -532,45 +532,45 @@ BOOL IsSurfaceExpired(SURFACE_INFO *surface)
 
 #endif
 
-// É«ÅÌ´¦Àí ***************************************************************/
+// è‰²ç›˜å¤„ç† ***************************************************************/
 void PaletteProc(void)
 {
 	FILE *fp; // ????????
-	static PALETTEENTRY	pal[256];	// ?????¢B¢l
-	static float	dRed[256];		// ?????§Æ
-	static float	dGreen[256];	// ?????§Æ
-	static float	dBlue[256];		// ?????§Æ
-	static float	dRedBak[256];	// üí?¤œ????
-	static float	dGreenBak[256];	// üí?¤œ????
-	static float	dBlueBak[256];	// üí?¤œ????
+	static PALETTEENTRY	pal[256];	// ?????î”¨î•’
+	static float	dRed[256];		// ?????î¤
+	static float	dGreen[256];	// ?????î¤
+	static float	dBlue[256];		// ?????î¤
+	static float	dRedBak[256];	// î¸?î™????
+	static float	dGreenBak[256];	// î¸?î™????
+	static float	dBlueBak[256];	// î¸?î™????
 	static int 	timeCnt;			// ????????
 	static int 	changeCnt;			// ?????????
 	static int 	palNoBak = 0;		// ?????
 	static int 	openFlag = FALSE;	// ???????????
 	int i;
-	// ?????¨Á???????
+	// ?????îŸ‰???????
 	if (palNoBak == PalState.palNo && openFlag == FALSE)
 		return;
 	// ???????????
 	if (palNoBak != PalState.palNo){
 		// ????????????
 		fp = fopen(palFileName[PalState.palNo], "rb");
-		// û«??úé???????¡@¤e
+		// î˜??îŒ¸???????î“†î˜‹
 		for (i = 16; i < 240; i++){
 			pal[i].peBlue = fgetc(fp);
 			pal[i].peGreen = fgetc(fp);
 			pal[i].peRed = fgetc(fp);
-			// 168?ıè?( 0, 0, 0 )?¨Á?
+			// 168?î‘‘?( 0, 0, 0 )?îŸ‰?
 			if (i == 168){
 				pal[168].peBlue = 0;
 				pal[168].peGreen = 0;
 				pal[168].peRed = 0;
 			}
-			// üí?????
+			// î¸?????
 			dBlueBak[i] = Palette[i].peBlue;
 			dGreenBak[i] = Palette[i].peGreen;
 			dRedBak[i] = Palette[i].peRed;
-			// ?§Æ?úÜ
+			// ?î¤?îŒ«
 			dBlue[i] = (float)(pal[i].peBlue - Palette[i].peBlue) / (float)PalState.time;
 			dGreen[i] = (float)(pal[i].peGreen - Palette[i].peGreen) / (float)PalState.time;
 			dRed[i] = (float)(pal[i].peRed - Palette[i].peRed) / (float)PalState.time;
@@ -583,31 +583,31 @@ void PaletteProc(void)
 			}
 #endif
 		}
-		fclose(fp);				// ????¨–??
-		timeCnt = 0;				// ¥›?¤†???????????????????
-		changeCnt = 0;				// ûÂ????????????????????;
+		fclose(fp);				// ????î¼??
+		timeCnt = 0;				// îš ?î˜«???????????????????
+		changeCnt = 0;				// î¯????????????????????;
 		palNoBak = PalState.palNo;	// ??????
 		openFlag = TRUE;			// ?????
 	}
 	// ?????
 	timeCnt++;
-	// ¨Á????
+	// îŸ‰????
 	if (timeCnt <= PalState.time){
-		// û«??úé???????¡@¤e
+		// î˜??îŒ¸???????î“†î˜‹
 		for (i = 16; i < 240; i++){
-			// üí?¤œ????
+			// î¸?î™????
 			dBlueBak[i] += dBlue[i];
 			dGreenBak[i] += dGreen[i];
 			dRedBak[i] += dRed[i];
-			// şĞ?????
+			// î’—?????
 			Palette[i].peBlue = (BYTE)dBlueBak[i];
 			Palette[i].peGreen = (BYTE)dGreenBak[i];
 			Palette[i].peRed = (BYTE)dRedBak[i];
 		}
 	}
 	else{
-		// ??????????¡u??????£k????
-		// û«??úé???????¡@¤e
+		// ??????????î“»??????î–±????
+		// î˜??îŒ¸???????î“†î˜‹
 		for (i = 16; i < 240; i++){
 			Palette[i].peBlue = pal[i].peBlue;
 			Palette[i].peGreen = pal[i].peGreen;
@@ -616,11 +616,11 @@ void PaletteProc(void)
 		openFlag = FALSE;	// ??????
 		transEffectPaletteStatus = 2;
 	}
-	// ???????????¤úû¨?üÇ??????
+	// ???????????î¸î•?î’??????
 	if (changeCnt == 0 || openFlag == FALSE){
 		// ?????????????
 		PalChangeFlag = TRUE;
-		// ??????ş«?¡@¤e
+		// ??????î‘²?î“†î˜‹
 		//lpDraw->lpPALETTE->SetEntries( 0, 0, 256, Palette );
 	}
 	// ????????
@@ -628,7 +628,7 @@ void PaletteProc(void)
 	// ??????????
 	if (transmigrationEffectFlag)
 	{
-		// ¤šşØ??????
+		// î˜¿î’Ÿ??????
 		if (changeCnt >= 10) changeCnt = 0;
 	}
 	if (WindowMode){
@@ -642,9 +642,9 @@ void PaletteProc(void)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º?£š¥i?¡_?????????????????????????       //
-// ?? £º??                         										 //
-// ?£k £º??                                                               //
+// ?? ï¼š?î—Ÿî™¯?î“¥?????????????????????????       //
+// ?? ï¼š??                         										 //
+// ?î–± ï¼š??                                                               //
 //---------------------------------------------------------------------------//
 
 extern	RECT	g_clientRect;
@@ -693,9 +693,9 @@ void Flip(void)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º?????????????                                         //
-// ?? £ºDIRECT_DRAW *lpDraw : DirectDraw???¢B¢l                         //
-// ?£k £º??                                                               //
+// ?? ï¼š?????????????                                         //
+// ?? ï¼šDIRECT_DRAW *lpDraw : DirectDraw???î”¨î•’                         //
+// ?î–± ï¼š??                                                               //
 //---------------------------------------------------------------------------//
 void ClearBackSurface(void)
 {
@@ -721,9 +721,9 @@ void ClearBackSurface(void)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º??????????                 		                         //
-// ?? £ºDIRECT_DRAW *lpDraw : DirectDraw???¢B¢l                         //
-// ?£k £º??                                                               //
+// ?? ï¼š??????????                 		                         //
+// ?? ï¼šDIRECT_DRAW *lpDraw : DirectDraw???î”¨î•’                         //
+// ?î–± ï¼š??                                                               //
 //---------------------------------------------------------------------------//
 void ClearSurface(LPDIRECTDRAWSURFACE lpSurface)
 {
@@ -731,7 +731,7 @@ void ClearSurface(LPDIRECTDRAWSURFACE lpSurface)
 
 	ZeroMemory(&ddbltfx, sizeof(DDBLTFX));
 	ddbltfx.dwSize = sizeof(DDBLTFX);
-	ddbltfx.dwFillColor = DEF_COLORKEY; // ¥aş‘ıè?¡@¤e
+	ddbltfx.dwFillColor = DEF_COLORKEY; // î™§î¡•î‘‘?î“†î˜‹
 
 	lpSurface->Blt(NULL, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddbltfx);
 
@@ -741,9 +741,9 @@ void ClearSurface(LPDIRECTDRAWSURFACE lpSurface)
 // ???????????????????
 int BmpOffBits;
 //---------------------------------------------------------------------------//
-// ?? £º???????????¥‚??????????¨ò                     //
-// ?? £ºchar * pFile  : ??????????ş                             //
-// ??£k£ºLPBITMAPINFO : NULL .????¨òOr????ûº¦                     //
+// ?? ï¼š???????????îš‡??????????îŸ•                     //
+// ?? ï¼šchar * pFile  : ??????????î¡“                             //
+// ??î–±ï¼šLPBITMAPINFO : NULL .????îŸ•Or????î§î›²                     //
 //                NULL??.LPBITMAPINFO????                              //
 //---------------------------------------------------------------------------//
 LPBITMAPINFO LoadDirectDrawBitmap(char *pFile)
@@ -753,20 +753,20 @@ LPBITMAPINFO LoadDirectDrawBitmap(char *pFile)
 	BITMAPFILEHEADER BmpFileHeader;
 	LPBITMAPINFO lpBmpInfo;
 
-	//????¥‚???
+	//????îš‡???
 	if ((hFile = OpenFile(pFile, &ofSt, OF_READ)) == HFILE_ERROR)
 		return (LPBITMAPINFO)NULL; // File Open Error
 
-	//??????????????¥‚???
+	//??????????????îš‡???
 	_hread(hFile, &BmpFileHeader, sizeof(BITMAPFILEHEADER));
 
-	//??????????¨ò
+	//??????????îŸ•
 	if ((lpBmpInfo = (LPBITMAPINFO)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, BmpFileHeader.bfSize)) == NULL){
-		MessageBoxNew(hWnd, "HeapµÄÅäÖÃ¼ÇÒäÌåÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Heapçš„é…ç½®è®°å¿†ä½“å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return (LPBITMAPINFO)NULL; //Memory Error
 	}
 
-	//??????¥‚?üÒ?
+	//??????îš‡?î?
 	_hread(hFile, (void *)lpBmpInfo, BmpFileHeader.bfSize);
 
 	//????????
@@ -779,11 +779,11 @@ LPBITMAPINFO LoadDirectDrawBitmap(char *pFile)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £º????????????şÎ                                         //
-// ?? £ºshort bxsize           : ?şÎ¸ÏD???Î¡ç¢)                       //
-//        short bysize           : ?şÎ¸ÏD?c?(Î¡ç¢)                       //
-//        DWORD ColorKey         : ¥aş‘ıè???ıè§k?(0?255)                //
-// ??£k£ºşÕıĞü¬? ... ?????????? / ûº¦ ... NULL                 //
+// ?? ï¼š????????????î’•                                         //
+// ?? ï¼šshort bxsize           : ?î’•èµ¶æ€???å·çº°)                       //
+//        short bysize           : ?î’•èµ¶æ€?c?(å·çº°)                       //
+//        DWORD ColorKey         : î™§î¡•î‘‘???î‘‘îœ±?(0?255)                //
+// ??î–±ï¼šî’œî¹î·? ... ?????????? / î§î›² ... NULL                 //
 //---------------------------------------------------------------------------//
 LPDIRECTDRAWSURFACE CreateSurface(short bxsize, short bysize, DWORD ColorKey, unsigned int VramOrSysram)
 {
@@ -808,18 +808,18 @@ LPDIRECTDRAWSURFACE CreateSurface(short bxsize, short bysize, DWORD ColorKey, un
 
 
 //---------------------------------------------------------------------------//
-// ?? £º???????úù¤e??????¤ş?                                 //
-// ?? £ºLPDIRECTDRAWSURFACE lpSurface : ¤ş??????                     //
-//        short Xpoint        : ¥‚?ûè??????£t                         //
-//        short Ypoint        :	¥‚?ûè????üÆ?£t                         //
-//        LPBITMAPINFO pInfo  : ¤ş??????????¢B¢l                   //
-// ?£k £º??                                                               //
+// ?? ï¼š???????îˆî˜‹??????î¼?                                 //
+// ?? ï¼šLPDIRECTDRAWSURFACE lpSurface : î¼??????                     //
+//        short Xpoint        : îš‡?î•??????î–º                         //
+//        short Ypoint        :	îš‡?î•????î‘?î–º                         //
+//        LPBITMAPINFO pInfo  : î¼??????????î”¨î•’                   //
+// ?î–± ï¼š??                                                               //
 //---------------------------------------------------------------------------//
-// ??????????¤š??? ? StretchDIBits ?úé? ?
+// ??????????î˜¿??? ? StretchDIBits ?îŒ¸? ?
 void DrawBitmapToSurface(LPDIRECTDRAWSURFACE lpSurface, int offsetX, int offsetY, LPBITMAPINFO pBmpInfo)
 {
 	HDC hDcDest;
-	// úù¤e?????§k????????????¤š?
+	// îˆî˜‹?????îœ±????????????î˜¿?
 	lpSurface->GetDC(&hDcDest);
 	StretchDIBits(hDcDest,
 		0, 0,
@@ -846,23 +846,23 @@ void DrawBitmapToSurface(LPDIRECTDRAWSURFACE lpSurface, int offsetX, int offsetY
 	return;
 }
 
-// ??????????¤š??? ? memcpy ?úé? ?****************************/
+// ??????????î˜¿??? ? memcpy ?îŒ¸? ?****************************/
 #ifdef _READ16BITBMP
 void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfaceSys,int offsetX,int offsetY,int sizeX,int sizeY,LPBITMAPINFO pBmpInfo)
 {
 
 
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
-	char *pDest;			//Ä¿µÄµØÖ¸±ê// ¤š?¡I?????
-	char *pSource; 		//À´Ô´Ö¸±ê// ¤š???????
-	short *pDest2;		//Ä¿µÄµØÖ¸±ê(WORD type)// ¤š?¡I???????????
-	int surfacePitch;	//source face ¿í¶È// ??????????
-	int bmpWidth;			//bmpÍ¼µÄ¿í¶È// ????????
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
+	char *pDest;			//ç›®çš„åœ°æŒ‡æ ‡// î˜¿?î“?????
+	char *pSource; 		//æ¥æºæŒ‡æ ‡// î˜¿???????
+	short *pDest2;		//ç›®çš„åœ°æŒ‡æ ‡(WORD type)// î˜¿?î“???????????
+	int surfacePitch;	//source face å®½åº¦// ??????????
+	int bmpWidth;			//bmpå›¾çš„å®½åº¦// ????????
 	int i;
 #ifdef _READ16BITBMP
 	DDSURFACEDESC ddsdsys;
-	short *pDestSys;			//Ä¿µÄµØÖ¸±ê systemmemory
+	short *pDestSys;			//ç›®çš„åœ°æŒ‡æ ‡ systemmemory
 	int surfacePitchSys;	//source face
 #endif
 #ifdef _HI_COLOR_32
@@ -876,7 +876,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 #ifdef _READ16BITBMP
 	if(lpSurfaceSys == NULL ) return;
 #endif
-	// ?¢B¢l????
+	// ?î”¨î•’????
 	ZeroMemory( &ddsd, sizeof( DDSURFACEDESC ) );
 	ddsd.dwSize = sizeof( DDSURFACEDESC );
 #ifdef _READ16BITBMP
@@ -929,31 +929,31 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 	for( i = 0 ; i < sizeY ; i++ ){
 		if(ResoMode == 1){
 			_asm{
-				mov		edi,[pDest]		//¤š?¡I????
-					mov		esi,[pSource]	//¤š??????
+				mov		edi,[pDest]		//î˜¿?î“????
+					mov		esi,[pSource]	//î˜¿??????
 					mov		eax,[sizeX]		//????????
 					//			mov		ah,al			//
 					shr		ax,1
 					mov		cx,ax
-					inc		esi				//¤š??????????????
+					inc		esi				//î˜¿??????????????
 
 				loop_100:
-				mov		al,[esi]		//????ûè???
-					//			cmp		al,240			//????¥aş‘?
+				mov		al,[esi]		//????î•???
+					//			cmp		al,240			//????î™§î¡•?
 					//			jne		loop_200		//?????????
 
-					//			xor		al,al			//??¥aş‘?¨Á?
+					//			xor		al,al			//??î™§î¡•?îŸ‰?
 
 					//loop_200:
 					mov		[edi],al		//????????
-					inc		esi				//¤š???????ıø
-					inc		esi				//¤š???????ıø
-					inc		edi				//¤š?¡I?????ıø
-					//			dec		ah				//ü¬??
-					dec		cx				//ü¬??
-					jne		loop_100		//?????????¨ë?
+					inc		esi				//î˜¿???????î‘¡
+					inc		esi				//î˜¿???????î‘¡
+					inc		edi				//î˜¿?î“?????î‘¡
+					//			dec		ah				//î·??
+					dec		cx				//î·??
+					jne		loop_100		//?????????îŸ?
 			}
-			// ????????§Æ???????? ???¤š??????? ?
+			// ????????î¤???????? ???î˜¿??????? ?
 			pSource -= bmpWidth*2;
 		} else {
 #ifdef _HI_COLOR_32
@@ -1093,10 +1093,10 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 			}
 			//HiO????????
 
-			// ????????§Æ???????? ???¤š??????? ?
+			// ????????î¤???????? ???î˜¿??????? ?
 			pSource -= bmpWidth;
 		}
-		// ????????§Æ?????ş­??
+		// ????????î¤?????î‘´??
 		pDest += surfacePitch;
 #ifdef _READ16BITBMP
 		pDestSys += surfacePitchSys;
@@ -1108,7 +1108,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 
 	// ???????????????????
 	if( lpSurface->Unlock( NULL ) != DD_OK ){
-		//MessageBoxNew( hWnd, "SurfaceµÄUnlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„Unlockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return; 
 	}	
 #ifdef _READ16BITBMP
@@ -1123,12 +1123,12 @@ void DrawSurfaceFromPalette(SURFACE_INFO* surface_info)
 {
 	int sizeX, sizeY;
 	DDSURFACEDESC ddsd;
-	BYTE *pSource; 			//À´Ô´Ö¸±ê//
+	BYTE *pSource; 			//æ¥æºæŒ‡æ ‡//
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	if (lpSurface == NULL) return;
-	//Èç¹û²»Îª256É«²¹¶¡
+	//å¦‚æœä¸ä¸º256è‰²è¡¥ä¸
 	if (surface_info->colordepth > 0)	return;
-	//Èç¹ûµ÷ÊÔ°åÎ´¸Ä±ä²¢ÇÒ²»ÊÇÇĞ»»µ÷É«°å¹ı³Ì£¬ÄÇÃ´¾Í·µ»Ø£¬Ê¹ÓÃ»º´æÖĞµÄÊı¾İ
+	//å¦‚æœè°ƒè¯•æ¿æœªæ”¹å˜å¹¶ä¸”ä¸æ˜¯åˆ‡æ¢è°ƒè‰²æ¿è¿‡ç¨‹ï¼Œé‚£ä¹ˆå°±è¿”å›ï¼Œä½¿ç”¨ç¼“å­˜ä¸­çš„æ•°æ®
 	if (surface_info->palNo == PalState.palNo && PalState.time == 1) return;
 	sizeX = surface_info->sizeX;
 	sizeY = surface_info->sizeY;
@@ -1177,12 +1177,12 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #ifdef _CACHE_SURFACE_
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	DDSURFACEDESC ddsd;
-	char *pDest;			//Ä¿µÄµØÖ¸±ê//
-	char *pCache;			//»º´æ
-	char *pSource; 			//À´Ô´Ö¸±ê//
+	char *pDest;			//ç›®çš„åœ°æŒ‡æ ‡//
+	char *pCache;			//ç¼“å­˜
+	char *pSource; 			//æ¥æºæŒ‡æ ‡//
 	BYTE *alphatemp;
-	int surfacePitch;		//source face ¿í¶È//
-	int bmpWidth;			//bmpÍ¼µÄ¿í¶È//
+	int surfacePitch;		//source face å®½åº¦//
+	int bmpWidth;			//bmpå›¾çš„å®½åº¦//
 	int i;
 
 	if (lpSurface == NULL) return;
@@ -1281,7 +1281,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #endif
 					}
 				}
-				else //256É« »º´æÊı¾İ
+				else //256è‰² ç¼“å­˜æ•°æ®
 				{
 					memcpy(pCache, pSource, sizeX);
 				}
@@ -1320,7 +1320,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #endif
 					}
 				}
-				else  //256É«
+				else  //256è‰²
 				{
 					memcpy(pCache, pSource, sizeX);
 				}
@@ -1340,11 +1340,11 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #else
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	DDSURFACEDESC ddsd;
-	char *pDest;			//Ä¿µÄµØÖ¸±ê//
-	char *pSource; 		//À´Ô´Ö¸±ê//
+	char *pDest;			//ç›®çš„åœ°æŒ‡æ ‡//
+	char *pSource; 		//æ¥æºæŒ‡æ ‡//
 	BYTE *alphatemp;
-	int surfacePitch;	//source face ¿í¶È//
-	int bmpWidth;			//bmpÍ¼µÄ¿í¶È//
+	int surfacePitch;	//source face å®½åº¦//
+	int bmpWidth;			//bmpå›¾çš„å®½åº¦//
 	int i;
 
 	if( lpSurface == NULL ) return;
@@ -1495,10 +1495,10 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #endif
 }
 
-// ?????¤ş? **************************************************************/
+// ?????î¼? **************************************************************/
 void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 {
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
 #ifdef _READ16BITBMP
 	DDSURFACEDESC ddsdsys;
 	int surfacePitchsys,bottomSys;
@@ -1511,14 +1511,14 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 	int *pDestSys32;
 #endif
 #endif
-	char *pDest;		// ¤š?¡I?????
-	short *pDest2;		// ¤š?¡I???????????
+	char *pDest;		// î˜¿?î“?????
+	short *pDest2;		// î˜¿?î“???????????
 	int surfacePitch;	// ??????????
 	int i, j;			// ???????
-	int bottom;			// ?¡_????????
+	int bottom;			// ?î“¥????????
 	int w;				// ??
-	int h;				// üÆ?
-	short pixel;		// 16BitColor????ıÑ©
+	int h;				// î‘?
+	short pixel;		// 16BitColor????îºîŸ«
 
 	//???????????????
 	if (ResoMode == 1){
@@ -1540,7 +1540,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 	if (fill != 2 && (w <= 2 || h <= 2)) return;
 	if (fill == 2 && w == 0) return;
 
-	// ?¢B¢l????
+	// ?î”¨î•’????
 	ZeroMemory(&ddsd, sizeof(DDSURFACEDESC));
 	ddsd.dwSize = sizeof(DDSURFACEDESC);
 #ifdef _READ16BITBMP
@@ -1550,9 +1550,9 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 	}
 #endif
 
-	// ?????????????????( ¥i?? ddsd ?ıÑ©?¦V????? )
+	// ?????????????????( î™¯?? ddsd ?îºîŸ«?îš¼????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK){
-		//MessageBoxNew( hWnd, "SurfaceµÄlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„lockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return;
 	}
 #ifdef _READ16BITBMP
@@ -1567,7 +1567,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 
 	// ??????????
 	surfacePitch = ddsd.lPitch;
-	// ¥D?úğ????????????
+	// î™Š?îŒ¿????????????
 #ifdef _HI_COLOR_32
 	if (displayBpp == 32){
 		// 32 Bit Color
@@ -1605,7 +1605,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 			int pixel;
 			surfacePitch = surfacePitch >> 1;
 			pDest32 = (int *)ddsd.lpSurface + rect->top * surfacePitch + rect->left + 1;
-			// ?¡_????????ü¦şÕ£k
+			// ?î“¥????????î±î’œî–±
 			bottom = (h - 1) * surfacePitch;
 #ifdef _READ16BITBMP
 			bottomSys = ( h - 1 ) * surfacePitchsys;
@@ -1615,10 +1615,10 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 
 			// ????
 			for (i = 0; i < w - 2; i++){
-				// ıÆ?¡_?¤ş?
+				// î¯?î“¥?î¼?
 				*(pDest32 + i) = pixel;
 				*(pDest32 + surfacePitch + i) = pixel;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest32 + bottom - surfacePitch + i) = pixel;
 				*(pDest32 + bottom + i) = pixel;
 #ifdef _READ16BITBMP
@@ -1631,13 +1631,13 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 #endif
 			}
 
-			// ¥›¢D?úî¤œ?¤ş?
-			*(pDest32 + surfacePitch + surfacePitch + 1) = pixel;					// ?ıÆ
-			*(pDest32 + surfacePitch + surfacePitch + w - 4) = pixel;				// ?ıÆ
+			// îš î”ª?îŒ½î™?î¼?
+			*(pDest32 + surfacePitch + surfacePitch + 1) = pixel;					// ?î¯
+			*(pDest32 + surfacePitch + surfacePitch + w - 4) = pixel;				// ?î¯
 			*(pDest32 + bottom - (surfacePitch + surfacePitch) + 1) = pixel;		// ??
 			*(pDest32 + bottom - (surfacePitch + surfacePitch) + w - 4) = pixel;	// ??
 
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest32 += surfacePitch - 1;
 #ifdef _READ16BITBMP
 			if(g_bUseAlpha){
@@ -1649,15 +1649,15 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 			}
 #endif
 
-			// üÆ???
+			// î‘???
 			for (i = 0; i < h - 2; i++){
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*pDest32 = pixel;
 				*(pDest32 + 1) = pixel;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest32 + w - 1) = pixel;
 				*(pDest32 + w - 2) = pixel;
-				// ????????§Æ?????ş­??
+				// ????????î¤?????î‘´??
 				pDest32 += surfacePitch;
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha){
@@ -1675,7 +1675,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 		if (displayBpp == 16){
 			// 16 Bit Color
 
-			// ?¡_????????ü¦şÕ£k
+			// ?î“¥????????î±î’œî–±
 			bottom = (h - 1) * surfacePitch;
 #ifdef _READ16BITBMP
 			bottomSys = ( h - 1 ) * surfacePitchsys;
@@ -1685,10 +1685,10 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 
 			// ????
 			for (i = 0; i < w - 2; i++){
-				// ıÆ?¡_?¤ş?
+				// î¯?î“¥?î¼?
 				*(pDest2 + i) = pixel;
 				*(pDest2 + surfacePitch + i) = pixel;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest2 + bottom - surfacePitch + i) = pixel;
 				*(pDest2 + bottom + i) = pixel;
 #ifdef _READ16BITBMP
@@ -1701,13 +1701,13 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 #endif
 			}
 
-			// ¥›¢D?úî¤œ?¤ş?
-			*(pDest2 + surfacePitch + surfacePitch + 1) = pixel;					// ?ıÆ
-			*(pDest2 + surfacePitch + surfacePitch + w - 4) = pixel;				// ?ıÆ
+			// îš î”ª?îŒ½î™?î¼?
+			*(pDest2 + surfacePitch + surfacePitch + 1) = pixel;					// ?î¯
+			*(pDest2 + surfacePitch + surfacePitch + w - 4) = pixel;				// ?î¯
 			*(pDest2 + bottom - (surfacePitch + surfacePitch) + 1) = pixel;		// ??
 			*(pDest2 + bottom - (surfacePitch + surfacePitch) + w - 4) = pixel;	// ??
 
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest2 += surfacePitch - 1;
 #ifdef _READ16BITBMP
 			if(g_bUseAlpha){
@@ -1719,15 +1719,15 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 			}
 #endif
 
-			// üÆ???
+			// î‘???
 			for (i = 0; i < h - 2; i++){
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*pDest2 = pixel;
 				*(pDest2 + 1) = pixel;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest2 + w - 1) = pixel;
 				*(pDest2 + w - 2) = pixel;
-				// ????????§Æ?????ş­??
+				// ????????î¤?????î‘´??
 				pDest2 += surfacePitch;
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha){
@@ -1743,42 +1743,42 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 		else{
 			// 8 Bit Color
 
-			// ?¡_???????
+			// ?î“¥???????
 			bottom = (h - 1) * surfacePitch;
 
 			// ????
 			for (i = 0; i < w - 2; i++){
-				// ıÆ?¡_?¤ş?
+				// î¯?î“¥?î¼?
 				*(pDest + i) = color;
 				*(pDest + i + surfacePitch) = color;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest + i + bottom) = color;
 				*(pDest + i + bottom - surfacePitch) = color;
 			}
 
-			// ¥›¢D?úî¤œ?¤ş?
-			*(pDest + surfacePitch + surfacePitch + 1) = color;					// ?ıÆ
-			*(pDest + surfacePitch + surfacePitch + w - 4) = color;				// ?ıÆ
+			// îš î”ª?îŒ½î™?î¼?
+			*(pDest + surfacePitch + surfacePitch + 1) = color;					// ?î¯
+			*(pDest + surfacePitch + surfacePitch + w - 4) = color;				// ?î¯
 			*(pDest + bottom - (surfacePitch + surfacePitch) + 1) = color;		// ??
 			*(pDest + bottom - (surfacePitch + surfacePitch) + w - 4) = color;	// ??
 
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest += surfacePitch - 1;
 
-			// üÆ???
+			// î‘???
 			for (i = 0; i < h - 2; i++){
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*pDest = color;
 				*(pDest + 1) = color;
-				// ??¡_?¤ş?
+				// ??î“¥?î¼?
 				*(pDest + w - 1) = color;
 				*(pDest + w - 2) = color;
-				// ????????§Æ?????ş­??
+				// ????????î¤?????î‘´??
 				pDest += surfacePitch;
 			}
 		}
 	}
-	else if (fill == 1){	// ¥D??????
+	else if (fill == 1){	// î™Š??????
 #ifdef _HI_COLOR_32
 		if (displayBpp == 32){
 			int pixel;
@@ -1787,7 +1787,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 			pDest32 = (int *)ddsd.lpSurface + rect->top * surfacePitch + rect->left + 1;
 			pixel = highColor32Palette[color];
 
-			// ıÆ??????¤ş?
+			// î¯??????î¼?
 			for (i = 0; i < w - 2; i++){
 				*(pDest32 + i) = pixel;
 #ifdef _READ16BITBMP
@@ -1918,8 +1918,8 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 
 void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 {
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
-	char *ptDest;		// ¤š?¡I?????
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
+	char *ptDest;		// î˜¿?î“?????
 	char *tmpPtDest;	// ???
 	char *tmpPtDest2;	// ????
 	int surfacePitch;	// ??????????
@@ -1961,19 +1961,19 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 	else{
 		pc_color = 0;
 	}
-	// ?¢B¢l????
+	// ?î”¨î•’????
 	ZeroMemory(&ddsd, sizeof(DDSURFACEDESC));
 	ddsd.dwSize = sizeof(DDSURFACEDESC);
 
-	// ?????????????????( ¥i?? ddsd ?ıÑ©?¦V????? )
+	// ?????????????????( î™¯?? ddsd ?îºîŸ«?îš¼????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "SurfaceµÄlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„lockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return;
 	}
 	// ??????????
 	surfacePitch = ddsd.lPitch;
-	// ¥D?úğ????????????
+	// î™Š?îŒ¿????????????
 	ptDest = (char *)(ddsd.lpSurface) + (y + yy) * surfacePitch;
 	if (displayBpp == 8){
 		ptDest += (x + xx);
@@ -1992,7 +1992,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 			tmpPtDest += (surfacePitch + 2);
 		}
 		ptDest = tmpPtDest2 + (surfacePitch + 2)*hh / 2 - (surfacePitch - 2)*ww / 2;
-		// ??????¤úû¨?????????¤œş˜?
+		// ??????î¸î•?????????î™î¡œ?
 		*(ptDest - 1) = pc_color;
 		*(ptDest) = pc_color;
 		*(ptDest + 1) = pc_color;
@@ -2018,7 +2018,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 		}
 		ptDest = tmpPtDest2 + (surfacePitch + 4)*hh - (surfacePitch - 4)*ww;
 		color = highColor32Palette[pc_color];
-		// ??????¤úû¨?????????¤œş˜?
+		// ??????î¸î•?????????î™î¡œ?
 		*(int *)(ptDest - 4) = color;
 		*(int *)(ptDest) = color;
 		*(int *)(ptDest + 4) = color;
@@ -2044,7 +2044,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 		}
 		ptDest = tmpPtDest2 + (surfacePitch + 4)*hh / 2 - (surfacePitch - 4)*ww / 2;
 		color = highColorPalette[pc_color];
-		// ??????¤úû¨?????????¤œş˜?
+		// ??????î¸î•?????????î™î¡œ?
 		*(short*)(ptDest - 2) = color;
 		*(short*)(ptDest) = color;
 		*(short*)(ptDest + 2) = color;
@@ -2054,7 +2054,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 	// ???????????????????
 	if (lpDraw->lpBACKBUFFER->Unlock(NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "SurfaceµÄUnlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„Unlockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return;
 	}
 
@@ -2062,7 +2062,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 }
 
 
-// ???§ú??ûè?????????ıè???
+// ???î·??î•?????????î‘‘???
 int getAutoMapColor(unsigned int GraphicNo)
 {
 	int index = 0;
@@ -2073,13 +2073,13 @@ int getAutoMapColor(unsigned int GraphicNo)
 	int color;
 
 	int i, j;
-	// real.bin?¤G?§k???????????¥‚???
+	// real.bin?î—­?îœ±???????????îš‡???
 	if (realGetImage(GraphicNo, (unsigned char **)&graBuf, &width, &height) == FALSE) return 0;
-	// ??????şÎ§Æ?§ú???
+	// ??????î’•î¤?î·???
 	for (i = 0; i < height; i++){
 		for (j = 0; j < width; j++){
 			index = graBuf[i*width + j];
-			if (index != DEF_COLORKEY){	// ¥a?ıè??????
+			if (index != DEF_COLORKEY){	// î™§?î‘‘??????
 				red += Palette[index].peRed;
 				green += Palette[index].peGreen;
 				blue += Palette[index].peBlue;
@@ -2089,16 +2089,16 @@ int getAutoMapColor(unsigned int GraphicNo)
 	}
 
 	if (cnt == 0) return 0;
-	// §ú?ıè??§k??ıè????????????£S?
+	// î·?î‘‘??îœ±??î‘‘????????????î–™?
 	color = getNearestColorIndex(RGB(red / cnt, green / cnt, blue / cnt), Palette, 256);
 
 	return color;
 }
 
 //---------------------------------------------------------------------------//
-// ıè?entry?????palette?????color??§k?????index?¨ë??
+// î‘‘?entry?????palette?????color??îœ±?????index?îŸ??
 //---------------------------------------------------------------------------//
-//ref Ñ°ÕÒÉ«ÅÌÖĞ×î½Ó½üµÄÑÕÉ«
+//ref å¯»æ‰¾è‰²ç›˜ä¸­æœ€æ¥è¿‘çš„é¢œè‰²
 int getNearestColorIndex(COLORREF color, PALETTEENTRY *palette, int entry)
 {
 	double distance, mindist;
@@ -2123,9 +2123,9 @@ int getNearestColorIndex(COLORREF color, PALETTEENTRY *palette, int entry)
 
 
 //---------------------------------------------------------------------------//
-// ?????????¤ş?                                                    //
+// ?????????î¼?                                                    //
 //---------------------------------------------------------------------------//
-//ref »­³öµØÍ¼µÄÌØĞ§ 
+//ref ç”»å‡ºåœ°å›¾çš„ç‰¹æ•ˆ 
 void DrawMapEffect(void)
 {
 	DDSURFACEDESC ddsd;
@@ -2296,7 +2296,7 @@ void DrawMapEffect(void)
 				if (buf->mode == 0){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ?????
+						// î’˜?????
 						*(ptDest32 - surfacePitch - 1) = highColor32Palette[8];
 						*(ptDest32 - surfacePitch) = highColor32Palette[255];
 						*(ptDest32 - surfacePitch + 1) = highColor32Palette[8];
@@ -2310,7 +2310,7 @@ void DrawMapEffect(void)
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ?????
+						// î’˜?????
 						*(ptDest2 - surfacePitch - 1) = highColorPalette[8];
 						*(ptDest2 - surfacePitch) = highColorPalette[255];
 						*(ptDest2 - surfacePitch + 1) = highColorPalette[8];
@@ -2322,7 +2322,7 @@ void DrawMapEffect(void)
 						*(ptDest2 + surfacePitch + 1) = highColorPalette[8];
 					}
 					else{
-						// şÑ?????
+						// î’˜?????
 						*(ptDest - surfacePitch - 1) = (char)8;
 						*(ptDest - surfacePitch) = (char)255;
 						*(ptDest - surfacePitch + 1) = (char)8;
@@ -2337,7 +2337,7 @@ void DrawMapEffect(void)
 				else if (buf->mode == 1){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ??ıè?ü¿??
+						// î’˜??î‘‘?îŠ??
 						*(ptDest32 - surfacePitch) = highColor32Palette[251];
 						*(ptDest32 - 1) = highColor32Palette[251];
 						*(ptDest32) = highColor32Palette[251];
@@ -2347,7 +2347,7 @@ void DrawMapEffect(void)
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ??ıè?ü¿??
+						// î’˜??î‘‘?îŠ??
 						*(ptDest2 - surfacePitch) = highColorPalette[251];
 						*(ptDest2 - 1) = highColorPalette[251];
 						*(ptDest2) = highColorPalette[251];
@@ -2355,7 +2355,7 @@ void DrawMapEffect(void)
 						*(ptDest2 + surfacePitch) = highColorPalette[251];
 					}
 					else{
-						// şÑ??ıè?ü¿??
+						// î’˜??î‘‘?îŠ??
 						*(ptDest - surfacePitch) = (char)251;
 						*(ptDest - 1) = (char)251;
 						*(ptDest) = (char)251;
@@ -2366,7 +2366,7 @@ void DrawMapEffect(void)
 				else if (buf->mode == 2){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ??ıè????¤œ?
+						// î’˜??î‘‘????î™?
 						*(ptDest32) = highColor32Palette[251];
 						*(ptDest32 + 1) = highColor32Palette[255];
 						*(ptDest32 + surfacePitch) = highColor32Palette[255];
@@ -2375,14 +2375,14 @@ void DrawMapEffect(void)
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ??ıè????¤œ?
+						// î’˜??î‘‘????î™?
 						*(ptDest2) = highColorPalette[251];
 						*(ptDest2 + 1) = highColorPalette[255];
 						*(ptDest2 + surfacePitch) = highColorPalette[255];
 						*(ptDest2 + surfacePitch + 1) = highColorPalette[251];
 					}
 					else{
-						// şÑ??ıè????¤œ?
+						// î’˜??î‘‘????î™?
 						*(ptDest) = (char)251;
 						*(ptDest + 1) = (char)255;
 						*(ptDest + surfacePitch) = (char)255;
@@ -2392,7 +2392,7 @@ void DrawMapEffect(void)
 				else if (buf->mode == 3){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ????ıè??¤œ?
+						// î’˜????î‘‘??î™?
 						*(ptDest32) = highColor32Palette[255];
 						*(ptDest32 + 1) = highColor32Palette[251];
 						*(ptDest32 + surfacePitch) = highColor32Palette[251];
@@ -2401,14 +2401,14 @@ void DrawMapEffect(void)
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ????ıè??¤œ?
+						// î’˜????î‘‘??î™?
 						*(ptDest2) = highColorPalette[255];
 						*(ptDest2 + 1) = highColorPalette[251];
 						*(ptDest2 + surfacePitch) = highColorPalette[251];
 						*(ptDest2 + surfacePitch + 1) = highColorPalette[255];
 					}
 					else{
-						// şÑ????ıè??¤œ?
+						// î’˜????î‘‘??î™?
 						*(ptDest) = (char)255;
 						*(ptDest + 1) = (char)251;
 						*(ptDest + surfacePitch) = (char)251;
@@ -2418,7 +2418,7 @@ void DrawMapEffect(void)
 				else if (buf->mode == 4){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ??ıè?¤œ???¤œ?
+						// î’˜??î‘‘?î™???î™?
 						*(ptDest32) = highColor32Palette[251];
 						*(ptDest32 + 1) = highColor32Palette[193];
 						*(ptDest32 + surfacePitch) = highColor32Palette[193];
@@ -2427,14 +2427,14 @@ void DrawMapEffect(void)
 					else
 #endif	
 					if (displayBpp == 16){
-						// şÑ??ıè?¤œ???¤œ?
+						// î’˜??î‘‘?î™???î™?
 						*(ptDest2) = highColorPalette[251];
 						*(ptDest2 + 1) = highColorPalette[193];
 						*(ptDest2 + surfacePitch) = highColorPalette[193];
 						*(ptDest2 + surfacePitch + 1) = highColorPalette[193];
 					}
 					else{
-						// şÑ??ıè?¤œ???¤œ?
+						// î’˜??î‘‘?î™???î™?
 						*(ptDest) = (char)251;
 						*(ptDest + 1) = (char)193;
 						*(ptDest + surfacePitch) = (char)193;
@@ -2444,68 +2444,68 @@ void DrawMapEffect(void)
 				else if (buf->mode == 5){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest32) = highColor32Palette[198];
 					}
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest2) = highColorPalette[198];
 					}
 					else{
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest) = (char)198;
 					}
 				}
 				else if (buf->mode == 6){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest32) = highColor32Palette[193];
 					}
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest2) = highColorPalette[193];
 					}
 					else{
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest) = (char)193;
 					}
 				}
 				else if (buf->mode == 7){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest32) = highColor32Palette[208];
 					}
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest2) = highColorPalette[208];
 					}
 					else{
-						// şÑ???ıè??
+						// î’˜???î‘‘??
 						*(ptDest) = (char)208;
 					}
 				}
 				else if (buf->mode == 8){
 #ifdef _HI_COLOR_32
 					if (displayBpp == 32){
-						// şÑ??ıè?
+						// î’˜??î‘‘?
 						*(ptDest32) = highColor32Palette[251];
 					}
 					else
 #endif
 					if (displayBpp == 16){
-						// şÑ??ıè?
+						// î’˜??î‘‘?
 						*(ptDest2) = highColorPalette[251];
 					}
 					else{
-						// şÑ??ıè?
+						// î’˜??î‘‘?
 						*(ptDest) = (char)251;
 					}
 				}
@@ -2576,12 +2576,12 @@ void DrawMapEffect(void)
 
 
 
-// ??????????¤ş?? ????? ?************************************/
+// ??????????î¼?? ????? ?************************************/
 void DrawDebugLine(unsigned char color)
 {
-	DDSURFACEDESC ddsd;	// ??????¢B¢l
-	char *pDest;		// ¤š?¡I?????
-	short *pDest2;		// ¤š?¡I???????????
+	DDSURFACEDESC ddsd;	// ??????î”¨î•’
+	char *pDest;		// î˜¿?î“?????
+	short *pDest2;		// î˜¿?î“???????????
 	int surfacePitch;	// ??????????
 	int i, j, k, l, m;
 	short pixel;
@@ -2589,16 +2589,16 @@ void DrawDebugLine(unsigned char color)
 	// ????????????
 	if (WindowMode) return;
 
-	// ?¢B¢l????
+	// ?î”¨î•’????
 	ZeroMemory(&ddsd, sizeof(DDSURFACEDESC));
 	ddsd.dwSize = sizeof(DDSURFACEDESC);
 
-	// ?????????????????( ¥i?? ddsd ?ıÑ©?¦V????? )
+	// ?????????????????( î™¯?? ddsd ?îºîŸ«?îš¼????? )
 	if (lpDraw->lpFRONTBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK){
-		//MessageBoxNew( hWnd, "SurfaceµÄlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surfaceçš„lockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 		return;
 	}
-	//??¤õ
+	//??î³
 	j = lpDraw->xSize;
 	k = lpDraw->ySize;
 	l = 8;
@@ -2614,19 +2614,19 @@ void DrawDebugLine(unsigned char color)
 		int pixel;
 		int *pDest32;
 		pixel = highColor32Palette[color];
-		// ¥D?úğ????????????
+		// î™Š?îŒ¿????????????
 		pDest32 = (int *)ddsd.lpSurface + j;
 		// ??????????
 		surfacePitch = ddsd.lPitch >> 1;
-		// üÆ???
+		// î‘???
 		for (i = 0; i < k; i++)
 		{
-			// ?????¤ş?
+			// ?????î¼?
 			for (m = 0; m < l; m++)
 			{
 				*(pDest32 + m) = pixel;
 			}
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest32 += surfacePitch;
 		}
 	}
@@ -2635,55 +2635,55 @@ void DrawDebugLine(unsigned char color)
 	if (displayBpp == 16)
 	{
 		pixel = highColorPalette[color];
-		// ¥D?úğ????????????
+		// î™Š?îŒ¿????????????
 		pDest2 = (short *)ddsd.lpSurface + j;
 		// ??????????
 		surfacePitch = ddsd.lPitch >> 1;
-		// üÆ???
+		// î‘???
 		for (i = 0; i < k; i++)
 		{
-			// ?????¤ş?
+			// ?????î¼?
 			for (m = 0; m < l; m++)
 			{
 				*(pDest2 + m) = pixel;
 			}
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest2 += surfacePitch;
 		}
 	}
 	else
 	{
-		// ¥D?úğ????????????
+		// î™Š?îŒ¿????????????
 		pDest = (char *)(ddsd.lpSurface) + j;
 
 		// ??????????
 		surfacePitch = ddsd.lPitch;
 
-		// üÆ???
+		// î‘???
 		for (i = 0; i < k; i++)
 		{
-			// ?????¤ş?
+			// ?????î¼?
 			memset(pDest, color, l);
-			// ????????§Æ?????ş­??
+			// ????????î¤?????î‘´??
 			pDest += surfacePitch;
 		}
 	}
 
 	// ???????????????????
 	if (lpDraw->lpFRONTBUFFER->Unlock(NULL) != DD_OK){
-		MessageBoxNew(hWnd, "SurfaceµÄUnlockÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Surfaceçš„Unlockå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP);
 		return;
 	}
 
 	return;
 }
 //---------------------------------------------------------------------------//
-// ?? £ºRECT?¤õ?û¨?î°ï“qŞËÖ±??âèÕ¾¸ÏD????]?                    //
-// ?? £ºDIRECT_DRAW *lpDraw : DirectDraw???¢B¢l                         //
-//        short  bx           : ¤ş?¡I??£t                                 //
-//        short  by           : ¤ş?¡IüÆ?£t                                 //
-//        LPDIRECTDRAWSURFACE lpSurface : ¤ş???????                   //
-// ?£k £ºDD_OK:şÕıĞü¬?                                                     //
+// ?? ï¼šRECT?î³?î•?å¿£å¸®æåŒç›´??å¿¤ç«™èµ¶æ€????]?                    //
+// ?? ï¼šDIRECT_DRAW *lpDraw : DirectDraw???î”¨î•’                         //
+//        short  bx           : î¼?î“??î–º                                 //
+//        short  by           : î¼?î“î‘?î–º                                 //
+//        LPDIRECTDRAWSURFACE lpSurface : î¼???????                   //
+// ?î–± ï¼šDD_OK:î’œî¹î·?                                                     //
 //---------------------------------------------------------------------------//
 #ifdef _READ16BITBMP
 HRESULT DrawSurfaceFast( long bx, long by, LPDIRECTDRAWSURFACE lpSurface,LPDIRECTDRAWSURFACE lpSurfaceSys)
@@ -2701,27 +2701,27 @@ HRESULT DrawSurfaceFast( long bx, long by, LPDIRECTDRAWSURFACE lpSurface,LPDIREC
 		return DD_OK;
 	}
 
-	// ?£Z?????
+	// ?î– ?????
 	if( bx < 0 ){
 		rect.left -= bx;
 		x0 = 0;
 	}
-	// ?£Z?????
+	// ?î– ?????
 	if( bx + w > lpDraw->xSize ){
 		rect.right -= bx + w - lpDraw->xSize;
 	}
-	// ıÆ£Z?????
+	// î¯î– ?????
 	if( by < 0 ){
 		rect.top -= by;
 		y0 = 0;
 	}
-	// ?£Z?????
+	// ?î– ?????
 	if( by + h > lpDraw->ySize ){
 		rect.bottom -= by + h - lpDraw->ySize;
 	}
 
 #ifdef _STONDEBUG_		
-	// ??¤úû¨???????????????
+	// ??î¸î•???????????????
 	SurfaceDispCnt++;
 #endif
 	RECT rectD;
@@ -2775,13 +2775,13 @@ HRESULT DrawSurfaceFast(short bx, short by, LPDIRECTDRAWSURFACE lpSurface)
 }
 
 //---------------------------------------------------------------------------//
-// ?? £ºRECT?¤õ?û¨?î°ï“qŞËÖ±??âèÕ¾¸ÏD????]?                    //
-// ?? £ºDIRECT_DRAW *lpDraw : DirectDraw???¢B¢l                         //
-//        short  bx           : ¤ş?¡I??£t                                 //
-//        short  by           : ¤ş?¡IüÆ?£t                                 //
-//        RECT * rect         : ¤ş?????¢B¢l                             //
-//        LPDIRECTDRAWSURFACE lpSurface : ¤ş???????                   //
-// ?£k £ºDD_OK:şÕıĞü¬?                                                     //
+// ?? ï¼šRECT?î³?î•?å¿£å¸®æåŒç›´??å¿¤ç«™èµ¶æ€????]?                    //
+// ?? ï¼šDIRECT_DRAW *lpDraw : DirectDraw???î”¨î•’                         //
+//        short  bx           : î¼?î“??î–º                                 //
+//        short  by           : î¼?î“î‘?î–º                                 //
+//        RECT * rect         : î¼?????î”¨î•’                             //
+//        LPDIRECTDRAWSURFACE lpSurface : î¼???????                   //
+// ?î–± ï¼šDD_OK:î’œî¹î·?                                                     //
 //---------------------------------------------------------------------------//
 HRESULT DrawSurfaceFast2(short bx, short by, RECT *rect, LPDIRECTDRAWSURFACE lpSurface)
 {
@@ -2794,48 +2794,48 @@ HRESULT DrawSurfaceFast2(short bx, short by, RECT *rect, LPDIRECTDRAWSURFACE lpS
 	h = rect->bottom - rect->top;
 
 	// ????????
-	//   ????? RECT ????¤õ?????¤úû¨?????
+	//   ????? RECT ????î³?????î¸î•?????
 
-	// ¡u?¤úû¨???§Æ?ş†?????
+	// î“»?î¸î•???î¤?î¡Š?????
 	if (bx >= lpDraw->xSize || bx + w <= 0 || by >= lpDraw->ySize || by + h <= 0){
 		return DD_OK;
 	}
 
-	// ?£Z?????
+	// ?î– ?????
 	if (bx < 0){
 		rect->left -= bx;
 		x0 = 0;
 	}
-	// ?£Z?????
+	// ?î– ?????
 	if (bx + w > lpDraw->xSize){
 		rect->right -= bx + w - lpDraw->xSize;
 	}
-	// ıÆ£Z?????
+	// î¯î– ?????
 	if (by < 0){
 		rect->top -= by;
 		y0 = 0;
 	}
-	// ?£Z?????
+	// ?î– ?????
 	if (by + h > lpDraw->ySize){
 		rect->bottom -= by + h - lpDraw->ySize;
 	}
 
 #ifdef _STONDEBUG_		
-	// ??¤úû¨???????????????
+	// ??î¸î•???????????????
 	SurfaceDispCnt++;
 #endif
 
-	// ??????????¢L¤š?
+	// ??????????î”²î˜¿?
 	//return lpDraw->lpBACKBUFFER->BltFast( x0, y0, lpSurface, rect, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT );
 	return lpDraw->lpBACKBUFFER->BltFast(x0, y0, lpSurface, rect, DDBLTFAST_WAIT);
 }
 
 
-/* ????????©—?? ****************************************************/
+/* ????????îŸ´?? ****************************************************/
 void ReleaseDirectDraw(void)
 {
 	int i;
-	// ¡u????????????????©—
+	// î“»????????????????îŸ´
 	for (i = 0; i < SurfaceCnt; i++){
 		if (SurfaceInfo[i].lpSurface != NULL){
 			if (SurfaceInfo[i].lpAlphaData != NULL){
@@ -2867,24 +2867,24 @@ void ReleaseDirectDraw(void)
 	extern void SkyIslandRelease();
 	SkyIslandRelease();
 #endif
-	// ??????????©—
+	// ??????????îŸ´
 	if (lpBattleSurface != NULL){
 		// ????
 		lpBattleSurface->Release();
 		lpBattleSurface = NULL;
 	}
 	if (lpDraw){
-		// ?????©—
+		// ?????îŸ´
 		if (lpDraw->lpPALETTE != NULL){
 			lpDraw->lpPALETTE->Release();
 			lpDraw->lpPALETTE = NULL;
 		}
-		// ??????©—
+		// ??????îŸ´
 		if (lpDraw->lpCLIPPER != NULL){
 			lpDraw->lpCLIPPER->Release();
 			lpDraw->lpCLIPPER = NULL;
 		}
-		// ?????????©—
+		// ?????????îŸ´
 		if (lpDraw->lpBACKBUFFER != NULL){
 			lpDraw->lpBACKBUFFER->Release();
 			lpDraw->lpBACKBUFFER = NULL;
@@ -2901,18 +2901,18 @@ void ReleaseDirectDraw(void)
 			}
 		}
 #endif
-		// ???????????©—
+		// ???????????îŸ´
 		if (lpDraw->lpFRONTBUFFER != NULL){
 			lpDraw->lpFRONTBUFFER->Release();
 			lpDraw->lpFRONTBUFFER = NULL;
 		}
-		// DirectDraw??©—
+		// DirectDraw??îŸ´
 		if (lpDraw->lpDD2 != NULL){
 			lpDraw->lpDD2->Release();
 			lpDraw->lpDD2 = NULL;
 		}
 
-		// DIRECT_DRAW ?¢B¢l?©—
+		// DIRECT_DRAW ?î”¨î•’?îŸ´
 		HeapFree(GetProcessHeap(), NULL, lpDraw);
 		lpDraw = NULL;
 	}
@@ -2925,7 +2925,7 @@ BOOL CheckSurfaceLost(void)
 {
 	BOOL SurfaceLostFlag = FALSE;
 	int i;
-	// ¡u?????????????????
+	// î“»?????????????????
 	for (i = 0; i < SurfaceCnt; i++){
 		// ??????????
 		if (SurfaceInfo[i].lpSurface != NULL){
@@ -2969,15 +2969,15 @@ BOOL CheckSurfaceLost(void)
 	return SurfaceLostFlag;
 }
 
-// ????????????şÎ *************************************************/
+// ????????????î’• *************************************************/
 void InitFont(int fontNo)
 {
-	//ËÎÌå
-	//char *fontName[] = { "Microsoft JhengHei","¿¬Ìå_GB2312" };
+	//å®‹ä½“
+	//char *fontName[] = { "Microsoft JhengHei","æ¥·ä½“_GB2312" };
 #ifdef _NEWFONT_
-	extern int ±àÂë;
+	extern int ç¼–ç ;
 	char fontName[2][128];
-	if(±àÂë==950){
+	if(ç¼–ç ==950){
 		sprintf(fontName[0],"Microsoft JhengHei");
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}else{
@@ -2985,62 +2985,62 @@ void InitFont(int fontNo)
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}
 #else
-	extern int ±àÂë;
+	extern int ç¼–ç ;
 	char fontName[2][128];
-	if(±àÂë==950){
+	if(ç¼–ç ==950){
 		sprintf(fontName[0],"Microsoft JhengHei");
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}else{
-		sprintf(fontName[0],"ËÎÌå");
-		sprintf(fontName[1],"¿¬Ìå_GB2312");
+		sprintf(fontName[0],"å®‹ä½“");
+		sprintf(fontName[1],"æ¥·ä½“_GB2312");
 	}
 
-	//char *fontName[] = { "ËÎÌå", "¿¬Ìå_GB2312" };
+	//char *fontName[] = { "å®‹ä½“", "æ¥·ä½“_GB2312" };
 #endif
 	// ?????????
 	if (hFont != NULL){
-		// ????????????úÇ
+		// ????????????îŒ–
 		DeleteObject(hFont);
 	}
 
 	//???????????????
 	if (ResoMode == 1){
-		// MS??????úù¤e????????????????şÎ
+		// MS??????îˆî˜‹????????????????î’•
 		hFont = CreateFont(
 #ifdef _NEWFONT_
 			FONT_SIZE1, 	/* ????????	*/ 
 #else
 			FONT_SIZE1,
 #endif
-			0, 		/* §ó????§ú??	*/
-			0, 		/* ???????¥T	*/
-			0,		/* ??? ????xû´??¥T	*/
-			/* ?????¢^?	*/
+			0, 		/* î°????î·??	*/
+			0, 		/* ???????î™š	*/
+			0,		/* ??? ????xî¡??î™š	*/
+			/* ?????î•„?	*/
 			FW_NORMAL,		// 0 
-			/* ?????¢l¢NşÍ????	*/
+			/* ?????î•’î”´î’”????	*/
 			FALSE,
-			/* ?¡_¦Ü?¢NşÍ????	*/
+			/* ?î“¥î?î”´î’”????	*/
 			FALSE,
-			/* ¢e?ı¤?¡_¦Ü?¢NşÍ????	*/
+			/* î•‹?î?î“¥î?î”´î’”????	*/
 			FALSE,
-			/* §ó????û±¨úó	*/
-			GB2312_CHARSET/*CHINESEBIG5_CHARSET*/, 	// ?¤G?§ó? GB2312_CHARSET
-			/* üÒ?şÚ¥T	*/
+			/* î°????îîŸ„î‚	*/
+			GB2312_CHARSET/*CHINESEBIG5_CHARSET*/, 	// ?î—­?î°? GB2312_CHARSET
+			/* î?î’¡î™š	*/
 			OUT_DEFAULT_PRECIS,
-			/* ??????şÚ¥T	*/
+			/* ??????î’¡î™š	*/
 			CLIP_DEFAULT_PRECIS,
-			/* üÒ?¦¹ûÁ	*/
-			DEFAULT_QUALITY,	// ????????üÇ????????
+			/* î?î…î®	*/
+			DEFAULT_QUALITY,	// ????????î’????????
 			/* ??? */
 			FIXED_PITCH |
 			/* ????	*/
-			FF_ROMAN,			// ??¨Á?????????????¦Ü????????MS(R) Serif????????
+			FF_ROMAN,			// ??îŸ‰?????????????î????????MS(R) Serif????????
 			fontName[fontNo]);
 	}
 	else {
 #ifdef _NEWFONT_
 		char strfame[128];
-		if(±àÂë==950){
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -3051,7 +3051,7 @@ void InitFont(int fontNo)
 #else
 
 		char strfame[128];
-		if(±àÂë==950){
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			hFont = CreateFont(FONT_SIZE2,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame
@@ -3079,18 +3079,18 @@ void InitFont(int fontNo)
 }
 
 #ifdef _CHANNEL_MODIFY
-char g_szChannelTitle[][13] = { "[ÆÕ]", "[ÃÜ]", "[¶Ó]", "[×å]"
+char g_szChannelTitle[][13] = { "[æ™®]", "[å¯†]", "[é˜Ÿ]", "[æ—]"
 #ifdef _CHAR_PROFESSION
-,"[Ö°]"
+,"[èŒ]"
 #endif
 #ifdef _CHATROOMPROTOCOL
-,"[ÁÄ]"
+,"[èŠ]"
 #endif
 #ifdef _CHANNEL_WORLD
-, "[ÊÀ]"
+, "[ä¸–]"
 #endif
 #ifdef _CHANNEL_ALL_SERV
-, "[ĞÇ]"
+, "[æ˜Ÿ]"
 #endif
 };
 extern int TalkMode;
@@ -3262,12 +3262,12 @@ void PutText(char fontPrio)
 			}
 		}
 	}
-	// ıè¨????? SetTextColor?????????????¢L? ?
+	// î‘‘îŸ„????? SetTextColor?????????????î”²? ?
 	for (color = 0; color < FONT_PAL_NUM; color++){
 		for (i = 0; i < FontCnt; i++){
 			if (FontBuffer[i].fontPrio == fontPrio){
 				if (FontBuffer[i].color == color){
-					// ????ıè?????????????
+					// ????î‘‘?????????????
 					if (colorFlag == FALSE){
 						SetTextColor(hDc, FontPal[color]);
 #ifdef _READ16BITBMP
@@ -3277,11 +3277,11 @@ void PutText(char fontPrio)
 					}
 					//???????????????
 					if (ResoMode == 1){
-						// ??ıÆ??úù¤e???ıè?¤ş?
+						// ??î¯??îˆî˜‹???î‘‘?î¼?
 						TextOut(hDc, FontBuffer[i].x >> 1, FontBuffer[i].y >> 1, FontBuffer[i].str, (int)strlen(FontBuffer[i].str));
 					}
 					else {
-						// ??ıÆ??úù¤e???ıè?¤ş?
+						// ??î¯??îˆî˜‹???î‘‘?î¼?
 #ifdef _FONT_SIZE
 						static HFONT newFont = NULL;
 						static HFONT oldFont = NULL;
@@ -3440,7 +3440,7 @@ void PutText(char fontPrio)
 }
 
 //---------------------------------------------------------------------------//
-// ?????????¨ò¢V
+// ?????????îŸ•î”¼
 //---------------------------------------------------------------------------//
 void snapShot(void)
 {
@@ -3452,23 +3452,23 @@ void snapShot(void)
 	time_t longTime;
 	FILE *fp;
 	int w, h;
-	POINT 	clientPoint; // ??????????ıÆ???????¤õ?£t??¦t
+	POINT 	clientPoint; // ??????????î¯???????î³?î–º??î›š
 
-	// ?????¢B¢l????
+	// ?????î”¨î•’????
 	clientPoint.x = 0;
 	clientPoint.y = 0;
-	// ??????????ıÆ???????¤õ?ûè¥x
+	// ??????????î¯???????î³?î•î™¾
 	ClientToScreen(hWnd, &clientPoint);
 
-	// ¨ò¢V??????şÎ
+	// îŸ•î”¼??????î’•
 	if (_mkdir("screenshot") != 0)
 	{
 		if (errno != EEXIST)
 			return;
 	}
 
-	// ¨ò¢V????ş??şÎ
-	time(&longTime);					// ???¦T??ûè¥x
+	// îŸ•î”¼????î¡“??î’•
+	time(&longTime);					// ???îšº??î•î™¾
 	localtime_s(&nowTime, &longTime);
 
 	for (i = 0; i < 1000; i++)
@@ -3499,7 +3499,7 @@ void snapShot(void)
 	ddsdDesc.dwSize = sizeof(DDSURFACEDESC);
 	if (lpDraw->lpFRONTBUFFER->Lock(NULL, &ddsdDesc, 0, NULL) != DD_OK){
 #ifdef _STONDEBUG_
-		MessageBoxNew(hWnd,"Ç°¾°»º³åÇøËø¶¨Ê§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+		MessageBoxNew(hWnd,"å‰æ™¯ç¼“å†²åŒºé”å®šå¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 		return;
 	}
@@ -3518,7 +3518,7 @@ void snapShot(void)
 		BYTE *mem = new BYTE[w * h * 3], *pmem, pR, pG, pB;
 		if (mem == NULL){
 #ifdef _STONDEBUG_
-			MessageBoxNew(hWnd,"¼ÇÒäÌåÅäÖÃÊ§°ÜÊ§°Ü£¡", "È·¶¨", MB_OK | MB_ICONSTOP );
+			MessageBoxNew(hWnd,"è®°å¿†ä½“é…ç½®å¤±è´¥å¤±è´¥ï¼", "ç¡®å®š", MB_OK | MB_ICONSTOP );
 #endif
 			return;
 		}
@@ -3526,20 +3526,20 @@ void snapShot(void)
 		pmem = mem;
 		pmem += w * h * 3;
 
-		// source face Ò»´ÎÒÆ¶¯¶ş¸öbyte
+		// source face ä¸€æ¬¡ç§»åŠ¨äºŒä¸ªbyte
 		ddsdDesc.lPitch >>= 1;
-		// work ÊÇÕû¸öÓ«Ä»µÄÎ»ÖÃ,Òª×÷Æ«ÒÆ
+		// work æ˜¯æ•´ä¸ªè§å¹•çš„ä½ç½®,è¦ä½œåç§»
 		work += ddsdDesc.lPitch * g_clientPoint.y + g_clientPoint.x;
 		for (int y = 0; y < h; y++){
 			pmem -= w * 3;
 			for (int x = 0; x < w; x++){
-				// 565 ÏÔÊ¾Ä£Ê½
+				// 565 æ˜¾ç¤ºæ¨¡å¼
 				if (gBitRShift == 2){
 					pR = (BYTE)((((work[x] & 0xf800)) >> 11) << 3);
 					pG = (BYTE)((((work[x] & 0x07e0)) >> 5) << 2);
 					pB = (BYTE)((work[x] & 0x001f) << 3);
 				}
-				// 555 ÏÔÊ¾Ä£Ê½
+				// 555 æ˜¾ç¤ºæ¨¡å¼
 				else{
 					pR = (BYTE)((work[x] >> 10) << 3);
 					pG = (BYTE)(((work[x] & 0x03e0) >> 5) << 3);
@@ -3549,7 +3549,7 @@ void snapShot(void)
 				*pmem++ = pG;
 				*pmem++ = pR;
 			}
-			// »»ĞĞ
+			// æ¢è¡Œ
 			work += ddsdDesc.lPitch;
 			pmem -= w * 3;
 		}
@@ -3566,7 +3566,7 @@ void snapShot(void)
 }
 
 
-// ???????????¨ò¢V
+// ???????????îŸ•î”¼
 BOOL saveBmpFile(const char *filename, BYTE *buf,
 	int x, int y, int width, int height, int srcpitch,
 	RGBQUAD *rgbpal, int colorCnt)
@@ -3722,7 +3722,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pDestSys32++;
 				}
 			}
-			// »»ÏÂÒ»ĞĞ
+			// æ¢ä¸‹ä¸€è¡Œ
 			pDest32 += surfacePitch32 - sizeX;
 			pSource += RealBinWidth - sizeX;
 			if(g_bUseAlpha) pDestSys32 += surfacePitchSys32 - sizeX;
@@ -3749,7 +3749,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pDestSys++;
 				}
 			}
-			// »»ÏÂÒ»ĞĞ
+			// æ¢ä¸‹ä¸€è¡Œ
 			pDest += surfacePitch - sizeX;
 			pSource += RealBinWidth - sizeX;
 			if(g_bUseAlpha) pDestSys += surfacePitchSys - sizeX;
@@ -3758,7 +3758,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 
 	surface_info->lpSurface->Unlock(NULL);
 	if(g_bUseAlpha) lpSurfaceSys->Unlock(NULL);
-	// ÓĞ´øalpha channel
+	// æœ‰å¸¦alpha channel
 	static UCHAR a[1];
 
 	if(g_bUseAlpha){
@@ -3772,7 +3772,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pAlphaDest++;
 					pAlphaSource++;
 				}
-				// »»ÏÂÒ»ĞĞ
+				// æ¢ä¸‹ä¸€è¡Œ
 				pAlphaDest += SurfaceSizeX - sizeX;
 				pAlphaSource += RealBinWidth - sizeX;
 			}
@@ -3792,7 +3792,7 @@ int CG_NEW_STATUS_WND;
 int CG_NEWITEM_WND;
 int CG_TRADE_WND;
 int CG_TRADE_VIEWWND;
-// §[??????
+// îœ¡??????
 int CG_WND_G_0;
 int CG_WND_G_1;
 int CG_WND_G_2;
@@ -3802,7 +3802,7 @@ int CG_WND_G_5;
 int CG_WND_G_6;
 int CG_WND_G_7;
 int CG_WND_G_8;
-// §[???????
+// îœ¡???????
 int CG_WND2_G_0;
 int CG_WND2_G_1;
 int CG_WND2_G_2;
@@ -3812,11 +3812,11 @@ int CG_WND2_G_5;
 int CG_WND2_G_6;
 int CG_WND2_G_7;
 int CG_WND2_G_8;
-// §[???????
+// îœ¡???????
 int CG_WND3_G_7;
 int CG_WND3_G_8;
 int CG_WND3_G_9;
-// şo§Ä?????
+// î ´î¢?????
 int CG_BTL_PET_CHANGE_WND;
 // ????????
 int CG_PET_WND_VIEW;
@@ -3838,9 +3838,9 @@ int CG_MAIL_WND_PET_SEND_WND;
 int CG_MAIL_WND_HISTORY_WND;
 // ?????????
 int CG_ALBUM_WND;
-// ?????§ó?¥K??????
+// ?????î°?î™‘??????
 int CG_CHAT_REGISTY_WND;
-// §ó?¦V?§[??????
+// î°?îš¼?îœ¡??????
 int CG_COMMON_WIN_YORO;
 int CG_FIELD_HELP_WND;
 // ??????????
@@ -3921,23 +3921,23 @@ void SetAnimTbl()
 	else
 #endif
 	{
-		CG_PKSERVER_PANEL = 26192;							// Ñ¡È¡ĞÇÏµÈËÎï¿ò
-		CG_BATTTLE_SKILLCHOICE = 26389;					// Õ½¶·ÖĞÑ¡Ôñ¼¼ÄÜ
-		CG_FIELD_SKILL_PANEL = 26352;						// Ö°Òµ¼¼ÄÜ½éÃæ
-		CG_FIELD_CHATROOM_PANEL = 26427;				// ÁÄÌìÊÒ½éÃæ
-		CG_FIELD_SV_SELL_PANEL = 35221;					// °ÚÌ¯½éÃæ(Âô·½)
-		CG_FIELD_SV_SELL_PRICE_PANEL = 35223;		// ÊäÈëÊÛ¼ÛÊÓ´°
+		CG_PKSERVER_PANEL = 26192;							// é€‰å–æ˜Ÿç³»äººç‰©æ¡†
+		CG_BATTTLE_SKILLCHOICE = 26389;					// æˆ˜æ–—ä¸­é€‰æ‹©æŠ€èƒ½
+		CG_FIELD_SKILL_PANEL = 26352;						// èŒä¸šæŠ€èƒ½ä»‹é¢
+		CG_FIELD_CHATROOM_PANEL = 26427;				// èŠå¤©å®¤ä»‹é¢
+		CG_FIELD_SV_SELL_PANEL = 35221;					// æ‘†æ‘Šä»‹é¢(å–æ–¹)
+		CG_FIELD_SV_SELL_PRICE_PANEL = 35223;		// è¾“å…¥å”®ä»·è§†çª—
 		CG_NEW_STATUS_WND = 26386;
 #ifdef _PET_ITEM
-		CG_NEWITEM_WND = 26455;									// ÈËÎï×°±¸À¸Î»ÊÓ´°(ÓĞ±êÇ©)
+		CG_NEWITEM_WND = 26455;									// äººç‰©è£…å¤‡æ ä½è§†çª—(æœ‰æ ‡ç­¾)
 #else
-		CG_NEWITEM_WND = 26388;									// ÈËÎï×°±¸À¸Î»ÊÓ´°(×óÊÖ¡¢½Å¡¢ÊÖÌ×)
+		CG_NEWITEM_WND = 26388;									// äººç‰©è£…å¤‡æ ä½è§†çª—(å·¦æ‰‹ã€è„šã€æ‰‹å¥—)
 #endif
 
-		CG_TRADE_WND = 26328;										// ½»Ò×Ö÷ÊÓ´°
+		CG_TRADE_WND = 26328;										// äº¤æ˜“ä¸»è§†çª—
 
 		//end modified by lsh
-		CG_TRADE_VIEWWND = 26329;								// ½»Ò×¼ìÊÓÊÓ´°
+		CG_TRADE_VIEWWND = 26329;								// äº¤æ˜“æ£€è§†è§†çª—
 		CG_WND_G_0 = 26001;
 		CG_WND_G_1 = 26002;
 		CG_WND_G_2 = 26003;
@@ -3959,19 +3959,19 @@ void SetAnimTbl()
 		CG_WND3_G_7 = 26037;
 		CG_WND3_G_8 = 26038;
 		CG_WND3_G_9 = 26039;
-		CG_BTL_PET_CHANGE_WND = 26040;					// ¡P¥f?????¦V?¢v??????
+		CG_BTL_PET_CHANGE_WND = 26040;					// î“–î™¬?????îš¼?î•œ??????
 		CG_PET_WND_VIEW = 26044;								// ???????????????
-		CG_PET_WND_DETAIL = 26045;							// ????ı½??????
-		CG_NAME_CHANGE_WND = 26049;							// ş¡q¨Á??????
+		CG_PET_WND_DETAIL = 26045;							// ????î¦??????
+		CG_NAME_CHANGE_WND = 26049;							// î¡“î“·îŸ‰??????
 		CG_ITEM_WND_1 = 26061;									// ??????????
-		CG_JUJUTU_WND = 26068;									// ûöüÓ?????
-		CG_ITEM_WND_SELECT_WND = 26070;					// ¡k¢‘?????
+		CG_JUJUTU_WND = 26068;									// î£î?????
+		CG_ITEM_WND_SELECT_WND = 26070;					// î“±î•¶?????
 		CG_STATUS_WND_GROUP_WND = 26071;				// ????????????
 		CG_MAP_WND = 26081;											// ????????
 		CG_STATUS_WND = 26073;									// ???????????????
 		CG_MAIL_WND = 26082;										// ????????
-		CG_MAIL_WND_SEND_WND = 26200;						// ????ıï?????
-		CG_MAIL_WND_PET_SEND_WND = 26201;				// ????????ıï?????
+		CG_MAIL_WND_SEND_WND = 26200;						// ????î‘˜?????
+		CG_MAIL_WND_PET_SEND_WND = 26201;				// ????????î‘˜?????
 		CG_MAIL_WND_HISTORY_WND = 26203;				// ??????????
 		CG_ALBUM_WND = 26230;										// ?????????
 		CG_CHAT_REGISTY_WND = 26232;
@@ -3993,8 +3993,8 @@ HFONT CreateNewFont(int size) {
 
 #ifdef _NEWFONT_
 		char strfame[128];
-		extern int ±àÂë;
-		if(±àÂë==950){
+		extern int ç¼–ç ;
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -4004,14 +4004,14 @@ HFONT CreateNewFont(int size) {
 			0,0,0,17,(LPCTSTR)strfame);
 #else
 		char strfame[128];
-		extern int ±àÂë;
-		if(±àÂë==950){
+		extern int ç¼–ç ;
+		if(ç¼–ç ==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			return CreateFont(size,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 		}else{
 			return CreateFont(size,0,0,0,400,FALSE,FALSE,FALSE,134,
-			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"ËÎÌå");
+			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"å®‹ä½“");
 		}
 
 #endif		

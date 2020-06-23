@@ -1,4 +1,4 @@
-#define sprVERSION	3				//SPR ?  ¢n??????
+ï»¿#define sprVERSION	3				//SPR ?  î•”??????
 #include "../systeminc/version.h"
 #include 	"../systeminc/system.h"
 #include 	"../systeminc/loadsprbin.h"
@@ -116,7 +116,7 @@ BOOL InitSprBinFileOpen(char *SPR_BIN, char *SPRADRN_BIN)
 		}
 
 
-		//Change fix Í¶ÖÀ¶¯×÷Ã»ÓÐÉè¶¨SoundNo,Õ½¶·Ê±»áµ±
+		//Change fix æŠ•æŽ·åŠ¨ä½œæ²¡æœ‰è®¾å®šSoundNo,æˆ˜æ–—æ—¶ä¼šå½“
 		if (no >= 1965 && no < 1987) {
 			//for(int kk=1965;kk<1987;kk++)
 			//{

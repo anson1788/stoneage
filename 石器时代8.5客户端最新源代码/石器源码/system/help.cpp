@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include"../systeminc/system.h"
 #include"../systeminc/loadrealbin.h"
 #include"../systeminc/anim_tbl.h"
@@ -22,8 +22,8 @@ extern JOBDAILY jobdaily[MAXMISSION];
 extern int JobdailyGetMax;
 #endif
 short HelpProcNo;
-//  return: 0 ... ´¦ÀíÖÐ
-//          !0 ... ´¦ÀíÍê±Ï
+//  return: 0 ... å¤„ç†ä¸­
+//          !0 ... å¤„ç†å®Œæ¯•
 ACTION *ptActMenuWinHelp = NULL;
 int HelpProc()
 {
@@ -32,7 +32,7 @@ int HelpProc()
 	static int page = 0;
 	static int pageMax=0;
 	static int dwPressTime=0;
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	if( ptActMenuWinHelp ==NULL){
 		dwPressTime=0;
 		page=0;
@@ -54,18 +54,18 @@ int HelpProc()
 #endif
 		}
 	}
-	//³õÊ¼»¯ÁË
+	//åˆå§‹åŒ–äº†
 	if( ptActMenuWinHelp != NULL){
 		if(ptActMenuWinHelp->hp>0){
 			pageMax = JobdailyGetMax%10?JobdailyGetMax/10:JobdailyGetMax/10-1;
 			if( CheckMenuFlag()||((joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)||HelpProcNo == 1000){
 				DeathAction( ptActMenuWinHelp);
 				ptActMenuWinHelp = NULL;
-				play_se( 203, 320, 240);	//ÊÓ´°¹Ø±ÕÉù
+				play_se( 203, 320, 240);	//è§†çª—å…³é—­å£°
 
 				return 1;
 			}
-			//ÐãÊÓ´°µ×Í¼
+			//ç§€è§†çª—åº•å›¾
 			StockDispBuffer( ((WINDOW_DISP *)ptActMenuWinHelp->pYobi)->mx, ((WINDOW_DISP *)ptActMenuWinHelp->pYobi)->my, DISP_PRIO_MENU, CG_FIELD_HELP_WND, 1);
 			int i;
 
@@ -113,12 +113,12 @@ int HelpProc()
 					}
 				}
 			}
-			StockFontBuffer( x+20, y+35, FONT_PRIO_FRONT, FONT_PAL_GREEN, "ÈÎÎñÈÕÖ¾", 0);
-			StockFontBuffer(x+34     ,y+70,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"±àºÅ              ©¤ ÈÎÎñËµÃ÷ ©¤                ×´Ì¬",0);
+			StockFontBuffer( x+20, y+35, FONT_PRIO_FRONT, FONT_PAL_GREEN, "ä»»åŠ¡æ—¥å¿—", 0);
+			StockFontBuffer(x+34     ,y+70,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"ç¼–å·              â”€ ä»»åŠ¡è¯´æ˜Ž â”€                çŠ¶æ€",0);
 			for( i = 0; i < 10; i++){
 				char buf[10];
 				sprintf_s(buf,"%d",jobdaily[i+page*10].JobId);
-				if(!atoi(buf))	buf[0] = '\0'; //²»Ó¡0³öÀ´
+				if(!atoi(buf))	buf[0] = '\0'; //ä¸å°0å‡ºæ¥
 				StockFontBuffer(x+34     ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,buf,0);
 				StockFontBuffer(x+34+30  ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,jobdaily[i+page*10].explain,0);
 				StockFontBuffer(x+34+328 ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,jobdaily[i+page*10].state,0);
@@ -129,7 +129,7 @@ int HelpProc()
 	if( CheckMenuFlag()||((joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)||HelpProcNo == 1000){
 		DeathAction( ptActMenuWinHelp);
 		ptActMenuWinHelp = NULL;
-		play_se( 203, 320, 240);	//ÊÓ´°¹Ø±ÕÉù
+		play_se( 203, 320, 240);	//è§†çª—å…³é—­å£°
 
 		return 1;
 	}

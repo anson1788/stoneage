@@ -1,24 +1,51 @@
-﻿生成启动时间为 2016/9/26 星期一 下午 5:38:39。
-     1>项目“J:\Dev\石器时代1\轻石器\CLIENT\石器源码\石器源码.vcxproj”在节点 2 上(build 个目标)。
-       项目文件包含 ToolsVersion="12.0"。此工具集可能未知或缺失(您可以通过安装相应版本的 MSBuild 来解决该问题)，或者该生成因策略原因已被强制更改为特殊 ToolsVersion。将此项目视作具有 ToolsVersion="4.0"。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkId=291333。
-     1>InitializeBuildStatus:
-         正在创建“VER25_DEBUG\石器源码.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-       ClCompile:
-         所有输出均为最新。
-       ResourceCompile:
-         所有输出均为最新。
-       ManifestResourceCompile:
-         所有输出均为最新。
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(F:\石器时代\7-sa\sa25.exe) 与 Linker 的 OutputFile 属性值(F:\7-sa\sa25.exe)不匹配。这可能导致项目生成不正确。若要更正此问题，请确保 $(OutDir)、$(TargetName) 和 $(TargetExt) 属性值与 %(Link.OutputFile) 中指定的值匹配。
-       Link:
-         所有输出均为最新。
-       Manifest:
-         所有输出均为最新。
-       FinalizeBuildStatus:
-         正在删除文件“VER25_DEBUG\石器源码.unsuccessfulbuild”。
-         正在对“VER25_DEBUG\石器源码.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“J:\Dev\石器时代1\轻石器\CLIENT\石器源码\石器源码.vcxproj”(build 个目标)的操作。
-
-生成成功。
-
-已用时间 00:00:00.08
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  CharTitle.cpp
+  winlua.cpp
+c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\mylua\winlua.cpp(193): error C3861: 'TEA解密': identifier not found
+  autil.cpp
+  oft.cpp
+  pat_dat.cpp
+  ohta.cpp
+  ohta_proc.cpp
+  ai_setting.cpp
+  battlemap.cpp
+  battlemenu.cpp
+  battleproc.cpp
+  character.cpp
+  CharSignDay.cpp
+  chat.cpp
+  directdraw.cpp
+  field.cpp
+  font.cpp
+  gamemain.cpp
+  gemini.cpp
+  help.cpp
+  Generating Code...
+  Compiling...
+  ime.cpp
+  login.cpp
+  lssproto_cli.cpp
+  magicitem.cpp
+  main.cpp
+  map.cpp
+  math2.cpp
+  menu.cpp
+  menu2.cpp
+  mouse.cpp
+  netproc.cpp
+  onlinegm.cpp
+  pattern.cpp
+  pc.cpp
+  process.cpp
+  produce.cpp
+  savedata.cpp
+  SDLDraw.cpp
+  shop.cpp
+c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\system\shop.cpp(738): error C3861: 'TEA解密': identifier not found
+c:\users\owner\documents\github\stoneage\石器时代8.5客户端最新源代码\石器源码\system\shop.cpp(756): error C3861: 'TEA加密': identifier not found
+  testview.cpp
+  Generating Code...
+  Compiling...
+  Turntable.cpp
+  t_music.cpp
+  Generating Code...

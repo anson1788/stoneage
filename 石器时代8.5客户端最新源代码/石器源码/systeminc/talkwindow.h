@@ -1,31 +1,31 @@
-#ifndef _TALKWINDOW_H_
+ï»¿#ifndef _TALKWINDOW_H_
 #define _TALKWINDOW_H_
 #include <windows.h>
 #include "../systeminc/chat.h"
 
 #define WM_UPDATE_SKIN 0x8000
 #define MAX_TALK_WINDOW_LINE 6
-#define TALK_WINDOW_SXO	12				// ¶Ô»°ÊÓ´°Êä³öÎÄ×ÖµÄÆğÊ¼x×ù±ê
-#define TALK_WINDOW_SYO 10				// ¶Ô»°ÊÓ´°Êä³öÎÄ×ÖµÄÆğÊ¼y×ù±ê
-#define TALK_WINDOW_SXI	30				// ¶Ô»°ÊÓ´°ÊäÈëÎÄ×ÖµÄÆğÊ¼x×ù±ê
-#define TALK_WINDOW_SYI 128				// ¶Ô»°ÊÓ´°ÊäÈëÎÄ×ÖµÄÆğÊ¼y×ù±ê
+#define TALK_WINDOW_SXO	12				// å¯¹è¯è§†çª—è¾“å‡ºæ–‡å­—çš„èµ·å§‹xåº§æ ‡
+#define TALK_WINDOW_SYO 10				// å¯¹è¯è§†çª—è¾“å‡ºæ–‡å­—çš„èµ·å§‹yåº§æ ‡
+#define TALK_WINDOW_SXI	30				// å¯¹è¯è§†çª—è¾“å…¥æ–‡å­—çš„èµ·å§‹xåº§æ ‡
+#define TALK_WINDOW_SYI 128				// å¯¹è¯è§†çª—è¾“å…¥æ–‡å­—çš„èµ·å§‹yåº§æ ‡
 #define SKIN_WIDTH 645
 #define SKIN_HEIGHT 155
 #define SKIN_KIND 5
-#define TALK_WINDOW_MAX_CHAT_LINE 40 // ×î´óÁÄÌìbuffer
+#define TALK_WINDOW_MAX_CHAT_LINE 40 // æœ€å¤§èŠå¤©buffer
 #ifdef _STONDEBUG_
-#define FACE_SYMBOL_NUM 20				// ±íÇé·ûºÅÊıÁ¿
-#define STORE_SYMBOL_NUM 200			// ¼ÇÂ¼±íÇéÎ»ÖÃÊıÁ¿
-#define LINE_HEIGHT 20						// ÎÄ×ÖÊä³öÊ±µÄĞĞ¾à
-#define SYMBOL_WIDTH 19						// ±íÇé·ûºÅÍ¼¿í
-#define SYMBOL_HEIGHT 19					// ±íÇé·ûºÅÍ¼¸ß
+#define FACE_SYMBOL_NUM 20				// è¡¨æƒ…ç¬¦å·æ•°é‡
+#define STORE_SYMBOL_NUM 200			// è®°å½•è¡¨æƒ…ä½ç½®æ•°é‡
+#define LINE_HEIGHT 20						// æ–‡å­—è¾“å‡ºæ—¶çš„è¡Œè·
+#define SYMBOL_WIDTH 19						// è¡¨æƒ…ç¬¦å·å›¾å®½
+#define SYMBOL_HEIGHT 19					// è¡¨æƒ…ç¬¦å·å›¾é«˜
 #endif
 
 extern BOOL g_bTalkWindow;
 extern int g_iCursorCount;
 
 #ifdef _STONDEBUG_
-typedef struct _tsFaceSymbol{				// ±íÇé·ûºÅ
+typedef struct _tsFaceSymbol{				// è¡¨æƒ…ç¬¦å·
 	HDC hDraw;
 	HDC hDrawMask;
 	HBITMAP hbmpMaskBMP;
@@ -33,11 +33,11 @@ typedef struct _tsFaceSymbol{				// ±íÇé·ûºÅ
 	HANDLE hOldLoadBMP;
 	HANDLE hOldMaskBMP;
 	BOOL bUse;
-	char szSymbol[8];					// ·ûºÅ( :) :( :D ...etc)
-	char szFaceName[32];			// µµÃû
+	char szSymbol[8];					// ç¬¦å·( :) :( :D ...etc)
+	char szFaceName[32];			// æ¡£å
 }FaceSymbol;
 
-typedef struct _tsStoreSymbol{				// ¼ÇÂ¼ÔÚÄÇÀïÏÔÊ¾±íÇé
+typedef struct _tsStoreSymbol{				// è®°å½•åœ¨é‚£é‡Œæ˜¾ç¤ºè¡¨æƒ…
 	BOOL bUse;
 	HDC hDraw;
 	HDC hDrawMask;
@@ -58,27 +58,27 @@ LRESULT CALLBACK TalkWindowProc(HWND hWnd,UINT Message,WPARAM wParam,LPARAM lPar
 class CTalkWindow
 {
 private:
-	HWND m_hWnd;											// ¸¸ÊÓ´°µÄ HWND
-	HWND m_hTalkWindow;								// ×Ô¼ºµÄ HWND
-	HINSTANCE m_hInstance;						// ¸¸ÊÓ´°µÄ HINSTANCE
+	HWND m_hWnd;											// çˆ¶è§†çª—çš„ HWND
+	HWND m_hTalkWindow;								// è‡ªå·±çš„ HWND
+	HINSTANCE m_hInstance;						// çˆ¶è§†çª—çš„ HINSTANCE
 	HANDLE m_hSkin[SKIN_KIND];				// SKIN_KIND->0:base 1:up arrow 2:up arrow hit 3:down arrow 4:down arrow hit
 	HANDLE m_hOldSkin[SKIN_KIND];
 	HDC m_hdcSkin[SKIN_KIND];					// SKIN_KIND->0:base 1:up arrow 2:up arrow hit 3:down arrow 4:down arrow hit
 	HDC m_hdcBackBuffer;							// backbuffer dc for draw
 	HBITMAP m_hbmpBackBuffer;					// backbuffer of memory for draw
 	HANDLE m_hbmpOldBackBuffer;
-	BOOL m_bUpArrowHit;								// ÉÏ¾í°´Å¥ÊÇ·ñ°´ÏÂ
-	BOOL m_bDownArrowHit;							// ÏÂ¾í°´Å¥ÊÇ·ñ°´ÏÂ
-	BOOL m_bScroll;										// ÏÖÔÚÊÇ·ñÕı´¦ÓÚ¾í¶¯ÖĞ
-	BOOL m_bInit;											// ³õÊ¼»¯³É¹¦»òÊ§°Ü
-	ChatBufferLink *m_pCBLHead;				// Ö¸Ïò¶Ô»°linkµÚÒ»¸ölinkµÄÖ¸±ê
-	ChatBufferLink *m_pCBLTail;				// Ö¸Ïò¶Ô»°link×îºóÒ»¸ölinkµÄÖ¸±ê
-	ChatBufferLink *m_pCBLString;			// Ö¸Ïò¶Ô»°link×¼±¸±»ÌîÈë×Ö´®µÄlinkµÄÖ¸±ê
-	ChatBufferLink *m_pCBLView;				// Ö¸ÏòÒªÏÔÊ¾ÔÚ»­ÃæÉÏµÚÒ»ĞĞµÄ×Ö´®µÄlinkÖ¸±ê
-	ChatBufferLink *m_pCBLViewBottom;	// Ö¸ÏòÒªÏÔÊ¾ÔÚ»­ÃæÉÏ×îºóÒ»ĞĞµÄ×Ö´®µÄlinkÖ¸±ê
+	BOOL m_bUpArrowHit;								// ä¸Šå·æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹
+	BOOL m_bDownArrowHit;							// ä¸‹å·æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹
+	BOOL m_bScroll;										// ç°åœ¨æ˜¯å¦æ­£å¤„äºå·åŠ¨ä¸­
+	BOOL m_bInit;											// åˆå§‹åŒ–æˆåŠŸæˆ–å¤±è´¥
+	ChatBufferLink *m_pCBLHead;				// æŒ‡å‘å¯¹è¯linkç¬¬ä¸€ä¸ªlinkçš„æŒ‡æ ‡
+	ChatBufferLink *m_pCBLTail;				// æŒ‡å‘å¯¹è¯linkæœ€åä¸€ä¸ªlinkçš„æŒ‡æ ‡
+	ChatBufferLink *m_pCBLString;			// æŒ‡å‘å¯¹è¯linkå‡†å¤‡è¢«å¡«å…¥å­—ä¸²çš„linkçš„æŒ‡æ ‡
+	ChatBufferLink *m_pCBLView;				// æŒ‡å‘è¦æ˜¾ç¤ºåœ¨ç”»é¢ä¸Šç¬¬ä¸€è¡Œçš„å­—ä¸²çš„linkæŒ‡æ ‡
+	ChatBufferLink *m_pCBLViewBottom;	// æŒ‡å‘è¦æ˜¾ç¤ºåœ¨ç”»é¢ä¸Šæœ€åä¸€è¡Œçš„å­—ä¸²çš„linkæŒ‡æ ‡
 #ifdef _STONDEBUG_
-	FaceSymbol m_fsFaceSymbol[FACE_SYMBOL_NUM];			// ±íÇé·ûºÅ
-	StoreSymbol m_ssStoreSymbol[STORE_SYMBOL_NUM];	// ¼ÇÂ¼ÔÚÄÇ±ßÏÔÊ¾±íÇé
+	FaceSymbol m_fsFaceSymbol[FACE_SYMBOL_NUM];			// è¡¨æƒ…ç¬¦å·
+	StoreSymbol m_ssStoreSymbol[STORE_SYMBOL_NUM];	// è®°å½•åœ¨é‚£è¾¹æ˜¾ç¤ºè¡¨æƒ…
 	int m_iSymbolCount;
 #endif
 	int m_iline;

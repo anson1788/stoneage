@@ -1,4 +1,4 @@
-// Arminius' protocol utilities ver 0.1
+﻿// Arminius' protocol utilities ver 0.1
 //
 // Any questions and bugs, mailto: arminius@mail.hwaei.com.tw
 

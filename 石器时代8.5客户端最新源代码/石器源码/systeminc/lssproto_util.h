@@ -1,4 +1,4 @@
-#ifndef _LSSPROTOUTIL_H_
+﻿#ifndef _LSSPROTOUTIL_H_
 #define _LSSPROTOUTIL_H_
 #include <windows.h>
 #include <stdlib.h>

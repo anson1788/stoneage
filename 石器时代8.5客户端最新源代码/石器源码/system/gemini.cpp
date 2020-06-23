@@ -1,4 +1,4 @@
-//#include 	"main.h"
+Ôªø//#include 	"main.h"
 //#include 	"action.h"
 #include "../systeminc/version.h"
 #include 	"../systeminc/system.h"
@@ -585,8 +585,8 @@ Sint16 DELTA_TBL[]={
 /*	ENT	:   ATR_SPD(A0)
 *		    ATR_CRS(A0)
 
-*	EXT	:   d1.w:??§ı?•h?
-*		:   d2.w:??§ı?•h?
+*	EXT	:   d1.w:??ÁÅ´?Âéª?
+*		:   d2.w:??ÁÅ´?Âéª?
 
 *	DESTORY	:   D0,D1,D2,D3,D4
 *		    A1,A6

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * DES encryption/decryption library interface
  * 
  *	Written by Koichiro Mori (kmori@lsi-j.co.jp)

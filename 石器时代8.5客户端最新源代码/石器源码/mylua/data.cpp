@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/pc.h"
 #include "winlua.h"
@@ -13,9 +13,9 @@ static int getPetData(lua_State *L)
 	size_t l;
 	const char *attribute=luaL_checklstring(L, 2, &l);
 	
- 	if(strcmp(attribute, "Î»ÖÃ") == 0){     
+ 	if(strcmp(attribute, "ä½ç½®") == 0){     
 		lua_pushnumber(L, pet[id].index);
- 	}else if(strcmp(attribute, "Í¼ÏñºÅ") == 0){     
+ 	}else if(strcmp(attribute, "å›¾åƒå·") == 0){     
 		lua_pushnumber(L, pet[id].graNo);
 	}else if(strcmp(attribute, "HP") == 0){     
 		lua_pushnumber(L, pet[id].hp);
@@ -25,43 +25,43 @@ static int getPetData(lua_State *L)
 		lua_pushnumber(L, pet[id].graNo);
 	}else if(strcmp(attribute, "MaxMP") == 0){     
 		lua_pushnumber(L, pet[id].graNo);
-	}else if(strcmp(attribute, "¾­Ñé") == 0){     
+	}else if(strcmp(attribute, "ç»éªŒ") == 0){     
 		lua_pushnumber(L, pet[id].exp);
-	}else if(strcmp(attribute, "×î´ó¾­Ñé") == 0){     
+	}else if(strcmp(attribute, "æœ€å¤§ç»éªŒ") == 0){     
 		lua_pushnumber(L, pet[id].maxExp);
-	}else if(strcmp(attribute, "µÈ¼¶") == 0){     
+	}else if(strcmp(attribute, "ç­‰çº§") == 0){     
 		lua_pushnumber(L, pet[id].level);
-	}else if(strcmp(attribute, "¹¥»÷Á¦") == 0){     
+	}else if(strcmp(attribute, "æ”»å‡»åŠ›") == 0){     
 		lua_pushnumber(L, pet[id].atk);
-	}else if(strcmp(attribute, "·ÀÓùÁ¦") == 0){     
+	}else if(strcmp(attribute, "é˜²å¾¡åŠ›") == 0){     
 		lua_pushnumber(L, pet[id].def);
-	}else if(strcmp(attribute, "Ãô½İÁ¦") == 0){     
+	}else if(strcmp(attribute, "æ•æ·åŠ›") == 0){     
 		lua_pushnumber(L, pet[id].quick);
-	}else if(strcmp(attribute, "ÖÒ³Ï") == 0){     
+	}else if(strcmp(attribute, "å¿ è¯š") == 0){     
 		lua_pushnumber(L, pet[id].ai);
-	}else if(strcmp(attribute, "µØ") == 0){     
+	}else if(strcmp(attribute, "åœ°") == 0){     
 		lua_pushnumber(L, pet[id].earth);
-	}else if(strcmp(attribute, "Ë®") == 0){     
+	}else if(strcmp(attribute, "æ°´") == 0){     
 		lua_pushnumber(L, pet[id].water);
-	}else if(strcmp(attribute, "»ğ") == 0){     
+	}else if(strcmp(attribute, "ç«") == 0){     
 		lua_pushnumber(L, pet[id].fire);
-	}else if(strcmp(attribute, "·ç") == 0){     
+	}else if(strcmp(attribute, "é£") == 0){     
 		lua_pushnumber(L, pet[id].wind);
-	}else if(strcmp(attribute, "×î´ó¼¼ÄÜÊı") == 0){     
+	}else if(strcmp(attribute, "æœ€å¤§æŠ€èƒ½æ•°") == 0){     
 		lua_pushnumber(L, pet[id].maxSkill);
-	}else if(strcmp(attribute, "×ªÊı") == 0){     
+	}else if(strcmp(attribute, "è½¬æ•°") == 0){     
 		lua_pushnumber(L, pet[id].trn);
-	}else if(strcmp(attribute, "ÎïÖÖ±àÂë") == 0){     
+	}else if(strcmp(attribute, "ç‰©ç§ç¼–ç ") == 0){     
 		lua_pushnumber(L, pet[id].fusion);
-	}else if(strcmp(attribute, "×´Ì¬") == 0){     
+	}else if(strcmp(attribute, "çŠ¶æ€") == 0){     
 		lua_pushnumber(L, pet[id].status);
-	}else if(strcmp(attribute, "Ãû×Ö") == 0){     
+	}else if(strcmp(attribute, "åå­—") == 0){     
 		lua_pushstring(L, pet[id].name);
-	}else if(strcmp(attribute, "êÇ³Æ") == 0){     
+	}else if(strcmp(attribute, "æ˜µç§°") == 0){     
 		lua_pushstring(L, pet[id].freeName);
-	}else if(strcmp(attribute, "Ê¹ÓÃÆì±ê") == 0){     
+	}else if(strcmp(attribute, "ä½¿ç”¨æ——æ ‡") == 0){     
 		lua_pushnumber(L, pet[id].useFlag);
-	}else if(strcmp(attribute, "¸ÄÃû±êÊ¶") == 0){     
+	}else if(strcmp(attribute, "æ”¹åæ ‡è¯†") == 0){     
 		lua_pushnumber(L, pet[id].changeNameFlag);
 	}     
 	return 1;

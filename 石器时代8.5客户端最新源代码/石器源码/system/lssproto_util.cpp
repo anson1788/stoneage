@@ -1,4 +1,4 @@
-#define _LSSPROTOUTIL_C_
+ï»¿#define _LSSPROTOUTIL_C_
 
 #include <Windows.h>
 #include <stdio.h>
@@ -25,7 +25,7 @@ long lssproto_ringoDecompressor( unsigned char *text , long textlen , unsigned c
 
 int lssproto_AllocateCommonWork(int bufsiz)
 {
-// Terry add for ÒòÎª³ÌÊ½ÖØ¸²ºô½Ğ´Ëfunction»áÔì³Émemory leak ËùÒÔÒªÉèÒ»¸öÆì±êÀ´ÁË½âÊÇ·ñÒÑ±»ºô½Ğ¹ı
+// Terry add for å› ä¸ºç¨‹å¼é‡è¦†å‘¼å«æ­¤functionä¼šé€ æˆmemory leak æ‰€ä»¥è¦è®¾ä¸€ä¸ªæ——æ ‡æ¥äº†è§£æ˜¯å¦å·²è¢«å‘¼å«è¿‡
 	static BOOL bInit;
 // Terry end
 	// Nuke start
@@ -38,7 +38,7 @@ int lssproto_AllocateCommonWork(int bufsiz)
 	for (i=0;i<NJT_MAX;i++) if (NJT[i]) break;
 	if (i==NJT_MAX) return -1;*/
 	// Nuke end
-// Terry modify °Ñµ×ÏÂmarkµÄcode°áµ½Õâ²¢ĞŞÕı
+// Terry modify æŠŠåº•ä¸‹markçš„codeæ¬åˆ°è¿™å¹¶ä¿®æ­£
 	if(bInit){
 		if(lssproto.work) FREE( lssproto.work);
 		if(lssproto.arraywork) FREE( lssproto.arraywork );
@@ -80,7 +80,7 @@ int lssproto_AllocateCommonWork(int bufsiz)
 	memset( lssproto.jencodecopy , 0, lssproto.workbufsize*3 );
 	memset( lssproto.jencodeout , 0, lssproto.workbufsize*3 );
 	memset( lssproto.compresswork , 0, lssproto.workbufsize*3 );
-// Terry modify °áµ½ÉÏÃæ²¢ĞŞÕı
+// Terry modify æ¬åˆ°ä¸Šé¢å¹¶ä¿®æ­£
 	bInit = !bInit;
 /*	if( lssproto.work == NULL ||
 	   lssproto.arraywork == NULL ||
@@ -472,7 +472,7 @@ void lssproto_splitString( char *src  )
 		FILE *rfp;
 		rfp = fopen( lssproto_readlogfilename , "a+" );
 		if(rfp){
-			fprintf( rfp, "ÊÕµ½£º\t%s\n",decoded );
+			fprintf( rfp, "æ”¶åˆ°ï¼š\t%s\n",decoded );
 			fclose(rfp);
 		}
 	}

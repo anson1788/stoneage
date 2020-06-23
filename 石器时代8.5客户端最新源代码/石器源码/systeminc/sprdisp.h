@@ -1,60 +1,60 @@
-/************************/
+ï»¿/************************/
 /*	sprdisp.h			*/
 /************************/
 #ifndef _SPRDISP_H_
 #define _SPRDISP_H_
 
 #include "version.h"
-#define DISP_BUFFER_SIZE 4096 	// ¤úû¨???????
+#define DISP_BUFFER_SIZE 4096 	// î¸î•???????
 enum{
-	DISP_PRIO_BG 			= 0,	//±³¾°
-	DISP_PRIO_TILE 		= 1,	//µØ±í// ????????ş????????
-	DISP_PRIO_CHAR 		= 10,	//ÈËÎï// ???
-	DISP_PRIO_PARTS 	= 10,	//½¨Îï// ?????§Ä??
-	DISP_PRIO_RESERVE = 20,	//Ô¤Áô
-	DISP_PRIO_JIKI 		= 30,	/* û«? 	*/
+	DISP_PRIO_BG 			= 0,	//èƒŒæ™¯
+	DISP_PRIO_TILE 		= 1,	//åœ°è¡¨// ????????î¡¡????????
+	DISP_PRIO_CHAR 		= 10,	//äººç‰©// ???
+	DISP_PRIO_PARTS 	= 10,	//å»ºç‰©// ?????î¢??
+	DISP_PRIO_RESERVE = 20,	//é¢„ç•™
+	DISP_PRIO_JIKI 		= 30,	/* î˜? 	*/
 	DISP_PRIO_GRID 		= 100,	// ????????
 	DISP_PRIO_BOX,				/* ???? */
-	DISP_PRIO_IME1,				/* ????????????  ?ıè? */
-	DISP_PRIO_IME2,				/* ????????????  şäıè? */
+	DISP_PRIO_IME1,				/* ????????????  ?î‘‘? */
+	DISP_PRIO_IME2,				/* ????????????  î’«î‘‘? */
 								/* ??????? */
-	DISP_PRIO_MENU,				//Ñ¡µ¥/* ???? */
-	DISP_PRIO_IME3,				/* ?????????????  ?ıè? */
-	DISP_PRIO_IME4,				/* ?????????????  şäıè? */
+	DISP_PRIO_MENU,				//é€‰å•/* ???? */
+	DISP_PRIO_IME3,				/* ?????????????  ?î‘‘? */
+	DISP_PRIO_IME4,				/* ?????????????  î’«î‘‘? */
 	DISP_PRIO_BOX2,				/* ????? */
 	DISP_PRIO_ITEM,				/* ???? */
 								/* ???????? */
-	DISP_PRIO_YES_NO_WND,		/* ?¦_????? */
-	DISP_PRIO_YES_NO_BTN,		/* ?¦_??? */
+	DISP_PRIO_YES_NO_WND,		/* ?î›…????? */
+	DISP_PRIO_YES_NO_BTN,		/* ?î›…??? */
 	DISP_PRIO_BOX3,				/* ????? */
 	DISP_PRIO_DRAG,				/* ????? */
 	DISP_PRIO_MOUSE,			/* ??????? 	*/
-	DISP_PRIO_TOP = 255			/* ??¡I 	*/
+	DISP_PRIO_TOP = 255			/* ??î“ 	*/
 };
 
 typedef struct {
-	int x, y;				//ĞãÍ¼Ê±µÄ×ù±ê// ¤úû¨?¤õ
-	int bmpNo;			//Í¼±àºÅ
-	ACTION *pAct;		// ¶¯×÷
-	BOOL hitFlag;		// Ê®Î»ÊıÎª 1:ÒªÏÔÊ¾alpha 2:±¥ºÍ´¦Àí 3:Ê¯»¯ 4:ÖĞ¶¾	
-	char DrawEffect;	// 0:ÎŞÌØ±ğ´¦Àí 1:alpha 2:±¥ºÍ´¦Àí 3:Ê¯»¯ 4:ÖĞ¶¾
+	int x, y;				//ç§€å›¾æ—¶çš„åº§æ ‡// î¸î•?î³
+	int bmpNo;			//å›¾ç¼–å·
+	ACTION *pAct;		// åŠ¨ä½œ
+	BOOL hitFlag;		// åä½æ•°ä¸º 1:è¦æ˜¾ç¤ºalpha 2:é¥±å’Œå¤„ç† 3:çŸ³åŒ– 4:ä¸­æ¯’	
+	char DrawEffect;	// 0:æ— ç‰¹åˆ«å¤„ç† 1:alpha 2:é¥±å’Œå¤„ç† 3:çŸ³åŒ– 4:ä¸­æ¯’
 #ifdef _READ16BITBMP
-	char DrawEffect;	// 0:ÎŞÌØ±ğ´¦Àí 1:alpha 2:±¥ºÍ´¦Àí 3:Ê¯»¯ 4:ÖĞ¶¾
+	char DrawEffect;	// 0:æ— ç‰¹åˆ«å¤„ç† 1:alpha 2:é¥±å’Œå¤„ç† 3:çŸ³åŒ– 4:ä¸­æ¯’
 #endif
 #ifdef _SFUMATO
-	int sfumato;		// ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê
+	int sfumato;		// äºŒæ¬¡æ¸²æŸ“å›¾å±‚è‰²å½©
 #endif
 }DISP_INFO;
 
 typedef struct {
-	short no;	//ÕâÕÅÍ¼ÔÚDISP_INFOµÄÎ»ÖÃ// ?????¦t??§k?
-	UCHAR dispPrio; 	//ÏÔÊ¾Ê±µÄÓÅÏÈË³Ğò// ¤úû¨??¡I??
+	short no;	//è¿™å¼ å›¾åœ¨DISP_INFOçš„ä½ç½®// ?????î›š??îœ±?
+	UCHAR dispPrio; 	//æ˜¾ç¤ºæ—¶çš„ä¼˜å…ˆé¡ºåº// î¸î•??î“??
 }DISP_SORT;
 
 typedef struct{
 	DISP_INFO DispInfo[ DISP_BUFFER_SIZE ];
 	DISP_SORT DispSort[ DISP_BUFFER_SIZE ];
-	short 		DispCnt;	//Ä¿Ç°´¢´æÊıÁ¿//
+	short 		DispCnt;	//ç›®å‰å‚¨å­˜æ•°é‡//
 }DISP_BUFFER;
 extern DISP_BUFFER 	DispBuffer;
 
@@ -65,16 +65,16 @@ extern BYTE *pRealBinAlpha;
 #endif
 
 void DrawAlpha32(
-	unsigned long*   lpDst,			// Ä¿±ê»º³å
-	unsigned long    iDstX,			// Ä¿±êÎ»ÖÃ
-	unsigned long    iDstY,			// Ä¿±êÎ»ÖÃ
-	unsigned long    iDstPitch,		// Ä¿±ê»º³åµÄpitch
-	unsigned long*   lpSrc,			// Ô­É«²Ê»º³å
-	unsigned long    iSrcX,			// Ô­É«²ÊÎ»ÖÃ
-	unsigned long    iSrcY,			// Ô­É«²ÊÎ»ÖÃ
-	unsigned long    iSrcW,			// Ô­»º³åµÄ³ß´ç
-	unsigned long    iSrcH,			// Ô­»º³åµÄ³ß´ç
-	unsigned long    iSrcPitch		// Ô­É«²Êpitch
+	unsigned long*   lpDst,			// ç›®æ ‡ç¼“å†²
+	unsigned long    iDstX,			// ç›®æ ‡ä½ç½®
+	unsigned long    iDstY,			// ç›®æ ‡ä½ç½®
+	unsigned long    iDstPitch,		// ç›®æ ‡ç¼“å†²çš„pitch
+	unsigned long*   lpSrc,			// åŸè‰²å½©ç¼“å†²
+	unsigned long    iSrcX,			// åŸè‰²å½©ä½ç½®
+	unsigned long    iSrcY,			// åŸè‰²å½©ä½ç½®
+	unsigned long    iSrcW,			// åŸç¼“å†²çš„å°ºå¯¸
+	unsigned long    iSrcH,			// åŸç¼“å†²çš„å°ºå¯¸
+	unsigned long    iSrcPitch		// åŸè‰²å½©pitch
 	);
 
 void ablend_565(unsigned char *lpAlpha, unsigned int iAlpPitch,
@@ -85,7 +85,7 @@ void ablend_565(unsigned char *lpAlpha, unsigned int iAlpPitch,
 	unsigned int iDstPitch);
 extern int SurfaceBusyFlag;
 void SortDispBuffer( void );
-BOOL »ñÈ¡¶¯»­³ß´ç(ACTION* a0,short* wx,short* wy);
+BOOL è·å–åŠ¨ç”»å°ºå¯¸(ACTION* a0,short* wx,short* wy);
 void PutBmp( void );
 int StockDispBuffer( int x, int y, UCHAR prio, int bmpNo, BOOL hitFlag );
 #ifdef _SFUMATO

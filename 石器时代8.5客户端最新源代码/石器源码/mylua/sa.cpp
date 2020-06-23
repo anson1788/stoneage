@@ -1,4 +1,4 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "winlua.h"
 #include "../systeminc/menu.h"
@@ -217,7 +217,7 @@ static int SaStockBoxDispBuffer(lua_State *L)
 #define STOCK_DISP_BUFFER_NO_BMP	( 1 << 31 ) 	// ???????
 #define STOCK_DISP_BUFFER_LINE		( 1 << 30 ) 	// ???
 #define STOCK_DISP_BUFFER_BOX		( 1 << 29 ) 	// ????
-#define STOCK_DISP_BUFFER_BOX_FILL	( 1 << 28 )		// ????¥D????
+#define STOCK_DISP_BUFFER_BOX_FILL	( 1 << 28 )		// ????ä¸»????
 #define STOCK_DISP_BUFFER_CIRCLE	( 1 << 27 ) 	// ?
 	const int x1 = luaL_checkint(L, 1);
 	const int y1 = luaL_checkint(L, 2);
@@ -334,7 +334,7 @@ static int Lua_TeaDecryption(lua_State *L)
 	memset(temp,0,2024);
 	size_t l;
 	const char *str=luaL_checklstring(L, 1, &l);
-	extern long TEA½âÃÜ(long* v, long n, long* k);
+	extern long TEAè³¤èº‡(long* v, long n, long* k);
 	extern int getfilesize(FILE* fp);
 	FILE *fp=NULL;
 	errno_t err = fopen_s(&fp,str,"rb");
@@ -342,7 +342,7 @@ static int Lua_TeaDecryption(lua_State *L)
 		int len = getfilesize(fp);
 		fread(temp,1,len,fp);
 		fclose(fp);
-		TEA½âÃÜ((long*)temp,len/4,(long*)_LUA_KEY_);
+		TEAè³¤èº‡((long*)temp,len/4,(long*)_LUA_KEY_);
 	}
 	lua_pushstring(L, temp);
 	return 1;

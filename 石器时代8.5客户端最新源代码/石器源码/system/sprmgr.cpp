@@ -1,4 +1,4 @@
-/************************/
+ï»¿/************************/
 /*	sprmgr.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -43,19 +43,19 @@ void AllocateBmpToSurface( int bmpNo)
 #endif
 {
 	int bmpWidth  = RealBinWidth;	// ????????
-	int bmpHeight = RealBinHeight; 	// ????üÆ???
+	int bmpHeight = RealBinHeight; 	// ????î‘???
 	
 	int offsetX, offsetY; 			// ???????????????
-	int sizeX, sizeY;				// ¤š??????
-	int surfaceCntX;				// ¢¬???????????
-	int surfaceCntY;				// ¢¬???????????
-	int totalSurface;				// ¢¬??????????
-	int totalSurfaceCnt = 0;		// ????¨ò??????????? ??????? ?
-	int	SurfaceSearchPointBak = SurfaceSearchPoint; // ?ûþ?????ü¬?????????£t???
+	int sizeX, sizeY;				// î˜¿??????
+	int surfaceCntX;				// î§???????????
+	int surfaceCntY;				// î§???????????
+	int totalSurface;				// î§??????????
+	int totalSurfaceCnt = 0;		// ????îŸ•??????????? ??????? ?
+	int	SurfaceSearchPointBak = SurfaceSearchPoint; // ?îŽ«?????îŽ·?????????î–º???
 	int amariSizeX = FALSE;		// ???????????
-	int amariSizeY = FALSE;		// üÆ??????????
+	int amariSizeY = FALSE;		// î‘??????????
 	BOOL vramFullFlag = FALSE; 		// VRAM?????????
-	SURFACE_INFO *prevSurfaceInfo; 	// ¡q???????????¢B¢l?????
+	SURFACE_INFO *prevSurfaceInfo; 	// î“·???????????î”¨î•’?????
 	offsetX = 0; 
 #ifdef _READ16BITBMP
 	SURFACE_INFO *prevSurfaceInfoSys;
@@ -71,7 +71,7 @@ void AllocateBmpToSurface( int bmpNo)
 	
 	surfaceCntY = bmpHeight / SURFACE_HEIGHT;
 	if( ( amariSizeY = bmpHeight % SURFACE_HEIGHT ) ){
-		surfaceCntY++;		// ?????¢¬?
+		surfaceCntY++;		// ?????î§?
 	}
 	totalSurface  = surfaceCntX * surfaceCntY;
 #ifdef _READ16BITBMP
@@ -85,7 +85,7 @@ void AllocateBmpToSurface( int bmpNo)
 #ifdef _STONDEBUG_		
 			SurfaceUseCnt++;
 #endif
-			// ÒÑÔÚÊ¹ÓÃÖÐ
+			// å·²åœ¨ä½¿ç”¨ä¸­
 			if( SurfaceInfo[ SurfaceSearchPoint ].bmpNo != -1 ){
 				SURFACE_INFO *lpSurfaceInfo;
 #ifdef _READ16BITBMP
@@ -111,13 +111,13 @@ void AllocateBmpToSurface( int bmpNo)
 				}
 			}
 			if( SpriteInfo[ bmpNo ].lpSurfaceInfo == NULL ){
-				// µÚÒ»ÕÅÍ¼µÄsurfaceinfo
+				// ç¬¬ä¸€å¼ å›¾çš„surfaceinfo
 				SpriteInfo[ bmpNo ].lpSurfaceInfo = &SurfaceInfo[ SurfaceSearchPoint ];
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha)	SpriteInfo[bmpNo].lpSurfaceInfoSys = &SurfaceInfoSys[SurfaceSearchPoint];
 #endif
 			}else{
-				// Ö¸ÏòÏÂÒ»ÕÅsurfaceinfo
+				// æŒ‡å‘ä¸‹ä¸€å¼ surfaceinfo
 				prevSurfaceInfo->pNext = &SurfaceInfo[ SurfaceSearchPoint ];
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha)	prevSurfaceInfoSys->pNext = &SurfaceInfoSys[SurfaceSearchPoint];
@@ -241,7 +241,7 @@ void AllocateBmpToSurface( int bmpNo)
 									NULL );
 #endif
 			totalSurfaceCnt++;
-			// ËùÓÐµÄÍ¼¶¼ÒÑ´æÈëoffscreen
+			// æ‰€æœ‰çš„å›¾éƒ½å·²å­˜å…¥offscreen
 			if( totalSurfaceCnt >= totalSurface ){
 				SurfaceInfo[ SurfaceSearchPoint ].pNext = NULL;
 #ifdef _READ16BITBMP
@@ -285,7 +285,7 @@ BOOL InitOffScreenSurface( void )
 		if( vramFullFlag == FALSE ){
 			if ((SurfaceInfo[i].lpSurface = CreateSurface(SurfaceSizeX, SurfaceSizeY, DEF_COLORKEY, /*DDSCAPS_SYSTEMMEMORY*/ DDSCAPS_VIDEOMEMORY)) == NULL){
 #ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"SurfaceInfo:½¨Á¢VideoRAM SurfaceÊ§°Ü£¡" ,"È·¶¨",MB_OK | MB_ICONSTOP );
+				MessageBoxNew( hWnd ,"SurfaceInfo:å»ºç«‹VideoRAM Surfaceå¤±è´¥ï¼" ,"ç¡®å®š",MB_OK | MB_ICONSTOP );
 #endif
 				vramFullFlag = TRUE;
 			}else{
@@ -295,7 +295,7 @@ BOOL InitOffScreenSurface( void )
 		if( vramFullFlag == TRUE ){
 			if( ( SurfaceInfo[ i ].lpSurface = CreateSurface( SurfaceSizeX, SurfaceSizeY, DEF_COLORKEY, DDSCAPS_SYSTEMMEMORY )) == NULL ){
 #ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"½¨Á¢SysRAM SurfaceÊ§°Ü£¡" ,"È·¶¨",MB_OK | MB_ICONSTOP );
+				MessageBoxNew( hWnd ,"å»ºç«‹SysRAM Surfaceå¤±è´¥ï¼" ,"ç¡®å®š",MB_OK | MB_ICONSTOP );
 #endif
 				return FALSE;
 			}else SysramSurfaceCnt++;
@@ -304,7 +304,7 @@ BOOL InitOffScreenSurface( void )
 		if(g_bUseAlpha){
 			if((SurfaceInfo[i].lpAlphaData = (BYTE*)MALLOC(SurfaceSizeX*SurfaceSizeY)) == NULL){
 	#ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"alpha¼ÇÒäÌåÅäÖÃÊ§°Ü£¡","È·¶¨",MB_OK | MB_ICONSTOP);
+				MessageBoxNew( hWnd ,"alphaè®°å¿†ä½“é…ç½®å¤±è´¥ï¼","ç¡®å®š",MB_OK | MB_ICONSTOP);
 	#endif
 				return FALSE;
 			}
@@ -320,7 +320,7 @@ BOOL InitOffScreenSurface( void )
 		if(g_bUseAlpha){
 			if((SurfaceInfoSys[i].lpSurface = CreateSurface(SurfaceSizeX,SurfaceSizeY,DEF_COLORKEY,DDSCAPS_SYSTEMMEMORY )) == NULL){
 	#ifdef _STONDEBUG_
-				MessageBoxNew(hWnd,"½¨Á¢SysRAM Surface(2)Ê§°Ü£¡","È·¶¨",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"å»ºç«‹SysRAM Surface(2)å¤±è´¥ï¼","ç¡®å®š",MB_OK | MB_ICONSTOP);
 	#endif
 				return FALSE;
 			}
@@ -388,7 +388,7 @@ BOOL LoadBmp( int bmpNo )
 	}
 #ifdef _CACHE_SURFACE_
 	else{
-		//Èç¹ûÒÑ¾­»º´æ£¬Ë¢ÐÂdate£¬ÒÔÃâ±»ÊÍ·Å
+		//å¦‚æžœå·²ç»ç¼“å­˜ï¼Œåˆ·æ–°dateï¼Œä»¥å…è¢«é‡Šæ”¾
 		for (SURFACE_INFO* info = SpriteInfo[bmpNo].lpSurfaceInfo; info->pNext != NULL; info = info->pNext)
 		{
 			info->date = SurfaceDate;

@@ -1,17 +1,17 @@
-#include "../systeminc/version.h"
+ï»¿#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/battleProc.h"
 #include "../systeminc/produce.h"
 #include "../systeminc/anim_tbl.h"
 #include "../systeminc/loadrealbin.h"
 
-// ?üÒ??????
+// ?î†ª??????
 int ProduceInitFlag = TRUE;
 
 #ifdef _READ16BITBMP
 extern BOOL g_bUseAlpha;
 #endif
-// ????????????şÎ **************************************************/
+// ????????????î‹  **************************************************/
 void CopyBackBuffer( void )
 {
 	// ??????????????????????
@@ -21,8 +21,8 @@ void CopyBackBuffer( void )
 #endif
 }	
 
-//Syu Mark Î´Ê¹ÓÃ
-//¼ÓËÙÒÆ¶¯
+//Syu Mark å¸¤å¦èšš
+//æ¨“å’ç—„é›„
 BOOL ProduceAccele( int mode )
 {
 	RECT rect = { 0, 0, DEF_APPSIZEX, DEF_APPSIZEY };
@@ -34,48 +34,48 @@ BOOL ProduceAccele( int mode )
 		ProduceInitFlag = FALSE;
 		x = 0; x2 = 0; y = 0;a = 0;
 	}
-	// ?¥h©˜??§Æ?
+	// ?å»???å¸Œ?
 	switch( mode ){
-	case 0:	// ıÆ?¢L?¥h
-		y -= a;	// ?¥h
-		// ?¢L¥T???
+	case 0:	// îˆ»?ï¹©?å»
+		y -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.3F; 
 		// ????????
 		if( y <= -lpDraw->ySize ) endFlag = TRUE;
 		break;
-	case 1:	// ??¢L?¥h
-		y += a;	// ?¥h
-		// ?¢L¥T???
+	case 1:	// ??ï¹©?å»
+		y += a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.3F; 
 		// ????????
 		if( y >= lpDraw->ySize ) endFlag = TRUE;
 		break;
-	case 2:	// ??¢L?¥h
-		x -= a;	// ?¥h
-		// ?¢L¥T???
+	case 2:	// ??ï¹©?å»
+		x -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.4F; 
 		// ????????
 		if( x <= -lpDraw->xSize ) endFlag = TRUE;
 		break;
-	case 3:	// ??¢L?¥h
-		x += a;	// ?¥h
-		// ?¢L¥T???
+	case 3:	// ??ï¹©?å»
+		x += a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.4F; 
 		// ????????
 		if( x >= lpDraw->xSize ) endFlag = TRUE;
 		break;
-	case 4:	// ???¢L?¥h
-		x += a;		// ?¥h
-		x2 -= a;	// ?¥h
-		// ?¢L¥T???
+	case 4:	// ???ï¹©?å»
+		x += a;		// ?å»
+		x2 -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.4F; 
 		// ????????
 		if( x >= lpDraw->xSize ) endFlag = TRUE;
 		break;
-	case 5:	// ıÆ??¢L?¥h
-		y += a;	// ?¥h
-		y2 -= a;	// ?¥h
-		// ?¢L¥T???
+	case 5:	// îˆ»??ï¹©?å»
+		y += a;	// ?å»
+		y2 -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a += 0.3F; 
 		// ????????
 		if( y >= lpDraw->ySize ) endFlag = TRUE;
@@ -83,10 +83,10 @@ BOOL ProduceAccele( int mode )
 	}
 	// ???????????????
 //	ClearBackSurface();	
-	// ??§Æ???
+	// ??å¸Œ???
 	if( mode == 4 || mode == 5 ){
 		int i;
-		// ??§Æ???
+		// ??å¸Œ???
 		for( i = 0 ; i < lpDraw->ySize ; i++ ){
 			rect.top = i;
 			rect.bottom = i + 1;
@@ -96,25 +96,25 @@ BOOL ProduceAccele( int mode )
 			if( mode == 4 ){
 				// ????
 				if( i & 1 ){
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( (int)x, i, &rect, lpBattleSurface );
 				}else{
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( (int)x2, i, &rect, lpBattleSurface );
 				}
 			}else{
 				// ????
 				if( i & 1 ){
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( 0, i + (int)y, &rect, lpBattleSurface );
 				}else{
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( 0, i + (int)y2, &rect, lpBattleSurface );
 				}
 			}
 		}
 	}else{
-		// ??????????¢L¤š??îÄ?úù¤e?
+		// ??????????ï¹©???é„¸?î‚—å‰?
 		DrawSurfaceFast2( (int)x, (int)y, &rect, lpBattleSurface );
 	}
 	if( endFlag == TRUE ){
@@ -124,7 +124,7 @@ BOOL ProduceAccele( int mode )
 		y = 0; 
 		y2 = 0; 
 		a = 0;
-		// ????ıÖ¢t¨Á?
+		// ????î‰‹â”¤é˜ª?
 		if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 		else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 		return TRUE;
@@ -133,8 +133,8 @@ BOOL ProduceAccele( int mode )
 }	
 	
 
-//Syu Mark Î´Ê¹ÓÃ
-//¼õËÙÒÆ¶¯
+//Syu Mark å¸¤å¦èšš
+//ç†¬å’ç—„é›„
 BOOL ProduceBrake( int mode )
 {
 	RECT rect = { 0, 0, DEF_APPSIZEX, DEF_APPSIZEY };
@@ -146,61 +146,61 @@ BOOL ProduceBrake( int mode )
 		ProduceInitFlag = FALSE;
 		endFlag = -1;
 	}
-	// ?¥h©˜??§Æ?
+	// ?å»???å¸Œ?
 	switch( mode ){
-	case 0:	// ıÆ?¢L?¥h
+	case 0:	// îˆ»?ï¹©?å»
 		if( endFlag == -1 ){
 			x = 0;
 			y = 513.2F;
 			a = 17.4F;
 			endFlag = FALSE;
 		}
-		y -= a;	// ?¥h
-		// ?¢L¥T???
+		y -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.3F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
 		break;
-	case 1:	// ??¢L?¥h
+	case 1:	// ??ï¹©?å»
 		if( endFlag == -1 ){
 			x = 0;
 			y = -513.2F;
 			a = 17.4F;
 			endFlag = FALSE;
 		}
-		y += a;	// ?¥h
-		// ?¢L¥T???
+		y += a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.3F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
 		break;
-	case 2:	// ??¢L?¥h
+	case 2:	// ??ï¹©?å»
 		if( endFlag == -1 ){
 			x = 661;
 			y = 0;
 			a = 22.8F;
 			endFlag = FALSE;
 		}
-		x -= a;	// ?¥h
-		// ?¢L¥T???
+		x -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.4F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
 		break;
-	case 3:	// ??¢L?¥h
+	case 3:	// ??ï¹©?å»
 		if( endFlag == -1 ){
 			x = -661;
 			y = 0;
 			a = 22.8F;
 			endFlag = FALSE;
 		}
-		x += a;	// ?¥h
-		// ?¢L¥T???
+		x += a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.4F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
 		break;
-	case 4:	// ???¢L?¥h
+	case 4:	// ???ï¹©?å»
 		if( endFlag == -1 ){
 			x = -661;
 			x2 = 661;
@@ -208,14 +208,14 @@ BOOL ProduceBrake( int mode )
 			a = 22.8F;
 			endFlag = FALSE;
 		}
-		x += a;		// ?¥h
-		x2 -= a;	// ?¥h
-		// ?¢L¥T???
+		x += a;		// ?å»
+		x2 -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.4F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
 		break;
-	case 5:	// ??¢L?¥h
+	case 5:	// ??ï¹©?å»
 		if( endFlag == -1 ){
 			x = 0;
 			y = -513.2F;
@@ -223,9 +223,9 @@ BOOL ProduceBrake( int mode )
 			a = 17.4F;
 			endFlag = FALSE;
 		}
-		y += a;	// ?¥h
-		y2 -= a;	// ?¥h
-		// ?¢L¥T???
+		y += a;	// ?å»
+		y2 -= a;	// ?å»
+		// ?ï¹©å†‰???
 		a -= 0.3F; 
 		// ????????
 		if( a <= 0 ) endFlag = TRUE;
@@ -233,10 +233,10 @@ BOOL ProduceBrake( int mode )
 	}
 	// ???????????????
 //	ClearBackSurface();	
-	// ??§Æ???
+	// ??å¸Œ???
 	if( mode == 4 || mode == 5 ){
 		int i;
-		// ??§Æ???
+		// ??å¸Œ???
 		for( i = 0 ; i < lpDraw->ySize ; i++ ){
 			rect.top = i;
 			rect.bottom = i + 1;
@@ -246,30 +246,30 @@ BOOL ProduceBrake( int mode )
 			if( mode == 4 ){
 				// ????
 				if( i & 1 ){
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( (int)x, i, &rect, lpBattleSurface );
 				}else{
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( (int)x2, i, &rect, lpBattleSurface );
 				}
 			}else{
 				// ????
 				if( i & 1 ){
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( 0, i + (int)y, &rect, lpBattleSurface );
 				}else{
-					// ??????????¢L¤š??îÄ?úù¤e?
+					// ??????????ï¹©???é„¸?î‚—å‰?
 					DrawSurfaceFast2( 0, i + (int)y2, &rect, lpBattleSurface );
 				}
 			}
 		}
 		
 	}else{
-		// ??????????¢L¤š??îÄ?úù¤e?
+		// ??????????ï¹©???é„¸?î‚—å‰?
 		DrawSurfaceFast2( (int)x, (int)y, &rect, lpBattleSurface );
 	}
 	if( endFlag == TRUE ){
-		// ????ıÖ¢t¨Á?
+		// ????î‰‹â”¤é˜ª?
 		if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 		else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 		// ??????
@@ -279,7 +279,7 @@ BOOL ProduceBrake( int mode )
 	return FALSE;
 }
 
-//ËÄ·½ÏòÒÆ¶¯
+//ä¾æºç ƒç—„é›„
 BOOL Produce4Way( int mode )
 {
 	RECT rect[ 4 ] = {	
@@ -295,9 +295,9 @@ BOOL Produce4Way( int mode )
 		ProduceInitFlag = FALSE;
 		endFlag = -1;
 	}
-	// ?¥h©˜??§Æ?
+	// ?å»???å¸Œ?
 	switch( mode ){
-	case 0:	// ?ş??
+	case 0:	// ????
 		if( endFlag == -1 ){
 			x[ 0 ] = 0;
 			y[ 0 ] = 0;
@@ -309,7 +309,7 @@ BOOL Produce4Way( int mode )
 			y[ 3 ] = 240 + (DISPLACEMENT_Y >> 1);
 			endFlag = FALSE;
 		}
-		// ?¥h
+		// ?å»
 		x[ 0 ] -= d;
 		y[ 0 ] -= d;
 		x[ 1 ] += d;
@@ -321,7 +321,7 @@ BOOL Produce4Way( int mode )
 		// ????????
 		if( x[ 0 ] <= -320 - (DISPLACEMENT_X >> 1) ) endFlag = TRUE;
 		break;
-	case 1:	// ?ş¥›?
+	case 1:	// ????
 		if( endFlag == -1 ){
 			x[ 0 ] = -280;
 			y[ 0 ] = -280;
@@ -333,7 +333,7 @@ BOOL Produce4Way( int mode )
 			y[ 3 ] = 240 + 280 + (DISPLACEMENT_Y >> 1);
 			endFlag = FALSE;
 		}
-		// ?¥h
+		// ?å»
 		x[ 0 ] += d;
 		y[ 0 ] += d;
 		x[ 1 ] -= d;
@@ -355,15 +355,15 @@ BOOL Produce4Way( int mode )
 			rect[i].left >>= 1;
 			rect[i].right >>= 1;
 			rect[i].bottom >>= 1;
-			// ??????????¢L¤š??îÄ?úù¤e?
+			// ??????????ï¹©???é„¸?î‚—å‰?
 			DrawSurfaceFast2( x[ i ] / 2, y[ i ] / 2, &rect[ i ], lpBattleSurface );
 		} else {
-			// ??????????¢L¤š??îÄ?úù¤e?
+			// ??????????ï¹©???é„¸?î‚—å‰?
 			DrawSurfaceFast2( x[ i ], y[ i ], &rect[ i ], lpBattleSurface );
 		}
 	}
 	if( endFlag == TRUE ){
-		// ????ıÖ¢t¨Á?
+		// ????î‰‹â”¤é˜ª?
 		if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 		else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 		// ??????
@@ -374,10 +374,10 @@ BOOL Produce4Way( int mode )
 }	
 #ifdef _NEW_RESOMODE
 
-//½øÈëÕ½¶·µôÂä
+//è¼›ï µæ¡µé ˆè£é‚ˆ
 BOOL ProduceHagare( int mode )
 {
-	//Çø¿éÇĞ¸îµ¥Î»´óĞ¡
+	//ï¥è¼¸ï½è³ƒç­‰å¼‡æ¹®è‹¤
 	//1024 * 768 
 	//int CutX = 128 ; 
 	//int CutY = 96 ; 
@@ -398,9 +398,9 @@ BOOL ProduceHagare( int mode )
 		ProduceInitFlag = FALSE;
 		endFlag = -1;
 	}
-	// ?¥h©˜??§Æ?
+	// ?å»???å¸Œ?
 	switch( mode ){
-	case 0:	// ı¤??
+	case 0:	// îˆ™??
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -422,13 +422,13 @@ BOOL ProduceHagare( int mode )
 		while( flag[ rnd ] == FALSE ){
 			rnd = Rnd( 0, 63 );
 		}
-		// ????ı¤?
+		// ????îˆ™?
 		flag[ rnd ] = FALSE;
 		cnt++;
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 1:	// üÒ???
+	case 1:	// î†ª???
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -450,13 +450,13 @@ BOOL ProduceHagare( int mode )
 		while( flag[ rnd ] == TRUE ){
 			rnd = Rnd( 0, 63 );
 		}
-		// ????üÒ?
+		// ????î†ª?
 		flag[ rnd ] = TRUE;
 		cnt++;
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 2:	// ı¤???????
+	case 2:	// îˆ™???????
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -485,7 +485,7 @@ BOOL ProduceHagare( int mode )
 			flag[ rnd ] = 1;
 			cnt2++;
 		}
-		// ?¥h
+		// ?å»
 		for( i = 0 ; i < 64 ; i++ ){
 			if( flag[ i ] == 1 ){
 				a[ i ]++;
@@ -499,7 +499,7 @@ BOOL ProduceHagare( int mode )
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 3:	// üÒ??????
+	case 3:	// î†ª??????
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -528,7 +528,7 @@ BOOL ProduceHagare( int mode )
 			flag[ rnd ] = 1;
 			cnt2++;
 		}
-		// ?¥h
+		// ?å»
 		for( i = 0 ; i < 64 ; i++ ){
 			if( flag[ i ] == 1 ){
 				a[ i ]++;
@@ -558,10 +558,10 @@ BOOL ProduceHagare( int mode )
 				rect.left >>= 1;
 				rect.right >>= 1;
 				rect.bottom >>= 1;
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ] / 2, y[ i ] / 2, &rect, lpBattleSurface );
 			} else {
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ], y[ i ], &rect, lpBattleSurface );
 			}
 		}
@@ -578,16 +578,16 @@ BOOL ProduceHagare( int mode )
 				rect.left >>= 1;
 				rect.right >>= 1;
 				rect.bottom >>= 1;
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ] / 2, y[ i ] / 2, &rect, lpBattleSurface );
 			} else {
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ], y[ i ], &rect, lpBattleSurface );
 			}
 		}
 	}
 	if( endFlag == TRUE ){
-		// ????ıÖ¢t¨Á?
+		// ????î‰‹â”¤é˜ª?
 		if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 		else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 		// ??????
@@ -597,7 +597,7 @@ BOOL ProduceHagare( int mode )
 	return FALSE;
 }
 #else
-//½øÈëÕ½¶·µôÂä
+//è¼›ï µæ¡µé ˆè£é‚ˆ
 BOOL ProduceHagare( int mode )
 {
 	RECT rect;
@@ -613,9 +613,9 @@ BOOL ProduceHagare( int mode )
 		ProduceInitFlag = FALSE;
 		endFlag = -1;
 	}
-	// ?¥h©˜??§Æ?
+	// ?å»???å¸Œ?
 	switch( mode ){
-	case 0:	// ı¤??
+	case 0:	// îˆ™??
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -637,13 +637,13 @@ BOOL ProduceHagare( int mode )
 		while( flag[ rnd ] == FALSE ){
 			rnd = Rnd( 0, 63 );
 		}
-		// ????ı¤?
+		// ????îˆ™?
 		flag[ rnd ] = FALSE;
 		cnt++;
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 1:	// üÒ???
+	case 1:	// î†ª???
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -665,13 +665,13 @@ BOOL ProduceHagare( int mode )
 		while( flag[ rnd ] == TRUE ){
 			rnd = Rnd( 0, 63 );
 		}
-		// ????üÒ?
+		// ????î†ª?
 		flag[ rnd ] = TRUE;
 		cnt++;
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 2:	// ı¤???????
+	case 2:	// îˆ™???????
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -700,7 +700,7 @@ BOOL ProduceHagare( int mode )
 			flag[ rnd ] = 1;
 			cnt2++;
 		}
-		// ?¥h
+		// ?å»
 		for( i = 0 ; i < 64 ; i++ ){
 			if( flag[ i ] == 1 ){
 				a[ i ]++;
@@ -714,7 +714,7 @@ BOOL ProduceHagare( int mode )
 		// ????????
 		if( cnt >= 64 ) endFlag = TRUE;
 		break;
-	case 3:	// üÒ??????
+	case 3:	// î†ª??????
 		// ???
 		if( endFlag == -1 ){
 			for( i = 0 ; i < 8 ; i++ ){
@@ -743,7 +743,7 @@ BOOL ProduceHagare( int mode )
 			flag[ rnd ] = 1;
 			cnt2++;
 		}
-		// ?¥h
+		// ?å»
 		for( i = 0 ; i < 64 ; i++ ){
 			if( flag[ i ] == 1 ){
 				a[ i ]++;
@@ -773,10 +773,10 @@ BOOL ProduceHagare( int mode )
 				rect.left >>= 1;
 				rect.right >>= 1;
 				rect.bottom >>= 1;
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ] / 2, y[ i ] / 2, &rect, lpBattleSurface );
 			} else {
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ], y[ i ], &rect, lpBattleSurface );
 			}
 		}
@@ -793,16 +793,16 @@ BOOL ProduceHagare( int mode )
 				rect.left >>= 1;
 				rect.right >>= 1;
 				rect.bottom >>= 1;
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ] / 2, y[ i ] / 2, &rect, lpBattleSurface );
 			} else {
-				// ??????????¢L¤š??îÄ?úù¤e?
+				// ??????????ï¹©???é„¸?î‚—å‰?
 				DrawSurfaceFast2( x[ i ], y[ i ], &rect, lpBattleSurface );
 			}
 		}
 	}
 	if( endFlag == TRUE ){
-		// ????ıÖ¢t¨Á?
+		// ????î‰‹â”¤é˜ª?
 		if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 		else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 		// ??????
@@ -814,7 +814,7 @@ BOOL ProduceHagare( int mode )
 #endif	
 
 #ifdef _NEW_RESOMODE
-//Ğè»»³É¿ÉÒÔÕû³ı½âÎö¶ÈµÄX , Y Öµ
+//å‰’é™å‚–è¤«çœ•æ·•å£ºè³¤æ˜´åƒ…è…”X , Y ç¡‰
 //1024 * 768 
 //#define BRAN_SIZE_X 32
 //#define BRAN_SIZE_Y 16
@@ -830,7 +830,7 @@ static int pos_tbl[( ( 800 ) /BRAN_SIZE_Y)*( ( 1024 )/BRAN_SIZE_X)*2];
 static int bran_flg = 0;
 //static int bran_flg = 0;
 
-//ÓÉ»­ÃæÖĞĞÄÏòËÄ·½À©´ó¼°Ïà·´
+//èš•è³’é†±ç¬¢é™‘ç ƒä¾æºå­ºæ¹®æ‘¯çœˆæ¯€
 BOOL Produce_bran_small(int ang)
 {
 	RECT rect;
@@ -842,7 +842,7 @@ BOOL Produce_bran_small(int ang)
 		bran_flg = 0;
 	}
 	if(bran_flg == 0){		//????
-		bran_flg = 1;		//?????şÎ
+		bran_flg = 1;		//?????î‹ 
 		d0 = 0;
 		for( d7= -240 - (DISPLACEMENT_Y >> 1) + (BRAN_SIZE_Y >> 1); d7<240 + (DISPLACEMENT_Y >> 1) + (BRAN_SIZE_Y >> 1); d7+=BRAN_SIZE_Y){
 			for(d6=-320 - (DISPLACEMENT_X >> 1) + (BRAN_SIZE_X >> 1); d6<320 + (DISPLACEMENT_X >> 1) + (BRAN_SIZE_X >> 1); d6+=BRAN_SIZE_X){
@@ -885,7 +885,7 @@ BOOL Produce_bran_small(int ang)
 	bran_cnt += ang;
 	if(ang < 0){
 		if(bran_cnt < 0){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 			bran_flg = 0;
@@ -893,7 +893,7 @@ BOOL Produce_bran_small(int ang)
 		}
 	} else {
 		if(bran_cnt > 64){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
 			bran_flg = 0;
@@ -903,7 +903,7 @@ BOOL Produce_bran_small(int ang)
 	return FALSE;
 }
 
-//Syu Mark Î´Ê¹ÓÃ
+//Syu Mark å¸¤å¦èšš
 #define BREAK_UP 8
 BOOL Produce_break_up(int ang)
 {
@@ -915,7 +915,7 @@ BOOL Produce_break_up(int ang)
 		bran_flg = 0;
 	}
 	if(bran_flg == 0){		//????
-		bran_flg = 1;		//¨Á????
+		bran_flg = 1;		//é˜ª????
 		if(ang < 0){
 			bran_cnt = lpDraw->ySize;
 		} else {
@@ -932,27 +932,27 @@ BOOL Produce_break_up(int ang)
 	if(ang < 0){
 		bran_cnt -= BREAK_UP;
 		if(bran_cnt < 0){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
-			bran_flg = 0;		//¨Á????
+			bran_flg = 0;		//é˜ª????
 			return TRUE;
 		}
 	} else {
 		bran_cnt += BREAK_UP;
 		if(bran_cnt > lpDraw->ySize){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
-			bran_flg = 0;		//¨Á????
+			bran_flg = 0;		//é˜ª????
 			return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-//Syu Mark Î´Ê¹ÓÃ
-// şş????? ******************************************************************/
+//Syu Mark å¸¤å¦èšš
+// îŒ????? ******************************************************************/
 BOOL Produce_break_up2(int ang)
 {
 	RECT rect = { 0, 0, 640, 0 };
@@ -963,7 +963,7 @@ BOOL Produce_break_up2(int ang)
 		bran_flg = 0;
 	}
 	if(bran_flg == 0){		//????
-		bran_flg = 1;		//¨Á????
+		bran_flg = 1;		//é˜ª????
 		if(ang < 0){
 			bran_cnt = lpDraw->ySize;
 		} else {
@@ -980,26 +980,26 @@ BOOL Produce_break_up2(int ang)
 	if(ang < 0){
 		bran_cnt -= BREAK_UP;
 		if(bran_cnt < 0){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
-			bran_flg = 0;		//¨Á????
+			bran_flg = 0;		//é˜ª????
 			return TRUE;
 		}
 	} else {
 		bran_cnt += BREAK_UP;
 		if(bran_cnt > lpDraw->ySize){
-			// ????ıÖ¢t¨Á?
+			// ????î‰‹â”¤é˜ª?
 			if( GameState == GAME_FIELD_TO_ENCOUNT ) GameState = GAME_ENCOUNT_TO_BATTLE; 
 			else if( GameState == GAME_ENCOUNT_TO_BATTLE ) GameState = GAME_BATTLE; 
-			bran_flg = 0;		//¨Á????
+			bran_flg = 0;		//é˜ª????
 			return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-//ÖĞÑëÑ¹Ëõ
+//ç¬¢æ æ¤å«
 BOOL ProduceCenterPress( int mode )
 {
 	static int line;
@@ -1045,13 +1045,13 @@ BOOL ProduceCenterPress( int mode )
 	return FALSE;
 }
 
-//¸÷ÖÖ×ª¾°·½Ê½
+//è·ªç¬±è›ŒåŠ“æºå®’
 BOOL DrawProduce( int no )
 {
 #ifdef _STONDEBUG_
 	// pass
 	if( joy_con[ 0 ] & JOY_UP ){ 
-		// ???£w?×ü????
+		// ???ã„ˆ?é‡¤????
 		NowTime = TimeGetTime();
 		return FALSE;
 	}
@@ -1071,83 +1071,83 @@ no = -1;
 	case PRODUCE_LEFT_ACCELE:
 		ret = ProduceAccele( 2 );
 		break;
-	case PRODUCE_RIGHT_ACCELE:	// ??¢L?¥h
+	case PRODUCE_RIGHT_ACCELE:	// ??ï¹©?å»
 		ret = ProduceAccele( 3 );
 		break;
-	case PRODUCE_LEFT_RIGHT_ACCELE:	// ???¢L?¥h
+	case PRODUCE_LEFT_RIGHT_ACCELE:	// ???ï¹©?å»
 		ret = ProduceAccele( 4 );
 		break;
-	case PRODUCE_UP_DOWM_ACCELE:	// ıÆ??¢L?¥h
+	case PRODUCE_UP_DOWM_ACCELE:	// îˆ»??ï¹©?å»
 		ret = ProduceAccele( 5 );
 		break;
-	case PRODUCE_UP_BRAKE:		// ıÆ?¢L?¥h
+	case PRODUCE_UP_BRAKE:		// îˆ»?ï¹©?å»
 		//ret = ProduceBrake( 0 );
 		break;
-	case PRODUCE_DOWN_BRAKE:	// ??¢L?¥h
+	case PRODUCE_DOWN_BRAKE:	// ??ï¹©?å»
 		ret = ProduceBrake( 1 );
 		break;
 		
-	case PRODUCE_LEFT_BRAKE:	// ??¢L?¥h
+	case PRODUCE_LEFT_BRAKE:	// ??ï¹©?å»
 		ret = ProduceBrake( 2 );
 		break;
 		
-	case PRODUCE_RIGHT_BRAKE:	// ??¢L?¥h
+	case PRODUCE_RIGHT_BRAKE:	// ??ï¹©?å»
 		ret = ProduceBrake( 3 );
 		break;
 		
-	case PRODUCE_LEFT_RIGHT_BRAKE:	// ??¢L?¥h
+	case PRODUCE_LEFT_RIGHT_BRAKE:	// ??ï¹©?å»
 		ret = ProduceBrake( 4 );
 		break;
 		
-	case PRODUCE_UP_DOWM_BRAKE:	// // ıÆ??¢L?¥h
+	case PRODUCE_UP_DOWM_BRAKE:	// // îˆ»??ï¹©?å»
 		ret = ProduceBrake( 5 );
 		break;
-	case PRODUCE_4WAY_OUT:		// úî©˜??¥h?ş??
+	case PRODUCE_4WAY_OUT:		// î‚Œ???å»????
 		ret = Produce4Way( 0 );
 		break;
-	case PRODUCE_4WAY_IN:		// úî©˜??¥h?ş¥›?
+	case PRODUCE_4WAY_IN:		// î‚Œ???å»????
 		ret = Produce4Way( 1 );
 		break;
-	case PRODUCE_HAGARE_OUT:	// ??????ı¤???
+	case PRODUCE_HAGARE_OUT:	// ??????îˆ™???
 		ret = ProduceHagare( 0 );
 		break;
-	case PRODUCE_HAGARE_IN:		// ??????üÒ????
+	case PRODUCE_HAGARE_IN:		// ??????î†ª????
 		ret = ProduceHagare( 1 );
 		break;
-	case PRODUCE_HAGARE_OCHI_OUT:	// ??????ı¤???
+	case PRODUCE_HAGARE_OCHI_OUT:	// ??????îˆ™???
 		ret = ProduceHagare( 2 );
 		break;
-	case PRODUCE_HAGARE_OCHI_IN:	// ??????üÒ????
+	case PRODUCE_HAGARE_OCHI_IN:	// ??????î†ª????
 		ret = ProduceHagare( 3 );
 		break;
-	case PRODUCE_BRAN_SMALL:	// ???üÎüí
+	case PRODUCE_BRAN_SMALL:	// ???î†¦î‡…
 		ret = Produce_bran_small(-1);
 		break;
-	case PRODUCE_BRAN_BIG:		// ????¢†
+	case PRODUCE_BRAN_BIG:		// ?????
 		ret = Produce_bran_small(1);
 		break;
-	case PRODUCE_BREAK_UP1:		//şş????ıÆ???
+	case PRODUCE_BREAK_UP1:		//îŒ????îˆ»???
 		ret = Produce_break_up(-1);
 		break;
-	case PRODUCE_BREAK_UP2:		//şş????ıÆ??
+	case PRODUCE_BREAK_UP2:		//îŒ????îˆ»??
 		ret = Produce_break_up(1);
 		break;
-	case PRODUCE_BREAK_UP3:		//şş????ıÆ???
+	case PRODUCE_BREAK_UP3:		//îŒ????îˆ»???
 		ret = Produce_break_up(-1);
 		break;
-	case PRODUCE_BREAK_UP4:		//şş???????
+	case PRODUCE_BREAK_UP4:		//îŒ???????
 		ret = Produce_break_up2(1);
 		break;
-	case PRODUCE_BREAK_UP5:		//şş????????
+	case PRODUCE_BREAK_UP5:		//îŒ????????
 		ret = Produce_break_up2(-1);
 		break;
-	case PRODUCE_BREAK_UP6:		//şş???????
+	case PRODUCE_BREAK_UP6:		//îŒ???????
 		ret = Produce_break_up2(1);
 		break;
-	case PRODUCE_BREAK_UP7:		//şş????????
+	case PRODUCE_BREAK_UP7:		//îŒ????????
 		ret = Produce_break_up2(-1);
 		break;
-	case PRODUCE_BREAK_UP8:		//şş????ıÆ??
+	case PRODUCE_BREAK_UP8:		//îŒ????îˆ»??
 		ret = Produce_break_up(1);
 		break;
 	case PRODUCE_CENTER_PRESSIN:
@@ -1197,7 +1197,7 @@ void TitleProduce( void )
 			cnt3 = 0;
 			time = 0;
 		}
-		// ûÒ???????
+		// î„???????
 		x[ 9 ] = -319;
 		//cary 2001 07 10
 		y[ 9 ] = 410 + 5;
@@ -1212,17 +1212,17 @@ void TitleProduce( void )
 			realGetNo( bmpNo , &no );
 			LoadBmp( no );
 		}
-		// ???£w?×ü????
+		// ???ã„ˆ?é‡¤????
 		NowTime = TimeGetTime();
 		flag = 1;
 	}
-	// ??¢r?
+	// ??â”´?
 	if( flag == 1 ){
 		//time++;
 		//if( time >= 120 ) 
 		flag = 2;
 	}
-	// ûÒ???¥h
+	// î„???å»
 	if( flag == 2 ){
 		a[ 8 ] -= 0.5;
 		x[ 8 ] -= a[ 8 ];
@@ -1230,7 +1230,7 @@ void TitleProduce( void )
 			x[ 8 ] = 320;
 			flag = 3;
 		}
-		// ?????¥h
+		// ?????å»
 		a[ 9 ] -= 0.5;
 		x[ 9 ] += a[ 9 ];
 		if( a[ 9 ] == 0 ){
@@ -1246,7 +1246,7 @@ void TitleProduce( void )
 		}
 		cnt2++;
 	}
-	// ?¥h
+	// ?å»
 	if( flag == 3 ){
 		for( i = 0 ; i < 8 ; i++ ){
 			if( fall[ i ] >= 1 && fall[ i ] <= 3 ){
@@ -1265,12 +1265,12 @@ void TitleProduce( void )
 			}
 		}
 	}
-	// ûÒ???????¤úû¨
+	// î„???????ç‰™îƒ£
 	StockDispBuffer( ( int )x[ 8 ] + DISPLACEMENT_X / 2, ( int )y[ 8 ], DISP_PRIO_CHAR, CG_TITLE_JSS_LOGO, 0 );
 	//Syu Cancel 06/24/2002
 	//StockDispBuffer( ( int )x[ 9 ] + DISPLACEMENT_X / 2, ( int )y[ 9 ], DISP_PRIO_CHAR, CG_TITLE_DREAM_LOGO, 0 );
 	if( cnt3 < 8 ){
-		// ¤úû¨
+		// ç‰™îƒ£
 		for( i = 0 ; i < 8 ; i++ ){
 			StockDispBuffer( ( int )x[ i ] + DISPLACEMENT_X / 2, ( int )y[ i ], DISP_PRIO_CHAR, CG_TITLE_NAME_S + i, 0 );
 		}

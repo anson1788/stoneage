@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <tlhelp32.h>
 #include <stdio.h>
 #include "../systeminc/version.h"
@@ -18,7 +18,7 @@ void CloseParentProcess()
 			do{
 				if( pe32.th32ProcessID == dwPID){
 					if( hParentProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pe32.th32ParentProcessID)){
-//						MessageBoxNew( NULL, "ÕÒµ½ÁË", "Ñ°ÕÒ¸¸³ÌÊ½", MB_OK);
+//						MessageBoxNew( NULL, "æ¢‘å–„è³¸", "æ‰†æ¢‘è™œæœ€å®’", MB_OK);
 						TerminateProcess( hParentProcess, 0);
 						CloseHandle( hParentProcess);
 					}

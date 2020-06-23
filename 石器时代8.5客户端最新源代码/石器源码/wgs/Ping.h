@@ -1,16 +1,16 @@
-//ping.h
+ï»¿//ping.h
 #ifndef _CPING_H_
 #define _CPING_H_
 #pragma pack(1)
 
 #define ICMP_ECHOREPLY  0
 #define ICMP_ECHOREQ    8
-#define REQ_DATASIZE    32      // Echo ÇëÇóÊı¾İµÄ´óĞ¡
+#define REQ_DATASIZE    32      // Echo è¯·æ±‚æ•°æ®çš„å¤§å°
 
 class CPing
 {
 public:
-	//ping host£¬ nRetries-ping´ÎÊı
+	//ping hostï¼Œ nRetries-pingæ¬¡æ•°
 	bool Ping(LPCSTR pstrHost, UINT nRetries = 4);
 
 	void Result(int* nElapseTime, float* fMissPack = NULL, u_char* cTTL = NULL);
@@ -18,7 +18,7 @@ public:
 
 private:
 	int  WaitForEchoReply(SOCKET s);
-	//ICMP»ØÓ¦µÄÇëÇóºÍ»Ø´ğº¯Êı
+	//ICMPå›åº”çš„è¯·æ±‚å’Œå›ç­”å‡½æ•°
 	int     SendEchoRequest(SOCKET, LPSOCKADDR_IN);
 	DWORD   RecvEchoReply(SOCKET, LPSOCKADDR_IN, u_char *);
 	u_short in_cksum(u_short *addr, int len);
@@ -26,9 +26,9 @@ private:
 private:
 	struct REQ_RESULT
 	{
-		int         nElapseTime;    //ÇëÇóÏìÓ¦Ê±¼ä¡£
-		u_char      cTTL;           //ÇëÇóTTL(Éú´æÊ±¼ä)
-		float       fMissPack;  //¶ª°üÂÊ
+		int         nElapseTime;    //è¯·æ±‚å“åº”æ—¶é—´ã€‚
+		u_char      cTTL;           //è¯·æ±‚TTL(ç”Ÿå­˜æ—¶é—´)
+		float       fMissPack;  //ä¸¢åŒ…ç‡
 	};
 
 	REQ_RESULT m_Result;

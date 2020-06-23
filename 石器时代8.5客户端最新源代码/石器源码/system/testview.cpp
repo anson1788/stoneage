@@ -1,4 +1,4 @@
-/************************/
+Ôªø/************************/
 /*	testView.cpp		*/
 /************************/
 #include "../systeminc/version.h"
@@ -10,33 +10,33 @@
 
 #ifdef _STONDEBUG_		
 
-// ??????????˝ı?
+// ??????????Óâ™?
 extern void hit_mark_critical( ACTION *a0 );
 
-// §˙˚®??????????????????
+// ÁâôÓÉ£??????????????????
 void StockDispBufferSprView( int x, int y, UCHAR dispPrio, int bmpNo )
 {	
-	// ??®Ú¢V??˝Õ????????˛≠???
+	// ??Âçí„éè??ÓâÇ????????Óäø???
 	DISP_SORT 	*pDispSort = DispBuffer.DispSort + DispBuffer.DispCnt;
 	DISP_INFO 	*pDispInfo = DispBuffer.DispInfo + DispBuffer.DispCnt;
 	
 	// ??????????
 	if( DispBuffer.DispCnt >= DISP_BUFFER_SIZE ) return;
 	
-	// §˙˚®?°I?????¢B¢l
+	// ÁâôÓÉ£?ÔºÅ?????Ôπ®‚ñç
 	pDispSort->dispPrio = dispPrio;
 	pDispSort->no = DispBuffer.DispCnt;
-	// §˙˚®˝—©ç?¢B¢l? ??????•õ? ?
+	// ÁâôÓÉ£ÓâÜ??Ôπ®‚ñç? ???????? ?
 	pDispInfo->x = x;
 	pDispInfo->y = y;
 	pDispInfo->bmpNo = bmpNo;
 	pDispInfo->hitFlag = 2;
 
-	// §˙˚®????????
+	// ÁâôÓÉ£????????
 	DispBuffer.DispCnt++;
 }
 
-/* ??????¶_???? ********************************************************************/
+/* ??????Âõù???? ********************************************************************/
 void SprViewProc( void )
 {
 	char szMoji[ 256 ];
@@ -44,49 +44,49 @@ void SprViewProc( void )
 	int bmpY;
 	static int bmpNo = 0;
 	int bmpNoBak;
-	static int no = 0; // ?ß∆ßk?
-	static BOOL fontFlag = TRUE; // ????§˙˚®???
-	// ?ß∆????
+	static int no = 0; // ?Â∏åÂêª?
+	static BOOL fontFlag = TRUE; // ????ÁâôÓÉ£???
+	// ?Â∏å????
 	int zoubunTbl[] ={   1,  5,  25,  100, 	500,  1000,
 						-1, -5, -25, -100, -500, -1000 };
-	static int palNo = 0; // ????ßk?
-	static int time = 600; // ????ßk?
+	static int palNo = 0; // ????Âêª?
+	static int time = 600; // ????Âêª?
 	
-	/* ??????ßk??ß∆? */
+	/* ??????Âêª??Â∏å? */
 	switch( SubProcNo ){
 	
 		case 0:
-			// ????????§˛?©ò©ú?ß∆?
+			// ????????‰∏ô????Â∏å?
 			//BackBufferDrawType = DRAW_BACK_NON
 			// ???????????
-			// ˛≠???
+			// Óäø???
 			if( joy_auto[ 0 ] & JOY_RIGHT ) bmpNo += zoubunTbl[ no ];
 			// ??
 			if( joy_auto[ 0 ] & JOY_LEFT ) bmpNo -= zoubunTbl[ no ];
-			// ?ß∆???
+			// ?Â∏å???
 			if( joy_trg[ 0 ] & JOY_UP ){ 
 				no++;
 				if( no >= 6 ) no = 0; // ????????
 			}
-			// ?ß∆????
+			// ?Â∏å????
 			if( joy_trg[ 0 ] & JOY_DOWN ){
 				no--;
 				if( no <= -1 ) no = 5; // ????????
 			}
 #if 0
 			// ?????????
-			// ??????˛≠?
+			// ??????Óäø?
 			if( mouse.onceState & MOUSE_LEFT_CRICK ){
 				bmpNo += zoubunTbl[ no ];
 				// ?????
 				play_se( 201, 320, 240 );
 			}
-			// ˛¢?????????
+			// Óä¥?????????
 			if( GetAsyncKeyState( VK_MBUTTON ) ){
 				bmpNo += zoubunTbl[ no ];
 			}
 			
-			// ???????ß∆®¡?
+			// ???????Â∏åÈò™?
 			if( mouse.onceState & MOUSE_RIGHT_CRICK ){
 			//if( mouse.state & MOUSE_RIGHT_CRICK ){
 				no++;
@@ -99,7 +99,7 @@ void SprViewProc( void )
 			if( bmpNo < 0 ) bmpNo = 0;
 			if( bmpNo >= MAX_GRAPHICS - 25 ) bmpNo = MAX_GRAPHICS -25;
 			
-			// ????®¡?
+			// ????Èò™?
 			if( joy_trg[ 0 ] & JOY_A ){	/* ??? */
 				palNo--;
 				if( palNo < 0 ) palNo = MAX_PAL - 1;
@@ -116,51 +116,51 @@ void SprViewProc( void )
 				// ????????
 				play_se( 202, 320, 240 );
 			}
-			// ???????®¡?
+			// ???????Èò™?
 			if( joy_trg[ 0 ] & JOY_DEL ){	/* ??? */
 				if( fontFlag ) fontFlag = 0;
 				else fontFlag = 1;
-				// ????˙È??
+				// ????ÓÇá??
 				play_se( 212, 320, 240 );
 			}
 			
-			// ????¸¨?
+			// ????ÓÜÑ?
 			if( joy_trg[ 0 ] & JOY_ESC ){	/* ???? */
 				// ???????? WM_CLOSE ??????????
 				PostMessage( hWnd, WM_CLOSE, 0, 0L );
 			}
 			
-			// ???ßk???????
+			// ???Âêª???????
 			bmpNoBak = bmpNo;
 			
-			// ??˛ùß∆???????ß∆?
+			// ???Â∏å???????Â∏å?
 			for( bmpY = 0 ; bmpY < lpDraw->ySize ; bmpY += 96 ){
 				for( bmpX = 0 ; bmpX < lpDraw->xSize ; bmpX += 128 ){
 					// ???????????
 					if( fontFlag == TRUE ){
-						// ???ßk?
+						// ???Âêª?
 						wsprintf( szMoji,"%7d", bmpNoBak );
 						StockFontBuffer( bmpX, bmpY, FONT_PRIO_BACK, 0, szMoji, 0 );
 					}
-					// ???§˙˚®????????
+					// ???ÁâôÓÉ£????????
 					StockDispBufferSprView( bmpX, bmpY, 0, bmpNoBak++ );
 				}
 			}
 			// ???????????
 			if( fontFlag == TRUE ){
-				// ?ß∆§˙˚®
-				wsprintf( szMoji, "PAL:%2d  ?ß∆:%6d", palNo, zoubunTbl[ no ] );
+				// ?Â∏åÁâôÓÉ£
+				wsprintf( szMoji, "PAL:%2d  ?Â∏å:%6d", palNo, zoubunTbl[ no ] );
 				StockFontBuffer( 640 - 16 * 12, 462, FONT_PRIO_FRONT, 0, szMoji, 0 );
 					
-				// ¸¨?§˙˚®
-				StockFontBuffer( 4, 462, FONT_PRIO_FRONT, 0, "ESC:Ω· ¯  X or Y:PAL±‰∏¸  DEL:Œƒ◊÷ ON/OFF", 0 );
+				// ÓÜÑ?ÁâôÓÉ£
+				StockFontBuffer( 4, 462, FONT_PRIO_FRONT, 0, "ESC:Ë≥¶Êó∞  X or Y:PALÊõπËºâ  DEL:ÊÅÖË∂º ON/OFF", 0 );
 			}
 			/* ????????? */
 			RunAction();
-			// ???§˙˚®????????????
+			// ???ÁâôÓÉ£????????????
 			StockTaskDispBuffer();
 			
-			// ¶ë?§˛???˝Ë?
+			// ??‰∏ô???Óâù?
 			StockBoxDispBuffer( 0, 0, lpDraw->xSize, lpDraw->ySize, DISP_PRIO_BG, SYSTEM_PAL_PURPLE , 1 );
 			
 			// ????????
@@ -182,13 +182,13 @@ void AnimSpr( ACTION *pAct )
 	static bool slowFlag = FALSE;
 	static int hitNo = 0;
 	
-	/* ˝÷¢t?ß∆? */
+	/* Óâã‚î§?Â∏å? */
 	switch( pAct->state ){
-		/* §G˝–? */
+		/* ‰∫åÓâÖ? */
 		case ACT_STATE_ACT:
 			// ???????
 			if( slowFlag == FALSE ){
-				// ?????ßk?®¡?????
+				// ?????Âêª?Èò™?????
 				if( joy_auto[ 0 ] & JOY_RIGHT ){	/* ??? */
 					while( 1 ){
 						pAct->anim_chr_no++;
@@ -209,7 +209,7 @@ void AnimSpr( ACTION *pAct )
 						}
 					}
 				}
-				// ?????ßk?®¡????????
+				// ?????Âêª?Èò™????????
 				if( joy_trg[ 0 ] & JOY_INS ){	/* ??? */
 					pAct->anim_chr_no += 1000;
 					while( 1 ){
@@ -232,13 +232,13 @@ void AnimSpr( ACTION *pAct )
 						}
 					}
 				}
-				// ?????????˛Ü?????
+				// ???????????????
 				//while( 1 ){
 				//if( SpriteData[ pAct->anim_chr_no ].ptAnimlist == NULL )
 				//{
 					
 				
-				// ©ò?®¡?
+				// ??Èò™?
 				if( joy_auto[ 0 ] & JOY_UP ){		/* ??? */
 					pAct->anim_ang++;
 					if( pAct->anim_ang >= 8 ) pAct->anim_ang = 0;
@@ -248,7 +248,7 @@ void AnimSpr( ACTION *pAct )
 					if( pAct->anim_ang < 0 ) pAct->anim_ang =  7;
 				}
 				
-				// ???????ßk?§˙˚®
+				// ???????Âêª?ÁâôÓÉ£
 				if( joy_trg[ 0 ] & JOY_HOME ){		/* ??? */
 					pAct->anim_no++;
 					if( pAct->anim_no > 12 ) pAct->anim_no = 12;
@@ -258,7 +258,7 @@ void AnimSpr( ACTION *pAct )
 					if( pAct->anim_no < 0 ) pAct->anim_no =  0;
 				}
 				
-				// ????®¡?
+				// ????Èò™?
 				if( joy_trg[ 0 ] & JOY_A ){	/* ??? */
 					anim_spd--;
 					if( anim_spd < 0 ) anim_spd = 0;
@@ -268,7 +268,7 @@ void AnimSpr( ACTION *pAct )
 					if( anim_spd >= 255 ) anim_spd = 255;
 				}
 			}
-			// ????¸¨?
+			// ????ÓÜÑ?
 			if( joy_trg[ 0 ] & JOY_ESC ){	/* ???? */
 				// ???????? WM_CLOSE ??????????
 				PostMessage( hWnd, WM_CLOSE, 0, 0L );
@@ -297,45 +297,45 @@ void AnimSpr( ACTION *pAct )
 				pattern( pAct, anim_spd, ANM_LOOP );
 			}
 			
-			// ???ßR§e??
+			// ???Âà™Âèâ??
 			if( pAct->anim_hit >= 10000 ){
-				hitNo = pAct->anim_hit; // ???ßR§eßk???
+				hitNo = pAct->anim_hit; // ???Âà™ÂèâÂêª???
 				pAct->anim_hit = 0; // ???
-				// ???????˛Œ
+				// ???????Óã†
 				for( d0=5 ;d0>0 ;d0--){
 					//?????????
 					a1 = GetAction( PRIO_JIKI, sizeof( ATR_EQU ) );
 					if( a1 == NULL ) return;
-					/* §˙˚®?°I•T */
+					/* ÁâôÓÉ£?ÔºÅÂÜâ */
 					ATR_DISP_PRIO(a1) = DISP_PRIO_CHAR + 1;
-					/* ?????ßk? */
+					/* ?????Âêª? */
 					ATR_CHR_NO(a1) = CG_HIT_MARK_22;
 					ATR_H_POS(a1) = 320;
 					ATR_V_POS(a1) = 240;
 					ATR_SPD(a1) = Rnd( 4, 7 );
 					ATR_CRS(a1) = d0 * 6;
-					ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = 32;		//§˙˚®?????
+					ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = 32;		//ÁâôÓÉ£?????
 					ATR_KAISHIN(a1) = 1;
 					ATR_NAME(a1) = hit_mark_critical;
 					ATR_CHR_NO(a1) = CG_HIT_MARK_01;
 				}
 			}
-			// ?????ßk?§˙˚®
-			wsprintf( szMoji, "∂Ø  ª≠  ±‡  ∫≈ =  %8d £∫ Left or Right ( °¿1 )", pAct->anim_chr_no );
+			// ?????Âêª?ÁâôÓÉ£
+			wsprintf( szMoji, "ÈõÑ  Ë≥í  Êô§  Áòç =  %8d „Ñ© Left or Right ( „ä£1 )", pAct->anim_chr_no );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
-			StockFontBuffer( x + 236, y, FONT_PRIO_FRONT, 0, "£∫ DEL  or INS ( ?1000 )", 0 ); y += 20;
-			// ©ò?§˙˚®
-			wsprintf( szMoji, "∑Ω          œÚ =  %8d £∫ Down or UP", pAct->anim_ang );
+			StockFontBuffer( x + 236, y, FONT_PRIO_FRONT, 0, "„Ñ© DEL  or INS ( ?1000 )", 0 ); y += 20;
+			// ??ÁâôÓÉ£
+			wsprintf( szMoji, "Ê∫ê          Á†É =  %8d „Ñ© Down or UP", pAct->anim_ang );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
-			// ???????ßk?§˙˚®
-			wsprintf( szMoji, "∂Ø  ◊˜  ±‡  ∫≈ =  %8d £∫ END  or HOME", pAct->anim_no );
+			// ???????Âêª?ÁâôÓÉ£
+			wsprintf( szMoji, "ÈõÑ  Èá¨  Êô§  Áòç =  %8d „Ñ© END  or HOME", pAct->anim_no );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
-			// ?ß∆§˙˚®
-			wsprintf( szMoji, "ÀŸ         ∂» =  %8d £∫ Z    or X", anim_spd );
+			// ?Â∏åÁâôÓÉ£
+			wsprintf( szMoji, "Âéí         ÂÉÖ =  %8d „Ñ© Z    or X", anim_spd );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			
-			// ???ßk?
-			wsprintf( szMoji, "“Ù  –ß  ±‡  ∫≈ =  %8d", t_music_se_no );
+			// ???Âêª?
+			wsprintf( szMoji, "Áßû  Ëô¥  Êô§  Áòç =  %8d", t_music_se_no );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			// ??????
 			if( t_music_se_no != -1 ){
@@ -359,41 +359,41 @@ void AnimSpr( ACTION *pAct )
 					if( tone_tbl[ t_music_se_no ].voice_note + tone_tbl[ t_music_se_no ].voice_rate <= 0 ) tone_tbl[ t_music_se_no ].voice_note = -tone_tbl[ t_music_se_no ].voice_rate + 1;
 				}
 				// ?????
-				wsprintf( szMoji, "“Ù  –ß  “Ù  ¡ø =  %8d £∫ F7 or F8", tone_tbl[ t_music_se_no ].voice_volume );
+				wsprintf( szMoji, "Áßû  Ëô¥  Áßû  Ë¨õ =  %8d „Ñ© F7 or F8", tone_tbl[ t_music_se_no ].voice_volume );
 				StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 				// ??????
-				wsprintf( szMoji, "“Ù  –ß  ∏ﬂ  µÕ =  %8d £∫ F5 or F6", tone_tbl[ t_music_se_no ].voice_note );
+				wsprintf( szMoji, "Áßû  Ëô¥  Ë©¢  ËÖ¥ =  %8d „Ñ© F5 or F6", tone_tbl[ t_music_se_no ].voice_note );
 				StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			}else{
 				// ?????
-				wsprintf( szMoji, "“Ù  –ß  “Ù  ¡ø =  %8d £∫ F7 or F8", 0 );
+				wsprintf( szMoji, "Áßû  Ëô¥  Áßû  Ë¨õ =  %8d „Ñ© F7 or F8", 0 );
 				StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 				// ??????
-				wsprintf( szMoji, "“Ù  –ß  ∏ﬂ  µÕ =  %8d £∫ F5 or F6", 0 );
+				wsprintf( szMoji, "Áßû  Ëô¥  Ë©¢  ËÖ¥ =  %8d „Ñ© F5 or F6", 0 );
 				StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			}
 			
-			// ???ßk?
-			//wsprintf( szMoji, "???  ßk  ? =  %8d", pAct->bmpNo );
+			// ???Âêª?
+			//wsprintf( szMoji, "???  Âêª  ? =  %8d", pAct->bmpNo );
 			//StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
-			// ???§˙˚®
+			// ???ÁâôÓÉ£
 			//wsprintf( szMoji, "???  ??? = %4d,%4d", SpriteInfo[ pAct->bmpNo ].width, SpriteInfo[ pAct->bmpNo ].height );
 			//StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 						
-			// ???ßR§eßk?
-			wsprintf( szMoji, "???ßR§eßk? =  %8d", hitNo );
+			// ???Âà™ÂèâÂêª?
+			wsprintf( szMoji, "???Âà™ÂèâÂêª? =  %8d", hitNo );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			
-			// ?????°C˛ë
-			wsprintf( szMoji, "F12£∫????  F11£∫????  F10£∫???" );
+			// ?????„ÄÇ?
+			wsprintf( szMoji, "F12„Ñ©????  F11„Ñ©????  F10„Ñ©???" );
 			StockFontBuffer( 8, 460, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			
-			// ¸¨?§˙˚®
-			StockFontBuffer( 530, 460, FONT_PRIO_FRONT, 0, "Ω· ¯£∫ESC", 0 );
+			// ÓÜÑ?ÁâôÓÉ£
+			StockFontBuffer( 530, 460, FONT_PRIO_FRONT, 0, "Ë≥¶Êó∞„Ñ©ESC", 0 );
 			
 			break;
 		
-		/* ?©˚? */	
+		/* ?ÊòÄ? */	
 		case ACT_STATE_DEAD:
 		
 			DeathAction( pAct );
@@ -402,28 +402,28 @@ void AnimSpr( ACTION *pAct )
 	}
 }
 
-/* ?????????????˛Œ ***********************************************/
+/* ?????????????Óã† ***********************************************/
 ACTION *MakeAnimSpr( void )
 {
 	ACTION *pAct;
 	
-	/* ?????????•K? */
+	/* ?????????‰ªï? */
 	pAct = GetAction( PRIO_JIKI, 0 );
 	if( pAct == NULL ) return NULL;
 	
-	/* ˚¬??? */
+	/* ÓÉΩ??? */
 	pAct->func = AnimSpr;
-	// anim_tbl.h ?ßk?
+	// anim_tbl.h ?Âêª?
 	pAct->anim_chr_no = SPRSTART; 
-	// •h?ßk?
+	// Âéª?Âêª?
 	pAct->anim_no = 0;//ANIM_ATTACK;
 	// ?????????( ??? )( ??????? )
 	pAct->anim_ang = 0;//Rnd( 0, 7 );
-	// ????§˙˚®
+	// ????ÁâôÓÉ£
 	pAct->atr |= ACT_ATR_HIT_BOX;
-	/* §˙˚®?°I•T */
+	/* ÁâôÓÉ£?ÔºÅÂÜâ */
 	pAct->dispPrio = DISP_PRIO_CHAR;
-	/* ???£t */
+	/* ???„ÑÖ */
 	pAct->x = 320;
 	pAct->y = 360;
 	
@@ -433,19 +433,19 @@ ACTION *MakeAnimSpr( void )
 	return pAct;
 }
 
-/* ????????¶_???? ********************************************************************/
+/* ????????Âõù???? ********************************************************************/
 void AnimViewProc( void )
 {
-	/* ??????ßk??ß∆? */
+	/* ??????Âêª??Â∏å? */
 	switch( SubProcNo ){
 	
 		case 0:
 			
-			// ?????????????˛Œ
+			// ?????????????Óã†
 			MakeAnimSpr();
-			// °P•f???˛ï??
+			// ¬∑ÂçØ??????
 			play_bgm( 1 );
-			// ??????ßk????
+			// ??????Âêª????
 			SubProcNo++;
 			
 			break;
@@ -454,38 +454,38 @@ void AnimViewProc( void )
 		
 			/* ????????? */
 			RunAction();
-			// ???§˙˚®????????????
+			// ???ÁâôÓÉ£????????????
 			StockTaskDispBuffer();
 			
-			// ¶ë?§˛???˝Ë?
+			// ??‰∏ô???Óâù?
 			StockBoxDispBuffer( 0, 0, lpDraw->xSize, lpDraw->ySize, DISP_PRIO_BG, SYSTEM_PAL_PURPLE , 1 );
 			
 			break;
 	}
 }
 
-/* ???¶_???? ********************************************************************/
+/* ???Âõù???? ********************************************************************/
 void SeTestProc( void )
 {
 	char szMoji[ 256 ];
 	int x = 128, y = 196;
 	static int seNo = 1, bgmFlag;
 	
-	/* ??????ßk??ß∆? */
+	/* ??????Âêª??Â∏å? */
 	switch( SubProcNo ){
 	
 		case 0:
 			
-			// ??????ßk????
+			// ??????Âêª????
 			SubProcNo++;
 			
 			break;
 			
 		case 1:
 			
-			// ???˛ï??
+			// ??????
 			if( joy_trg[ 0 ] & JOY_A ) play_se( seNo, 320, 240 );
-			// ????????˛ï??
+			// ???????????
 			if( joy_trg[ 0 ] & JOY_B ){ 
 				if( bgmFlag == FALSE ){
 					bgmFlag = TRUE;
@@ -496,7 +496,7 @@ void SeTestProc( void )
 				}
 			}
 			
-			// ???ßk?®¡?????
+			// ???Âêª?Èò™?????
 			if( joy_auto[ 0 ] & JOY_RIGHT ){	/* ??? */
 				while( 1 ){
 					seNo++;
@@ -531,26 +531,26 @@ void SeTestProc( void )
 				if( tone_tbl[ seNo ].voice_note + tone_tbl[ seNo ].voice_rate <= 0 ) tone_tbl[ seNo ].voice_note = -tone_tbl[ seNo ].voice_rate + 1;
 			}
 			
-			// ????¸¨?
+			// ????ÓÜÑ?
 			if( joy_trg[ 0 ] & JOY_ESC ){	/* ???? */
 				// ???????? WM_CLOSE ??????????
 				PostMessage( hWnd, WM_CLOSE, 0, 0L );
 			}
-			// ???ßk?
-			wsprintf( szMoji, "“Ù  –ß  ±‡  ∫≈ =  %4d £∫ Left or Right", seNo );
+			// ???Âêª?
+			wsprintf( szMoji, "Áßû  Ëô¥  Êô§  Áòç =  %4d „Ñ© Left or Right", seNo );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			// ?????
-			wsprintf( szMoji, "“Ù  –ß  “Ù  ¡ø =  %4d £∫ F7   or F8", tone_tbl[ seNo ].voice_volume );
+			wsprintf( szMoji, "Áßû  Ëô¥  Áßû  Ë¨õ =  %4d „Ñ© F7   or F8", tone_tbl[ seNo ].voice_volume );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			// ??????
-			wsprintf( szMoji, "“Ù  –ß  ∏ﬂ  µÕ =  %4d £∫ F5   or F6", tone_tbl[ seNo ].voice_note );
+			wsprintf( szMoji, "Áßû  Ëô¥  Ë©¢  ËÖ¥ =  %4d „Ñ© F5   or F6", tone_tbl[ seNo ].voice_note );
 			StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
-			// ???˛ï?????
-			wsprintf( szMoji, "Z£∫“Ù  –ß  ≤•  ∑≈  X£∫±≥æ∞“Ù¿÷≤•∑≈" );
+			// ?????????
+			wsprintf( szMoji, "Z„Ñ©Áßû  Ëô¥  Áï¶  Ê∫´  X„Ñ©ÊéñÂäìÁßûÊ∞àÁï¶Ê∫´" );
 			StockFontBuffer( 16, 460, FONT_PRIO_FRONT, 0, szMoji, 0 ); y += 20;
 			
-			// ¸¨?§˙˚®
-			StockFontBuffer( 530, 460, FONT_PRIO_FRONT, 0, "Ω· ¯£∫ESC", 0 );
+			// ÓÜÑ?ÁâôÓÉ£
+			StockFontBuffer( 530, 460, FONT_PRIO_FRONT, 0, "Ë≥¶Êó∞„Ñ©ESC", 0 );
 			
 			break;
 	}

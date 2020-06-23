@@ -24,13 +24,13 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'">
-    <LocalDebuggerCommand>F:\7-sa\sa25.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>D:\stoneAge\client\sa25.exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER_TW_Debug|Win32'">
     <LocalDebuggerCommand>G:\台式数据\石器TW\saex.exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='VER25_DEBUG|Win32'">
-    <LocalDebuggerWorkingDirectory>F:\7-sa\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>D:\stoneAge\client</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>OpenClient</LocalDebuggerCommandArguments>
   </PropertyGroup>
