@@ -1,0 +1,4 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=7C915F9C
+eax=7C915F9C ebx=007CCDF0 ecx=611034B0 edx=FFFFFFFF esi=00000000 edi=007CCE64
+ebp=003D0000 esp=007CCDB4 program=J:\cygwin\bin\make.exe, pid 4224, thread unknown (0x1090)
+cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
